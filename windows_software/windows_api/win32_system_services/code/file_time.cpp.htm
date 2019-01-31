@@ -1,0 +1,62 @@
+<html>
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>file_time.cpp</title>
+</head>
+<body>
+<font face="Courier New" size="4">
+
+#include &lt;windows.h&gt;<br>
+#include &lt;iostream.h&gt;<br>
+<br>
+void ShowTime(FILETIME t)<br>
+<font color="#009933">// Dumps the t to stdout</b></font><br>
+{<br>
+ &nbsp;&nbsp;&nbsp;FILETIME ft;<br>
+ &nbsp;&nbsp;&nbsp;SYSTEMTIME st;<br>
+<br>
+ &nbsp;&nbsp;&nbsp;FileTimeToLocalFileTime(&amp;t, &amp;ft);<br>
+ &nbsp;&nbsp;&nbsp;FileTimeToSystemTime(&amp;ft, &amp;st);<br>
+ &nbsp;&nbsp;&nbsp;cout &lt;&lt; st.wMonth &lt;&lt; &quot;/&quot; &lt;&lt; st.wDay <br>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt; &quot;/&quot; &lt;&lt; st.wYear &lt;&lt; &quot; &nbsp;&nbsp;&quot; &lt;&lt; st.wHour <br>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt; &quot;:&quot; &lt;&lt; st.wMinute &lt;&lt; endl; &nbsp;&nbsp;<br>
+}<br>
+<br>
+void main()<br>
+{<br>
+ &nbsp;&nbsp;&nbsp;HANDLE fileHandle;<br>
+ &nbsp;&nbsp;&nbsp;char filename[MAX_PATH];<br>
+ &nbsp;&nbsp;&nbsp;FILETIME create, lastWrite, lastAccess;<br>
+ &nbsp;&nbsp;&nbsp;BOOL success;<br>
+<br>
+ &nbsp;&nbsp;&nbsp;<font color="#009933">// get the file name</b></font><br>
+ &nbsp;&nbsp;&nbsp;cout &lt;&lt; &quot;Enter filename: &quot;;<br>
+ &nbsp;&nbsp;&nbsp;cin &gt;&gt; filename;<br>
+<br>
+ &nbsp;&nbsp;&nbsp;<font color="#009933">// open the file</b></font><br>
+ &nbsp;&nbsp;&nbsp;fileHandle = CreateFile(filename, GENERIC_READ,<br>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FILE_SHARE_WRITE,<br>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0, OPEN_EXISTING, 0, 0);<br>
+ &nbsp;&nbsp;&nbsp;if (fileHandle == INVALID_HANDLE_VALUE)<br>
+ &nbsp;&nbsp;&nbsp;{<br>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cout &lt;&lt; &quot;Error number &quot; &lt;&lt; GetLastError()<br>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt; endl;<br>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return;<br>
+ &nbsp;&nbsp;&nbsp;}<br>
+ &nbsp;&nbsp;&nbsp;else<br>
+ &nbsp;&nbsp;&nbsp;{<br>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#009933">// get the file times</b></font><br>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;success = GetFileTime( fileHandle, &amp;create,<br>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;lastAccess, &amp;lastWrite);<br>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cout &lt;&lt; &quot;Last write time: &quot;;<br>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ShowTime(lastWrite);<br>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#009933">// author: the other two won't work in FAT systems</b></font><br>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#009933">// is the author talking about &quot;create&quot; and &quot;lastAccess&quot;?</b></font><br>
+ &nbsp;&nbsp;&nbsp;}<br>
+ &nbsp;&nbsp;&nbsp;CloseHandle(fileHandle); &nbsp;<br>
+}<br>
+
+</font>
+</body>
+</html>

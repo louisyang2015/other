@@ -1,0 +1,169 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Drawing Dots and Lines</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">Drawing Dots and Lines</font></h1>
+
+<h2 align="left"><font color="#008000">Dots</font></h2>
+<h2><font face="Courier New" color="#FF6600">SetPixel (hdc, x, y, crColor);<br>
+crColor = GetPixel (hdc, x, y);</font></h2>
+<p>&nbsp;</p>
+<h2><font color="#008000">Drawing Lines</font></h2>
+<h2><font face="Courier New" color="#FF6600">MoveToEx (hdc, xBeg, yBeg, NULL);<br>
+LineTo (hdc, xEnd, yEnd);</font></h2>
+<p><font size="4">If you ever need the current position:</font></p>
+<p><font size="4" face="Courier New" color="#FF6600">GetCurrentPositionEx (hdc, 
+&amp;pt);</font></p>
+<p><font size="4">To draw a series of lines:</font></p>
+<h2><font color="#FF6600" face="Courier New">POINT aPt[5] = {100, 100, 200, 100, 
+200, 200, 100, 200, 100, 100};<br>
+Polyline (hdc, aPt, 5);</font></h2>
+<p>&nbsp;</p>
+<h2><font color="#008000">Using Stock Pens</font></h2>
+<h2><font face="Courier New" color="#FF6600">HPEN hPen;<br>
+hPen = GetStockObject (WHITE_PEN);<br>
+SelectObject (hdc, hPen);</font></h2>
+<p>&nbsp;</p>
+<h2><font color="#008000">Custom Pens</font></h2>
+<h2><font color="#FF6600" face="Courier New">hPen = CreatePen (iPenStyle, iWidth, 
+crColor);</font></h2>
+<p><font size="4">Styles:<br>
+<font color="#0000FF">PS_SOLID<br>
+PS_DASH<br>
+PS_DOT<br>
+PS_DASHDOT<br>
+PS_DASHDOTDOT<br>
+PS_NULL<br>
+PS_INSIDEFRAME</font></font></p>
+<p><font size="4">When you are done with the pen:</font></p>
+<h2><font color="#FF6600" face="Courier New">DeleteObject (hPen);</font></h2>
+<p><font size="4">If in WM_PAINT, call it after EndPaint. In general, do not 
+delete pen or brush while it's selected into the device context.</font></p>
+<p><font size="4">If you draw a dash line, what happens between the dash depends 
+on background mode and color. TRANSPARENT mode means the space between the 
+dashes will be whatever that's there before the dashes are drawn. OPAQUE mode 
+means the space between the dashes will be filled with the background color.</font></p>
+<h2><font color="#FF6600" face="Courier New">SetBkColor (hdc, crColor);<br>
+SetBkMode (hdc, TRANSPARENT);</font></h2>
+<p>&nbsp;</p>
+<h2><font color="#008000">Drawing Modes</font></h2>
+<h2><font color="#FF6600" face="Courier New">SetROP2 (hdc, DrawMode);<br>
+iDrawMode = GetROP2(hdc);</font></h2>
+<table cellPadding="10" valign="TOP" cellspacing="0" border="1" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td vAlign="top"><i><b>Pen (P):
+    <p>Destination (D):</b></i></td>
+    <td vAlign="top"><b><i><font face="Courier New">1 1 0 0 </font>
+    <p><font face="Courier New">1 0 1 0</font></i></b></td>
+    <td vAlign="top"><b><i>Boolean Operation</i></b></td>
+    <td vAlign="top"><b><i>Drawing Mode</i></b></td>
+  </tr>
+  <tr>
+    <td vAlign="top">Results:</td>
+    <td vAlign="top"><font face="Courier New">0 0 0 0</font></td>
+    <td vAlign="top">0</td>
+    <td vAlign="top">R2_BLACK</td>
+  </tr>
+  <tr>
+    <td vAlign="top">&nbsp;</td>
+    <td vAlign="top"><font face="Courier New">0 0 0 1</font></td>
+    <td vAlign="top">~(P ¦ D)</td>
+    <td vAlign="top">R2_NOTMERGEPEN</td>
+  </tr>
+  <tr>
+    <td vAlign="top">&nbsp;</td>
+    <td vAlign="top"><font face="Courier New">0 0 1 0</font></td>
+    <td vAlign="top">~P &amp; D</td>
+    <td vAlign="top">R2_MASKNOTPEN</td>
+  </tr>
+  <tr>
+    <td vAlign="top">&nbsp;</td>
+    <td vAlign="top"><font face="Courier New">0 0 1 1</font></td>
+    <td vAlign="top">~P</td>
+    <td vAlign="top">R2_NOTCOPYPEN</td>
+  </tr>
+  <tr>
+    <td vAlign="top">&nbsp;</td>
+    <td vAlign="top"><font face="Courier New">0 1 0 0</font></td>
+    <td vAlign="top">P &amp; ~D</td>
+    <td vAlign="top">R2_MASKPENNOT</td>
+  </tr>
+  <tr>
+    <td vAlign="top">&nbsp;</td>
+    <td vAlign="top"><font face="Courier New">0 1 0 1</font></td>
+    <td vAlign="top">~D</td>
+    <td vAlign="top">R2_NOT</td>
+  </tr>
+  <tr>
+    <td vAlign="top">&nbsp;</td>
+    <td vAlign="top"><font face="Courier New">0 1 1 0</font></td>
+    <td vAlign="top">P ^ D</td>
+    <td vAlign="top">R2_XORPEN</td>
+  </tr>
+  <tr>
+    <td vAlign="top">&nbsp;</td>
+    <td vAlign="top"><font face="Courier New">0 1 1 1</font></td>
+    <td vAlign="top">~(P &amp; D)</td>
+    <td vAlign="top">R2_NOTMASKPEN</td>
+  </tr>
+  <tr>
+    <td vAlign="top">&nbsp;</td>
+    <td vAlign="top"><font face="Courier New">1 0 0 0</font></td>
+    <td vAlign="top">P &amp; D</td>
+    <td vAlign="top">R2_MASKPEN</td>
+  </tr>
+  <tr>
+    <td vAlign="top">&nbsp;</td>
+    <td vAlign="top"><font face="Courier New">1 0 0 1</font></td>
+    <td vAlign="top">~(P ^ D)</td>
+    <td vAlign="top">R2_NOTXORPEN</td>
+  </tr>
+  <tr>
+    <td vAlign="top">&nbsp;</td>
+    <td vAlign="top"><font face="Courier New">1 0 1 0</font></td>
+    <td vAlign="top">D </td>
+    <td vAlign="top">R2_NOP</td>
+  </tr>
+  <tr>
+    <td vAlign="top">&nbsp;</td>
+    <td vAlign="top"><font face="Courier New">1 0 1 1</font></td>
+    <td vAlign="top">~P ¦ D</td>
+    <td vAlign="top">R2_MERGENOTPEN</td>
+  </tr>
+  <tr>
+    <td vAlign="top">&nbsp;</td>
+    <td vAlign="top"><font face="Courier New">1 1 0 0</font></td>
+    <td vAlign="top">P</td>
+    <td vAlign="top">R2_COPYPEN (default)</td>
+  </tr>
+  <tr>
+    <td vAlign="top">&nbsp;</td>
+    <td vAlign="top"><font face="Courier New">1 1 0 1</font></td>
+    <td vAlign="top">P ¦ ~D</td>
+    <td vAlign="top">R2_MERGEPENNOT</td>
+  </tr>
+  <tr>
+    <td vAlign="top">&nbsp;</td>
+    <td vAlign="top"><font face="Courier New">1 1 1 0</font></td>
+    <td vAlign="top">P ¦ D</td>
+    <td vAlign="top">R2_MERGEPEN</td>
+  </tr>
+  <tr>
+    <td vAlign="top">&nbsp;</td>
+    <td vAlign="top"><font face="Courier New">1 1 1 1</font></td>
+    <td vAlign="top">1</td>
+    <td vAlign="top">R2_WHITE</td>
+  </tr>
+</table>
+
+</body>
+
+</html>

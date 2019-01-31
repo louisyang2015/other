@@ -1,0 +1,394 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Complex Power</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">Complex Power</font></h1>
+<p><b><font size="4" color="#008000">The basic definition of complex power (S):</font></b></p>
+<table border="0" cellpadding="10" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" bgcolor="#FFFF99">
+  <tr>
+    <td><font size="5" color="#FF8000">S = V<sub>rms</sub> * (conjugate of I<sub>rms</sub>)</font></td>
+  </tr>
+</table>
+<p><font size="4">In polar form:</font></p>
+<p><font size="5" color="#FF8000">S = |V<sub>rms</sub>|
+<font face="Times New Roman">* |I<sub>rms</sub>| <u>/ </u>&#952;<sub>v</sub> - &#952;<sub>i</sub></font></font></p>
+<table border="0" cellpadding="10" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" bgcolor="#FFFF99">
+  <tr>
+    <td><img border="0" src="images/pic0121.gif" width="600" height="414"></td>
+  </tr>
+</table>
+<p><font size="4">The real part of complex power is the average power. The 
+imaginary part of complex power is called <font color="#008000">quadrature power</font>.</font></p>
+
+<p><font size="4">Another expression for complex power:</font></p>
+
+<table border="0" cellpadding="10" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td bgcolor="#FFFF99"><font size="5" face="Courier New" color="#FF8000">Z * 
+    |I<sub>rms</sub>|<sup>2</sup> = S</font></td>
+  </tr>
+</table>
+<p><font size="4">The following example is done two ways, first without complex 
+power, and then with complex power. Personally, I think complex power is usually 
+not needed.</font></p>
+
+<p><b><font size="4" color="#008000">Example:</font></b></p>
+
+<p><img border="0" src="images/pic0122.gif" width="800" height="180"></p>
+
+<p><font size="4">Find </font><font size="5">|V<sub>s</sub>|</font><font size="4"> 
+and the power factor at V<sub>s</sub> .</font></p>
+
+<p><b><font size="4" color="#008000">Solution without using complex power:</font></b></p>
+
+<p><font size="4">In such problems, start at the load and work backward to the 
+source, figuring out the currents and voltages as I go.</font></p>
+
+<p><font size="4">The rms current at the load (I<sub>1</sub>):</font></p>
+
+<p><font face="Courier New" color="#ff8000" size="5">|I<sub>1</sub> | * 220 * 
+0.8 = 20 * 10<sup>3</sup></font></p>
+
+<p><font face="Courier New" color="#ff8000" size="5">cos(0 - &#952;<sub>i</sub>) = 
+0.8</font></p>
+
+<p><font face="Courier New" color="#ff8000" size="5">I<sub>1</sub> = 113.64 <u>/ 
+-36.87</u><sup>o</sup> A rms </font></p>
+
+<p><font size="4">Now V<sub>S</sub> follows naturally:</font></p>
+
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">V<sub>s</sub> - 220
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">0.09 + 0.3j </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    = I<sub>1</sub> </font></td>
+  </tr>
+</table>
+
+<p><font face="Courier New" color="#ff8000" size="5">V<sub>s</sub> = </font>
+<font face="Courier New" size="5" color="#008000"><b>249.53</b></font><font face="Courier New" color="#ff8000" size="5">
+<u>/ 4.8591</u><sup>o</sup></font></p>
+
+<p><font face="Courier New" color="#ff8000" size="5">pf = cos(4.8591<sup>o</sup> 
+- -36.87<sup>o</sup> ) = </font>
+<font face="Courier New" size="5" color="#008000"><b>0.7463 lagging</b></font></p>
+
+<p><b><font size="4" color="#008000">Solution using complex power:</font></b></p>
+
+<p><font size="4">Here, the strategy is to find the complex power for Z<sub>L</sub>, 
+Z<sub>Th</sub>, and add those together to determine the complex power for V<sub>s
+</sub>.</font></p>
+
+<p><b><font size="4" color="#008000">The complex power for Z<sub>L </sub>(S<sub>L</sub>):</font></b></p>
+
+<p><img border="0" src="images/pic0123.gif" width="320" height="336"></p>
+
+<p><font size="5" color="#FF8000">cos <font face="Times New Roman">( &#952;<sub>v</sub> 
+- &#952;<sub>i</sub> ) = 0.8</font></font></p>
+
+<p><font size="5" color="#FF8000">S<sub>L</sub> = 25000 <u>/ 36.87</u><sup>o</sup></font></p>
+
+<p><b><font size="4" color="#008000">The complex power for Z<sub>Th </sub>(S<sub>TH</sub>):</font></b></p>
+
+<p><font size="4">The rms current through Z<sub>L</sub> (I<sub>1</sub>) :</font></p>
+
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    |I<sub>1</sub>| = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">|S<sub>L</sub>|
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">220 </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+
+<p><font size="4">we need just the magnitude --- no need for the phase angle</font></p>
+
+<p><font face="Courier New" color="#ff8000" size="5">S<sub>Th</sub> = |I<sub>rms</sub>|<sup>2</sup> 
+* Z<sub>Th</sub></font></p>
+
+<p><font face="Courier New" color="#ff8000" size="5">S<sub>Th</sub> = 1162.3 + 
+3874.2 j</font></p>
+
+<p><b><font size="4" color="#008000">The complex power for V<sub>S</sub> (S<sub>S</sub>):</font></b></p>
+
+<p><font size="4">S<sub>S</sub> = S<sub>TH</sub> + S<sub>L</sub></font></p>
+
+<p><img border="0" src="images/pic0124.gif" width="340" height="257"></p>
+
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    |V<sub>s</sub>| = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">|S<sub>s</sub>|
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">|I<sub>1</sub>|
+          </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    = </font><font face="Courier New" size="5" color="#008000"><b>249.51 V rms</b></font><font face="Courier New" color="#ff8000" size="5">
+    </font></td>
+  </tr>
+</table>
+
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    pf = cos(&#952;<sub>v</sub> - &#952;<sub>i</sub>) = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">21162.3 </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">|S<sub>s</sub>|
+          </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    = </font><b><font face="Courier New" size="5" color="#008000">0.74363 
+    lagging</font></b><font face="Courier New" color="#ff8000" size="5"> </font>
+    </td>
+  </tr>
+</table>
+
+<h2>&nbsp;</h2>
+
+<h2><font color="#008000">Power Factor Correction Example:</font></h2>
+
+<p><font size="4">Given:</font></p>
+
+<p><img border="0" src="images/pic0125.gif" width="600" height="200"></p>
+
+<p><font size="4">We can raise the pf factor to 0.95 by adding a new component 
+in parallel with the load.</font></p>
+
+<p><img border="0" src="images/pic0126.gif" width="924" height="200"></p>
+
+<p><font size="4">The complex power (S<sub>L</sub>) of the load by itself:</font></p>
+
+<p><img border="0" src="images/pic0127.gif" width="300" height="315"></p>
+
+<p><font size="5" color="#FF8000">cos (<font face="Times New Roman">&#952;<sub>v</sub> 
+- &#952;<sub>i</sub></font>) = 0.8</font></p>
+
+<p><font size="5" color="#FF8000">S<sub>L </sub>= 62.5 * 10<sup>3</sup> <u>/ 
+36.87</u><sup>o</sup></font></p>
+
+<p><font size="4">The new <font face="Times New Roman">&#952;<sub>v</sub> - &#952;<sub>i
+</sub></font>that we want is:</font></p>
+
+<p><font size="5" color="#FF8000">cos (<font face="Times New Roman">&#952;<sub>v</sub> 
+- &#952;<sub>i</sub></font>) = 0.95<br>
+<font face="Times New Roman">&#952;<sub>v</sub> - &#952;<sub>i</sub></font> = 18.195<sup>o</sup></font></p>
+
+<p><font size="4">So to get the new power factor of 0.95, we need to move from 
+the old complex power (<font color="#FF8000">in orange</font>) to a new complex 
+power (<font color="#008000">in green</font>)</font></p>
+
+<p><img border="0" src="images/pic0128.gif" width="320" height="310"></p>
+
+<p><font size="4">The difference between the two complex powers is:</font></p>
+
+<table border="0" cellpadding="10" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td nowrap><font face="Courier New" color="#ff8000" size="5">-[ 62.5 * 10<sup>3</sup> 
+    * sin(36.87<sup>o</sup>) - 52.632 * 10<sup>3</sup> * sin(18.195<sup>o</sup>) 
+    ]j </font></td>
+  </tr>
+</table>
+<table border="0" cellpadding="10" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td><font face="Courier New" color="#ff8000" size="5">= -21066j </font></td>
+  </tr>
+</table>
+
+<p><font size="4">If the new component added in parallel to the old load will 
+generate this -21066j complex power, then the new power factor of 0.95 will be 
+achieved.</font></p>
+
+<p><img border="0" src="images/pic0129.gif" width="385" height="220"></p>
+
+<p><font size="4">The rms voltage across the new component is 220 <u>/ 0</u><sup>o</sup> 
+V rms.</font></p>
+
+<p><font size="4">The rms current through the new component is:</font></p>
+
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    |I<sub>rms</sub>| = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">21066 </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">220 </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+
+<p><font face="Courier New" color="#ff8000" size="5">(0 - &#952;<sub>i</sub>) = -90<sup>o</sup>
+</font></p>
+
+<p><font face="Courier New" size="5" color="#FF8000">I<sub>rms</sub> = 95.753 <u>
+/ -90</u><sup>o</sup></font></p>
+
+<p><font size="4">The impedance of the new component:</font></p>
+
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">V<sub>rms</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">I<sub>rms</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    = 2.2976 <u>/ -90</u><sup>o</sup></font></td>
+  </tr>
+</table>
+
+<p><font size="4">The new component is a capacitor:</font></p>
+
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">1 </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">C(2*&#960;*60)j </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    = -2.2976j</font></td>
+  </tr>
+</table>
+<p><b><font face="Courier New" size="5" color="#008000">C = 1154.5 uf</font></b></p>
+
+</body>
+
+</html>

@@ -1,0 +1,375 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Capacitance</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">Capacitance</font></h1>
+<p><font size="4">The DC current through a MOS is blocked by the oxide, and 
+causing the MOS to act like a capacitor (MOS-C). </font></p>
+
+<p><font size="4" color="#008000">Capacitance under Accumulation</font></p>
+
+<table border="2" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#FF8000">
+  <tr>
+    <td>
+    
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    C(acc) &#8776; C<sub>O</sub> = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">K<sub>O</sub>&#949;<sub>0</sub>A<sub>G</sub> </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">x<sub>o</sub> </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+
+    </td>
+  </tr>
+</table>
+<p><font size="4">where A<sub>G</sub> is the area of the MOS-C gate.</font></p>
+
+<p><font size="4">This equation is the same as the one for the junction 
+capacitance of a pn junction. It's just treating the MOS as a parallel plate 
+capacitor.</font></p>
+
+<p><img border="0" src="images/fig_16_12a.jpg" width="277" height="429"></p>
+
+<p><font size="4">On the metal side a fluctuating ac signal will cause charge to 
+fluctuate at the metal - oxide boundary.</font></p>
+
+<p><font size="4">On the semiconductor side, we said all charge would build up 
+right on the oxide - semiconductor boundary when we model accumulation.</font></p>
+
+<p><font size="4" color="#008000">Capacitance under Depletion</font></p>
+
+<p><img border="0" src="images/fig_16_12b.jpg" width="279" height="427"></p>
+
+<p><font size="4">This time, the charge is building up at a distance W from the 
+oxide - semiconductor boundary. The oxide and the semiconductor are two 
+different kinds of material and have different dielectric constants (K<sub>S</sub> 
+and K<sub>O</sub>). So the model for the depletion case is to have two 
+capacitances in series. One for the oxide segment (C<sub>O</sub>) and another 
+for the semiconductor segment (C<sub>S</sub>). The equation for C<sub>O</sub> is 
+the same as the accumulation scenario.</font></p>
+
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    C<sub>S</sub> = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">K<sub>S</sub> &#949;<sub>0</sub> 
+          A<sub>G</sub> </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">W </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    C(depl) = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">C<sub>O</sub> C<sub>S</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">C<sub>O</sub> + C<sub>S</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">C<sub>O</sub> </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">1 + (K<sub>O</sub>W)/(K<sub>S</sub>x<sub>o</sub>) </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+
+<p><font size="4">Note that the increasing DC bias leads to more depletion, 
+which increase W and decrease capacitance.</font></p>
+
+<p><font size="4" color="#008000">Capacitance under Inversion</font></p>
+
+<p><font size="4">Under accumulation and depletion, the changes a MOS experience 
+has to do with the creation or movement majority carriers. When majority 
+carriers are involved the charge state can change very quickly according to the 
+ac signal.</font></p>
+
+<p><font size="4">Under inversion, the changes a MOS experience has to do with 
+the creation of minority carriers, which is sluggish. Capacitance under 
+inversion behaves differently depending on the frequency of the ac signal that 
+is applied to the MOS.</font></p>
+
+<p><img border="0" src="images/fig_16_11.jpg" width="538" height="542"></p>
+
+<p><font size="4">If the frequency is sufficiently low so that minority carriers 
+can be generated or annihilated in response to the applied ac signal, then the 
+extra charge in inversion will appear that the oxide - semiconductor boundary:</font></p>
+
+<p><img border="0" src="images/fig_16_12c.jpg" width="272" height="393"></p>
+
+<p><font size="4">This case is just like accumulation and <font color="#FF8000">
+C(inv) </font><font face="Times New Roman"><font color="#FF8000">&#8776; C<sub>O</sub></font> 
+.</font></font></p>
+
+<p><font face="Times New Roman" size="4">If the frequency is sufficiently high 
+that the minority can not be generated quickly enough, then the inversion is 
+the same as the depletion. The charges will be created at a distance W from the 
+oxide - semiconductor boundary. Unlike depletion, the W in inversion stopped 
+increasing and capacitance is a constant.</font></p>
+
+<p><img border="0" src="images/fig_16_12d.jpg" width="275" height="390"></p>
+
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    C(inv) = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">C<sub>O</sub> C<sub>S</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">C<sub>O</sub> + C<sub>S</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">C<sub>O</sub> </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">1 + (K<sub>O</sub>W<sub>T</sub>)/(K<sub>S</sub> x<sub>o</sub>) </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+
+<p><font size="4">The capacitance equations for the depletion zone so far uses 
+&quot;W&quot;. The following equations relates C direction to gate voltage V<sub>G</sub> .</font></p>
+
+<table border="2" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#FF8000">
+  <tr>
+    <td>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">C(depl) = </font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">C<sub>O</sub>
+              </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">[1 + V<sub>G</sub> / V<sub>&#948;</sub>]<sup>1/2</sup> </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+      </tr>
+    </table>
+    <p><font size="4">where</font></p>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">V<sub>&#948;</sub> = </font>
+        </td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">q K<sub>S</sub> x<sub>o</sub><sup>2</sup> </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">2 K<sub>O</sub><sup>2</sup> &#949;<sub>0</sub> </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">N<sub>A</sub> </font>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+
+<p><font color="#008000" size="4">Exact Computations</font></p>
+
+<p><font size="4">Our equations so far results in a capacitance graph that looks 
+like:</font></p>
+
+<p><img border="0" src="images/fig_16_13.jpg" width="551" height="481"></p>
+
+<p><font size="4">The equations so far therefore does not model the transition 
+regions, between accumulation and depletion, and between depletion and 
+inversion. Better models are possible if we calculate the exact charge 
+distribution inside the MOS.</font></p>
+
+<p><font size="4">Higher doping will increase capacitance:</font></p>
+
+<p><img border="0" src="images/fig_16_14.jpg" width="702" height="1056"></p>
+
+<p><font size="4">The reason is that with higher doping, the semiconductor is 
+more and more like a metal. At high enough doping, the MOS capacitor is just 
+like a regular capacitor, which has a constant capacitance independent of the 
+voltage across it.</font></p>
+
+<p><font size="4" color="#008000">Practical Observations</font></p>
+
+<p><font size="4">In modern day MOS-Cs, with their long carrier lifetimes and 
+low carrier generation rates, even probing frequencies as low as 10 Hz will 
+yield high frequency characteristics.</font></p>
+
+<p><font size="4">To get the V<sub>G</sub> versus C graph, we need to vary the 
+dc bias (V<sub>G</sub>). In the following graph, we are sweeping from positive 
+dc bias to negative dc bias, and R is the rate at which we vary the dc:</font></p>
+
+<p><img border="0" src="images/fig_16_17.jpg" width="651" height="526"></p>
+
+<p><font size="4">note that even if we decrease the dc bias slowly, ramp rate = 
+0.035 V per second, we still do not get the proper capacitance graph for the 
+inversion zone. This is due to the extremely slow rate of minority carrier 
+generation. Previously, we said that in the inversion bias, the ac signal will 
+add charges at a distance of W from the oxide - semiconductor boundary. In this 
+case, even the charges added by the dc signal is showing up at a distance of W 
+from the oxide - semiconductor boundary instead of right at the oxide 
+-semiconductor boundary.</font></p>
+
+<p><img border="0" src="images/fig_16_18.jpg" width="388" height="319"></p>
+
+<p><font size="4">This is a non-equilibrium condition called
+<font color="#008000">deep depletion</font>. Minority carrier generation on the 
+oxide - semiconductor border is too difficult or time consuming and the 
+depletion region grows beyond its theoretical equilibrium value of W<sub>T </sub>
+.</font></p>
+
+<p><font size="4">To get the proper capacitance values, we need to periodically 
+stop changing the dc signal and allow the device to settle into equilibrium. We 
+can also sweep the device from inversion toward accumulation.</font></p>
+
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Search Games</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+  <div class="center">
+    <select id="Ratings_cb" onchange="Ratings_cb_change_handler()">
+      <option value="metascore" selected="selected">Highest critics rated</option>
+      <option value="user_scorex100">Highest user rated</option>
+      <option value="num_user_ratings">Most popular</option>
+    </select>
+
+    <select id="Strategy_cb" onchange="Strategy_cb_change_handler()">
+      <option value="1" selected="selected">action</option>
+      <option value="2">adventure</option>
+      <option value="3">first Person Shooter</option>
+      <option value="4">flight</option>
+      <option value="5">platformer</option>
+      <option value="6">puzzle</option>
+      <option value="7">racing</option>
+      <option value="8">real-time strategy</option>
+      <option value="9">role-playing</option>
+      <option value="10">simulation</option>
+      <option value="11">sports</option>
+      <option value="12">strategy</option>
+      <option value="13">third-person shooter</option>
+      <option value="14">turn-based strategy</option>
+    </select>
+
+    games released in
+    
+    <input type="text" id="Year_textbox" value="2017" onkeyup="Year_tb_keyup_handler(event)" />
+    <button onclick="search_button_click_handler()">Search</button>
+  </div>
+
+  <div id="output_div"></div>
+
+  <script src="search_dynamoDB.js"></script>
+
+</body>
+</html>

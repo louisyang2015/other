@@ -1,0 +1,10 @@
+[Palette]
+Name=Louis
+Type=RGB
+Items=      5
+[Colors]
+0=R:0,G:0,B:0,black
+1=R:255,G:255,B:255,white
+2=R:255,G:128,B:0,orange
+3=R:0,G:204,B:0,green
+4=R:48,G:168,B:0,dark green

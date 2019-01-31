@@ -1,0 +1,184 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Printing</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">Printing</font></h1>
+<p><font size="4"><a href="examples/basic_printing01.cpp">Template 1</a> --- 
+this uses the CreateDC to get the printer handle and has code to abort printing</font></p>
+<p><font size="4"><a href="examples/basic_printing02.cpp">Template 2</a> --- 
+This is the preferred building block. It is a revision of template 1. This 
+version uses the print dialog to get the printer handle. The abortion section 
+under the usage code segment is also better.</font></p>
+<p>&nbsp;</p>
+<h2><font color="#008000">Printer Device Context</font></h2>
+<p><font size="4">First, you will need a printer device context. You can use 
+CreateDC (template 1) or PrintDlg (template 2).</font></p>
+<p><font size="4">The general form of CreateDC:</font></p>
+<p><font size="4" face="Courier New" color="#FF6600">hdc = CreateDC (NULL, 
+szDeviceName, NULL, pInitializationData);</font></p>
+<p><font size="4">but it's not that easy because you can't hard code in the &quot;szDeviceName&quot;. 
+Also, the details differ for Windows 98 and Windows NT.
+<a href="examples/GETPRNDC.C">So here's the book's function to get a device 
+context.</a></font></p>
+<p><font size="4"><a href="examples/common_print_dlg.cpp">Click here for the 
+code for invoking the print dialog</a></font></p>
+<p><font size="4">One of the fields: pd.hDC , is the device context for the 
+printer.</font></p>
+<p><font size="4">Another field tells you whether the user wants to &quot;collate&quot; 
+--- this is about page ordering of multiple copies. Say you want to print three 
+copies, each three pages long. Collated copies are in the page order 1,2,3, 
+1,2,3, 1,2,3. Non-collated copies are in the order 1,1,1, 2,2,2, 3,3,3.</font></p>
+<p><font size="4">Using the printer dialog is very important as many features 
+can be handled at the driver level --- such as page orientation (landscape 
+versus protrait), and the number of copies.</font></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><font color="#008000">Getting Information about a Printer</font></h2>
+<p><font size="4"><font face="Courier New" color="#FF6600">PrinterProperties (hWnd, 
+hPrinter);</font> --- this function opens up a dialog box that describes the 
+printer</font></p>
+<p><font size="4">To see if the printer has &quot;bit-block transfer&quot; capability --- 
+(plotters don't have this, but almost all modern printers do). Printers that do 
+not support this will not support many GDI functions.<br>
+<font face="Courier New" color="#FF6600">bool bit_block_transfer;<br>
+int result = </font>
+</font><font size="4" face="Courier New" color="#FF6600">GetDeviceCaps (hPrinter, 
+RASTERCAPS);<br>
+if(result &amp; RC_BITBLT) </font><font face="Courier New" color="#FF6600" size="4">
+bit_block_transfer = true;<br>
+else </font><font face="Courier New" color="#FF6600" size="4">bit_block_transfer 
+= false; </font></p>
+<p><font size="4">To get the printable area of a printer's device context:</font></p>
+<p><font size="4" face="Courier New" color="#FF6600">xPage = GetDeviceCaps (hdcPrn, 
+HORZRES);<br>
+yPage = GetDeviceCaps (hdcPrn, VERTRES);</font></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><font color="#008000">Function calls to do the printing:</font></h2>
+<p><font size="4" face="Courier New" color="#FF6600"><b>StartDoc</b><br>
+for(int page = 1; page &lt;= max_page; page++)<br>
+{<br>
+&nbsp;&nbsp;&nbsp; <b>StartPage</b><br>
+</font><font size="4" face="Courier New" color="#008000">&nbsp;&nbsp;&nbsp; ... 
+GDI functions to draw to printer device context...<br>
+</font><font size="4" face="Courier New" color="#FF6600">&nbsp;&nbsp;&nbsp; <b>
+EndPage</b><br>
+}<br>
+<b>EndDoc</b></font></p>
+<p>&nbsp;</p>
+
+<h2><b><font color="#008000">The StartDoc through EndDoc functions:</font></b></h2>
+
+<p><font size="4" face="Courier New" color="#FF6600">static DOCINFO di = { 
+sizeof (DOCINFO), TEXT (&quot;FormFeed&quot;) } ;<br>
+StartDoc (hdcPrint, &amp;di);<br>
+</font><font size="4" face="Courier New" color="#008000">//check for return 
+value of &gt; 0</font></p>
+
+<p><font size="4">&quot;FormFeed&quot; is the text that will appear in the document name 
+column of the printer's job queue.</font></p>
+
+<p><font size="4"><font color="#FF6600" face="Courier New">StartPage(hdcPrint);</font><br>
+</font><font size="4" face="Courier New" color="#008000">//check for return 
+value of &gt; 0</font></p>
+
+<p><font size="4"><font color="#FF6600" face="Courier New">EndPage(hdcPrint);</font><br>
+</font><font size="4" face="Courier New" color="#008000">//check for return 
+value of &gt; 0</font></p>
+
+<p><font size="4" color="#FF6600" face="Courier New">EndDoc(hdcPrint);</font></p>
+
+<p><font size="4">call &quot;EndDoc&quot; only if there is no failure so far. If there is 
+a failure, GDI has already aborted the document. To determine the error, call &quot;<font face="Courier New" color="#FF6600">GetLastError</font>&quot;.</font></p>
+
+<p><font size="4">Remember at the very end to:</font></p>
+
+<p><b><font size="4" face="Courier New" color="#FF6600">DeleteDC (hdcPrn);</font></b></p>
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><b><font color="#008000" size="4">Aborting Printing</font></b></p>
+<p><font size="4" color="#FF0000">Note --- this topic is of limited use. But I 
+included it in the templates anyways.</font></p>
+
+<p><font size="4">Between <font color="#FF6600" face="Courier New">StartPage</font> 
+and <font color="#FF6600" face="Courier New">EndPage</font> , you issue GDI 
+commands. During EndPage, the GDI writes your commands into a metafile and hands 
+it to the printer spooler --- that EndPage is where the most of the real work of printing 
+takes place. If there is no printer spooler, the GDI might draw directly to the printer. 
+In that case 
+the program hangs at &quot;EndPage&quot; while the GDI is printing. But usually 
+there is a printer spooler. In that case, &quot;EndPage&quot; happens rather quickly, and 
+the user aborts printing by interacting with the dialog box that the Windows 
+printer spooler provide.</font></p>
+<p><font size="4">So if there is no spooler, or if there are a lot of GDI 
+commands to be written to the on-disk metafile, then the program will stay at &quot;EndPage&quot; 
+for a while. During this time, the GDI will call an abort procedure --- and the 
+GDI will abort printing if that abort procedure returns FALSE.</font></p>
+<p><font size="4">To set the abortion procedure:</font></p>
+
+<p><font size="4" color="#FF6600" face="Courier New">SetAbortProc(hdcPrn, 
+AbortProc);</font></p>
+
+<p><font size="4">You do not need to &quot;unset&quot; AbortProc after finishing printing. 
+Windows will call this &quot;AbortProc&quot; procedure repeatedly during printing, in 
+essence asking &quot;shall I continue printing&quot;. The AbortProc can stop printing by 
+returning &quot;FALSE&quot;. Basic code for the &quot;AbortProc&quot;</font></p>
+
+<p><font face="Courier New" size="4" color="#FF6600">BOOL CALLBACK AbortProc (HDC 
+hdcPrn, int iCode)<br>
+{<br>
+&nbsp;&nbsp;&nbsp; MSG&nbsp;&nbsp; msg ;<br>
+<br>
+&nbsp;&nbsp;&nbsp; while (PeekMessage (&amp;msg, NULL, 0, 0, PM_REMOVE))<br>
+&nbsp;&nbsp;&nbsp; {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TranslateMessage (&amp;msg) ;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DispatchMessage (&amp;msg) ;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; return TRUE ;<br>
+}</font></p>
+
+<p><font size="4">To get it to work though, there are two more issues. One is to 
+prevent the program window from receiving any messages when the abort procedure 
+is in effect. You do this by disabling the program window:</font></p>
+
+<p><font size="4" face="Courier New" color="#FF6600">EnableWindow (hwnd, FALSE);
+</font><font size="4" face="Courier New" color="#008000">//before SetAbortProc( 
+... )</font><font size="4" face="Courier New" color="#FF6600"><br>
+EnableWindow (hwnd, TRUE); </font>
+<font size="4" face="Courier New" color="#008000">//after printing is finished</font></p>
+
+<p><font size="4">Second, display a modeless dialog box during the printing. 
+Clicking on the &quot;cancel&quot; button of this modeless dialog box would cause &quot;AbortProc&quot; 
+to return FALSE. Within &quot;AbortProc&quot; have a clause &quot;<font color="#FF6600" face="Courier New">IsDialogMessage(hDlgPrint, 
+&amp;msg)</font>&quot; so that messages can pass to the dialog box procedure.</font></p>
+
+<p><font size="4">The modeless dialog box with the &quot;cancel&quot; button will 
+eventually be destroyed --- either the user press cancel and destroy it, or the 
+printing is done so the dialog window is no longer needed. In both cases, enable 
+the parent window first, then destroy the dialog window. If you do it in the 
+other order, then there's a chance that some other program running under Windows 
+will become the active program.</font></p>
+
+<p><font size="4">This abortion facility works only when the GDI is doing the 
+printing. So if a print spooler is being used, the only time AbortProc can 
+happen is between the call to StartDoc and the first call to EndPage.</font></p>
+
+<p><font size="4">When running template 1 --- I could not get the program to 
+abort --- even when I set the &quot;user_cancel_printing&quot; flag to true in the 
+beginning --- it seems that &quot;AbortProc&quot; simply never get called.</font></p>
+
+<p><font size="4">Doing this abort procedure makes things more complicated --- 
+so I did not use it in the second template.</font></p>
+
+</body>
+
+</html>

@@ -1,0 +1,267 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Three-Phase Circuits</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">Three-Phase Circuits</font></h1>
+<p><font size="4">Following is a <font color="#008000">balanced three-phase 
+circuit</font> :</font></p>
+<p><img border="0" src="images/pic0132.gif" width="800" height="344"></p>
+<ul>
+  <li><font size="4">The three voltages are of the same magnitude but 120<sup>o</sup> 
+  out of phase with each other</font></li>
+  <li><font size="4">The three currents are also of the same magnitude but 120<sup>o</sup> 
+  out of phase with each other</font></li>
+  <li><font size="4">While it's not drawn, it's implied that the three loads 
+  have equal impedance so to produce the balanced current.</font></li>
+</ul>
+<p><b><font size="4" color="#008000">Conventions used by this documentation:</font></b></p>
+<table border="1" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td>&nbsp;</td>
+    <td align="center" nowrap><font size="4">Time Domain</font></td>
+    <td align="center" nowrap><font size="4">Phasor</font></td>
+    <td align="center" nowrap><font size="4">Rms Notation</font></td>
+  </tr>
+  <tr>
+    <td><font size="4">The three voltage sources:</font></td>
+    <td nowrap><font size="4"><b>v<sub>an</sub>(t) = V<sub>m</sub> cos(wt) V<br>
+    </b>v<sub>bn</sub>(t) = V<sub>m</sub> cos(wt - 120<sup>o</sup>) V<br>
+    v<sub>cn</sub>(t) = V<sub>m</sub> cos(wt - 240<sup>o</sup>) V</font></td>
+    <td nowrap><font size="4"><b>V<sub>an</sub> = V<sub>m</sub> <u>/ 0</u><sup>o<br>
+    </sup></b>V<sub>bn</sub> = V<sub>m</sub> <u>/ -120</u><sup>o<br>
+    </sup>V<sub>cn</sub> = V<sub>m</sub> <u>/ -240</u><sup>o</sup></font></td>
+    <td nowrap><font size="4"><b>V<sub>an-rms</sub> = |V<sub>rms</sub>| <u>/ 0</u><sup>o<br>
+    </sup></b>V<sub>bn-rms</sub> = |V<sub>rms</sub>| <u>/ -120</u><sup>o<br>
+    </sup>V<sub>cn-rms</sub> = |V<sub>rms</sub>| <u>/ -240</u><sup>o</sup></font></td>
+  </tr>
+  <tr>
+    <td><font size="4">The three currents:</font></td>
+    <td nowrap><font size="4"><b>i<sub>a</sub>(t) = I<sub>m</sub> cos(wt -
+    <font face="Times New Roman">&#952;</font>) A<br>
+    </b>i<sub>b</sub>(t) = I<sub>m</sub> cos(wt - <font face="Times New Roman">&#952; 
+    - 120<sup>o</sup></font>) A<br>
+    i<sub>c</sub>(t) = I<sub>m</sub> cos(wt - <font face="Times New Roman">&#952; - 
+    240<sup>o</sup></font>) A</font></td>
+    <td nowrap><font size="4"><b>I<sub>a</sub> = I<sub>m</sub> <u>/
+    <font face="Times New Roman">-&#952;<br>
+    </font></u></b>I<sub>b</sub> = I<sub>m</sub> <u>/
+    <font face="Times New Roman">-&#952; - 120</font></u><font face="Times New Roman"><sup>o<br>
+    </sup></font>I<sub>c</sub> = I<sub>m</sub> <u>/ <font face="Times New Roman">
+    -&#952; - 240</font></u><font face="Times New Roman"><sup>o</sup></font></font></td>
+    <td nowrap><font size="4"><b>I<sub>a-rms</sub> = |I<sub>rms</sub>| <u>/
+    <font face="Times New Roman">-&#952;<br>
+    </font></u></b>I<sub>b-rms</sub> = |I<sub>rms</sub>| <u>/
+    <font face="Times New Roman">-&#952; - 120</font></u><font face="Times New Roman"><sup>o<br>
+    </sup></font>I<sub>c-rms</sub> = |I<sub>rms</sub>| <u>/
+    <font face="Times New Roman">-&#952; - 240</font></u><font face="Times New Roman"><sup>o</sup></font></font></td>
+  </tr>
+</table>
+<p><font size="4">Due to the pattern that exist, for a balanced circuit, it's 
+only necessary to figure out one phase: say V<sub>an</sub> and i<sub>a</sub> , 
+then the remaining numbers will be clear.</font></p>
+<p><font size="4">Also: </font></p>
+<ul>
+  <li><font size="4">V<sub>an</sub> + V<sub>bn</sub> + V<sub>cn</sub> = 0</font></li>
+  <li><font size="4">I<sub>a</sub> + I<sub>b</sub> + I<sub>c</sub> = 0</font></li>
+</ul>
+<h2><font color="#008000">Three-Phase Connections</font></h2>
+<p><font size="4">A three-phase circuit system looks like this:</font></p>
+<p><img border="0" src="images/pic0133.gif" width="640" height="303"></p>
+<p><font size="4">The three voltage sources can connect in wye (Y) or delta (<font face="Times New Roman">&#8710;</font>) 
+manner.</font></p>
+<p><font size="4">The three loads can also connect in wye (Y) or delta (<font face="Times New Roman">&#8710;</font>) 
+manner.</font></p>
+<p><b><font size="4" color="#008000">Wye (Y) Connection :</font></b></p>
+<p><img border="0" src="images/pic0134.gif" width="518" height="565"></p>
+<p><b><font size="4" color="#008000">Delta (<font face="Times New Roman">&#8710;</font>) 
+Connection :</font></b></p>
+<p><img border="0" src="images/pic0135.gif" width="640" height="392"></p>
+<p><b><font size="4" color="#008000">Wye (Y) Connected Source and Load :</font></b></p>
+<p><img border="0" src="images/pic0136.gif" width="445" height="300"></p>
+<p><font size="4" color="#008000"><b>Delta</b></font><b><font size="4" color="#008000"> 
+(<font face="Times New Roman">&#8710;</font>) Connected Source and Load :</font></b></p>
+<p><img border="0" src="images/pic0137.gif" width="518" height="300"></p>
+<h2><font color="#008000">Wye (Y) - Wye (Y) Connection</font></h2>
+<p><img border="0" src="images/pic0138.gif" width="482" height="400"></p>
+<p><font size="4">This is an easy case. The per phase graph looks like:</font></p>
+<p><img border="0" src="images/pic0139.gif" width="323" height="300"></p>
+<h2><font color="#008000">Delta (<font face="Times New Roman">&#8710;</font>) - Wye 
+(Y) Connection</font></h2>
+<p><img border="0" src="images/pic0140.gif" width="461" height="400"></p>
+<p><font size="4">In this case, you need to convert the delta source on the left 
+to a wye source.</font></p>
+<p><img border="0" src="images/pic0141.gif" width="519" height="420"></p>
+<p><font size="4">You want the line voltages of the new wye source to be the 
+same as before :</font></p>
+<ul>
+  <li><font size="5">V<sub>ab-old</sub> = V<sub>ab-new</sub></font></li>
+  <li><font size="5">V<sub>bc-old</sub> = V<sub>bc-new</sub></font></li>
+  <li><font size="5">V<sub>ca-old</sub> = V<sub>ca-new</sub></font></li>
+</ul>
+<p><font size="4">In the book, V<sub>ab</sub> is called <font color="#008000">
+line voltage</font> --- it's the voltage that goes from one line to another.</font></p>
+<p><font size="4">We do the calculations for just one phase, and the other two 
+is off by 120<sup>o </sup>.</font></p>
+<p><font size="4">To have: V<sub>ab-old</sub> = V<sub>ab-new</sub></font></p>
+<p><font size="5">X <u>/ 0</u><sup>o</sup> = V<sub>m</sub> <u>/ 0</u><sup>o</sup> 
+- V<sub>m</sub> <u>/ -120</u><sup>o</sup></font></p>
+<p><font size="4">The formula to use for Y-source to
+<font face="Times New Roman">&#8710;-source conversion is:</font></font></p>
+<table cellSpacing="0" cellPadding="6" border="0" bgcolor="#FFFF99" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="7">
+    (</font> </td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">x </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">(3)<sup>1/2</sup>
+          </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="7">
+    )</font> </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    <u>/ -30</u><sup>o</sup> = V<sub>m</sub> = V<sub>an</sub> </font></td>
+  </tr>
+</table>
+<p><font size="4">Another common situation is that you know how much
+<font color="#008000">line current</font> is, but need to figure out how much 
+current is going through the source.</font></p>
+<p><img border="0" src="images/pic0142.gif" width="509" height="400"></p>
+<p><font size="4">I<sub>a</sub> - I<sub>c</sub> = I<sub>line</sub></font></p>
+<table cellSpacing="0" cellPadding="6" border="0" bgcolor="#FFFF99" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="7">
+    (</font> </td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">I<sub>line</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">(3)<sup>1/2</sup>
+          </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="7">
+    )</font> </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    <u>/ 30</u><sup>o</sup> = I<sub>m</sub> = I<sub>a</sub> </font></td>
+  </tr>
+</table>
+<h2><font color="#008000">Wye (Y) - Delta (<font face="Times New Roman">&#8710;</font>) 
+Connection</font></h2>
+<p><img border="0" src="images/pic0143.gif" width="427" height="400"></p>
+<p><font size="4">Figuring out the current through a load isn't hard :</font></p>
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    I<sub>AB</sub> = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">V<sub>an</sub> - V<sub>bn</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">Z </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<p><font size="4">But in general it's best to transform the delta load to a wye 
+load :</font></p>
+<p><img border="0" src="images/pic0144.gif" width="625" height="380"></p>
+<p><font size="4">The two systems above are equivalent if:</font></p>
+<table cellSpacing="0" cellPadding="6" border="0" bgcolor="#FFFF99" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    Z<sub>y</sub> = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">1 </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">3 </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    Z<sub>&#916;</sub> </font></td>
+  </tr>
+</table>
+<h2><font color="#008000">Delta (<font face="Times New Roman">&#8710;</font>) - Delta 
+(<font face="Times New Roman">&#8710;</font>) Connection</font></h2>
+<p><img border="0" src="images/pic0145.gif" width="558" height="380"></p>
+<p><font size="4">The single phase graph is NOT :</font></p>
+<p><img border="0" src="images/pic0146.gif" width="416" height="250"></p>
+<p><font size="4">Instead, the single phase graph is :</font></p>
+<p><img border="0" src="images/pic0147.gif" width="405" height="350"></p>
+<p><font size="4">So you can determine the current through the load Z, but you 
+can not determine the line current I<sub>line</sub> using the above single phase 
+graph. If the problem wants I<sub>line</sub> , you should transform to the Y-Y 
+format.</font></p>
+
+</body>
+
+</html>

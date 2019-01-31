@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Language" content="en-us" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Parameters</title>
+<link rel="stylesheet" type="text/css" href="fpga.css" />
+</head>
+
+<body>
+
+<h1>Parameters</h1>
+<p class="center">Last updated Mar 20, 2010</p>
+<p>Constants - cannot be modified by &quot;defparam&quot;:</p>
+
+<p class="code">
+<span class="keyword">localparam</span>  DATA_WIDTH  =  8  ,<br />
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        DATA_RANGE  =  2**DATA_WIDTH  -  1;
+</p>
+
+<p>Parameters</p>
+
+<p class="code">
+<span class="keyword">module</span>  <span class="data">adder</span><br />
+ &nbsp;&nbsp;&nbsp;    <span class="keyword">#</span>(<span class="keyword">parameter</span>  N=4)<br />
+ &nbsp;&nbsp;&nbsp;    (<span class="keyword">input</span>  <span class="keyword">wire</span>  [N-1:0]  a,  b,<br />
+ &nbsp;&nbsp;&nbsp;    <span class="keyword">output</span>  <span class="keyword">wire</span>[N-1:0]  sum,<br />
+ &nbsp;&nbsp;&nbsp;    <span class="keyword">output</span>  <span class="keyword">wire</span>  cout);
+  
+<span class="comment">//carry-out</span>
+<br />
+ &nbsp;&nbsp;&nbsp;    <br />
+ &nbsp;&nbsp;&nbsp;    <span class="keyword">localparam</span>  N1  =  N-1;
+<br />
+ &nbsp;&nbsp;&nbsp;    <br />
+ &nbsp;&nbsp;&nbsp;    <span class="keyword">wire</span>  [N:0]  sum_ext;
+<br />
+ &nbsp;&nbsp;&nbsp;    <br />
+ &nbsp;&nbsp;&nbsp;    sum_ext  =  {1'b0,  a}  +  {1'b0,  b};
+<br />
+ &nbsp;&nbsp;&nbsp;    <span class="keyword">assign</span>  sum  =  sum_ext[N1:0];
+<br />
+ &nbsp;&nbsp;&nbsp;    <span class="keyword">assign</span>  cout  =  sum_ext[N];
+<br />
+<span class="keyword">endmodule</span>
+</p>
+
+<p class="code">
+adder  <span class="keyword">#</span>(.N(8))  A1  (.a(a8),  .b(b8),  .sum(sum8),  .cout(c8));
+</p>
+
+<p>Note in this example, the localparam is not a true constant as it is equal to 
+a parameter that gets set during instantiation.</p>
+<h2>Older Verilog (1995) Style:</h2>
+
+<p class="code">
+<span class="keyword">module</span>  <span class="data">secret_number</span>;
+<br />
+ &nbsp;&nbsp;&nbsp;    <span class="keyword">parameter</span>  my_secret  =  0;
+<br />
+<span class="keyword">endmodule</span><br />
+<br />
+<span class="keyword">module</span>  <span class="data">defparam_example</span>();
+<br />
+ &nbsp;&nbsp;&nbsp;    <span class="keyword">defparam</span>  U0.my_secret  =  11;
+<br />
+ &nbsp;&nbsp;&nbsp;    <span class="data">secret_number</span>  U0();
+<br />
+<span class="keyword">endmodule</span><br />
+...<br />
+<span class="keyword">defparam</span>  add.WIDTH_A=WIDTH_DATAA,  add.WIDTH_SUM=WIDTH_SUM;
+<br />
+
+</p>
+
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>BIOS Interrupt 10h</title>
+</head>
+
+<body>
+
+<p><font size="5" color="#008000">BIOS Interrupt 10h, Service 6h</font></p>
+<p><font size="4">This service is used to scroll the screen upward</font></p>
+<p><font size="4">For a normal screen, the upper left corner is (0, 0) and the 
+lower right corner is (79, 24). Another possible height is to have 50 lines per 
+screen.</font></p>
+<p><font size="4" face="Courier New" color="#FF6600">mov CL, upper_left_x<br>
+mov CH, upper_left_y</font></p>
+<p><font size="4" face="Courier New" color="#FF6600">mov DL, lower_right_x<br>
+mov DH, lower_right_y</font></p>
+<p><font size="4" face="Courier New" color="#FF6600">mov AL, 
+num_lines_to_scroll_upward_by&nbsp;&nbsp;&nbsp; </font>
+<font size="4" face="Courier New" color="#008000">;&nbsp; if 0, screen is 
+cleared</font></p>
+<p><font face="Courier New" size="4" color="#FF6600">mov AH, 06h<br>
+int 10h&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font>
+<font face="Courier New" size="4" color="#008000">; execute interrupt 10h, 
+service 6h</font></p>
+
+</body>
+
+</html>

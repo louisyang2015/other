@@ -1,0 +1,265 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Component</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">Component</font></h1>
+<p><font size="4" color="#008000">started 3-16-2002, Sunday 11:43 PM</font></p>
+<p><font size="4">In this program, components are things like: resistors, 
+inductors, capacitors, transistors, etc. They are the things to be displayed on 
+screen.</font></p>
+<h2><font color="#008000">Usage:</font></h2>
+<p><font size="4">Construct this object by providing the constructor with a 
+pointer to a &quot;Graphics&quot; object</font></p>
+<p><font size="4">Use the <font color="#0000FF">component.draw(component_id, 
+Rect&amp; rect)</font> function to draw a component at the location rect.</font></p>
+<p><font size="4">Adjust the drawing using:</font></p>
+<ul>
+  <li><font size="4" color="#0000FF">component.setForegroundColor(Color color)</font></li>
+  <li><font size="4" color="#0000FF">component.setBackgroundColor(Color color)</font></li>
+</ul>
+<p>&nbsp;</p>
+<h2><font color="#008000">Component Identification:</font></h2>
+<p><font size="4">A component is identify as a 32 bit integer (<font color="#0000FF"><b>component_id</b></font>).</font></p>
+<table border="2" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#008000">
+  <tr>
+    <td><b><font size="4" color="#0000FF">class_id</font></b></td>
+    <td><font size="4">12 bit</font></td>
+    <td><font size="4">Example: a P transistor</font></td>
+  </tr>
+  <tr>
+    <td><b><font size="4" color="#0000FF">type_id</font></b></td>
+    <td><font size="4">16 bit</font></td>
+    <td><font size="4">Example: </font>
+    <ol>
+      <li><font size="4">PNP bipolar junction transistor</font></li>
+      <li><font size="4">PMOS field effect transistor</font></li>
+    </ol>
+    </td>
+  </tr>
+  <tr>
+    <td><b><font size="4" color="#0000FF">orientation_id</font></b></td>
+    <td><font size="4">3 bit</font></td>
+    <td><font size="4">There are 8 possible positions to start drawing from. We 
+    draw from one of these 8 positions to the opposite corner. Example: if 
+    orientation_id = 4, we draw from position 4 to position 0.</font><p>
+    <img border="0" src="images/pic001.gif" width="195" height="222"></p>
+    <p><font size="4">Note: all numbers are suppose to refer to the midpoint or 
+    the corner of a grid</font></td>
+  </tr>
+</table>
+<p><font size="4" color="#0000FF">component_id = class_id * 2^19 + type_id * 2^3 
++ orientation_id</font></p>
+<p><font size="4">The IDs for the various components are in &quot;global_constants.h&quot;</font></p>
+
+<p><font size="4">A few examples are shown below:</font></p>
+
+<table border="2" cellpadding="6" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td><font size="4">class ID</font></td>
+    <td><font size="4">type ID</font></td>
+    <td><font size="4">orientation ID</font></td>
+    <td><font size="4">picture drawn</font></td>
+  </tr>
+  <tr>
+    <td><font size="4">CLASS_ID_RESISTOR</font></td>
+    <td><font size="4">TYPE_ID_RESISTOR</font></td>
+    <td><font size="4">0</font></td>
+    <td><img border="0" src="images/pic006.gif" width="242" height="216"></td>
+  </tr>
+  <tr>
+    <td><font size="4">CLASS_ID_RESISTOR</font></td>
+    <td><font size="4">TYPE_ID_RESISTOR</font></td>
+    <td><font size="4">1</font></td>
+    <td><img border="0" src="images/pic007.gif" width="242" height="216"></td>
+  </tr>
+  <tr>
+    <td><font size="4">CLASS_ID_RESISTOR</font></td>
+    <td><font size="4">TYPE_ID_RESISTOR</font></td>
+    <td><font size="4">2</font></td>
+    <td><img border="0" src="images/pic008.gif" width="242" height="216"></td>
+  </tr>
+  <tr>
+    <td><font size="4">CLASS_ID_P_TRANSISTOR</font></td>
+    <td><font size="4">TYPE_ID_PNP_BJT</font></td>
+    <td><font size="4">0</font></td>
+    <td><img border="0" src="images/pic009.gif" width="242" height="216"></td>
+  </tr>
+  <tr>
+    <td><font size="4">CLASS_ID_P_TRANSISTOR</font></td>
+    <td><font size="4">TYPE_ID_PMOS</font></td>
+    <td><font size="4">0</font></td>
+    <td><img border="0" src="images/pic010.gif" width="242" height="216"></td>
+  </tr>
+  <tr>
+    <td><font size="4">CLASS_ID_VOLTAGE_SOURCE</font></td>
+    <td><font size="4">TYPE_ID_VS_GENERAL</font></td>
+    <td><font size="4">0</font></td>
+    <td><img border="0" src="images/pic011.gif" width="242" height="216"></td>
+  </tr>
+  <tr>
+    <td><font size="4">CLASS_ID_CAPACITOR</font></td>
+    <td><font size="4">TYPE_ID_CAPACITOR</font></td>
+    <td><font size="4">2</font></td>
+    <td><img border="0" src="images/pic012.gif" width="242" height="216"></td>
+  </tr>
+</table>
+
+<p>&nbsp;</p>
+
+<h2><font color="#008000">Drawing a component</font></h2>
+<p><font size="4">For most components: you get the number for that component 
+with the orientation number set to zero. That is, number = class_id * 2^19 + 
+type_id * 2^3 + 0</font></p>
+<p><font size="4">this number, changed into string format, and appended with the 
+&quot;.wmf&quot; extension, is the file for the component at orientation zero. </font></p>
+<p><font size="4">For orientation = 0, just display the metafile stretched to 
+the size of the current grid. </font></p>
+<p><font size="4">But for other orientations, you would have to map an 
+originally rectangular image to a parallelogram.</font></p>
+<p><font size="4">Example: </font></p>
+<p><img border="0" src="images/pic004.gif" width="263" height="226"></p>
+<p><font size="4">To draw the default black vertical line with a rotated 
+perspective (the blue line), the original image (the black rectangle) has to be 
+mapped to a parallelogram (the blue one). </font></p>
+<p><font size="4">During programming, first come up with a point array:</font></p>
+<p><font face="Courier New" size="4">Point destinationPoints[] = {<br>
+&nbsp;&nbsp;&nbsp; Point(200, 20),&nbsp;&nbsp; // destination for upper-left point of original<br>
+&nbsp;&nbsp;&nbsp; Point(110, 100),&nbsp; // destination for upper-right point of original<br>
+&nbsp;&nbsp;&nbsp; Point(250, 30)};&nbsp; // destination for lower-left point of original<br>
+};</font></p>
+<p><font size="4">Then draw the image to the parallelogram:</font></p>
+<p><font face="Courier New" size="4">graphics.DrawImage(&amp;image, 
+destinationPoints, 3);</font></p>
+<p><font size="4" color="#FF0000">Note --- the grids are not always squares! The 
+original documenation assumed the grids will be squared and I will display 
+fractional number of grids on screen if necessary. After doing the &quot;Grid&quot; class 
+though, the grids will be rectangles, as the number of tiles on screen are 
+limited to integers.</font></p>
+<p><font size="4">The black line is the original rectangle, the blue diamond is 
+the parallelogram used to draw a rotated picture. The green lines are guide 
+lines that divide the original rectangle in half.</font></p>
+<p><img border="0" src="images/pic025.gif" width="571" height="198"></p>
+<p><font size="4">Here's how the points are assigned:</font></p>
+<table border="2" cellpadding="12" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td><font size="4">orientation</font></td>
+    <td><font size="4">0</font></td>
+    <td><font size="4">1</font></td>
+    <td><font size="4">2</font></td>
+    <td rowspan="4"><font size="4">... ...</font></td>
+    <td><font size="4">7</font></td>
+  </tr>
+  <tr>
+    <td><font size="4">lower left point of the picture</font></td>
+    <td><font size="4">0</font></td>
+    <td><font size="4">1</font></td>
+    <td><font size="4">2</font></td>
+    <td><font size="4">7</font></td>
+  </tr>
+  <tr>
+    <td><font size="4">upper left point of the picture</font></td>
+    <td><font size="4">2</font></td>
+    <td><font size="4">3</font></td>
+    <td><font size="4">4</font></td>
+    <td><font size="4">1</font></td>
+  </tr>
+  <tr>
+    <td><font size="4">upper right point of the picture</font></td>
+    <td><font size="4">4</font></td>
+    <td><font size="4">5</font></td>
+    <td><font size="4">6</font></td>
+    <td><font size="4">3</font></td>
+  </tr>
+</table>
+<p><font size="4">A helper function: <font color="#0000FF">
+Component.get_transform_pt_array(orientation, rect, pt_array)</font> --- will 
+compute the right 3 point array for use with graphics.DrawImage</font></p>
+<p>&nbsp;</p>
+<h2><font color="#008000">The one-pixel off bug:</font></h2>
+<p><font size="4">Although the <font color="#0000FF">
+Component.get_transform_pt_array(orientation, rect, pt_array)</font> function is 
+implemented for &quot;orientation&quot; values of 0 to 7, I only used 0 to 3 in the 
+&quot;Component&quot; class --- 4 to 7 is not safe to use. To understand why, consider 
+this picture:</font></p>
+<p><img border="0" src="images/pic013.gif" width="418" height="198"></p>
+<p><font size="4">If you rely on the computer to rotate it by 180 degrees, you 
+will get:</font></p>
+<p><img border="0" src="images/pic014.gif" width="422" height="198"></p>
+<p><font size="4">So on the boundary between 2 tiles, you could see something 
+like this exaggerated image:</font></p>
+<p><img border="0" src="images/pic015.gif" width="166" height="270"></p>
+<p><font size="4">Which is bad for this application because I want the wires and 
+ports to line up exactly.</font></p>
+<p><font size="4">The image and the rotated version won't line up --- despite an 
+attempt to &quot;center&quot; the image in the metafile, when the metafile is rendered, it 
+could be off by one pixel, and then the ports and lines will not line up at the 
+boundary between different tiles.</font></p>
+<p><font size="4">The fix is to not rotate the original image beyond 180 
+degrees. Instead, if a rotation of 180 to 359 degrees is required, flip the 
+image and then do the rotation. Unfortunately, the GDI+ &quot;RotateFlip&quot; method is 
+not implemented at this time for the metafiles.</font></p>
+<p><font size="4">What I have done is to have two versions of images. One for 
+the orientation 0, and another image for the orientation 4. Orientation 4 is a 
+reflection of orientation 0 --- this is done manually using the Metafile 
+companion. To get to orientation 1, 2, 3, I rotate the orientation 0 image. To 
+get to orientation 5, 6, 7, I rotate the orientation 4 image.</font></p>
+<p>&nbsp;</p>
+
+<h2><b><font color="#008000">Metafile Drawing Guidelines:</font></b></h2>
+
+<p><font size="4">I used &quot;Metafile Companion&quot; to draw the files used in the 
+Component Class, with:</font></p>
+
+<ul>
+  <li><font size="4">picture width = 2000, height = 2000</font></li>
+  <li><font size="4">x grid = 100, y grid = 100</font></li>
+  <li><font size="4">line width 50 (mostly)</font></li>
+</ul>
+<p><font size="4">Note the metafile uses a line width that is 1/20th of the 
+total picture. To fit well with these pictures, the program should also draw in 
+a width that is 1/20th of the basic grid size. Also, drawings that are intended 
+to go on a 2x2 tile --- like the &quot;op amp&quot;, and the &quot;large black box&quot;--- needs to 
+use pens that are 1/2 as wide (line width = 25)</font></p>
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><font color="#008000">Old Ideas that didn't make it:</font></h2>
+
+<h2><font color="#008000">Wires Types</font></h2>
+
+<p><font size="4">The &quot;wire&quot; component has a different ID system. </font></p>
+
+<p><font size="4" color="#FF0000">The point of this was to have a system where 
+the computer would detect the kind of wire the user would like to draw. It 
+involves checking nearby squares --- but ultimately, I decided that the scheme 
+was too complicated and so just have the wire component be like any other 
+component. The user will manually rotate the wire tile as needed.</font></p>
+<p><img border="0" src="images/pic002.gif" width="613" height="190"></p>
+<p><font size="4">The wire class ID is 11</font></p>
+<p><font size="4">Instead of &quot;orientation&quot;, the lowest 8 bits describe what 
+corners of the grid will we draw toward the middle. Examples:</font></p>
+<p><img border="0" src="images/pic003.gif" width="542" height="287"></p>
+<p><font size="4">Remember, each bit describes drawing from one of the 8 corners 
+to the center.</font></p>
+<p><font size="4">There are globally defined constants in &quot;global_constants.h&quot; 
+that help in programming these bit patterns.</font></p>
+<p><font size="4">The type ID:</font></p>
+<ul>
+  <li><font size="4">1 --- draw dot in the middle</font></li>
+  <li><font size="4">2 --- don't draw dot in the middle</font></li>
+  <li><font size="4">3, 4 --- this only applies to some wires. They draw a loop 
+  in the middle</font></li>
+</ul>
+
+</body>
+
+</html>

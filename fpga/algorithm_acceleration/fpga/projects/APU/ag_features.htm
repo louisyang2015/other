@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Language" content="en-us" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Address Generator Features</title>
+<link rel="stylesheet" type="text/css" href="fpga.css" />
+</head>
+
+<body>
+
+<h1>Address Generator Features</li></h1>
+<p class="center">Last updated Mar 31, 2011</p>
+<p>Not all address generator can generate all sequences.</p>
+<h2>Feature Matrix</h2>
+<table>
+			<tr>
+						<td>&nbsp;</td>
+						<td>Read_AG</td>
+						<td>Write_AG</td>
+						<td>SSRAM_AG</td>
+						<td>C0_AG</td>
+						<td>T_AG</td>
+			</tr>
+			<tr>
+						<td class="left">Variable starting value</td>
+						<td>X</td>
+						<td>X</td>
+						<td>X</td>
+						<td>X</td>
+						<td>&nbsp;</td>
+			</tr>
+			<tr>
+						<td class="left">Decrement</td>
+						<td>&nbsp;</td>
+						<td>X</td>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+			</tr>
+			<tr>
+						<td class="left">Wrap around</td>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+						<td>X</td>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+			</tr>
+			<tr>
+						<td class="left">Variable skip</td>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+						<td>X</td>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+			</tr>
+			<tr>
+						<td class="left">FFT read</td>
+						<td>X</td>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+			</tr>
+			<tr>
+						<td class="left">FFT write</td>
+						<td>&nbsp;</td>
+						<td>X</td>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+			</tr>
+			<tr>
+						<td class="left">FFT twiddle</td>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+						<td>X</td>
+			</tr>
+			<tr>
+						<td class="left">Bit reverse</td>
+						<td>&nbsp;</td>
+						<td>X</td>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+			</tr>
+</table>
+<h2>&nbsp;</h2>
+<h2>Feature Descriptions</h2>
+<p>Starting values - The address generator starting address is a variable.</p>
+<p>Decrement - The address sequence can decrement.</p>
+<p>Wrap around - The address sequence can wrap around once it reach a variable 
+value. This is for implementing circular buffers.</p>
+<p>Skip - The address sequence can increment / decrement by a variable amount, 
+instead of one.</p>
+<p>Half speed - Increment the address once every two clock cycles to work with 
+the SSRAM. The first cycle is for the real value, the second cycle is for the 
+imaginary value.</p>
+<p>FFT read - The address generator can produce a sequence used for FFT reading.</p>
+<p>FFT write - The address generator can produce a sequence used for FFT 
+writing. The two FFT input memories, memory 0 and memory 1, have different write 
+address patterns. So there are two write address generators, Write_AG0 and 
+Write_AG1.</p>
+
+</body>
+
+</html>

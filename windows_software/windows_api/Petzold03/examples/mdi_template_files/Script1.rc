@@ -1,0 +1,146 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+no_child MENU DISCARDABLE 
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "New Child Type &1 \t ctrl+1", ID_FILE_NEWCHILDTYPE1
+        MENUITEM "New Child Type &2 \t ctrl+2", ID_FILE_NEWCHILDTYPE2
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit",                       ID_FILE_EXIT
+    END
+END
+
+child_type1 MENU DISCARDABLE 
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "New Child Type &1 \t ctrl+1", ID_FILE_NEWCHILDTYPE1
+        MENUITEM "New Child Type &2 \t ctrl+2", ID_FILE_NEWCHILDTYPE2
+        MENUITEM "&Close",                      ID_FILE_CLOSE2
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit",                       ID_FILE_EXIT
+    END
+    POPUP "placeholder"
+    BEGIN
+        MENUITEM "child type 1 place holder",   ID_PLACEHOLDER_CHILDTYPE1PLACEHOLDER
+
+        MENUITEM "child type 1 place holder",   ID_PLACEHOLDER_CHILDTYPE1PLACEHOLDER
+
+    END
+    POPUP "&Window"
+    BEGIN
+        MENUITEM "&Cascade \t shift+F5",        ID_WINDOW_CASCADE2
+        MENUITEM "&Tile \t shift+F4",           ID_WINDOW_TILE
+        MENUITEM "Arrange Icons",               ID_WINDOW_ARRANGEICONS
+        MENUITEM "&Close All",                  ID_WINDOW_CLOSEALL
+    END
+END
+
+child_type2 MENU DISCARDABLE 
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "New Child Type &1 \t ctrl+1", ID_FILE_NEWCHILDTYPE1
+        MENUITEM "New Child Type &2 \t ctrl+2", ID_FILE_NEWCHILDTYPE2
+        MENUITEM "&Close",                      ID_FILE_CLOSE2
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit",                       ID_FILE_EXIT
+    END
+    POPUP "&Window"
+    BEGIN
+        MENUITEM "&Cascade \t shift+F5",        ID_WINDOW_CASCADE2
+        MENUITEM "&Tile \t shift+F4",           ID_WINDOW_TILE
+        MENUITEM "Arrange Icons",               ID_WINDOW_ARRANGEICONS
+        MENUITEM "&Close All",                  ID_WINDOW_CLOSEALL
+    END
+    POPUP "placeholder"
+    BEGIN
+        MENUITEM "child type 2 place holder",   ID_PLACEHOLDER_CHILDTYPE1PLACEHOLDER
+
+        MENUITEM "child type 2 place holder",   ID_PLACEHOLDER_CHILDTYPE1PLACEHOLDER
+
+    END
+END
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+accel_table ACCELERATORS DISCARDABLE 
+BEGIN
+    "1",            ID_FILE_NEWCHILDTYPE1,  VIRTKEY, CONTROL, NOINVERT
+    "2",            ID_FILE_NEWCHILDTYPE2,  VIRTKEY, CONTROL, NOINVERT
+    VK_F4,          ID_WINDOW_TILE,         VIRTKEY, SHIFT, NOINVERT
+    VK_F5,          ID_WINDOW_CASCADE2,     VIRTKEY, SHIFT, NOINVERT
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

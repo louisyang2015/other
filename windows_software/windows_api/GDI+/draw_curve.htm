@@ -1,0 +1,65 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Drawing Curves</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">Drawing Curves</font></h1>
+<h2><font color="#008000">Cardinal Splines</font></h2>
+<p><img border="0" src="images/pic03.gif" width="214" height="101"></p>
+<p><font size="4">A cardinal spline is a curve that passes smoothly through a 
+given set of points.</font></p>
+<p><font size="4" face="Courier New">Point points[] = {Point(0, 100),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+Point(50, 80),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+Point(100, 20),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+Point(150, 80),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+Point(200, 100)};<br>
+<br>
+Pen pen(Color(255, 0, 0, 255));<br>
+<font color="#FF6600">graphics.DrawCurve(&amp;pen, points, 5);</font></font></p>
+<p><font size="4">variations: <b>DrawClosedCurve </b>will connect the last point 
+to the first one. A 4th argument to &quot;DrawCurve&quot; affects how the bending at 
+various points occur.</font></p>
+<p>&nbsp;</p>
+<h2><font color="#008000">Drawing Bézier Splines</font></h2>
+<p><img border="0" src="images/pic04.gif" width="231" height="182"></p>
+<p><font face="Courier New" size="4">Point p1(10, 100);&nbsp;&nbsp; // start 
+point<br>
+Point c1(100, 10);&nbsp;&nbsp; // first control point<br>
+Point c2(150, 150);&nbsp; // second control point<br>
+Point p2(200, 100);&nbsp; // end point<br>
+<br>
+Pen pen(Color(255, 0, 0, 255));<br>
+<font color="#FF6600">graphics.DrawBezier(</font>&amp;pen, p1, c1, c2, p2);</font></p>
+<p><b><font size="4" color="#008000">To draw multiple Bezier curves:</font></b></p>
+<p><font face="Courier New" size="4">Point p[] = {<br>
+&nbsp;&nbsp; Point(10, 100),&nbsp;&nbsp; // start point of first spline<br>
+&nbsp;&nbsp; Point(75, 10),&nbsp;&nbsp;&nbsp; // first control point of first 
+spline<br>
+&nbsp;&nbsp; Point(80, 50),&nbsp;&nbsp;&nbsp; // second control point of first 
+spline<br>
+<br>
+&nbsp;&nbsp; Point(100, 150),&nbsp; // end point of first spline and <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+// start point of second spline<br>
+<br>
+&nbsp;&nbsp; Point(125, 80),&nbsp;&nbsp; // first control point of second spline<br>
+&nbsp;&nbsp; Point(175, 200),&nbsp; // second control point of second spline<br>
+&nbsp;&nbsp; Point(200, 80)};&nbsp; // end point of second spline<br>
+<br>
+Pen pen(Color(255, 0, 0, 255));<br>
+<font color="#FF6600">graphics.DrawBeziers(</font>&amp;pen, p, 7);</font></p>
+
+</body>
+
+</html>

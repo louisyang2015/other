@@ -1,0 +1,89 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>NASM and ALINK</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">NASM and ALINK</font></h1>
+<p><font size="4">to assemble a file name &quot;foo&quot;:</font></p>
+<p><font size="4" face="Courier New" color="#FF6600">NASM foo &gt; errors.txt</font></p>
+<p><font size="4">to link 3 files: foo.obj, bar.obj, bas.obj</font></p>
+<p><font size="4" color="#FF6600" face="Courier New">ALINK foo bar bas</font></p>
+
+<p>&nbsp;</p>
+<p><font size="5" color="#008000">16 Bit real flat mode programs:</font></p>
+<p><font color="#FF6600" size="4" face="Courier New">C:\temp&gt;<b>nasm16 eat.asm -f 
+bin -o eat.com<br>
+</b>
+<br>
+C:\temp&gt;eat<br>
+Eat at Joe's!</font></p>
+<p><font size="4">-f bin --- means the output format is binary</font></p>
+<p><font size="4">-o eat.com --- sets the output file name</font></p>
+
+<p>&nbsp;</p>
+<p><font size="5" color="#008000">16 Bit real segmented mode programs:</font></p>
+<p><font size="4">NASM can generate a .COM file (for a real mode flat model 
+program) directly, it can't generate a .EXE file for a real mode segmented model 
+program in the same way. Once you move away frmo a single segment in real mode 
+flat model, NASM needs the help of a linker to generate the final .EXE file.</font></p>
+<p><font size="4">The author chooses the linker &quot;ALINK&quot; for DOS applications 
+(and lather gcc for Linux applications).</font></p>
+<p><font size="4" face="Courier New" color="#FF6600">C:\temp&gt;<b>NASM16 
+eatseg.asm -f obj -o eatseg.obj</b><br>
+<br>
+C:\temp&gt;<b>alink eatseg.obj</b><br>
+ALINK v1.6 (C) Copyright 1998-9 Anthony A.J. Williams.<br>
+All Rights Reserved<br>
+<br>
+Loading file eatseg.obj<br>
+matched Externs<br>
+matched ComDefs<br>
+<br>
+C:\temp&gt;eatseg<br>
+Eat at Joe's!</font></p>
+
+<p>&nbsp;</p>
+<h2><font color="#008000">ALINK</font></h2>
+<p><font size="4">If the build commands get long, put them in a batch file. The 
+following example assembles two files into .obj files, and then uses &quot;alink&quot; to 
+link the two .obj files.</font></p>
+<p><font size="4" face="Courier New" color="#FF6600">NASM16 EAT4.ASM -f obj -o 
+EAT4.OBJ<br>
+NASM16 VIDLIB.ASM -f obj -o VIDLIB.OBJ<br>
+ALINK EAT4 VIDLIB</font></p>
+
+<p>&nbsp;</p>
+<p><font size="5" color="#008000">Installing NASM on Linux</font></p>
+<p><font size="4">I downloaded the NASM from the download page of &quot;
+<a href="http://www.octium.net/nasm/">http://www.octium.net/nasm/</a> &quot;. I 
+downloaded the Linux binaries.</font></p>
+<p><font size="4">The binary that I downloaded ends with the .tgz extension. In 
+general, given a file &quot; b.tgz &quot;, you unpack it with:</font></p>
+<p><font size="4">gunzip b.tgz</font></p>
+<p><font size="4">tar xvf b.tar</font></p>
+<p><i><font size="4">Another option is to use the installation CD --- I tried, 
+but NASM seems to be on disk #2 of the Red Hat linux CD --- so that didn't work 
+for me.</font></i></p>
+<p><i><font size="4">Downloading the RPM file might be another option, but there's a 
+catch: you must choose one of two different RPM archives, depending on whether 
+you are using libc5 or libc6. Rebuilding NASM from the source code avoids this 
+problem.</font></i></p>
+<p><font size="4" face="Courier New" color="#FF6600">tar xvf nasm-0.98.tar</font></p>
+<p><font size="4" face="Courier New" color="#FF6600">cd nasm-0.98</font></p>
+<p><font size="4" face="Courier New" color="#FF6600">./configure</font></p>
+<p><font size="4" face="Courier New" color="#FF6600">make</font></p>
+<p><font size="4" face="Courier New" color="#FF6600">PATH=$PATH:/usr/local/bin</font></p>
+
+<p><font size="4"><b>NOTE: I tried building with with the CD ROM file, but it 
+did not work.</b></font></p>
+
+</body>
+
+</html>

@@ -1,0 +1,74 @@
+//-----------------------------------------------------------
+//test code for drawing the components
+//called by WM_PAINT message
+
+//this one will lay the component out on four squares, like:
+//xx
+//x x
+//so you can see if the components fit together well vertically
+//and diagonally
+void OnPaint2(HDC hdc)
+{
+	//rect is a square
+	Rect rect1(20, 20, 180, 180);
+	Rect rect2(20, 200, 180, 180);
+	Rect rect3(200, 20, 180, 180);
+	Rect rect4(380, 200, 180, 180);
+	
+	Graphics graphics(hdc);
+
+	//paint the rectangles yellow to mark them on the screen
+	SolidBrush brush(Color(255, 255, 255, 128)); //Color(alpha, red, green, blue)
+	graphics.FillRectangle(&brush, rect1);
+	graphics.FillRectangle(&brush, rect2);
+	graphics.FillRectangle(&brush, rect3);
+	graphics.FillRectangle(&brush, rect4);
+
+	Component component(&graphics);
+	component.setForegroundColor(Color.Purple);
+
+	int component_id = component.compute_component_id(CLASS_ID_N_TRANSISTOR,
+		TYPE_ID_NMOS, 0);
+	component.draw(component_id, rect1);
+
+	component_id += 4; //orientation 4	
+	component.draw(component_id, rect2);
+
+	component_id -= 1; //orientation 3
+	component.draw(component_id, rect3);
+
+	component_id += 4; //orientation 7
+	component.draw(component_id, rect4);
+}
+
+//this function will just lay the component out on one square
+//so you can see the component at maximum size and fix any
+//defects as needed
+void OnPaint1(HDC hdc)
+{
+	//the size of the client area
+	RECT client_rect ;
+	GetClientRect (parent_wnd, &client_rect) ;
+
+	//keep the grid a square:
+	int shorter_side = client_rect.right;
+	if(shorter_side > client_rect.bottom)
+		shorter_side = client_rect.bottom;
+
+	//rect is a square
+	Rect rect(20, 20, shorter_side - 40, shorter_side - 40);		
+	
+	Graphics graphics(hdc);
+	//paint the rectangles yellow to mark them on the screen
+	SolidBrush brush(Color(255, 255, 255, 128)); //Color(alpha, red, green, blue)
+	graphics.FillRectangle(&brush, rect);
+
+	Component component(&graphics);
+
+	int component_id = component.compute_component_id(CLASS_ID_DIODE,
+		TYPE_ID_ZENER_DIODE, 0);
+	
+	component.setForegroundColor(Color.Green);
+	component.draw(component_id, rect);
+}
+//-----------------------------------------------------------

@@ -1,0 +1,388 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>The Mutiple-Document Interface</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">The Mutiple-Document Interface</font></h1>
+<p><font size="4"><a href="examples/mdi_template.cpp">Click here for the source 
+code of a template MDI program</a></font></p>
+<p><font size="4">Note: the chapter 19 is in general written poorly --- much 
+worse than the other parts in the book that I have read so far. Hopefully my 
+documentation is better. I will address the main issues of multiple-document 
+interface, stressing on concepts and leaving the details for my template MDI 
+program.</font></p>
+<h2><font color="#008000">Three Types of Windows</font></h2>
+<table border="0" cellpadding="8" cellspacing="1" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td><img border="0" src="images/pic02.gif" width="321" height="245"></td>
+    <td><font size="4">The whole thing is called the <font color="#0000FF">frame 
+    window</font>.</font><p><font size="4">The dark gray part is called the
+    <font color="#0000FF">client window</font>.</font></p>
+    <p><font size="4">Windows that will appear within the dark gray area are 
+    called the <font color="#0000FF">child windows</font>.</font></p>
+    <p>&nbsp;</td>
+  </tr>
+</table>
+<p><font size="4">In the code, there is a &quot;frame window&quot; window class (<b><font color="#FF6600" face="Courier New">MdiFrame</font></b>), 
+and also a frame window procedure (<b><font face="Courier New" color="#FF6600">FrameWndProc</font></b>).</font></p>
+<p><font size="4">The client window provides much of the GDI support to make MDI 
+programming easier. It is a pre-registered class --- so there's no need to 
+register this window class in my code. Also, the windows procedure for the 
+client window is in the OS, and not in my code.</font></p>
+<p><font size="4">My template program has two types of child windows. In my code 
+there are two child window classes (<font face="Courier New" color="#FF6600"><b>MdiChildType1, 
+MdiChildType2</b></font>) and two child window procedures (<b><font color="#FF6600" face="Courier New">ChildType1Proc, 
+ChildType2Proc</font></b>).</font></p>
+<p>&nbsp;</p>
+<h2><font color="#008000">Three Menus</font></h2>
+<p><font size="4">Three different menus are displayed, depending on what child 
+window has focus.</font></p>
+<table border="0" cellpadding="8" cellspacing="1" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td><img border="0" src="images/pic02.gif" width="321" height="245"></td>
+    <td><font size="4">No child window displayed</font><p><font size="4">In my 
+    code, this menu has the handle <font color="#0000FF">no_child_menu</font></font><font color="#0000FF"></font></td>
+  </tr>
+  <tr>
+    <td><img border="0" src="images/pic03.gif" width="297" height="239"></td>
+    <td><font size="4">Child window type 1 selected</font><p><font size="4">In 
+    my code, this menu has the handle <font color="#0000FF">child1_menu</font></font></p>
+    <p>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><img border="0" src="images/pic04.gif" width="297" height="239"></td>
+    <td><font size="4">Child window type 2 selected</font><p><font size="4">In 
+    my code, this menu has the handle <font color="#0000FF">child2_menu</font></font></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<h2><font color="#008000">The Window List</font></h2>
+<table border="0" cellpadding="8" cellspacing="1" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td><font size="4">When multiple windows are opened, the program has the 
+    ability to display a list of windows that are opened in the menu</font></td>
+    <td><img border="0" src="images/pic05.gif" width="382" height="245"></td>
+  </tr>
+  <tr>
+    <td><font size="4">In the resource editor the menu looks like:</font></td>
+    <td><img border="0" src="images/pic06.gif" width="355" height="141"></td>
+  </tr>
+</table>
+<p><font size="4">The OS added those &quot;separator&quot;, &quot;Hello 1&quot;, &quot;Hello 2&quot;, &quot;Hello 
+2&quot; menu items. It's not added by my code. However, my code tells the OS where to 
+append those menu items. In the above example, we have three pop up menus: 
+&quot;File&quot;, &quot;placeholder&quot;, &quot;window&quot;. The Window list is appended to the &quot;Window&quot; 
+popup menu.</font></p>
+<p><font size="4">The handle &quot;</font><b><font color="#FF6600" size="4" face="Courier New">child1_menu</font></b><font size="4">&quot; 
+is for the whole menu structure.</font></p>
+<p><font size="4">The handle &quot;</font><b><font face="Courier New" color="#FF6600" size="4">child1_menu2</font></b><font size="4">&quot; 
+is for the &quot;Window&quot; popup menu.</font></p>
+<p><font size="4">The code:</font><font face="Courier New" size="4" color="#FF6600"><br>
+child1_menu = LoadMenu (hInstance, TEXT (&quot;child_type1&quot;)) ;<br>
+child1_menu2 = GetSubMenu(child1_menu, 2);</font></p>
+<p><font size="4">Then, when a &quot;type 1 child window&quot; gain focus, I will issue</font></p>
+<p><font size="4" color="#FF6600" face="Courier New">SendMessage (client_window, 
+WM_MDISETMENU,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (WPARAM) child1_menu, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (LPARAM) child1_menu2) ;</font></p>
+<p><font size="4">which makes the <b><font color="#FF6600" face="Courier New">
+child1_menu</font></b> the menu that is currently in use, and tells Windows to 
+append the window list to <b><font face="Courier New" color="#FF6600">
+child1_menu2</font></b></font></p>
+<p>&nbsp;</p>
+<h2><font color="#008000">Window Registration / Creation Process</font></h2>
+<p><font size="4">In WinMain, the frame window, child window type 1, and child 
+window type 2 are registered. You can give the child window classes WS_HSCROLL 
+and WS_VSCROLL styles to give them scroll bars. You can also give them 
+WS_MAXIMIZE styles to get them to maximize upon creation.</font></p>
+<p><font size="4">The frame window is created in WinMain, and then in handling 
+the WM_CREATE for the frame window, the client window gets created.</font></p>
+<p><font size="4" face="Courier New">LRESULT CALLBACK FrameWndProc ( ...<br>
+switch (message)<br>
+{<br>
+&nbsp;&nbsp;&nbsp; case WM_CREATE:<br>
+&nbsp;&nbsp;&nbsp; {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Create the 
+client window<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<font color="#FF6600"><b>CLIENTCREATESTRUCT clientcreate ;</b></font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+clientcreate.hWindowMenu&nbsp; =&nbsp; no_child_menu0;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+clientcreate.idFirstChild = 50000;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //idFirstChild 
+must be higher than all other IDs that<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //shows up in 
+the WM_COMMAND message<br>
+		<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; client_window 
+= CreateWindow (TEXT (&quot;<font color="#FF6600"><b>MDICLIENT</b></font>&quot;), NULL,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+WS_CHILD | WS_CLIPCHILDREN | WS_VISIBLE,	 <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+0, 0, 0, 0, hwnd, (HMENU) 1, app_instance,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+(PSTR) <font color="#FF6600"><b>&amp;clientcreate</b></font>) ;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 0 ;<br>
+&nbsp;&nbsp;&nbsp; }</font><br>
+<br>
+<font size="4">The client window creation uses a pre-registered window class &quot;</font><font color="#FF6600" size="4" face="Courier New"><b>MDICLIENT</b></font><font size="4">&quot;. 
+The creation also use a &quot;</font><font color="#FF6600"><b><font size="4" face="Courier New">CLIENTCREATESTRUCT</font></b></font><font size="4">&quot;. 
+The child windows are actually assigned IDs --- that's what the field &quot;<font face="Courier New">.idFirstChild</font>&quot; 
+is for. But SDK saids that these IDs will change at run time as user create and 
+destroy windows --- so I am not sure how I can use them. But the IDs could show 
+up as part of WM_COMMAND messages, so that means they should be different from 
+the control IDs and menu IDs. One way to guarantee this difference is to give 
+them a high number.</font></p>
+<p><font size="4">The hWindowMenu --- tells the OS where the Window list will be 
+appended to (as discussed in the last section). Currently though, this doesn't 
+matter because at the time that the client window is created, there are no child 
+windows. Still, we need to have something for the &quot;</font><font size="4" face="Courier New">.hWindowMenu</font><font size="4">&quot; 
+field.</font></p>
+<p><font size="4">The creation of child window &quot;type 1&quot; and &quot;type 2&quot; happens in 
+response to user menu selections. One of the menu ID is &quot;</font><font face="Courier New" size="4">ID_FILE_NEWCHILDTYPE1</font><font size="4">&quot;</font></p>
+<p><font size="4" face="Courier New">case ID_FILE_NEWCHILDTYPE1:<br>
+{<br>
+&nbsp;&nbsp;&nbsp; <b><font color="#FF6600">MDICREATESTRUCT mdicreate ;</font></b><br>
+&nbsp;&nbsp;&nbsp; mdicreate.szClass = szChild1Class ;<br>
+&nbsp;&nbsp;&nbsp; mdicreate.szTitle = TEXT (&quot;Hello 1&quot;) ;<br>
+&nbsp;&nbsp;&nbsp; mdicreate.hOwner&nbsp; = app_instance ;<br>
+&nbsp;&nbsp;&nbsp; mdicreate.x 	&nbsp;= CW_USEDEFAULT ;<br>
+&nbsp;&nbsp;&nbsp; mdicreate.y 	&nbsp;= CW_USEDEFAULT ;<br>
+&nbsp;&nbsp;&nbsp; mdicreate.cx	&nbsp;= CW_USEDEFAULT ;<br>
+&nbsp;&nbsp;&nbsp; mdicreate.cy	&nbsp;= CW_USEDEFAULT ;<br>
+&nbsp;&nbsp;&nbsp; mdicreate.style&nbsp;&nbsp; = 0 ;<br>
+&nbsp;&nbsp;&nbsp; mdicreate.lParam&nbsp; = 0 ;<br>
+			<br>
+&nbsp;&nbsp;&nbsp; HWND hwndChild = (HWND) SendMessage (client_window,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; WM_MDICREATE, 
+0,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (LPARAM) (LPMDICREATESTRUCT)
+<b><font color="#FF6600">&amp;mdicreate</font></b>) ;<br>
+&nbsp;&nbsp;&nbsp; return 0 ;<br>
+}</font></p>
+<p><font size="4">note, for &quot;</font><font size="4" face="Courier New">mdicreate.szTitle</font><font size="4">&quot;, 
+you might want to use the file name of the document</font></p>
+<p>&nbsp;</p>
+<h2><font color="#008000">Child Windows Gaining / Losing Focus</font></h2>
+<p><font size="4">When you move from one child window to another one, you will 
+get two &quot;</font><font color="#FF6600" size="4">WM_MDIACTIVATE</font><font size="4">&quot; 
+messages, one for each of the windows involved.</font></p>
+<p><font face="Courier New" color="#FF6600" size="4">case WM_MDIACTIVATE:<br>
+{<br>
+&nbsp;&nbsp;&nbsp; </font><font face="Courier New" size="4" color="#008000">
+//wParam is the handle to the window being DE-activated<br>
+&nbsp;&nbsp;&nbsp; //lParam is the handle to the window being activated</font><font face="Courier New" color="#FF6600" size="4"><br>
+<br>
+&nbsp;&nbsp;&nbsp; if (lParam == (LPARAM) hwnd)<br>
+&nbsp;&nbsp;&nbsp; {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font>
+<font face="Courier New" size="4" color="#008000">//if we are in the procedure 
+of the window being <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //activated, set the menu</font><font face="Courier New" color="#FF6600" size="4"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SendMessage (client_window, 
+WM_MDISETMENU,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+(WPARAM) child1_menu, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+(LPARAM) child1_menu2) ;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; </font><font face="Courier New" size="4" color="#008000">// 
+Set the &quot;no_child_menu&quot; if losing focus<br>
+&nbsp;&nbsp;&nbsp; // this is a cheap way to ensure that if user <br>
+&nbsp;&nbsp;&nbsp; // close all child windows, the <br>
+&nbsp;&nbsp;&nbsp; // &quot;no_child&quot; menu would be shown</font><font face="Courier New" color="#FF6600" size="4"><br>
+&nbsp;&nbsp;&nbsp; if (lParam != (LPARAM) hwnd)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SendMessage (client_window, 
+WM_MDISETMENU, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+(WPARAM) no_child_menu,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+(LPARAM) no_child_menu0) ;<br>
+<br>
+&nbsp;&nbsp;&nbsp; DrawMenuBar (frame_window) ;<br>
+&nbsp;&nbsp;&nbsp; return 0 ;<br>
+}</font></p>
+<p>&nbsp;</p>
+<h2><font color="#008000">About the Accelerators</font></h2>
+<p><font size="4">The MDI system has its own set of accelerators handling. For 
+example, control-F6 will cycle through windows. The WinMain message loop 
+basically process the message in the following order:</font></p>
+<ul>
+  <li><font size="4" face="Courier New">TranslateMDISysAccel</font></li>
+  <li><font size="4" face="Courier New">TranslateAccelerator</font></li>
+  <li><font size="4" face="Courier New">TranslateMessage</font></li>
+  <li><font size="4" face="Courier New">DispatchMessage</font></li>
+</ul>
+<p>&nbsp;</p>
+<h2><font color="#008000">Message Passing throughout the Windows</font></h2>
+<p><font size="4">Like before, there's a default handler function at the end of 
+these window procedures. In the single document interface case (SDI case), we 
+have &quot;</font><font face="Courier New"></font><font size="4"><font face="Courier New">DefWindowProc</font>&quot;. 
+Now we have:</font></p>
+<ul>
+  <li><font face="Courier New"></font><font size="4"><b>
+  <font face="Courier New" color="#FF6600">DefFrameProc</font></b> --- for the 
+  frame window</font></li>
+  <li><font face="Courier New"></font><font size="4"><b>
+  <font face="Courier New" color="#FF6600">DefMDIChildProc</font></b> --- for a 
+  child window</font></li>
+</ul>
+<p><font size="4">Some messages must be passed to the default handlers whether 
+your program handle them or not:</font></p>
+<ul>
+  <li><font size="4">for the frame window: WM_MENUCHAR, WM_SETFOCUS, WM_SIZE</font></li>
+  <li><font size="4">for the child window: WM_CHILDACTIVATE, WM_GETMINMAXINFO, 
+  WM_MENUCHAR, WM_MOVE, WM_SETFOCUS, WM_SIZE, and WM_SYSCOMMAND</font></li>
+</ul>
+<p><font size="4">so for the above messages, be sure to use &quot;break;&quot; rather than 
+&quot;return 0;&quot; at the end of the message handling block</font></p>
+<p><font size="4">In addition, the frame window handles only the menu commands 
+that are common to all child windows. So WM_COMMAND not handled by the frame window should 
+be passed on to the active child window:</font></p>
+<p><font size="4" face="Courier New">case WM_COMMAND:<br>
+{<br>
+&nbsp;&nbsp;&nbsp; switch (LOWORD (wParam))<br>
+&nbsp;&nbsp;&nbsp; {</font></p>
+<p><font size="4" face="Courier New">&nbsp;&nbsp;&nbsp; ...</font></p>
+<p><font face="Courier New"><font size="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+default:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Pass 
+message to active child...<br>
+<font color="#FF6600">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+HWND hwndChild = (HWND) SendMessage (client_window,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+WM_MDIGETACTIVE, 0, 0) ;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (IsWindow 
+(hwndChild))<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+SendMessage (hwndChild, WM_COMMAND, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+wParam, lParam) ;</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break ; 	&nbsp; 
+// ...and then to DefFrameProc<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</font></font></p>
+<p>&nbsp;</p>
+<h2><font color="#008000">Closing the Child Windows</font></h2>
+<p><font size="4">To close just one child window, the user click on the 
+File---&gt;Close, which is handled in the &quot;frame window&quot; window procedure</font></p>
+<p><font size="4" face="Courier New">// Close the active window<br>
+case ID_FILE_CLOSE2:<br>
+{<br>
+&nbsp;&nbsp;&nbsp; //get the active window<br>
+&nbsp;&nbsp;&nbsp; HWND hwndChild = (HWND) SendMessage (client_window,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; WM_MDIGETACTIVE, 0, 0) ;<br>
+<br>
+&nbsp;&nbsp;&nbsp; if (SendMessage (hwndChild, <b><font color="#FF6600">
+WM_QUERYENDSESSION</font></b>, 0, 0))<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SendMessage (client_window,
+<font color="#FF6600"><b>WM_MDIDESTROY</b></font>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+(WPARAM) hwndChild, 0) ;<br>
+&nbsp;&nbsp;&nbsp; return 0 ;<br>
+}</font></p>
+<p><font size="4">The real message that shuts down a child window is the &quot;</font><font color="#FF6600" size="4" face="Courier New"><b>WM_MDIDESTROY</b></font><font size="4">&quot; 
+--- but in my program, things are coded such that for &quot;</font><font color="#FF6600" size="4" face="Courier New"><b>WM_MDIDESTROY</b></font><font size="4">&quot; 
+to happen, &quot;</font><font size="4" face="Courier New"><b><font color="#FF6600">WM_QUERYENDSESSION</font></b></font><font size="4">&quot; 
+needs to return &quot;true&quot;. So in the child window, we have the message handler:</font></p>
+<p><font size="4" face="Courier New">case WM_QUERYENDSESSION:<br>
+case WM_CLOSE:<br>
+&nbsp;&nbsp;&nbsp; break; //call DefMDIChildProc</font></p>
+<p><font size="4">In a real program there should be a dialog box asking if the 
+user wants to quit</font></p>
+<p><font size="4">After the child window &quot;approve&quot; of closing itself, the client 
+window will get the &quot;</font><font color="#FF6600" size="4" face="Courier New"><b>WM_MDIDESTROY</b></font><font size="4">&quot; 
+message --- remember it's the OS provides support for MDI applications. So after 
+the OS did their clean up, the child window will get WM_DESTROY. I used the 
+simplest WM_DESTROY</font></p>
+<p><font size="4">The child window's WM_DESTROY:</font></p>
+<p><font face="Courier New">case WM_DESTROY:			<br>
+&nbsp;&nbsp;&nbsp; return 0 ;</font></p>
+<p><font size="4">The frame window's WM_DESTROY:</font></p>
+<p><font size="4" face="Courier New">case WM_DESTROY:<br>
+&nbsp;&nbsp;&nbsp; PostQuitMessage (0) ;<br>
+&nbsp;&nbsp;&nbsp; return 0 ;</font><br>
+&nbsp;</p>
+<p><font size="4">To close all windows, the user would select the &quot;Close All&quot; 
+menu option. The handling once again starts at the frame window.</font></p>
+<p><font face="Courier New" size="4">case ID_WINDOW_CLOSEALL:	 			<br>
+<b><font color="#FF6600">&nbsp;&nbsp;&nbsp; EnumChildWindows (client_window, 
+CloseEnumProc, 0) ;<br>
+</font><font color="#008000">&nbsp;&nbsp;&nbsp; //now, &quot;CloseEnumProc&quot; will be 
+called for each child</font></b><font color="#008000"><br>
+</font>&nbsp;&nbsp;&nbsp; return 0 ;</font></p>
+<p><font face="Courier New" size="4">...</font></p>
+<p><font face="Courier New" size="4">BOOL CALLBACK CloseEnumProc (HWND hwnd, 
+LPARAM lParam)<br>
+{<br>
+&nbsp;&nbsp;&nbsp; if (GetWindow (hwnd, GW_OWNER))<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return TRUE ; //can this ever happen?<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /*I am not sure why the book has this 
+code;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; book's comment: &quot;check for icon 
+title&quot;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; my thoughts --- perhaps it means that 
+the child windows<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; can create modeless dialog boxes, and 
+those will not <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; have icons. They will have a 
+different shutdown procedure<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; */<br>
+	<br>
+&nbsp;&nbsp;&nbsp; SendMessage (GetParent (hwnd), <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; WM_MDIRESTORE, (WPARAM) hwnd, 0) ;<br>
+	<br>
+&nbsp;&nbsp;&nbsp; if (!SendMessage (hwnd, WM_QUERYENDSESSION, 0, 0))<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return TRUE ;<br>
+	<br>
+&nbsp;&nbsp;&nbsp; SendMessage (GetParent (hwnd), <font color="#FF6600"><b><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; WM_MDIDESTROY</b></font>, (WPARAM) 
+hwnd, 0) ;<br>
+<br>
+&nbsp;&nbsp;&nbsp; return TRUE ;<br>
+}</font><br>
+&nbsp;</p>
+<h2><font color="#008000">Data structure consideration</font></h2>
+
+<p><font size="4">All of the child windows of the same type will use the same 
+window procedure. So you will not be able to store information that pertains to 
+a particular window in the window procedure. The book's solution is to use the 
+window class structure to piggy bag a pointer:</font></p>
+
+<p><font face="Courier New" size="4" color="#FF6600">wndclass.cbWndExtra = 
+sizeof (HANDLE) ; </font><font face="Courier New" size="4" color="#008000">//if 
+you want to store stuff there</font></p>
+
+<p><font size="4">Now I didn't use this pointer in my simple temlate. But if I 
+need to, I would allocate the memory in WM_CREATE:</font></p>
+
+<p><font face="Courier New" size="4">pointer = (...cast...) HeapAlloc (GetProcessHeap(),<br>
+&nbsp;&nbsp;&nbsp; HEAP_ZERO_MEMORY, sizeof (...data structure...));</font><font size="4"><br>
+<b><font face="Courier New" color="#FF6600">SetWindowLong (hwnd, 0, (long)pointer);</font></b></font></p>
+
+<p><font size="4">and de-allocate in WM_DESTROY:</font></p>
+
+<p><font size="4" face="Courier New">pointer = (...cast...) GetWindowLong (hwnd, 
+0);<br>
+HeapFree (GetProcessHeap(), 0, pointer);</font></p>
+
+<p><font size="4">I am using the &quot;HeapAlloc&quot; and &quot;HeapFree&quot; functions because 
+they are used in the book (I think new and delete would work too?)</font></p>
+
+<p>&nbsp;</p>
+
+<p><font size="4">Another solution is to use the &quot;hwnd&quot; of the window procedure 
+to identify which child window has the user focus.</font></p>
+
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Registers</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">Registers</font></h1>
+<h2><font color="#008000">Segment Registers</font></h2>
+<p><font size="4">There are four segment registers:</font></p>
+<ul>
+  <li><font size="4">code segment --- CS</font></li>
+  <li><font size="4">data segment --- DS</font></li>
+  <li><font size="4">stack segment --- SS</font></li>
+  <li><font size="4">extra segment --- ES</font></li>
+</ul>
+<p><font size="4">the &quot;extra segment&quot; ES register don't have a particular job 
+--- it's just a segment for your own use. For 386 and beyond, there's also FS, 
+GS --- two more segment registers</font></p>
+<p>&nbsp;</p>
+<h2><font color="#008000">General Purpose Registers</font></h2>
+<p><font size="4">32 bit registers: EAX, EBX, ECX, EDX, EBP, ESI, EDI, and ESP</font></p>
+<p><font size="4">The name of the lower 16 bits regions within the above 
+registers: AX, BX, CX, DX, BP, SI, DI, SP (SP is a little less general than the 
+others)</font></p>
+<p><font size="4">The key idea is that AX is the lower 16 bit of EAX --- AX is 
+not a distinct register</font></p>
+<p><font size="4">The AX, BX, CX, DX registers are in turn divided into two 
+halves, each 8 bit: AH, AL, BH, BL, and so on</font></p>
+<p>&nbsp;</p>
+<h2><font color="#008000">IP and FLAGS register</font></h2>
+<p><font size="4">You do not deal directly with these two registers as a unit 
+--- they are there and they are dealt with indirectly through instruction like: 
+jump, check overflow, etc.</font></p>
+<p><font size="4">IP = instruction pointer</font></p>
+<p><font size="4">Your program can have many code segments --- and CS stores the 
+code segment that you are in at a particular time. IP is the instruction 
+pointer, and CS:IP defines where you are in the execution. You don't load stuff 
+into the IP register directly --- you use the JMP instruction.</font></p>
+
+</body>
+
+</html>

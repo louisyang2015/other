@@ -1,0 +1,27 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>The Scroll Bar Control</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">The Scroll Bar Control</font></h1>
+<p><font size="4"><a href="examples/scroll_bar_control.cpp">click here for a 
+program that demonstrates using a horizontal scrollbar control</a></font></p>
+<p><font size="4">you create this with the predefined window class &quot;scrollbar&quot;, 
+and one of these two styles: SBS_VERT and SBS_HORZ.</font></p>
+<p><font size="4">Scroll bar controls don't send WM_COMMAND messages, they send 
+WM_VSCROLL and WM_HSCROLL messages.</font></p>
+<p><font size="4">Setting up a scroll bar control is also the same as setting up 
+a window scroll bar --- except the second argument is now different:<br>
+<font face="Courier New" color="#FF6600">SetScrollInfo (hwndScroll, <b>SB_CTL</b>, &amp;si, 
+bRedraw);</font></font></p>
+
+</body>
+
+</html>

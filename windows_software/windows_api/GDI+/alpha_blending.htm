@@ -1,0 +1,101 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Alpha Blending Lines and Fills</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">Alpha Blending Lines and Fills</font></h1>
+<p><font size="4">Alpha = 0 means fully transparent color, and<br>
+Alpha = 255 represents a fully opaque color.</font></p>
+<p>&nbsp;</p>
+<h2><font color="#008000">Compositing Mode</font></h2>
+<p><font size="4">This controls when alpha blending takes place. Say you are 
+creating a bitmap off-screen and will display the bitmap on screen once it's 
+created. There are colors in the bitmap with alpha that is less than 255. If you 
+want alpha blending to NOT take place off-screen (when creating the bitmap), and 
+want alpha blending to take place&nbsp; on-screen (when displaying the bitmap), 
+use <font color="#FF6600" face="Courier New">CompositingModeSourceCopy</font></font></p>
+<p><font face="Courier New" size="4">Bitmap bitmap(180, 100);<br>
+Graphics bitmapGraphics(&amp;bitmap);<br>
+<font color="#FF6600">
+bitmapGraphics.SetCompositingMode(CompositingModeSourceCopy);</font></font><br>
+<font face="Courier New" size="4">//another choice: CompositingModeSourceOver 
+--- the <br>
+//bitmap will blend with one another as well as with the background</font></p>
+<p><font size="4"><a href="examples/Compositing_Mode.cpp">Click here for the 
+full program code</a></font></p>
+<p>&nbsp;</p>
+<h2><font color="#008000">Setting Alpha Values in Images</font></h2>
+<p><font size="4">You can use the <font color="#FF6600" face="Courier New">
+ImageAttributes</font> class to modify the alpha values for an entire image, or 
+you can call the <font face="Courier New" color="#FF6600">SetPixel</font> method 
+of the <font face="Courier New" color="#FF6600">Bitmap</font> class to modify 
+individual pixel values.</font></p>
+<p><font size="4">key lines about using the &quot;ImageAttributes&quot;:</font></p>
+<p><font face="Courier New" size="4">// Initialize the color matrix.<br>
+//setting the alpha scaling value in the matrix to 0.8<br>
+// Notice the value 0.8 in row 4, column 4.<br>
+<font color="#FF6600">ColorMatrix colorMatrix</font> = {1.0f, 0.0f, 0.0f, 0.0f, 
+0.0f,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+0.0f, 1.0f, 0.0f, 0.0f, 0.0f,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+0.0f, 0.0f, 1.0f, 0.0f, 0.0f,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+0.0f, 0.0f, 0.0f, 0.8f, 0.0f,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+0.0f, 0.0f, 0.0f, 0.0f, 1.0f};</font></p>
+<p><font face="Courier New" size="4">// Create an ImageAttributes object and set 
+its color matrix.<br>
+<font color="#FF6600">ImageAttributes imageAtt;<br>
+imageAtt.SetColorMatrix(</font>&amp;colorMatrix, ColorMatrixFlagsDefault,<br>
+&nbsp;&nbsp; ColorAdjustTypeBitmap);</font></p>
+<p><font face="Courier New" size="4">graphics.DrawImage(<br>
+&nbsp;&nbsp; &amp;bitmap, <br>
+&nbsp;&nbsp; Rect(30, 0, iWidth, iHeight),&nbsp; // Destination rectangle<br>
+&nbsp;&nbsp; 0,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+// Source rectangle X <br>
+&nbsp;&nbsp; 0,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+// Source rectangle Y<br>
+&nbsp;&nbsp; iWidth,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+// Source rectangle width<br>
+&nbsp;&nbsp; iHeight,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+// Source rectangle height<br>
+&nbsp;&nbsp; UnitPixel, <br>
+&nbsp;&nbsp; <font color="#FF6600">&amp;imageAtt</font>);</font></p>
+<p><font size="4"><a href="examples/color_matrix.cpp">Click here for the entire 
+code segment about using &quot;ImageAttributes&quot;</a></font></p>
+<p><font size="4">Key lines about using &quot;SetPixel&quot;:</font></p>
+<p><font face="Courier New" size="4">Color colorTemp;<br>
+colorTemp.SetValue(alpha, red, green blue);<br>
+bitmap.SetPixel(iColumn, iRow, colorTemp);</font></p>
+<p><font size="4"><a href="examples/SetPixel.cpp">Click here for the entire code 
+segment about using &quot;SetPixel&quot;</a></font></p>
+<p>&nbsp;</p>
+<h2><font color="#008000">Other Notes:</font></h2>
+<p><font size="4">Alpha blending is a pixel-by-pixel blending of source and 
+background color data. Each of the three components (red, green, blue) of a 
+given source color is blended with the corresponding component of the background 
+color according to the following formula:</font></p>
+<p><font size="4">displayColor = sourceColor×alpha / 255 + backgroundColor×(255 
+– alpha) / 255</font></p>
+<p><font size="4">&quot;Gamma Correction&quot; will also make the color appear lighter. In 
+the following code, the second line is lighter than the first:</font></p>
+<p><font face="Courier New" size="4">graphics.DrawLine(&amp;opaquePen, 0, 20, 100, 
+20);<br>
+graphics.DrawLine(&amp;semiTransPen, 0, 40, 100, 40);<br>
+<br>
+graphics.SetCompositingQuality(CompositingQualityGammaCorrected);<br>
+graphics.DrawLine(&amp;semiTransPen, 0, 60, 100, 60); //lighter line</font></p>
+<p><font size="4">d</font></p>
+<p>&nbsp;</p>
+
+</body>
+
+</html>

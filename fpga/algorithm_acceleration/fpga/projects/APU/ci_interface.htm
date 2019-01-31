@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Language" content="en-us" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Custom Instructions Interface</title>
+<link rel="stylesheet" type="text/css" href="fpga.css" />
+</head>
+
+<body>
+
+<h1>Custom Instructions Interface</h1>
+<p class="center">Last updated Apr 26, 2011</p>
+<p>The NIOS 2 communicates to the Array Processor Unit (APU) through a custom 
+instruction interface. The instruction format has an &quot;n&quot; port.</p>
+<ul>
+				<li>n=0 instructions are array processor instructions that are 
+				passed into the array processor instruction FIFO.</li>
+				<li>n=1 instructions are not meant for the array processor. They 
+				are about the status of the array processor.</li>
+</ul>
+<h2>n=1 Instructions</h2>
+<table>
+			<tr>
+						<td class="nowrap">
+						dataa</td>
+						<td>
+						Description</td>
+			</tr>			
+			<tr>
+						<td>
+						0</td>
+						<td class="left">
+						Busy<br />
+						<br />
+						Returns 1 to NIOS 2 if the array processor is busy.</td>
+			</tr>			
+			<tr>
+						<td>
+						1</td>
+						<td class="left">
+						Elements in instruction FIFO<br />
+						<br />
+						Returns the number of elements in the &quot;instr&quot; FIFO.</td>
+			</tr>			
+			<tr>
+						<td>
+						2</td>
+						<td class="left">
+						Elements in result FIFO<br />
+						<br />
+						Returns the number of elements in the &quot;result&quot; FIFO.</td>
+			</tr>			
+			<tr>
+						<td>
+						3</td>
+						<td class="left">
+						Result<br />
+						<br />
+						Read an element from the &quot;result&quot; FIFO.</td>
+			</tr>			
+</table>
+<p>&nbsp;</p>
+
+</body>
+
+</html>

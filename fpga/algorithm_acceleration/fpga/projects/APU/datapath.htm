@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Language" content="en-us" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Datapath</title>
+<link rel="stylesheet" type="text/css" href="fpga.css" />
+</head>
+
+<body>
+
+<h1>Datapath</h1>
+<p class="center">Last updated Mar 31, 2011</p>
+<h2>Inputs to the ALU</h2>
+<p><img src="images/datapath_alu_input.gif" width="800" height="1009" /></p>
+<p>The &quot;X1&quot; and &quot;X2&quot; are must choose from A0, A1, B0, and B1 in order to do the 
+FFT.</p>
+<p>The complex multiplier inside the ALU is hard wired to &quot;X1&quot; and &quot;T&quot;. The 
+inputs feeding &quot;T&quot; is determined by the needs of the algorithm. The &quot;T_q&quot; is the 
+twiddle factor for the FFT. The &quot;ONE&quot; is a way to disable the complex 
+multiplier, so to add two arrays via X1 + X0 using the FFT datapath. The &quot;A0_q&quot; 
+is to do multiply accumulate where the sum of products A0 * A1 is to be 
+computed. The &quot;A0_q conjugate&quot; is to do power computation, where the power is A0 
+* (A0 conjugate).</p>
+<p>&nbsp;</p>
+<h2>Input to the Memories A0, A1, B0, B1</h2>
+<p>There is one read address and two write addresses serving the memories. This 
+is required by the FFT operation.</p>
+<table>
+			<tr>
+						<td>Memory</td>
+						<td>Read<br />
+						Address</td>
+						<td>Write<br />
+						Address</td>
+			</tr>
+			<tr>
+						<td>A0</td>
+						<td>rdaddr</td>
+						<td>wraddr0</td>
+			</tr>
+			<tr>
+						<td>A1</td>
+						<td>rdaddr</td>
+						<td>wraddr1</td>
+			</tr>
+			<tr>
+						<td>B0</td>
+						<td>rdaddr</td>
+						<td>wraddr0</td>
+			</tr>
+			<tr>
+						<td>B1</td>
+						<td>rdaddr</td>
+						<td>wraddr1</td>
+			</tr>
+</table>
+<p>The memories can be written with data from Y0 and Y1 - this is required by 
+the FFT operation. Furthermore, the AEC algorithm involves SSRAM storage into 
+three of the four memories, so all four memories can get data from the SSRAM as 
+well.</p>
+<p>The SSRAM is 32 bit wide, so each read from the SSRAM produce only the real 
+part or the imaginary part. So it&#39;s necessary to separate the memory into real 
+and imaginary blocks. The A0r, A1r, B0r, and B1r are the real blocks.</p>
+<p><img src="images/datapath_memA0r.gif" width="500" height="229" /></p>
+<p>The connection diagram for A0r is shown above. The connection for the seven 
+other memory blocks are quite similar to the one shown.</p>
+<h2>SSRAM Input</h2>
+<p>The data to be written into the SSRAM comes from ALU output Y1. This &quot;Y1&quot; is 
+the output for the various bypass operations of the ALU.</p>
+<p><img src="images/datapath_ssram.gif" width="500" height="169" /></p>
+<h2>Result FIFO Input</h2>
+<p>The data to be written into the &quot;result&quot; FIFO comes from ALU output Y1.</p>
+<p><img src="images/datapath_result_fifo.gif" width="400" height="148" /></p>
+
+</body>
+
+</html>

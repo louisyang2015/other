@@ -1,0 +1,232 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Semiconductor Models</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">Semiconductor Models</font></h1>
+<p><font size="4">Development throughout this chapter assumes
+<font color="#008000">equilibrium conditions</font>.</font></p>
+<p><font size="4"><font color="#008000">Equilibrium Conditions</font> --- There 
+are no external voltages, magnetic fields, stresses, or other perturbing forces 
+acting on the semiconductor.</font></p>
+<p>&nbsp;</p>
+<h2><font color="#008000">The Bonding Model</font></h2>
+<p><font size="4">A silicon(Si) atom has 14 electrons. Ten of these electrons 
+are in inner shells and they remain unperturbed during chemical reactions. Four 
+electrons are in the valence shell. A picture of a bunch of Si atoms bonded 
+together:</font></p>
+<p><img border="0" src="images/pic0015.gif" width="500" height="367"></p>
+<p><font size="4">Each line represent one valence electron that is shared 
+between two atoms.</font></p>
+<p><font size="4">The picture is 2D, but the actual structure is the diamond 
+lattice mentioned in chapter one.</font></p>
+<p><font size="4">Such &quot;perfect&quot; lattice only happens at 0 K. Even small thermal 
+agitation will break some of the bonds.</font></p>
+<p><font size="4">For an electron to become a carrier, the bond between two 
+silicon atoms needs to be broken. Once the bond is broken, the electron is freed 
+to move around. Freeing the electron also creates a hole in the Si lattice. This 
+hole is also viewed as a current carrier.</font></p>
+<p><font size="4"><font color="#008000">Acceptors</font> are elements from the 
+periodic table's column III that has three valence electrons. If we replace a 
+silicon atom with an atom from column III, then a hole is created because there 
+is a shortage of one electron to complete the octet rule. Boron is the most 
+popular acceptor. Acceptors make the semiconductor <font color="#008000">p-typed 
+material</font>, meaning that it has more holes than electrons. The
+<font color="#008000">majority carrier</font> in p-typed material is the hole, 
+while the <font color="#008000">minority carrier</font> is the electron.</font></p>
+<p><font size="4" color="#008000">Donors</font><font size="4"> are elements from 
+the periodic table's column V that has five valence electrons. If we replace a 
+silicon atom with an atom from column V, then an electron is created because the 
+fifth valence electron is not needed to satisfy the octet rule. Phosphorus and 
+arsenic are the most popular donors. Donors make the semiconductor
+<font color="#008000">n-typed material</font>, meaning that it has more 
+electrons than holes. </font></p>
+<p><img border="0" src="images/pic0016.gif" width="500" height="367"></p>
+<p><font size="4">Donors do not create holes, they only bring electrons. When 
+the phosphorus atom's fifth electron becomes a free electron, the phosphorous 
+atom does get a positive charge. But since the atom is part of the crystal 
+lattice and can not move, it is not a carrier.</font></p>
+<p><font size="4">By the same reasoning, when another electron fills in the 
+missing bond at the site of the boron atom, the boron atom gets a negative 
+charge but does not become a carrier.</font></p>
+<p>&nbsp;</p>
+<h2><font color="#008000">The Energy Band Model</font></h2>
+<p><font size="4">When a bunch of Si atoms come together, the allowed electron states 
+for the valence shell split into two groups. The group that is lower in energy 
+is called the valence band. The group that is higher in energy is called the 
+conduction band. Electrons can exist in the valence band or the conduction band, 
+but can not exist in between the two bands. The energy levels at the edge of the 
+two bands are labeled E<sub>V</sub> and E<sub>C</sub> .</font></p>
+
+<p><img border="0" src="images/pic0017.gif" width="550" height="462"></p>
+
+<p><font size="4">The energy between the two bands is the band gap energy E<sub>G</sub>.
+</font></p>
+
+<p><font size="4">E<sub>C</sub> - E<sub>V</sub> = E<sub>G</sub></font></p>
+
+<p><font size="4">At room temperature:</font></p>
+
+<table border="3" cellpadding="12" cellspacing="1" style="border-collapse: collapse" bordercolor="#FF8000">
+  <tr>
+    <td><font face="Courier New" size="5" color="#FF8000">E<sub>G</sub> = 1.42 
+    eV for GaAs<br>
+    E<sub>G</sub> = 1.12 eV for Si<br>
+    E<sub>G</sub> = 0.66 eV for Ge</font></td>
+  </tr>
+</table>
+<p><font size="4">At 0 K, all electrons of the Si lattice is in the valence 
+band. It would take 1.12 eV to move an atom from the valence band to the 
+conductance band. An electron in the valence band is an electron that is part of 
+the bonds between Si atoms --- it can not move. Once an electron gets into the 
+conduction band, then it can move. An electron moving to the conduction band 
+also leave behind a hole in the valence band, which is also a current carrier.</font></p>
+
+<p><b><font size="4" color="#008000">Donors and Acceptors in the Energy Band 
+Model</font></b></p>
+
+<p><font size="4">Say an Si atom in the lattice is replaced by a donor atom. The 
+fifth electron of the donor atom will initially want to stay with the donor 
+because of attraction by the donor nucleus. Although the fifth electron does not 
+take part in the bonding, it would still take a small amount of energy |E<sub>B</sub>| 
+to free the fifth electron.</font></p>
+
+<p><font size="4">In the energy band model, the donor atom brings in an electron 
+at an energy level |E<sub>B</sub>| less than E<sub>C</sub> . A slight amount of 
+energy is needed to send this electron into the conduction band.</font></p>
+
+<p><img border="0" src="images/pic0018.gif" width="650" height="604"></p>
+
+<p><font size="4">The effect of the acceptor is to introduce an empty state at 
+an energy level E<sub>A</sub> that is slightly above E<sub>V</sub> . Then, even 
+a small amount of energy can excite an electron from E<sub>V</sub> to the E<sub>A</sub> 
+state, creating a hole in the valence band that act as a carrier.</font></p>
+
+<p><img border="0" src="images/pic0019.gif" width="650" height="906"></p>
+
+<p>&nbsp;</p>
+
+<h2><font color="#008000">Effective Mass</font></h2>
+
+<p><font size="4">Let q = the elemental charge.</font></p>
+
+<p><font size="4">One way to describe the force felt by a charge is:</font></p>
+
+<p><font size="4">F = (charge) * (Electric Field felt by the charge)</font></p>
+
+<p><font size="4">Another way is to describe the force felt by a charge is to 
+use Newton's Law:</font></p>
+
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    F = (mass) </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">dv </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">dt </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<p><font size="4">This (mass) quantity is different in different situations. In 
+a vacuum, (mass) would be the mass of the charge. In a semiconductor, (mass) 
+would be something else. Whatever (mass) that works in a particular medium is 
+called the <font color="#008000">effective mass</font> for that medium.</font></p>
+
+<table border="3" cellpadding="12" cellspacing="1" style="border-collapse: collapse" bordercolor="#FF8000">
+  <tr>
+    <td><font size="5" color="#FF8000">m<sub>0</sub> = the electron rest mass = 
+    9.11 * 10<sup>-31</sup> kg</font><p><font size="5" color="#FF8000">Effective 
+    Masses at 300 K</font></p>
+    <table border="1" cellpadding="12" cellspacing="1" style="border-collapse: collapse" bordercolor="#111111">
+      <tr>
+        <td align="center"><font size="5" face="Courier New" color="#FF8000">
+        Material</font></td>
+        <td align="center"><font face="Courier New" size="5" color="#FF8000">(m<sub>n</sub>*)/m<sub>0</sub></font></td>
+        <td align="center"><font face="Courier New" size="5" color="#FF8000">(m<sub>p</sub>*)/m<sub>0</sub></font></td>
+      </tr>
+      <tr>
+        <td align="center"><font size="5" face="Courier New" color="#FF8000">Si</font></td>
+        <td align="center"><font face="Courier New" size="5" color="#FF8000">
+        1.18</font></td>
+        <td align="center"><font face="Courier New" size="5" color="#FF8000">
+        0.81</font></td>
+      </tr>
+      <tr>
+        <td align="center"><font size="5" face="Courier New" color="#FF8000">Ge</font></td>
+        <td align="center"><font face="Courier New" size="5" color="#FF8000">
+        0.55</font></td>
+        <td align="center"><font face="Courier New" size="5" color="#FF8000">
+        0.36</font></td>
+      </tr>
+      <tr>
+        <td align="center"><font size="5" face="Courier New" color="#FF8000">
+        GaAs</font></td>
+        <td align="center"><font face="Courier New" size="5" color="#FF8000">
+        0.066</font></td>
+        <td align="center"><font face="Courier New" size="5" color="#FF8000">
+        0.52</font></td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+
+<h2><font color="#008000">Carrier Numbers in Intrinsic Material</font></h2>
+
+<table border="3" cellpadding="12" cellspacing="1" style="border-collapse: collapse" bordercolor="#FF8000">
+  <tr>
+    <td><font size="5">Let:</font><p><font color="#FF8000" size="5">n = number 
+    of electrons / cm<sup>3</sup></font></p>
+    <p><font color="#FF8000" size="5">p = number of holes / cm<sup>3</sup></font></td>
+  </tr>
+</table>
+<p><font size="4">Intrinsic material has not been doped, so n = p.</font></p>
+
+<table border="3" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#FF8000">
+  <tr>
+    <td><font size="5">Let:</font><p><font size="5" color="#FF8000">n<sub>i</sub> 
+    = number of electrons / cm<sup>3</sup> in intrinsic materials</font></td>
+  </tr>
+</table>
+<p><font color="#FF8000" face="Courier New"><font size="5">n = p = n</font><sub><font size="5">i</font></sub></font></p>
+<table border="3" cellpadding="12" cellspacing="1" style="border-collapse: collapse" bordercolor="#FF8000">
+  <tr>
+    <td><font size="5">At room temperature:</font><p>
+    <font size="5" color="#FF8000">n<sub>i</sub> <font face="Times New Roman">= 
+    2.25 * 10<sup>6</sup> / cm<sup>3</sup> in GaAs</font></font></p>
+    <p><font size="5" color="#FF8000">n<sub>i</sub> <font face="Times New Roman">
+    = 1.45 * 10<sup>10</sup> / cm<sup>3</sup> in Si</font></font></td>
+  </tr>
+</table>
+<p><font size="4">The opposite of intrinsic semiconductor is the
+<font color="#008000">extrinsic semiconductor</font>, also called a doped 
+semiconductor.</font></p>
+
+</body>
+
+</html>

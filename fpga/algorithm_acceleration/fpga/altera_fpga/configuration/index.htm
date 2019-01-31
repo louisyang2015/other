@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Language" content="en-us" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Altera FPGA Configuration</title>
+<link rel="stylesheet" type="text/css" href="../fpga.css" />
+</head>
+
+<body>
+
+<h1>Altera FPGA Configuration</h1>
+<p class="center">Last updated May 23, 2011</p>
+<h2>Background Information</h2>
+<p>The Cyclone 4 FPGA has the following Configuration Options</p>
+<ul>
+				<li><strong>AS - Active Serial</strong> - The FPGA reads its 
+				configuration data from a <strong>EPCS</strong> (Altera flash 
+				memory) device</li>
+				<li><strong>AP - Active Parallel</strong> - The FPGA reads its 
+				configuration data from a flash memory. Not all Cyclone 4 FPGAs 
+				have this feature. Only the larger FPGAs (484 pin and above) 
+				have this option. The scheme also works automatically for flash 
+				memory up to the 256 Mbit range. The flash memory hooks up to 
+				the FPGA via a 16 bit wide databus and a 24 bit wide address 
+				bus, thus it address a flash memory of up to 32 MByte. If a 
+				larger flash memory is used, then the upper address bits would 
+				have to be held somehow constant during the configuration 
+				process.</li>
+				<li>PS - Passive Serial - An external processor, or a download 
+				cable (USB Blaster), pumps configuration bits into the FPGA.</li>
+				<li>FPP - Fast Passive Parallel - External processor pumps bits 
+				into the FPGA over a wide bus.</li>
+				<li><strong>JTAG</strong> - A download cable (USB Blaster) 
+				configures the FPGA. JTAG configuration always over rides the 
+				configuration obtained from other methods.</li>
+</ul>
+<p>The USB Blaster cable has 3 modes of operation</p>
+<ul>
+				<li>AS mode - the cable programs an EPCS device</li>
+				<li>PS mode - the cable programs a FPGA</li>
+				<li>JTAG mode - the cable programs a FPGA</li>
+</ul>
+<p>File Types</p>
+<ul>
+				<li>SOF File - Download into FPGA</li>
+				<li>POF File - Download into EPCS</li>
+				<li>JIC File - This file has a loader that will go onto the FPGA 
+				and a payload that will go onto the EPCS. </li>
+</ul>
+<p>You create JIC and POF files in Quartus by going to &quot;File&quot; menu --&gt; &quot;Convert 
+Programming Files&quot;.</p>
+<p>NIOS 2 Flash Programmer - this is a tool made by Altera</p>
+<ul>
+				<li>The client side is a windows program</li>
+				<li>The device side is a FPGA circuit that has a NIOS 2 
+				processor. A flash memory interface is 
+				required to program flash memory. A EPCS controller is required 
+				to program the EPCS. </li>
+</ul>
+<p>DE2-70 board - The USB blaster circuit connects to the FPGA and EPCS. There&#39;s 
+a RUN/PROG switch. In the &quot;RUN&quot; position the USB blaster circuit programs the 
+FPGA using the JTAG mode. In the &quot;PROG&quot; position the USB blaster circuit 
+programs the EPCS device in AS mode.</p>
+<ul>
+</ul>
+<p>BeMicro board - The USB blaster connects to the FPGA as JTAG. The FPGA has 
+wires running to the EPCS. The plan is to have the NIOS 2 program the EPCS.</p>
+
+</body>
+
+</html>

@@ -1,0 +1,94 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Transferring Text with the Clipboard</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">Transferring Text with the Clipboard</font></h1>
+
+<p align="left"><font size="4"><a href="examples/clipboard_template.cpp">Click 
+here for a program with Clipboard support</a></font></p>
+<h2><font color="#008000">Sending Text to Clipboard</font></h2>
+<p><font size="4" face="Courier New" color="#FF6600">hGlobal = GlobalAlloc (GHND 
+| GMEM_SHARE, iLength + 1);</font></p>
+<p><font size="4" color="#008000" face="Courier New">//check for hGlobal = NULL 
+here if the block could not be allocated</font></p>
+<p><font size="4" face="Courier New" color="#FF6600">pGlobal = GlobalLock (hGlobal);</font></p>
+<p><font size="4" face="Courier New" color="#008000">//copy the character string 
+into the global memory block</font></p>
+<p><font face="Courier New" size="4" color="#FF6600">for (i = 0; i &lt; length; i++)<br>
+{<br>
+&nbsp;&nbsp;&nbsp; *pGlobal = *pString;<br>
+&nbsp;&nbsp;&nbsp; pGlobal++;<br>
+&nbsp;&nbsp;&nbsp; pString++;<br>
+}</font></p>
+<p><font face="Courier New" size="4" color="#FF6600">GlobalUnlock (hGlobal);</font></p>
+<p><font face="Courier New" size="4" color="#008000">//now you have a global 
+memory handle that references a memory<br>
+//block containing the null terminated text. And next, get<br>
+//it into the clipboard</font></p>
+<p><font face="Courier New" size="4" color="#FF6600">OpenClipboard (hwnd);<br>
+</font><font face="Courier New" size="4" color="#008000">//check for the return 
+value = 0 if the clipboard failed to<br>
+//open. This happens if another application did not<br>
+//close the clipboard</font></p>
+<p><font face="Courier New" size="4" color="#FF6600">EmptyClipboard();<br>
+SetClipboardData (CF_TEXT, hGlobal);<br>
+CloseClipboard();</font></p>
+<p>&nbsp;</p>
+<p><font size="4" color="#008000">Other notes:</font></p>
+<p><font size="4">call OpenClipboard and CloseClipboard as closely together as 
+possible --- don't leave the clipboard open any longer than necessary</font></p>
+<p><font size="4">don't give the clipboard a locked memory handle</font></p>
+<p><font size="4">After you call SetClipboardData, don't continue to use the 
+memory block &quot;hGlobal&quot;. That memory block no longer belongs to your program, 
+make a copy of the data in it if you have to use the data.</font></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><font color="#008000">Getting Text from Clipboard</font></h2>
+<p><font face="Courier New" size="4" color="#008000">//First determine if the 
+clipboard contain text data<br>
+</font><font face="Courier New" size="4" color="#FF6600">bAvailable = 
+IsClipboardFormatAvailable (CF_TEXT);</font><font face="Courier New" size="4" color="#008000"><br>
+//we need a TRUE return</font></p>
+<p><font face="Courier New" size="4" color="#FF6600">OpenClipboard (hwnd);</font></p>
+<p><font face="Courier New" size="4" color="#FF6600">hGlobal = GetClipboardData 
+(CF_TEXT);</font><font face="Courier New" size="4" color="#008000"><br>
+//this handle will be NULL if there is a failure<br>
+//if failure, close the clipboard without doing anything<br>
+//else</font></p>
+<p><font face="Courier New" size="4" color="#008000">//make a copy of this 
+hGlobal memory block --- it doesn't<br>
+//belong to you, but to the program</font></p>
+<p><font face="Courier New" size="4" color="#FF6600">pText = new 
+char[GlobalSize(hGlobal)];</font></p>
+<p><font face="Courier New" size="4" color="#FF6600">strcpy(pText, pGlobal);</font></p>
+<p><font face="Courier New" size="4" color="#FF6600">GlobalUnlock (hGlobal);<br>
+CloseClipboard();</font></p>
+<p>&nbsp;</p>
+<p><font size="4" color="#008000">Other notes:</font></p>
+<p><font size="4">The two main text formats are CF_TEXT, CF_UNICODETEXT --- use 
+the text format that you want and Windows will convert for you.</font></p>
+<p><font size="4">To have code that compiles for both ASCII and Unicode, use:</font></p>
+<p><font size="4" face="Courier New" color="#FF6600">#ifdef UNICODE<br>
+&nbsp;&nbsp;&nbsp; #define CF_TCHAR CF_UNICODETEXT<br>
+#else<br>
+&nbsp;&nbsp;&nbsp; #define CF_TCHAR CF_TEXT<br>
+#endif</font></p>
+<p><font size="4">When you are putting things onto the clipboard, you can call
+<font color="#FF6600" face="Courier New">SetClipboardData</font> multiple times, 
+each time using a different clipboard format.</font></p>
+<p><font size="4">Delayed rendering is a more complicated but also more 
+efficient form of clipboard programming. It allows the supplier program to delay 
+supplying data to the clipboard until the receiver program actually request for 
+it.</font></p>
+
+</body>
+
+</html>

@@ -1,0 +1,35 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Procedures</title>
+</head>
+
+<body>
+
+<p><font size="5" color="#008000">Procedures</font></p>
+<p><font color="#FF6600" size="4" face="Courier New">[BITS 16]<br>
+[ORG 0x0100]<br>
+<br>
+[SECTION .text] </font></p>
+<p><font color="#FF6600" size="4" face="Courier New">move DX, EatMsg1<br>
+<b>call Write</b></font></p>
+<p><font face="Courier New" size="4" color="#FF6600">mov ax, 04C00H<br>
+int 21H&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font>
+<font face="Courier New" size="4" color="#008000">; will terminate program</font></p>
+<p><b><font face="Courier New" size="4" color="#FF6600">Write:<br>
+&nbsp;&nbsp;&nbsp; mov AH,09H<br>
+&nbsp;&nbsp;&nbsp; int 21H&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</font></b><font face="Courier New" size="4" color="#008000">; will print 
+message to screen</font><font face="Courier New" size="4" color="#FF6600"><b><br>
+&nbsp;&nbsp;&nbsp; ret</b></font></p>
+<p><font face="Courier New" size="4" color="#FF6600">[SECTION .data]<br>
+<br>
+EatMsg1 DB &quot;Eat at Joe's...&quot;,'$'</font></p>
+
+</body>
+
+</html>

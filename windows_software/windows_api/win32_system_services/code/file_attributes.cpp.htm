@@ -1,0 +1,45 @@
+<html>
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>file_attributes.cpp</title>
+</head>
+<body>
+<font face="Courier New" size="4">
+
+#include &lt;windows.h&gt;<br>
+#include &lt;iostream.h&gt;<br>
+<br>
+<font color="FF6600"><b>//*** Shows the file attributes on stdout</b></font><br>
+void ShowAttributes(DWORD attributes)<br>
+{<br>
+ &nbsp;&nbsp;&nbsp;if (attributes &amp; FILE_ATTRIBUTE_ARCHIVE)<br>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cout &lt;&lt; &quot; &nbsp;&nbsp;archive\n&quot;;<br>
+ &nbsp;&nbsp;&nbsp;if (attributes &amp; FILE_ATTRIBUTE_DIRECTORY)<br>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cout &lt;&lt; &quot; &nbsp;&nbsp;directory\n&quot;;<br>
+ &nbsp;&nbsp;&nbsp;if (attributes &amp; FILE_ATTRIBUTE_HIDDEN)<br>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cout &lt;&lt; &quot; &nbsp;&nbsp;hidden\n&quot;;<br>
+ &nbsp;&nbsp;&nbsp;if (attributes &amp; FILE_ATTRIBUTE_NORMAL)<br>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cout &lt;&lt; &quot; &nbsp;&nbsp;normal\n&quot;;<br>
+ &nbsp;&nbsp;&nbsp;if (attributes &amp; FILE_ATTRIBUTE_READONLY)<br>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cout &lt;&lt; &quot; &nbsp;&nbsp;read only\n&quot;;<br>
+ &nbsp;&nbsp;&nbsp;if (attributes &amp; FILE_ATTRIBUTE_SYSTEM)<br>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cout &lt;&lt; &quot; &nbsp;&nbsp;system\n&quot;;<br>
+ &nbsp;&nbsp;&nbsp;if (attributes &amp; FILE_ATTRIBUTE_TEMPORARY)<br>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cout &lt;&lt; &quot; &nbsp;&nbsp;temporary\n&quot;;<br>
+}<br>
+<br>
+void main()<br>
+{<br>
+ &nbsp;&nbsp;&nbsp;char filename[MAX_PATH];<br>
+ &nbsp;&nbsp;&nbsp;DWORD attributes;<br>
+<br>
+ &nbsp;&nbsp;&nbsp;cout &lt;&lt; &quot;Enter filename: &quot;;<br>
+ &nbsp;&nbsp;&nbsp;cin &gt;&gt; filename;<br>
+ &nbsp;&nbsp;&nbsp;attributes = GetFileAttributes(filename);<br>
+ &nbsp;&nbsp;&nbsp;ShowAttributes(attributes);<br>
+}<br>
+
+</font>
+</body>
+</html>

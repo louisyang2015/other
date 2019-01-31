@@ -1,0 +1,47 @@
+<html>
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>file_size.cpp</title>
+</head>
+<body>
+<font face="Courier New" size="4">
+
+#include &lt;windows.h&gt;<br>
+#include &lt;iostream.h&gt;<br>
+<br>
+void main()<br>
+{<br>
+ &nbsp;&nbsp;&nbsp;HANDLE fileHandle;<br>
+ &nbsp;&nbsp;&nbsp;char filename[MAX_PATH];<br>
+ &nbsp;&nbsp;&nbsp;DWORD sizeLo, sizeHi;<br>
+<br>
+ &nbsp;&nbsp;&nbsp;<font color="#009933">// get file name</b></font><br>
+ &nbsp;&nbsp;&nbsp;cout &lt;&lt; &quot;Enter filename: &quot;;<br>
+ &nbsp;&nbsp;&nbsp;cin &gt;&gt; filename;<br>
+<br>
+ &nbsp;&nbsp;&nbsp;<font color="#009933">// open the file</b></font><br>
+ &nbsp;&nbsp;&nbsp;fileHandle = CreateFile(filename, GENERIC_READ,<br>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FILE_SHARE_WRITE, 0, OPEN_EXISTING, 0, 0);<br>
+ &nbsp;&nbsp;&nbsp;if (fileHandle == INVALID_HANDLE_VALUE)<br>
+ &nbsp;&nbsp;&nbsp;{<br>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cout &lt;&lt; &quot;Error number &quot; &lt;&lt; GetLastError()<br>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt; endl;<br>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return;<br>
+ &nbsp;&nbsp;&nbsp;}<br>
+<br>
+ &nbsp;&nbsp;&nbsp;<font color="#009933">// report file size</b></font><br>
+ &nbsp;&nbsp;&nbsp;else<br>
+ &nbsp;&nbsp;&nbsp;{<br>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sizeLo = GetFileSize(fileHandle, &amp;sizeHi);<br>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cout &lt;&lt; &quot;Size (low 32 bits) &nbsp;= &quot; &lt;&lt; sizeLo <br>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt; endl;<br>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cout &lt;&lt; &quot;Size (high 32 bits) = &quot; &lt;&lt; sizeHi<br>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt; endl;<br>
+ &nbsp;&nbsp;&nbsp;}<br>
+ &nbsp;&nbsp;&nbsp;CloseHandle(fileHandle); &nbsp;<br>
+}<br>
+
+</font>
+</body>
+</html>

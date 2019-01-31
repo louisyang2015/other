@@ -1,0 +1,204 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Dynamic-Link Libraries</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">Dynamic-Link Libraries</font></h1>
+<p align="left"><font size="4">Basic DLL template program:</font></p>
+<ul>
+  <li>
+<p align="left"><font size="4"><a href="examples/dll_template1a.h">DLL header 
+file</a></font></p>
+  </li>
+  <li>
+<p align="left"><font size="4"><a href="examples/dll_template1a.cpp">DLL source 
+file</a></font></p>
+  </li>
+  <li>
+<p align="left"><font size="4"><a href="examples/dll_template1b.cpp">Test 
+program's source file</a></font></p>
+  </li>
+</ul>
+<p align="left"><font size="4">DLL template program showcasing shared memory:</font></p>
+<ul>
+  <li>
+<p align="left"><font size="4"><a href="examples/dll_template2a.h">DLL header 
+file</a></font></p>
+  </li>
+  <li>
+<p align="left"><font size="4"><a href="examples/dll_template2a.cpp">DLL source 
+file</a></font></p>
+  </li>
+  <li>
+<p align="left"><font size="4"><a href="examples/dll_template2b.cpp">Test 
+program's source file</a></font></p>
+  </li>
+</ul>
+<p align="left">&nbsp;</p>
+<h2 align="left"><font color="#008000">DllMain</font></h2>
+<p align="left"><b><font size="4" face="Courier New" color="#FF6600">int WINAPI 
+DllMain (HINSTANCE hInstance, DWORD fdwReason,<br>
+&nbsp;&nbsp;&nbsp; PVOID pvReserved)<br>
+{<br>
+&nbsp;&nbsp;&nbsp; return TRUE;<br>
+}</font></b></p>
+<p align="left"><font size="4">The hInstance is the instance handle of the 
+library --- you need this handle if you your library uses resources that require 
+an instance handle</font></p>
+<p align="left"><font size="4"><font face="Courier New" color="#FF6600">
+if(fdwReason == DLL_PROCESS_ATTACH)<br>
+</font><font color="#008000">//the DLL has been mapped into the address space of 
+a process<br>
+//called once per lifetime of a process<br>
+//do initialization here</font></font></p>
+<p align="left"><font size="4"><font face="Courier New"><font color="#FF6600">
+if(fdwReason == DLL_PROCESS_DETACH)</font><br>
+</font><font color="#008000">//the DLL is no longer needed by the process<br>
+//the library should clean up after itself here</font></font></p>
+<p align="left"><font size="4"><font face="Courier New" color="#FF6600">
+if(fdwReason == DLL_THREAD_ATTACH)<br>
+</font><font color="#008000">//an attached process has created a new thread</font></font></p>
+<p align="left"><font size="4"><font color="#FF6600"><font face="Courier New">
+if(fdwReason == DLL_THREAD_DETACH)</font><br>
+</font><font color="#008000">//an attached process has terminated a thread</font></font></p>
+<p align="left"><font size="4">It's possible to get DLL_THREAD_DETACH call 
+without an earlier DLL_THREAD_ATTACH call --- just attach the thread before 
+using the DLL library</font></p>
+<p align="left"><font size="4">For all cases, return non-zero to indicate that 
+things went okay. Returning a zero will cause Window to abort.</font></p>
+<p align="left">&nbsp;</p>
+<p align="left">&nbsp;</p>
+<h2 align="left"><font color="#008000">Shared Memory in DLL</font></h2>
+<p align="left"><font size="4">Multiple processes can share the same code in a 
+single DLL --- but the data maintained by the DLL is different for each process.</font></p>
+<p align="left"><font size="4">To share memory using a compiler extension:</font></p>
+<p align="left"><b><font size="4" face="Courier New" color="#FF6600">#pragma 
+data_seg (&quot;shared&quot;)<br>
+int iTotal = 0;<br>
+WCHAR szStrings [MAX_STRINGS][MAX_LENGTH + 1] = {'\0'};<br>
+#pragma data_seg()</font></b></p>
+<p align="left"><b><font face="Courier New" size="4" color="#FF6600">#pragma 
+comment(linker, &quot;/SECTION:shared,RWS&quot;)</font></b></p>
+<p align="left"><font size="4">The &quot;RWS&quot; indicates that the segment has read, 
+write, and shared attributes.</font></p>
+<p align="left"><font size="4">NOTE: there must be no space before the &quot;RWS&quot; --- 
+so &quot;shared, RWS&quot; will result in a linker warning saying that particular link 
+option does not exist.</font></p>
+<p align="left"><font size="4">Just think of the data segment as global 
+variables that are &quot;really global&quot;. Normally, each process calling the DLL will 
+have its own set of &quot;global&quot; variables.</font></p>
+<p align="left"><font size="4">If you need to dynamically allocate shared memory 
+space, you should look into the use of file mapping objects.</font></p>
+<p align="left"><font size="4">Once the a program change the share memory, a 
+typical thing to do is for this program to alert the other programs the fact 
+that the shared memory has been changed.</font></p>
+<p align="left"><font size="4" face="Courier New" color="#FF6600">static UINT 
+iDataChangeMsg;</font></p>
+<p align="left"><font size="4"><font color="#008000">...in WM_CREATE...<br>
+//get a unique message ID</font><br>
+<font color="#FF6600" face="Courier New">iDataChangeMsg = RegisterWindowMessage 
+(TEXT(&quot;StrProgDataChange&quot;));<br>
+return 0;</font></font></p>
+<p align="left"><font size="4"><font color="#008000">...Whenever the program 
+updates the shared memory area...<br>
+</font><font color="#FF6600" face="Courier New">PostMessage (HWND_BROADCAST, 
+iDataChangeMsg, 0, 0);</font><br>
+<font color="#008000">//all top-level windows in the system will get this 
+message</font></font></p>
+<p align="left"><font size="4">in the message loop, look for that &quot;iDataChangeMsg&quot; 
+as a sign that the shared memory data has been updated.</font></p>
+<p align="left">&nbsp;</p>
+<p align="left">&nbsp;</p>
+<p align="left"><b><font size="4" color="#008000">Other Notes:</font></b></p>
+<p align="left"><font size="4">Only dynamic link libraries with the extension 
+.DLL will be loaded automatically by Windows. If the file has another extension, 
+the program must explicitly load the module by using the 
+<font face="Courier New" color="#FF6600">LoadLibrary</font> or 
+<font color="#FF6600" face="Courier New">LoadLibraryEx</font> function.</font></p>
+<p align="left"><font size="4"><font color="#0000FF">Object Library</font>: a file with the extension .LIB 
+containing code that is added to your program's .EXE file in the process called 
+static linking when you run the linker. For example, the normal C run-time 
+object library that you link with your program is called LIBC.LIB</font></p>
+
+<p align="left"><font size="4"><font color="#0000FF">Import libraries</font> 
+have the extension .LIB and are used by the linker to resolve function calls in 
+your source code. Import libraries contain no code. Instead, they provide the 
+linker with the information necessary to set up relocation tables within the 
+.EXE file for dynamic linking. Example: if you call the Rectangle function in a 
+program, GDI32.LIB tells LINK that this function is in the GDI32.DLL dynamic 
+link library.</font></p>
+
+<p align="left"><font size="4">Put the DLL in the same place as your .EXE --- 
+<font color="#0000FF">when you do a DLL, you have two projects that belong to the same workspace.</font> One 
+project is the .DLL, the other project is the .EXE that uses the .DLL . The two 
+projects (the two .dsp files) all reside in the same folder. Some things to set:</font></p>
+
+<ul>
+  <li>
+
+<p align="left"><font size="4">Project Menu ---&gt;Dependency --- make sure the 
+test program's project depends on the DLL project</font></p>
+
+  </li>
+  <li>
+
+<p align="left"><font size="4">Project Menu ---&gt;Settings ---&gt; General tab --- 
+the output and intermediate files all go to the same folder (the &quot;Debug&quot; folder 
+for debug mode, &quot;Release&quot; folder for release mode)</font></p>
+
+  </li>
+</ul>
+
+<p align="left"><font size="4">When 
+creating the two projects, be sure they use the same workspace and the same 
+physical output folder so that the DLL and the EXE wind up in the same &quot;Debug&quot; or 
+&quot;Release&quot; folder.</font></p>
+
+<p align="left"><font size="4">In the DLL source code, the EXPORT macro is 
+defined to do two things to ensure proper linking:</font></p>
+
+<ul>
+  <li>
+<p align="left"><font size="4" face="Courier New">extern &quot;C&quot; </font>
+<font size="4">--- to disable name mangling if a C++ compiler is used so that 
+the DLL can be used by both C and C++ compilers</font></p>
+
+  </li>
+  <li>
+<p align="left"><font size="4" face="Courier New">__declspec(dllexport) </font>
+<font size="4">--- a storage specifier</font></p>
+
+  </li>
+</ul>
+<p align="left"><font size="4">Everything that a DLL does is on behalf of the 
+application --- so it would follow the application's rules/restrictions. Memory 
+allocated by the DLL is owned by the application using the DLL.</font></p>
+
+<p align="left"><font size="4">A design strategy: the DLL would provide both 
+wide character and ASCII versions of functions, and store strings as Unicode 
+internally. If a program is using the Ascii version of calls, the DLL would 
+convert from Ascii to/from Unicode.</font></p>
+
+<p align="left"><font size="4">The DLL module does not receive messages. But you 
+can call &quot;GetMessage&quot; and &quot;PeekMessage&quot;. The message that you get are actually 
+destined for the program that called the library function.</font></p>
+
+<p align="left"><font size="4">Because messages for modal dialog boxes are 
+retrieved outside a program's message loop, you can create a modal dialog box in 
+a library by calling DialogBox. The &quot;hwndParent&quot; argument to DialogBox can be 
+set to NULL.</font></p>
+
+<p align="left"><font size="4">There's another way to load DLL functions --- a 
+much more roundabout way (page 1265). The point is to enable loading DLLs when 
+you don't know the name of the DLL until runtime.</font></p>
+
+</body>
+
+</html>

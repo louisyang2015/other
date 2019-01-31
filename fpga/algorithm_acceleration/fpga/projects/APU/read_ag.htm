@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Language" content="en-us" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Read_AG</title>
+<link rel="stylesheet" type="text/css" href="fpga.css" />
+</head>
+
+<body>
+
+<h1>Read_AG</h1>
+<p class="center">Last updated Apr 25, 2011</p>
+<p>To accommodate the FFT, the x0_sel0 output is always delayed two clock cycles 
+relative to the rdaddress input. In the datapath, the x0_sel0 output is always 
+required to launch two cycles after the launch of the rdaddress. </p>
+<p>For example, during FFT stage 0, the two cycle delay is created as:</p>
+<ul>
+				<li>x0_sel0_delay &lt;= x0_sel0_ctrl;</li>
+				<li>x0_sel0 &lt;= x0_sel0_delay;</li>
+</ul>
+<table>
+			<tr>
+						<td>FFT Stage</td>
+						<td>x0_sel0_delay</td>
+			</tr>
+			<tr>
+						<td class="nowrap">0</td>
+						<td class="nowrap">x0_sel0_delay &lt;= x0_sel0_ctrl;<br />
+						x1_sel0_delay &lt;= x1_sel0_ctrl;</td>
+			</tr>
+			<tr>
+						<td class="nowrap">1</td>
+						<td class="nowrap">x0_sel0_delay &lt;= rdaddress[0];<br />
+						x1_sel0_delay &lt;= ~rdaddress[0];</td>
+			</tr>
+			<tr>
+						<td class="nowrap">2</td>
+						<td class="nowrap">x0_sel0_delay &lt;= rdaddress[1];<br />
+						x1_sel0_delay &lt;= ~rdaddress[1];</td>
+			</tr>
+			<tr>
+						<td class="nowrap">3</td>
+						<td class="nowrap">x0_sel0_delay &lt;= rdaddress[2];<br />
+						x1_sel0_delay &lt;= ~rdaddress[2];</td>
+			</tr>
+			<tr>
+						<td class="nowrap">4</td>
+						<td class="nowrap">x0_sel0_delay &lt;= rdaddress[3];<br />
+						x1_sel0_delay &lt;= ~rdaddress[3];</td>
+			</tr>
+			<tr>
+						<td class="nowrap">5</td>
+						<td class="nowrap">x0_sel0_delay &lt;= rdaddress[4];<br />
+						x1_sel0_delay &lt;= ~rdaddress[4];</td>
+			</tr>
+			<tr>
+						<td class="nowrap">6</td>
+						<td class="nowrap">x0_sel0_delay &lt;= rdaddress[5];<br />
+						x1_sel0_delay &lt;= ~rdaddress[5];</td>
+			</tr>
+			<tr>
+						<td class="nowrap">7</td>
+						<td class="nowrap">x0_sel0_delay &lt;= rdaddress[6];<br />
+						x1_sel0_delay &lt;= ~rdaddress[6];</td>
+			</tr>
+			<tr>
+						<td class="nowrap">8</td>
+						<td class="nowrap">x0_sel0_delay &lt;= rdaddress[7];<br />
+						x1_sel0_delay &lt;= ~rdaddress[7];</td>
+			</tr>
+			<tr>
+						<td class="nowrap">9</td>
+						<td class="nowrap">x0_sel0_delay &lt;= rdaddress[8];<br />
+						x1_sel0_delay &lt;= ~rdaddress[8];</td>
+			</tr>
+			<tr>
+						<td class="nowrap">default:</td>
+						<td class="nowrap">x0_sel0_delay &lt;= x0_sel0_ctrl;<br />
+						x1_sel0_delay &lt;= x1_sel0_ctrl;</td>
+			</tr>
+</table>
+
+<p>&nbsp;</p>
+
+</body>
+
+</html>

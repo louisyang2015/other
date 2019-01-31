@@ -1,0 +1,374 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Clocked Sequential Networks</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">Clocked Sequential Networks</font></h1>
+<p><font size="4" color="#008000">A Sequential Parity Checker</font></p>
+
+<p><font size="4">The parity method of transmitting data is to add a parity bit 
+for every seven bits of data transferred. If odd parity is used, the eighth 
+parity bit will be added such that the total number of ones in each block of 
+eight bits is odd.</font></p>
+
+<p><font size="4">The sequential parity checker takes in a stream of bits. It 
+outputs a ONE if the number of ONEs in the bit stream is odd.</font></p>
+
+<p><img border="0" src="images/fig_13_01.jpg" width="280" height="169"></p>
+
+<p><font size="4">The state diagram for this parity checker:</font></p>
+
+<p><img border="0" src="images/fig_13_03.jpg" width="384" height="118"></p>
+
+<p><font size="4">The starting table for the parity checker:</font></p>
+
+<table border="1" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td nowrap align="center" rowspan="2"><font size="4">Present<br>
+    State</font></td>
+    <td nowrap align="center" colspan="2"><font size="4">Next State</font></td>
+    <td nowrap align="center" rowspan="2"><font size="4">Present<br>
+    Output</font></td>
+  </tr>
+  <tr>
+    <td nowrap align="center"><font size="4">X = 0</font></td>
+    <td nowrap align="center"><font size="4">X = 1</font></td>
+  </tr>
+  <tr>
+    <td nowrap align="center"><font size="4">S<sub>0</sub></font></td>
+    <td nowrap align="center"><font size="4">S<sub>0</sub></font></td>
+    <td nowrap align="center"><font size="4">S<sub>1</sub></font></td>
+    <td nowrap align="center"><font size="4">0</font></td>
+  </tr>
+  <tr>
+    <td nowrap align="center"><font size="4">S<sub>1</sub></font></td>
+    <td nowrap align="center"><font size="4">S<sub>1</sub></font></td>
+    <td nowrap align="center"><font size="4">S<sub>0</sub></font></td>
+    <td nowrap align="center"><font size="4">1</font></td>
+  </tr>
+</table>
+<p><font size="4">next we encode S<sub>0</sub> as 0 and S<sub>1</sub> as 1.</font></p>
+
+<table border="1" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td nowrap align="center" rowspan="2"><font size="4">Q</font></td>
+    <td nowrap align="center" colspan="2"><font size="4">Next State</font></td>
+    <td nowrap align="center" rowspan="2"><font size="4">Z</font></td>
+  </tr>
+  <tr>
+    <td nowrap align="center"><font size="4">X = 0</font></td>
+    <td nowrap align="center"><font size="4">X = 1</font></td>
+  </tr>
+  <tr>
+    <td nowrap align="center"><font size="4">0</font></td>
+    <td nowrap align="center"><font size="4">0</font></td>
+    <td nowrap align="center"><font size="4">1</font></td>
+    <td nowrap align="center"><font size="4">0</font></td>
+  </tr>
+  <tr>
+    <td nowrap align="center"><font size="4">1</font></td>
+    <td nowrap align="center"><font size="4">1</font></td>
+    <td nowrap align="center"><font size="4">0</font></td>
+    <td nowrap align="center"><font size="4">1</font></td>
+  </tr>
+</table>
+<p><font size="4">A general picture for a sequential network:</font></p>
+
+<p><img border="0" src="images/pic0010.gif" width="250" height="487"></p>
+
+<p><font size="4">So in general, a network will translate the input to flip flop 
+input, and another network will translate the flip flop output to the real 
+output Z.</font></p>
+
+<p><font size="4">If we use a T flip flop, the states table becomes:</font></p>
+
+<table border="1" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td nowrap align="center"><font size="4">Current State<br>
+    Q</font></td>
+    <td nowrap align="center"><font size="4">X</font></td>
+    <td nowrap align="center"><font size="4">Next State<br>
+    Q</font><sup><font size="4">+</font></sup></td>
+    <td nowrap align="center"><font size="4">T Flip-Flop Input<br>
+    T</font></td>
+  </tr>
+  <tr>
+    <td nowrap align="center"><font size="4">0</font></td>
+    <td nowrap align="center"><font size="4">0</font></td>
+    <td nowrap align="center"><font size="4">0</font></td>
+    <td nowrap align="center"><font size="4">0</font></td>
+  </tr>
+  <tr>
+    <td nowrap align="center"><font size="4">0</font></td>
+    <td nowrap align="center"><font size="4">1</font></td>
+    <td nowrap align="center"><font size="4">1</font></td>
+    <td nowrap align="center"><font size="4">1</font></td>
+  </tr>
+  <tr>
+    <td nowrap align="center"><font size="4">1</font></td>
+    <td nowrap align="center"><font size="4">0</font></td>
+    <td nowrap align="center"><font size="4">1</font></td>
+    <td nowrap align="center"><font size="4">0</font></td>
+  </tr>
+  <tr>
+    <td nowrap align="center"><font size="4">1</font></td>
+    <td nowrap align="center"><font size="4">1</font></td>
+    <td nowrap align="center"><font size="4">0</font></td>
+    <td nowrap align="center"><font size="4">1</font></td>
+  </tr>
+</table>
+<p><font size="4">To determine the T column, you just look at the Q and Q+ 
+columns.</font></p>
+
+<p><font size="4">In general, the input network that determines T can include 
+both Q and X. This example is very simple though. T = X and Z = Q, so this 
+parity checker is just a T flip-flop.</font></p>
+
+<p><font size="4"><font color="#008000">Moore machine</font> --- the output (Z) 
+depends only on the present state of the flip flops</font></p>
+
+<p><font size="4">The picture drawn earlier on is a picture of the Moore 
+machine.</font></p>
+
+<p><font size="4"><font color="#008000">Mealy machine</font> --- the output (Z) 
+depends on both the present state of the flip flops and the input (X)</font></p>
+
+<p><font size="4">In the Moore case, the input settles first, then comes the 
+clock pulse, and finally comes the new state and new output.</font></p>
+
+<p><font size="4">In the Mealy machine case:</font></p>
+
+<table border="1" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td nowrap align="center"><font size="4">Input (X)</font></td>
+    <td nowrap align="center"><font size="4">Flip Flop State</font></td>
+    <td nowrap align="center"><font size="4">Output (Z)</font></td>
+  </tr>
+  <tr>
+    <td nowrap align="center"><font size="4">old</font></td>
+    <td nowrap align="center"><font size="4">old</font></td>
+    <td nowrap align="center"><font size="4">old</font></td>
+  </tr>
+  <tr>
+    <td nowrap align="center" colspan="3"><font size="4">clock pulse</font></td>
+  </tr>
+  <tr>
+    <td nowrap align="center"><font size="4">old</font></td>
+    <td nowrap align="center"><font size="4">new</font></td>
+    <td nowrap align="center"><font size="4">error output</font></td>
+  </tr>
+  <tr>
+    <td nowrap align="center"><font size="4">new</font></td>
+    <td nowrap align="center"><font size="4">new</font></td>
+    <td nowrap align="center"><font size="4">new</font></td>
+  </tr>
+</table>
+<p><font size="4">So in a Mealy machine, there are false outputs immediately 
+after the state change. The false outputs are also called &quot;glitches&quot; and 
+&quot;spikes&quot;.</font></p>
+
+<p><font size="4">The way to deal with glitches is to read output only at 
+certain times. Frequently, the output of one sequential network is fed into 
+another sequential network, so it's important that the false outputs are not 
+read.</font></p>
+
+<p><font size="4">The book also suggested that both state change and the input 
+change happens at the same time --- so the row after the clock pulse is 
+eliminated. If the state change happens when the clock pulse falls, the input 
+also changes when the clock pulse falls. This idea would work as long as the 
+flip-flop has some kind of internal buffering so that they will use the old 
+input as basis for the flip-flop change, not the new input.</font></p>
+
+<p><font size="4">Picture of the Moore machine from the book:</font></p>
+<p><img border="0" src="images/fig_13_14.jpg" width="758" height="493"></p>
+<p><font size="4">Picture of the Mealy machine from the book:</font></p>
+<p><img border="0" src="images/fig_13_13.jpg" width="547" height="630"></p>
+<p><font size="4">Even though the Mealy machine is drawn more compactly than the 
+Moore machine, the Mealy is the more complicated of the two.</font></p>
+<p>&nbsp;</p>
+<h2><font color="#008000">Getting State Graphs from a Schematic Diagram</font></h2>
+<p><font size="4">A Moore example:</font></p>
+<p><img border="0" src="images/fig_13_05.jpg" width="487" height="276"></p>
+<p><font size="4">The output network is just Z = B.</font></p>
+<p><font size="4">The input network:</font></p>
+<p><font face="Courier New" size="4">K<sub>A</sub> = X AND B'<br>
+J<sub>A</sub> = X<br>
+K<sub>B</sub> = X XOR A' (<i>also written as K<sub>B</sub> = X </font>
+<font size="4" face="MingLiU">&#8853;</font><font face="Courier New" size="4"> A')<br>
+</font></i><font face="Courier New" size="4">J<sub>B</sub> = X</font></p>
+<p><font size="4">There are two flip flops, so that's four states. For each 
+state, there are two inputs: X = 0 or X = 1. </font></p>
+<table border="1" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td nowrap align="center"><font size="4">A</font></td>
+    <td nowrap align="center"><font size="4">B</font></td>
+    <td nowrap align="center"><font size="4">X</font></td>
+  </tr>
+  <tr>
+    <td nowrap align="center"><font size="4">0</font></td>
+    <td nowrap align="center"><font size="4">0</font></td>
+    <td nowrap align="center"><font size="4">0</font></td>
+  </tr>
+  <tr>
+    <td nowrap align="center"><font size="4">0</font></td>
+    <td nowrap align="center"><font size="4">0</font></td>
+    <td nowrap align="center"><font size="4">1</font></td>
+  </tr>
+  <tr>
+    <td nowrap align="center"><font size="4">0</font></td>
+    <td nowrap align="center"><font size="4">1</font></td>
+    <td nowrap align="center"><font size="4">0</font></td>
+  </tr>
+  <tr>
+    <td nowrap align="center"><font size="4">0</font></td>
+    <td nowrap align="center"><font size="4">1</font></td>
+    <td nowrap align="center"><font size="4">1</font></td>
+  </tr>
+  <tr>
+    <td nowrap align="center" colspan="3"><font size="4">...</font></td>
+  </tr>
+</table>
+<p><font size="4">Use the equations above to figure out K<sub>A</sub> , J<sub>A</sub> 
+, K<sub>B</sub> , and J<sub>B </sub>. Then figure out what the next states (A<sup>+</sup> 
+, B<sup>+</sup>) are.</font></p>
+<p><font size="4">Note the book uses S<sub>2</sub> for (A = 1, B = 1) and S<sub>3</sub> 
+for (A = 1, B = 0), and that's why I named the states as shown --- it's the 
+book's fault for not being as intuitive as possible. The book uses K-map, which 
+might be slightly faster than what I did below, but far less intuitive.</font></p>
+<table border="1" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td nowrap align="center"><font size="4">Old State</font></td>
+    <td nowrap align="center" bgcolor="#FFFF99"><font size="4">A</font></td>
+    <td nowrap align="center" bgcolor="#FFFF99"><font size="4">B</font></td>
+    <td nowrap align="center" bgcolor="#FFFF99"><font size="4">X</font></td>
+    <td nowrap align="center" rowspan="9">&nbsp;</td>
+    <td nowrap align="center"><font size="4">J<sub>A</sub></font></td>
+    <td nowrap align="center"><font size="4">K<sub>A</sub></font></td>
+    <td nowrap align="center"><font size="4">J<sub>B</sub></font></td>
+    <td nowrap align="center"><font size="4">K<sub>B</sub></font></td>
+    <td nowrap align="center" rowspan="9">&nbsp;</td>
+    <td nowrap align="center" bgcolor="#99FF99"><font size="4">A<sup>+</sup></font></td>
+    <td nowrap align="center" bgcolor="#99FF99"><font size="4">B<sup>+</sup></font></td>
+    <td nowrap align="center"><font size="4">New State</font></td>
+  </tr>
+  <tr>
+    <td nowrap align="center" rowspan="2"><font size="4">S<sub>0</sub></font></td>
+    <td nowrap align="center" bgcolor="#FFFF99"><font size="4">0</font></td>
+    <td nowrap align="center" bgcolor="#FFFF99"><font size="4">0</font></td>
+    <td nowrap align="center" bgcolor="#FFFF99"><font size="4">0</font></td>
+    <td nowrap align="center">&nbsp;</td>
+    <td nowrap align="center">&nbsp;</td>
+    <td nowrap align="center">&nbsp;</td>
+    <td nowrap align="center"><font size="4">1</font></td>
+    <td nowrap align="center" bgcolor="#99FF99"><font size="4">0</font></td>
+    <td nowrap align="center" bgcolor="#99FF99"><font size="4">0</font></td>
+    <td nowrap align="center"><font size="4">S<sub>0</sub></font></td>
+  </tr>
+  <tr>
+    <td nowrap align="center" bgcolor="#FFFF99"><font size="4">0</font></td>
+    <td nowrap align="center" bgcolor="#FFFF99"><font size="4">0</font></td>
+    <td nowrap align="center" bgcolor="#FFFF99"><font size="4">1</font></td>
+    <td nowrap align="center"><font size="4">1</font></td>
+    <td nowrap align="center"><font size="4">1</font></td>
+    <td nowrap align="center"><font size="4">1</font></td>
+    <td nowrap align="center">&nbsp;</td>
+    <td nowrap align="center" bgcolor="#99FF99"><font size="4">1</font></td>
+    <td nowrap align="center" bgcolor="#99FF99"><font size="4">1</font></td>
+    <td nowrap align="center"><font size="4">S<sub>2</sub></font></td>
+  </tr>
+  <tr>
+    <td nowrap align="center" rowspan="2"><font size="4">S<sub>1</sub></font></td>
+    <td nowrap align="center" bgcolor="#FFFF99"><font size="4">0</font></td>
+    <td nowrap align="center" bgcolor="#FFFF99"><font size="4">1</font></td>
+    <td nowrap align="center" bgcolor="#FFFF99"><font size="4">0</font></td>
+    <td nowrap align="center">&nbsp;</td>
+    <td nowrap align="center">&nbsp;</td>
+    <td nowrap align="center">&nbsp;</td>
+    <td nowrap align="center"><font size="4">1</font></td>
+    <td nowrap align="center" bgcolor="#99FF99"><font size="4">0</font></td>
+    <td nowrap align="center" bgcolor="#99FF99"><font size="4">0</font></td>
+    <td nowrap align="center"><font size="4">S<sub>0</sub></font></td>
+  </tr>
+  <tr>
+    <td nowrap align="center" bgcolor="#FFFF99"><font size="4">0</font></td>
+    <td nowrap align="center" bgcolor="#FFFF99"><font size="4">1</font></td>
+    <td nowrap align="center" bgcolor="#FFFF99"><font size="4">1</font></td>
+    <td nowrap align="center"><font size="4">1</font></td>
+    <td nowrap align="center">&nbsp;</td>
+    <td nowrap align="center"><font size="4">1</font></td>
+    <td nowrap align="center">&nbsp;</td>
+    <td nowrap align="center" bgcolor="#99FF99"><font size="4">1</font></td>
+    <td nowrap align="center" bgcolor="#99FF99"><font size="4">1</font></td>
+    <td nowrap align="center"><font size="4">S<sub>2</sub></font></td>
+  </tr>
+  <tr>
+    <td nowrap align="center" rowspan="2"><font size="4">S<sub>3</sub></font></td>
+    <td nowrap align="center" bgcolor="#FFFF99"><font size="4">1</font></td>
+    <td nowrap align="center" bgcolor="#FFFF99"><font size="4">0</font></td>
+    <td nowrap align="center" bgcolor="#FFFF99"><font size="4">0</font></td>
+    <td nowrap align="center">&nbsp;</td>
+    <td nowrap align="center">&nbsp;</td>
+    <td nowrap align="center">&nbsp;</td>
+    <td nowrap align="center">&nbsp;</td>
+    <td nowrap align="center" bgcolor="#99FF99"><font size="4">1</font></td>
+    <td nowrap align="center" bgcolor="#99FF99"><font size="4">0</font></td>
+    <td nowrap align="center"><font size="4">S<sub>3</sub></font></td>
+  </tr>
+  <tr>
+    <td nowrap align="center" bgcolor="#FFFF99"><font size="4">1</font></td>
+    <td nowrap align="center" bgcolor="#FFFF99"><font size="4">0</font></td>
+    <td nowrap align="center" bgcolor="#FFFF99"><font size="4">1</font></td>
+    <td nowrap align="center"><font size="4">1</font></td>
+    <td nowrap align="center"><font size="4">1</font></td>
+    <td nowrap align="center"><font size="4">1</font></td>
+    <td nowrap align="center">&nbsp;</td>
+    <td nowrap align="center" bgcolor="#99FF99"><font size="4">0</font></td>
+    <td nowrap align="center" bgcolor="#99FF99"><font size="4">1</font></td>
+    <td nowrap align="center"><font size="4">S<sub>1</sub></font></td>
+  </tr>
+  <tr>
+    <td nowrap align="center" rowspan="2"><font size="4">S<sub>2</sub></font></td>
+    <td nowrap align="center" bgcolor="#FFFF99"><font size="4">1</font></td>
+    <td nowrap align="center" bgcolor="#FFFF99"><font size="4">1</font></td>
+    <td nowrap align="center" bgcolor="#FFFF99"><font size="4">0</font></td>
+    <td nowrap align="center">&nbsp;</td>
+    <td nowrap align="center">&nbsp;</td>
+    <td nowrap align="center">&nbsp;</td>
+    <td nowrap align="center">&nbsp;</td>
+    <td nowrap align="center" bgcolor="#99FF99"><font size="4">1</font></td>
+    <td nowrap align="center" bgcolor="#99FF99"><font size="4">1</font></td>
+    <td nowrap align="center"><font size="4">S<sub>2</sub></font></td>
+  </tr>
+  <tr>
+    <td nowrap align="center" bgcolor="#FFFF99"><font size="4">1</font></td>
+    <td nowrap align="center" bgcolor="#FFFF99"><font size="4">1</font></td>
+    <td nowrap align="center" bgcolor="#FFFF99"><font size="4">1</font></td>
+    <td nowrap align="center"><font size="4">1</font></td>
+    <td nowrap align="center">&nbsp;</td>
+    <td nowrap align="center"><font size="4">1</font></td>
+    <td nowrap align="center"><font size="4">1</font></td>
+    <td nowrap align="center" bgcolor="#99FF99"><font size="4">1</font></td>
+    <td nowrap align="center" bgcolor="#99FF99"><font size="4">0</font></td>
+    <td nowrap align="center"><font size="4">S<sub>3</sub></font></td>
+  </tr>
+</table>
+<p><font size="4">Z = B, so S<sub>1</sub> and S<sub>2</sub> has an output of 
+ONE.</font></p>
+<p><font size="4">The states graph:</font></p>
+<p><img border="0" src="images/fig_13_09.jpg" width="325" height="254"></p>
+<p><font size="4">The Mealy procedures would be extremely similar. Note that in 
+Mealy machines, the lines in the state graph are labeled (input / output).</font></p>
+<p><img border="0" src="images/fig_13_11.jpg" width="375" height="234"></p>
+<p><font size="4">For example, in the picture above, when we are at state S<sub>1</sub> 
+and receive a 1, we go to S<sub>2</sub> and output a 0.</font></p>
+
+</body>
+
+</html>

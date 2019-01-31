@@ -1,0 +1,125 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+
+<head>
+<meta http-equiv="Content-Language" content="en-us" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Intel Hex File Format</title>
+<link rel="stylesheet" type="text/css" href="fpga.css" />
+</head>
+
+<body>
+
+<h1>Intel Hex File Format</h1>
+<p class="center">Last updated April 18, 2011</p>
+<p>The FPGA onchip memories can be initialized using the Intel Hex File format.</p>
+<h2>Intel Hex File Format Description</h2>
+<p>Source: <a href="http://en.wikipedia.org/wiki/Intel_HEX">
+http://en.wikipedia.org/wiki/Intel_HEX</a> - archived
+<a href="files/Intel_HEX.htm">here</a></p>
+<pre><span style="BACKGROUND-COLOR: #ffffcc">:</span><span style="BACKGROUND-COLOR: #ccffcc">10</span><span style="BACKGROUND-COLOR: #ccccff">0100</span><span style="BACKGROUND-COLOR: #ffcccc">00</span><span style="BACKGROUND-COLOR: #ccffff">214601360121470136007EFE09D21901</span><span style="BACKGROUND-COLOR: #ffccff">40</span>
+<span style="BACKGROUND-COLOR: #ffffcc">:</span><span style="BACKGROUND-COLOR: #ccffcc">10</span><span style="BACKGROUND-COLOR: #ccccff">0110</span><span style="BACKGROUND-COLOR: #ffcccc">00</span><span style="BACKGROUND-COLOR: #ccffff">2146017EB7C20001FF5F160021480119</span><span style="BACKGROUND-COLOR: #ffccff">88</span>
+<span style="BACKGROUND-COLOR: #ffffcc">:</span><span style="BACKGROUND-COLOR: #ccffcc">10</span><span style="BACKGROUND-COLOR: #ccccff">0120</span><span style="BACKGROUND-COLOR: #ffcccc">00</span><span style="BACKGROUND-COLOR: #ccffff">194E79234623965778239EDA3F01B2CA</span><span style="BACKGROUND-COLOR: #ffccff">A7</span>
+<span style="BACKGROUND-COLOR: #ffffcc">:</span><span style="BACKGROUND-COLOR: #ccffcc">10</span><span style="BACKGROUND-COLOR: #ccccff">0130</span><span style="BACKGROUND-COLOR: #ffcccc">00</span><span style="BACKGROUND-COLOR: #ccffff">3F0156702B5E712B722B732146013421</span><span style="BACKGROUND-COLOR: #ffccff">C7</span>
+<span style="BACKGROUND-COLOR: #ffffcc">:</span><span style="BACKGROUND-COLOR: #ccffcc">00</span><span style="BACKGROUND-COLOR: #ccccff">0000</span><span style="BACKGROUND-COLOR: #ffcccc">01</span><span style="BACKGROUND-COLOR: #ffccff">FF</span>
+</pre>
+<div>
+				<span style="BORDER-BOTTOM: black 1px solid; TEXT-ALIGN: center; BORDER-LEFT: black 1px solid; BACKGROUND-COLOR: #ffffcc; MARGIN: 1px 0px; WIDTH: 1.5em; DISPLAY: inline-block; HEIGHT: 1.5em; COLOR: black; FONT-SIZE: 100%; BORDER-TOP: black 1px solid; BORDER-RIGHT: black 1px solid">
+				&nbsp;</span>&nbsp;Start code</div>
+<div>
+				<span style="BORDER-BOTTOM: black 1px solid; TEXT-ALIGN: center; BORDER-LEFT: black 1px solid; BACKGROUND-COLOR: #ccffcc; MARGIN: 1px 0px; WIDTH: 1.5em; DISPLAY: inline-block; HEIGHT: 1.5em; COLOR: black; FONT-SIZE: 100%; BORDER-TOP: black 1px solid; BORDER-RIGHT: black 1px solid">
+				&nbsp;</span>&nbsp;Byte count</div>
+<div>
+				<span style="BORDER-BOTTOM: black 1px solid; TEXT-ALIGN: center; BORDER-LEFT: black 1px solid; BACKGROUND-COLOR: #ccccff; MARGIN: 1px 0px; WIDTH: 1.5em; DISPLAY: inline-block; HEIGHT: 1.5em; COLOR: black; FONT-SIZE: 100%; BORDER-TOP: black 1px solid; BORDER-RIGHT: black 1px solid">
+				&nbsp;</span>&nbsp;Address</div>
+<div>
+				<span style="BORDER-BOTTOM: black 1px solid; TEXT-ALIGN: center; BORDER-LEFT: black 1px solid; BACKGROUND-COLOR: #ffcccc; MARGIN: 1px 0px; WIDTH: 1.5em; DISPLAY: inline-block; HEIGHT: 1.5em; COLOR: black; FONT-SIZE: 100%; BORDER-TOP: black 1px solid; BORDER-RIGHT: black 1px solid">
+				&nbsp;</span>&nbsp;Record type</div>
+<div>
+				<span style="BORDER-BOTTOM: black 1px solid; TEXT-ALIGN: center; BORDER-LEFT: black 1px solid; BACKGROUND-COLOR: #ccffff; MARGIN: 1px 0px; WIDTH: 1.5em; DISPLAY: inline-block; HEIGHT: 1.5em; COLOR: black; FONT-SIZE: 100%; BORDER-TOP: black 1px solid; BORDER-RIGHT: black 1px solid">
+				&nbsp;</span>&nbsp;Data</div>
+<div>
+				<span style="BORDER-BOTTOM: black 1px solid; TEXT-ALIGN: center; BORDER-LEFT: black 1px solid; BACKGROUND-COLOR: #ffccff; MARGIN: 1px 0px; WIDTH: 1.5em; DISPLAY: inline-block; HEIGHT: 1.5em; COLOR: black; FONT-SIZE: 100%; BORDER-TOP: black 1px solid; BORDER-RIGHT: black 1px solid">
+				&nbsp;</span>&nbsp;Checksum</div>
+<p>&nbsp;</p>
+<h2>Hex File Generation in C#</h2>
+<p><a href="files/Hex_File.cs">Hex_File.cs</a> - C# source code containing 
+functions to generate Intel Hex file from an array of numbers.</p>
+<p>Limitation: This code uses the 16 bit address system, so the largest memory 
+that can be initialized in this manner is 64KB.</p>
+<p>Functions:</p>
+<ul>
+				<li><strong>write_bytes_to_file( )</strong> - The fundamental function that 
+				implements the Hex file creation. It writes an array of bytes to 
+				a file.</li>
+				<li>write_int16_to_file( ) - Writes an array of 16 bit integers 
+				to file. Only the lower 16 bits of the integers are used.</li>
+				<li>write_int32_to_file( ) - Writes an array of 32 bit integers 
+				to file.</li>
+				<li>write_int48_to_file( ) - Writes an array of 48 bit long 
+				integers to file. Only the lower 48 bits of each long integer is 
+				encoded to the file.</li>
+				<li>write_int64_to_file( ) - Writes an array of 64 bit long 
+				integers to file.</li>
+</ul>
+<p>Usage Example:</p>
+<table class="code">
+			<tr>
+						<td class="code">
+<p class="code">
+<span class="keyword">int</span>[]  i_array  =  <span class="keyword">new</span>  <span class="keyword">int</span>[512];
+<br />
+<span class="keyword">long</span>[]  i_array2  =  <span class="keyword">new</span>  <span class="keyword">long</span>[512];
+<br />
+<span class="keyword">for</span>  (<span class="keyword">int</span>  i  =  0;
+  i  &lt;  i_array.Length;
+  i++)<br />
+{
+<br />
+<br />
+ &nbsp;&nbsp;&nbsp;    i_array[i]  =  0xABCD000  +  i;
+<br />
+ &nbsp;&nbsp;&nbsp;    i_array[i]  =  i_array[i]  &lt;&lt;  4;
+  
+<span class="comment">// so it&#39;s 0xABCD_0000</span>
+<br />
+ &nbsp;&nbsp;&nbsp;    i_array2[i]  =  i_array[i];
+<br />
+ &nbsp;&nbsp;&nbsp;    i_array2[i]  =  i_array2[i]  &lt;&lt;  16;
+<br />
+}
+<br />
+<span class="data">Hex_File</span>.write_int16_to_file(i_array,  &quot;mem16.hex&quot;);
+<br />
+<span class="data">Hex_File</span>.write_int32_to_file(i_array,  &quot;mem32.hex&quot;);
+<br />
+<span class="data">Hex_File</span>.write_int48_to_file(i_array2,  &quot;mem48.hex&quot;);
+<br />
+<span class="data">Hex_File</span>.write_int64_to_file(i_array2,  &quot;mem64.hex&quot;);
+<br />
+
+</p>						</td>
+			</tr>
+</table>
+
+<p>&nbsp;</p>
+<h2>Verilog Test Benches</h2>
+<p>After the various Hex files are created, the memory should be read in 
+ModelSim to prove that the Hex files are created correctly.</p>
+<p><a href="files/Memory_tb.sv">Memory_tb.sv</a> - System Verilog test bench</p>
+<ul>
+				<li><a href="files/Mem16.v">Mem16.v</a> - Altera MegaWizard 
+				output for 16x512 memory</li>
+				<li><a href="files/Mem32.v">Mem32.v</a> - Altera MegaWizard 
+				output for 32x512 memory</li>
+				<li><a href="files/Mem64.v">Mem64.v</a> - Altera MegaWizard 
+				output for 64x512 memory</li>
+				<li><a href="files/Rom48.v">Rom48.v</a> - Altera MegaWizard 
+				output for 48x512 read only memory. There&#39;s no 48 bit wide 
+				memory.</li>
+</ul>
+<p><a href="files/Memory.do">Memory.do</a> - Test bench simulation script</p>
+
+</body>
+
+</html>

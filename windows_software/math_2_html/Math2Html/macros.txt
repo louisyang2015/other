@@ -1,0 +1,44 @@
+_pd_	&#8706; 
+_int_	&#8747; 
+_sum_	&#931; 
+_inf_	&#8734; 
+_pi_	&#960; 
+_alpha_	&#945; 
+_beta_	&#946; 
+_theta_	&#952; 
+_eps_	&#949; 
+_eps2_	<font face="Symbol">&#206;</font>
+_sdelta_	&#948; 
+_divide_	&#247; 
+_degree_	&#176; 
+_delta_	&#916; 
+_psi_	&#936; 
+_lamda_	&#955; 
+_omega_	&#937; 
+_somega_	&#969; 
+_sigma_	&#963; 
+_product_	&#8719; 
+_phi_	&#934;
+_phi2_	&#216;
+_ef_	&#1075; 
+_and_	&#923; 
+_larrow_	<font face="Wingdings" size="4">&#223;</font> 
+_rarrow_	<font face="Wingdings" size="4">&#224;</font> 
+_uarrow_	<font face="Wingdings" size="4">&#225;</font> 
+_darrow_	<font face="Wingdings" size="4">&#226;</font> 
+_root_	&#8730; 
+_intersection_	&#8745; 
+_approx_	&#8776; 
+_congruent_	&#8801; 
+_square_	&#9633; 
+_plusminus_	&#177;
+_mult_	&#215;
+_del_	<font face="Wingdings 3">s</font>
+_del2_	<font face="Symbol">&#209;</font>
+_dot_	&#8226;
+_micro_	&#956;
+_el_	&#8467;
+_p_	&#961;
+_x_	&#967;
+_angle_	<font face="Symbol">&#208;</font>
+_perp_	<font face="Symbol">&#94;</font>

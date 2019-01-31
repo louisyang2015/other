@@ -1,0 +1,809 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Fundamentals of Thermal Radiation</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">Fundamentals of Thermal Radiation</font></h1>
+<p><font size="4" color="#008000">Introduction</font></p>
+<p><font size="4">Conduction and convection can not happen in a vacuum, but 
+radiation can.</font></p>
+<p><font size="4">Radiation transfer can happen between two bodies that are 
+separated by a medium colder than both bodies.</font></p>
+<p><img border="0" src="images/pic0093.jpg" width="430" height="415"></p>
+<p><font size="4">All object above absolute zero sends out thermal radiation, 
+and the bulk of this radiation is over the 0.1 to 100 um range. This range 
+includes infrared light, visible light, and some ultraviolet light.</font></p>
+<p><font size="4">Almost half of solar radiation is light --- it falls into the 
+visible light range.</font></p>
+<p><font size="4">In a solid, the molecules throughout the solid is vibrating 
+--- hence radiation is really a volumetric phenomenon. But radiation from the 
+interior of the solid doesn't really get out and is instead reabsorbed, so we 
+treat radiation as a surface phenomenon.</font></p>
+<p><font size="4"><i>Page 564 has a table of what wave length corresponds to 
+what visual color occupies what wave length of light.</i></font></p>
+<p>&nbsp;</p>
+<h2><font color="#008000">Blackbody Concepts</font></h2>
+<p><font size="4">A <font color="#008000">blackbody</font> is a perfect emitter 
+and absorber of radiation. This sounds contradictory at first, but remember that 
+reflection is not the same as emission.</font></p>
+<p><font size="4">A blackbody emits radiation uniformly in all directions --- 
+this quality is called <font color="#008000">diffusive</font>.</font></p>
+<p><font size="4">A blackbody is not the same as a visually black object. Any 
+object that absorbs the visible range of thermal radiation will appear black. A 
+true blackbody will absorb thermal radiation overall the entire range of the 
+spectrum.</font></p>
+<p><font size="4">A large cavity with a small opening resembles a blackbody.
+</font></p>
+<p><img border="0" src="images/pic0094.jpg" width="323" height="287"></p>
+<p><font size="4">The object in the above picture can be treated as a blackbody 
+with surface area A and temperature T.</font></p>
+<p><font size="4">Most radiation rays that enter the small opening will require 
+multiple reflections to leave the same small opening. Conversely, radiation rays 
+emanating from the cavity surface will go through multiple reflections before 
+reaching the small opening, so that rays reaching the opening will be diffusive.</font></p>
+<p>&nbsp;</p>
+<h2><font color="#008000">Blackbody Radiation Equations</font></h2>
+<p><font size="4">Radiation emitted by a black body is the maximum radiation 
+possible:</font></p>
+<table border="0" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" bgcolor="#FFFF99">
+  <tr>
+    <td><font size="4" color="#008000">Maximum radiation possible:</font><p><font face="Courier New" color="#ff8000" size="5">E<sub>b</sub>(T) = &#963;T<sup>4</sup>&nbsp; 
+    (W/m<sup>2</sup>) </font>
+    </p>
+    <p><font size="4">where <font face="Times New Roman">&#963; is the Stefan-Boltzmann 
+    constant = 5.67 * 10<sup>-8</sup> W/(m<sup>2</sup> K<sup>4</sup>). <br>
+    Note, my own calculator presents the unit as kg / (s<sup>3</sup> K<sup>4</sup>)</font></font></td>
+  </tr>
+</table>
+<p><font size="4">This radiation is not distributed evenly over the entire 
+spectrum.</font></p>
+<table border="0" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" bgcolor="#FFFF99">
+  <tr>
+    <td><font size="4"><font color="#008000">Planck's law:</font><br>
+&nbsp;</font><table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    E<sub>b&#955;</sub>(&#955;, T) = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">C<sub>1</sub> </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">&#955;<sup>5</sup> [exp(C<sub>2</sub> 
+          / (&#955; T)) - 1] </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+
+    </p>
+    <p><font size="4">where</font></p>
+    <ul>
+      <li><font face="Courier New" color="#ff8000" size="5">C<sub>1</sub> = 
+      3.742 * 10<sup>8</sup> </font></li>
+      <li><font face="Courier New" color="#ff8000" size="5">C<sub>2</sub> = 
+      1.439 * 10<sup>4</sup> </font></li>
+    </ul>
+    <p><font size="4">use um for </font><font size="4" face="Times New Roman">&#955; 
+    and Kelvin for T, and E<sub>b&#955;</sub> will be in (W / (m<sup>2</sup> um)).</font><table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">E<sub>b</sub>(T) =
+        </font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle" rowSpan="2">
+            <font face="Times New Roman" color="#ff8000" size="7">&#8747;</font> </td>
+            <td noWrap align="middle">
+            <div style="LEFT: -1.2ex; POSITION: relative; TOP: -0.6ex">
+              <font face="Courier New" color="#ff8000" size="3">&#8734;</font></div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="LEFT: -1.2ex; POSITION: relative; TOP: 0.1ex">
+              <font face="Courier New" color="#ff8000" size="3">0</font></div>
+            </td>
+          </tr>
+        </table>
+        </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">E<sub>b&#955;</sub>(&#955;, T) 
+        d&#955; = &#963;T<sup>4</sup> </font></td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<p><font size="4"><a href="images/pic0095.jpg">A plot</a> of E<sub>b<font face="Times New Roman">&#955;</font></sub><font face="Times New Roman"> 
+(Figure 11-9)</font></font></p>
+<p><font size="4">The peak in these graphs is described by:</font></p>
+<table border="0" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" bgcolor="#FFFF99">
+  <tr>
+    <td><font size="4">&nbsp;<font color="#008000">Wien's displacement law:</font></font><p>
+    <font face="Courier New" color="#ff8000" size="5">(&#955; T)<sub>max power</sub> 
+    = 2897.8 um * K </font></td>
+  </tr>
+</table>
+<p><font size="4" color="#008000">The fraction of the radiation over a part of 
+the total spectrum is defined as &quot; f &quot;</font></p>
+
+<p><font size="4"><a href="images/table_11-02.jpg">A table of &quot; f &quot;</a> (Table 
+11-2)</font></p>
+
+<p><font size="4">So for example, if a black body is at 2500 K, then the 
+fraction of total radiation from <font face="Times New Roman">&#955; = 0 to &#955; = 0.4 
+um is 0.000321, or (0.03%)</font></font></p>
+
+<p><img border="0" src="images/pic0096.gif" width="500" height="286"></p>
+
+<p>&nbsp;</p>
+
+<h2><font color="#008000">Radiation from a Patch of Area</font></h2>
+
+<p><font face="Times New Roman" size="4">Let say that a patch of flat area is 
+releasing radiation. A spherical coordinate system that centers on the patch of 
+area is used to describe the radiation emitted.</font></p>
+
+<p><img border="0" src="images/pic0096.jpg" width="395" height="471"></p>
+
+<p><font face="Times New Roman" size="4">The radiation spreads across a 
+hemisphere region.</font></p>
+
+<p><img border="0" src="images/pic0097.jpg" width="409" height="367"></p>
+
+<p><font face="Times New Roman" size="4">If we just consider a patch on the 
+hemisphere, the size of the patch of area (dS) is:</font></p>
+
+<table border="0" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" bgcolor="#FFFF99">
+  <tr>
+    <td><font face="Courier New" color="#ff8000" size="5">dS = r d&#952; * r (sin &#952;) 
+    d&#934; </font></td>
+  </tr>
+</table>
+
+<p><font face="Times New Roman" size="4">If we connect the patch on the sphere 
+surface with the center of the sphere, we get a cone. The size of this cone is 
+the solid angle (dw). </font></p>
+
+<table border="0" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" bgcolor="#FFFF99">
+  <tr>
+    <td>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">dw = </font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">dS </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">r<sup>2</sup>
+              </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+
+<p><font face="Times New Roman" size="4">The solid angle's unit is the
+<font color="#008000">steradian (sr)</font>. The definition of the solid angle 
+parallels the definition of the radian angle. If the solid angle covers the 
+entire hemisphere, then dw = 2&#960;</font><font size="4"> , which is also the area 
+of a hemisphere with radius 1.</font></p>
+
+<p><font size="4">The radiation goes from the center of the sphere to the 
+hemisphere. If an 
+area on the receiving end is not perpendicular to the radiation ray, then the 
+projected area (the area that is perpendicular to the ray) should be used in the 
+calculation of the solid angle.</font></p>
+
+<p><img border="0" src="images/pic0098.gif" width="495" height="255"></p>
+
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    dw = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">dA<sub>2</sub> cos &#945;
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">r<sup>2</sup> </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+
+<h2><font color="#008000">Radiation Intensity I</font></h2>
+
+<p><img border="0" src="images/pic0099.gif" width="440" height="265"></p>
+
+<p><font size="4">First, understand that the radiation coming from the patch of 
+area is measured as </font><font color="#FF8000" size="5">E</font><font size="4">, 
+which has units (W per m<sup>2</sup> ). This E is spread across the entire 
+hemisphere. The measure of radiation on the hemisphere is I, which would have 
+the unit (W per m<sup>2</sup> per steradian). The sending area is in the m<sup>2</sup> 
+and the receiving area is in the steradian. </font></p>
+
+<p><font size="4">Both the sending area and the receiving area needs to be 
+perpendicular to the path of radiation. The receiving area is already 
+perpendicular because we are using the solid angle.</font></p>
+
+<p><img border="0" src="images/pic0100.gif" width="430" height="377"></p>
+
+<table border="0" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" bgcolor="#FFFF99">
+  <tr>
+    <td>    <table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    I = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">dQ </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">dA cos &#952; </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    * </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">1 </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">dw </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+
+    </td>
+  </tr>
+</table>
+
+<p><font size="4">dQ is watt. dQ / dA would be &quot;E&quot;. </font></p>
+
+<p><font size="4">Assume E is a constant value throughout the patch of area dA. 
+Then assume we have diffusive radiation. In that case, the intensity I would be 
+constant throughout the hemisphere. The relationship between E and I:</font></p>
+
+<table border="0" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" bgcolor="#FFFF99">
+  <tr>
+    <td><font face="Courier New" color="#ff8000" size="5">E = &#960; I </font></td>
+  </tr>
+</table>
+
+<p><font size="4">The solid angle containing the entire hemisphere is 2<font face="Times New Roman">&#960;, 
+but </font><font color="#FF8000">I</font> does not equal <font color="#FF8000">E 
+/ (2<font face="Times New Roman">&#960;</font>)</font> even though
+<font color="#FF8000">I</font> is <font color="#FF8000">E</font> per steradian. 
+The reason is that for any particular point on the hemisphere, only
+<font color="#FF8000">E * cos </font><font face="Times New Roman">
+<font color="#FF8000">&#952;</font> is aimed at a particular point on the hemisphere.</font></font></p>
+
+<p><font face="Times New Roman" size="4">The E = &#960; I thing works in reverse too. 
+We can have radiation going through the hemisphere striking the patch of area dA 
+from all directions. This is called <font color="#008000">irradiation (G)</font>, 
+which is the same as E except that G is striking dA while E is leaving dA. The 
+radiation intensity (I) on the hemisphere would be G = &#960; * I.</font></p>
+
+<p><font face="Times New Roman" size="4">If dA is a patch of blackbody, then 
+there is no reflection and E = &#960; * I.</font></p>
+
+<p><font face="Times New Roman" size="4">If dA is not blackbody, the radiation 
+leaving dA includes both a reflection component and an emission component.
+<font color="#FF8000">E<sub>emitted</sub> = &#960; I<sub>e</sub> , E<sub>reflected</sub> 
+= &#960; I<sub>r</sub> , E<sub>total </sub>= E<sub>emitted</sub> + E<sub>reflected</sub>
+</font>.</font></p>
+
+<p><font size="4" color="#008000">Spectral Quantities (I<sub><font face="Times New Roman">&#955;</font></sub> 
+, E<sub><font face="Times New Roman">&#955;</font></sub>)</font></p>
+
+<p><font face="Times New Roman" size="4">These are <font color="#FF8000">I</font> 
+and <font color="#FF8000">E</font> values for a particular wave length. They are 
+defined as:</font></p>
+
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    E = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle" rowSpan="2">
+        <font face="Times New Roman" color="#ff8000" size="7">&#8747;</font> </td>
+        <td noWrap align="middle">
+        <div style="LEFT: -1.2ex; POSITION: relative; TOP: -0.6ex">
+          <font face="Courier New" color="#ff8000" size="3">&#8734;</font></div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="LEFT: -1.2ex; POSITION: relative; TOP: 0.1ex">
+          <font face="Courier New" color="#ff8000" size="3">0</font></div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    E<sub>&#955;</sub> d&#955; </font></td>
+  </tr>
+</table>
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    I = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle" rowSpan="2">
+        <font face="Times New Roman" color="#ff8000" size="7">&#8747;</font> </td>
+        <td noWrap align="middle">
+        <div style="LEFT: -1.2ex; POSITION: relative; TOP: -0.6ex">
+          <font face="Courier New" color="#ff8000" size="3">&#8734;</font></div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="LEFT: -1.2ex; POSITION: relative; TOP: 0.1ex">
+          <font face="Courier New" color="#ff8000" size="3">0</font></div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    I<sub>&#955;</sub> d&#955; </font></td>
+  </tr>
+</table>
+
+<p><font face="Times New Roman" size="4">and the previous &quot; E = &#960; I &quot; becomes:</font></p>
+
+<p><font face="Courier New" color="#ff8000" size="5">E<sub>&#955;</sub> = &#960; * I<sub>&#955;</sub>
+</font></p>
+
+<p><font face="Times New Roman" size="4">Previously, the equation for E<sub>&#955;
+</sub>of a blackbody has been given --- the Planck's Law. Divide that E<sub>&#955;</sub> 
+by &#960; to get the I<sub>&#955;</sub> of a blackbody.</font></p>
+
+<p>&nbsp;</p>
+
+<h2><font face="Times New Roman" color="#008000">Radiative Properties</font></h2>
+
+<p><b><font face="Times New Roman" size="4" color="#008000">Emissivity</font></b></p>
+
+<p><font face="Times New Roman" size="4">Previously, it's said that the 
+blackbody emits the most thermal radiation: &#963; * T<sup>4</sup> . A non-blackbody 
+object would emit:</font></p>
+
+<table border="0" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" bgcolor="#FFFF99">
+  <tr>
+    <td><font face="Courier New" color="#ff8000" size="5">E = &#949; * &#963; * T<sup>4</sup>
+    </font></td>
+  </tr>
+</table>
+
+<p><font face="Times New Roman" size="4">where &#949; is called<font color="#008000"> 
+emissivity</font>. &#949; = 1 for a blackbody.</font></p>
+
+<p><font face="Times New Roman" size="4">Other ways that emissivity can appear:</font></p>
+
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    &#949; = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">E </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">E<sub>blackbody</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    &#949; = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">I </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">I<sub>blackbody</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+
+<p>&nbsp;</p>
+
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    &#949;<sub>&#955;</sub> = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">E<sub>&#955;</sub> </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">E<sub>blackbody, &#955;</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+
+<p><font face="Times New Roman" size="4">where &#949;<sub>&#955;</sub> is the &#949; for a 
+particular wave length.</font></p>
+
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    &#949;<sub>&#955;</sub> = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">I<sub>&#955;</sub> </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">I<sub>blackbody, &#955;</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+
+<p><font face="Times New Roman" size="4">If we have &#949; that vary as a function of 
+wave length &#955;, then the overall &#949; is evaluated as a weighted average:</font></p>
+
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    &#949; = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <table cellSpacing="0" cellPadding="6" border="0">
+            <tr>
+              <td noWrap align="middle">
+              <table cellSpacing="0" cellPadding="0" border="0">
+                <tr>
+                  <td noWrap align="middle" rowSpan="2">
+                  <font face="Times New Roman" color="#ff8000" size="7">&#8747;</font>
+                  </td>
+                  <td noWrap align="middle">
+                  <div style="LEFT: -1.2ex; POSITION: relative; TOP: -0.6ex">
+                    <font face="Courier New" color="#ff8000" size="3">&#8734;</font></div>
+                  </td>
+                </tr>
+                <tr>
+                  <td noWrap align="middle">
+                  <div style="LEFT: -1.2ex; POSITION: relative; TOP: 0.1ex">
+                    <font face="Courier New" color="#ff8000" size="3">0</font></div>
+                  </td>
+                </tr>
+              </table>
+              </td>
+              <td noWrap align="middle">
+              <font face="Courier New" color="#ff8000" size="5">&#949;<sub>&#955;</sub> * 
+              E<sub>blackbody, &#955;</sub> d&#955; </font></td>
+            </tr>
+          </table>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">&#963; T<sup>4</sup>
+          </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+
+<p><font face="Times New Roman" size="4">A more practical discrete formula is:</font></p>
+
+<p><img border="0" src="images/pic0101.jpg" width="444" height="472"></p>
+
+<table border="0" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td nowrap><font face="Times New Roman" color="#ff8000" size="5">&#949; =</font></td>
+    <td nowrap><font face="Times New Roman" color="#ff8000" size="4">&#949;<sub>1</sub> 
+    * (fraction of total emission that comes from &#955; = 0 through &#955; = &#955;<sub>1</sub> 
+    )</font></td>
+  </tr>
+  <tr>
+    <td nowrap>&nbsp;</td>
+    <td nowrap><font face="Times New Roman" color="#ff8000" size="4">+ &#949;<sub>2</sub> 
+    * (fraction of total emission that comes from &#955; = &#955;<sub>1</sub> through &#955; = 
+    &#955;<sub>2</sub> )</font></td>
+  </tr>
+  <tr>
+    <td nowrap>&nbsp;</td>
+    <td nowrap><font face="Times New Roman" color="#ff8000" size="4">+ &#949;<sub>3</sub> 
+    * (fraction of total emission that comes from &#955; = &#955;<sub>2</sub> through &#955; = 
+    &#8734; )</font></td>
+  </tr>
+</table>
+
+<p><font face="Times New Roman" size="4">You get the fraction from the &quot; f &quot; 
+table (<a href="images/table_11-02.jpg">Table 11-2</a>)</font></p>
+
+<p><font face="Times New Roman" size="4" color="#008000">Absorptivity (&#945;) = 
+fraction of radiation absorbed by the surface</font></p>
+
+<p><font face="Times New Roman" size="4" color="#008000">Reflectivity (&#961;) = 
+fraction of radiation reflected by the surface</font></p>
+
+<p><font face="Times New Roman" size="4" color="#008000">Transmissivity (&#964;) = 
+fraction of radiation transmitted by the surface</font></p>
+
+<p><img border="0" src="images/pic0102.jpg" width="451" height="559"></p>
+
+<p><font face="Times New Roman" size="4">Opaque surfaces have &#964; = 0, &#945; + &#961; = 1.</font></p>
+
+<p><font face="Times New Roman" size="4">&#945;<sub>&#955;</sub> , &#961;<sub>&#955;</sub> , &#964;<sub>&#955;</sub> 
+--- are property values at particular wave lengths. </font></p>
+
+<p><font face="Times New Roman" size="4">If the temperature of an object is not 
+changing, then </font><font color="#FF8000" size="5" face="Times New Roman">&#945; = 
+&#949;</font><font face="Times New Roman" size="4"> because what is absorbed should 
+be emitted. We can also say </font>
+<font color="#FF8000" size="5" face="Times New Roman">&#945;<sub>&#955;</sub> = &#949;<sub>&#955;</sub></font></p>
+
+<p><font face="Times New Roman" size="4">The absorption and emission can happen 
+at different wave lengths. This is what happens in a car with windows closed. 
+The sun light goes through the glass windows and get absorbed by the inside of 
+the car. The inside of the car then emits heat as infrared wave --- due to the 
+cooler temperature of the inside of the car as opposed to the sun. The glass is 
+in turn opaque to the infrared wave, and hence traps the heat inside the car. 
+This is known as the <font color="#008000">greenhouse effect</font>. At night 
+the earth also emits heat to outer space in the form of infrared radiation. 
+Certain elements of our atmosphere, like CO<sub>2</sub> and water vapor, lets 
+the sun light thorough but blocks the exiting infrared radiation like the glass 
+in a car. Areas without CO<sub>2</sub> and water vapor would experience larger 
+swing between daytime and nighttime temperatures.</font></p>
+
+<p><font face="Times New Roman" size="4">There are several types of reflection:</font></p>
+
+<p><img border="0" src="images/pic0103.jpg" width="424" height="901"></p>
+
+<p><font face="Times New Roman" size="4">In problem solving, we usually assume 
+the &quot;nicer&quot; types of reflection --- situation (b) is used for reflection from 
+rough surfaces, situation (c) is used for smooth surfaces, and we ignore 
+situation (a).</font></p>
+
+<p><font face="Times New Roman" size="4" color="#008000">Diffusive and Gray 
+Surfaces</font></p>
+
+<p><font face="Times New Roman" size="4">Diffusive surfaces have the properties 
+(&#949; , &#945; , &#961; , &#964;) independent of direction (&#952;).</font></p>
+
+<p><font face="Times New Roman" size="4">Gray surfaces have the properties (&#949; , 
+&#945; , &#961; , &#964;) independent of wavelength (&#955;).</font></p>
+
+<p><font face="Times New Roman" size="4">Surfaces that are both diffusive and 
+gray will have the properties (&#949; , &#945; , &#961; , &#964;) independent of direction (&#952;) and 
+wavelength (&#955;).</font></p>
+
+<p><font face="Times New Roman" size="4">Real surfaces come close to emitting 
+radiation in a diffusive manner.</font></p>
+
+<p><font face="Times New Roman" size="4">The properties (&#949; , &#945; , &#961; , &#964;) are 
+strongly dependent on surface condition such as oxidation, roughness, type of 
+finish, and cleanliness.</font></p>
+
+<p><i><font face="Times New Roman" size="4">Page 580 - 581 has several graphs 
+about emissivity. There's an absorptivity graph on page 584, and a 
+transmissivity graph on page 585.</font></i></p>
+
+<p>&nbsp;</p>
+
+<h2><font face="Times New Roman" color="#008000">Atmospheric and Solar Radiation</font></h2>
+
+<p><font face="Times New Roman" size="4">The solar energy striking earth: 1373 
+W/m<sup>2</sup> .</font></p>
+
+<p><font face="Times New Roman" size="4">This is the solar energy incident on a 
+surface normal to the sun's rays at the outer edge of the atmosphere when the 
+earth is at its mean distance from the sun.</font></p>
+
+<p><font face="Times New Roman" size="4">Parts of the atmosphere will absorb 
+some of this energy, and the actual energy that reach Earth's surface is about 
+950 W/m<sup>2</sup> on a clear day and much less on cloudy or smoggy days.</font></p>
+
+<p><font face="Times New Roman" size="4">We can estimate the sun's surface 
+temperature using the idea that the heat that leaves a spherical shell 
+representing the sun will also go through a spherical shell containing earth's 
+orbit around the sun, and by assuming that the sun is a blackbody.</font></p>
+
+<p><font face="Times New Roman" size="4">(4&#960; L<sup>2</sup>) 1373 = (4&#960; r<sup>2</sup>) 
+&#963; T<sup>4</sup></font></p>
+
+<p><font face="Times New Roman" size="4">L = distance between earth and sun<br>
+r = radius of the sun</font></p>
+
+<p><font face="Times New Roman" size="4">The ozone absorbs harmful ultra violet 
+light. Dust in the atmosphere scatters certain color of light, giving the sky 
+its color.</font></p>
+<p><font face="Times New Roman" size="4">The scattered light will eventually 
+reach earth's surface uniformly from all directions --- <font color="#008000">
+diffuse solar radiation G<sub>d</sub></font>. The light that did not get 
+scattered or absorbed by the atmosphere ---<font color="#008000"> direct solar 
+radiation G<sub>D </sub></font>. Note that G<sub>D</sub> makes an angle with the 
+surface of the earth because it's a direct ray from the sun to earth.</font></p>
+<p><font face="Times New Roman" size="4">total radiation from the sun =
+<font color="#FF8000">G<sub>solar</sub> = G<sub>D</sub> cos &#952; + G<sub>d</sub></font></font></p>
+<p><font face="Times New Roman" size="4">The molecules in the atmosphere emit 
+radiation. This emission is not a blackbody emission, but in problem solving we 
+treat it as blackbody emission at some lower temperature T<sub>sky </sub>.</font></p>
+<p><font face="Times New Roman" size="4">G<sub>sky</sub> = &#963; T<sub>sky</sub><sup>4</sup></font></p>
+<p><font face="Times New Roman" size="4">For earth's surface, we can assume &#949; = 
+&#945; as long as the temperature is not changing much.</font></p>
+<p><font face="Times New Roman" size="4">However, the surface will react 
+differently to solar radiation and infrared radiation, so there's two separate 
+set of &#949; numbers. </font></p>
+<p><font face="Times New Roman" size="4"><a href="images/table_11-03.jpg">Table 
+11-3</a> --- &#945;<sub>s</sub> is for solar radiation and &#949; is for infrared 
+radiation.</font></p>
+<p><img border="0" src="images/pic0104.jpg" width="432" height="515"></p>
+<table border="0" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td nowrap><font face="Times New Roman" size="4" color="#FF8000">Net heat 
+    from the sun</font></td>
+    <td nowrap><font face="Times New Roman" size="4" color="#FF8000">= (solar 
+    radiation from the sun) + (infrared radiation from the sky) - (infrared 
+    radiation to the sky)</font></td>
+  </tr>
+  <tr>
+    <td nowrap>&nbsp;</td>
+    <td nowrap><font color="#FF8000"><font size="4">= </font>
+    <font size="4" face="Times New Roman">&#945;<sub>s</sub> G<sub>solar</sub> + 
+    &#949;*&#963;(T<sub>sky</sub><sup>4</sup> - T<sub>surface</sub><sup>4</sup>)</font></font></td>
+  </tr>
+</table>
+
+</body>
+
+</html>

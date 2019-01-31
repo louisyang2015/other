@@ -1,0 +1,714 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Transient (Switching) Response</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">Transient (Switching) Response</font></h1>
+<p><img border="0" src="images/pic0153.jpg" width="369" height="382"></p>
+
+<p><img border="0" src="images/pic0154.gif" width="550" height="331"></p>
+
+<p><font size="4">The voltage quantities are such that when v<sub>s</sub> = -X * 
+V<sub>s</sub> , the transistor is in cutoff mode. Then, when v<sub>s</sub> = V<sub>s
+</sub>, the transistor is in saturation mode.</font></p>
+
+<p><font size="4">The cutoff mode means i<sub>B</sub> = i<sub>C</sub> = i<sub>E</sub> 
+= 0</font></p>
+
+<p><font size="4">In the saturation mode, the transistor is approximately a 
+short circuit:</font></p>
+
+<p><img border="0" src="images/pic0155.gif" width="187" height="240"></p>
+
+<p><font size="4">Using the above model for saturation, the currents in the &quot;on&quot; 
+state are:</font></p>
+
+<p><font face="Courier New" color="#ff8000" size="5">I<sub>BB</sub> = V<sub>S</sub> 
+/ R<sub>S</sub> <br>
+I<sub>CC</sub> = V<sub>CC</sub> / R<sub>L</sub> </font></p>
+
+<p><font size="4">After we left the off state (cutoff mode) and before we reach 
+the on state (saturation mode), the BJT is in active mode.</font></p>
+
+<p><font size="4">The following graphs show what happens to the hole 
+concentration in the base as we turn on and off the transistor.</font></p>
+
+<p><img border="0" src="images/pic0156.gif" width="1250" height="350"></p>
+
+<ol>
+  <li><font size="4">When BJT is turned off, the mode is cutoff. Both the EB and 
+  BC jucntions are in reverse bias, so the hole concentration is below 
+  equilibrium at the edge of the base region.</font></li>
+  <li><font size="4">As the BJT turns on, it is in active mode. The EB junction 
+  is in forward bias, so that end of the base region has excess minority 
+  carriers.</font></li>
+  <li><font size="4">As the BJT enters saturation, both EB and BC are in forward 
+  bias. Both ends of the base region gets excess minority carriers. We have the 
+  entire orange line moving upward when the BJT is in saturation.</font></li>
+  <li><font size="4">When the BJT is turning off, first the entire orange line 
+  drops straight down as the BJT leaves saturation and enters active mode.</font></li>
+  <li><font size="4">Then the excess charge in the EB junction is gradually 
+  drained until eventually the BJT is in the cutoff mode.</font></li>
+</ol>
+
+<p><font size="4">The behavior of i<sub>B</sub> :</font></p>
+<p><img border="0" src="images/pic0157.gif" width="700" height="394"></p>
+<p><font size="4">When BJT is turned on, i<sub>B</sub> approach i<sub>BB</sub> 
+very quickly. When the BJT is turned off, i<sub>B</sub> becomes a reverse bias 
+current to discharge the excess minority carriers. This is just like what 
+happens in the diode turned off response.</font></p>
+
+<p><font size="4">The behavior of i<sub>C</sub> :</font></p>
+
+<p><img border="0" src="images/pic0158.gif" width="700" height="380"></p>
+
+<p><font size="4">In step 2, the i<sub>C</sub> increase rapidly at first. Then 
+in step 3, the BJT enters saturation and the <font face="Times New Roman">&#8710;P<sub>B</sub> 
+line is mostly moving straight upward. i<sub>C</sub> is mostly the diffusion of 
+holes across the base region, so if the slope of the &#8710;P<sub>B</sub> line is not 
+changing much, i<sub>C</sub> would not change much.</font></font></p>
+
+<p><font face="Times New Roman" size="4">In step 4, the BJT is turned off. The &#8710;P<sub>B</sub> 
+line is at first moving straight down. Once again, the slope of &#8710;P<sub>B</sub> 
+is not changing by much, so i<sub>C</sub> does not change much either. After 
+step 4, the BJT leaves the saturation mode and goes through the active mode, the 
+slope of &#8710;P<sub>B</sub> is changing rapidly and i<sub>C</sub> changes rapidly as 
+well.</font></p>
+
+<p>&nbsp;</p>
+
+<h2><font face="Times New Roman" color="#008000">Charge Control Relationships</font></h2>
+
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    Q<sub>B</sub> = </font></td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="7">
+    (</font> </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="4">
+    excess hole charge <br>
+    in quasineutral base </font></td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="7">
+    )</font> </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    = qA </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle" rowSpan="2">
+        <font face="Times New Roman" color="#ff8000" size="7">&#8747;</font> </td>
+        <td noWrap align="middle">
+        <div style="LEFT: -1.2ex; POSITION: relative; TOP: -0.6ex">
+          <font face="Courier New" color="#ff8000" size="3">W</font></div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="LEFT: -1.2ex; POSITION: relative; TOP: 0.1ex">
+          <font face="Courier New" color="#ff8000" size="3">0</font></div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    &#916;p<sub>B</sub>(x, t) dx </font></td>
+  </tr>
+</table>
+<table border="3" cellpadding="12" cellspacing="1" style="border-collapse: collapse" bordercolor="#FF8000">
+  <tr>
+    <td>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">dQ<sub>B</sub>
+              </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">dt </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">= i<sub>B</sub> -
+        </font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">Q<sub>B</sub>
+              </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">T<sub>B</sub>
+              </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+
+<p><font face="Times New Roman" size="4">Under steady state, dQ<sub>B</sub> / dt 
+= 0, and so i<sub>B</sub> = Q<sub>B</sub> / T<sub>B</sub> . This is saying that 
+i<sub>B</sub> equals the excessive holes that are recombined in the base region. 
+Recall from chapter 10 that i<sub>B</sub> really has three components. The above 
+result is therefore valid only if the current associated with recombination in 
+the quasineutral base is the dominant component of i<sub>B</sub> .</font></p>
+
+<p><font face="Times New Roman" size="4">The charge control relationship that 
+applies for i<sub>C</sub> :</font></p>
+
+<table border="3" cellpadding="12" cellspacing="1" style="border-collapse: collapse" bordercolor="#FF8000">
+  <tr>
+    <td>
+    <table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    i<sub>C</sub> = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">Q<sub>B</sub> </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">T<sub>t</sub> </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    , under active mode only </font></td>
+  </tr>
+</table>
+
+    </td>
+  </tr>
+</table>
+
+<p><font face="Times New Roman" size="4">where</font></p>
+
+<table border="3" cellpadding="12" cellspacing="1" style="border-collapse: collapse" bordercolor="#FF8000">
+  <tr>
+    <td>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">T<sub>t</sub> = </font>
+        </td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">W<sup>2</sup>
+              </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">2D<sub>B</sub>
+              </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+
+<p><font face="Times New Roman" size="4">The T<sub>t</sub> parameter is called 
+the <font color="#008000">base transit time</font>. It is interpreted as the 
+average time taken by the minority carriers to diffuse across the quasineutral 
+base.</font></p>
+
+<p><font face="Times New Roman" size="4">Note how the charge control 
+relationship is good for active mode only. As soon as the BJT enters saturation, 
+we assume that i<sub>C</sub> stops increasing, even though Q<sub>B</sub> would 
+keep increasing.</font></p>
+
+<p>&nbsp;</p>
+
+<h2><font color="#008000">Turned on Transient</font></h2>
+
+<p><font size="4">Use:</font></p>
+
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">dQ<sub>B</sub>
+              </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">dt </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">= I<sub>BB</sub> -</font></td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">&nbsp;</font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">Q<sub>B</sub>
+              </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">T<sub>B</sub>
+              </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+      </tr>
+    </table>
+
+<p><font size="4">to get:</font></p>
+
+<p><font face="Courier New" color="#ff8000" size="5">Q<sub>B</sub> = I<sub>BB</sub> 
+T<sub>B</sub> (1 - e^[-t/T<sub>B</sub>])</font></p>
+
+<p><font size="4">Say that the BJT enters saturation at time  </font>
+<font color="#FF8000" size="5">t<sub>r</sub></font><font size="4"> ,</font></p>
+
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    i<sub>C</sub>(t) = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">Q<sub>B</sub>(t)
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">T<sub>t</sub> </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">I<sub>BB</sub> T<sub>B</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">T<sub>t</sub> </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    (1 - e^[-t/T<sub>B</sub>]) , for 0 &#8804; t &#8804; t<sub>r</sub> </font></td>
+  </tr>
+</table>
+
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    i<sub>C</sub>(t) = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">V<sub>CC</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">R<sub>L</sub> </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    = I<sub>CC</sub> , for t &#8805; t<sub>r</sub> </font></td>
+  </tr>
+</table>
+
+<p><font size="4">The two expression must yield the same value at i<sub>C</sub>(t 
+= t<sub>r</sub>), so we can set them equal to one another to get:</font></p>
+
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    t<sub>r</sub> = T<sub>B</sub> ln </font></td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="7">
+    (</font></td>
+    <td noWrap align="middle">&nbsp;</td>
+    <td noWrap align="middle">&nbsp;</td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">1 </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <table cellSpacing="0" cellPadding="6" border="0">
+            <tr>
+              <td noWrap align="middle">
+              <font face="Courier New" color="#ff8000" size="3">1 - </font></td>
+              <td noWrap align="middle">
+              <table cellSpacing="0" cellPadding="0" border="0">
+                <tr>
+                  <td noWrap align="middle">
+                  <div style="POSITION: relative; TOP: 0.7ex">
+                    <font face="Courier New" color="#ff8000" size="3">I<sub>CC</sub> 
+                    T<sub>t</sub> </font>
+                  </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+                </tr>
+                <tr>
+                  <td noWrap align="middle">
+                  <div style="POSITION: relative; TOP: -0.7ex">
+                    <font face="Courier New" color="#ff8000" size="3">I<sub>BB</sub> 
+                    T<sub>B</sub> </font>
+                  </div>
+                  </td>
+                </tr>
+              </table>
+              </td>
+            </tr>
+          </table>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle">&nbsp;</td>
+    <td noWrap align="middle">&nbsp;</td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="7">
+    )</font> </td>
+  </tr>
+</table>
+
+<p><img border="0" src="images/pic0159.jpg" width="442" height="657"></p>
+
+<p>&nbsp;</p>
+
+<h2><font color="#008000">Turned off Transient</font></h2>
+
+<p><font size="4">Starting with</font></p>
+
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">dQ<sub>B</sub>
+              </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">dt </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">= -X * I<sub>BB</sub> -
+        </font></td>
+        <td noWrap align="middle">
+        &nbsp;</td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">Q<sub>B</sub>
+              </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">T<sub>B</sub>
+              </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+      </tr>
+    </table>
+
+<p><font size="4">we get</font></p>
+
+<p><font face="Courier New" color="#ff8000" size="5">Q<sub>B</sub>(t) = I<sub>BB</sub> 
+T<sub>B</sub> [(1 + X)*e^(-t/T<sub>B</sub>) - X]</font></p>
+
+<p><font size="4">Suppose that after being turned off, the BJT stays in the 
+saturated region for </font><font color="#FF8000" size="5">t<sub>sd</sub></font><font size="4"> 
+amount of time before entering active mode,</font></p>
+
+<p><font face="Courier New" color="#ff8000" size="5">i<sub>C</sub>(t) = I<sub>CC</sub> 
+, 0 &#8804; t &#8804; t<sub>sd</sub> </font></p>
+
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    i<sub>C</sub>(t) = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">Q<sub>B</sub>(t)
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">T<sub>t</sub> </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">I<sub>BB</sub> T<sub>B</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">T<sub>t</sub> </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    [(1 + X)*e^(-t/T<sub>B</sub>) - X] , t &#8805; t<sub>sd</sub> </font></td>
+  </tr>
+</table>
+
+<p><font size="4">These two expressions for i<sub>C</sub> needs to agree at i<sub>C</sub>(t 
+- t<sub>sd</sub>) , which can lead to</font></p>
+
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    t<sub>sd</sub> = T<sub>B</sub> ln </font></td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="7">
+    (</font></td>
+    <td noWrap align="middle">&nbsp;</td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">1 + X </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <table cellSpacing="0" cellPadding="6" border="0">
+            <tr>
+              <td noWrap align="middle">&nbsp;</td>
+              <td noWrap align="middle">
+              <table cellSpacing="0" cellPadding="0" border="0">
+                <tr>
+                  <td noWrap align="middle">
+                  <div style="POSITION: relative; TOP: 0.7ex">
+                    <font face="Courier New" color="#ff8000" size="3">I<sub>CC</sub> 
+                    T<sub>t</sub> </font>
+                  </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+                </tr>
+                <tr>
+                  <td noWrap align="middle">
+                  <div style="POSITION: relative; TOP: -0.7ex">
+                    <font face="Courier New" color="#ff8000" size="3">I<sub>BB</sub> 
+                    T<sub>B</sub> </font>
+                  </div>
+                  </td>
+                </tr>
+              </table>
+              </td>
+              <td noWrap align="middle">
+              <font face="Courier New" color="#ff8000" size="3">+ X </font></td>
+            </tr>
+          </table>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle">&nbsp;</td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="7">
+    )</font> </td>
+  </tr>
+</table>
+
+<p><font size="4">Bigger the &quot;X&quot;, bigger the reverse voltage, smaller 
+the t<sub>sd</sub> , and faster will i<sub>C</sub> 
+go to zero.</font></p>
+
+<p>&nbsp;</p>
+
+<p><font color="#008000" size="4">Practical Considerations</font></p>
+
+<p><font size="4">The above analysis is a highly simplified one. A more 
+realistic version of the i<sub>C</sub> transient response:</font></p>
+
+<p><img border="0" src="images/pic0160.jpg" width="1037" height="568"></p>
+
+<p><font size="4">Note how that there is an added dealy time t<sub>d</sub> at 
+the beginning of the transient.</font></p>
+
+</body>
+
+</html>

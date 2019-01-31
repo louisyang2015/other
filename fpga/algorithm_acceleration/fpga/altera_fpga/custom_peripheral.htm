@@ -1,0 +1,341 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+
+<head>
+<meta http-equiv="Content-Language" content="en-us" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Custom Peripheral</title>
+<link rel="stylesheet" type="text/css" href="fpga.css" />
+<style type="text/css">
+.style1 {
+				background-color: #FFFF00;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Basic Custom Peripherals</h1>
+<p class="center">Last updated June 1, 2011</p>
+<h2>Read Only Peripheral Example (Switches)</h2>
+<table class="code">
+			<tr>
+						<td class="code">
+<p class="code">
+<span class="keyword">module</span>  <span class="data">Switches</span>(<span class="keyword">input</span>  clk,  read,  <span class="keyword">input</span>  [17:0]  coe_switches,<br />
+ &nbsp;&nbsp;&nbsp;    <span class="keyword">output</span>  <span class="keyword">reg</span>  [31:0]  <span class="data">readdata</span>);
+<br />
+ &nbsp;&nbsp;&nbsp;    <br />
+ &nbsp;&nbsp;&nbsp;    <span class="keyword">always</span>  @  (<span class="keyword">posedge</span>  clk)  <span class="keyword">begin</span><br />
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        <span class="data">readdata</span>[17:0]  &lt;=  coe_switches[17:0];
+<br />
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        <span class="data">readdata</span>[31:18] &nbsp;&nbsp;&nbsp;    &lt;=  0;
+<br />
+ &nbsp;&nbsp;&nbsp;    <span class="keyword">end</span><br />
+ &nbsp;&nbsp;&nbsp;    <br />
+<span class="keyword">endmodule</span>
+</p>						</td>
+			</tr>
+</table>
+
+<p>&nbsp;</p>
+<h2>Write Only Peripheral Example (HexDisplay)</h2>
+<table class="code">
+			<tr>
+						<td class="code">
+<p class="code">
+<span class="keyword">module</span>  <span class="data">HexDisplay</span>(<span class="keyword">input</span>  clk,  write,  <span class="keyword">input</span>  [2:0]  address,<br />
+ &nbsp;&nbsp;&nbsp;    <span class="keyword">input</span>  [31:0]  <span class="data">writedata</span>,  <span class="keyword">output</span>  <span class="keyword">reg</span>  [3:0]  coe_hex0,  coe_hex1,  <br />
+ &nbsp;&nbsp;&nbsp;    <span class="keyword">output</span>  <span class="keyword">reg</span>  [3:0]  coe_hex2,  coe_hex3,  coe_hex4,<br />
+ &nbsp;&nbsp;&nbsp;    <span class="keyword">output</span>  <span class="keyword">reg</span>  [3:0]  coe_hex5,  coe_hex6,  coe_hex7);
+<br />
+<br />
+ &nbsp;&nbsp;&nbsp;    <span class="keyword">always</span>  @  (<span class="keyword">posedge</span>  clk)<br />
+ &nbsp;&nbsp;&nbsp;    <span class="keyword">if</span>(write)<br />
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        <span class="keyword">case</span>(address)<br />
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;            3&#39;d0:  coe_hex0  &lt;=  <span class="data">writedata</span>[3:0];
+<br />
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;            3&#39;d1:  coe_hex1  &lt;=  <span class="data">writedata</span>[3:0];
+<br />
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;            3&#39;d2:  coe_hex2  &lt;=  <span class="data">writedata</span>[3:0];
+<br />
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;            3&#39;d3:  coe_hex3  &lt;=  <span class="data">writedata</span>[3:0];
+<br />
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;            3&#39;d4:  coe_hex4  &lt;=  <span class="data">writedata</span>[3:0];
+<br />
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;            3&#39;d5:  coe_hex5  &lt;=  <span class="data">writedata</span>[3:0];
+<br />
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;            3&#39;d6:  coe_hex6  &lt;=  <span class="data">writedata</span>[3:0];
+<br />
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;            3&#39;d7:  coe_hex7  &lt;=  <span class="data">writedata</span>[3:0];
+<br />
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        <span class="keyword">endcase</span><br />
+ &nbsp;&nbsp;&nbsp;    <br />
+<span class="keyword">endmodule</span>
+</p>						</td>
+			</tr>
+</table>
+
+<p>&nbsp;</p>
+<h2>Timer Example (with Interrupt)</h2>
+<table class="code">
+			<tr>
+						<td class="code">
+<p class="code">
+<span class="keyword">module</span>  <span class="data">Timer</span><br />
+ &nbsp;&nbsp;&nbsp;    <span class="keyword">#</span>(<span class="keyword">parameter</span>  N=20)  
+<span class="comment">// internal counter width</span>
+<br />
+ &nbsp;&nbsp;&nbsp;    (<span class="keyword">input</span>  clk,  reset,  address,  read,  write,  <br />
+ &nbsp;&nbsp;&nbsp;    <span class="keyword">input</span>[31:0]  <span class="data">writedata</span>,  <span class="keyword">output</span>  <span class="keyword">reg</span>  [31:0]  <span class="data">readdata</span>,  <br />
+ &nbsp;&nbsp;&nbsp;    <span class="keyword">output</span>  ins_irq);
+<br />
+<br />
+ &nbsp;&nbsp;&nbsp;    
+<span class="comment">// internal counter width:	</span>
+<br />
+ &nbsp;&nbsp;&nbsp;    <span class="keyword">reg</span>  [N:0]  counter;
+<br />
+ &nbsp;&nbsp;&nbsp;    <span class="keyword">localparam</span>  ONE  =  {{N{1&#39;b0}},  1&#39;b1};
+<br />
+ &nbsp;&nbsp;&nbsp;    <br />
+ &nbsp;&nbsp;&nbsp;    
+<span class="comment">// interrupt signal is the overflow bit</span>
+<br />
+ &nbsp;&nbsp;&nbsp;    <span class="keyword">assign</span>  ins_irq  =  counter[N];
+<br />
+ &nbsp;&nbsp;&nbsp;    <br />
+ &nbsp;&nbsp;&nbsp;    
+<span class="comment">// timer &quot;running&quot; flag</span>
+<br />
+ &nbsp;&nbsp;&nbsp;    <span class="keyword">reg</span>  running;
+  <br />
+ &nbsp;&nbsp;&nbsp;    <span class="keyword">always</span>  @  (<span class="keyword">posedge</span>  clk)<br />
+ &nbsp;&nbsp;&nbsp;    <span class="keyword">if</span>(reset)  running  &lt;=  0;
+<br />
+ &nbsp;&nbsp;&nbsp;    <span class="keyword">else</span><br />
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        <span class="keyword">if</span>((write  ==  1)  &amp;&amp;  (address  ==  1))<br />
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;            running  &lt;=  <span class="data">writedata</span>[0];
+<br />
+ &nbsp;&nbsp;&nbsp;    <br />
+ &nbsp;&nbsp;&nbsp;    
+<span class="comment">// counter operation</span>
+<br />
+ &nbsp;&nbsp;&nbsp;    <span class="keyword">always</span>  @  (<span class="keyword">posedge</span>  clk)<br />
+ &nbsp;&nbsp;&nbsp;    <span class="keyword">if</span>(reset)<br />
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        counter  &lt;=  0;
+<br />
+ &nbsp;&nbsp;&nbsp;    <span class="keyword">else</span><br />
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        <span class="keyword">if</span>((write  ==  1)  &amp;&amp;  (address  ==  0))  counter  &lt;=  <span class="data">writedata</span>[N:0];
+<br />
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        <span class="keyword">else</span>  <span class="keyword">begin</span><br />
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;            <span class="keyword">if</span>((running  ==  1)  &amp;&amp;  (counter[N]  ==  0))  <br />
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                counter  &lt;=  counter  +  ONE;
+<br />
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        <span class="keyword">end</span><br />
+<br />
+ &nbsp;&nbsp;&nbsp;    
+<span class="comment">// readdata</span>
+<br />
+ &nbsp;&nbsp;&nbsp;    <span class="keyword">always</span>  @  (<span class="keyword">posedge</span>  clk)<br />
+ &nbsp;&nbsp;&nbsp;    <span class="keyword">if</span>(read)  <span class="data">readdata</span>  &lt;=  {{(32-(N+1)){1&#39;b0}},  counter};
+<br />
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        <br />
+<span class="keyword">endmodule</span><br />
+
+</p>						</td>
+			</tr>
+</table>
+
+<p>Writing to the address 0 sets a value into the timer. An interrupt is 
+generated when the timer MSB overflows.</p>
+<p>SOPC Builder extra preparation --- In the component wizard, after importing 
+the HDL file, go to the &quot;Interfaces&quot; tab, scroll down to &quot;interrupt_sender_0&quot; 
+--&gt; Parameters. There, the &quot;associated addressable interface&quot; should be set to 
+the current component. This just says that the current component contains the 
+registers that can be set to clear an interrupt.</p>
+<p>&nbsp;</p>
+<h2>C Example</h2>
+<table class="code">
+			<tr>
+						<td class="code">
+<p class="code">
+<span class="keyword">#include</span>  &quot;io.h&quot;<br />
+<span class="keyword">#include</span>  &quot;system.h&quot;<br />
+<span class="keyword">#include</span>  &quot;sys/alt_irq.h&quot;<br />
+<br />
+<span class="keyword">#include</span>  &lt;stdio.h&gt;<br />
+<br />
+<span class="highlight">
+<span class="keyword">static</span>  
+<span class="keyword">void</span>  
+timer_interrupt(<span class="keyword">void</span>*  context);</span>
+<br />
+<br />
+<span class="keyword">typedef</span>  <span class="keyword">struct</span>  <span class="data">TimeValue</span>  {
+<br />
+ &nbsp;&nbsp;&nbsp;    <span class="keyword">int</span>  seconds;
+<br />
+ &nbsp;&nbsp;&nbsp;    <span class="keyword">int</span>  seconds_10th;
+<br />
+ &nbsp;&nbsp;&nbsp;    <span class="keyword">int</span>  seconds_100th;
+<br />
+}
+  <span class="data">TimeValue</span>;
+<br />
+<br />
+<span class="highlight">
+<span class="keyword">static</span>  <span class="keyword">void</span>  timer_interrupt(<span class="keyword">void</span>*  context)<br />
+</span>
+{
+<br />
+ &nbsp;&nbsp;&nbsp;    <span class="keyword">volatile</span>  <span class="data">TimeValue</span>*  time_val  =  (<span class="keyword">volatile</span>  <span class="data">TimeValue</span>*)  context;
+<br />
+<br />
+ &nbsp;&nbsp;&nbsp;    time_val-&gt;seconds_100th  =  time_val-&gt;seconds_100th  +  1;
+<br />
+ &nbsp;&nbsp;&nbsp;    <span class="keyword">if</span>(time_val-&gt;seconds_100th  &gt;=  10)<br />
+ &nbsp;&nbsp;&nbsp;    {
+<br />
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        time_val-&gt;seconds_100th  =  0;
+<br />
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        time_val-&gt;seconds_10th  =  time_val-&gt;seconds_10th  +  1;
+<br />
+ &nbsp;&nbsp;&nbsp;    }
+<br />
+ &nbsp;&nbsp;&nbsp;    <span class="keyword">if</span>(time_val-&gt;seconds_10th  &gt;=  10)<br />
+ &nbsp;&nbsp;&nbsp;    {
+<br />
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        time_val-&gt;seconds_10th  =  0;
+<br />
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        time_val-&gt;seconds  =  time_val-&gt;seconds  +  1;
+<br />
+ &nbsp;&nbsp;&nbsp;    }
+<br />
+ &nbsp;&nbsp;&nbsp;    <span class="keyword">if</span>(time_val-&gt;seconds  &gt;=  16)  time_val-&gt;seconds  =  0;
+<br />
+<br />
+ &nbsp;&nbsp;&nbsp;    <span class="data">IOWR</span>(HEXDISPLAY_0_BASE,  0,  time_val-&gt;seconds_10th);
+<br />
+ &nbsp;&nbsp;&nbsp;    <span class="data">IOWR</span>(HEXDISPLAY_0_BASE,  1,  time_val-&gt;seconds);
+<br />
+<br />
+ &nbsp;&nbsp;&nbsp;    
+<span class="comment">// The timer overflow value is 2^20 = 1,048,576</span>
+<br />
+ &nbsp;&nbsp;&nbsp;    <span class="data">IOWR</span>(TIMER_0_BASE,  0,  48576);
+  
+<span class="comment">//writes 1,048,576 - one million</span>
+<br />
+}
+<br />
+<br />
+<br />
+<span class="keyword">int</span>  main()<br />
+{
+<br />
+ &nbsp;&nbsp;&nbsp;    <span class="data">TimeValue</span>  time_val;
+<br />
+ &nbsp;&nbsp;&nbsp;    <span class="keyword">int</span>  switch_in;
+<br />
+<br />
+ &nbsp;&nbsp;&nbsp;    time_val.seconds  =  0;
+<br />
+ &nbsp;&nbsp;&nbsp;    time_val.seconds_10th  =  0;
+<br />
+ &nbsp;&nbsp;&nbsp;    time_val.seconds_100th  =  0;
+<br />
+<br />
+ &nbsp;&nbsp;&nbsp;    
+<span class="comment">// interrupt registration</span>
+<br />
+ &nbsp;&nbsp;&nbsp;    
+<span class="keyword" style="background-color: #FFFF00">void</span><span class="highlight">*  contex_ptr  =  (</span><span class="keyword" style="background-color: #FFFF00">void</span><span class="style1">*)  &amp;time_val;
+</span>
+<br />
+ &nbsp;&nbsp;&nbsp;    <span class="highlight">alt_ic_isr_register(TIMER_0_IRQ_INTERRUPT_CONTROLLER_ID,<br />
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;            TIMER_0_IRQ,  timer_interrupt,  contex_ptr,  0x0);</span>
+<br />
+<br />
+ &nbsp;&nbsp;&nbsp;    
+<span class="comment">// HEX display initialization:</span>
+<br />
+ &nbsp;&nbsp;&nbsp;    <span class="keyword">int</span>  i  =  0;
+<br />
+ &nbsp;&nbsp;&nbsp;    <span class="keyword">for</span>(i  =  0;
+  i  &lt;  8;
+  i++)  <span class="data">IOWR</span>(HEXDISPLAY_0_BASE,  i,  i);
+<br />
+<br />
+ &nbsp;&nbsp;&nbsp;    printf(&quot;Program  is  starting  ...\n&quot;);
+<br />
+<br />
+ &nbsp;&nbsp;&nbsp;    while  (1)<br />
+ &nbsp;&nbsp;&nbsp;    {
+<br />
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        switch_in  =  <span class="data">IORD</span>(SWITCHES_0_BASE,  0);
+<br />
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        <span class="keyword">if</span>(switch_in  &amp;  0x01)<br />
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;            <span class="data">IOWR</span>(TIMER_0_BASE,  1,  1);
+  
+<span class="comment">// set timer run flag to 1</span>
+<br />
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        <span class="keyword">else</span><br />
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        {
+<br />
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;            <span class="data">IOWR</span>(TIMER_0_BASE,  1,  0);
+  
+<span class="comment">// set timer run flag to 0</span>
+<br />
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;            time_val.seconds  =  0;
+<br />
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;            time_val.seconds_10th  =  0;
+<br />
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;            time_val.seconds_100th  =  0;
+<br />
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        }
+<br />
+ &nbsp;&nbsp;&nbsp;    }
+<br />
+<br />
+ &nbsp;&nbsp;&nbsp;    <span class="keyword">return</span>  0;
+<br />
+}
+<br />
+
+</p>						</td>
+			</tr>
+</table>
+
+<p>The interrupt related functions are highlighted in yellow. There&#39;s a 
+interrupt handler. In the main function, this handler gets registered.</p>
+<p>The interrupt handler needs to return nothing, and take a void pointer. The 
+interrupt handler can then use this pointer to access an arbitrary data 
+structure.</p>
+<p>In the interrupt handler, always do something to disable the interrupt to 
+prevent the interrupt from immediately re-occurring. In this example, the 
+interrupt is cleared by writing to the timer. The timer interrupt line is the 
+same as the timer overflow bit. So once the timer doesn&#39;t overflow, the 
+interrupt signal goes low as well.</p>
+<p>The <strong>alt_ic_isr_register( )</strong> function registers an interrupt 
+handler.</p>
+<ul>
+				<li>The first argument is an ID, which in this case doesn&#39;t 
+				really matter because the IIC (internal interrupt controller) is 
+				used. This is the default kind of interrupt controller for NIOS 
+				2. The ID can be extracted from the system.h file.</li>
+				<li>The second parameter is the IRQ (interrupt request) number. 
+				This is the number seen in the SOPC Builder. &quot;0&quot; is the highest 
+				priority and &quot;31&quot; is the lowest priority.</li>
+				<li>The third parameter is the interrupt handler function name, 
+				which resolves to a function pointer.</li>
+				<li>The fourth parameter is is the void pointer that the 
+				interrupt handler will receive.</li>
+				<li>The fifth parameter is &quot;flags&quot;, which the user guide says is 
+				currently reserved.</li>
+</ul>
+
+
+</body>
+
+</html>

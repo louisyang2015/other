@@ -1,0 +1,236 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+
+<head>
+<meta http-equiv="Content-Language" content="en-us" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ALU</title>
+<link rel="stylesheet" type="text/css" href="fpga.css" />
+</head>
+
+<body>
+
+<h1>ALU</h1>
+<p class="center">Last modified May 1, 2011</p>
+<h2>Computational Operations</h2>
+<table>
+			<tr>
+						<td>mode[3:0]</td>
+						<td>Effect on output Y0</td>
+			</tr>
+			<tr>
+						<td>0</td>
+						<td class="left">Zero: Y0 = 0 and Y1 = 0</td>
+			</tr>
+			<tr>
+						<td>1</td>
+						<td class="left">FFT:<br />
+						Y0 = X0 + X1*T ; Y1 = X0 - X1*T<br />
+						The &quot;FFT_shift&quot; determines what bit shift will take 
+						place</td>
+			</tr>
+			<tr>
+						<td>2</td>
+						<td class="left">Y0 = accumulator (acc)</td>
+			</tr>
+			<tr>
+						<td>3</td>
+						<td class="left">Y0 = rb = mu * T * X1 * (1 &lt;&lt; C0)<br />
+The value of C0[] shift value is 8 to 16, all left shifts</td>
+			</tr>
+			<tr>
+						<td>E</td>
+						<td class="left">Copy and round to Q31: Y0 = X0 rounded 
+						and saturated to Q31</td>
+			</tr>
+			<tr>
+						<td>F</td>
+						<td class="left">Y0 = X0 (for bit reverse instruction)</td>
+			</tr>
+</table>
+<p>&nbsp;</p>
+<h2>By Pass Operations</h2>
+<table>
+			<tr>
+						<td>mode[3:0]</td>
+						<td>Effect on output Y1</td>
+			</tr>
+			<tr>
+						<td>0</td>
+						<td class="left">Zero: Y0 = 0 and Y1 = 0</td>
+			</tr>
+			<tr>
+						<td>1</td>
+						<td class="left">FFT:<br />
+						Y0 = X0 + X1*T ; Y1 = X0 - X1*T<br />
+						The &quot;FFT_shift&quot; determines what bit shift will take 
+						place</td>
+			</tr>
+			<tr>
+						<td>2</td>
+						<td class="left">Simple copy: Y1 = X0</td>
+			</tr>
+			<tr>
+						<td>3</td>
+						<td class="left">Copy real component only: Y1 = 
+						{X0.real, 0}</td>
+			</tr>
+			<tr>
+						<td>4</td>
+						<td class="left">Copy and swap real and imaginary 
+						component: Y1 = {X0.imag, X0.real}</td>
+			</tr>
+			<tr>
+						<td>5</td>
+						<td class="left">Copy and conjugate: Y1 = {X0.real, -1* 
+						X0.imag}</td>
+			</tr>
+			<tr>
+						<td>6</td>
+						<td class="left">Copy and round to Q31: Y1 = X0 rounded 
+						and saturated to Q31<br />
+						This was added as an instruction first - but later 
+						operation E is added - so that operation 6 is now 
+						redundant.<br />
+						But the C# test bench already expect operation 6, so 
+						operation 6 remains for now.</td>
+			</tr>
+			<tr>
+						<td>7</td>
+						<td class="left">Y1 = X0 &lt;&lt; 16. There&#39;s no saturation 
+						check. This is for aligning 16 bit voice data to 32 bit.</td>
+			</tr>
+			<tr>
+						<td>E</td>
+						<td class="left">Copy and round to Q31: Y1 = X1 rounded 
+						and saturated to Q31</td>
+			</tr>
+			<tr>
+						<td>F</td>
+						<td class="left">Y1 = X1 (for bit reverse instruction)</td>
+			</tr>
+			</table>
+<p>&nbsp;</p>
+<h2>FFT Shift Modes</h2>
+<table>
+			<tr>
+						<td>fft_shift[1:0]</td>
+						<td>Description</td>
+			</tr>
+			<tr>
+						<td>00</td>
+						<td class="left">No shift: Y0 = X0 + X1*T ; Y1 = X0 - 
+						X1*T</td>
+			</tr>
+			<tr>
+						<td>01</td>
+						<td class="left">Shift to the left by 1 bit:<br />
+						Y0 = 2 * (X0 + X1*T) ; Y1 = 2 * (X0 - X1*T)</td>
+			</tr>
+			<tr>
+						<td>11</td>
+						<td class="left">Shift to the right by 1 bit<br />
+						Y0 = (X0 + X1*T) / 2 ; Y1 = (X0 - X1*T) / 2</td>
+			</tr>
+</table>
+<p>&nbsp;</p>
+<h2>&quot;pi_int_k&quot; Function</h2>
+<table>
+			<tr>
+						<td>input[9:2]</td>
+						<td>meaning&nbsp;</td>
+						<td>output[4:0]</td>
+			</tr>
+			<tr>
+						<td>1???_????</td>
+						<td>&gt;= 512</td>
+						<td>5&#39;d8</td>
+			</tr>
+			<tr>
+						<td>01??_????</td>
+						<td>&gt;= 256, &lt; 512</td>
+						<td>5&#39;d10 ??</td>
+			</tr>
+			<tr>
+						<td>001?_????</td>
+						<td>&gt;= 128, &lt; 256</td>
+						<td>5&#39;d10</td>
+			</tr>
+			<tr>
+						<td>0001_????</td>
+						<td>&gt;= 64, &lt; 128</td>
+						<td>5&#39;d11</td>
+			</tr>
+			<tr>
+						<td>0000_1???</td>
+						<td>&gt;= 32, &lt; 64</td>
+						<td>5&#39;d12</td>
+			</tr>
+			<tr>
+						<td>0000_01??</td>
+						<td>&gt;= 16, &lt; 32</td>
+						<td>5&#39;d13</td>
+			</tr>
+			<tr>
+						<td>0000_001?</td>
+						<td>&gt;= 8, &lt;16</td>
+						<td>5&#39;d14</td>
+			</tr>
+			<tr>
+						<td>0000_0001</td>
+						<td>&gt;= 4, &lt; 8</td>
+						<td>5&#39;d15</td>
+			</tr>
+			<tr>
+						<td>0000_0000</td>
+						<td>&lt; 4</td>
+						<td>5&#39;d16</td>
+			</tr>
+</table>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Other ALU Control Lines</h2>
+<table>
+			<tr>
+						<td>Control Lines</td>
+						<td>Description</td>
+			</tr>
+			<tr>
+						<td>mu_load</td>
+						<td class="left">When this signal is high, copy the 
+						output content of the instruction FIFO into the &quot;mu&quot; 
+						register</td>
+			</tr>
+			<tr>
+						<td>c0_wren</td>
+						<td class="left">When this signal is high, copy the 
+						output of the &quot;Pi_int_k&quot; shift block into the C0 memory</td>
+			</tr>
+			<tr>
+						<td>acc_clear</td>
+						<td class="left">When this signal is high, the 
+						accumulator (acc) clears to zero. When this signal is 
+						low, the accumulator will add the complex value (p_r, 
+						p_i) to its current value.</td>
+			</tr>
+</table>
+<p>&nbsp;</p>
+<h2>Internal Operation</h2>
+<p><img src="images/alu.gif" width="1300" height="732" /></p>
+
+<h3>Possible precision issue:</h3>
+<p>The &quot;shift by C0&quot; step shifts the value &quot;rb_pre_shift&quot; to the left by 8 to 16 
+bits. Full accuracy requires a Q7.56 in &quot;rb_pre_shift&quot;, so that after shifting 
+16 bits, the decimal point still has 40 digits. The problem here is that the 56 
+bits in &quot;rb_pre_shift&quot; are not all accurate, because it&#39;s the product of Q14.40 
+and a Q31 value.</p>
+
+<h3>Saturation check for 1000...00</h3>
+<p>Only the saturation module feeding the y0_rb checks for the 1000...00&nbsp;type 
+number. At that particular location, such number is quite possible due to 
+shifting in 8 to 16 zeros. This check is not done in any of the other saturation 
+units.</p>
+
+</body>
+
+</html>

@@ -1,0 +1,398 @@
+<html>
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>basic_service.cpp</title>
+</head>
+<body>
+<pre><font face="Courier New" size="4"><font color="#009933">// basic_service.cpp</font>
+
+<font color="FF6600"><b>//*** This basic service pops up a dialog box every few seconds</b></font>
+
+#include &lt;windows.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;iostream.h&gt;
+#include &lt;stdlib.h&gt;
+#include &quot;work_thread.h&quot;
+
+<span style="background-color: #FFFF99"><font color="#009933">//----------------------------------------------------------</font>
+<font color="#009933">//prototype section</font>
+<font color="#009933">//----------------------------------------------------------</font></span>
+
+<font color="FF6600"><b>//*** First, some utility functions:</b></font>
+
+<font color="FF6600"><b>//*** When in the function ServiceMain, error will cause</b></font>
+<font color="FF6600"><b>//*** the execution to get to this function:</b></font>
+void terminate(DWORD error);
+
+<font color="FF6600"><b>//*** Elsewhere, When error is encountered, the </b></font>
+<font color="FF6600"><b>//*** execution goes to this function</b></font>
+void ErrorHandler(char *s, DWORD err);
+
+<font color="FF6600"><b>//*** SCM = Service Control Manager, which is part of Windows OS</b></font>
+<font color="FF6600"><b>//*** There are many places where we will need to file a </b></font>
+<font color="FF6600"><b>//*** progress report to the SCM</b></font>
+<font color="FF6600"><b>//*** This function files a progress report with the SCM</b></font>
+BOOL SendStatusToSCM (DWORD dwCurrentState,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DWORD dwWin32ExitCode, &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DWORD dwCheckPoint = 0,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DWORD dwWaitHint = 0,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DWORD dwServiceSpecificExitCode = 0);
+
+<font color="FF6600"><b>//*** The execution starts at WinMain:</b></font>
+int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PSTR szCmdLine, int iCmdShow);
+
+<font color="FF6600"><b>//*** WinMain registers ServiceMain</b></font>
+
+<font color="FF6600"><b>//*** ServiceMain is called when the SCM wants to</b></font>
+<font color="FF6600"><b>//*** start the service. When it returns, the service</b></font>
+<font color="FF6600"><b>//*** has stopped. </b></font>
+void ServiceMain(DWORD argc, LPTSTR *argv);
+
+<font color="FF6600"><b>//*** ServiceMain registers ServiceCtrlHandler</b></font>
+
+<font color="FF6600"><b>//*** The messages that SCM send to the service will arrive in</b></font>
+<font color="FF6600"><b>//*** this function</b></font>
+void ServiceCtrlHandler (DWORD controlCode);
+
+<font color="FF6600"><b>//*** Somewhere in the ServiceMain function the work_thread</b></font>
+<font color="FF6600"><b>//*** is started. But since ServiceMain is so long already, the</b></font>
+<font color="FF6600"><b>//*** part inside &quot;ServiceMain&quot; that starts a worker thread</b></font>
+<font color="FF6600"><b>//*** is moved to this function.</b></font>
+bool InitService();
+
+<span style="background-color: #FFFF99"><font color="#009933">//----------------------------------------------------------</font>
+<font color="#009933">//end of prototype section</font>
+<font color="#009933">//----------------------------------------------------------</font></span>
+
+
+<span style="background-color: #FFFF99"><font color="#009933">//----------------------------------------------------------</font>
+
+<font color="#009933">// Global variables section</font>
+<font color="#009933">//----------------------------------------------------------</font></span>
+
+<font color="#009933">// The name of the service</font>
+char* SERVICE_NAME = &quot;Basic Service&quot;;
+
+<font color="#009933">//Event used to hold ServiceMain from completing</font>
+HANDLE terminateEvent = NULL;
+
+<font color="#009933">// Handle used to communicate status info with</font>
+<font color="#009933">// the SCM. Created by RegisterServiceCtrlHandler</font>
+SERVICE_STATUS_HANDLE serviceStatusHandle;
+
+<font color="#009933">// Flags holding current state of service</font>
+BOOL pauseService = FALSE;
+BOOL runningService = FALSE;
+
+<font color="#009933">// Thread for the actual work</font>
+HANDLE threadHandle = 0;
+
+<span style="background-color: #FFFF99"><font color="#009933">//----------------------------------------------------------</font>
+
+<font color="#009933">// End of global variables section</font>
+<font color="#009933">//----------------------------------------------------------</font></span>
+
+
+<font color="FF6600"><b>//*** When in the function ServiceMain, error will cause</b></font>
+<font color="FF6600"><b>//*** the execution to get to this function:</b></font>
+void terminate(DWORD error)
+{
+&nbsp;&nbsp;&nbsp;<font color="#009933">// if terminateEvent has been created, close it.</font>
+&nbsp;&nbsp;&nbsp;if (terminateEvent)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CloseHandle(terminateEvent);
+&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;<font color="#009933">// Send a message to the scm to tell about</font>
+&nbsp;&nbsp;&nbsp;<font color="#009933">// stopage</font>
+&nbsp;&nbsp;&nbsp;if (serviceStatusHandle)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SendStatusToSCM(SERVICE_STOPPED, error);
+&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;<font color="#009933">// If the thread has started kill it off</font>
+&nbsp;&nbsp;&nbsp;if (threadHandle)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CloseHandle(threadHandle);
+&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;<font color="#009933">// Do not need to close serviceStatusHandle</font>
+}
+
+<font color="FF6600"><b>//*** Besides in &quot;ServiceMain&quot;, When error is encountered, the </b></font>
+<font color="FF6600"><b>//*** execution goes to this function</b></font>
+void ErrorHandler(char *s, DWORD err)
+{
+&nbsp;&nbsp;&nbsp;cout &lt;&lt; s &lt;&lt; endl;
+&nbsp;&nbsp;&nbsp;cout &lt;&lt; &quot;Error number: &quot; &lt;&lt; err &lt;&lt; endl;
+&nbsp;&nbsp;&nbsp;ExitProcess(err);
+}
+
+<font color="FF6600"><b>//*** This function files a progress report with the SCM</b></font>
+<font color="#009933">// This function consolidates the activities of </font>
+<font color="#009933">// updating the service status with</font>
+<font color="#009933">// SetServiceStatus</font>
+BOOL SendStatusToSCM (DWORD dwCurrentState,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DWORD dwWin32ExitCode, 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DWORD dwWaitHint,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DWORD dwServiceSpecificExitCode,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DWORD dwCheckPoint)
+{
+&nbsp;&nbsp;&nbsp;BOOL success;
+&nbsp;&nbsp;&nbsp;SERVICE_STATUS serviceStatus;
+&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;<font color="#009933">// Fill in all of the SERVICE_STATUS fields</font>
+&nbsp;&nbsp;&nbsp;serviceStatus.dwServiceType =
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SERVICE_WIN32_OWN_PROCESS;
+&nbsp;&nbsp;&nbsp;serviceStatus.dwCurrentState = dwCurrentState;
+&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;<font color="#009933">// If in the process of something, then accept</font>
+&nbsp;&nbsp;&nbsp;<font color="#009933">// no control events, else accept anything</font>
+&nbsp;&nbsp;&nbsp;if (dwCurrentState == SERVICE_START_PENDING)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;serviceStatus.dwControlsAccepted = 0;
+&nbsp;&nbsp;&nbsp;else
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;serviceStatus.dwControlsAccepted = 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SERVICE_ACCEPT_STOP |
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SERVICE_ACCEPT_PAUSE_CONTINUE |
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SERVICE_ACCEPT_SHUTDOWN;
+&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;<font color="#009933">// if a specific exit code is defines, set up</font>
+&nbsp;&nbsp;&nbsp;<font color="#009933">// the win32 exit code properly</font>
+&nbsp;&nbsp;&nbsp;if (dwServiceSpecificExitCode == 0)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;serviceStatus.dwWin32ExitCode =
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dwWin32ExitCode;
+&nbsp;&nbsp;&nbsp;else
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;serviceStatus.dwWin32ExitCode = 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ERROR_SERVICE_SPECIFIC_ERROR;
+&nbsp;&nbsp;&nbsp;serviceStatus.dwServiceSpecificExitCode =
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dwServiceSpecificExitCode;
+&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;serviceStatus.dwCheckPoint = dwCheckPoint;
+&nbsp;&nbsp;&nbsp;serviceStatus.dwWaitHint = dwWaitHint;
+&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;<font color="#009933">// Pass the status record to the SCM</font>
+&nbsp;&nbsp;&nbsp;success = SetServiceStatus (serviceStatusHandle,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;serviceStatus);
+&nbsp;&nbsp;&nbsp;if (!success)
+&nbsp;&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#009933">//these next lines will stop the service</font>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;runningService=FALSE;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SetEvent(terminateEvent); <font color="#009933">// this allows ServiceMain to end</font>
+&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;return success;
+}
+
+<font color="FF6600"><b>//*** execution starts at WinMain</b></font>
+int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PSTR szCmdLine, int iCmdShow)
+{
+&nbsp;&nbsp;&nbsp;SERVICE_TABLE_ENTRY serviceTable[] = 
+&nbsp;&nbsp;&nbsp;{ 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ SERVICE_NAME,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(LPSERVICE_MAIN_FUNCTION) ServiceMain},
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ NULL, NULL }
+&nbsp;&nbsp;&nbsp;};
+&nbsp;&nbsp;&nbsp;BOOL success;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;<font color="FF6600"><b>//*** Register &quot;ServiceMain&quot; with the SCM</b></font>
+&nbsp;&nbsp;&nbsp;success = StartServiceCtrlDispatcher(serviceTable);
+&nbsp;&nbsp;&nbsp;if (!success)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ErrorHandler(&quot;In StartServiceCtrlDispatcher&quot;,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GetLastError());
+&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;return 0;
+}
+
+
+<font color="FF6600"><b>//*** ServiceMain is called when the SCM wants to</b></font>
+<font color="FF6600"><b>//*** start the service. When it returns, the service</b></font>
+<font color="FF6600"><b>//*** has stopped. </b></font>
+void ServiceMain(DWORD argc, LPTSTR *argv) 
+{
+&nbsp;&nbsp;&nbsp;<font color="FF6600"><b>//*** register &quot;ServiceCtrlHandler&quot; with SCM</b></font>
+&nbsp;&nbsp;&nbsp;serviceStatusHandle =
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RegisterServiceCtrlHandler(
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SERVICE_NAME,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(LPHANDLER_FUNCTION) ServiceCtrlHandler);
+
+&nbsp;&nbsp;&nbsp;<font color="#009933">// error handling</font>
+&nbsp;&nbsp;&nbsp;if (!serviceStatusHandle)
+&nbsp;&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;terminate(GetLastError());
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return;
+&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;<font color="#009933">// file progress report with SCM</font>
+&nbsp;&nbsp;&nbsp;BOOL success;
+&nbsp;&nbsp;&nbsp;success = SendStatusToSCM(
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SERVICE_START_PENDING,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NO_ERROR, 1, 5000);
+&nbsp;&nbsp;&nbsp;if (!success)
+&nbsp;&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;terminate(GetLastError()); 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return;
+&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;<font color="#009933">// create the termination event</font>
+&nbsp;&nbsp;&nbsp;terminateEvent = CreateEvent (0, TRUE, FALSE,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0);
+&nbsp;&nbsp;&nbsp;if (!terminateEvent)
+&nbsp;&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;terminate(GetLastError());
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return;
+&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;<font color="#009933">// Notify SCM of progress</font>
+&nbsp;&nbsp;&nbsp;success = SendStatusToSCM(
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SERVICE_START_PENDING,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NO_ERROR, 2, 1000);
+&nbsp;&nbsp;&nbsp;if (!success)
+&nbsp;&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;terminate(GetLastError()); 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return;
+&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;<font color="#009933">// Check for startup params</font>
+&nbsp;&nbsp;&nbsp;/*
+&nbsp;&nbsp;&nbsp;if (argc == 2)
+&nbsp;&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#009933">// say there is a parameter that is a number</font>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#009933">// in string form, then we get the number by:</font>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int temp = atoi(argv[1]);
+&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;*/
+&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;<font color="#009933">// Notify SCM of progress</font>
+&nbsp;&nbsp;&nbsp;success = SendStatusToSCM(
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SERVICE_START_PENDING,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NO_ERROR, 3, 5000);
+&nbsp;&nbsp;&nbsp;if (!success)
+&nbsp;&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;terminate(GetLastError()); 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return;
+&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;<font color="#009933">// Start the service itself</font>
+&nbsp;&nbsp;&nbsp;success = InitService();
+&nbsp;&nbsp;&nbsp;if (!success)
+&nbsp;&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;terminate(GetLastError());
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return;
+&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;<font color="#009933">// The service is now running. </font>
+&nbsp;&nbsp;&nbsp;<font color="#009933">// Notify SCM of progress</font>
+&nbsp;&nbsp;&nbsp;success = SendStatusToSCM(
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SERVICE_RUNNING,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NO_ERROR, 0, 0);
+&nbsp;&nbsp;&nbsp;if (!success)
+&nbsp;&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;terminate(GetLastError()); 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return;
+&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;<font color="#009933">// Wait for stop signal, and then terminate</font>
+&nbsp;&nbsp;&nbsp;<font color="#009933">// The program execution will hang here until someone </font>
+&nbsp;&nbsp;&nbsp;<font color="#009933">// somewhere calls &quot;SetEvent(terminateEvent);&quot;</font>
+&nbsp;&nbsp;&nbsp;WaitForSingleObject (terminateEvent, INFINITE);
+&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;terminate(0);
+}
+
+
+<font color="FF6600"><b>//*** The messages that SCM send to the service will arrive in</b></font>
+<font color="FF6600"><b>//*** this function</b></font>
+void ServiceCtrlHandler (DWORD controlCode) 
+{
+&nbsp;&nbsp;&nbsp;DWORD &nbsp;currentState = 0;
+&nbsp;&nbsp;&nbsp;BOOL success;
+&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;switch(controlCode)
+&nbsp;&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#009933">// There is no START option because</font>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#009933">// ServiceMain gets called on a start</font>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#009933">// Stop the service</font>
+&nbsp;&nbsp;&nbsp;case SERVICE_CONTROL_STOP:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;currentState = SERVICE_STOP_PENDING;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#009933">// Tell the SCM what's happening</font>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;success = SendStatusToSCM(
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SERVICE_STOP_PENDING,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NO_ERROR, 1, 5000);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#009933">// Not much to do if not successful</font>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#009933">//these next lines will stop the service</font>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;runningService=FALSE;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SetEvent(terminateEvent); <font color="#009933">// this allows ServiceMain to end</font>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#009933">// Pause the service</font>
+&nbsp;&nbsp;&nbsp;case SERVICE_CONTROL_PAUSE:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (runningService &amp;&amp; !pauseService)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#009933">// Tell the SCM what's happening</font>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;success = SendStatusToSCM(
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SERVICE_PAUSE_PENDING,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NO_ERROR, 1, 1000);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#009933">//these next lines will suspend the service</font>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pauseService = TRUE;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SuspendThread(threadHandle);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;currentState = SERVICE_PAUSED;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#009933">// Resume from a pause</font>
+&nbsp;&nbsp;&nbsp;case SERVICE_CONTROL_CONTINUE:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (runningService &amp;&amp; pauseService)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#009933">// Tell the SCM what's happening</font>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;success = SendStatusToSCM(
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SERVICE_CONTINUE_PENDING,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NO_ERROR, 1, 1000);
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#009933">//these next lines will resume the service</font>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pauseService=FALSE;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ResumeThread(threadHandle);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;currentState = SERVICE_RUNNING;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#009933">// Update current status</font>
+&nbsp;&nbsp;&nbsp;case SERVICE_CONTROL_INTERROGATE:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#009933">// it will fall to bottom and send status</font>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#009933">// Do nothing in a shutdown. Could do cleanup</font>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#009933">// here but it must be very quick.</font>
+&nbsp;&nbsp;&nbsp;case SERVICE_CONTROL_SHUTDOWN:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#009933">// Do nothing on shutdown</font>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return;
+&nbsp;&nbsp;&nbsp;default:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;
+&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;SendStatusToSCM(currentState, NO_ERROR);
+}
+
+<font color="#009933">// Initializes the service by starting its thread</font>
+bool InitService()
+{
+&nbsp;&nbsp;&nbsp;DWORD id;
+&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;<font color="#009933">// Start the service's thread</font>
+&nbsp;&nbsp;&nbsp;threadHandle = CreateThread(0, 0,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(LPTHREAD_START_ROUTINE) work_thread,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0, 0, &amp;id); 
+&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;if (threadHandle==0)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return FALSE;
+&nbsp;&nbsp;&nbsp;else
+&nbsp;&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#009933">//make it low priority</font>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SetThreadPriority(threadHandle, IDLE_PRIORITY_CLASS);
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;runningService = TRUE;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return TRUE;
+&nbsp;&nbsp;&nbsp;}
+}
+</font></pre>
+</body>
+</html>

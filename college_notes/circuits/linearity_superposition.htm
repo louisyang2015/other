@@ -1,0 +1,67 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Linearity and Superposition</title>
+<base target="_blank">
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">Linearity and Superposition</font></h1>
+<p><b><font size="5" color="#008000">Linearity</font></b></p>
+<p><font size="4">&quot;<b>Linear elements</b>&quot; include resistors, capacitors, 
+linearly dependent sources. I am not sure what the criteria is --- but maybe 
+when the Laplace transform is done on a function relating voltage and current, 
+that function needs to be linear. Oh just accept it that resistors, capacitors, 
+and linearly dependent sources are linear elements, and if a circuit is made of 
+linear elements, then it's linear.</font></p>
+<p><img border="0" src="images/pic0015.gif" width="735" height="339"></p>
+<p><font size="4">If the circuit is linear, with a single source, and I am 
+measuring the voltage across a particular resistor, then doubling that single 
+source will also double the voltage across that resistor. The same idea applies 
+to the current of the resistor --- double the source, get double current. This 
+relationship is called &quot;<font color="#008000"><b>linearity</b></font>&quot; of the 
+circuit.</font></p>
+<p><font size="4">The linearity thing only works for voltages and currents --- 
+maybe the criteria is that you do the Laplace transform on the equations 
+involved, and the result is a linear transfer function.</font></p>
+<p><font size="4">Power is not a linear quantity --- so if you double the 
+source, you won't get double the power. (twice current times twice voltage gives 
+four times the power).</font></p>
+<p><font size="4">A part of the book actually uses linearity to solve problems 
+--- you basically assume the input voltage is ONE volt, and you solve the 
+circuit say for the output voltage. Then the input voltage is really TWO volts, 
+so you double the output voltage that you previously computed as use that as the 
+answer. --- it's of course a rather silly way to solve problems --- the book 
+just wants to show case the concept, that's all.</font></p>
+<p><b><font size="5" color="#008000">Superposition</font></b></p>
+<p><font size="4">If the circuit is linear, and you are computing a linear 
+quantity, you can consider each source individually and add up their 
+contributions. Say you want the voltage across a resistor and the circuit has 
+two voltage sources: A and B.</font></p>
+<p><img border="0" src="images/pic0016.gif" width="632" height="244"></p>
+<p><font size="4">You can set B to zero, and solve the circuit to see how much A 
+contributes to the voltage across the resistor. Then you set A to zero, and 
+solve the circuit to see how much B&nbsp; contributes to the voltage across the 
+resistor. Finally you add the two contributions up to determine the final 
+answer. It's like that linearity thing --- an important circuit concept, but 
+much less important in terms of problem solving.</font></p>
+<p><font size="4">To set a voltage source to zero is the same as replacing it 
+with a short circuit. To set a current source to zero is the same as replacing 
+it with an open circuit.</font></p>
+<p>&nbsp;</p>
+<p><b><font size="5" color="#FF6600">Problems:</font></b></p>
+<p><img border="0" src="images/pic0017.gif" width="552" height="1066"></p>
+<p><font size="4">Solutions:</font></p>
+<ul>
+  <li><font size="4"><a href="images/pic0018.gif">#3, #15</a></font></li>
+  <li><font size="4"><a href="images/pic0019.gif">#18</a></font></li>
+</ul>
+
+</body>
+
+</html>

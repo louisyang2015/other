@@ -1,0 +1,194 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Menus and Keyboard Accelerators</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">Menus and Keyboard Accelerators</font></h1>
+<h2><font color="#008000">Referencing a Menu in your Program</font></h2>
+<p><font size="4">You create the menu resource with Visual Studio. Then you load 
+the into the program by editing the window class definition.</font></p>
+<h2><font color="#FF6600" face="Courier New">wndclass.lpszMenuName = 
+TEXT(&quot;prog_menu&quot;) ;</font></h2>
+<p><font size="4">A second way to load a menu resource into a program is to load 
+the menu in &quot;<font face="Courier New" color="#FF6600">CreateWindow(...)</font>&quot; 
+--- the ninth parameter lets you supply a handle for a menu.</font></p>
+<p><font size="4">You can get a handle to the menu with:</font></p>
+<p><b><font size="4" face="Courier New" color="#FF6600">hMenu = 
+LoadMenu(hInstance, TEXT(&quot;MyMenu&quot;));</font></b></p>
+<p><font size="4">As a third way to load a menu resource into a program:</font></p>
+<p><b><font size="4" face="Courier New" color="#FF6600">SetMenu (hwnd, hMenu);</font></b></p>
+<p><font size="4">Any menu that is attached to a window is destroyed when the 
+window is destroyed. Any menus not attached to a window should be explicitly 
+destroyed by:</font></p>
+<p><font size="4"> <font face="Courier New" color="#FF6600">DestroyMenu (hMenu);</font></font></p>
+<p>&nbsp;</p>
+<h2><font color="#008000">Menu messages</font></h2>
+<p><font size="4"><font color="#FF6600">WM_INITMENUPOPUP</font> --- right before 
+the popup menu is shown (say click on Edit, and right before Copy, Paste, and 
+Cut shows up)</font></p>
+<ul>
+  <li><font size="4">wParam --- popup menu handle</font></li>
+  <li><font size="4">LOWORD(lParam) popup index</font></li>
+</ul>
+<p><font size="4"><font color="#FF6600">WM_MENUSELECT</font> --- when the user 
+highlights a menu item</font></p>
+<ul>
+  <li><font size="4">LOWORD (wParam) --- menu ID (if the item that the user is 
+  high lighting has no submenu)</font></li>
+  <li><font size="4">lParam --- handle to menu containing selected items</font></li>
+</ul>
+<p><b><font color="#FF6600" size="5">WM_COMMAND</font></b><font size="4"> --- 
+when the user clicks on a menu item</font></p>
+<ul>
+  <li><b><font size="5" face="Courier New" color="#FF6600">LOWORD (wParam) </font>
+  <font size="5">--- Menu ID</font></b></li>
+</ul>
+<p>&nbsp;</p>
+<h2><font color="#008000">Floating Popup Menus (Context Menu)</font></h2>
+<p><font size="4">You need to have a separate menu resource for the context 
+menu. The context menu and the main menu should be two separate resources --- 
+but they can share similar menu item IDs.</font></p>
+<p><font size="4">The menu resource for the pop up menu should look something 
+like the following:</font></p>
+<p><img border="0" src="images/pic022.gif" width="510" height="223"></p>
+<p><font size="4">The whole menu is called &quot;popup_menu&quot; --- but this menu has 
+one top level menu item, &quot;place holder&quot;. The context menu is this &quot;place holder&quot; 
+entity.</font></p>
+<p><font size="4">To get the &quot;place holder---&gt; File&quot; to be a sub menu, instead 
+of a menu item, check the &quot;popup&quot; style box:</font></p>
+<p><img border="0" src="images/pic023.gif" width="403" height="165"></p>
+<p><font size="4">The coding support:</font></p>
+<p><font face="Courier New" size="4" color="#FF6600">LRESULT CALLBACK WndProc 
+(...)<br>
+{<br>
+&nbsp;&nbsp;&nbsp; static HMENU hMenu;<br>
+<br>
+&nbsp;&nbsp;&nbsp; switch (message)<br>
+&nbsp;&nbsp;&nbsp; {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case WM_CREATE:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; hMenu = 
+LoadMenu (app_instance, &quot;popup_menu&quot;);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; hMenu = 
+GetSubMenu (hMenu, 0);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 0 ;<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case WM_RBUTTONUP:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; POINT point;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; point.x = 
+LOWORD (lParam);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; point.y = 
+HIWORD (lParam);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+ClientToScreen (hwnd, &amp;point);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+TrackPopupMenu (hMenu, TPM_RIGHTBUTTON, point.x,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+point.y, 0, hwnd, NULL);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</font></p>
+<p><font size="4">The &quot;<font face="Courier New" color="#FF6600">GetSubMenu(...)</font>&quot; 
+is used because the &quot;place holder&quot; entity has no ID assigned to it. Only the 
+overall thing has an ID.</font></p>
+<p>&nbsp;</p>
+<h2><font color="#008000">Manipulating the Menu Items</font></h2>
+<p><font size="4">To get a handle to the current menu:</font></p>
+<p><font size="4" face="Courier New" color="#FF6600">hMenu = GetMenu (hwnd);</font></p>
+<p><font size="4">To set the check mark of a particular menu item:</font></p>
+<p><font size="4" face="Courier New" color="#FF6600">CheckMenuItem (hMenu, 
+iSelection, MF_UNCHECKED);<br>
+CheckMenuItem (hMenu, iSelection, MF_CHECKED);</font></p>
+<p><font size="4">To enable/disable a menu item:</font></p>
+<p><font size="4" color="#FF6600" face="Courier New">EnableMenuItem (hMenu, 
+MENU_ITEM_ID, MF_GRAYED);<br>
+EnableMenuItem (hMenu, MENU_ITEM_ID, MF_ENABLED);</font></p>
+<p><font size="4">Changing the Menu at run time:</font></p>
+<ul>
+  <li><font size="4" face="Courier New">AppendMenu</font></li>
+  <li><font size="4" face="Courier New">DeleteMenu</font></li>
+  <li><font size="4" face="Courier New">InsertMenu</font></li>
+  <li><font size="4" face="Courier New">ModifyMenu</font></li>
+  <li><font size="4" face="Courier New">RemoveMenu</font></li>
+</ul>
+<p><font size="4">To know the current flags of a menu item: (I think you should 
+rely on program variables)</font></p>
+<p><font size="4" face="Courier New">iFlags = GetMenuState (hMenu, id, iFlag);</font></p>
+<p>&nbsp;</p>
+<p><b><font size="4" color="#008000">Useful note: Adding a System Menu</font></b></p>
+<p><font size="4">This is probably the easiest way to have a &quot;trigger&quot; in an 
+application (even easier than having a button as a trigger)</font></p>
+<p><font face="Courier New" size="4" color="#FF6600">case WM_CREATE:<br>
+&nbsp;&nbsp;&nbsp; hMenu = GetSystemMenu (hwnd, FALSE) ;<br>
+&nbsp;&nbsp;&nbsp; AppendMenu (hMenu, MF_SEPARATOR, 0, NULL) ;<br>
+&nbsp;&nbsp;&nbsp; AppendMenu (hMenu, 0, 1, TEXT (&quot;&amp;Print&quot;)) ;<br>
+&nbsp;&nbsp;&nbsp; return 0 ;</font></p>
+<p><font face="Courier New" size="4" color="#FF6600">case WM_SYSCOMMAND:<br>
+&nbsp;&nbsp;&nbsp; if (wParam == 1)<br>
+&nbsp;&nbsp;&nbsp; {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font>
+<font face="Courier New" size="4" color="#008000">//do stuff</font><font face="Courier New" size="4" color="#FF6600"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 0 ;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; break ;</font></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><font color="#008000">Keyboard Accelerators</font></h2>
+<p><font size="4">For keyboard accelerators, Windows sends the WM_COMMAND 
+message to the Window procedure whose handle is specified in the Windows 
+function <b><font face="Courier New" color="#FF6600">TranslateAccelerator</font></b>. 
+(So that no matter which control has keyboard focus, the keyboard accelerator is 
+going to one windows procedure.)</font></p>
+<p><font size="4">Accelerators produce WM_COMMAND messages with <b>
+<font face="Courier New" color="#FF6600">LOWORD (wParam)</font></b> being the 
+accelerator ID. (have it be the same as the menu item ID)</font></p>
+<p><font size="4">To add keyboard accelerator to a program, first add an 
+accelerator resource. Then use this code in WinMain.</font></p>
+<p><font size="4" face="Courier New" color="#FF6600">HACCEL hAccel = 
+LoadAccelerators (app_instance, <br>
+&nbsp;&nbsp;&nbsp; TEXT(&quot;prog_accelerator&quot;));<br>
+<br>
+while (GetMessage (&amp;msg, NULL, 0, 0))<br>
+{<br>
+&nbsp;&nbsp;&nbsp; if(!TranslateAccelerator(hwnd, hAccel, &amp;msg))<br>
+&nbsp;&nbsp;&nbsp; {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TranslateMessage (&amp;msg) ;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DispatchMessage (&amp;msg) ;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+}</font></p>
+<p><font size="4">Note that the to deal with the accelerator, you need to modify 
+the message loop. The &quot;hwnd&quot; parameter to TranslateAccelerator reroutes the 
+accelerator message to &quot;hwnd&quot; --- regardless of where the accelerator message 
+came from.</font></p>
+<p><font size="4">For reference, the old message loop is:</font></p>
+<p><font size="4" face="Courier New">while (GetMessage (&amp;msg, NULL, 0, 0))<br>
+{<br>
+&nbsp;&nbsp;&nbsp; TranslateMessage (&amp;msg) ;<br>
+&nbsp;&nbsp;&nbsp; DispatchMessage (&amp;msg) ;<br>
+}</font></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><font size="4" color="#008000">Other notes</font></p>
+<p><font size="4">The top level menu has a menu handle. Each popup menu within a 
+top-level menu has its own menu handle, and the system menu (which is also a 
+popup) has a menu handle.</font></p>
+<p><font size="4">For the text in a menu item, use '\t' to insert a tab 
+character, or use '\a' in the character string to right justify the text that 
+follows the '\a'.</font></p>
+<p><font size="4">Be sure you know the values of the numbers assigned to the 
+menu item IDs --- make sure those IDs are different from the control IDs.</font></p>
+
+<p><font size="4">If the keyboard accelerator corresponds to a disabled menu 
+item ID, then there is no WM_COMMAND message.</font></p>
+
+<p><font size="4">If the keyboard accelerator don't correspond to any menu item, 
+you will still get the WM_COMMAND message.</font></p>
+
+</body>
+
+</html>

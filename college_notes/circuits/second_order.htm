@@ -1,0 +1,923 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Transient Analysis of Second Order Circuits</title>
+<base target="_blank">
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">Transient Analysis of Second Order 
+Circuits</font></h1>
+<p><font size="4">Second order circuits have two storage elements. These 
+circuits are solved by solving a second order differential equation.</font></p>
+
+<p><font size="4">A second order homogeneous differential equation has the form:</font></p>
+
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    A </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">d<sup>2</sup> x(t)
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">dt<sup>2</sup>
+          </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    + B </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">d x(t) </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">dt </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    + C x(t) = 0 </font></td>
+  </tr>
+</table>
+<p><font size="4">where A, B, C are constants. We solve this equation by solving 
+the characteristic equation:</font></p>
+
+<pre><font size="5" color="#FF8000">	As<sup>2</sup> + Bs + C = 0</font></pre>
+<p><font size="4">The roots of the characteristic equation, r<sub>1</sub> and r<sub>2</sub>, 
+determines the complementary solution.</font></p>
+<hr>
+<h2><font color="#008000">Three Forms of the Complementary Solution</font></h2>
+<p><font size="4">If r<sub>1</sub> and r<sub>2</sub> are both real,</font></p>
+<pre><font size="4">	x<sub>c</sub>(t) = K<sub>1</sub> e<sup>r1t</sup> + K<sub>2 </sub>e<sup>r2t</sup></font></pre>
+<p><font size="4">and this case is called <font color="#008000"><b>over damped</b></font>.</font></p>
+<p><font size="4">If r<sub>1</sub> and r<sub>2</sub> are the same,</font></p>
+<pre><font size="4">	x<sub>c</sub>(t) = (K<sub>1</sub> + k<sub>2</sub> t)e<sup>r1t</sup></font></pre>
+<p><font size="4">and this case is called <font color="#008000"><b>critically 
+damped</b></font>.</font></p>
+<p><font size="4">If r<sub>1</sub> and r<sub>2</sub> are complex conjugates,</font></p>
+<pre><font size="4">	r<sub>1</sub> = a + bi
+	r<sub>2</sub> = a - bi
+	x<sub>c</sub>(t) = e<sup>ax</sup>(A<sub>1</sub> * cos bt + A<sub>2</sub> * sin bt)</font></pre>
+<p><font size="4">and this case is called <font color="#008000"><b>under damped</b></font></font></p>
+<p><font size="4">An under damped graph is an oscillation compressed by a e<sup>ax</sup> 
+envelope.</font></p>
+<p><font size="4">An example of under damped graph:</font></p>
+<pre><font size="4">	xc(t) = e<sup>-x</sup>(cos 10t + sin 10t)</font></pre>
+<p><img border="0" src="images/pic0102.gif" width="499" height="407"></p>
+<hr color="#FF8000">
+<h2><font color="#008000">Some graphs and examples of over damped and critically 
+damped</font></h2>
+<pre><font size="4">	x<sub>c</sub>(t) = K<sub>1</sub> e<sup>-2t</sup> + K<sub>2 </sub>e<sup>2t</sup> ??<sup>
+</sup>	x<sub>c</sub>(t) = K<sub>1</sub> e<sup>3t</sup> + K<sub>2 </sub>e<sup>3t</sup> ??</font></pre>
+<p><font size="4">Having e<sup>something_positive * t </sup>would mean that x<sub>c</sub>(t) 
+would grow without bound.</font></p>
+<pre><font size="4">	x<sub>c</sub>(t) = 2 e<sup>-2t</sup> + 3<sub> </sub>e<sup>-3t</sup> ?? (graph shown below)</font></pre>
+<p><img border="0" src="images/pic0071.gif" width="491" height="401"></p>
+<p><font size="4">The maximum x<sub>c</sub>(t) is at t = 0, and the graph just 
+falls off starting at zero.</font></p>
+<table border="0" cellpadding="8" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" bgcolor="#FFFF99">
+  <tr>
+    <td>
+    <pre><b><font size="5" color="#FF8000">	x<sub>c</sub>(t) = 2 e<sup>-0.5t</sup> - 2<sub> </sub>e<sup>-2t </sup></font></b><font size="5">(graph shown below)</font><b><font size="5" color="#FF8000"> </font></b></pre>
+    </td>
+  </tr>
+</table>
+<p><img border="0" src="images/pic0072.gif" width="500" height="405"></p>
+<p><font size="4">This is an important scenario. Both e<sup>-0.5t</sup> and e<sup>-2t</sup> 
+will eventually drop off to zero --- but the e<sup>-2t</sup> drops off faster. 
+This means the gap between e<sup>-0.5t</sup> and e<sup>-2t</sup>&nbsp; will 
+widen at first, and then narrow.</font></p>
+<table border="0" cellpadding="8" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" bgcolor="#FFFF99">
+  <tr>
+    <td>
+    <pre><font size="5">	<font color="#FF8000">x<sub>c</sub>(t) = t e<sup>-1t</sup></font> (graph shown below)</font></pre>
+    </td>
+  </tr>
+</table>
+<p><img border="0" src="images/pic0072.gif" width="500" height="405"></p>
+<p><font size="4">This is another important case. The <font color="#FF8000">y = 
+t</font> will grow faster than the <font color="#FF8000">y = e<sup>-t</sup></font> 
+decline up till t = 1.</font></p>
+<pre><font size="4">	x<sub>c</sub>(t) = (4 + t) e<sup>-t</sup> ?? (graph shown below)</font></pre>
+<p><img border="0" src="images/pic0099.gif" width="499" height="404"></p>
+<p><font size="4">In this case, the first term (4*e<sup>-t</sup>) over shadows 
+the second term (t*e<sup>-t</sup>), and the graph is mostly like the first term.</font></p>
+<pre><font size="4">	x<sub>c</sub>(t) = (0.1 + t) e<sup>-t</sup> ?? (graph shown below)</font></pre>
+<pre><img border="0" src="images/pic0100.gif" width="515" height="401"></pre>
+<p><font size="4">In this case, the first term (0.1*e<sup>-t</sup>) is small 
+enough that the (t*e<sup>-t</sup>) second term's rise and fall effect shows 
+through.</font></p>
+<p><font size="4">Both the overly damped case and the critically damped case can 
+have a rise and fall effect. <b>It's not possible to compare the two cases 
+directly.</b> The reason is that overly damped case can achieve a rise and fall 
+effect by exploiting the difference between <font color="#008000"><b>two</b></font> 
+different e<sup>something</sup> terms, while the critically damped case only use
+<b><font color="#008000">one</font></b> e<sup>something</sup> term.</font></p>
+<pre><font size="5">	x<sub>c</sub>(t) = 3 e<sup>-0.5t</sup> - 2<sub> </sub>e<sup>-2t </sup><font color="#0000FF">(blue line)
+</font>	x<sub>c</sub>(t) = (1 + 2t) e<sup>-0.5t </sup><font color="#008000">(green line)
+</font>	x<sub>c</sub>(t) = (1 + 2t) e<sup>-2t </sup><font color="#FF0000">(red line)
+</font>	x<sub>c</sub>(t) = (1 + 2t) e<sup>-1.25t </sup><font color="#00E6B8">(blue green line)</font></font></pre>
+<p><img border="0" src="images/pic0101.gif" width="502" height="405"></p>
+<p><font size="4">The blue line is overly damped while all three others are 
+critically damped. Some books (including the book that this documentation is 
+based on) will say that critically damped will rise to peak and decline to 
+steady state faster than overly damped --- this is NOT true in the sense that <b>
+not all critically damped curves will approach steady state faster than all 
+overly damped curves.</b> How fast the curve peak or approach zero has to do 
+with starting value and the time constant for decay.</font></p>
+<hr color="#FF8000">
+<h2><font color="#008000">Additional Terminology</font></h2>
+
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    A </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">d<sup>2</sup> x(t)
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">dt<sup>2</sup>
+          </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    + B </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">d x(t) </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">dt </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    + C x(t) = 0 </font></td>
+  </tr>
+</table>
+<p><font size="4">can be rewritten as:</font></p>
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">d<sup>2</sup> x(t)
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">dt </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    + 2sw </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">d x(t) </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">dt </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    + w<sup>2</sup> x(t) = 0 </font></td>
+  </tr>
+</table>
+<p><font size="4">s --- is called the exponential damping ratio</font></p>
+<p><font size="4">w --- is called the undamped natural frequency</font></p>
+<p><font size="4">s &gt; 1 means x<sub>c</sub>(t) is over damped<br>
+s = 1 means x<sub>c</sub>(t) is critically damped<br>
+s &lt; 1 means x<sub>c</sub>(t) is under damped </font></p>
+<hr color="#FF8000">
+<p><font size="4">Example of a Second-Order Circuit:</font></p>
+<p><font size="4">Find v<sub>c</sub>(t).</font></p>
+<p><font size="4">Given: R<sub>1</sub> = 10 ohm, R<sub>2</sub> = 8 ohm, C = 1/8 
+F, L = 2H,<br>
+v<sub>c</sub>(0) = 1V, i<sub>L</sub>(0) = -1/2 A</font></p>
+<p><img border="0" src="images/pic0103.gif" width="600" height="638"></p>
+<p><font size="4">First, list a bunch of isolated facts:</font></p>
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    i<sub>c</sub>(t) =&nbsp; </font></td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="7">
+    C</font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">d V<sub>c</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">dt </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    v<sub>L</sub>(t) =&nbsp; </font></td>
+    <td noWrap align="middle"><font face="Courier New" size="7" color="#FF8000">
+    L</font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">d i<sub>L</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">dt </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">v<sub>L</sub> - V<sub>c</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">R<sub>1</sub> </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    = i<sub>c</sub> + </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">v<sub>c</sub> </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">R<sub>2</sub> </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    = -i<sub>L</sub> </font></td>
+  </tr>
+</table>
+<p><font size="4">There are quite a few ways to combine the above equations --- 
+depending on what variable you are going for. The problem is asking for v<sub>c</sub>(t), 
+so try to get a differential equation entirely in terms of v<sub>c</sub>.</font></p>
+<p><font size="4">Yet, it's still not clear to get a differential equation in v<sub>c</sub> 
+--- so as a first step, get the inductor numbers i<sub>L</sub> and v<sub>L</sub> 
+in terms of the capacitor numbers i<sub>c</sub> and v<sub>c</sub> .</font></p>
+<p><font size="4">For i<sub>L</sub> we have:</font></p>
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    i<sub>c</sub> + </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">v<sub>c</sub> </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">R<sub>2</sub> </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    = -i<sub>L</sub> </font></td>
+  </tr>
+</table>
+<p><font size="4">For v<sub>L</sub> we have:</font></p>
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">v<sub>L</sub> - V<sub>c</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">R<sub>1</sub> </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    = i<sub>c</sub> + </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">v<sub>c</sub> </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">R<sub>2</sub> </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<p><font size="4">Then we use:</font></p>
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    v<sub>L</sub>(t) =&nbsp; </font></td>
+    <td noWrap align="middle"><font face="Courier New" size="7" color="#FF8000">
+    L</font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">d i<sub>L</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">dt </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<p><font size="4">and replace the v<sub>L</sub> and i<sub>L</sub> with 
+expressions involving just the capacitor numbers. This will give us a 
+differential equation in terms of v<sub>c</sub> and i<sub>c</sub> . </font></p>
+<p><font size="4">Finally, we change all the i<sub>c</sub> terms into v<sub>c</sub> 
+terms with:</font></p>
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    i<sub>c</sub>(t) =&nbsp; </font></td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="7">
+    C</font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">d V<sub>c</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">dt </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<p><font size="4">This is a general procedure with these problems --- first list 
+a bunch of isolated facts, then work toward a differential equation in terms of 
+just one variable. Keep the variables --- don't substitute in the numbers until 
+the very end. The variables can make relationships between various equations 
+more clear. Things like <font face="Courier New" color="#FF8000">v = L * di/dt</font> 
+would be harder to recognize if you replace the 'L' with actual numbers.</font></p>
+<p><font size="4">In this problem, the differential equation comes out to be:</font></p>
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    -LC </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">d<sup>2</sup> v<sub>c</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">dt<sup>2</sup>
+          </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    + </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">d v<sub>c</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">dt </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="7">
+    (</font> </td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">-L </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">R<sub>2</sub> </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    - R<sub>1</sub> C </font></td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="7">
+    )</font> </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    - v<sub>c</sub> </font></td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="7">
+    (</font> </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    1 + </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">R<sub>1</sub> </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">R<sub>2</sub> </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="7">
+    )</font> </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    = 0 </font></td>
+  </tr>
+</table>
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">d<sup>2</sup> v<sub>c</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">dt<sup>2</sup>
+          </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    + 6 </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">d v<sub>c</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">dt </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    - </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">9 </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">4 </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    v<sub>c</sub> = 0 </font></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<pre><font size="5" color="#FF8000">v<sub>c</sub>(t) = (k<sub>1</sub> + k<sub>2</sub> t)e<sup>-3t</sup></font></pre>
+<p><font size="4">To get k<sub>1</sub>, k<sub>2</sub>, we need v<sub>c</sub>(0) 
+and v<sub>c</sub>'(0). We have v<sub>c</sub>(0), but must get v<sub>c</sub>'(0) 
+indirectly --- it's not possible to examine the circuit and get v<sub>c</sub>'(0) 
+or any other similar derivative terms. </font></p>
+<p><font size="4">In this problem, we have to go from i<sub>L</sub>(0) to v<sub>c</sub>(0). 
+In general, we have to go from some non derivative initial condition to a 
+derivative initial condition.</font></p>
+<p><font size="4">In this problem, i<sub>L</sub>(0) is given --- it has to be 
+given. This problem has no independent source nor does it have a switch, so we 
+can't solve for i<sub>L</sub>(0) even if we want to. In general, we might have 
+to solve for these initial conditions from the circuit.</font></p>
+<p><font size="4">One of the original list of facts about the circuit:</font></p>
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    -i<sub>c</sub> + </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">-v<sub>c</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">R<sub>2</sub> </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    = i<sub>L</sub> </font></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    C </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">d v<sub>c</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">dt </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    + </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">v<sub>c</sub> </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">R<sub>2</sub> </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    = -i<sub>L</sub> </font></td>
+  </tr>
+</table>
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="7">
+    C</font><font face="Courier New" color="#ff8000" size="5"> </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">d v<sub>c</sub> (0)
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">dt </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    + </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">v<sub>c</sub> (0)
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">R<sub>2</sub> </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    = -i<sub>L</sub> (0) </font></td>
+  </tr>
+</table>
+<p><font size="4">and the above equation allows us to solve for v<sub>c</sub>'(0).</font></p>
+<p><b><font size="4" color="#008000">Final answer:</font></b></p>
+<pre><font size="5" color="#008000">	v<sub>c</sub>(t) = (1 + 6t)e<sup>-3t</sup></font></pre>
+<p>&nbsp;</p>
+
+<h2><font color="#FF8000">Problems:</font></h2>
+
+<table border="0" cellpadding="8" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td nowrap align="left" valign="top"><font size="5">#6.67</font></td>
+    <td><font size="5">Find i(t) for t &gt; 0 :</font><p>
+    <img border="0" src="images/pic0063.gif" width="597" height="440"></td>
+  </tr>
+  <tr>
+    <td nowrap align="left" valign="top"><font size="5">#6.70</font></td>
+    <td><font size="5">Find v<sub>o</sub>(t) for t &gt; 0 :</font><p>
+    <img border="0" src="images/pic0064.gif" width="750" height="235"></td>
+  </tr>
+</table>
+<p><font size="4">Solutions:</font></p>
+
+<ul>
+  <li><font size="4"><a href="images/pic0082.gif">#6.67</a></font></li>
+  <li><font size="4"><a href="images/pic0083.gif">#6.67 (cont.)</a></font></li>
+  <li><font size="4"><a href="images/pic0084.gif">#6.67 (page 3), #6.70</a></font></li>
+  <li><font size="4"><a href="images/pic0085.gif">#6.70 (cont.)</a></font></li>
+  <li><font size="4"><a href="images/pic0086.gif">#6.70 (page 3)</a></font></li>
+</ul>
+
+</body>
+
+</html>

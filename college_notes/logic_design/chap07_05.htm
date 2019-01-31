@@ -1,0 +1,178 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Map Entered Variable Variation of the K-Map</title>
+</head>
+
+<body>
+
+<h1 align="center">
+<font color="#008000">Map Entered Variable Variation of the K-Map</font></h1>
+<p><font size="4">This is just a scheme to fit more variables onto a K-Map</font></p>
+<p><font size="4">Example:</font></p>
+<p><font size="4">F(A, B, C, D) = A'B'C + A'BC + A'BC'D + ABCD + (AB'C) </font>
+</p>
+<p><font size="4">where the last term AB'C is a don't care.</font></p>
+<p><font size="4">There are four variables, but we can fit it onto a three 
+variable K-Map by using:</font></p>
+
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td colspan="2" align="center"><font size="4">A</font></td>
+  </tr>
+  <tr>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">1</font></td>
+  </tr>
+  <tr>
+    <td rowspan="4" align="center" valign="top"><font size="4">BC</font></td>
+    <td align="center"><font size="4">00</font></td>
+    <td align="center" colspan="2" rowspan="4">
+    <table border="1" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+      <tr>
+        <td><font size="5">&nbsp;</font></td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td><font size="5">1</font></td>
+        <td><font size="5">x</font></td>
+      </tr>
+      <tr>
+        <td><font size="5">1</font></td>
+        <td><font size="5">D</font></td>
+      </tr>
+      <tr>
+        <td><font size="5">D</font></td>
+        <td>&nbsp;</td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">01</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">11</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">10</font></td>
+  </tr>
+</table>
+<p><font size="4">The &quot;D&quot; acts as a Boolean flag --- the D minterms are 1 if D 
+is 1, the D minterms are 0 if D is 0. There are two sets of K-Maps, and we 
+satisfy the function f by satisfying both K-Maps.</font></p>
+<p><font size="4">The D = 0 K-map:</font></p>
+
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td colspan="2" align="center"><font size="4">A</font></td>
+  </tr>
+  <tr>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">1</font></td>
+  </tr>
+  <tr>
+    <td rowspan="4" align="center" valign="top"><font size="4">BC</font></td>
+    <td align="center"><font size="4">00</font></td>
+    <td align="center" colspan="2" rowspan="4">
+    <table border="1" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+      <tr>
+        <td><font size="5">&nbsp;</font></td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td><font size="5">1</font></td>
+        <td><font size="5">x</font></td>
+      </tr>
+      <tr>
+        <td><font size="5">1</font></td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td><font size="5">&nbsp;</font></td>
+        <td>&nbsp;</td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">01</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">11</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">10</font></td>
+  </tr>
+</table>
+<p><font size="4">is satisfied by &quot; </font><font color="#FF8000" size="5">A'C</font><font size="4"> 
+&quot;</font></p>
+<p><font size="4">The D = 1 K-map:</font></p>
+
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td colspan="2" align="center"><font size="4">A</font></td>
+  </tr>
+  <tr>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">1</font></td>
+  </tr>
+  <tr>
+    <td rowspan="4" align="center" valign="top"><font size="4">BC</font></td>
+    <td align="center"><font size="4">00</font></td>
+    <td align="center" colspan="2" rowspan="4">
+    <table border="1" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+      <tr>
+        <td><font size="5">&nbsp;</font></td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td><font size="5">1</font></td>
+        <td><font size="5">x</font></td>
+      </tr>
+      <tr>
+        <td><font size="5">1</font></td>
+        <td><font size="5">1</font></td>
+      </tr>
+      <tr>
+        <td><font size="5">1</font></td>
+        <td>&nbsp;</td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">01</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">11</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">10</font></td>
+  </tr>
+</table>
+<p><font size="4">is satisfied by: &quot; </font><font color="#FF8000" size="5">C + 
+A'B</font><font size="4"> &quot;</font></p>
+<p><font size="4">The final answer:</font></p>
+<p><font face="Courier New" size="4" color="#FF8000">A'C + D(C + A'B)<br>
+= A'C + CD + A'BD</font></p>
+
+</body>
+
+</html>

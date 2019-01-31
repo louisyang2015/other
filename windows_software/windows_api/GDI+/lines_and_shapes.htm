@@ -1,0 +1,91 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Using a Pen to Draw Lines and Shapes</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">Using a Pen to Draw Lines and Shapes</font></h1>
+<h2><font color="#008000">Pen:</font></h2>
+<p><b><font face="Courier New" size="4" color="#FF6600">Pen pen(Color(255, 0, 0, 
+0)); </font><font face="Courier New" size="4" color="#008000">//color black, 
+width 1</font><font face="Courier New" size="4" color="#FF6600"><br>
+Pen pen(Color(255, 0, 0, 0), 5); </font>
+<font face="Courier New" size="4" color="#008000">//color black, width 5</font></b></p>
+<p>&nbsp;</p>
+<h2><font color="#008000">Line:</font></h2>
+<p><b><font size="4" face="Courier New" color="#FF6600">graphics.DrawLine(&amp;pen, 
+20, 10, 300, 100);</font></b></p>
+<p>&nbsp;</p>
+<h2><font color="#008000">Rectangle:</font></h2>
+<p><b><font face="Courier New" size="4" color="#FF6600">graphics.DrawRectangle(&amp;pen, 
+10, 10, 100, 50);</font></b></p>
+<p>&nbsp;</p>
+<h2><font color="#008000">Texture:</font></h2>
+<p><font face="Courier New" size="4">Image image(L&quot;Texture1.jpg&quot;);<br>
+TextureBrush tBrush(&amp;image);<br>
+Pen texturedPen(&amp;tBrush, 30);<br>
+<br>
+//This next line draws an image --- just for show<br>
+graphics.DrawImage(&amp;image, 0, 0, <br>
+&nbsp;&nbsp;&nbsp; image.GetWidth(), image.GetHeight());<br>
+//This next line is the line using texture<br>
+<font color="#FF6600">graphics.DrawEllipse(&amp;texturedPen, 100, 20, 200, 100);</font></font></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><b><font color="#008000">Other Notes:</font></b></h2>
+<p><b><font size="4" color="#008000">Pen Alignment:</font></b></p>
+<p><font size="4">A theoretical line has a width of zero. When you draw a line, 
+the pixels by default are centered on the theoretical line. Now you can change 
+that with &quot;<font face="Courier New" color="#FF6600">SetAlignment</font>&quot;:<br>
+</font><font face="Courier New" size="4">pen.SetAlignment(PenAlignmentInset);<br>
+</font><font face="Courier New"><font size="4">//other choices: look up </font>
+<font color="#FF6600"></font><font size="4"><font color="#FF6600">PenAlignment</font> 
+enumeration</font></font></p>
+<p>&nbsp;</p>
+<p><b><font size="4" color="#008000">Line Caps:</font></b></p>
+<p><font size="4">This lets you specify the ending point of a line:</font></p>
+<p><font face="Courier New" size="4">Pen pen(Color(255, 0, 0, 255), 8); <br>
+pen.SetStartCap(LineCapArrowAnchor);<br>
+pen.SetEndCap(LineCapRoundAnchor);<br>
+graphics.DrawLine(&amp;pen, 20, 175, 300, 175);<br>
+//other choices: look up <font color="#FF6600">LineCap</font> enumeration</font></p>
+<p>&nbsp;</p>
+<p><b><font size="4" color="#008000">Line Joins:</font></b></p>
+<p><font size="4">When two lines meet (end point to end point), they form an 
+angle. This lets you specify how that angle would look like:</font></p>
+<p><font face="Courier New" size="4">Pen pen(Color(255, 0, 0, 255), 8);<br>
+<br>
+GraphicsPath path;<br>
+path.StartFigure();<br>
+path.AddLine(Point(50, 200), Point(100, 200));<br>
+path.AddLine(Point(100, 200), Point(100, 250));<br>
+<br>
+pen.SetLineJoin(<font color="#FF6600">LineJoinBevel</font>);<br>
+graphics.DrawPath(&amp;pen, &amp;path);<br>
+//other choices: look up <font color="#FF6600">LineJoin</font> enumeration</font></p>
+<p>&nbsp;</p>
+<p><b><font size="4" color="#008000">Dash Lines:</font></b></p>
+<p><font size="4">A few dash lines are listed in the
+<font face="Courier New" color="#FF6600">DashStyle</font> enumeration</font></p>
+<p><font face="Courier New" size="4">//for custom line dashes, put the lengths 
+of the <br>
+//dashes and spaces in an array and pass the address <br>
+//of the array<br>
+REAL dashValues[4] = {5, 2, 15, 4};<br>
+Pen blackPen(Color(255, 0, 0, 0), 5);<br>
+//If you multiply the elements of the array by the<br>
+//pen width of 5, you get {25, 10, 75, 20}. When you<br>
+//draw, it's dash of 25 pixels, 10 spaces, 75 pixels<br>
+//20 spaces, tec.<br>
+blackPen.SetDashPattern(dashValues, 4);<br>
+stat = graphics.DrawLine(&amp;blackPen, Point(5, 5), Point(405, 5));</font></p>
+
+</body>
+
+</html>

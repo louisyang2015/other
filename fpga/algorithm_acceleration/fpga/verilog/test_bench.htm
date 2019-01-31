@@ -1,0 +1,173 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Language" content="en-us" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Test Bench</title>
+<link rel="stylesheet" type="text/css" href="fpga.css" />
+</head>
+
+<body>
+
+<h1>Test Bench</h1>
+<p class="center">Last updated May 26, 2011</p>
+<p><a href="test_bench.sv">General Format</a></p>
+<h2>Assertion</h2>
+<pre>assert(y1r=={8&#39;d89, 40&#39;d0});</pre>
+<p>ModelSim will display a message if &quot;y1r&quot; is not &quot;{8&#39;d89, 40&#39;d0}&quot;.</p>
+<p>Alternatively, print a message on error:</p>
+<pre>assert(os.count == count)
+else $display(&quot;something is wrong with: count at time %t&quot;, $time);</pre>
+<p>&nbsp;</p>
+<h2>$display</h2>
+<table>
+				<tr>
+								<td>%b</td>
+								<td class="left">byte</td>
+				</tr>
+				<tr>
+								<td>%c</td>
+								<td class="left">character</td>
+				</tr>
+				<tr>
+								<td>%d</td>
+								<td class="left">decimal</td>
+				</tr>
+				<tr>
+								<td>%g</td>
+								<td class="left">real number</td>
+				</tr>
+				<tr>
+								<td>%h</td>
+								<td class="left">hex</td>
+				</tr>
+				<tr>
+								<td>%o</td>
+								<td class="left">octal</td>
+				</tr>
+				<tr>
+								<td>%s</td>
+								<td class="left">string</td>
+				</tr>
+				<tr>
+								<td>%t</td>
+								<td class="left">time</td>
+				</tr>
+</table>
+<p>$write - write to screen without newline</p>
+<p>To display &quot;bit&quot; vector in signed format, use:</p>
+<p class="code">
+<span class="keyword">int</span>  temp  =  some_bit_vector;
+<br />
+<span class="keyword">$display</span>(&quot;%d&quot;,  temp);
+  
+<span class="comment">// signed output</span>
+<br />
+<span class="keyword">$display</span>(&quot;%d&quot;,  some_bit_vector);
+  
+<span class="comment">// unsigned output</span>
+</p>
+<p>&nbsp;</p>
+<h2>Hierarchical Path</h2>
+<table class="code">
+			<tr>
+						<td class="code">
+<p class="code">
+<span class="keyword">assert</span>(dut.pi_int_k  ==  5&#39;d11);
+</p>						</td>
+			</tr>
+</table>
+
+<p>&nbsp;</p>
+<table class="code">
+			<tr>
+						<td class="code">
+<p class="code">
+<span class="keyword">task</span>  wait_for_finish(<span class="keyword">int</span>  time_out);
+<br />
+ &nbsp;&nbsp;&nbsp;    
+<span class="comment">// wait for the &quot;running&quot; flag to go to zero, or a time out</span>
+<br />
+ &nbsp;&nbsp;&nbsp;    <span class="keyword">int</span>  wait_time;
+<br />
+ &nbsp;&nbsp;&nbsp;    wait_time  =  0;
+<br />
+ &nbsp;&nbsp;&nbsp;    <span class="keyword">while</span>(<span class="highlight">nios2_apu0.running</span>  ==  1)  <span class="keyword">begin</span><br />
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        clk_1;
+  wait_time++;
+<br />
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        <span class="keyword">if</span>(wait_time  &gt;  time_out)  <span class="keyword">break</span>;
+<br />
+ &nbsp;&nbsp;&nbsp;    <span class="keyword">end</span><br />
+<span class="keyword">endtask</span><br />
+
+</p>						</td>
+			</tr>
+</table>
+
+<p>&nbsp;</p>
+<h2>inout Ports</h2>
+<p>The ideal way is to have an external model that drives the inout ports as 
+needed.</p>
+<p>If no external model exists, use the &quot;wire&quot; data type because the &quot;bit&quot; data 
+type won&#39;t work on this port type. For example, the SSRAM databus is an &quot;inout&quot; 
+type:</p>
+<table class="code">
+			<tr>
+						<td class="code">
+<p class="code">
+<span class="keyword">wire</span>  [31:0]  ext_ssram_data;
+<br />
+<span class="keyword">reg</span>  [31:0]  ext_ssram_data_reg;
+<br />
+<span class="keyword">assign</span>  ext_ssram_data  =  ext_ssram_data_reg;
+</p>						</td>
+			</tr>
+</table>
+
+<p>The waveform window should display the &quot;wire&quot; data type. When the test bench 
+is driving the data bus, assign a value to &quot;ext_ssram_data_reg&quot;. When the FPGA 
+is driving the data bus, the test bench should assign a &quot;32&#39;hzzzz_zzzz&quot; to the &quot;ext_ssram_data_reg&quot;, 
+while code inside the FPGA will assign a value to the data bus.</p>
+
+<p>&nbsp;</p>
+<h2>Random</h2>
+<table class="code">
+			<tr>
+						<td class="code">
+<p class="code">
+<span class="keyword">int</span>  temp;
+<br />
+temp  =  <span class="keyword">$urandom</span>(518);
+  
+<span class="comment">// *** random generator seeding here ***</span>
+<br />
+<br />
+<span class="keyword">int</span>  wait_time;
+<br />
+wait_time  =  <span class="keyword">$urandom_range</span>(w1,  w2);
+<br />
+<span class="keyword">for</span>(i=0;
+  i&lt;wait_time;
+  i++)  clk_1;
+<br />
+
+</p>						</td>
+			</tr>
+</table>
+
+<p>w1 is the upper range of the limit, the w2 is the lower range. Both limits 
+are included in the returned values.</p>
+
+<p>&nbsp;</p>
+<h2>Structure</h2>
+<p class="code">typedef struct{<br />
+&nbsp;&nbsp;&nbsp; int sig1, sig2;<br />
+} MySignals;<br />
+<br />
+MySignals s;</p>
+
+</body>
+
+</html>

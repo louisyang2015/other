@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+
+<head>
+<meta http-equiv="Content-Language" content="en-us" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Ssram_AG</title>
+<link rel="stylesheet" type="text/css" href="fpga.css" />
+</head>
+
+<body>
+
+<h1>Ssram_AG</h1>
+<p class="center">Last updated Apr 25, 2011</p>
+<h2>Configuration</h2>
+<p>Register loading occurs with &quot;load&quot; = 1.</p>
+<table>
+			<tr>
+						<td>load_mode[1:0]</td>
+						<td>Action Performed</td>
+			</tr>
+			<tr>
+						<td>0</td>
+						<td>rdaddress &lt;= address_in;</td>
+			</tr>
+			<tr>
+						<td>1</td>
+						<td>skip &lt;= address_in;</td>
+			</tr>
+			<tr>
+						<td>2</td>
+						<td>highest_addr &lt;= address_in;</td>
+			</tr>
+			<tr>
+						<td>3</td>
+						<td>block_size &lt;= address_in;</td>
+			</tr>
+</table>
+<p>&nbsp;</p>
+<h2>Counting</h2>
+<p class="code">
+<span class="keyword">assign</span>  next_addr  =  {1&#39;b0,  rdaddress}  +  {skip[N-1],  skip};
+</p>
+<p class="code">
+<span class="keyword">if</span>(next_addr  &gt;  {1&#39;b0,  highest_addr})<br />
+ &nbsp;&nbsp;&nbsp;    rdaddress  &lt;=  rdaddress  -  block_size;
+<br />
+<span class="keyword">else</span><br />
+ &nbsp;&nbsp;&nbsp;    rdaddress  &lt;=  next_addr[N-1:0];
+<br />
+
+</p>
+<p>&nbsp;</p>
+
+</body>
+
+</html>

@@ -1,0 +1,183 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Language" content="en-us" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>FFT Datapath</title>
+<link rel="stylesheet" type="text/css" href="fpga.css" />
+</head>
+
+<body>
+
+<h1>FFT Datapath</h1>
+<h2>ALU Portion</h2>
+<p>The FFT ALU is a butter fly structure that takes three inputs: X0, X1, and 
+twiddle factor to produce two outputs, Y0 and Y1.</p>
+<p><img src="images/datapath_alu.gif" width="1024" height="683" />&nbsp;</p>
+<table>
+			<tr>
+						<td rowspan="4">mode</td>
+						<td>0</td>
+						<td class="left">Bypass mode where Y0 &lt;= T and Y1 &lt;= X1</td>
+			</tr>
+			<tr>
+						<td>1</td>
+						<td class="left">
+						<p>FFT mode where the ALU acts like an FFT 
+						butterfly:</p>
+						<ul>
+										<li>Y0 = X0 + X1 * Twiddle</li>
+										<li>Y1 = X0 - X1 * Twiddle</li>
+						</ul>
+						<p>Y1 and Y0 are saturated in hardware.</p>
+						</td>
+			</tr>
+			<tr>
+						<td>2</td>
+						<td class="left">
+						<p>By pass mode similar to 0, except that real and 
+						imaginary parts are swapped.</p>
+						<p>This is a step in implementing the inverse-FFT.</p>
+						</td>
+			</tr>
+			<tr>
+						<td>3</td>
+						<td class="left">
+						Inver FFT butterfly mode, where each stage in the 
+						butterfly there&#39;s a division by 2.</td>
+			</tr>
+			<tr>
+						<td rowspan="4">x0_sel</td>
+						<td>00</td>
+						<td class="left">{x0_real, x0_imag} &lt;= memA0_q</td>
+			</tr>
+			<tr>
+						<td>01</td>
+						<td class="left">{x0_real, x0_imag} &lt;= memA1_q</td>
+			</tr>
+			<tr>
+						<td>10</td>
+						<td class="left">{x0_real, x0_imag} &lt;= memB0_q</td>
+			</tr>
+			<tr>
+						<td>11</td>
+						<td class="left">{x0_real, x0_imag} &lt;= memB1_q</td>
+			</tr>
+			<tr>
+						<td rowspan="5">x1_sel</td>
+						<td>000</td>
+						<td class="left">{x1_real, x1_imag} &lt;= memA0_q</td>
+			</tr>
+			<tr>
+						<td>001</td>
+						<td class="left">{x1_real, x1_imag} &lt;= memA1_q</td>
+			</tr>
+			<tr>
+						<td>010</td>
+						<td class="left">{x1_real, x1_imag} &lt;= memB0_q</td>
+			</tr>
+			<tr>
+						<td>011</td>
+						<td class="left">{x1_real, x1_imag} &lt;= memB1_q</td>
+			</tr>
+			<tr>
+						<td>default</td>
+						<td class="left">{x1_real, x1_imag} &lt;= {memSr_q, 
+						memSi_q}</td>
+			</tr>
+			<tr>
+						<td>t_address</td>
+						<td>&nbsp;</td>
+						<td class="left">Twiddle factor address (0 to 127)</td>
+			</tr>
+</table>
+<p>&nbsp;</p>
+<h2>Shared Memory</h2>
+<p>The shared memory (memS) is connected to the NIOS 2 custom instruction 
+datapath (datab). It&#39;s a 32-bit memory, so there are two blocks, one for real 
+values and one for imaginary values. The share memory read address, write 
+address, and data can be optionally from the NIOS 2 CPU. To NIOS 2, the shared 
+memory is 512 words, 32 bits per word. To the FFT ALU, the shared memory is 256 
+words and 64 bits per word. The real component memSr is always used 
+simultaneously with the imaginary component memSi.</p>
+<p><img src="images/datapath_memS.gif" width="1024" height="348" /></p>
+<p><img src="images/datapath_memS_result.gif" width="300" height="152" /></p>
+<table>
+			<tr>
+						<td>dataa</td>
+						<td>[7:0]</td>
+						<td class="left">Input from NIOS 2</td>
+			</tr>
+			<tr>
+						<td>datab</td>
+						<td>[31:0]</td>
+						<td class="left">Input from NIOS 2</td>
+			</tr>
+			<tr>
+						<td>result</td>
+						<td>[31:0]</td>
+						<td class="left">Output to NIOS 2</td>
+			</tr>
+			<tr>
+						<td rowspan="2">result_sel</td>
+						<td>0</td>
+						<td class="left">result &lt;= memSr_q</td>
+			</tr>
+			<tr>
+						<td>1</td>
+						<td class="left">result &lt;= memSi_q</td>
+			</tr>
+			<tr>
+						<td rowspan="3">memS_sel</td>
+						<td>00</td>
+						<td class="left">{memSr_data, memSi_data} &lt;= {y0_r, 
+						y0_i}</td>
+			</tr>
+			<tr>
+						<td>01</td>
+						<td class="left">{memSr_data, memSi_data} &lt;= {y1_r, 
+						y1_i}</td>
+			</tr>
+			<tr>
+						<td>default</td>
+						<td class="left">{memSr_data, memSi_data} &lt;= {datab, 
+						datab}</td>
+			</tr>
+			<tr>
+						<td>rdaddress</td>
+						<td>[7:0]</td>
+						<td class="left">Read address that is applied to both 
+						memSr and memSi</td>
+			</tr>
+			<tr>
+						<td>wraddress0</td>
+						<td>[7:0]</td>
+						<td class="left">Write address that is applied to both memSr and memSi</td>
+			</tr>
+			<tr>
+						<td>memSr_wren</td>
+						<td>&nbsp;</td>
+						<td class="left">Write enable for memSr</td>
+			</tr>
+			<tr>
+						<td>memSi_wren</td>
+						<td>&nbsp;</td>
+						<td class="left">Write enable for memSi</td>
+			</tr>
+</table>
+<p>&nbsp;</p>
+<h2>MemA and MemB</h2>
+<p>The FFT algorithm is not an in place algorithm, so there are two sets of 
+memories. On one pass, the butterfly will read from memA0 and memA1 while 
+writing to memB0 and memB1. Then on the following pass, the butterfly should 
+reverse the roles, reading from memory set B and writing to memory set A.</p>
+
+<p>In the FFT algorithm, the memory 1 inverts a bit in the otherwise sequential 
+address, so that memory 1 and memory 0 use different addresses. That&#39;s why there 
+are two addresses wired up to the memory pair.</p>
+<p><img src="images/datapath_memAB.gif" width="1024" height="329" /></p>
+
+</body>
+
+</html>

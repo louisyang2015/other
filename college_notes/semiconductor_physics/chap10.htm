@@ -1,0 +1,274 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>BJT Fundamentals</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">BJT Fundamentals</font></h1>
+<h2><font color="#008000">Overview</font></h2>
+<p><font size="4">For a BJT, the outer two regions are not interchangeable. The 
+emitter has a different geometry and is typically more heavily doped than the 
+collector.</font></p>
+<p><img border="0" src="images/pic0107.jpg" width="1029" height="266"></p>
+<p><img border="0" src="images/pic0108.jpg" width="755" height="318"></p>
+<table border="3" cellpadding="12" cellspacing="1" style="border-collapse: collapse" bordercolor="#FF8000">
+  <tr>
+    <td><font size="4">Basic current and voltage laws:</font><p>
+    <font face="Courier New" color="#ff8000" size="5">I<sub>E</sub> = I<sub>B</sub> 
+    + I<sub>C</sub></font></p>
+    <p><font face="Courier New" color="#ff8000" size="5">V<sub>EB</sub> + V<sub>BC</sub> 
+    + V<sub>CE</sub> = 0 </font></td>
+  </tr>
+</table>
+<p><font size="4">There are three terminals. If two terminals serve as input, 
+and two terminals serve as output, there must be a terminal common to both input 
+and output. The common emitter is the most widely employed configuration, with 
+the common base finding occasional utilization. The common collector is seldom 
+if ever used and will be henceforth neglected.</font></p>
+<p><font size="4"><font color="#008000">Active Mode</font> --- This is the mode 
+used in amplifiers.</font></p>
+<p><img border="0" src="images/pic0109.gif" width="350" height="412"><img border="0" src="images/pic0110.gif" width="350" height="420"></p>
+<p><font size="4"><font color="#008000">Saturation Mode</font> --- This mode 
+results in high current, low voltage</font></p>
+<p><img border="0" src="images/pic0111.gif" width="350" height="412"><img border="0" src="images/pic0112.gif" width="350" height="389"></p>
+<p><font size="4"><font color="#008000">Cutoff Mode</font> --- This mode results 
+in low current, high voltage</font></p>
+<p><img border="0" src="images/pic0113.gif" width="350" height="382"><img border="0" src="images/pic0114.gif" width="350" height="447"></p>
+<p><font size="4" color="#008000">Inverted</font><font size="4"><font color="#008000"> Mode</font> --- This mode is the 
+active mode with the roles of the emitter and collector swapped.</font></p>
+<p><img border="0" src="images/pic0115.gif" width="350" height="408"><img border="0" src="images/pic0116.gif" width="350" height="416"></p>
+<p>&nbsp;</p>
+<h2><font color="#008000">Energy Band Diagrams and Electrostatics Graphs</font></h2>
+<p><font size="4">The BJT's doping:</font></p>
+
+<p><font size="4">emitter doping &gt;&gt; base doping &gt;&gt; collector doping</font></p>
+
+<p><font size="4">The </font><font color="#FF8000" size="5">W</font><font size="4"> 
+in BJT analysis is the <font color="#008000">quasineutral base width</font>. The
+</font><font color="#FF8000" size="5">W<sub>B</sub></font><font size="4"> is the 
+width of the entire base region.</font></p>
+
+<p><font size="4">The energy band diagrams and electrostatics graphs for a pnp 
+transistor under equilibrium:</font></p>
+
+<p><img border="0" src="images/pic0117.jpg" width="698" height="1393"></p>
+
+<p><font size="4">The energy band diagram for a pnp transistor under active mode 
+biasing:</font></p>
+
+<p><img border="0" src="images/pic0118.jpg" width="689" height="334"></p>
+
+<p>&nbsp;</p>
+
+<h2><font color="#008000">Active Bias Current Flow</font></h2>
+
+<p><img border="0" src="images/pic0119.gif" width="750" height="332"></p>
+
+<p><font size="4">The main current activity is </font>
+<font color="#FF8000" size="5">I</font><sub><font color="#FF8000" size="5">Ep</font></sub><font size="4"> 
+and </font><font color="#FF8000" size="5">I</font><sub><font color="#FF8000" size="5">Cp</font><font size="4"> </font>
+</sub><font size="4">. Holes move from the p+ emitter to the base because there 
+is a forward bias there. The key to the BJT is that the base is very narrow, so most of the holes will diffuse to the B-C junction, where there is a reverse bias. Holes are minority 
+carriers in the n doped base, so the holes get swept across the B-C junction.</font></p>
+
+<p><font size="4">A small number of holes will recombine in the base, and this 
+is creates the current </font><font color="#FF8000" size="5">I</font><sub><font color="#FF8000" size="5">B2</font><font size="4">
+</font></sub><font size="4">.</font></p>
+
+<p><img border="0" src="images/pic0120.gif" width="750" height="366"></p>
+
+<p><font size="4">Two other currents are majority carriers going from the base 
+to the emitter due to the forward bias at E-B junction, and minority carriers 
+going from the collector to the base due to the reverse bias at the C-B 
+junction.</font></p>
+
+<p><font size="4">The reverse bias R-G current is ignored for now.</font></p>
+
+<p><font size="4">The combined picture:</font></p>
+
+<p><img border="0" src="images/pic0121.jpg" width="784" height="413"></p>
+
+<p><font size="5" color="#FF8000">I<sub>E</sub> = I<sub>Ep</sub> + I<sub>En</sub></font></p>
+
+<p><font size="5" color="#FF8000">I<sub>C</sub> = I<sub>Cp</sub> + I<sub>Cn</sub></font></p>
+
+<p><font size="5" color="#FF8000">I<sub>B</sub> = I<sub>B1</sub> + I<sub>B2</sub> 
++ I<sub>B3</sub></font></p>
+
+<p><font size="5" color="#FF8000">I<sub>En </sub>&lt;&lt; I<sub>Ep</sub></font></p>
+
+<p><font size="5" color="#FF8000">I<sub>Cn</sub> &lt;&lt; I<sub>Cp</sub></font></p>
+
+<p>&nbsp;</p>
+
+<h2><font color="#008000">Performance Parameters</font></h2>
+
+<p><font size="4"><font color="#008000">Emitter Efficiency</font> --- It is the 
+hole current portion of I<sub>E</sub> that will have a probability of crossing 
+the transistor. So thinking of I<sub>E</sub> as the emitter input and I<sub>Ep</sub> 
+as the useful emitter output:</font></p>
+
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    y = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">I<sub>Ep</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">I<sub>E</sub> </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+
+<p><font size="4"><font color="#008000">Base Transport Factor</font> --- this is 
+the fraction of the minority carriers injected into the base that successfully 
+diffuse across the quasineutral width of the base.</font></p>
+
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    &#945;<sub>T</sub> = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">I<sub>Cp</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">I<sub>Ep</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+
+<p><font size="4">A high <font face="Times New Roman">&#945;<sub>T</sub> reduce I<sub>B2</sub> 
+.</font></font></p>
+
+<p><font face="Times New Roman" size="4" color="#008000">Common Base d.c. 
+Current Gain </font><font face="Times New Roman" color="#FF8000" size="5">( &#945;<sub>dc
+</sub>)</font></p>
+
+<p><font face="Times New Roman" size="4">In the common base configuration</font></p>
+
+<p><font face="Courier New" color="#ff8000" size="5">I<sub>C</sub> = &#945;<sub>dc</sub> 
+I<sub>E</sub> + I<sub>CB0</sub></font></p>
+
+<p><font face="Times New Roman" size="4">where &#945;<sub>dc</sub> is the common base 
+d.c. current gain and I<sub>CB0</sub> is the collector current that flows when I<sub>E</sub> 
+= 0 . It turns out that:</font></p>
+
+<p><font face="Courier New" color="#ff8000" size="5">&#945;<sub>dc</sub> = y &#945;<sub>T</sub>
+</font></p>
+
+<p><font face="Courier New" color="#ff8000" size="5">I<sub>CB0</sub> = I<sub>Cn</sub> 
+= I<sub>B3</sub> </font></p>
+
+<p><font face="Times New Roman" size="4"><font color="#008000">Common Emitter 
+d.c. Current Gain</font> </font>
+<font color="#FF8000" size="5" face="Times New Roman">( &#946;<sub>dc </sub>)</font></p>
+
+<p><font size="4">When connected in the common emitter configuration:</font></p>
+<p><font face="Courier New" color="#ff8000" size="5">I<sub>C</sub> = &#946;<sub>dc</sub> 
+I<sub>B</sub> + I<sub>CE0</sub></font></p>
+<p><font size="4">where <font face="Times New Roman">&#946;<sub>dc</sub> is the 
+common emitter d.c. current gain and I<sub>CE0</sub> is the collector current 
+that flows when I<sub>B</sub> = 0.</font></font></p>
+<p><font face="Times New Roman" size="4">It turns out that:</font></p>
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    &#946;<sub>dc</sub> = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">&#945;<sub>dc</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">1 - &#945;<sub>dc</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<p><font face="Times New Roman" size="4">and if we assume that I<sub>CE0</sub> 
+is negligible, we can write:</font></p>
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    &#946;<sub>dc</sub> = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">I<sub>C</sub> </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">I<sub>B</sub> </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+
+</body>
+
+</html>

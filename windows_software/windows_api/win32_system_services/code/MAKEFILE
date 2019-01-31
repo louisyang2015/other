@@ -1,0 +1,14 @@
+# Change APP to compile different files in
+# this directory
+APP=mapfilew
+NODEBUG=1
+
+!include <ntwin32.mak>
+
+$(APP).exe: $(APP).obj
+	$(link) $(conlflags) $(ldebug) lz32.lib\
+	  $(conlibsmt) $(APP).obj -out:$(APP).exe
+
+$(APP).obj: $(APP).cpp
+	$(cc) $(cflags) $(cdebug) \
+	  $(cvarsmt) $(APP).cpp

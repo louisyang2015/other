@@ -1,0 +1,110 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Modeless Dialog Boxes</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">Modeless Dialog Boxes</font></h1>
+<p><font size="4">Modeless dialog boxes are instantiated with:</font></p>
+
+<h2><font face="Courier New" color="#FF6600">hDlgModeless = CreateDialog (app_instance, 
+dialog_resource, <br>
+&nbsp;&nbsp;&nbsp; hwndParent, DialogProc);</font></h2>
+
+<p><font size="4"><b><font color="#0000FF">By default, the Visible style is 
+turned off.</font></b> Be sure to select the style WS_VISIBLE for the dialog, or else 
+you will need:<br>
+<font face="Courier New" color="#FF6600">ShowWindow (hDlgModeless, SW_SHOW);</font></font></p>
+
+<p><font size="4">The messages to modeless dialog boxes come through your 
+program's message queue. So these messages goes to your program's message queue 
+---&gt; your dialog procedure ---&gt; Windows's dialog procedure.</font></p>
+
+<p><font size="4">The new message loop:</font></p>
+
+<h2><font face="Courier New" color="#FF6600">while (GetMessage (&amp;msg, NULL, 0, 
+0))<br>
+{<br>
+&nbsp;&nbsp;&nbsp; if (hDlgModeless == 0 || !IsDialogMessage (hDlgModeless, &amp;msg))<br>
+&nbsp;&nbsp;&nbsp; {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TranslateMessage (&amp;msg) ;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DispatchMessage&nbsp; (&amp;msg) ;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+}</font></h2>
+
+<p><font size="4">The new message loop with accelerators:</font></p>
+
+<p><font size="4" face="Courier New" color="#FF6600">while (GetMessage (&amp;msg, 
+NULL, 0, 0))<br>
+{<br>
+&nbsp;&nbsp;&nbsp; if (hDlgModeless == 0 || !IsDialogMessage (hDlgModeless, &amp;msg))<br>
+&nbsp;&nbsp;&nbsp; {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (!TranslateAccelerator (hwnd, 
+hAccel, &amp;msg))<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+TranslateMessage (&amp;msg) ;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+DispatchMessage (&amp;msg) ;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; }<br>
+}</font></p>
+
+<p><font size="4">The: </font><font size="4" face="Courier New" color="#FF6600">IsDialogMessage (hDlgModeless, &amp;msg) </font>
+<font size="4">--- if msg is intended for the dialog window, it's sent to the 
+dialog procedure and the function call returns TRUE. If msg is not intended for 
+the dialog window, the function call returns false.</font></p>
+
+<p><font size="4">Note the &quot;<font face="Courier New">==0</font>&quot; part means that 
+when your dialog box is not being displayed, hDlgModeless should be set to NULL.</font></p>
+
+<p><font size="4">The window procedure for a modeless dialog uses
+<font face="Courier New" color="#FF6600">DestroyWindow</font> to end the dialog.</font></p>
+
+<p><font face="Courier New" color="#FF6600" size="4">BOOL CALLBACK ColorScrDlg (HWND 
+hDlg, UINT message, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+WPARAM wParam, LPARAM lParam)<br>
+{<br>
+&nbsp;&nbsp;&nbsp; switch (message)<br>
+&nbsp;&nbsp;&nbsp; {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case WM_INITDIALOG :<br>
+</font><font face="Courier New" size="4" color="#008000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+//initialization here<br>
+</font><font face="Courier New" color="#FF6600" size="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+return TRUE ;<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case WM_CLOSE :<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DestroyWindow 
+(hDlg) ;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; hDlgModeless 
+= NULL ;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break ;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; RETURN FALSE;<br>
+}</font></p>
+
+<p><font size="4">When you use modeless dialog boxes, you want to prevent the 
+main screen repaints from erasing the dialog box by using the WS_CLIPCHILDREN 
+style in the window style.</font></p>
+
+<p><font size="4" face="Courier New" color="#FF6600">hwnd = CreateWindow (szAppName, 
+TEXT (&quot;Color Scroll&quot;),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+WS_OVERLAPPEDWINDOW | <b>WS_CLIPCHILDREN</b>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+CW_USEDEFAULT, CW_USEDEFAULT,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+CW_USEDEFAULT, CW_USEDEFAULT,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+NULL, NULL, hInstance, NULL) ;</font></p>
+
+</body>
+
+</html>

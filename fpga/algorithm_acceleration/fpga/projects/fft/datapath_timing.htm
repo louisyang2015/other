@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Language" content="en-us" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Datapath Timing</title>
+<link rel="stylesheet" type="text/css" href="fpga.css" />
+</head>
+
+<body>
+
+<h1>Datapath Timing</h1>
+<p>The datapath is pipelined with variable delay across the ALU. The various 
+addresses needs to arrive at the right time for array processing to occur 
+correctly.</p>
+<p>Assuming the delay across the ALU is one, the following illustrate the 
+typical delay across the datapath.</p>
+<p><img src="images/datapath_timing.gif" width="800" height="262" /></p>
+<p>The red shows the action from the control side.</p>
+<ul>
+				<li><strong>Read address (t = 0).</strong> It takes one clock 
+				cycle for the memory to latch the address, and a second cycle 
+				for the memory data to show up. So the &quot;read memory&quot; data output 
+				shows up at t = 2.</li>
+				<li><strong>Memory selection (t = 2).</strong> The ALU can 
+				choose its input from multiple memories. Since the memory data 
+				output shows up at t = 2, the multiplexer selection pin must 
+				also be correct at t = 2.</li>
+				<li>In an expanded array processor, the number of memories 
+				feeding the ALU can be large. That&#39;s why the multiplexer that 
+				chooses which memory to feed into the ALU is registered. The 
+				register creates another delay before data goes into the ALU. So 
+				the data shows up on the ALU input port at t = 3.</li>
+				<li><strong>Twiddle factor address (t = 1).</strong> The twiddle 
+				factor memory has the same address to data delay. So if the data 
+				on the ALU input is due at t = 3, then the address on the 
+				twiddle memory input is due at t = 1.</li>
+				<li><strong>Write memory address and output selection (t = 4).</strong> 
+				The delay across the ALU is a variable. <strong>For FFT butterfly, the 
+				delay is 3. For simply passing data through the ALU, the delay is 1.</strong> In 
+				the diagram above, a delay of 1 is assumed. At t = 4, the ALU 
+				output will be correct. The memory receiving the write can 
+				choose between the two ALU outputs. This multiplexer has no 
+				pipeline register, unlike the multiplexer on the ALU input side. 
+				Both the multiplexer selection pin and the memory&#39;s write 
+				address has to be correct at t = 4.</li>
+</ul>
+<h2>ALU Input Multiplexer Selection Pin Buffering</h2>
+<p>The ALU input side is expanded below.</p>
+<p><img src="images/datapath_alu.gif" width="1024" height="683" /></p>
+<p>The ALU input multiplexer select pins are: &quot;x0_sel[1:0]&quot; and &quot;x1_sel[2:0]&quot;. 
+In a single FFT pass, only the LSB will change. Through the entire FFT 
+operation, the two lower bits will change. The pin &quot;x1_sel[2]&quot; should be 
+constant.</p>
+<p>Buffering via delay registers is used to generate the &quot;x0_sel&quot; and &quot;x1_sel&quot; 
+lines. The pin &quot;x1_sel[2]&quot; definitely does not need to be buffered, as it&#39;s 
+constant during the entire operation. The pins &quot;x0_sel[0]&quot; and &quot;x1_sel[0]&quot; must 
+be buffered as the FFT operations require the ALU input to alternately draw data 
+from two sets of memory.</p>
+<p>If the FFT pauses after every 128 butterflies, then &quot;x0_sel[1]&quot; and 
+&quot;x1_sel[1]&quot; also does not have to be buffered because they are constant for a 
+single set of butterflies. On the other hand, to have FFT run at maximum speed, 
+without pause in the total stream of 1024 butterfly operations, then &quot;x0_sel[1]&quot; 
+and &quot;x1_sel[1]&quot; would have to be buffered as well.</p>
+<p><strong>The design runs straight through the 1024 butterflies, and so does buffer 
+&quot;x0_sel[1]&quot; and &quot;x1_sel[1]&quot;.</strong></p>
+
+<p>It&#39;s necessary to delay just x0_sel[0] and not x1_sel[0] - because for FFT, 
+x1_sel[0] will be the inverse of x0_sel[0]. For other operations, the &quot;x0_sel&quot; 
+and &quot;x1_sel&quot; pins are locked for the duration of the operation.</p>
+<p>It&#39;s also necessary to delay just x0_sel[1] and not x1_sel[1] - because for 
+the FFT, these two pins need to be the same.</p>
+
+</body>
+
+</html>

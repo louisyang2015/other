@@ -1,0 +1,167 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Language" content="en-us" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Operators</title>
+<link rel="stylesheet" type="text/css" href="fpga.css" />
+</head>
+
+<body>
+
+<h1>Operators</h1>
+<p class="center">Last updated March 19, 2010</p>
+<p class="code">
+<span class="keyword">assign</span>  eq  =  p0  |  p1;
+</p>
+<p>The &quot;eq&quot; need not be explicitly declared. If not declared, it&#39;s assumed to be 
+a wire (also called an &quot;implicit net&quot;).</p>
+
+<table>
+	<tr>
+		<td class="nowrap">Operator Symbol</td>
+		<td>Comment</td>
+	</tr>
+	<tr>
+		<td class="nowrap">+ - *</td>
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<td class="nowrap">/</td>
+		<td>division - cannot be synthesize automatically</td>
+	</tr>
+	<tr>
+		<td class="nowrap">%</td>
+		<td>modulus - cannot be synthesize automatically</td>
+	</tr>
+	<tr>
+		<td class="nowrap">**</td>
+		<td>exponentiation - cannot be synthesize automatically</td>
+	</tr>
+	<tr>
+		<td class="nowrap">&gt;&gt;</td>
+		<td>logical right shift (0 shifted in)</td>
+	</tr>
+	<tr>
+		<td class="nowrap">&gt;&gt;&gt;</td>
+		<td>arithmetic right shift (sign bit shifted in)</td>
+	</tr>
+	<tr>
+		<td class="nowrap">&lt;&lt; &lt;&lt;&lt;</td>
+		<td>logical left shift and arithmetic left shift does the same thing (0 
+		shifted in)</td>
+	</tr>
+	<tr>
+		<td class="nowrap">&lt; &lt;= &gt; &gt;=</td>
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<td class="nowrap">== !=</td>
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<td class="nowrap">=== !==</td>
+		<td>case equality and case inequality - these will match &#39;x&#39; and &#39;z&#39; 
+		signals<br />
+		They cannot be synthesized.</td>
+	</tr>
+	<tr>
+		<td class="nowrap">~ &amp; | ^</td>
+		<td>bitwise negation, and, or, xor</td>
+	</tr>
+	<tr>
+		<td class="nowrap">&amp; | ^</td>
+		<td>reduction and, or, xor (turns a bunch of bits into one bit)</td>
+	</tr>
+	<tr>
+		<td class="nowrap">! &amp;&amp; ||</td>
+		<td>logical negation, and, or</td>
+	</tr>
+	<tr>
+		<td class="nowrap">{}</td>
+		<td>concatenation, for example:<br />
+		assign y = {x1, x2};</td>
+	</tr>
+	<tr>
+		<td class="nowrap">{x{}}</td>
+		<td>replication x times, for example:<br />
+		assign y = {{4{x1}}, x2};</td>
+	</tr>
+	<tr>
+		<td class="nowrap">( )?( ):( )</td>
+		<td>(conditional)?(true code):(false code), for example:<br />
+		assign max = (a&gt;b) ? a : b;</td>
+	</tr>
+</table>
+<p>For the shift operators, if both operands are signals, as in &quot;a &lt;&lt; b&quot;, then 
+Verilog infers a barrel shifter, which is a fairly complicated circuit.</p>
+<p>Reduction operator example:</p>
+<p class="code">
+<span class="keyword">wire</span>  [3:0]  a;
+<br />
+<span class="keyword">wire</span>  y;
+<br />
+<span class="keyword">assign</span>  y  =  |  a;
+  
+<span class="comment">//same as below</span>
+<br />
+<span class="keyword">assign</span>  y  =  a[3]  |  a[2]  |  a[1]  |  a[0];
+  
+</p>
+<p>The conditional operator can be cascaded and nested:</p>
+<p class="code">
+<span class="keyword">assign</span>  eq  =  (i==2'b00)  ?  1'b1  :  
+<span class="comment">//if (00), eq = 1 </span>
+<br />
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        (i==2'b01)  ?  1'b0  : &nbsp;&nbsp;   
+<span class="comment">//else if (01), eq = 0 </span>
+<br />
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        (i==2'b10)  ?  1'b0  : &nbsp;&nbsp;   
+<span class="comment">//else if (10), eq = 0 </span>
+<br />
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        1'b1;
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;            
+<span class="comment">//else (which is case 11), eq = 1 </span>
+</p>
+<p>&nbsp;</p>
+<h2>Operator Precedence</h2>
+<table>
+	<tr>
+		<td class="nowrap">Operator</td>
+		<td>Precedence</td>
+	</tr>
+	<tr>
+		<td class="nowrap">! ~ + -</td>
+		<td>unary operators - highest precedence</td>
+	</tr>
+	<tr>
+		<td class="nowrap">** <br />
+		* / %<br />
+		+ - (binary)</td>
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<td class="nowrap">&gt;&gt;&nbsp; &lt;&lt;&nbsp; &gt;&gt;&gt;&nbsp; &lt;&lt;&lt;</td>
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<td class="nowrap">&amp;<br />
+		^<br />
+		|</td>
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<td class="nowrap">&amp;&amp;<br />
+		||</td>
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<td class="nowrap">( )?( ):( )</td>
+		<td>lowest precedence</td>
+	</tr>
+</table>
+
+</body>
+
+</html>

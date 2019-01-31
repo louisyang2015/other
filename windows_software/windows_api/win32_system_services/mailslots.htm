@@ -1,0 +1,60 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Mailslots</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">Mailslots</font></h1>
+<p><font size="4"><a href="code/receiver.cpp.htm">code for receiver</a></font></p>
+<p><font size="4"><a href="code/send.cpp.htm">code for sender</a></font></p>
+<hr>
+<p><font size="4">Mailslot is the easiest way to do network communication in 
+Windows API and it is a native API.</font></p>
+<p><font size="4">Messages smaller than 425 bytes are sent using datagrams. 
+Delivery is not guaranteed, but this mode allows broadcast ability.</font></p>
+<p><font size="4">Messages larger than 426 bytes are sent using a 
+connection-oriented transfer over an SMB session. Connection-oriented transfers 
+are limited to one-to-one communication from one client to one server.
+<font color="#FF0000">Therefore, you lose the ability to broadcast a message 
+from one client to many servers if you use messages larger than 426 bytes.</font></font></p>
+<p><font color="#FF0000" size="4">Note that Windows does not support messages 
+that are 425 or 426 bytes. </font></p>
+<p><font size="4">The function &quot;</font><b><font face="Courier New" size="4" color="#FF6600">CreateMailslot</font></b><font size="4">&quot; 
+will create a mailslot. </font></p>
+<p><font size="4">Then use Windows API functions to read from and write to a 
+mailslot. The Windows API file I/O functions are: <b>
+<font color="#FF6600" face="Courier New">CreateFile</font></b>, <b>
+<font color="#FF6600" face="Courier New">WriteFile</font></b>, <b>
+<font face="Courier New" color="#FF6600">ReadFile</font></b>, and <b>
+<font color="#FF6600" face="Courier New">CloseHandle</font></b>. Despite the 
+name &quot;file&quot;, no physical file is created on disk --- the mail slot is a &quot;file&quot; 
+that is entire in memory.</font></p>
+<p><font size="4">When creating a mail slot, the mailslot address looks like</font></p>
+<ul>
+  <li><font size="4" face="Courier New">\\.\mailslot\[path]name</font></li>
+</ul>
+<p><font size="4">When writing to a mailslot, the address can be:</font></p>
+<ul>
+  <li><font size="4" face="Courier New">\\machine\mailslot\[path]name</font></li>
+  <li><font size="4" face="Courier New">\\*\mailslot\[path]name</font></li>
+  <li><font size="4" face="Courier New">\\domain\mailslot\[path]name</font></li>
+</ul>
+<p><font size="4">The first  form specifies a specific machine. The 
+second format is used to broadcast to the network. I think this means that if I 
+use </font><font size="4" face="Courier New">\\*\mailslot\abc,</font><font size="4"> 
+then every computer on the local network with the mail slot &quot;abc&quot; will receive a 
+message --- idea is not tested since I don't have a network. When I did try to 
+use a broad cast address such as &quot;</font><font face="Courier New" size="4">\\*\mailslot\abc</font><font size="4">&quot;, 
+&quot;WriteFile&quot; fails.</font></p>
+<p><font size="4">The third form specifies all machines in a specific domain --- 
+so it basically broadcasts to a part of the network.</font></p>
+
+</body>
+
+</html>

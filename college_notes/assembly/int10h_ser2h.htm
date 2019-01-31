@@ -1,0 +1,42 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>BIOS Interrupt 10h, Service 2h</title>
+</head>
+
+<body>
+
+<p align="left"><font size="5" color="#008000">BIOS Interrupt 10h, Service 2h</font></p>
+<p><font size="4">This service positions the hardware cursor on screen</font></p>
+<p><font size="4">For a normal screen, the upper left corner is (0, 0) and the 
+lower right corner is (79, 24). Another possible height is to have 50 lines per 
+screen.</font></p>
+<p><font size="4" face="Courier New" color="#FF6600">mov AH, 2h</font></p>
+<p><font size="4" face="Courier New" color="#FF6600">mov BH, 0h</font></p>
+<p><font size="4" face="Courier New" color="#FF6600">mov DL, x_coordinate&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</font><font size="4" face="Courier New" color="#008000">; 0 to 79</font></p>
+<p><font size="4" face="Courier New" color="#FF6600">mov DH, y_coordinate&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</font><font size="4" face="Courier New" color="#008000">; 0 to 24</font></p>
+<p><font size="4" face="Courier New" color="#FF6600">int 10h</font></p>
+<p>&nbsp;</p>
+<p><font size="4">Service 10h in procedure form:</font></p>
+<p><font size="4" face="Courier New" color="#008000">; expects x coordinate in 
+DL, y coordinate in DH<br>
+; this procedure will set the cursor to (x, y)</font><font size="4" face="Courier New" color="#FF6600"><br>
+GotoXY:<br>
+&nbsp;&nbsp;&nbsp; mov AH, 02<br>
+&nbsp;&nbsp;&nbsp; mov BH, 0<br>
+&nbsp;&nbsp;&nbsp; int 10h<br>
+&nbsp;&nbsp;&nbsp; ret</font></p>
+<p><font face="Courier New" size="4" color="#FF6600">mov DX, [TextPos]&nbsp;&nbsp;&nbsp;
+</font><font face="Courier New" size="4" color="#008000">; TextPos contains x, y 
+coordinate values</font><font face="Courier New" size="4" color="#FF6600"><br>
+call GotoXY</font></p>
+
+</body>
+
+</html>

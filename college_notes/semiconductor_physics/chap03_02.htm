@@ -1,0 +1,229 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Carrier Diffusion</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">Carrier Diffusion</font></h1>
+<h2><font color="#008000">The Concept of Diffusion</font></h2>
+<p><font size="4">Thermal energy cause the carriers in a semiconductor to move 
+around randomly. Diffusion is the tendency of the carriers to spread such that 
+every place in a semiconductor gets an equal concentration of carriers.</font></p>
+<p><img border="0" src="images/pic0029.jpg" width="863" height="276"></p>
+<p><font size="4" color="#008000">Hot-Point Probe Measurement </font>
+<font size="4">--- This is an experiment to test whether a semiconductor is 
+n-type or p-type.</font></p>
+<p><font size="4">When a hot probe contacts a semiconductor, the heat produces 
+carriers at the point of contact. The carrier density is higher at the point of 
+contact than elsewhere, so the carriers at the point of contact diffuse away, 
+creating a current that can be detected.</font></p>
+<p><img border="0" src="images/pic0030.gif" width="500" height="433"></p>
+<p><img border="0" src="images/pic0031.gif" width="500" height="433"></p>
+<p>&nbsp;</p>
+<h2><font color="#008000">Non-Uniform Doping</font></h2>
+<p><font size="4">Here is a semiconductor that has higher doping on the right 
+side than the left side:</font></p>
+<p><img border="0" src="images/pic0032.gif" width="700" height="586"></p>
+<p><font size="4">Thermal energy will free the extra electron of donor atoms. 
+Diffusion will cause this extra electron to migrate from the right side to the 
+left side. Yet, as soon as the right side lose an electron to the left side, the 
+right side gains a positive charge due to the nucleus of the donor atom. The 
+left side gains a negative charge as a result of the incoming electron. This 
+scenario will generate an electric field that acts to push the extra electron 
+back to the right side.</font></p>
+<p><font size="4">So a non-uniformly doped semiconductor, at room temperature, 
+will have a diffusion current, a built in electric field, and a drift current 
+that counters the diffusion current.</font></p>
+<p><font size="4" color="#008000">The energy band diagram for non-uniformly 
+doped semiconductor</font></p>
+<p><font size="4">Say we have a piece of semiconductor with the distribution:</font></p>
+<p><img border="0" src="images/pic0033.jpg" width="412" height="384"></p>
+<table border="3" cellpadding="12" cellspacing="1" style="border-collapse: collapse" bordercolor="#FF8000">
+  <tr>
+    <td><font size="4">Under equilibrium conditions, dE<sub>F</sub> / dx = dE<sub>F</sub> 
+    / dy = dE<sub>F</sub> / dz = 0 ; i.e., the Fermi level inside a material or 
+    a group of materials in intimate contact is invariant as a function of 
+    position.</font></td>
+  </tr>
+</table>
+<p><font size="4">For the problems, whenever the energy band diagram shows a 
+constant E<sub>F</sub> , assume the semiconductor is in equilibrium conditions.</font></p>
+<p><font size="4">From chapter 2 we have:</font></p>
+<p><font face="Courier New" color="#ff8000" size="5">n = N<sub>C</sub> e^[(E<sub>F</sub> 
+- E<sub>C</sub>)/(kT)]</font></p>
+<p><font size="4">With E<sub>F</sub> fixed, we need a decrease in E<sub>C</sub> 
+to get an increase in &quot; n &quot;.</font></p>
+<p><img border="0" src="images/pic0034.jpg" width="410" height="418"></p>
+<p><font size="4">Note that the band gap energy remain constant, that E<sub>C
+</sub>, E<sub>i </sub>, and E<sub>V</sub> are parallel curves.</font></p>
+<p><font size="4">If an equation is given for N<sub>D</sub> , and we assume 
+total ionization such that n = N<sub>D</sub> , we can compute an equation for E<sub>C</sub> 
+by using the relationship from chapter 2:</font></p>
+<p><font face="Courier New" color="#ff8000" size="5">n = N<sub>C</sub> e^[(E<sub>F</sub> 
+- E<sub>C</sub>)/(kT)]</font></p>
+<p>&nbsp;</p>
+<h2><font color="#008000">The Diffusion current in Numerical Terms</font></h2>
+<table border="3" cellpadding="12" cellspacing="1" style="border-collapse: collapse" bordercolor="#FF8000">
+  <tr>
+    <td><font size="4">Let:</font><p><font size="4">J<sub>P|diff</sub> = 
+    diffusion current of the holes<br>
+    J<sub>N|diff</sub> = diffusion current of the electrons<br>
+    p = holes per cm<sup>3</sup> and it varies as a function of position<br>
+    n = electrons per cm<sup>3</sup> and it varies as a function of position</font></p>
+    <p><font face="Courier New" color="#ff8000" size="5">J<sub>P|diff</sub> = -q 
+    D<sub>P</sub> <font face="Wingdings 3">s</font>p<br>
+    J<sub>N|diff</sub> = q D<sub>N</sub> <font face="Wingdings 3">s</font>n</font></p>
+    <p><font size="4">D<sub>P</sub> and D<sub>N</sub> are special numbers called 
+    hole and electron diffusion coefficients. Their unit is cm<sup>2</sup> / 
+    sec.</font></p>
+    <p><font size="4">In one dimensional cases, </font>
+    <font face="Courier New" color="#ff8000" size="4"><font face="Wingdings 3">s</font></font><font color="#ff8000" size="4">p
+    </font><font size="4">becomes dp/dx, and </font>
+    <font face="Wingdings 3" color="#ff8000" size="4">s</font><font color="#ff8000" size="4">n
+    </font><font size="4">becomes dn/dx.</font></p>
+    <p>&nbsp;</p>
+    <p><font size="4">The total current going through a semiconductor is the sum 
+    of the diffusion current and the drift current.</font></p>
+    <p><font size="4">Let:</font></p>
+    <p><font size="4">J<sub>P</sub> = the current due to holes<br>
+    J<sub>N</sub> = the current due to electrons<br>
+    &#956; = carrier mobility<br>
+    E = electric field exerted on the carrier</font></p>
+    <table border="3" cellpadding="12" cellspacing="1" style="border-collapse: collapse" bordercolor="#FF8000" bgcolor="#FFFF99">
+      <tr>
+        <td><font face="Courier New" color="#ff8000" size="5">J<sub>P</sub> = q 
+        &#956;<sub>p</sub> p E - q D<sub>P</sub> <font face="Wingdings 3">s</font>p
+        <br>
+        J<sub>N</sub> = q &#956;<sub>n</sub> n E + q D<sub>N</sub>
+        <font face="Wingdings 3">s</font>n</font></td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<p><font size="4">In a non-uniformly doped semiconductor under equilibrium,&nbsp; 
+J<sub>P</sub> = 0, and J<sub>N</sub> = 0. These requirements then leads to a 
+relationship between the coefficient for diffusion and the carrier mobility.</font></p>
+<table border="3" cellpadding="12" cellspacing="1" style="border-collapse: collapse" bordercolor="#FF8000">
+  <tr>
+    <td>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">D<sub>N</sub>
+              </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">&#956;<sub>n</sub>
+              </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">= </font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">kT </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">q </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+      </tr>
+    </table>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">D<sub>P</sub>
+              </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">&#956;<sub>p</sub>
+              </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">= </font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">kT </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">q </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<p><font size="4">These relationships work for both equilibrium and non 
+equilibrium conditions.</font></p>
+<p><font size="4">So it is not necessary to have a table of D<sub>P</sub> or D<sub>N</sub> 
+. We just compute D<sub>P</sub> or D<sub>N</sub> from
+<font face="Times New Roman">&#956;<sub>p</sub> or &#956;<sub>n</sub> .</font></font></p>
+<p><font size="4">Also note the above equation rhymes --- D over u equals kT 
+over q.</font></p>
+
+</body>
+
+</html>

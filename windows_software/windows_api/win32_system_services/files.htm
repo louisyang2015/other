@@ -1,0 +1,505 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Files</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">Files</font></h1>
+
+<p align="left"><font size="4">Asynchronous file operations: these are in 
+another chapter. The file operations described in this chapter are synchronous 
+--- that is they block until complete. Asynchronous file operations allow you to 
+do file operations in the background without the use of multi-threading. --- you 
+call a &quot;write&quot; function and it would return immediately. Asynchronous operations 
+would also allow multiple threads to read a single file.</font></p>
+<p><b><font size="5" color="#008000">Basic File I/O in C</font></b></p>
+<p><font face="Courier New" size="4">FILE* f;<br>
+f = fopen(filename, &quot;r&quot;);<br>
+c = fgetc(f);<br>
+fclose(f);</font></p>
+<p><font size="4"><a href="code/read_file_in_c.htm">Click here for full example</a></font></p>
+<p>&nbsp;</p>
+<p><b><font size="5" color="#008000">Basic File I/O in C++</font></b></p>
+
+<p><font face="Courier New" size="4">ifstream infile(filename);<br>
+infile.get(c);<br>
+infile.close();</font></p>
+
+<p>&nbsp;</p>
+
+<p><b><font size="5" color="#008000">File I/O using Windows API</font></b></p>
+
+<p><font size="4" face="Courier New">HANDLE fileHandle;<br>
+<b>fileHandle = CreateFile(filename, GENERIC_READ, 0, 0, OPEN_EXISTING, 0, 0);</b></font></p>
+
+<p><font size="4">GENERIC_READ, 0, ..., OPEN_EXISTING --- means that the file 
+will be used in (1) a read-only mode, (2) a share mode that prevents any other 
+process from opening the file, and (3) an OPEN_EXISTING creation mode that 
+specifies that the file already exists.</font></p>
+
+<p><font size="4">Various other API functions would need the file handle --- use 
+&quot;CreateFile&quot; to get a &quot;file handle&quot;.</font></p>
+
+<p><font size="4">&quot;CreateFile&quot; has lost of options --- more about this function 
+in the next section.</font></p>
+
+<p><font size="4">To read from a file:</font></p>
+
+<p><font face="Courier New" size="4">BOOL success;<br>
+DWORD numRead;<br>
+char s[100+1];<br>
+success = ReadFile(fileHandle, s, 100, &amp;numRead, 0);</font></p>
+
+<p><font size="4">numRead --- holds the number bytes actually read.</font></p>
+
+<p><font size="4">Since the &quot;ReadFile&quot; and &quot;WriteFile&quot; functions work with a 
+series of bytes, you can write an entire structure to file.</font></p>
+
+<p><font size="4">To write to a file:</font></p>
+
+<p><font face="Courier New" size="4">typedef struct<br>
+{<br>
+int a, b, c;<br>
+} data;<br>
+<br>
+data dataRec;<br>
+<br>
+success = WriteFile(fileHandle, &amp;dataRec, sizeof(data), &amp;numWrite, 0);</font></p>
+
+<p><font size="4">sizeof(data) --- the number of bytes to write</font></p>
+<p><font size="4">numWrite --- the number of bytes actually written</font></p>
+<p><font size="4">when you are done with the file handle:</font></p>
+<p><font size="4" face="Courier New">CloseHandle(fileHandle);</font></p>
+
+<p><font size="4"><a href="code/windows_api_file_io.cpp.htm">Click here for full 
+example</a> --- reading from a file<br>
+<a href="code/Filewrit.cpp">Click here for full example</a> --- writing to a 
+file</font></p>
+
+<p>&nbsp;</p>
+
+<p><b><font size="5" color="#008000">More about CreateFile</font></b></p>
+
+<p><font size="4" face="Courier New">HANDLE CreateFile(<br>
+&nbsp;&nbsp;&nbsp; LPCTSTR lpFileName,&nbsp;&nbsp;&nbsp;&nbsp; // file name<br>
+&nbsp;&nbsp;&nbsp; DWORD dwDesiredAccess,&nbsp;&nbsp;&nbsp;&nbsp; // 1) access 
+mode<br>
+&nbsp;&nbsp;&nbsp; DWORD dwShareMode,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+// 2) share mode<br>
+&nbsp;&nbsp;&nbsp; LPSECURITY_ATTRIBUTES lpSecurityAttributes, // SD<br>
+&nbsp;&nbsp;&nbsp; DWORD dwCreationDisposition,&nbsp;&nbsp;&nbsp;&nbsp; // 3) 
+how to create<br>
+&nbsp;&nbsp;&nbsp; DWORD dwFlagsAndAttributes,&nbsp;&nbsp;&nbsp;&nbsp; // 4) 
+file attributes<br>
+&nbsp;&nbsp;&nbsp; HANDLE hTemplateFile&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+// handle to template file<br>
+);<br>
+//returns INVALID_HANDLE_VALUE on failure</font></p>
+
+<p><font size="4">about the two items that I did not number:</font></p>
+
+<p><font size="4">lpSecurityAttributes --- it's a pointer to a security 
+structure, this gets covered in a later chapter</font></p>
+
+<p><font size="4">hTemplateFile --- the template file contains extended 
+attributes of the file</font></p>
+
+<p><font size="4">1) access mode options:</font></p>
+
+<table border="2" cellpadding="8" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td><font size="4">GENERIC_READ</font></td>
+    <td><font size="4">read only</font></td>
+  </tr>
+  <tr>
+    <td><font size="4">GENERIC_WRITE</font></td>
+    <td><font size="4">write only</font></td>
+  </tr>
+  <tr>
+    <td><font size="4">GENERIC_READ | GENERIC_WRITE</font></td>
+    <td><font size="4">read/write</font></td>
+  </tr>
+</table>
+<p><font size="4">2) share mode options:</font></p>
+
+<table border="2" cellpadding="8" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td><font size="4">0</font></td>
+    <td><font size="4">exclusive use of the file</font></td>
+  </tr>
+  <tr>
+    <td><font size="4">FILE_SHARE_READ</font></td>
+    <td><font size="4">read-share from the file</font></td>
+  </tr>
+  <tr>
+    <td><font size="4">FILE_SHARE_WRITE</font></td>
+    <td><font size="4">write-share the file</font></td>
+  </tr>
+  <tr>
+    <td><font size="4">FILE_SHARE_READ | FILE_SHARE_WRITE</font></td>
+    <td><font size="4">open access</font></td>
+  </tr>
+</table>
+<p><font size="4">3) creation options:</font></p>
+
+<table border="2" cellpadding="8" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td><font size="4">CREATE_NEW</font></td>
+    <td><font size="4">Create a new file. Fails if file name exists</font></td>
+  </tr>
+  <tr>
+    <td><font size="4">CREATE_ALWAYS</font></td>
+    <td><font size="4">Create a new file. Destroys any existing file</font></td>
+  </tr>
+  <tr>
+    <td><font size="4">OPEN_EXISTING</font></td>
+    <td><font size="4">Opens an existing file. Fails if file not found</font></td>
+  </tr>
+  <tr>
+    <td><font size="4">OPEN_ALWAYS</font></td>
+    <td><font size="4">Creates a file if one does not exist, or opens the 
+    existing file.</font></td>
+  </tr>
+  <tr>
+    <td><font size="4">TRUNCATE_EXISTING</font></td>
+    <td><font size="4">Deletes the contents of the file if it exists. Fails if 
+    it does not exist.</font></td>
+  </tr>
+</table>
+<p><font size="4">4) file attributes options: you can OR together 
+non-conflicting combinations of the following constants as needed in an 
+application:</font></p>
+
+<table border="2" cellpadding="8" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td><font size="4">FILE_ATTRIBUTE_ARCHIVE</font></td>
+    <td><font size="4">mark file for backup</font></td>
+  </tr>
+  <tr>
+    <td><font size="4">FILE_ATTRIBUTE_NORMAL</font></td>
+    <td><font size="4">Default</font></td>
+  </tr>
+  <tr>
+    <td><font size="4">FILE_ATTRIBUTE_HIDDEN</font></td>
+    <td><font size="4">mark file as hidden</font></td>
+  </tr>
+  <tr>
+    <td><font size="4">FILE_ATTRIBUTE_READONLY</font></td>
+    <td><font size="4">mark file as read only</font></td>
+  </tr>
+  <tr>
+    <td><font size="4">FILE_ATTRIBUTE_SYSTEM</font></td>
+    <td><font size="4">mark file for OS use only</font></td>
+  </tr>
+  <tr>
+    <td><font size="4">FILE_ATTRIBUTE_TEMPORARY</font></td>
+    <td><font size="4">mark file as temporary</font></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><font size="4">FILE_FLAG_WRITE_THROUGH</font></td>
+    <td><font size="4">write through cache to disk</font></td>
+  </tr>
+  <tr>
+    <td><font size="4">FILE_FLAG_OVERLAPPED</font></td>
+    <td><font size="4">in a later chapter</font></td>
+  </tr>
+  <tr>
+    <td><font size="4">FILE_FLAG_NO_BUFFERING</font></td>
+    <td><font size="4">use no cache on this file</font></td>
+  </tr>
+  <tr>
+    <td><font size="4">FILE_FLAG_RANDOM_ACCESS</font></td>
+    <td><font size="4">file will be accessed randomly</font></td>
+  </tr>
+  <tr>
+    <td><font size="4">FILE_FLAG_SEQUENTIAL_SCAN</font></td>
+    <td><font size="4">file will be accessed sequentially</font></td>
+  </tr>
+  <tr>
+    <td><font size="4">FILE_FLAG_DELETE_ON_CLOSE</font></td>
+    <td><font size="4">delete file when closed</font></td>
+  </tr>
+  <tr>
+    <td><font size="4">FILE_FLAG_BACKUP_SEMANTICS</font></td>
+    <td><font size="4">create as backup file</font></td>
+  </tr>
+  <tr>
+    <td><font size="4">FILE_FLAG_POSIX_SEMANTICS</font></td>
+    <td><font size="4">follow POSIX naming rules</font></td>
+  </tr>
+</table>
+<p><font size="4">Many of the flag options are hints that you give to help the 
+operating system improve its overall performance. If you are going to read in 
+the whole file sequentially into memory, then use the flags 
+FILE_FLAG_NO_BUFFERING and FILE_FLAG_SEQUENTIAL_SCAN options.</font></p>
+
+<p>&nbsp;</p>
+
+<p><font size="4"><font color="#008000"><b>Setting the file pointer</b></font> 
+--- <font face="Courier New">SetFilePointer(...)</font></font></p>
+
+<p>&nbsp;</p>
+
+<p><b><font size="5" color="#008000">Error handling:</font></b></p>
+
+<p><font size="4">Use this function to get the error code of the most recent 
+error</font></p>
+
+<p><font size="4" face="Courier New">DWORD GetLastError(VOID)</font></p>
+
+<p>&nbsp;</p>
+
+<p><b><font size="4" color="#008000">Getting the File Times:</font></b></p>
+
+<p><font face="Courier New" size="4">HANDLE fileHandle;<br>
+FILETIME create, lastWrite, lastAccess;<br>
+BOOL success;<br>
+<br>
+success = GetFileTime(fileHandle, &amp;create, &amp;lastAccess, &amp;lastWrite);</font></p>
+
+<p><font size="4"><a href="code/file_time.cpp.htm">Click here for the full 
+example</a></font></p>
+
+<p>&nbsp;</p>
+
+<p><b><font size="4" color="#008000">Getting the File Size:</font></b></p>
+
+<p><font face="Courier New" size="4">DWORD sizeLo, sizeHi;<br>
+sizeLo = GetFileSize(fileHandle, &amp;sizeHi);</font></p>
+
+<p><font size="4">In the FAT file system the file size is a 32 bit number. In 
+NTFS, it's a 64 bit number.</font></p>
+
+<p><font size="4"><a href="code/file_size.cpp.htm">Click here for the full 
+example</a></font></p>
+
+<p>&nbsp;</p>
+
+<p><b><font size="4" color="#008000">Getting File Attributes:</font></b></p>
+
+<p><font size="4" face="Courier New">DWORD attributes;<br>
+attributes = GetFileAttributes(filename);</font></p>
+
+<p><font size="4"><a href="code/file_attributes.cpp.htm">Click here for the full 
+example</a></font></p>
+
+<p>&nbsp;</p>
+
+<p><b><font size="4" color="#008000">Setting File Attributes:</font></b></p>
+
+<p><font size="4" face="Courier New">success = SetFileAttributes(&quot;xxx&quot;, 
+FILE_ATTRIBUTE_HIDDEN | FILE_ATTRIBUTE_READONLY);</font></p>
+
+<p><font size="4">Usually those are the only two attributes you will want to 
+set. The other bits, for example, the directory bit, are set automatically by 
+system calls when appropriate, and should not be altered.</font></p>
+
+<p>&nbsp;</p>
+
+<p><font size="4"><font color="#008000"><b>Getting all file information in one 
+call</b></font> --- <font face="Courier New">GetFileInformationByHandle(...)</font></font></p>
+
+<p><font size="4">The information comes back in a structure that contains the 
+attributes, size, and time data --- PLUS volume, index, and link information not 
+available anywhere else.</font></p>
+
+<p><font size="4"><a href="code/Fileinfo.cpp">Click here for full example</a></font></p>
+
+<p>&nbsp;</p>
+
+<p><b><font size="4" color="#008000">Getting the File Path</font></b></p>
+
+<p><font size="4" face="Courier New">char filename[MAX_PATH];<br>
+DWORD pathSize;<br>
+char pathBuffer[BUFFSIZE];<br>
+char* address;<br>
+pathSize = GetFullPathName(filename, BUFFSIZE,<br>
+pathBuffer, &amp;address);</font></p>
+
+<p><font size="4">This function appends the requested file name to the current 
+path to form a complete path name. However, it does no checking on the resulting 
+path name to ensure that it is valid.</font></p>
+
+<p><font size="4">I think you provide the &quot;filename&quot; and the full path + name 
+will be in &quot;pathBuffer&quot; --- I didn't understand what &quot;address&quot; is though. That 
+thing is a pointer to a pointer...</font></p>
+
+<p><font size="4"><a href="code/Filepath.cpp">Click here for full example</a></font></p>
+
+<p>&nbsp;</p>
+
+<p><b><font size="5" color="#008000">Copying Files</font></b></p>
+
+<p><font size="4" face="Courier New">success = CopyFile(sourceFilename, 
+destFilename, TRUE);</font></p>
+
+<p><font size="4">The third parameter, when set to TRUE, will cause the function 
+to fail when the destination file name already exists. If FALSE, the function 
+will overwrite an existing file</font></p>
+
+<p><font size="4"><a href="code/Copyfile.cpp">Click here for the full example</a></font></p>
+
+<p>&nbsp;</p>
+
+<p><b><font size="5" color="#008000">Moving Files</font></b></p>
+
+<p><font size="4">There are two move functions. The simple version moves a file 
+from one name to another one on a single volume. It simply changes pointers in 
+the directory structure, so it is fast. However, it does not allow movement 
+across volumes or between different drive letters. The simpler move function is:
+<b><font face="Courier New" color="#FF6600">MoveFile(...)</font></b></font></p>
+
+<p><font size="4">The other move function:</font></p>
+
+<p><font size="4" face="Courier New">success = MoveFileEx(sourceFilename, 
+destFilename, 0);</font></p>
+
+<p><font size="4">The third parameter is a flag. MOVEFILE_REPLACE_EXISTING 
+controls whether or not the function deletes an existing destination file during 
+the move. MOVE_FILE_COPY_ALLOWED determines whether cross-volume moves are 
+allowed. MOVEFILE_DELAY_UNTIL_RE-BOOT will set up for the move but will not 
+actually perform the move until the next reboot. You use need to delay move 
+until the next reboot if you are trying to move files that are open (and 
+therefore immobile).</font></p>
+
+<p><font size="4"><a href="code/Movxfile.cpp">Click here for an example</a></font></p>
+
+<p>&nbsp;</p>
+
+<p><b><font size="5" color="#008000">Delete a file</font></b></p>
+
+<p><font size="4" face="Courier New">success = DeleteFile(filename);</font></p>
+
+<p><font size="4"><a href="code/Delfile.cpp">Click here for an example</a></font></p>
+
+<p>&nbsp;</p>
+
+<p><b><font size="5" color="#008000">Temporary Files</font></b></p>
+
+<p><font size="4">First you get the path to the temp directory</font></p>
+
+<p><font size="4" face="Courier New">pathSize = GetTempPath( BUFFSIZE, 
+pathBuffer);</font></p>
+
+<p><font size="4">Then you call another function to generate a unique name for 
+the temporary file.</font></p>
+
+<p><font size="4" face="Courier New">// Create a temp file using the &quot;smp&quot; 
+prefix<br>
+uniqueNum = GetTempFileName(pathBuffer, &quot;smp&quot;, 0, tempFilename);</font></p>
+
+<p><font size="4">The &quot;smp&quot; is a prefix for the temporary file name. The third 
+parameter of '0' means the computer will pick a unique number to make the file a 
+unique one. The &quot;tempFilename&quot; is the unique temporary file name that the 
+computer comes up with.</font></p>
+
+<p><font size="4"><a href="code/Tempfile.cpp">Click here for the full example</a></font></p>
+
+<p>&nbsp;</p>
+
+<p><b><font size="4" color="#008000">File Locking</font></b></p>
+
+<p><font size="4">The &quot;CreateFile&quot; function allows you to set the sharing access 
+of the ENTIRE file. The functions <font color="#FF6600" face="Courier New"><b>
+LockFile</b></font>, <font face="Courier New" color="#FF6600"><b>UnlockFile</b></font>,
+<font face="Courier New" color="#FF6600"><b>LockFileEx</b></font>, and <b>
+<font face="Courier New" color="#FF6600">UnlockFileEx</font></b> allows you to 
+lock/unlock only part of the file. These functions want a 64 bit number to the 
+start of the lock region and another 64 bit number about how many bytes to lock. 
+Since these are 32 bit functions, the 64 bit argument is provided in two pieces.</font></p>
+
+<p><font size="4">LockFileEx function has a flag parameter.</font></p>
+
+<table border="2" cellpadding="8" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td><font size="4">0</font></td>
+  </tr>
+  <tr>
+    <td><font size="4">LOCKFILE_FAIL_IMMEDIATELY</font></td>
+  </tr>
+  <tr>
+    <td><font size="4">LOCKFILE_EXCLUSIVE_LOCK</font></td>
+  </tr>
+  <tr>
+    <td><font size="4">LOCKFILE_FAIL_IMMEDIATELY | LOCKFILE_EXCLUSIVE_LOCK</font></td>
+  </tr>
+</table>
+<p><font size="4">If LOCKFILE_FAIL_IMMEDIATELY is set, then when LockFileEx 
+encounters a series of bytes that has already been locked, LockFileEx will fail 
+immediately. If LOCKFILE_FAIL_IMMEDIATELY is not set, then LockFileEx will wait 
+for the series of request bytes to unlock, and then it will lock and return.</font></p>
+
+<p><font size="4">LOCKFILE_EXCLUSIVE_LOCK --- if set, an exclusive lock is in 
+place so that LockFileEx behaves just like LockFile. The exclusive lock will 
+prevent reading as well as writing. Not setting LOCKFILE_EXCLUSIVE_LOCK results 
+in a write lock --- meaning other processes can not write to the block of bytes, 
+but can read from them.</font></p>
+
+<p>&nbsp;</p>
+
+<p><b><font size="5" color="#008000">Compressed Files</font></b></p>
+
+<p><font size="4">Assume that you name the file xxx.txt, you can compress this 
+file to a new file named xxx.lz using the <font face="Courier New">compress</font> 
+command.</font></p>
+
+<p><font size="4" face="Courier New">compress xxx.txt xxx.lz</font></p>
+
+<p><font size="4">The command that you use on the command line to uncompress a 
+file is called <font face="Courier New">expand</font></font></p>
+
+<p><font size="4">Using Windows API, You can read a file using the functions: 
+LZOpenFile, LZSeek, LZRead, and LZClose --- no need to call &quot;expand&quot; and the 
+read the result. You need to include &quot;lz32.lib&quot; to use these LZ functions. Also, 
+the file handles returned by LZOpenFile can only be used by other LZ commands.</font></p>
+
+<p><font size="4"><a href="code/Lzread.cpp">Click here for the book's example on 
+reading from a compressed file</a></font></p>
+
+<p><font size="4">reading forward and seeking forward on a compressed file is 
+about as good as doing so in a sequential file --- but seeking backward in a 
+compressed file is many times worse than seeking backward with a normal file.</font></p>
+
+<p><font size="4">The function LZCopy can copy a compressed file to another 
+location, expanding it in the process.</font></p>
+
+<p>&nbsp;</p>
+
+<p><b><font size="5" color="#008000">File Mapping</font></b></p>
+
+<p><font size="4">You can map a file for either read-only or read-write access. 
+Once mapped, you access the file by address (using array or pointer syntax) 
+rather than using file access functions such as ReadFile or WriteFile. Later on, 
+it's shown that file mapping is a way of doing interprocess communication --- 
+but for now, our goal is to use file mapping to simplify file access.</font></p>
+
+<p><font size="4">You use the function <b>
+<font face="Courier New" color="#FF6600">CreateFileMapping</font></b> to create 
+a mapping. If all you want to do is file access, the map name will never be used 
+again. But if you want to do interprocess communication, another process would 
+open a mapping using the same file name. The
+<font color="#FF6600" face="Courier New"><b>MapViewOfFile</b></font> function 
+will load the file into memory. When you are done with the memory, use
+<font color="#FF6600" face="Courier New"><b>UnmapViewOfFile</b></font> to unload 
+the memory and write any changes back to the original file. Also, you can write 
+the memory back to the file using <b><font color="#FF6600">FlushViewOfFile</font></b>, 
+without waiting for UnmapViewOfFile.</font></p>
+
+<p><font size="4"><a href="code/Mapfile.cpp">Example</a> --- reading from a map 
+file<br>
+<a href="code/Mapfilew.cpp">Example</a> --- reading from and writing to a map 
+file</font></p>
+
+</body>
+
+</html>

@@ -1,0 +1,295 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Quine-McCluskey Method</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">Quine-McCluskey Method</font></h1>
+<p><font size="4">K-map good at 3 to 5 variables. For more variables, use the 
+Quine-McCluskey on computers. Algebraic simplification is still valuable in many 
+cases, especially when different forms are required. For problems with a large 
+number of variables and a small number of terms, algebraic simplification may be 
+the easiest method to use. </font></p>
+<p><font size="4">There's an Espresso II method that can produce near minimum 
+solutions for a large class of problems --- this is for those problems involving 
+so many variables that even Quine-McCluskey has trouble with it.</font></p>
+<p><font size="4">The Quine-McCluskey method gives minimum sum-of-products and 
+minimum product-of-sums expressions that lead directly to two-level networks 
+that use a minimum number of AND and OR gates and have a minimum number of gate 
+inputs.</font></p>
+<h2><font color="#008000">Determination of Prime Implicants</font></h2>
+<p><font size="4">As previously mentioned, prime implicants are the groups of 
+squares on the K-map that can not be enlarged further. Say we have to simplify a 
+function with the min terms:</font></p>
+<p><font size="4">f(a, b, c, d) = <font face="Times New Roman">&#8721;m(0, 1, 2, 5, 6, 
+7, 8, 9, 10, 14)</font></font></p>
+<p><font size="4">In binary, 0 = 0000, 1 = 0001, ... 14 = 1110</font></p>
+<p><font size="4">We divide this list into groups based on how many ones there 
+are:</font></p>
+<table border="1" cellpadding="12" cellspacing="1" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td><font size="4">zero ones</font></td>
+    <td><font size="4">0 = 0000</font></td>
+  </tr>
+  <tr>
+    <td><font size="4">one ones</font></td>
+    <td><font size="4">1 = 0001<br>
+    2 = 0010<br>
+    8 = 1000</font></td>
+  </tr>
+  <tr>
+    <td><font size="4">two ones</font></td>
+    <td><font size="4">5 = 0101<br>
+    6 = 0110<br>
+    9 = 1001<br>
+    10 = 1010</font></td>
+  </tr>
+  <tr>
+    <td><font size="4">three ones</font></td>
+    <td><font size="4">7 = 0111<br>
+    14 = 1110</font></td>
+  </tr>
+</table>
+<p><font size="4">Now we try to combine the above list in the manner of XY + XY' 
+= X. </font></p>
+<p><font size="4">Two terms can be combined if they only differ in one bit. 
+Mathematically speaking, two min-terms can combine if they differ by a power of 
+2. This is because if two terms differ by one bit, and you subtract these two 
+terms, then the difference only has one bit and so it must be a power of 2.</font></p>
+<p><font size="4">So 0000 and 0010 can combine to 00-0. Then we mark 0000 and 
+0010 so to know that those two terms are being covered by the prime implicant 
+00-0.</font></p>
+<p><font size="4">The result of the combinations:</font></p>
+<p><img border="0" src="images/table_07_01.jpg" width="777" height="435"></p>
+<p><font size="4">Column II consist of the mergers of the terms in column I, and 
+column III contains mergers of the terms in column II. Every term in column I is 
+checked off because every term in column I can be merged with some other term. 
+But there are some terms in column II that are not checked off because some of 
+those terms can not be merged with other column II terms.</font></p>
+<p><font size="4">Also note that column III has a number of duplicates that 
+needs to be eliminated.</font></p>
+<p><font size="4">In the end, the prime implicants are the unique column III 
+terms and the unique column II terms that has not been checked off.</font></p>
+<p><font size="4">Prime implicants: (1, 5) + (5, 7) + (6, 7) + (0, 1, 8, 9) + 
+(0, 2, 8, 10) + (2, 6, 10, 14)</font></p>
+<p><font size="4">(0, 2, 8, 10) means that it's the merger of minterm number 0, 
+2, 8, 10:</font></p>
+<table border="2" cellpadding="12" cellspacing="1" style="border-collapse: collapse" bordercolor="#008000">
+  <tr>
+    <td><font size="4">0000<br>
+0010<br>
+1000<br>
+1010</font></td>
+    <td>
+    
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td colspan="4"><font size="4">ab</font></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><font size="4">00</font></td>
+    <td><font size="4">01</font></td>
+    <td><font size="4">11</font></td>
+    <td><font size="4">10</font></td>
+  </tr>
+  <tr>
+    <td rowspan="4" valign="top"><font size="4">cd</font></td>
+    <td><font size="4">00</font></td>
+    <td colspan="4" rowspan="4">
+    <table border="1" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+      <tr>
+        <td width="50" align="center" bgcolor="#FFFF99"><font size="5">0</font></td>
+        <td width="50" align="center"><font size="5">4</font></td>
+        <td width="50" align="center"><font size="5">12</font></td>
+        <td width="50" align="center" bgcolor="#FFFF99"><font size="5">8</font></td>
+      </tr>
+      <tr>
+        <td width="50" align="center"><font size="5">1</font></td>
+        <td width="50" align="center"><font size="5">5</font></td>
+        <td width="50" align="center"><font size="5">13</font></td>
+        <td width="50" align="center"><font size="5">9</font></td>
+      </tr>
+      <tr>
+        <td width="50" align="center"><font size="5">3</font></td>
+        <td width="50" align="center"><font size="5">7</font></td>
+        <td width="50" align="center"><font size="5">15</font></td>
+        <td width="50" align="center"><font size="5">11</font></td>
+      </tr>
+      <tr>
+        <td width="50" align="center" bgcolor="#FFFF99"><font size="5">2</font></td>
+        <td width="50" align="center"><font size="5">6</font></td>
+        <td width="50" align="center"><font size="5">14</font></td>
+        <td width="50" align="center" bgcolor="#FFFF99"><font size="5">10</font></td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+  <tr>
+    <td><font size="4">01</font></td>
+  </tr>
+  <tr>
+    <td><font size="4">11</font></td>
+  </tr>
+  <tr>
+    <td><font size="4">10</font></td>
+  </tr>
+</table>
+
+    </td>
+  </tr>
+</table>
+<p><font size="4">merges into -0-0, or b'd'</font></p>
+
+<p><font size="4">This &quot; b'd' &quot; is a prime implicant because it has the minimum 
+number of literals in it. If we remove any more literals, the minterm is no 
+longer part of the truth table.</font></p>
+
+<p><font size="4">A minimum sum-of-products expression for a function consists 
+of a sum of some (but not necessarily all) of the prime implicants of that 
+function.</font></p>
+
+<p><font size="4">It's correct to say that:</font></p>
+
+<p><font size="4">f = (1, 5) + (5, 7) + (6, 7) + (0, 1, 8, 9) + (0, 2, 8, 10) + 
+(2, 6, 10, 14)</font></p>
+
+<p><font size="4">but that expression is not the minimum. We need to pick out 
+the smallest set of implicants that will cover all minterms.</font></p>
+
+<h2><font color="#008000">The Prime Implicant Chart</font></h2>
+
+<p><font size="4">The prime implicant chart for our on going problem looks like:</font></p>
+
+<p><img border="0" src="images/table_07_02.jpg" width="640" height="252"></p>
+
+<p><font size="4">basically there is a mark for each min term that an implicant 
+covers.</font></p>
+
+<p><font size="4">Minterm #9 is covered only by b'c' --- so that term must be 
+one of the implicants that make up the function f. Such implicants are called
+<font color="#008000">essential prime implicants</font>.</font></p>
+
+<p><font size="4">Together, b'c' and cd' covers minterms {0 1 2 6 8 9 10 14}, 
+which leaves minterms {5 7}. We always select the essential prime implicants 
+first, then we select the additional implicants to cover the minterms remaining.</font></p>
+
+<p><font size="4">f = b'c' + cd' + a'bd</font></p>
+
+<p><font size="4" color="#008000">Petrick's Method</font></p>
+
+<p><font size="4">I think for a computer program, use either exhaustive search 
+or guessing to select the implicants that will cover all minterms. But the book 
+presents a Boolean algebra based method to find the necessary implicants that 
+will cover all minterms. Say we have the following prime implicant table:</font></p>
+
+<table cellPadding="10" border="1" cellspacing="0" bordercolor="#111111" style="border-collapse: collapse">
+  <tr>
+    <td>&nbsp;</td>
+    <td><font size="4">0</font></td>
+    <td><font size="4">1</font></td>
+    <td><font size="4">2</font></td>
+    <td><font size="4">5</font></td>
+    <td><font size="4">6</font></td>
+    <td><font size="4">7</font></td>
+  </tr>
+  <tr>
+    <td><font size="4">p1</font></td>
+    <td><font size="4">x</font></td>
+    <td><font size="4">x</font></td>
+    <td><font size="4">&nbsp;</font></td>
+    <td><font size="4">&nbsp;</font></td>
+    <td><font size="4">&nbsp;</font></td>
+    <td><font size="4">&nbsp;</font></td>
+  </tr>
+  <tr>
+    <td><font size="4">p2</font></td>
+    <td><font size="4">x</font></td>
+    <td><font size="4">&nbsp;</font></td>
+    <td><font size="4">x</font></td>
+    <td><font size="4">&nbsp;</font></td>
+    <td><font size="4">&nbsp;</font></td>
+    <td><font size="4">&nbsp;</font></td>
+  </tr>
+  <tr>
+    <td><font size="4">p3</font></td>
+    <td><font size="4">&nbsp;</font></td>
+    <td><font size="4">x</font></td>
+    <td><font size="4">&nbsp;</font></td>
+    <td><font size="4">x</font></td>
+    <td><font size="4">&nbsp;</font></td>
+    <td><font size="4">&nbsp;</font></td>
+  </tr>
+  <tr>
+    <td><font size="4">p4</font></td>
+    <td><font size="4">&nbsp;</font></td>
+    <td><font size="4">&nbsp;</font></td>
+    <td><font size="4">x</font></td>
+    <td><font size="4">&nbsp;</font></td>
+    <td><font size="4">x</font></td>
+    <td><font size="4">&nbsp;</font></td>
+  </tr>
+  <tr>
+    <td><font size="4">p5</font></td>
+    <td><font size="4">&nbsp;</font></td>
+    <td><font size="4">&nbsp;</font></td>
+    <td><font size="4">&nbsp;</font></td>
+    <td><font size="4">x</font></td>
+    <td><font size="4">&nbsp;</font></td>
+    <td><font size="4">x</font></td>
+  </tr>
+  <tr>
+    <td><font size="4">p6</font></td>
+    <td><font size="4">&nbsp;</font></td>
+    <td><font size="4">&nbsp;</font></td>
+    <td><font size="4">&nbsp;</font></td>
+    <td><font size="4">&nbsp;</font></td>
+    <td><font size="4">x</font></td>
+    <td><font size="4">x</font></td>
+  </tr>
+</table>
+
+<p><font size="4">where the p1 implicant covers terms 0, 1; and the p2 implicant 
+covers the term 0, 2; and so on ...</font></p>
+
+<p><font size="4">Term zero can be covered by either p1 or p2, so we write (p1 + 
+p2). So we are treating p1, p2 as Boolean flags as to whether a term is covered. 
+To cover all eight terms, the following Boolean equation is true:</font></p>
+
+<p><font size="4">1 = (p1 + p2)(p1 + p3)(p2 + p4)(p3 + p5)p4 + p6)(p5 + p6)</font></p>
+
+<p><font size="4">Then you multiplies it out and SIMPLIFY it into the form:</font></p>
+
+<p><font size="4">1 = p1 p4 p5 + p1 p2 p5 p6 + p2 p3 p4 p5 + p1 p3 p4 p6 + p2 p3 
+p6</font></p>
+
+<p><font size="4">The simplification involves multiplying while applying the &quot;(X 
++ Y)(X + Z) = (X + YZ)&quot; rule, and then using the &quot;X + XY = X&quot; rule. So the 
+simplification process is specific.</font></p>
+
+<p><font size="4">But still, it seems like depth first traversal of&nbsp; the 
+tree of possibilities would be easier to program --- and faster?? .... because 
+simplification seems to involve lots of traversals comparisons. But 
+simplification might be faster if there's some sort of tricky data structure for 
+the Boolean equation.</font></p>
+
+<h2><font color="#008000">Simplification of Incompletely Specified Functions</font></h2>
+
+<p><font size="4">To use don't care conditions with the Quine-McCluskey method, 
+treat the don't cares as additional minterms when searching for prime implicants 
+--- this to get the smallest terms. Then when building the prime implicant 
+chart, don't include the don't care columns --- because we don't have to support 
+the output of those columns.</font></p>
+
+</body>
+
+</html>

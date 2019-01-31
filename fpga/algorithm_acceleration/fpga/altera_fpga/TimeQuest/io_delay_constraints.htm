@@ -1,0 +1,166 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Language" content="en-us" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>I/O Delay Constraints</title>
+<link rel="stylesheet" type="text/css" href="fpga.css" />
+</head>
+
+<body>
+
+<h1>I/O Delay Constraints</h1>
+<p class="center">Last updated June 1, 2011</p>
+<h2>FPGA Input Delay</h2>
+<p>Input delay is the time difference between the data and the device clock 
+launch edge. Assuming the device clock (device_clk) and the FPGA clock (fpga_clk) 
+are exactly the same, the input delay is in green below.</p>
+<p><img src="images/input_delay.gif" width="800" height="530" /></p>
+<p>The &quot;data&quot; is launched at the rising edge on the left and will be latched at 
+the rising edge on the right. The green is the input delay, which is the sum of 
+the device clock to output time (T<sub>CO</sub>) and the transmission line delay 
+across the PCB (T<sub>PCB</sub>). </p>
+<p>The red arrows indicate the FPGA&#39;s setup and hold time requirements. If input 
+delay is too long, then the data will not meet the FPGA&#39;s setup requirement. If 
+the the data is delayed too short, then a new data will pop up and violate the 
+FPGA&#39;s hold requirement. The input delay constraint gives a range of value, and 
+the Quartus 2 will decide if that range of value will interfere with the FPGA&#39;s 
+setup and hold times.</p>
+<p>Now to factor in the skew between the FPGA clock and the device clock:</p>
+<p><img src="images/input_delay2.gif" width="800" height="639" /></p>
+<p>Any lateness in the FPGA clock decrease the input delay value. So the final 
+equation for the input delay is:</p>
+<p>T<sub>CO</sub> + T<sub>PCB</sub> - (fpga_clk lateness)</p>
+<p>The exact same equation is used for input delay maximum and input delay 
+minimum, but each term has a range of values possible. For example, the input 
+delay maximum is the T<sub>CO(MAX)</sub> + T<sub>PCB(MAX)</sub> - (fpga_clk 
+lateness)<sub>MIN</sub>.</p>
+<p>&nbsp;</p>
+<h2>FPGA Output Delay Maximum</h2>
+
+<p>The FPGA output delay is a value from the perspective of the eternal device. 
+Again, first assume that the device clock is the same as the FPGA clock to 
+simplify the analysis. The maximum output delay allowed is pictured below:</p>
+<p><img src="images/output_delay1.gif" width="800" height="502" /></p>
+<p>In this maximum delay situation, the data is launched at time t1. The gap 
+between t1 and t2 is the PCB delay (T<sub>PCB</sub>). The gap between t2 and the 
+latch edge is the device setup time (T<sub>SU</sub>). So a launch of anything 
+later than t1 will result in violation of the device hold time requirement. </p>
+<p>The value provided to the &quot;set_output_delay -max&quot; command is not the delay 
+between the device_clk lauch edge and data, but the green line instead. The 
+Quartus two will decide if the data come out fast enough to meet the t1 
+deadline.</p>
+<p>To take into account the skew between the device_clk and fpga_clk:</p>
+<p><img src="images/output_delay2.gif" width="800" height="689" /></p>
+<p>Any lateness in the FPGA clock will increase the &quot;set_output_delay -max&quot; 
+command value.</p>
+<p>The value provided to &quot;set_output_delay -max&quot; command is:<br />
+T<sub>PCB</sub> + T<sub>SU</sub> + (FPGA CLK lateness).</p>
+<p>To make sure that &quot;data&quot; is launched early enough, this border line value 
+needs to be maximized as:<br />
+T<sub>PCB(MAX)</sub> + T<sub>SU(MAX)</sub> + (FPGA CLK lateness)<sub>(MAX)</sub>.</p>
+<p>&nbsp;</p>
+<h2>FPGA Output Delay Minimum</h2>
+
+<p>The minimum FPGA output delay is something that allows the previous data 
+value to stay around long enough to meet the device hold time requirement. The 
+situation where the PCB delay is longer than the hold time is shown below:</p>
+<p><img src="images/output_delay3.gif" width="800" height="521" /></p>
+<p>The black gap between t1 and t2 is the PCB delay. The red arrow is the hold 
+requirement of the device. If the new data is launched at t1, then it will 
+arrive at the device at time t2, late enough to allow the previous data value to 
+satisfy the device hold requirement.</p>
+<p>The &quot;set_input_delay -min&quot; command value is the length in green.</p>
+<p>To take into account the skew between the FPGA clock and the device clock:</p>
+<p><img src="images/output_delay4.gif" width="800" height="683" /></p>
+<p>Any FPGA clock lateness will increase the green distance. The green distance 
+shows how early can the FPGA launch the data, ahead of the clock.</p>
+<p>A launch that is too early will violate the device hold time requirement, so 
+for worst case consideration, the green distance is to be minimized - so that 
+the limit on when the FPGA can launch the data is pushed as far to the right as 
+possible.</p>
+<p>The value given to the &quot;set_input_delay -min&quot; command is:</p>
+<p>T<sub>PCB(MIN)</sub> - T<sub>H(MAX)</sub> + (FPGA clock lateness)<sub>MIN</sub></p>
+<p>In the above presentation, the &quot;set_input_delay -min&quot; command value is 
+pictured as a positive value - for ease of presentation. When this value is 
+positive, it would mean the data is allowed to launch to the left of the FPGA 
+clock being referenced. If the data is registered to this same FPGA clock, then 
+such a situation is impossible and the constraint will always pass.</p>
+<p>Assuming that the FPGA clock is registering the output data, the only time 
+when this constraint will be realistically tested is when the PCB trace delay is 
+shorter than the device hold time requirement. In this case the &quot;T<sub>PCB</sub> - T<sub>H</sub>&quot; 
+equation will produce a negative value.</p>
+<p><img src="images/output_delay5.gif" width="800" height="650" /></p>
+<p>In this picture, the green line is truly the output delay. The FPGA must 
+launch the data after the green line period of time, so that when the data 
+arrive, the hold time of the device will not be violated. This picture is good 
+for understanding, but due to the way the &quot;set_input_delay -min&quot; command value 
+is defined, the green line is representing a negative value.</p>
+<p>&nbsp;</p>
+<h2>Dummy I/O Constraint Values</h2>
+<p>If the data rate is much slower than the FPGA clock rate, then just put dummy 
+values to remove the &quot;unconstrained path&quot; warnings. The following &quot;constraints&quot; 
+should always pass.</p>
+<p>Assuming a clock period of 10 ns.</p>
+<table>
+				<tr>
+								<td class="nowrap">set_input_delay -min</td>
+								<td class="nowrap">2</td>
+								<td class="left">FPGA side will get a hold time 
+								of 2ns</td>
+				</tr>
+				<tr>
+								<td class="nowrap">set_input_delay -max</td>
+								<td class="nowrap">4</td>
+								<td class="left">FPGA side will get a setup time 
+								of 6 ns</td>
+				</tr>
+				<tr>
+								<td class="nowrap">set_output_delay -min</td>
+								<td class="nowrap">1</td>
+								<td class="left">FPGA output can leave up to 1 
+								ns before launch clock (which is normally 
+								impossible) without violating device side hold 
+								time.</td>
+				</tr>
+				<tr>
+								<td class="nowrap">set_output_delay -max</td>
+								<td class="nowrap">4&nbsp;</td>
+								<td class="left">FPGA output must leave the pin 
+								within 6 ns of launch clock so to give device 
+								side sufficient setup time.</td>
+				</tr>
+</table>
+<p>Sometimes the board clock is a PLL output that is leading the FPGA clock 
+slightly.</p>
+<p><img src="images/clock_lead.gif" width="800" height="354" /></p>
+<p>The goal is that by the time the board clock arrive at the destination (an 
+SDRAM), this clock will be delayed sufficiently to be in phase with the FPGA 
+clock. To build the constraint for this clock output, the &quot;set_output_delay -max&quot; 
+value should be negative.</p>
+<p>In this case, when the &quot;set_output_delay -max&quot; value is positive, then the 
+board clock, as a data, would have to lauch by t1, which is not possible if the 
+gap between board clock and FPGA clock is small. If a negative value is used, 
+then the board clock, as a data value, would be required to launch by t2, which 
+is easily possible.</p>
+<p>&nbsp;</p>
+<h2>Altera Training Slides about Input Delay and Output Delay</h2>
+<ul>
+				<li><a href="images/altera_slide_io01.gif">Synchronous Input</a></li>
+				<li><a href="images/altera_slide_io02.gif">Synchronous Output</a></li>
+				<li><a href="images/altera_slide_io03.gif">Constraining 
+				Synchronous I/O (-max)</a></li>
+				<li><a href="images/altera_slide_io04.gif">Constraining 
+				Synchronous I/O (-min)</a></li>
+				<li><a href="images/altera_slide_io05.gif">
+				set_[input|output]_delay Command</a></li>
+				<li><a href="images/altera_slide_io06.gif">
+				set_[input|output]_delay Notes</a></li>
+				<li><a href="images/altera_slide_io07.gif">Synchronous I/O 
+				Example</a></li>
+</ul>
+
+</body>
+
+</html>

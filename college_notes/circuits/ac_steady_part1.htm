@@ -1,0 +1,194 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>AC Steady-State Analysis - no Phasors</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">AC Steady-State Analysis - no Phasors</font></h1>
+<p><b><font size="4" color="#008000">A Review about Sinusoids</font></b></p>
+
+<pre><font size="5">	x(wt) = X<sub>M</sub> sin(wt)</font></pre>
+<p><font face="Courier New" size="4" color="#FF8000">period = 2&#928; / w</font></p>
+<p><font face="Courier New" size="4" color="#FF8000">w = 2&#928; * f, f is frequency</font></p>
+<p><font face="Times New Roman" size="4">In EE, it's common to use radians for 
+wt and at the same time use degrees for the phase shift.</font></p>
+<pre><font size="4">	x(t) = X<sub>M</sub> sin(4t + 30<sup>o</sup>)</font></pre>
+<p><font face="Times New Roman" size="4">The &quot;4t&quot; is in radians, while the &quot;30&quot; 
+is in degrees.</font></p>
+<hr color="#FF8000">
+<h2><font color="#008000">Basic Analysis Approach using Differential Equations</font></h2>
+
+<p><font size="4"><font color="#008000"><b>Example problem:</b></font> Find i(t) 
+if <b><font face="Courier New" color="#FF8000">v(t) = V<sub>M</sub> cos wt</font></b></font></p>
+
+<p><img border="0" src="images/pic0104.gif" width="400" height="333"></p>
+
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    L </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">d i(t) </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">dt </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    + i(t) * R = v(t) =</font></td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    V<sub>M</sub> cos wt </font></td>
+  </tr>
+</table>
+<p><font size="4">v(t) is a cosine function --- so the current and voltage 
+everywhere in these circuits would be a cosine function too. <i>The reason is 
+that the inductor and capacitor equations are: v = L (di/dt), and i = C (dv/dt). 
+So if v is sine, then i is cosine. If v is cosine, then i is sine. A sine 
+function is just a cosine function with a phase shift of 90 degrees.</i></font></p>
+
+<p><font size="4">Knowing that i(t) will be in the form: </font></p>
+
+<pre><font size="4">	i(t) = A cos(wt + <font face="Courier New">&#934;</font>)</font></pre>
+<p><font size="4">we can try to substitute this &quot;A cos(wt + &#934;)&quot; into the 
+differential equation and get the constants &quot;A&quot; and &quot;&#934;&quot;. Substituting &quot;A cos(wt 
++ &#934;)&quot; into the differential equation will result in:</font></p>
+<pre><font size="4">	<b>A</b>*w*L * -sin(wt + <b><font face="Courier New">&#934;</font></b>) + R*<b>A</b> * cos(wt + <font face="Courier New"><b>&#934;</b>) = V<sub>M</sub> * cos(wt)</font></font></pre>
+<p><font size="4">It's possible to rearrange things to match up the left side 
+with the right side and figure out &quot;A&quot; and &quot;&#934;&quot; --- but it is very tedious. We 
+start by:</font></p>
+<pre><font size="4">	sin(wt + <font face="Courier New">&#934;</font>) = (sin wt)(cos <font face="Courier New">&#934;</font>) + (cos wt)(sin <font face="Courier New">&#934;</font>)
+	cos(wt + <font face="Courier New">&#934;</font>) = (cos wt)(cos <font face="Courier New">&#934;</font>) - (sin wt)(sin <font face="Courier New">&#934;</font>)</font></pre>
+<p><font size="4">and the left side eventually becomes:</font></p>
+<pre><font size="4">	something * sin(wt) + something * cos(wt) = <font face="Courier New">V<sub>M</sub> * cos(wt)</font></font></pre>
+<p><b><font size="4" color="#008000">A much easier approach that substituting in 
+A cos(wt + &#934;):</font></b></p>
+<p><font size="4">Recall that:</font></p>
+<pre><font size="4">	e<sup>jwt</sup> = cos wt + j * sin wt</font></pre>
+<p><font size="4">Instead of solving</font></p>
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    L </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">d i(t) </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">dt </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    + i(t) * R =</font></td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    V<sub>M</sub> cos wt </font></td>
+  </tr>
+</table>
+<p><font size="4">Solve:</font></p>
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    L </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">d i(t) </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">dt </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    + i(t) * R =</font></td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    V<sub>M</sub> </font><font face="Courier New" size="5" color="#FF8000">e<sup>jwt</sup></font></td>
+  </tr>
+</table>
+<p><font size="4">and the the real part of the answer.</font></p>
+<p><font size="4">The substitution to use is:</font></p>
+<pre><b><font size="5" color="#FF8000">	i(t) = A * e<sup>j(wt + &#934;)</sup></font></b></pre>
+<p><font size="4">The reason this substitution works better than &quot;A cos(wt + &#934;)&quot; 
+is that the derivative of &quot;</font><b><font size="4">e<sup>j(wt + &#934;)</sup></font></b><font size="4">&quot; 
+will be a constant times &quot;</font><b><font size="4">e<sup>j(wt + &#934;)</sup></font></b><font size="4">&quot; 
+--- and this makes term matching easy. In contrast, the derivative of &quot;A cos(wt 
++ &#934;)&quot; is a sine term. Also, factoring out the &quot;&#934;&quot; from the (wt + &#934;) is more 
+easily done with the e<sup>something</sup> format.</font></p>
+<p><font size="4">The &quot;</font><font size="4" face="Courier New" color="#FF8000">i(t) 
+= A * e<sup>j(wt + &#934;)</sup></font><font size="4">&quot; substitution results in:</font></p>
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    Ae<sup>j&#934;</sup> = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">V<sub>M</sub> </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">Lwj + R </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<p><font size="4">To finish the problem, we need to get the right side term into 
+the polar form.</font></p>
+
+</body>
+
+</html>

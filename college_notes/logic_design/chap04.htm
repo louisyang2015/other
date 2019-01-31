@@ -1,0 +1,59 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Algebraic Simplification</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">Algebraic Simplification</font></h1>
+<h2><font color="#008000">The Consensus Theorem</font></h2>
+<table border="0" cellpadding="12" cellspacing="1" style="border-collapse: collapse" bordercolor="#111111" bgcolor="#FFFF99">
+  <tr>
+    <td><font face="Courier New" size="4" color="#FF8000">XY + X'Z + YZ = XY + 
+    X'Z</font></td>
+  </tr>
+</table>
+<p><font size="4">The YZ is called the consensus term. It comes from multiplying 
+the XY term with the X'Z term while leaving out the X and X'.</font></p>
+<p><font size="4">To prove the consensus theorem (or avoid remembering it), use:
+<font face="Courier New" color="#FF8000">XY + X'Z + YZ(X + X')</font></font></p>
+<p><font size="4">The dual of the consensus theorem:</font></p>
+<table border="0" cellpadding="12" cellspacing="1" style="border-collapse: collapse" bordercolor="#111111" bgcolor="#FFFF99">
+  <tr>
+    <td><font face="Courier New" size="4" color="#FF8000">(X + Y)(X' + Z)(Y + Z) 
+    = (X + Y)(X' + Z)</font></td>
+  </tr>
+</table>
+<p><font size="4">This time, the Y + Z is the consensus term. It is arrived at 
+by adding the X + Y and X' + Z term while leaving out the X and X'.</font></p>
+<p>&nbsp;</p>
+<h2><font color="#008000">Proving Validity of an Equation</font></h2>
+<p><font size="4">It is permissible to perform the same operation on both sides 
+of the equation provided that operation is reversible.&quot; The key word is 
+&quot;reversible --- many operations that are reversible in arithmetic algebra are 
+not reversible in Boolean algebra.</font></p>
+<p><font size="4">The cancellation law is not true for Boolean algebra. 
+Attaching AND, OR terms to both sides of a Boolean equation is not used in 
+proofs. For example:</font></p>
+<p><font face="Courier New" size="4" color="#FF8000">1 + 0 = 1 + 1, but 0 &#8800; 1<br>
+1 * 0 = 0 * 0, but 0 &#8800; 1 </font></p>
+<p><font size="4">However, the converse of the above is true:</font></p>
+<p><font size="4" color="#FF8000" face="Courier New">If y = z, then x + y = x + 
+z<br>
+If y = z, then xy = xz</font></p>
+<p><font size="4">So if you <font color="#FF8000"><b>know for sure</b></font> 
+two expressions are equal, you can add the same stuff to both sides to
+<font color="#FF8000"><b>maintain</b></font> that equality.</font></p>
+<p><font size="4">If you <font color="#FF8000"><b>do not know for 
+sure</b></font> two expressions are equal, you <font color="#FF8000"><b>cannot</b></font> 
+add the same stuff to both sides to<font color="#FF8000"><b> proof </b></font>
+equality.</font></p>
+
+</body>
+
+</html>

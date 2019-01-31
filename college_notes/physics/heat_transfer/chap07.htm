@@ -1,0 +1,1267 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>External Forced Convection</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">External Forced Convection</font></h1>
+<p><font size="4"><font color="#008000">free stream velocity</font> --- denoted 
+u<font face="Times New Roman"><sub>&#8734;</sub> , this is the velocity of the fluid 
+far from a solid body. Other names include <font color="#008000">upstream 
+velocity</font>, or <font color="#008000">approach velocity</font> (denoted V).</font></font></p>
+<h2><font face="Times New Roman" color="#008000">Drag</font></h2>
+<p><font face="Times New Roman" size="4">Drag is the force that a flowing fluid 
+exerts on an object. Drag is divided into two components --- one is the shearing 
+force exerted by the fluid as it move over an object, the other is the pressure 
+exerted by the fluid as it move against an object.</font></p>
+<p><font face="Times New Roman" size="4">Drag is modeled by:</font></p>
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    C<sub>D</sub> = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">F<sub>D</sub> </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">0.5 <i>&#961;</i> V<sup>2</sup> 
+          A </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<p><font face="Times New Roman" size="4">C<sub>D</sub> = drag coefficient<br>
+F<sub>D</sub> = drag force<br>
+&#961; = density<br>
+V = upstream velocity<br>
+A = &quot;frontal area&quot;. For blunt objects, objects that tends to block the flow, the 
+drag is due mostly to pressure and A is the area projected on a plane normal to 
+the direction of flow. For plates or airfoils, the drag is due mostly to 
+shearing drag, and A is defined as the surface area that is exposed to fluid 
+flow.</font></p>
+<p>&nbsp;</p>
+<h2><font face="Times New Roman" color="#008000">Parallel Flow over Flat Plate</font></h2>
+<p><font face="Times New Roman" size="4" color="#008000">Reynolds Number</font></p>
+<p><img border="0" src="images/pic0060.jpg" width="433" height="372"></p>
+<p><font face="Times New Roman" size="4">The Reynold number at a particular 
+location &quot;x&quot; away from the leading edge of the plate:</font></p>
+<table border="0" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" bgcolor="#FFFF99">
+  <tr>
+    <td>
+    <table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    Re<sub>x</sub> = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">V x </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">&#956;/<i>&#961;</i> </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+
+    </td>
+  </tr>
+</table>
+<p><font size="4">V = up stream (fluid) velocity</font><font face="Times New Roman" size="4"><br>
+&#956; = dynamic viscosity of the fluid<br>
+</font><font size="4"><font face="Times New Roman">&#961;</font> = fluid density</font></p>
+<p><font face="Times New Roman" size="4" color="#008000">Turbulance</font></p>
+<p><font face="Times New Roman" size="4">The fluid flow will become turbulent at 
+a distance x<sub>cr</sub> modeled by:</font></p>
+<table border="0" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" bgcolor="#FFFF99">
+  <tr>
+    <td>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">Re<sub>cr</sub> =
+        </font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">V x<sub>cr</sub>
+              </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">&#956;/<i>&#961;</i>
+              </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">= 5 * 10<sup>5</sup>
+        </font></td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<p><font face="Times New Roman" size="4">To evaluate this Re, we need &#956; and &#961;, 
+which are properties of the fluid and they are temperature dependent. We use the 
+average temperature of the fluid near the surface.</font></p>
+<p><font face="Times New Roman" size="4" color="#008000">Average Temperature</font></p>
+<p><font face="Times New Roman" size="4">When a fluid moves over a surface, a 
+thermal boundary layer is developed in which the fluid's temperature varies from 
+the surface temperature to the fluid temperature.</font></p>
+<p><img border="0" src="images/pic0059.gif" width="576" height="241"></p>
+<p><font face="Times New Roman" size="4">When we talk about heat transfer from 
+the surface to a fluid, we are really concerned about the fluid in the thermal 
+boundary layer (marked yellow), not the 10<sup> o</sup>C fluid far from the 
+surface. We will consider the fluid that is doing the heat transfer to be at 30
+<sup>o</sup>C --- which is the average of the surface temperature and the fluid 
+temperature far away from the surface. This averaged temperature is called film 
+temperature T<sub>f</sub> :</font></p>
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    T<sub>f</sub> = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">T<sub>s</sub> + T<sub>&#8734;</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">2 </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<p><font face="Times New Roman" size="4" color="#008000">Friction Coefficient</font></p>
+<p><font face="Times New Roman" size="4">The friction coefficient at a 
+particular location &quot;x&quot; is relayed to &quot;Re&quot; by:</font></p>
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    C<sub>f,x</sub> = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">0.664 </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">Re<sub>x</sub><sup>1/2</sup> </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    , Re<sub>x</sub> &lt; 5 * 10<sup>5</sup> </font></td>
+  </tr>
+</table>
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    C<sub>f,x</sub> = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">0.0592 </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">Re<sub>x</sub><sup>1/5</sup> </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    , 5 * 10<sup>5</sup> &#8804; Re<sub>x</sub> &#8804; 10<sup>7</sup> </font></td>
+  </tr>
+</table>
+<p><font face="Times New Roman" size="4">The first one corresponds to the 
+laminar condition while the second one corresponds to the turbulent condition.</font></p>
+<p><font face="Times New Roman" size="4">Then you get the average friction 
+coefficient by integrating:</font></p>
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    C<sub>f</sub> = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">1 </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">L </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle" rowSpan="2">
+        <font face="Times New Roman" color="#ff8000" size="7">&#8747;</font> </td>
+        <td noWrap align="middle">
+        <div style="LEFT: -1.2ex; POSITION: relative; TOP: -0.6ex">
+          <font face="Courier New" color="#ff8000" size="3">L</font></div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="LEFT: -1.2ex; POSITION: relative; TOP: 0.1ex">
+          <font face="Courier New" color="#ff8000" size="3">0</font></div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    C<sub>f,x</sub> dx </font></td>
+  </tr>
+</table>
+<p><font face="Times New Roman" size="4" color="#008000">Averaged Values</font></p>
+<p><font face="Times New Roman" size="4">In this chapter, the book will often 
+give the per location value of a coefficient --- but the only value that gets 
+used in problems solving is the average value. For example, the equation that models convection is 
+Q = h A<sub>S</sub> &#916;T. This &quot;h&quot; is an average value across the entire 
+surface, and it can be obtained by integrating: h = &quot; (1/L) * &#8747; h(x) dx &quot;. 
+Beyond this section, I will document only the equations for average coefficient 
+values.</font></p>
+<p><font face="Times New Roman" size="4">In some cases, a plate is sufficiently 
+long for the flow to become turbulent, but not long enough to disregard the 
+laminar flow region. These cases involve averaging over two intervals:</font></p>
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    C<sub>f</sub> = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">1 </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">L </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="7">
+    (</font> </td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle" rowSpan="2">
+        <font face="Times New Roman" color="#ff8000" size="7">&#8747;</font> </td>
+        <td noWrap align="middle">
+        <div style="LEFT: -1.2ex; POSITION: relative; TOP: -0.6ex">
+          <font face="Courier New" color="#ff8000" size="3">x<sub>cr</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="LEFT: -1.2ex; POSITION: relative; TOP: 0.1ex">
+          <font face="Courier New" color="#ff8000" size="3">0</font></div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    C<sub>f,x laminar</sub> dx + </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle" rowSpan="2">
+        <font face="Times New Roman" color="#ff8000" size="7">&#8747;</font> </td>
+        <td noWrap align="middle">
+        <div style="LEFT: -1.2ex; POSITION: relative; TOP: -0.6ex">
+          <font face="Courier New" color="#ff8000" size="3">L</font></div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="LEFT: -1.2ex; POSITION: relative; TOP: 0.1ex">
+          <font face="Courier New" color="#ff8000" size="3">x<sub>cr</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    C<sub>f,x turbulent</sub> dx </font></td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="7">
+    )</font> </td>
+  </tr>
+</table>
+<p><font face="Times New Roman" size="4" color="#008000">Average Friction 
+Coefficient:</font></p>
+<table border="0" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td><font color="#FF8000" size="5">Laminar:</font></td>
+    <td>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">C<sub>f</sub> = </font>
+        </td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">1.328 </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">Re<sub>L</sub><sup>1/2</sup> </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+  <tr>
+    <td><font color="#FF8000" size="5">Turbulent:</font></td>
+    <td>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">C<sub>f</sub> = </font>
+        </td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">0.074 </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">Re<sub>L</sub><sup>1/5</sup></font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+  <tr>
+    <td><font size="5" color="#FF8000">Both:</font></td>
+    <td>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">C<sub>f</sub> = </font>
+        </td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">0.074 </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">Re<sub>L</sub>
+              <sup>1/5</sup> </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">- </font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">1742 </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">Re<sub>L</sub>
+              </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<p><font size="4">where:</font></p>
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    Re<sub>L</sub> = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">V L </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">&#956;/<i>&#961;</i> </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<p><font color="#008000" size="4">Surface roughness:</font></p>
+<p><font size="4">For laminar flow, C<sub>f</sub> is not related to surface 
+roughness. For turbulent flow, the equation is:</font></p>
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    C<sub>f</sub> = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">&nbsp;</td>
+        <td>
+        <div style="POSITION: relative; TOP: 3ex">
+          <font face="Courier New" color="#ff8000" size="3">-2.5</font></div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+        <table cellSpacing="0" cellPadding="6" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <font face="Courier New" color="#ff8000" size="7">(</font> </td>
+            <td noWrap align="middle">
+            <font face="Courier New" color="#ff8000" size="5">1.89 - 1.62 log
+            </font></td>
+            <td noWrap align="middle">
+            <table cellSpacing="0" cellPadding="0" border="0">
+              <tr>
+                <td noWrap align="middle">
+                <div style="POSITION: relative; TOP: 0.7ex">
+                  <font face="Courier New" color="#ff8000" size="5">&#949; </font>
+                </div>
+                </td>
+              </tr>
+              <tr>
+                <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+              </tr>
+              <tr>
+                <td noWrap align="middle">
+                <div style="POSITION: relative; TOP: -0.7ex">
+                  <font face="Courier New" color="#ff8000" size="5">L </font>
+                </div>
+                </td>
+              </tr>
+            </table>
+            </td>
+            <td noWrap align="middle">
+            <font face="Courier New" color="#ff8000" size="7">)</font> </td>
+          </tr>
+        </table>
+        </td>
+        <td>&nbsp;</td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<p><font size="4">where <font face="Times New Roman">&quot;&#949;/L&quot; is the relative 
+roughness number</font></font></p>
+<p><i><font size="4">The above equations are of secondary importance because the 
+focus of the book is heat transfer, not drag. This is why I did not high-light 
+them in this documentation.</font></i></p>
+<p><font size="4" color="#008000">Heat Transfer Coefficient:</font></p>
+<p><font size="4">The Nusselt number (Nu) is related to the Reynolds number 
+(Re).</font></p>
+<p><font size="4">The average Nu:</font></p>
+<table border="0" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" bgcolor="#FFFF99">
+  <tr>
+    <td nowrap><font size="5" color="#FF8000">Laminar:</font></td>
+    <td nowrap>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">h L </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">k </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">= 0.664 Re<sub>L</sub><sup>0.5</sup> 
+        Pr<sup>1/3</sup> </font></td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap><font size="5" color="#FF8000">Turbulent:<br>
+    </font><font color="#ff8000" size="5">0.6 &#8804; Pr &#8804; 60</font></td>
+    <td nowrap>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">h L </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">k </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">= 0.037 Re<sub>L</sub><sup>0.8</sup> 
+        Pr<sup>1/3</sup> </font></td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap><font size="5" color="#FF8000">Both:</font></td>
+    <td nowrap>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">h L </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">k </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">= (0.037 Re<sub>L</sub><sup>0.8</sup> 
+        - 871) Pr<sup>1/3</sup> </font></td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap><font size="5" color="#FF8000">For liquid metals:<br>
+    Pr &lt; 0.05 </font><font color="#FF8000" size="4"><i>(low Pr)</i></font></td>
+    <td nowrap>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">h L </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">k </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">= 0.565 (Re<sub>L</sub> 
+        Pr)<sup>1/3</sup> </font></td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<h2><font face="Times New Roman" color="#008000">Fluid Flow across Cylinders and 
+Spheres</font></h2>
+<p><font face="Times New Roman" size="4">If the fluid flow's velocity is very, 
+very slow, then the fluid lines will stay with the surface.</font></p>
+<p><img border="0" src="images/pic0057.gif" width="500" height="323"></p>
+<p><font size="4">But most speeds, the fluid lines will separate from the 
+surface of the body.</font></p>
+<p><img border="0" src="images/pic0058.jpg" width="471" height="402"></p>
+<p><font size="4">The lines separate from the surface at <font color="#008000">
+separation point</font>, and the middle line will recombine at the
+<font color="#008000">reattachment point</font>. The <font color="#008000">
+separation region</font> has low pressure. The <font color="#008000">wake region</font> 
+has lower fluid velocity and extends far beyond the <font color="#008000">
+separation region</font>.</font></p>
+
+<p><img border="0" src="images/pic0061.jpg" width="454" height="372"></p>
+
+<p><font face="Times New Roman" size="4">The fluid particles on the midplane 
+strike the cylinder at the <font color="#008000">stagnation point</font> --- 
+pressure is maximum at the stagnation point</font></p>
+
+<p><font size="4">The characteristic length &quot;L&quot; for a sphere is the external 
+diameter &quot;D&quot;, so Re is:</font></p>
+
+<table border="0" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" bgcolor="#FFFF99">
+  <tr>
+    <td>
+    <table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    Re<sub>x</sub> = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">V D </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">&#956;/<i>&#961;</i> </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+
+    </td>
+  </tr>
+</table>
+
+<p><font size="4">The flow is laminar until separation if Re <font face="Times New Roman">&#8804; 
+2 * 10<sup>5</sup> 
+. But if Re &#8805; 2 * 10<sup>5</sup> , the flow will include both laminar and 
+turbulent regions before separation.</font></font></p>
+
+<p><img border="0" src="images/pic0062.jpg" width="455" height="728"></p>
+
+<p><font face="Times New Roman" size="4">In the turbulent region of the boundary 
+layer of the second case, drag is lower than the corresponding separation region 
+of the first case. That is how rough surfaces on golf balls can reduce drag as 
+compared with smooth balls.</font></p>
+
+<p><font face="Times New Roman" size="4">To go from Re to &quot;h&quot;, there are a 
+multitude of equations.</font></p>
+
+<p><font face="Times New Roman" size="4">For cross flow over a cylinder:</font></p>
+
+<table border="0" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" bgcolor="#FFFF99">
+  <tr>
+    <td>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">Nu = </font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">hD </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">k </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">= 0.3 + </font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">a </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">b </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">(1 + c)<sup>4/5</sup>
+        </font></td>
+      </tr>
+    </table>
+    <p><font size="4">where</font></p>
+    <p><font face="Courier New" color="#ff8000" size="5">a = 0.62 Re<sup>1/2</sup> 
+    Pr<sup>1/3</sup> <br>
+    b = [1 + (0.4/Pr)<sup>2/3 </sup>]<sup>1/4</sup> </font></p>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">c = </font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">&nbsp;</td>
+            <td>
+            <div style="POSITION: relative; TOP: 3ex">
+              <font face="Courier New" color="#ff8000" size="3">5/8</font></div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+            <table cellSpacing="0" cellPadding="6" border="0">
+              <tr>
+                <td noWrap align="middle">
+                <font face="Courier New" color="#ff8000" size="7">(</font> </td>
+                <td noWrap align="middle">
+                <table cellSpacing="0" cellPadding="0" border="0">
+                  <tr>
+                    <td noWrap align="middle">
+                    <div style="POSITION: relative; TOP: 0.7ex">
+                      <font face="Courier New" color="#ff8000" size="5">Re
+                      </font>
+                    </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+                  </tr>
+                  <tr>
+                    <td noWrap align="middle">
+                    <div style="POSITION: relative; TOP: -0.7ex">
+                      <font face="Courier New" color="#ff8000" size="5">282,000
+                      </font>
+                    </div>
+                    </td>
+                  </tr>
+                </table>
+                </td>
+                <td noWrap align="middle">
+                <font face="Courier New" color="#ff8000" size="7">)</font> </td>
+              </tr>
+            </table>
+            </td>
+            <td>&nbsp;</td>
+          </tr>
+        </table>
+        </td>
+      </tr>
+    </table>
+    <p><font size="4">Use the film temperature for all Re, Pr, and k.</font></td>
+  </tr>
+</table>
+
+<p><font face="Times New Roman" size="4">For cross flow over a sphere:</font></p>
+
+<table border="0" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" bgcolor="#FFFF99">
+  <tr>
+    <td>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">Nu = </font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">hD </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">k </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">= 2 + [0.4 Re<sup>1/2</sup> 
+        + 0.06 Re<sup>2/3</sup> ] Pr<sup>0.4</sup> </font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">&nbsp;</td>
+            <td>
+            <div style="POSITION: relative; TOP: 4ex">
+              <font face="Courier New" color="#ff8000" size="3">1/4</font></div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+            <table cellSpacing="0" cellPadding="6" border="0">
+              <tr>
+                <td noWrap align="middle">
+                <font face="Courier New" color="#ff8000" size="7">(</font> </td>
+                <td noWrap align="middle">
+                <table cellSpacing="0" cellPadding="0" border="0">
+                  <tr>
+                    <td noWrap align="middle">
+                    <div style="POSITION: relative; TOP: 0.7ex">
+                      <font face="Courier New" color="#ff8000" size="5">u<sub>&#8734;</sub>
+                      </font>
+                    </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+                  </tr>
+                  <tr>
+                    <td noWrap align="middle">
+                    <div style="POSITION: relative; TOP: -0.7ex">
+                      <font face="Courier New" color="#ff8000" size="5">u<sub>s</sub>
+                      </font>
+                    </div>
+                    </td>
+                  </tr>
+                </table>
+                </td>
+                <td noWrap align="middle">
+                <font face="Courier New" color="#ff8000" size="7">)</font> </td>
+              </tr>
+            </table>
+            </td>
+            <td>&nbsp;</td>
+          </tr>
+        </table>
+        </td>
+      </tr>
+    </table>
+    <p><font size="4">For this equation, use the free stream 
+    temperature to evaluate the fluid's Re, Pr, </font>
+    <font size="4" face="Times New Roman">&#956;<sub>&#8734;</sub> , and k. Use the surface 
+    temperature to evaluate the &#956;<sub>s</sub> .</font></td>
+  </tr>
+</table>
+
+<p><font face="Times New Roman" size="4">For cylinders that do not have a 
+circular base, there is the <a href="images/table_07-01.jpg">Table 7-1</a> in the book.</font></p>
+
+<p>&nbsp;</p>
+
+<h2><font face="Times New Roman" color="#008000">Flow across Tube Banks</font></h2>
+
+<p><font face="Times New Roman" size="4">Tube bank is a group of tubes. One 
+fluid moves in the tubes while another fluid moves over the tubes in a 
+perpendicular direction. In this documentation, whenever we talk about the 
+&quot;fluid&quot;, we are referring to the cross flow fluid outside of the tubes and not 
+the fluid inside the tubes. There are two arrangements for the tubes:</font></p>
+
+<p><img border="0" src="images/pic0063.jpg" width="427" height="918"></p>
+
+<p><font face="Times New Roman" size="4">In the second case, </font></p>
+
+<p><font face="Courier New" color="#ff8000" size="5">S<sub>D</sub> = (S<sub>L</sub>
+<sup>2</sup> + (S<sub>T</sub> / 2)<sup>2</sup> )<sup>1/2</sup> </font></p>
+
+<p><font face="Times New Roman" size="4">The Re number is the based on the 
+maximum velocity of the fluid through the tube bank:</font></p>
+
+<table border="0" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" bgcolor="#FFFF99">
+  <tr>
+    <td>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">Re = </font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">V<sub>max</sub> 
+              D </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">&#956; / <i>&#961;</i>
+              </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+
+<p><font face="Times New Roman" size="4">and this V<sub>max</sub> is not the 
+approach velocity of fluid &quot;V&quot;.</font></p>
+
+<p><font face="Times New Roman" size="4">For the inline case:</font></p>
+
+<p><img border="0" src="images/pic0064.gif" width="278" height="200"></p>
+
+<p><font face="Times New Roman" size="4">The air is faster as it needs to 
+squeeze in between the tubes.</font></p>
+
+<p><font face="Courier New" color="#ff8000" size="5">S<sub>T</sub> * V = (S<sub>T</sub> 
+- D) * V<sub>max</sub> </font></p>
+
+<p><font face="Times New Roman" size="4">The above expression assumes that the 
+fluid is not compressible. Space * velocity is basically the volume of fluid 
+passing through in one second.</font></p>
+
+<p><font face="Times New Roman" size="4">For the case of the staggered 
+arrangement,</font></p>
+
+<p><img border="0" src="images/pic0065.gif" width="345" height="200"></p>
+
+<p><font face="Times New Roman" size="4">the fluid pass through the green area 
+first, then the red area, and finally the two blue areas. So we have:</font></p>
+
+<p><font face="Courier New" color="#ff8000" size="5">S<sub>T</sub> * V = (S<sub>T</sub> 
+- D) * V<sub>1<br>
+</sub>S<sub>T</sub> * V = 2 * (S<sub>D</sub> - D) * V<sub>2</sub></font></p>
+
+<p><font face="Times New Roman" size="4">and V<sub>max</sub> is the larger value 
+of V<sub>1</sub> and V<sub>2</sub> .</font></p>
+
+<p><font face="Times New Roman" size="4">The equations linking Re to the Nu is 
+given in a table in the book.</font></p>
+
+<p><img border="0" src="images/table_07-02.jpg" width="776" height="490"></p>
+
+<p><font face="Times New Roman" size="4">Let:</font></p>
+
+<p><font face="Times New Roman" size="4">T<sub>i</sub> = temperature of the 
+fluid going <b>into</b> the tube bank<br>
+T<sub>e</sub> = temperature of the fluid <b>exiting</b> the tube bank</font></p>
+
+<p><font face="Times New Roman" size="4">All properties are to be evaluated at 
+the mean temperature (T<sub>i</sub> + T<sub>e</sub> ) / 2, except for Pr<sub>S</sub> 
+, which is evaluated at the temperature on the surface of the tubes (T<sub>s</sub>).</font></p>
+
+<p><font face="Times New Roman" size="4">Table 7-2 is meant for systems with 
+more than 16 rows of tubes. If there are less than 16 rows, the real Nu is:</font></p>
+
+<p><font face="Courier New" color="#ff8000" size="5">Nu = F * Nu<sub>table 7-2</sub>
+</font></p>
+
+<p><font face="Times New Roman" size="4">F is a correction factor given by table 
+7-3</font></p>
+
+<p><img border="0" src="images/table_07-03.jpg" width="789" height="225"></p>
+
+<p><font face="Times New Roman" size="4">Once we get &quot;h&quot; from Nu, the heat 
+transfer rate is:</font></p>
+
+<table border="0" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" bgcolor="#FFFF99">
+  <tr>
+    <td><font face="Courier New" color="#ff8000" size="5">Q = h * A<sub>S</sub> 
+    &#916;T<sub>ln</sub> </font>
+    <p><font size="4">where</font></p>
+    <p><font face="Courier New" color="#ff8000" size="5">A<sub>s</sub> = N * &#960;D 
+    * L <br>
+    </font><font size="4">A<sub>s</sub> = heat transfer surface area<br>
+    N = number of tubes<br>
+    <font face="Times New Roman">D&#928; * L = surface area per tube </font></font></p>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">&#916;T<sub>ln</sub> =
+        </font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">&#916;T<sub>e</sub> - 
+              &#916;T<sub>i</sub> </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">ln(&#916;T<sub>e</sub> 
+              / &#916;T<sub>i</sub>) </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+      </tr>
+    </table>
+    <p><font face="Courier New" color="#ff8000" size="5">&#916;T<sub>e</sub> = T<sub>s</sub> 
+    - T<sub>e</sub> <br>
+    &#916;T<sub>i</sub> = T<sub>s</sub> - T<sub>i</sub> </font></td>
+  </tr>
+</table>
+
+<p><font face="Times New Roman" size="4">If the exit temperature of the fluid T<sub>e</sub> 
+is not given, it can be computed by</font></p>
+
+<table border="0" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" bgcolor="#FFFF99">
+  <tr>
+    <td>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">T<sub>e</sub> = T<sub>s</sub> 
+        - (T<sub>s</sub> - T<sub>i</sub> ) exp </font></td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="7">(</font> </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">- </font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">A<sub>s</sub> h
+              </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">m C<sub>p</sub>
+              </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="7">)</font> </td>
+      </tr>
+    </table>
+    <p><font size="4">where</font></p>
+    <p><font face="Courier New" color="#ff8000" size="5">m = <i>&#961;</i>V (N<sub>T</sub> 
+    S<sub>T</sub> L) </font></p>
+    <p><font size="4">m = mass flow rate of the fluid<br>
+    <font face="Times New Roman">&#961; = density of fluid<br>
+    V = velocity of the fluid just before entering the bank<br>
+    L = length of the tubes<br>
+    N<sub>T</sub> = number of tubes per row<br>
+    S<sub>T</sub> = the distance between two tubes on the same row</font></font></p>
+    <p><font face="Times New Roman" size="4">C<sub>p</sub> = specific heat of 
+    the fluid</font></p>
+    <p><font face="Times New Roman" size="4">( V * L * S<sub>T</sub> ) is the 
+    volume of air flowing over one tube in one second<br>
+    N<sub>T</sub> ( V * L * S<sub>T</sub> ) is the volume of air flowing over 
+    the entire front row<br>
+    &#961; * N<sub>T</sub> ( V * L * S<sub>T</sub> ) is the mass of air flowing over 
+    the front row</font></td>
+  </tr>
+</table>
+
+<p><font face="Times New Roman" size="4">The book uses N<sub>T</sub> and N<sub>L</sub> 
+to describe the size of the tube bank:</font></p>
+
+<p><img border="0" src="images/pic0066.gif" width="560" height="560"></p>
+
+<p><font face="Times New Roman" size="4">There's more information in the book 
+about pressure drop across the tube bank system --- but it's not documented. 
+It's just more equations and charts.</font></p>
+
+</body>
+
+</html>

@@ -1,0 +1,169 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Unicode Programming</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">Unicode Programming</font></h1>
+<p><font size="4">Ascii uses &quot;<font color="#0000FF">char</font>&quot;, wide character 
+encodings use &quot;<font color="#0000FF">wchar_t</font>&quot;</font></p>
+
+<p><font size="4">The file &quot;<font color="#0000FF">TCHAR.h</font>&quot; provides 
+macros that allows your code to compile into either Ascii or Unicode, depending 
+on whether the <font color="#0000FF">_UNICODE</font> identifier is defined</font></p>
+
+<p><font size="4">use <b><font face="Courier New" color="#FF6600">_T&quot;string&quot; or 
+TEXT(&quot;string&quot;)</font></b> instead of just
+<font face="Courier New" color="#FF6600"><b>&quot;string&quot;</b></font></font></p>
+
+<p><font size="4">sprintf syntax:</font><b><font face="Courier New" size="4" color="#FF6600"><br>
+sprintf(char* szBuffer, const char* szFormat, ...);</font></b></p>
+
+<table border="1" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td align="center"><font size="4">MACRO</font></td>
+    <td align="center"><font size="4">If Ascii, map to...</font></td>
+    <td align="center"><font size="4">If Unicode, map to...</font></td>
+  </tr>
+  <tr>
+    <td align="center" bgcolor="#FFFFCC"><b><font size="4">_T&quot;string&quot;<br>
+    TEXT&quot;string&quot;</font></b></td>
+    <td align="center" bgcolor="#FFFFCC"><b><font size="4">&quot;string&quot;</font></b></td>
+    <td align="center" bgcolor="#FFFFCC"><b><font size="4">L&quot;string&quot;</font></b></td>
+  </tr>
+  <tr>
+    <td align="center" bgcolor="#FFFFCC"><b><font size="4">_TCHAR</font></b></td>
+    <td align="center" bgcolor="#FFFFCC"><b><font size="4">char</font></b></td>
+    <td align="center" bgcolor="#FFFFCC"><b><font size="4">wchar_t</font></b></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">_TEOF</font></td>
+    <td align="center"><font size="4">EOF</font></td>
+    <td align="center"><font size="4">WEOF</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">_istalpha</font></td>
+    <td align="center"><font size="4">isalpha</font></td>
+    <td align="center"><font size="4">iswalpha</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">_istdigit</font></td>
+    <td align="center"><font size="4">isdigit</font></td>
+    <td align="center"><font size="4">iswdigit</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">_istlower</font></td>
+    <td align="center"><font size="4">islower</font></td>
+    <td align="center"><font size="4">iswlower</font></td>
+  </tr>
+  <tr>
+    <td align="center" bgcolor="#FFFFCC"><b><font size="4">_stprintf</font></b></td>
+    <td align="center" bgcolor="#FFFFCC"><b><font size="4">sprintf</font></b></td>
+    <td align="center" bgcolor="#FFFFCC"><b><font size="4">swprintf</font></b></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">_tcscat</font></td>
+    <td align="center"><font size="4">strcat</font></td>
+    <td align="center"><font size="4">wcscat</font></td>
+  </tr>
+  <tr>
+    <td align="center" bgcolor="#FFFFCC"><b><font size="4">_tcslen</font></b></td>
+    <td align="center" bgcolor="#FFFFCC"><b><font size="4">strlen</font></b></td>
+    <td align="center" bgcolor="#FFFFCC"><b><font size="4">wcslen</font></b></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">_tcscmp</font></td>
+    <td align="center"><font size="4">strcmp</font></td>
+    <td align="center"><font size="4">wcscmp</font></td>
+  </tr>
+  <tr>
+    <td align="center" bgcolor="#FFFFCC"><b><font size="4">_tcscpy</font></b></td>
+    <td align="center" bgcolor="#FFFFCC"><b><font size="4">strcpy</font></b></td>
+    <td align="center" bgcolor="#FFFFCC"><b><font size="4">wcscpy</font></b></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">_tcsncat</font></td>
+    <td align="center"><font size="4">strncat</font></td>
+    <td align="center"><font size="4">wcsncat</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">_tcsncmp</font></td>
+    <td align="center"><font size="4">strncmp</font></td>
+    <td align="center"><font size="4">wcsncmp</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">_tcsncpy</font></td>
+    <td align="center"><font size="4">strncpy</font></td>
+    <td align="center"><font size="4">wcsncpy</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">_tctime</font></td>
+    <td align="center"><font size="4">ctime</font></td>
+    <td align="center"><font size="4">_wctime</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">_totlower</font></td>
+    <td align="center"><font size="4">tolower</font></td>
+    <td align="center"><font size="4">towlower</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">_totupper</font></td>
+    <td align="center"><font size="4">toupper</font></td>
+    <td align="center"><font size="4">towupper</font></td>
+  </tr>
+</table>
+<h2><font color="#008000">Usage Notes:</font></h2>
+<p><font size="4"><b>Actual files to #include:</b><br>
+<font color="#FF6600" face="Courier New">#include &lt;windows.h&gt;<br>
+#include &lt;stdio.h&gt;<br>
+#include &lt;tchar.h&gt;</font></font></p>
+<p><font size="4">Also, be sure to check compiler settings:</font></p>
+<p><font size="4">Project---&gt;Settings---&gt;C/C++---&gt;Preprocessor Definitions</font></p>
+<p><font size="4">There are 3 possibilities for CTYPE.h really: no flag, _UNICODE, or _MBCS</font></p>
+<p><font color="#0000FF" size="4">include <b>TWO</b> flags there: _UNICODE, and 
+UNICODE</font></p>
+<p><font size="4">TCHAR.h is really part of Windows.h; and Windows.h also have 
+different versions of functions for Unicode or Asci. The _UNICODE flag is for 
+TCHAR.h, and the UNICODE flag is for windows.h</font></p>
+
+<p>&nbsp;</p>
+
+<h2><font color="#008000">Example:</font></h2>
+
+<table border="0" cellpadding="8" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td><img border="0" src="images/pic002.gif" width="157" height="141"></td>
+    <td><font size="4">Shows how to write code that can compile into Unicode or 
+    Ascii</font><p><font size="4">The &quot;20&quot; is formatted using sprintf</font><p>
+    <font size="4"><a href="examples/unicode.cpp">Click here for code</a></font></td>
+  </tr>
+</table>
+
+<p>&nbsp;</p>
+<h2><font color="#008000">Unicode Detection and Conversion:</font></h2>
+<p><font size="4">The Unicode version of programs write out the word 0xFEFF at 
+the beginning of the file. This is the byte order mark.</font></p>
+<p><font size="4">Assuming the programs follow the above rule --- to see if a 
+file is Unicode:</font></p>
+<p><font size="4" face="Courier New" color="#FF6600">int iUniTest = 
+IS_TEXT_UNICODE_SIGNATURE | IS_TEXT_UNICODE_REVERSE_SIGNATURE ;<br>
+IsTextUnicode (buffer_ptr, buffer_size, &amp;iUniTest);<br>
+</font><font size="4" face="Courier New" color="#008000">//non zero return means 
+the input buffer (buffer_ptr) is Unicode (passes the test)</font><br>
+&nbsp;</p>
+<p><font size="4">To convert from Unicode to platform's character set:</font></p>
+<p><font size="4" face="Courier New" color="#FF6600">WideCharToMultiByte(CP_ACP, 
+0, unicode_text_ptr, -1, non_unicode_text_ptr, length, NULL, NULL);</font></p>
+<p><font size="4">To convert byte array to Unicode:</font></p>
+<p><font size="4" face="Courier New" color="#FF6600">MultiByteToWideChar(CP_ACP, 
+0, non_unicode_text_ptr, -1, unicode_text_ptr, length);</font></p>
+
+</body>
+
+</html>

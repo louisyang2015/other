@@ -1,0 +1,54 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Scaling</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">Scaling</font></h1>
+<p><font size="4">If you have a known circuit and want to only modify a few 
+things, then you might not have to redesign that whole circuit. Much of the 
+following is common sense.</font></p>
+<p><font size="4" color="#008000">Magnitude Scaling:</font></p>
+<p><font size="4">If you want the impedance over a resistor to be twice as big, 
+use a resistor twice as big.</font></p>
+<p><font size="4">If you want the impedance over an inductor to be twice as big, 
+use an inductor twice as big.</font></p>
+<p><font size="4">If you want the impedance over a capacitor to be twice as big, 
+use an capacitor twice as small.</font></p>
+<p><font size="4">For the series RLC and parallel RLC circuits, scaling all 
+impedances by the same constant (K) does not change the circuit's resonance 
+frequency, quality, and bandwidth.</font></p>
+<p><font size="4" color="#008000">Frequency Scaling:</font></p>
+<p><font size="4">Say you already have a circuit and its resonance frequency is 
+known to be w<sub>0 </sub>. You would like to modify the circuit to produce 
+resonance at a new frequency K*w<sub>0</sub> . What you need to do is to modify 
+the components so that at the new frequency K*w<sub>0</sub> the components 
+produce the same impedance as they use to produce at the old frequency w<sub>0</sub> 
+.</font></p>
+
+<p><font size="4">A resistor produces the same impedance at all frequencies. No 
+modification will be done to resistors.</font></p>
+
+<p><font size="4">The impedance of the old inductor L<sub>old</sub> at w<sub>0</sub> 
+= the impedance of the new inductor ( L<sub>old </sub>/ K ) at the frequency ( K 
+* w<sub>0 </sub>)</font></p>
+
+<p><font size="4">The impedance of the old capacitor C<sub>old</sub> at w<sub>0</sub> 
+= the impedance of the new capacitor ( C<sub>old </sub>/ K ) at the frequency ( 
+K * w<sub>0 </sub>)</font></p>
+
+<p><font size="4">Note: if you replace L<sub>old</sub> with L<sub>old</sub> / K, 
+and replace C<sub>old</sub> with C<sub>old</sub> / K, then the resonance 
+frequency will be moved from w<sub>0</sub> to K * w<sub>0</sub> . However, the 
+quality factor is unchanged, so the bandwidth is enlarged: BW<sub>new</sub> = K 
+* BW<sub>old</sub> .</font></p>
+
+</body>
+
+</html>

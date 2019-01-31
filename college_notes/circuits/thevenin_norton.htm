@@ -1,0 +1,72 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Thevenin's and Norton's Theorems</title>
+<base target="_blank">
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">Thevenin's and Norton's Theorems</font></h1>
+<p><font size="4">These two theorems are about dividing a circuit into two 
+linear pieces.</font></p>
+
+<p><img border="0" src="images/pic0020.gif" width="701" height="397"></p>
+<p><font size="4">Since both circuits are linear, the actual value of &quot;i&quot; and 
+&quot;Vo&quot; can be determined as the superposition of the effects from circuit A and 
+circuit B.</font></p>
+<p><font size="4">From the view point of circuit B, circuit A can be reduced to 
+a form with a voltage source in series wit a resistor. This is the
+<font color="#008000"><b>Thevenin</b></font> form:</font></p>
+<p><img border="0" src="images/pic0021.gif" width="743" height="237"></p>
+<p><font size="4">Voc is the open circuit voltage of circuit A</font></p>
+<p><img border="0" src="images/pic0024.gif" width="432" height="248"></p>
+<p><font size="4">And Rth is the equivalent resistance you get by looking into 
+circuit A.</font></p>
+<p><font size="4">To get circuit A into the Thevenin form, you need to comput 
+Voc and Rth</font></p>
+<p><font size="4">The <b>Norton</b> form is to replace circuit A with a current 
+source and a resistor:</font></p>
+<p><img border="0" src="images/pic0022.gif" width="715" height="215"></p>
+<p><font size="6">i</font><font size="4">sc is the short circuit current of 
+circuit A</font></p>
+<p><img border="0" src="images/pic0025.gif" width="401" height="232"></p>
+<p><font size="4">And Rth is the same as before --- the resistance obtained by 
+looking into the terminals of circuit A</font></p>
+<p><font size="4">To get circuit A into Norton form you need to compute </font>
+<font size="6">i</font><font size="4">sc and Rth.</font></p>
+<h2><font color="#008000">Rth Calculation</font></h2>
+<p><font size="4">For both the Norton form and the Thevenin form, you need this 
+Rth. There are several scenarios for calculating the Rth. </font></p>
+<p><font size="4"><b><font color="#008000">If circuit A has only independent 
+sources</font></b>, Rth is obtained by looking into circuit A and setting all 
+voltage and current sources to zero --- a voltage source with value zero is a 
+short circuit while a current source with value zero is a open circuit.</font></p>
+<p><font size="4"><font color="#008000"><b>If circuit A has only dependent 
+sources,</b></font> determine Rth by applying a test charge at circuit A's 
+terminals.</font></p>
+<p><img border="0" src="images/pic0026.gif" width="582" height="218"></p>
+<p><b><font size="4" color="#008000">The following equation is a link between 
+Thevenin and Norton forms:</font></b></p>
+<p><img border="0" src="images/pic0023.gif" width="263" height="163"></p>
+<p><b><font size="4" color="#008000">When circuit A has both dependent and 
+independent sources, you MUST use the above equation to figure out Rth</font></b></p>
+<hr>
+<h2><font color="#FF6600">Problems:</font></h2>
+<p><img border="0" src="images/pic0028.gif" width="552" height="1969"></p>
+<p><font size="4">Solutions:</font></p>
+<ul>
+  <li><font size="4"><a href="images/pic0030.gif">#52</a></font></li>
+  <li><font size="4"><a href="images/pic0031.gif">#55, #58</a></font></li>
+  <li><font size="4"><a href="images/pic0032.gif">#58(cont.), #61</a></font></li>
+  <li><font size="4"><a href="images/pic0033.gif">#61(cont.), #64</a></font></li>
+  <li><font size="4"><a href="images/pic0034.gif">#67</a></font></li>
+</ul>
+
+</body>
+
+</html>

@@ -1,0 +1,89 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>The Edit Control</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">The Edit Control</font></h1>
+<p align="left"><font size="4"><a href="examples/edit_control.cpp">Click here 
+for a program that demonstrates using an edit control</a></font></p>
+<p align="left"><font size="4">the window class name: &quot;edit&quot;</font></p>
+<h2 align="left"><font color="#008000">window styles:</font></h2>
+<p align="left"><font size="4"><font color="#0000FF">ES_LEFT</font> --- left 
+justified<br>
+<font color="#0000FF">ES_RIGHT</font> --- right justified<br>
+<font color="#0000FF">ES_CENTER</font> --- centered<br>
+<font color="#0000FF">ES_MULTILINE </font>--- multi-line control<br>
+<font color="#0000FF">ES_AUTOHSCROLL<br>
+ES_AUTOVSCROLL<br>
+WS_HSCROLL </font>---<font color="#0000FF"> </font>&quot;AUTOHSCROLL&quot; is the ability, 
+this is the actual scroll bar<font color="#0000FF"><br>
+WS_VSCROLL</font><br>
+<font color="#0000FF">WS_BORDER</font> --- by default, edit controls don't have 
+a border<br>
+<font color="#0000FF">ES_NOHIDESEL</font> --- to have selection highlighted even 
+when the edit control does not have the input focus</font></p>
+<p align="left">&nbsp;</p>
+
+<h2 align="left"><font color="#008000">messages passed to the parent:</font></h2>
+
+<p align="left"><font size="4">they are WM_COMMAND messages, in the format:</font></p>
+
+<p align="left"><font size="4">LOWORD (wParam) --- Child window ID<br>
+HIWORD (wParam) --- Notification code<br>
+lParam --- Child window handle</font></p>
+
+<p align="left"><font size="4">useful notificaiton codes:</font></p>
+
+<p align="left"><font size="4"><font color="#0000FF">EN_UPDATE</font> --- Edit 
+control's contents have changed</font></p>
+
+<p align="left"><font size="4"><font color="#0000FF">EN_ERRSPACE, EN_MAXTEXT</font> 
+--- edit control out of space error</font></p>
+
+<p align="left">&nbsp;</p>
+
+<h2 align="left"><font color="#008000">Manipulating the control:</font></h2>
+
+<p align="left"><font size="4">changing the control's text: SetWindowText, 
+GetWindowText</font></p>
+
+<p align="left"><font size="4" face="Courier New" color="#FF6600">SendMessage (hwndEdit, 
+WM_CUT, 0, 0);<br>
+SendMessage (hwndEdit, WM_COPY, 0, 0);<br>
+SendMessage (hwndEdit, WM_CLEAR, 0, 0);<br>
+SendMessage (hwndEdit, WM_PASTE, 0, 0);</font></p>
+
+<p align="left"><font face="Courier New" size="4" color="#FF6600">SendMessage (hwndEdit, 
+EM_GETSEL, (WPARAM) &amp;iStart, (LPARAM) &amp;iEnd);</font><font size="4"><br>
+Note: the ending position of a selection is actually the position of the last 
+character plus 1.</font></p>
+
+<p align="left"><font size="4" color="#FF6600" face="Courier New">SendMessage (hwndEdit, 
+EM_SETSEL, iStart, iEnd);</font></p>
+
+<p align="left"><font face="Courier New" size="4" color="#FF6600">SendMessage (hwndEdit, 
+EM_REPLACESEL, 0, (LPARAM)szString);</font></p>
+
+<p align="left"><font size="4">how many lines are there?</font><font face="Courier New" size="4" color="#FF6600"><br>
+iCount = SendMessage (hwndEdit, EM_GETLINECOUNT, 0, 0);</font></p>
+
+<p align="left"><font size="4">get an index into a given line; use iLine = -1 
+for the current line</font><font face="Courier New" size="4" color="#FF6600"><br>
+iOffset = SendMessage (hwndEdit, EM_LINEINDEX, iLine, 0);</font></p>
+
+<p align="left"><font size="4">get the length of a given line</font><font face="Courier New" size="4" color="#FF6600"><br>
+iLength = SendMessage (hwndEdit, EM_LINELENGTH, iLine, 0);</font></p>
+
+<p align="left"><font size="4">get the text of a given line</font><font face="Courier New" size="4" color="#FF6600"><br>
+iLength = SendMessage (hwndEdit, EM_GETLINE, iLine, (LPARAM) szBuffer);</font></p>
+
+</body>
+
+</html>

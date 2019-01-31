@@ -1,0 +1,68 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Array of structures</title>
+</head>
+
+<body>
+
+<p><font size="5" color="#008000">Array of structures</font></p>
+<p><font size="4">The &quot;struct&quot; from C programming is an array of bytes in 
+assembly programming.</font></p>
+<p><font size="4">Example:</font></p>
+<p><font size="4" face="Courier New">struct person<br>
+{<br>
+&nbsp;&nbsp;&nbsp; int id;<br>
+&nbsp;&nbsp;&nbsp; short occupation;<br>
+&nbsp;&nbsp;&nbsp; char name[20];<br>
+};</font></p>
+<p><font size="4">In assembly terms this structure is 4 bytes for id, 2 bytes 
+for occupation, and 20 bytes for first_name.</font></p>
+<p><font face="Courier New" size="4" color="#FF6600"><b>record_start</b> DD 
+123456<br>
+DW 12<br>
+DB 'Louis&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+'&nbsp;&nbsp;&nbsp; ; 20 letters total<br>
+<br>
+DD 123654<br>
+DW 12<br>
+DB 'Louis2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+'&nbsp;&nbsp;&nbsp; ; 20 letters total<br>
+<br>
+DD <br>
+DW 125000<br>
+DB 'Louis3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+'&nbsp;&nbsp;&nbsp; ; 20 letters total</font></p>
+<p><font face="Courier New" size="4" color="#FF6600">...</font></p>
+<p><font size="4">Each structure is therefore 26 bytes. Say we have an array of 
+20 of these structures:</font></p>
+<p><img border="0" src="images/pic007.gif" width="737" height="270"></p>
+<p><font size="4">To access the 3rd (green) record's name's first byte, we would 
+use:</font></p>
+<p><font size="4" face="Courier New" color="#FF6600">mov BX, record_start<br>
+mov DI, 2*26<b><br>
+mov AL, [BX + DI + 6]</b></font></p>
+<p><font size="4">This [base + index + offset] addressing mode doesn't let you 
+use any register. The rule is that the first register can only be BP or BX. The 
+second register can only be SI or DI. The third number (offset) must be a 
+literal value --- it can't be a register at all.</font></p>
+<p><font size="4">Also, note that in this case 2*26 would be figured out at 
+compile time. But in general, you would have to do multiplication at run time. 
+Since multiplying by a power of 2 is so much faster, people will set up sizes so 
+that the structure's size is a power of two.</font></p>
+<p><font size="4">Say if we change &quot;name&quot; from 20 bytes to 26 bytes, then the 
+whole structure is 32 bytes --- and figuring out DI at run time is much faster 
+then.</font></p>
+
+<p><font size="4">To encourage you to use record sizes that are powers of 2, 
+assembly lets you multiple the ' DI ' by 2, 4, or 8. Example:</font></p>
+
+<p><font size="4" color="#FF6600" face="Courier New">mov, al, byte [bx + di*4]</font></p>
+
+</body>
+
+</html>

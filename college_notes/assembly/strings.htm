@@ -1,0 +1,63 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Strings</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">Strings</font></h1>
+<p><font size="5" color="#008000">A string variable</font><font size="4"> is a 
+sequence of bytes ending with the dollar sign:</font></p>
+<p><font size="4" color="#FF6600">eatmsg db &quot;Eat at Joe's!&quot;, 13, 10, &quot;$&quot;</font></p>
+<p><i><font size="4">note: actually it doesn't have to end with the dollar sign 
+--- see later in this section</font></i></p>
+<p><font size="4">The 13, 10 --- is the carriage return and linefeed pair</font></p>
+<p><font size="4">You can enclose the string with single quotes so that you can 
+use double quotes within the string:</font></p>
+<p><font size="4" color="#FF6600">message2 db 'Panda said, &quot;good morning&quot; and 
+fell back asleep.', 13, 10, &quot;$&quot;</font></p>
+<p>&nbsp;</p>
+<p><font color="#008000" size="5">To print the string on screen</font><font size="4">, 
+you make a call to DOS:</font></p>
+<p><font size="4" color="#FF6600">mov dx, msg </font>
+<font size="4" color="#008000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ; dx = 
+address of msg<br>
+</font><font size="4" color="#FF6600">mov ah, 9</font><font size="4" color="#008000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+; Function 9 displays text to standard output.<br>
+</font><font size="4" color="#FF6600">int 21H</font><font size="4" color="#008000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+; calls interrupt 21H (DOS), service 9</font></p>
+
+<p>&nbsp;</p>
+<p><font color="#008000" size="5">To print the string on screen</font><font size="4">, 
+method 2 ---- DOS service 40H</font></p>
+<p><font size="4">If string does not end with a dollar sign, you have to tell 
+DOS how long the string is when you want DOS to print it. Counting characters is 
+difficult, so you can have the assembler do it for you.</font></p>
+<p><font size="4" face="Courier New" color="#FF6600">a_string DB 'Louis Yang'<br>
+<b>length EQU $-a_string</b></font></p>
+<p><font size="4">&quot;length&quot; is a constant stored in the assembler's symbol table 
+--- it doesn't occupy memory at run time. This value may then be used anywhere 
+in the source code --- it's like the C #define.</font></p>
+<p><font size="4">The expression $-a_string resolves to the difference between 
+two addresses: one is the address of&nbsp; the first byte of the string variable 
+a_string, and the other is the <b><font color="#008000">current location counter</font></b> 
+($). This is why &quot;length&quot; is always the right number --- even if you add or 
+delete characters to &quot;a_string&quot;, the value of the current location counter will 
+change to compensate.</font></p>
+<p><font size="4">Now, to print out &quot;a_string&quot; that is &quot;length&quot; bytes long:</font></p>
+<p><font size="4" face="Courier New">mov bx, 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+; selects DOS file handle 1: the standard output<br>
+mov cx, length<br>
+mov dx, a_string<br>
+mov ah, 40h<br>
+int 21h&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ; calls DOS, service number 
+40h</font></p>
+
+</body>
+
+</html>

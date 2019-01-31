@@ -1,0 +1,94 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Using Text and Fonts</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">Using Text and Fonts</font></h1>
+<h2><font color="#008000">Basic Text Output:</font></h2>
+<p><b><font face="Courier New" size="4" color="#FF6600">FontFamily&nbsp; 
+fontFamily(L&quot;Times New Roman&quot;);<br>
+Font&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font(&amp;fontFamily, 24, 
+FontStyleRegular, UnitPixel);<br>
+PointF&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pointF(30.0f, 10.0f);<br>
+SolidBrush&nbsp; solidBrush(Color(255, 0, 0, 255));<br>
+<br>
+graphics.DrawString(L&quot;Hello&quot;, -1, &amp;font, pointF, &amp;solidBrush);</font></b></p>
+<p><font size="4">To align text with a particular rectangle:</font></p>
+<p><font face="Courier New" size="4">RectF rectF(30.0f, 10.0f, 100.0f, 122.0f); 
+//instead of PointF</font><br>
+<font face="Courier New" size="4">graphics.DrawString(string, -1, &amp;font, rectF, 
+NULL, &amp;solidBrush);</font></p>
+<p>&nbsp;</p>
+<h2><font color="#008000">String Format:</font></h2>
+<p><font size="4">Use this with the rectangle method of output.</font></p>
+<p><b><font size="4" color="#008000">To align the string with the rectangle:</font></b></p>
+<p><font size="4" face="Courier New">StringFormat stringFormat;<br>
+<br>
+// Center-justify each line of text.<br>
+<font color="#FF6600">stringFormat.SetAlignment(</font>StringAlignmentCenter);<br>
+<br>
+// Center the block of text (top to bottom) in the rectangle.<br>
+<font color="#FF6600">stringFormat.SetLineAlignment(</font>StringAlignmentCenter);</font></p>
+<p><font size="4" face="Courier New">graphics.DrawString(string, -1, &amp;font, 
+rectF, &amp;stringFormat, &amp;solidBrush);</font></p>
+<p><b><font color="#008000" size="4">Screen Tab Stops:</font></b></p>
+<p><font face="Courier New" size="4">//sets tab stops at 150, 250, and 350<br>
+REAL tabs[] = {150.0f, 100.0f, 100.0f};<br>
+stringFormat.SetTabStops(0.0f, 3, tabs);</font></p>
+<p><font size="4"><a href="examples/screen_tabstop.cpp">Click here for the full 
+code about using &quot;SetTabStops&quot;</a></font></p>
+<p><b><font size="4" color="#008000">Vertical Text:</font></b></p>
+<p><font face="Courier New" size="4">
+stringFormat.SetFormatFlags(StringFormatFlagsDirectionVertical);</font></p>
+<p>&nbsp;</p>
+<h2><font color="#008000">Enumerating Installed Fonts</font></h2>
+<p><font size="4">The <b>GetFamilies</b> method of an <b>InstalledFontCollection</b> 
+object returns an array of <b>FontFamily</b> objects.</font></p>
+<p><font size="4"><a href="examples/enumerate_fonts.cpp">Click here for the full 
+code</a></font></p>
+<p>&nbsp;</p>
+<h2><font color="#008000">Obtaining Font Metrics</font></h2>
+<p><font size="4" face="Courier New">// Display the line spacing in design units 
+and pixels.<br>
+lineSpacing = fontFamily.GetLineSpacing(FontStyleRegular); <br>
+//design units<br>
+<br>
+lineSpacingPixel = font.GetSize() * lineSpacing / fontFamily<font color="#FF6600">.GetEmHeight</font>(FontStyleRegular);
+<br>
+//.GetSize / .GetEmHeight is pixels over design units of the<br>
+//font's height</font></p>
+<p><font size="4" face="Courier New">//other options: &quot;fontFamily<font color="#FF6600">.GetCellAscent</font>&quot;, 
+&quot;fontFamily<font color="#FF6600">.GetCellDescent</font>&quot;, &quot;font<font color="#FF6600">.GetHeight</font>&quot;</font></p>
+<p><img border="0" src="images/pic02.gif" width="278" height="337"></p>
+<p>&nbsp;</p>
+<h2><font color="#008000">Antialiasing with Text:</font></h2>
+<p><font size="4">The first is the worst, the last is the best --- but also the 
+slowest performance. Microsoft has a new algorithm &quot;</font><font size="4">ClearType</font><font size="4">&quot; 
+that's even better, but it's for Windows XP and beyond only. Also, &quot;</font><font size="4">ClearType</font><font size="4">&quot; 
+is meant for LCD.</font></p>
+<p><font face="Courier New" size="4">graphics.SetTextRenderingHint(<font color="#FF6600">TextRenderingHintSingleBitPerPixel</font>);<br>
+graphics.DrawString(string1, -1, &amp;font, PointF(10.0f, 10.0f), &amp;solidBrush);<br>
+<br>
+graphics.SetTextRenderingHint(<font color="#FF6600">TextRenderingHintAntiAlias</font>);<br>
+graphics.DrawString(string2, -1, &amp;font, PointF(10.0f, 60.0f), &amp;solidBrush);</font></p>
+<p><font face="Courier New" size="4">graphics.SetTextRenderingHint(<font color="#FF6600">TextRenderingHintAntiAliasGridFit</font>);<br>
+graphics.DrawString(string2, -1, &amp;font, PointF(10.0f, 60.0f), &amp;solidBrush);</font></p>
+<p>&nbsp;</p>
+<h2><font color="#008000">Other Notes:</font></h2>
+<p><font size="4"><font color="#0000FF">Font Family</font> --- a group of fonts 
+with the same typeface but different styles. For example, the Arial font family 
+is: Arial Regular, Arial Bold, Arial Italic, Arial Bold Italic</font></p>
+<p><font size="4">The <b>FontFamily</b> objects specifies the typeface (for 
+example, Arial), and the <b>Font</b> object specifies the size, style, and 
+units.</font></p>
+
+</body>
+
+</html>

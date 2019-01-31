@@ -1,0 +1,426 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Cooling of Electronic Equipment</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">Cooling of Electronic Equipment</font></h1>
+<p><font size="4" color="#008000">Introduction</font></p>
+<p><font size="4">When current (I) flows through a resistance (R), the heat 
+generated is I<sup>2 </sup>R.</font></p>
+<p><font size="4">Electronic circuits are powered by low voltages, usually under
+<font face="Times New Roman">±15 V, but the currents involved may be very high, 
+sometimes a few hundred amperes.</font></font></p>
+<p><font size="4">Vacuum tubes had heat dissipation problems. When the 
+transistor was first introduced, it was touted in the newspapers as a device 
+that &quot;produces no heat&quot;. But as the year go by and people pack millions of 
+transistors onto a single chip, the heat dissipation problems reappears.</font></p>
+<p><font size="4">The failure rate of electronic devices increases almost 
+exponentially with the operating temperature.</font></p>
+<p><font size="4" color="#008000">Cooling Load of Electronic Equipment</font></p>
+<p><font size="4"><font color="#008000">Duty cycle</font> --- the fraction of 
+time an electronic component is on. A 5W power transistor, for example, will 
+dissipate an average of 2W of power if it is active only 40 percent of the time. 
+Although most electronic devices operate for long periods of time, some 
+applications never run long enough to reach steady operation. For these 
+transient operation scenarios, a common approach is to have a double-wall 
+construction for the enclosure of the electronic equipment. The space between 
+the walls is filled with a wax with a suitable melting temperature. As the 
+electronic device heats, the wax melts. If the device doesn't run for an 
+extended period of time, the wax will have time to solidify itself.</font></p>
+<p><font size="4" color="#008000">Dynamic temperature of air</font></p>
+<p><font size="4">At first thought, the cooling of missiles can be done by using 
+the air that rams the missile, creating forced convection. However, there is a 
+temperature increase associated with air ramming the missile at high speed.</font></p>
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    T<sub>dynamic</sub> = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">V<sup>2</sup> </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">2 C<sub>p</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<p><font size="4">If we let V = 320 m/s, then T<sub>dynamic</sub> is 51 <sup>o</sup>C. 
+So if air is normally 30 <sup>o</sup>C, air moving at 320 m/s is 81 <sup>o</sup>C.</font></p>
+<p><font size="4">Missiles are usually cooled with the liquid fuel that they 
+carry, not by ramming the air.</font></p>
+<p><font size="4"><font color="#008000">Natural convection in space</font> --- 
+There is no natural convection in space because there is no gravity, and hence 
+no buoyancy, in space.</font></p>
+<p><font size="4"><font color="#008000">The most effective ways of cooling</font> 
+include using forced convection of water, and dipping the hot object in a fluid 
+and boiling the fluid.</font></p>
+<p><img border="0" src="images/pic0082.jpg" width="687" height="624"></p>
+<p>&nbsp;</p>
+<p><font size="4" color="#008000">Manufacturing of electronic equipment</font></p>
+<p><font size="4">In semiconductor physics, a junction is where the p material 
+meets the n material. In heat transfer, a <font color="#008000">junction</font> 
+is a site of heat generation. It is the circuitry where electrons flow, and 
+where the temperature is the highest.</font></p>
+<p><font size="4">The expansion coefficient of the plastic is about 20 times 
+that of silicon. Therefore, bonding the silicon chip directly to the plastic 
+case would result in too much thermal stress. Instead, the chip is bounded to a 
+lead frame and the lead frame is bounded to the plastic frame.</font></p>
+<p><img border="0" src="images/pic0080.jpg" width="446" height="310"></p>
+<p><font size="4">The inside of the case is usually filled with a gas that is a 
+poor conductor of heat. Heat going through the gas is modeled by having a
+<font color="#008000">junction-to-case resistance (R<sub>junction-case</sub>)</font><sub>
+</sub>.</font></p>
+<p><img border="0" src="images/pic0081.jpg" width="416" height="329"></p>
+<p><font size="4">Because we don't want moisture go get to the chip, the casing 
+is highly sealed.</font></p>
+<p>&nbsp;</p>
+<h2><font color="#008000">Conduction Cooling</font></h2>
+<p><font size="4">The R<sub>junction-case</sub> path is not the path of least 
+resistance (I don't know why the book spends so much time on it, perhaps there 
+are special cases where R<sub>junction-case</sub> is the path of least 
+resistance).</font></p>
+<p><font size="4">The path of least resistance is heat flowing out of the legs 
+of the chip. Here's a picture of the chip again with the path ways drawn:</font></p>
+
+<p><img border="0" src="images/pic0083.jpg" width="462" height="321"></p>
+
+<p><font size="4">This set up is called the dual in-line package (DIP).</font></p>
+
+<p><font size="4">The area marked &quot;junction&quot; is the point farthest from the ends 
+of the leads, and also the hottest place on the chip. The book makes it look as 
+if &quot;junction&quot; is something mounted on top of a chip, both in the picture and in 
+the various problems and examples. In reality, heat is produced throughout the 
+chip. But the mathematical way to account for heat production is to cut the chip 
+into a separate chip and junction object. The &quot;junction&quot; object is one producing 
+heat, while the chip object is just thermal resistance to the heat produced in 
+the junction.</font></p>
+
+<p><font size="4">The network of resistors for the above chip layout:</font></p>
+
+<p><img border="0" src="images/pic0084.jpg" width="423" height="621"></p>
+
+<p><font size="4">There are 12 R<sub>leads</sub> in parallel to represent the 12 
+legs coming out of the chip.</font></p>
+
+<p><font size="4">R<sub>plastic</sub> refers to the plastic case, which comes 
+after the lead frame and before the leads.</font></p>
+
+<p><font size="4">For many of these resistances, use the resistance equation for 
+heat flowing through a wall:</font></p>
+
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    R = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">L </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">kA </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<p><font size="4">where L = thickness of the wall<br>
+A = cross sectional area of the wall<br>
+k = thermal conductivity of the material that makes up the wall</font></p>
+
+<p><font size="4">For R<sub>constriction</sub> , use:</font></p>
+
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    R = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">1 </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">&#960;<sup>1/2</sup> dk
+          </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<p><font size="4">R<sub>constriction</sub> is suppose to model a heat generation 
+area (the junction) on top of a larger body (the silicon chip). The &quot;k&quot; is the 
+thermal conductivity of the silicon chip. The &quot;d&quot; is the diameter of the 
+junction.</font></p>
+
+<p><font size="4">A chart for the junction to ambient thermal resistance:</font></p>
+
+<p><img border="0" src="images/pic0085.jpg" width="729" height="511"></p>
+
+<p><font size="4">Note that natural convection would correspond to zero air 
+velocity.</font></p>
+
+<p>&nbsp;</p>
+
+<p><font color="#008000" size="4">Conduction in Printed Circuit Boards (PCB):</font></p>
+
+<p><font size="4">The side view of a PCB and the path of least resistance for 
+the heat transfer:</font></p>
+
+<p><img border="0" src="images/pic0086.gif" width="450" height="242"></p>
+
+<p><font size="4">In the problems, the copper board on the bottom is extended so 
+that it touches a heat sink or cold plate.</font></p>
+
+<p><font size="4">The book also talked about heat conduction horizontally across 
+the epoxy board and epoxy adhesive layer --- but that is mostly nonsense because 
+the thermal resistance in those directions is very high.</font></p>
+
+<p><font size="4">The thermal expansion coefficient of aluminum and copper are 
+about twice as large as that of glass epoxy. This large difference in thermal 
+expansion coefficient might cause warping on the PCBs.</font></p>
+
+<p><font size="4">A TCM (Thermal Conduction Module) is basically a big piston 
+pushing down on a chip to help draw away heat from the chip. The TCM cavity is 
+filled with helium gas to help heat conduction.</font></p>
+
+<p><img border="0" src="images/pic0087.jpg" width="1168" height="628"></p>
+
+<p><img border="0" src="images/pic0088.jpg" width="464" height="572"></p>
+
+<p>&nbsp;</p>
+
+<h2><font color="#008000">Air Cooling: Natural Convection and Radiation</font></h2>
+
+<p><font size="4">Q = h * A * <font face="Times New Roman">&#8710;T</font></font></p>
+
+<p><font size="4">Natural convection in the cooling of electronic components is 
+usually laminar, and the &quot;h&quot; is modeled by:</font></p>
+
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    h<sub>conv</sub> = K </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">&nbsp;</td>
+        <td>
+        <div style="POSITION: relative; TOP: 3.5ex">
+          <font face="Courier New" color="#ff8000" size="3">0.25</font></div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+        <table cellSpacing="0" cellPadding="6" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <font face="Courier New" color="#ff8000" size="7">(</font> </td>
+            <td noWrap align="middle">
+            <table cellSpacing="0" cellPadding="0" border="0">
+              <tr>
+                <td noWrap align="middle">
+                <div style="POSITION: relative; TOP: 0.7ex">
+                  <font face="Courier New" color="#ff8000" size="5">&#916;T </font>
+                </div>
+                </td>
+              </tr>
+              <tr>
+                <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+              </tr>
+              <tr>
+                <td noWrap align="middle">
+                <div style="POSITION: relative; TOP: -0.7ex">
+                  <font face="Courier New" color="#ff8000" size="5">L </font>
+                </div>
+                </td>
+              </tr>
+            </table>
+            </td>
+            <td noWrap align="middle">
+            <font face="Courier New" color="#ff8000" size="7">)</font> </td>
+          </tr>
+        </table>
+        </td>
+        <td>&nbsp;</td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+
+<p><font size="4">L is the characteristic length. For the details on K and L, 
+there's a table in the book:</font></p>
+
+<p><img border="0" src="images/table_15-01.jpg" width="830" height="1445"></p>
+
+<p><font size="4">The above table assumes that the air pressure is 1 atm. If 
+not, then we need to correct the &quot;h&quot; factor with the square root of the air 
+pressure:</font></p>
+
+<p><font face="Courier New" color="#ff8000" size="5">h<sub>conv, P atm</sub> = (h<sub>conv, 
+1 atm</sub>) * P<sup>1/2</sup> </font></p>
+
+<p><font size="4">&quot;P&quot; is the air pressure in atm</font></p>
+
+<p><font size="4">The magnitude of radiation heat transfer, in general, is 
+comparable to the magnitude of natural convection heat transfer.</font></p>
+
+<p><font face="Courier New" color="#ff8000" size="5">Q<sub>rad</sub> = &#949;A<sub>s</sub> 
+&#963;(T<sub>s</sub> <sup>4</sup> - T<sub>surr</sub> <sup>4</sup>) </font></p>
+
+<p><font size="4"><font face="Times New Roman">&#949; is between zero and one<br>
+&#963; is the Stefan-Boltzmann constant. It is equal to 5.67 * 10<sup>-8</sup> W/(m<sup>2</sup> 
+* K<sup>4</sup>) = 0.1714 * 10<sup>-8</sup> Btu/(h * ft<sup>2</sup> * R<sup>4</sup>)</font></font></p>
+
+<p><font face="Times New Roman" size="4">If the hot body has just 1/3 of the 
+view of the surrounding surface at a low tempearture T<sub>surr</sub> , then 
+only 1/3 of the Q<sub>rad </sub>will actually happen. For example, in a chasis 
+with an array of PCBs:</font></p>
+
+<p><img border="0" src="images/pic0089.jpg" width="452" height="592"></p>
+
+<p><font face="Times New Roman" size="4">only the PCBs on the two ends will see 
+the cooler surrounding, and with 1/2 view at that. The PCBs not at the two ends 
+will not have any heat lost due to radiation because they do not &quot;see&quot; a cooler 
+surrounding around them. Mount any high power components on the ends because 
+those places have the greatest heat transfer.</font></p>
+
+<p><font face="Times New Roman" size="4">Placing PCBs too close to one another 
+will &quot;choke&quot; the flow of heat. The distance between PCBs should be about 2 cm.</font></p>
+
+<p><font size="4"><font color="#008000">Air Cooling: Forced Convection;</font> 
+CH 15-8 briefly reviews the force convection formulas previously covered in 
+chapters 7 and 8.</font></p>
+
+<p>&nbsp;</p>
+
+<h2><font color="#008000">Fan Selection Issues</font></h2>
+
+<p><font size="4">A fan at a fixed speed (or fixed rpm) will deliver a fixed 
+volume of air regardless of the altitude and pressure. But the mass flow rate of 
+air will be less at high altitude and low pressure due to the lower density of 
+air.</font></p>
+
+<p><font size="4">Fan draw in not just cooler air but also all kinds of 
+contaminants, so it's important to use a filter along with a fan. These 
+contaminates can have poor heat conductivity factors, so if they get on top of 
+components, they can cause the components to over heat.</font></p>
+
+<p><font size="4">It is usually best to place the fan at the inlet, rather than 
+the exit of an electronic box. Placing the fan at the inlet makes it easier to 
+filter the air going into the enclosure because if we placed the fan at the 
+exit, then there could be multiple pathways for air to enter the enclosure. A 
+fan at the inlet is more reliable because the fan itself is subjected to cool 
+air.</font></p>
+
+<p><font size="4">The main problem with a fan at the inlet is that the heat 
+generated by the fan and its motor is picked up by the air on its way into the 
+box, which adds to the heat load of the system.</font></p>
+
+<p><font size="4">One thing a fan does is to create a volume flow of air into 
+the electronic box. Another thing that the fan does is to create a pressure drop 
+from the inlet to the exit. From the view point of the fan, a fan has limited 
+power and it can deliver greater volume flow of air with a smaller pressure 
+drop. From the view point of the electronic box, there is a certain level of 
+resistance to &quot;wind&quot; and a greater volume flow of air requires a greater 
+pressure drop. These two different trends are satisfied at one particular
+<font color="#008000">operating point</font>, a pressure and flow rate 
+combination that is in both the behavior of the fan and the behavior of the 
+system:</font></p>
+
+<p><img border="0" src="images/pic0090.jpg" width="427" height="440"></p>
+
+<p><font size="4">Place the most critical electronic components near the 
+entrance, where the air is the coolest.</font></p>
+
+<p><font size="4">Arrange the circuit boards and electronic components in the 
+box such that the resistance of the box to airflow is minimized. Make sure that 
+no hot air pockets are formed during operation.</font></p>
+
+<p><font size="4">Arrange the system such that natural convection helps forced 
+convection rather than hurt it:</font></p>
+
+<p><img border="0" src="images/pic0091.jpg" width="455" height="608"></p>
+
+<p><font size="4">If the system has a lot of resistance to &quot;wind&quot;, then have two 
+fans in series. If the target is larger volume flow, use two fans in parallel.</font></p>
+
+<p>&nbsp;</p>
+
+<h2><font color="#008000">Liquid Cooling</font></h2>
+
+<p><font size="4">Circuit boards with up to about 5 W of power (or that have a 
+power density of about 0.02 W/cm<sup>2</sup> can be cooled effectively by 
+natural convection.</font></p>
+
+<p><font size="4">Liquids normally have much higher thermal conductivities than 
+gases. A boiling liquid can also drain heat very quickly. Liquid can be used to 
+directly on electronic components --- immersing the chip in a liquid, but in 
+these cases the liquid needs to be a dielectric liquid, so no water. Liquid can 
+be used to indirectly cool electronic components, and this approach can be done 
+with cheap liquid like water.</font></p>
+
+<p><font size="4">In a car engine, water circulates through the passages around 
+the cylinders of the engine block, absorbing heat generated in the cylinders by 
+combustion. The heated water is then routed by the water pump to the radiator, 
+where it is cooled by air blown through the radiator coils by the cooling fan.</font></p>
+
+<p><font size="4">In an <font color="#008000">open loop</font> system, the 
+liquid is vaporized over time due to the heating from the electronic component. 
+In a <font color="#008000">close loop</font> system, we collect the vapor and 
+condense it back into the liquid.</font></p>
+
+<p><font size="4">Fluorocarbon fluids, such as FC78 and FC86 have boiling points 
+ranging from 30 <sup>o</sup>C to 174 <sup>o</sup>C. They are nonflammable, 
+chemically inert, and highly compatible with materials used in electric 
+equipment. They can achieve very high heat transfer rates.</font></p>
+
+<p><img border="0" src="images/pic0092.jpg" width="760" height="464"></p>
+
+</body>
+
+</html>

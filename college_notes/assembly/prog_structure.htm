@@ -1,0 +1,54 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>The Structure of an Assembly Program in Real Flat Mode</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">The Structure of an Assembly Program in 
+Real Flat Mode</font></h1>
+<p><font size="4"><a href="code/hello_world.asm">Click here for A &quot;Hello World&quot; 
+program for the real flat mode</a></font></p>
+<p><font size="4">First comes some commands directed to the assembly --- these 
+commands are placed in square brackets so that NASM knows that they are for its 
+use, and are not to be interpreted as part of the program.</font></p>
+<p><b><font size="4" color="#FF6600">[BITS 16]</font></b></p>
+<p><font size="4">This command tells the NASM to generate code for the 16-bit 
+mode --- because the real flat mode is a 16 bit mode. Using [BITS 32] would 
+generate code for the 32-bit mode. But remember that DOS can not run 32 bit 
+code.</font></p>
+<p><b><font size="4" color="#FF6600">[ORG 0100h]</font></b></p>
+<p><font size="4">This command sets the origin of the program --- when DOS loads 
+a program, it will start running the program at 0100h (it will put 0100h) into 
+the IP register. Execution is not starting zero. The first 256 bytes of a 
+segment is called the program segment prefix (PSP). The author did not say what 
+is the PSP for.</font></p>
+<p><img border="0" src="images/pic001.gif" width="511" height="332"></p>
+<p><font size="4">From the image, you can see that in real flat mode, everything 
+fits into one segment. The stack starts at the very top (high memory) and grows 
+downward.</font></p>
+<p><font size="4">The basic hello world program doesn't use a stack --- it only 
+has two sections: the code section and a global data variable section:</font></p>
+<p><b><font size="4" color="#FF6600">[SECTION .text]</font></b></p>
+<p><b><font size="4" color="#FF6600">...</font></b></p>
+<p><b><font size="4" color="#FF6600">[SECTION .data]</font></b></p>
+<p>&nbsp;</p>
+<p><font size="5" color="#008000">Exiting the program in DOS:</font></p>
+<p><font size="4">The 4CH (terminate process) DOS service. This service will 
+take the value it finds in the AL register and place it in the ERRORLEVEL DOS 
+variable. DOS batch programmers can test the value of ERRORLEVEL and branch on 
+it.</font></p>
+<p><font size="4" color="#FF6600">mov ax, 04C00H&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</font><font size="4" color="#008000">; AH = 4CH means the exit service; AL = 0 
+is the error level<br>
+</font><font size="4" color="#FF6600">int 21H&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</font><font size="4" color="#008000">; and returns control to DOS.</font></p>
+
+</body>
+
+</html>

@@ -1,0 +1,49 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>AT&amp;T Syntax</title>
+</head>
+
+<body>
+
+<p><font size="5" color="#008000">AT&amp;T Syntax</font></p>
+<p><font size="4">This syntax created a set of global conventions that all 
+assemblers within the Unix family would adhere to, and thus make creating a 
+CPU-specific assembler faster and less trouble.</font></p>
+<p><font size="4">Rules:</font></p>
+<ul>
+  <li><font size="4">comments are preceded by ' # ' instead of ' ; '</font></li>
+  <li><font size="4">mnemonics and register names are always in lower case 
+  (Intel allows lower or upper case)</font></li>
+  <li><font size="4">register names are always preceded by the percent symbol ' 
+  % ' --- (AX, EBX becomes %ax, %ex)</font></li>
+  <li><font size="4">instruction mnemonic that has operands has a 
+  single-character suffix indicating how large its operands are. The suffix 
+  letters are ' b ' (byte = 8 bits), ' w ' (word = 16 bits), and ' l ' (long = 
+  32 bits)</font></li>
+  <li><font size="4">for instruction mnemonics with two operands, the source 
+  comes first, the destination comes second (this is the opposite of the Intel 
+  style, which is: mov destination, source)</font></li>
+  <li><font size="4">precede immediate operands with the ' $ ' --- PUSH DWORD 32 
+  becomes --- PUSH DWORD $32</font></li>
+  <li><font size="4">the address of strings, when referenced, are also preceded 
+  by '$' --- because AT&amp;T consider them as literals</font></li>
+  <li><font size="4">AT&amp;T documentation refer to &quot;segments&quot; as &quot;sections&quot;</font></li>
+  <li><font size="4">Not all Intel instruction mnemonics have AT&amp;T equivalents. 
+  JCXZ, JECXZ, LOOP, LOOPZ, LOOPE, LOOPNZ, and LOOPNE do not exist in the AT&amp;T 
+  mnemonic set, and gcc never generates code that uses them</font></li>
+  <li><font size="4">displacements in memory references are signed quantities 
+  placed outside parenthesis<br>
+  <font face="Courier New">movb (%ebx), %al&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  #mov byte al, [ebx] in Intel syntax<br>
+  movl -4(%ebx), %eax&nbsp;&nbsp;&nbsp; #mov dword eax [ebx - 4] in Intel syntax<br>
+  movb 28(%ebx, %edi), %eax&nbsp;&nbsp;&nbsp; #mov byte eax, [ebx+edi+28]</font></font></li>
+</ul>
+
+</body>
+
+</html>

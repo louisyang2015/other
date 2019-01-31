@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Language" content="en-us" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Array Processor</title>
+<link rel="stylesheet" type="text/css" href="fpga.css" />
+</head>
+
+<body>
+
+<h1>Array Processor</h1>
+<p class="center">Last updated May 15, 2011</p>
+<p><a href="instruction_set.htm">APU Instruction Set</a></p>
+<ul>
+				<li><a href="ci_interface.htm">Custom Instructions Interface</a></li>
+</ul>
+<p><a href="alu.htm">ALU</a></p>
+<p><a href="datapath.htm">Datapath</a></p>
+<p>Control</p>
+<ul>
+				<li><a href="overall_control.htm">Overall Control</a></li>
+				<li><a href="datapath_timing.htm">Datapath Timing</a></li>
+				<li><a href="ag_features.htm">Address Generator Features</a></li><ul>
+						<li><a href="ag_timing.htm">Address Generator Timing</a></li>
+						<li><a href="twiddle_ag.htm">Twiddle_AG</a></li>
+						<li><a href="read_ag.htm">Read_AG</a></li>
+						<li><a href="write_ag.htm">Write_AG0, Write_AG1</a></li>
+						<li><a href="wren_toggle.htm">Wren_Toggle</a></li>
+						<li><a href="ssram_ag.htm">Ssram_AG</a></li>
+				</ul>
+				<li><a href="instruction_state_machine.htm">Instruction Execution State Machine 
+				- Onchip Memory Instructions</a></li>
+				<ul>
+								<li><a href="fft_instruction.htm">FFT Instructions</a></li>
+								<li><a href="math_instruction.htm">Math Instructions</a></li>
+								<li><a href="ssram_instruction.htm">SSRAM 
+								Instructions</a></li>
+				</ul>
+</ul>
+
+<p>&nbsp;</p>
+<p>Quartus / ModelSim Difference</p>
+<ul>
+				<li>AP_Control.v&#39;s parameterization (param) is done differently 
+				to avoid a warning in Quartus</li>
+				<li>APU_ALU.v - the &quot;pi_int_k&quot; block is connected different due 
+				to a last minute discovery of the AEC algorithm&#39;s need. The 
+				Quartus version has a 14 bit left shift. Both ModelSim and 
+				Quartus versions are in the same file, but commented out as 
+				needed.</li>
+</ul>
+
+</body>
+
+</html>

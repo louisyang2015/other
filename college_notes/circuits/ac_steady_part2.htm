@@ -1,0 +1,283 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>AC Steady-State Analysis - Phasors</title>
+<base target="_blank">
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">AC Steady-State Analysis - Phasors</font></h1>
+<p><font size="4">AC steady state analysis is a more generalized version of DC 
+steady state analysis. The current, voltage, and resistance are all complex 
+numbers. Note: resistance in complex number is called <font color="#008000">
+impedance</font>.</font></p>
+<h2><font color="#008000">How to use phasors</font></h2>
+<p><font size="4">If <b>all</b> the independent sources in an AC circuit take 
+the form:</font></p>
+<pre><font size="4">	something * cos(100t + something)</font></pre>
+<p><font size="4">then all of the the current and voltages in the circuit will 
+also take the form:</font></p>
+<pre><font size="4">	something * cos(100t + something)</font></pre>
+<p><font size="4">When we solve these AC steady state circuits, the type of 
+function (sine or cosine), and the frequency of the function (100t), is the same 
+throughout the circuit. The amplitude and the phase is what differs for each 
+component in the circuit.</font></p>
+<p><font size="4">The phasor is a complex number in polar form that tracks the 
+amplitude and phase shift.</font></p>
+<p><font size="4">Say we have a voltage source that is: 2
+<img border="0" src="images/angle_symbol.gif" width="30" height="24"> 30<sup>o</sup> 
+V. This means that the voltage source is sinusoidal, with an amplitude of 2 and 
+a phase shift of 30 degrees. The voltage source could be any of the following:</font></p>
+<ul>
+  <li><font size="4">2 * sin(wt + 30<sup>o</sup>)</font></li>
+  <li><font size="4">2 * cos(wt + 30<sup>o</sup>)</font></li>
+</ul>
+<p><font size="4">We do not know what frequency the voltage source is at, nor do 
+we know we know if the voltage source is sine or cosine. </font></p>
+<p><font size="4">2
+<img border="0" src="images/angle_symbol.gif" width="30" height="24"> 30o V = 
+1.7321 + j V.</font></p>
+<p><font size="4">In this manner, voltages and currents are complex numbers.</font></p>
+<p><font size="4">The &quot;resistance&quot; of inductors and capacitors are also complex 
+numbers.</font></p>
+<p><b><font size="5" color="#FF9933">Inductor's &quot;resistance&quot; = Lwj<br>
+Capacitor's &quot;resistance&quot; = 1/(Cwj)</font></b></p>
+<p><font size="4">A &quot;resistance&quot; that is a complex number is called
+<font color="#008000"><b>impedance</b></font>.</font></p>
+<p><b><font size="4" color="#008000">Example:</font></b></p>
+<p><font size="4">Find V<sub>1</sub> :</font></p>
+<p><img border="0" src="images/pic0105.gif" width="651" height="327"></p>
+<p><font size="4">Note: many of the book's problems are like this --- they give 
+the impedance of the capacitors and inductors right away --- there's no need to 
+use the <font face="Courier New" color="#FF9933">Lwj</font> or
+<font color="#FF9933" face="Courier New">1/(Cwj)</font> formulas to figure it 
+out.</font></p>
+<p><font size="4">The nodal analysis equation:</font></p>
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">V<sub>1</sub> </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">1 </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    + </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">V<sub>1</sub> </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">1 - j </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    + </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">V<sub>1</sub> - 6
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">1 + j </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    + -2 = 0 </font></td>
+  </tr>
+</table>
+<p><font size="4">When solving this, don't rush to write the complex numbers in 
+the polar form. The polar form is easy to multiple / divide --- but it's hard to 
+add / subtract in. My TI89 calculator has an &quot; i &quot; button that allows me to do 
+imaginary math without converting to the complex form anyways.</font></p>
+<p><font size="4">Final answer:</font></p>
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    V<sub>1</sub> = </font></td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="7">
+    (</font> </td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">5 - 3j </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">2 </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="7">
+    )</font> </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    V. </font></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<hr color="#FF9933">
+<h2><font color="#008000">Why Phasors Work</font></h2>
+<p><font size="4">It's a long sequence of events:</font></p>
+<pre><font size="5" color="#FF9933">A <img border="0" src="images/angle_symbol.gif" width="30" height="24"> &#934; --&gt; A e<sup>j&#934;</sup> --&gt; A e<sup>j(wt + &#934;)</sup> 
+--&gt; A cos(wt + &#934;) + j * A sin(wt + &#934;) 
+--&gt; take real or imaginary part as answer</font></pre>
+<p><b><font size="4" color="#008000">A
+<img border="0" src="images/angle_symbol.gif" width="30" height="24"> &#934; --&gt; A e<sup>j&#934;</sup></font></b></p>
+<p><font size="4">A
+<img border="0" src="images/angle_symbol.gif" width="30" height="24"> &#934; is a 
+notation for the complex number A e<sup>j&#934;</sup></font></p>
+<p><b><font size="4" color="#008000">A e<sup>j&#934;</sup> --&gt; A e<sup>j(wt + &#934;)</sup>
+</font></b></p>
+<p><font size="4">The wt was dropped out because it was everywhere. Example:</font></p>
+<p><font size="4">I<sub>1</sub> = 2 e<sup>j(wt + 20)</sup><br>
+I<sub>2</sub> = 3 e<sup>j(wt + 30)</sup></font></p>
+<p><font size="4">I<sub>1</sub> + I<sub>2</sub> = e<sup>jwt</sup> (2 e<sup>20j</sup> 
++ 3 e<sup>30j</sup>)</font></p>
+<p><font size="4">There's a new amplitude and new phase --- but e<sup>jwt</sup> 
+is factored out and unaffected by circuit analysis.</font></p>
+<p><font size="4">The </font><font face="Courier New" size="4" color="#FF8000">A 
+e<sup>j(wt + &#934;)</sup></font><b><font size="4" color="#008000"> </font></b>
+<font size="4">&nbsp;form is used to derive the impedance formulas for capacitor 
+and inductor.</font></p>
+<p><font size="4">For example, the inductor formula is
+<font face="Courier New" color="#FF8000">v(t) = L * [d i(t)/dt]</font></font></p>
+<p><font size="4">If we let </font>
+<font face="Courier New" size="4" color="#FF8000">i(t) = A e<sup>j(wt + &#934;)</sup></font><font size="4" color="#008000"><b>
+</b></font><font size="4">, then we get </font>
+<font face="Courier New" size="4" color="#FF8000">v(t) = L * w * A e<sup>j(wt + 
+&#934;)</sup></font></p>
+<p><font size="4">So the <font face="Courier New" color="#FF8000">v(t) / i(t)</font> 
+ratio is <font face="Courier New" color="#FF8000">Lwj</font></font></p>
+<p><font size="4">The same applies for the capacitor.</font></p>
+<p><font color="#008000"><b><font size="4">A e<sup>j(wt + &#934;)</sup> --&gt; A cos(wt 
++ &#934;) + j * A sin(wt +</font> <font size="4">&#934;) </font></b></font></p>
+<p><font size="4">This is just an expansion from the polar form to the 
+rectangular form.</font></p>
+<p><font color="#008000"><b><font size="4">A cos(wt + &#934;) + j * A sin(wt +</font>
+<font size="4">&#934;) --&gt; take real or imaginary part as answer</font></b></font></p>
+<p><font size="4">This relates to the solution method of a differential equation 
+(see <a href="ac_steady_part1.htm">ac_steady_part1.htm</a>).</font></p>
+<p><font size="4">When I previously said </font>
+<font face="Courier New" size="4" color="#FF8000">i(t) = A e<sup>j(wt + &#934;)</sup></font><font size="4"> 
+, I never meant it literally. i(t) is really the real or imaginary part of
+</font><font face="Courier New" size="4" color="#FF8000">A e<sup>j(wt + &#934;) </sup>
+</font><font size="4">. We use e<sup>(...)</sup> instead of sin(...) or cos(...) 
+for the ease of calculation offered by the complex numbers.</font></p>
+<p>&nbsp;</p>
+
+<h2><font color="#FF9933">Problems:</font></h2>
+
+<table border="0" cellpadding="8" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td nowrap align="left" valign="top"><font size="5">#7.20</font></td>
+    <td><font size="5">Calculate i(t) if <font color="#FF9933">v<sub>s</sub>(t) 
+    = 10 cos(377t + 30<sup>o</sup>) V.</font></font><p>
+    <img border="0" src="images/pic0065.gif" width="400" height="306"></td>
+  </tr>
+  <tr>
+    <td nowrap align="left" valign="top"><font size="5">#7.44</font></td>
+    <td><font size="5">Determine I<sub>o</sub> in the network if I<sub>s</sub> = 12&nbsp;<img border="0" src="images/angle_symbol.gif" width="30" height="24"> 0<sup>o</sup> 
+    A.</font><p>
+    <img border="0" src="images/pic0066.gif" width="600" height="491"></td>
+  </tr>
+  <tr>
+    <td nowrap align="left" valign="top"><font size="5">#7.55</font></td>
+    <td><font size="5">Find V<sub>o</sub> :</font><p>
+    <img border="0" src="images/pic0067.gif" width="600" height="353"></td>
+  </tr>
+  <tr>
+    <td nowrap align="left" valign="top"><font size="5">#7.61</font></td>
+    <td><font size="5">Use source exchange to find the current I<sub>o</sub> in 
+    the network :</font><p>
+    <img border="0" src="images/pic0068.gif" width="750" height="209"></td>
+  </tr>
+  <tr>
+    <td nowrap align="left" valign="top"><font size="5">#7.67</font></td>
+    <td><font size="5">Apply Thevenin's Theorem twice to find V<sub>o</sub> in 
+    the circuit :</font><p>
+    <img border="0" src="images/pic0069.gif" width="750" height="232"></td>
+  </tr>
+  <tr>
+    <td nowrap align="left" valign="top"><font size="5">#7.73</font></td>
+    <td><font size="5">Find V<sub>o</sub> using Norton's Theorem for the 
+    following circuit. Then do it a second time using nodal analysis, and note 
+    that nodal analysis is much faster.</font><p>
+    <img border="0" src="images/pic0070.gif" width="700" height="469"></td>
+  </tr>
+</table>
+<p><font size="4">Solutions:</font></p>
+
+<ul>
+  <li><font size="4"><a href="images/pic0087.gif">#7.20, #7.44</a></font></li>
+  <li><font size="4"><a href="images/pic0088.gif">#7.44 (cont.)</a></font></li>
+  <li><font size="4"><a href="images/pic0089.gif">#7.44 (page 3), #7.55</a></font></li>
+  <li><font size="4"><a href="images/pic0090.gif">#7.55 (cont.)</a></font></li>
+  <li><font size="4"><a href="images/pic0091.gif">#7.55 (page 3)</a></font></li>
+  <li><font size="4"><a href="images/pic0092.gif">#7.61</a></font></li>
+  <li><font size="4"><a href="images/pic0093.gif">#7.61 (cont.), #7.67</a></font></li>
+  <li><font size="4"><a href="images/pic0094.gif">#7.67 (cont.)</a></font></li>
+  <li><font size="4"><a href="images/pic0095.gif">#7.67 (page 3), #7.73</a></font></li>
+  <li><font size="4"><a href="images/pic0096.gif">#7.73 (cont.)</a></font></li>
+  <li><font size="4"><a href="images/pic0097.gif">#7.73 (page 3)</a></font></li>
+  <li><font size="4"><a href="images/pic0098.gif">#7.73 (page 4)</a></font></li>
+</ul>
+
+</body>
+
+</html>

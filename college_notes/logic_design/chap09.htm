@@ -1,0 +1,208 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Multiple-Output Networks</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">Multiple-Output Networks</font></h1>
+<p><font size="4" color="#008000">Introduction</font></p>
+<p><font size="4">Integrated circuit comes in many densities: </font></p>
+<ul>
+  <li><font size="4">SSI (small scale integration) --- NAND, NOR, AND, and OR 
+  gates, inverters, and flip-flops. Each SSI package has 1 to 4 gates, 6 
+  inverters, or 1 or 2 flip-flops</font></li>
+  <li><font size="4">MSI (medium) --- adders, multiplexers, decodes, registers, 
+  and counters</font></li>
+  <li><font size="4">LSI (large, 100 to a few thousand gates per package), VLSI 
+  (very large) --- memories, microprocessors</font></li>
+</ul>
+<p><font size="4">It is generally uneconomical to design digital systems using 
+only SSI integrated circuits. A pure SSI design means high cost of mounting and 
+wiring. So instead of using lots of AND - OR gates to implement a truth table, 
+use read-only memory.</font></p>
+<p>&nbsp;</p>
+<h2><font color="#008000">Two Level Multiple-Output Networks</font></h2>
+<p><font size="4">Multiple-output network refers to the idea of a circuit that 
+has multiple outputs based on the same set of inputs. For example: </font></p>
+<p><font size="4">f1 = minterms(2, 3, 5, 7, 8, 9, 10, 11, 13, 15)<br>
+f2 = minterms(2, 3, 5, 6, 7, 10, 11, 14, 15)<br>
+f3 = minterms(6, 7, 8, 9, 13, 14, 15)</font></p>
+<p><font size="4">Minimizing each function separately does not produce the 
+overall minimum result. The overall minimum result is produced by using terms 
+common to more than one function. The K-maps for f1, f2, and f3:</font></p>
+<p><img border="0" src="images/fig_09_04.jpg" width="760" height="391"></p>
+<p><font size="4">Note that:</font></p>
+<ul>
+  <li><font size="4">abd is common to f1 and f3</font></li>
+  <li><font size="4">a'bd is common to f1 and f2</font></li>
+  <li><font size="4">ab'c' is common to f1 and f3</font></li>
+</ul>
+<p><font size="4">The minimum solution use these terms:</font></p>
+<p><font color="#000000" size="4">f1 = <u>a'bd</u> + <u>abd</u> + <u>ab'c</u> + 
+b'c<br>
+f2 = c + <u>a'bd</u><br>
+f3 = bc + <u>ab'c'</u> + <u>abd</u></font></p>
+<p><font size="4">The book also has an example that shows maximizing the number 
+of common terms does not always lead to the minimum solution. So the idea is to 
+use common terms only if it helps.</font></p>
+<p><font size="4">Note that these common terms are often not prime implicants 
+--- prime implicants are the biggest grouping possible on the K-maps, and a'bd 
+for example is not the biggest grouping possible on the f1 K-map.</font></p>
+<p><font size="4">In the above example, every minterm in f1appears in f2 or f3, 
+every minterm in f2 appears in f1 or f3, and every minterm in f3 appears in f1 
+or f2. In a situation like this, you can't be sure what implicants are the 
+&quot;essential&quot; implicants. For example, &quot;bd&quot; is an essential prime implicant for 
+f1, but it's not an essential term for the entire system because the terms 
+covered by &quot;bd&quot; also appears in the other function. In general, if we have 
+minterm that appears in just one function, then some implicant including that 
+minterm must be an essential term. This sounds vague, but the book really gave 
+no algorithm on how to minimize logic for multiple output networks.</font></p>
+<p>&nbsp;</p>
+<h2><font color="#008000">Multiplexers</font></h2>
+<p><img border="0" src="images/fig_09_10.jpg" width="760" height="303"></p>
+
+<p><font size="4">The input is the address of the output. So for the middle 
+multiplexer, if the input is ABC = 011, the output is whatever value at I<sub>3</sub> 
+.</font></p>
+
+<p><font size="4">A 4-to-1 multiplexer can realize any 3-variable function with 
+no added logic gates. For example, to realize:</font></p>
+
+<p><font size="4">F(A, B, C) = A'B' + AC</font></p>
+
+<p><font size="4">which means:</font></p>
+
+<table border="1" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td align="center"><font size="4">A</font></td>
+    <td align="center"><font size="4">B</font></td>
+    <td align="center"><font size="4">Output</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">F = (1)(1) + ... = 1</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">F = (1)(0) + (0)... = 0</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">F = (0)(1) + (1)C = C</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">F = (0)(0) + (1)C = C</font></td>
+  </tr>
+</table>
+<p><img border="0" src="images/fig_09_13.jpg" width="313" height="304"></p>
+
+<p><font size="4">In similar ways, an 8 to 1 MUX can be used to realize any 4 
+variable function with no added gates.</font></p>
+
+<p><font size="4" color="#008000">Decoders</font></p>
+
+<p><font size="4">A decoder takes n inputs and generates 2<sup>n</sup> outputs - 
+covering every possible set of minterms; a particular minterm on the input will 
+light up exactly one of the 2<sup>n</sup> outputs.</font></p>
+
+<p><img border="0" src="images/fig_09_17.jpg" width="750" height="359"></p>
+
+<p>&nbsp;</p>
+
+<h2><font color="#008000">ROM</font></h2>
+
+<p><img border="0" src="images/fig_09_20.jpg" width="750" height="302"></p>
+
+<p><font size="4">Here, each input combination serves as an address which can 
+select one of the 8 words stored in the memory. The output is the data at that 
+address.</font></p>
+
+<p><font size="4">The circuitry has a decoder followed by a set of &quot;enabling&quot; 
+connections:</font></p>
+
+<p><img border="0" src="images/fig_09_22.jpg" width="463" height="252"></p>
+
+<p><img border="0" src="images/fig_09_23.jpg" width="709" height="498"></p>
+
+<p><font size="4">For example, ABC = 000 is decoded as address 000, and the m<sub>0</sub> 
+line is used to enable the voltage at F<sub>0</sub> and F<sub>2</sub> .</font></p>
+
+<p><font size="4">Types of ROM:</font></p>
+<ul>
+  <li><font size="4">mask-programmable ROM - the switching elements at the 
+  intersections are selectively included or not included during manufacturing; 
+  this requires the preparation of a &quot;mask&quot; during fabrication time, which is 
+  expensive; so use of mask-programmable ROM is economically feasible only if a 
+  large quantity (1000+) are required with the same data array</font></li>
+  <li><font size="4">field-programmable ROMs (PROMS) - these are manufactured 
+  with all switching elements present in the memory array, but connection at 
+  each row-column intersection is made by means of a fusible link; In order to 
+  store data in the PROM, these fusible links are selectively &quot;blown&quot;</font></li>
+  <li><font size="4">erasable programmable ROMs (EPROMS) - the content can be 
+  erased with an ultraviolet light</font></li>
+  <li><font size="4">EEPROMS - electrically erasable PROM; the content can be 
+  erased electrically</font></li>
+</ul>
+
+<p><font color="#008000" size="4">Programmable Logic Array (PLA)</font></p>
+
+<p><font size="4">This looks just like ROM, with the decoder renamed the AND 
+array --- to decode is to AND selected inputs together.</font></p>
+
+<p><img border="0" src="images/fig_09_28.jpg" width="750" height="672"></p>
+
+<p><font size="4" color="#008000">PAL - programmable array logic</font><font color="#000000" size="4"> 
+- is a special case of the programmable logic array in which the AND array is 
+programmable and the OR array is fixed. PALs are cheaper and easier to program 
+than PLAs.</font></p>
+
+<p><img border="0" src="images/fig_09_30.jpg" width="500" height="712"></p>
+
+<p><font size="4">The diagram introduces a new symbol, a triangle with a circle 
+attached to it. This symbol is the input buffer. Two lines lead from the 
+triangle, the upper line is the uncomplemented input and the lower line with a 
+circle is the complemented input.</font></p>
+
+<p><font size="4">In part A the unprogramed PLA has all links set up. In part B 
+only the needed links remain</font></p>
+
+<p><font size="4">PAL naming convection: </font></p>
+
+<ul>
+  <li><font size="4">14L4 means 14 input, 4 output, active low logic, and there 
+  will be a NOR gate at the end due to the active low logic</font></li>
+  <li><font size="4">14H4 is the same, but it use active high logic on the 
+  output, so at the output stage there will be OR gates</font></li>
+  <li><font size="4">14C4 would mean the outputs use a combination of active 
+  high and low logic</font></li>
+</ul>
+
+<p><font size="4">Some of output OR gates will take fewer inputs than others. So 
+sometimes it's necessary to make logic more than two levels in order for the 
+logic to fit on the PAL. In the book's example on page 242, we need to 
+implement:</font></p>
+
+<p><font size="4">A<sub>2</sub> = W'X + (XZ + XY), </font></p>
+
+<p><font size="4">but the OR gate that gives A<sub>2</sub> only takes two 
+inputs. The solution is do:</font></p>
+
+<p><font size="4">A<sub>2</sub> = W'X + B, where B = XZ + XY</font></p>
+
+<p><font size="4">B is an output in the PAL that is fed back into the input to 
+generate A<sub>2</sub> .</font></p>
+
+</body>
+
+</html>

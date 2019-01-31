@@ -1,0 +1,176 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Language" content="en-us" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>File I/O for Verification</title>
+<link rel="stylesheet" type="text/css" href="fpga.css" />
+<style type="text/css">
+.style1 {
+				background-color: #FFFF99;
+}
+</style>
+</head>
+
+<body>
+
+<h1>File I/O for Verification</h1>
+<p class="center">Last updated March 24, 2011</p>
+<h2>Byte Array</h2>
+<p>C#</p>
+
+<table class="code">
+			<tr>
+						<td class="code">
+<p class="code">
+<span class="keyword">int</span>  length  =  100;
+<br />
+<span class="keyword">byte</span>[]  b_array  =  <span class="keyword">new</span>  <span class="keyword">byte</span>[length];
+<br />
+<span class="keyword">for</span>  (<span class="keyword">int</span>  i  =  0;
+  i  &lt;  length;
+  i++)  b_array[i]  =  (<span class="keyword">byte</span>)i;
+<br />
+<strong><span class="style1">File.WriteAllBytes(&quot;test.bin&quot;,  b_array);</span>
+</strong>
+<br />
+
+</p>						</td>
+			</tr>
+</table>
+
+<p>Verilog</p>
+
+<table class="code">
+			<tr>
+						<td class="code">
+<p class="code">
+<span class="keyword">int</span>  in_file,  i,  temp;
+<br />
+<span class="keyword">bit</span>  [7:0]  in_file_data[100];
+<br />
+<br />
+<strong><span class="style1">in_file  = <span class="keyword">$fopen</span>(&quot;test.bin&quot;,  &quot;rb&quot;);
+<br />
+
+</span></strong>
+
+<span class="comment"><strong><span class="style1">// code = $fread(memory_array, fd, start, count);</span></strong></span>
+<strong><span class="style1">
+<br />
+temp  =  <span class="keyword">$fread</span>(in_file_data,  in_file,  0,  100);
+<br />
+<span class="keyword">$fclose</span>(in_file);</span></strong>
+<br />
+<br />
+<span class="keyword">for</span>(i  =  0;
+  i  &lt;  100;
+  i++)  <span class="keyword">begin</span><br />
+ &nbsp;&nbsp;&nbsp;    <span class="keyword">$display</span>(&quot;in_file_data[%d]  =  %d&quot;,  i,  in_file_data[i]);
+<br />
+<span class="keyword">end</span><br />
+<br />
+<span class="keyword">for</span>(i  =  0;
+  i  &lt;  100;
+  i  =  i  +  2) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        <span class="keyword">begin</span><br />
+ &nbsp;&nbsp;&nbsp;    dataa[7:0]  =  in_file_data[i][7:0];
+<br />
+ &nbsp;&nbsp;&nbsp;    datab[7:0]  =  in_file_data[i  +  1][7:0];
+<br />
+ &nbsp;&nbsp;&nbsp;    clk_1;
+<br />
+<span class="keyword">end</span><br />
+
+</p>						</td>
+			</tr>
+</table>
+
+
+<p>In &quot;fopen( )&quot;, if the mode is &quot;r&quot; is used instead of &quot;rb&quot;, then the data will 
+be read as if it&#39;s text file. Upon encountering &quot;26&quot;, the ASCII code for end of 
+file, the read will stop.</p>
+<p>&nbsp;</p>
+<h2>Integer Array</h2>
+
+<p>My testing shows that the ModelSim Verilog $fread( ) will use a <strong>Big 
+Endian convention</strong>.</p>
+<p>C#</p>
+<table class="code">
+			<tr>
+						<td class="code">
+<p class="code">
+<span class="keyword">private</span>  <span class="keyword">void</span>  write_b_array(<span class="keyword">int</span>[]  i_array,  <span class="keyword">string</span>  file_name)<br />
+{
+<br />
+ &nbsp;&nbsp;&nbsp;    <span class="keyword">byte</span>[]  b_array  =  <span class="keyword">new</span>  <span class="keyword">byte</span>[i_array.Length  *  4];
+<br />
+ &nbsp;&nbsp;&nbsp;    <span class="keyword">for</span>  (<span class="keyword">int</span>  i  =  0;
+  i  &lt;  i_array.Length;
+  i++)<br />
+ &nbsp;&nbsp;&nbsp;    {
+<br />
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        <span class="keyword">
+<strong><span class="style1">byte</span></strong></span><strong><span class="style1">[]  temp  =  BitConverter.GetBytes(i_array[i]);</span></strong>
+<br />
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        
+<span class="keyword" style="background-color: #FFFF99"><strong>for</strong></span><span class="style1"><strong>  (</strong></span><span class="keyword"><span class="style1"><strong>int</strong></span></span><span class="style1"><strong>  j  =  0;
+  j  &lt;  temp.Length;
+  j++)</strong></span><br />
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;            
+<span class="style1"><strong>b_array[i  *  4  +  j]  =  temp[3  -  j];</strong></span>
+<br />
+ &nbsp;&nbsp;&nbsp;    }
+<br />
+ &nbsp;&nbsp;&nbsp;    File.WriteAllBytes(file_name,  b_array);
+<br />
+}
+<br />
+
+</p>						</td>
+			</tr>
+</table>
+
+
+
+<p>&nbsp;</p>
+<h2>Text File</h2>
+<p>Verilog</p>
+<table class="code">
+			<tr>
+						<td class="code">
+<p class="code">
+<span class="comment">/*
+Input file contains:
+  42 min_address
+  1492 max_address
+*/</span>
+<br />
+<span class="keyword">int</span>  switch[<span class="keyword">string</span>];
+<br />
+<br />
+<span class="keyword">int</span>  i,  r;
+<br />
+<span class="keyword">string</span>  s;
+<br />
+<br />
+file  =  <span class="keyword">$fopen</span>(&quot;switch.txt&quot;,  &quot;r&quot;);
+<br />
+<span class="keyword">while</span>(!$feof(file))  <span class="keyword">begin</span><br />
+ &nbsp;&nbsp;&nbsp;    r  =  <span class="keyword">$fscanf</span>(file,  &quot;%d  %s&quot;,  i,  s);
+<br />
+ &nbsp;&nbsp;&nbsp;    switch[s]  =  i;
+<br />
+<span class="keyword">end</span><br />
+<span class="keyword">$fclose</span>(file);
+<br />
+<br />
+
+</p>						</td>
+			</tr>
+</table>
+
+
+</body>
+
+</html>

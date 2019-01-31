@@ -1,0 +1,134 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>The Flags</title>
+</head>
+
+<body>
+
+<p><font size="5" color="#008000">The Flags</font></p>
+<p><font size="4">Many (but by no means all) x86 instructions change the values 
+of one or more flags. The flags may then be individually tested by one of the 
+JMP instructions, which then change the course of the program depending on the 
+state of the flags.</font></p>
+<p><font size="4">Even when a flag doesn't change state from display to display, 
+it was still affected by the previous executed instruction. <i>An instruction 
+assert a value onto flags --- but if that new flag bit value is the same as the 
+previous flag bit value, the it just looks as if the instruction does not affect 
+the flag.</i></font></p>
+<p><font size="4">Most of what you will be paying attention to, flag-wise, is 
+the Carry flag (CF).</font></p>
+<p>&nbsp;</p>
+<p><font color="#008000" size="5">OF</font><font size="4"> --- The overflow flag 
+--- this is set when the result of an operation becomes too large to fit in the 
+operand it originally occupied.</font></p>
+<p><font color="#008000" size="5">DF</font><font size="4"> --- The direction 
+flag --- when set, string instructions proceed from high memory toward low 
+memory. When DF is cleared, string instructions proceed from low memory toward 
+high memory.</font></p>
+<p><font color="#008000" size="5">IF</font><font size="4"> --- The interrupt 
+enable flag --- You can set it yourself using the STI and CLI instructions. When 
+IF is set, interrupts are enabled and may occur when requested. When IF is 
+cleared, interrupts are ignored by the CPU.</font></p>
+<p><font color="#008000" size="5">TF</font><font size="4"> --- The trap flag --- 
+When set, the trap flag allows DEBUG's trace command to do what it does, by 
+forcing the CPU to execute only a single instruction before calling an interrupt 
+routine. This is not an especially useful flag for ordinary programming.</font></p>
+<p><font color="#008000" size="5">SF</font><font size="4"> --- The sign flag</font></p>
+<p><font color="#008000" size="5">ZF</font><font size="4"> --- The zero flag</font></p>
+<p><font size="5" color="#008000">AF</font><font size="4"> --- The auxiliary 
+carry flag --- this is used only for BCD arithmetic. These instructions are not 
+much used anymore.</font></p>
+<p><font size="5" color="#008000">PF</font><font size="4"> --- The parity flag 
+--- if the result's lower order byte has odd number of ones --- then the PF is 
+cleared. This flag is a carryover from the days when all computer communications 
+were done through a serial port, for which a system of error detection called 
+&quot;parity checking&quot; depends on knowing whether a count of set bits in a character 
+byte is even or odd. PF has no other use.</font></p>
+<p><font color="#008000" size="5">CF</font><font size="4"> --- The carry flag 
+--- this is by far the most useful flag in the flags register. If the result of 
+an arithmetic or shift operation &quot;carries out&quot; a bit from the operand, CF 
+becomes set.</font></p>
+
+<p>&nbsp;</p>
+
+<p><font size="5" color="#008000">Flag State Symobls:</font></p>
+
+<p><font size="4">When you run debug:</font></p>
+
+<p><font size="4" face="Courier New">-r<br>
+AX=0000 BX=0000 CX=0000 DX=0000 SP=FFEE BP=0000 SI=0000 DI=0000<br>
+DS=0B06 ES=0B06 SS=0B06 CS=0B06 IP=0100 <font color="#008000"><b>NV</b> UP EI PL 
+NZ NA PO NC</font><br>
+0B06:0100 99 CWD</font></p>
+
+<p><font size="4">the flag values (hilited green) take on symbols. Example:
+<font color="#008000"><b>NV</b></font> means no overflow (overflow flag not 
+set).</font></p>
+
+<p><font size="4">A table of the symbols used by debug:</font></p>
+
+<table border="2" cellpadding="8" cellspacing="0" style="border-collapse: collapse" bordercolor="#008000">
+  <tr>
+    <td align="center"><font size="4">Flag</font></td>
+    <td align="center"><font size="4">Name</font></td>
+    <td align="center"><font size="4">Set Symbol</font></td>
+    <td align="center"><font size="4">Clear Symbol</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">OF</font></td>
+    <td align="center"><font size="4">Overflow Flag</font></td>
+    <td align="center"><font size="4">OV</font></td>
+    <td align="center"><font size="4" color="#008000">NV</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">DF</font></td>
+    <td align="center"><font size="4">Direction Flag</font></td>
+    <td align="center"><font size="4">DN</font></td>
+    <td align="center"><font size="4" color="#008000">UP</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">IE</font></td>
+    <td align="center"><font size="4">Interrupt Enable Flag</font></td>
+    <td align="center"><font size="4" color="#008000">EI</font></td>
+    <td align="center"><font size="4">DI</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">SF</font></td>
+    <td align="center"><font size="4">Sign Flag</font></td>
+    <td align="center"><font size="4">NG</font></td>
+    <td align="center"><font size="4" color="#008000">PL</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">ZF</font></td>
+    <td align="center"><font size="4">Zero Flag</font></td>
+    <td align="center"><font size="4">ZR</font></td>
+    <td align="center"><font size="4" color="#008000">NZ</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">AF</font></td>
+    <td align="center"><font size="4">Auxiliary Carry Flag</font></td>
+    <td align="center"><font size="4">AC</font></td>
+    <td align="center"><font size="4" color="#008000">NA</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">PF</font></td>
+    <td align="center"><font size="4">Parity Flag</font></td>
+    <td align="center"><font size="4">PE</font></td>
+    <td align="center"><font size="4" color="#008000">PO</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">CF</font></td>
+    <td align="center"><font size="4">Carry Flag</font></td>
+    <td align="center"><font size="4">CY</font></td>
+    <td align="center"><font size="4" color="#008000">NC</font></td>
+  </tr>
+</table>
+
+</body>
+
+</html>

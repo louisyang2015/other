@@ -1,0 +1,80 @@
+<html>
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>send.cpp</title>
+</head>
+<body>
+<pre><font face="Courier New" size="4"><font color="#009933">// send.cpp</font>
+
+<font color="#009933">// broadcasts messages to the address: \\HOME-PENTIUM3\mailslot\abc</font>
+
+#include &lt;windows.h&gt;
+#include &lt;iostream.h&gt;
+#include &lt;string.h&gt;
+
+int main()
+{
+&nbsp;&nbsp;&nbsp;<span style="background-color: #FFFF99"><font color="#009933">//------------------------------------------------------------</font>
+
+&nbsp;&nbsp;&nbsp;<font color="#009933">// Create the mailslot file handle for sending messages</font>
+&nbsp;&nbsp;&nbsp;HANDLE h_mailslot =CreateFile(
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;\\\\HOME-PENTIUM3\\mailslot\\abc&quot;, &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#009933">//address is: \\HOME-PENTIUM3\mailslot\abc</font>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GENERIC_WRITE, FILE_SHARE_READ,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(LPSECURITY_ATTRIBUTES) NULL,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OPEN_EXISTING,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FILE_ATTRIBUTE_NORMAL,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(HANDLE) NULL);
+&nbsp;&nbsp;&nbsp;<font color="#009933">//------------------------------------------------------------</font></span>
+&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;<font color="#009933">//error checking</font>
+&nbsp;&nbsp;&nbsp;if (h_mailslot == INVALID_HANDLE_VALUE)
+&nbsp;&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cerr &lt;&lt; &quot;ERROR: Unable to create mailslot&quot; &lt;&lt; endl;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return (1);
+&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;const int buffer_size = 80;
+&nbsp;&nbsp;&nbsp;char user_input[buffer_size + 1];
+&nbsp;&nbsp;&nbsp;cin &gt;&gt; user_input;
+
+&nbsp;&nbsp;&nbsp;<font color="#009933">//attach computer name --- useful in many applications</font>
+&nbsp;&nbsp;&nbsp;char computer_name[buffer_size + 1];
+&nbsp;&nbsp;&nbsp;unsigned long name_length = buffer_size;
+&nbsp;&nbsp;&nbsp;GetComputerName(computer_name, &amp;name_length);
+&nbsp;&nbsp;&nbsp;<font color="#009933">//an alternative is to use: GetComputerNameEx, which</font>
+&nbsp;&nbsp;&nbsp;<font color="#009933">//has more options</font>
+
+&nbsp;&nbsp;&nbsp;char out_string[buffer_size * 2 + 10] = {0};
+&nbsp;&nbsp;&nbsp;strcat(out_string, computer_name);
+&nbsp;&nbsp;&nbsp;strcat(out_string, &quot; : &quot;);
+&nbsp;&nbsp;&nbsp;strcat(out_string, user_input);
+&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;cout &lt;&lt; &quot;Sending...&quot; &lt;&lt; endl;
+
+&nbsp;&nbsp;&nbsp;<span style="background-color: #FFFF99"><font color="#009933">//-----------------------------------------------------------</font>
+
+&nbsp;&nbsp;&nbsp;<font color="#009933">// Write message to mailslot &nbsp;&nbsp;&nbsp;</font>
+&nbsp;&nbsp;&nbsp;unsigned long bytes_written = 0;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;BOOL status=WriteFile(h_mailslot,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;out_string, (DWORD) strlen(out_string)+1,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;bytes_written, (LPOVERLAPPED) NULL);
+&nbsp;&nbsp;&nbsp;<font color="#009933">//-----------------------------------------------------------</font></span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;<font color="#009933">//error checking</font>
+&nbsp;&nbsp;&nbsp;if (!status)
+&nbsp;&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cerr &lt;&lt; &quot;ERROR: Unable to write to mailslot&quot; &lt;&lt; endl;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CloseHandle(h_mailslot);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return (1);
+&nbsp;&nbsp;&nbsp;} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+&nbsp;&nbsp;&nbsp;cout &lt;&lt; &quot;write successful&quot; &lt;&lt; endl;
+
+&nbsp;&nbsp;&nbsp;CloseHandle(h_mailslot);
+&nbsp;&nbsp;&nbsp;return 0;
+}
+</font></pre>
+</body>
+</html>

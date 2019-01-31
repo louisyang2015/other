@@ -1,0 +1,515 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Carrier Drift</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">Carrier Drift</font></h1>
+<p><font size="4">Carrier drift is when the carrier inside a semiconductor moves 
+due to the presence of an electric field.</font></p>
+<p><font size="4">Heat also cause a lot of carrier motion, but this motion is 
+random and is conceptually ignored.</font></p>
+<h2><font color="#008000">Drift Current</font></h2>
+<p><font size="4">Let say that we define a cross sectional area inside the 
+semiconductor:</font></p>
+<p><img border="0" src="images/pic0024.gif" width="500" height="130"></p>
+<p><font size="4">The number of holes that cross this yellow cross section per 
+second is:</font></p>
+<p><font size="4">(holes per volume) * (area of the cross section) * (velocity 
+of the holes)</font></p>
+<p><font size="4">Let:</font></p>
+<p><font size="4">I<sub>P|drift</sub> = drift current due to holes<br>
+q = elemental charge<br>
+p = holes per cm<sup>3<br>
+</sup></font><font size="5" color="#FF8000">v<sub>d</sub> = speed of the holes</font><font size="4"><br>
+A = area of the cross section</font></p>
+<p><font face="Courier New" color="#ff8000" size="5">I<sub>P|drift</sub> = qpv<sub>d</sub>A</font></p>
+<p><font size="4">Let:</font></p>
+<p><font size="5" color="#FF8000">J<sub>P|drift</sub> = density of drift current 
+due to holes; drift current per area</font></p>
+<p><font size="5" color="#FF8000">J<sub>P|drift</sub> = qpv<sub>d</sub></font></p>
+<p>&nbsp;</p>
+<h2><font color="#008000">Mobility</font></h2>
+<table border="3" cellpadding="12" cellspacing="1" style="border-collapse: collapse" bordercolor="#FF8000">
+  <tr>
+    <td><font size="4">Let:</font><p><font size="4">E = electric field applied 
+    to the semiconductor<br>
+    v<sub>d</sub> = speed of the carrier<br>
+    </font><font size="5" color="#FF8000">&#956; = mobility</font></p>
+    <p><font size="5" color="#FF8000">v<sub>d</sub> = &#956; * E</font></p>
+    <p><font size="4">The exact relationship between the electric field and the 
+    velocity of the carrier can get quite involved. That's why the mobility 
+    number is used.</font></p>
+    <p><font size="4">The unit for mobility is (cm<sup>2</sup> / Volt-Second)</font></p>
+    <p><font size="5" color="#FF8000">J<sub>P|drift</sub> = q&#956;<sub>p</sub>pE , 
+    current density due to hole carriers<br>
+    J<sub>N|drift</sub> = q&#956;<sub>n</sub>nE , current density due to electron 
+    carriers</font></td>
+  </tr>
+</table>
+<p><font size="4">Note that both of these density numbers describes a current in 
+the direction of the holes. Standard physics define current as a flow of 
+positive particles, even if the carriers are negative. Even J<sub>N|drift</sub> is describing the hole 
+current that is caused by the electron carriers.</font></p>
+<p><font size="4">The more collisions a carrier moving through a semiconductor 
+encounters, the less mobility will it be.</font></p>
+<p align="left"><font size="4" color="#FF8000">&#956; = q * &lt;T&gt; / m<sup>*</sup></font></p>
+<p align="left"><font size="4">&lt;T&gt; --- the mean time between collisions<br>
+m<sup>*</sup> --- the conductivity effective mass</font></p>
+<p><font size="4">Lighter carriers (less m<sub>p</sub><sup>*</sup> or m<sub>n</sub><sup>*</sup>) 
+has more mobility.</font></p>
+<p><font size="4">Higher temperature increase collisions and decrease mobility.</font></p>
+<p><font size="4"><font color="#008000">To get a value for mobility, I think 
+it's best to get it from some sort of table or graph.</font> Here's the graph 
+from the book:</font></p>
+<p><img border="0" src="images/pic0025.jpg" width="1173" height="1577"></p>
+<p><font size="4">Other &quot;formulas&quot; for mobility are complicated. There's a 
+formula on page 78, and a curve fitting approach on page 83.</font></p>
+<p><font size="4">As the graphs above show, higher doping leads to lower 
+mobility (more internal collisions). Note that mobility is not the same as 
+resistance. Mobility is just how well can ONE carrier get through the 
+semiconductor. Material resistance has to do with how much current can the 
+semiconductor carry through. Although higher doping leads to lower mobility, 
+there are so many more carriers that higher doping leads to less resistance.</font></p>
+<p>&nbsp;</p>
+<h2><font color="#008000">Resistivity (<i><font face="Times New Roman">&#961;</font></i>)</font></h2>
+<p><font size="4">The units for resistivity is ohm*cm. To go from resistivity to 
+resistance, multiply resistivity by the length of the conductor, and then divide 
+by the cross sectional area of the conductor.</font></p>
+<table border="3" cellpadding="12" cellspacing="1" style="border-collapse: collapse" bordercolor="#FF8000">
+  <tr>
+    <td><font size="4">Let:</font><p><font size="4">q = elemental charge<br>
+    &#956;<sub>p</sub> = mobility for holes in the material<br>
+    &#956;<sub>n</sub> = mobility for electrons in the material<br>
+    p = number of holes per cm<sup>3</sup><br>
+    n = number of electrons per cm<sup>3</sup></font></p>
+    <p><font size="5" color="#FF8000"><i><font face="Times New Roman">&#961;</font></i> 
+    = resistivity of the material</font></p>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5"><i>&#961;</i> = </font>
+        </td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">1 </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">q(&#956;<sub>n</sub> 
+              n + &#956;<sub>p</sub> p) </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+      </tr>
+    </table>
+    <p>&nbsp;</p>
+    <p><font size="4">Let:</font></p>
+    <p><font size="4">N<sub>D</sub> = number of donors<br>
+    N<sub>A</sub> = number of acceptors</font></p>
+    <p><font size="4">For n-type semiconductor, N<sub>D</sub> &gt;&gt; n, so you can 
+    use:</font></p>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5"><i>&#961;</i> = </font>
+        </td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">1 </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">q&#956;<sub>n</sub> N<sub>D</sub>
+              </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+      </tr>
+    </table>
+    <p><font size="4">Similarly, for p-type semiconductor, use:</font></p>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5"><i>&#961;</i> = </font>
+        </td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">1 </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">q&#956;<sub>p</sub> N<sub>A</sub>
+              </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<p><font size="4">The book on pages 87 to page 89 talked about how resistivity 
+is measured from wafers in real life. One way is to have four probes in a 
+straight line across the wafer. Current goes from the first probe to the last 
+probe, while the middle two probes reads the voltage. There are also machines 
+for measuring resistivity that does not make contact with the wafer.</font></p>
+<p>&nbsp;</p>
+<h2><font color="#008000">Band Bending</font></h2>
+
+<p><font size="4">When an electron rise from some energy state in the valence 
+band to a higher state in the conduction band, there is an increase in both 
+kinetic energy (K.E.) and potential energy (P.E.).</font></p>
+
+<p><img border="0" src="images/pic0026.gif" width="540" height="584"></p>
+
+<p><font size="4">For a hole, dropping to E<sub>V</sub> would be the potential 
+energy increase. Going from E<sub>V</sub> to a level even lower would be a 
+kinetic energy level increase.</font></p>
+
+<p><font size="4">So we have P.E. = E<sub>C</sub> - E<sub>Start</sub> .</font></p>
+
+<p><font size="4">Let:</font></p>
+
+<p><font size="4">V = voltage at a specific point in the semiconductor, with 
+respect to a ground somewhere</font></p>
+
+<p><font size="4">We also have:</font></p>
+
+<p><font size="4">P.E. = -q * V, <font color="#008000">at a specific point in 
+the semiconductor</font></font></p>
+
+<table border="3" cellpadding="12" cellspacing="1" style="border-collapse: collapse" bordercolor="#FF8000">
+  <tr>
+    <td>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">V = - </font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">1 </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">q </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">(E<sub>c</sub> - E<sub>ref</sub> 
+        ) </font></td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<p><font size="4">So if a voltage exist across a piece of semiconductor, then 
+there will be different voltage levels inside the semiconductor, and E<sub>C</sub> 
+- E<sub>ref</sub> will be different at different places. Therefore, the energy 
+bands bend when an electric field / voltage exists across a semiconductor.</font></p>
+
+<p><font size="4">Let:</font></p>
+
+<p><font size="4"><i>E</i> = the electric field within the semiconductor</font></p>
+
+<p><font size="4">The electric field is the negative gradient of the voltage.</font></p>
+
+<p><font size="4">E = -<font face="Wingdings 3">s</font>V</font></p>
+
+<p><font size="4">In one dimesion:</font></p>
+
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    <i>E</i> = - </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">dV </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">dx </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    <i>E</i> =&nbsp; </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">1 </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">q </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    * </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">dE<sub>c</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">dx </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<p><font size="4">Let:</font></p>
+
+<p><font size="4">E<sub>C</sub> = bottom of the conduction band<br>
+E<sub>V</sub> = top of the valence band<br>
+E<sub>i</sub> = Fermi energy of the intrinsic semiconductor</font></p>
+
+<p><font size="4">All three of these values will bend equally such that:</font></p>
+
+<table border="3" cellpadding="12" cellspacing="1" style="border-collapse: collapse" bordercolor="#FF8000">
+  <tr>
+    <td>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">E = </font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">1 </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">q </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">* </font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">dE<sub>c</sub>
+              </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">dx </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">= </font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">1 </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">q </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">* </font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">dE<sub>v</sub>
+              </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">dx </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">= </font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">1 </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">q </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">* </font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">dE<sub>i</sub>
+              </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">dx </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+
+<p><img border="0" src="images/pic0027.jpg" width="491" height="232"></p>
+<p><img border="0" src="images/pic0028.jpg" width="402" height="419"></p>
+
+</body>
+
+</html>

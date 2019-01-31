@@ -1,0 +1,73 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Filling Shapes with a Gradient Brush</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">Filling Shapes with a Gradient Brush</font></h1>
+<h2><font color="#008000">Linear Gradient</font></h2>
+<p><img border="0" src="images/pic05.gif" width="518" height="228"></p>
+<p><font size="4">A linear gradient changes color as you move horizontally, 
+vertically, or parallel to a specified slanted line. </font></p>
+<p><font size="4">You create a &quot;LinearGradientBrush&quot;, and then use it to draw.</font></p>
+<p><font color="#FF6600"></font><font size="4" face="Courier New">
+<font color="#FF6600">LinearGradientBrush linGrBrush(<br>
+&nbsp;&nbsp; Point(0, 10),<br>
+&nbsp;&nbsp; Point(200, 10),<br>
+&nbsp;&nbsp; Color(255, 255, 0, 0),&nbsp;&nbsp; // opaque red<br>
+&nbsp;&nbsp; Color(255, 0, 0, 255));&nbsp; // opaque blue</font><br>
+<br>
+Pen pen(&amp;linGrBrush);<br>
+<br>
+graphics.DrawLine(&amp;pen, 0, 10, 200, 10);<br>
+graphics.FillEllipse(&amp;linGrBrush, 0, 30, 200, 100);<br>
+graphics.FillRectangle(&amp;linGrBrush, 0, 155, 500, 30);</font></p>
+<p><font size="4">You can modify the way the interpolation works</font></p>
+<p><font size="4">...after constructing the brush and before using the brush to 
+draw...</font></p>
+<p><font size="4"><font face="Courier New">REAL relativeIntensities[] = {0.0f, 
+0.5f, 1.0f};<br>
+REAL relativePositions[]&nbsp;&nbsp; = {0.0f, 0.2f, 1.0f};</font><br>
+<br>
+<font face="Courier New">linGrBrush.SetBlend(relativeIntensities, 
+relativePositions, 3);</font></font></p>
+<p>&nbsp;</p>
+<h2><font color="#008000">Creating a Path Gradient</font></h2>
+<p><img border="0" src="images/pic06.gif" width="149" height="80"></p>
+<p><font size="4">A path gradient changes color as you move about the interior 
+and boundary of a path.</font></p>
+<p><font face="Courier New" size="4">// Create a path that consists of a single 
+ellipse.<br>
+GraphicsPath path;<br>
+path.AddEllipse(0, 0, 140, 70);<br>
+<br>
+// Use the path to construct a brush.<br>
+PathGradientBrush pthGrBrush(&amp;path);<br>
+<br>
+// Set the color at the center of the path to blue.<br>
+pthGrBrush.SetCenterColor(Color(255, 0, 0, 255));<br>
+<br>
+// Set the color along the entire boundary of the path to aqua.<br>
+Color colors[] = {Color(255, 0, 255, 255)};<br>
+int count = 1;<br>
+pthGrBrush.SetSurroundColors(colors, &amp;count);<br>
+<br>
+graphics.FillEllipse(&amp;pthGrBrush, 0, 0, 140, 70);</font></p>
+<p><font size="4">By default, a path gradient brush does not extend outside the 
+boundary of the path. If you use the path gradient brush to fill a shape that 
+extends beyond the boundary of the path, the area of the screen outside the path 
+will not be filled.</font></p>
+<p>&nbsp;</p>
+<p><font color="#008000" size="4">Applying Gamma Correction to a Gradient</font></p>
+<p><font size="4" face="Courier New">linGrBrush.SetGammaCorrection(TRUE);</font></p>
+<p>&nbsp;</p>
+
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Language" content="en-us" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>MegaWizard Notes</title>
+<link rel="stylesheet" type="text/css" href="../fpga.css" />
+</head>
+
+<body>
+
+<h1>MegaWizard</h1>
+<p class="center">Last updated May 26, 2011</p>
+<h2>OnChip Memory</h2>
+<p>For read-only memory, an initialization file is needed. When using the &quot;hex&quot; 
+format, it seems the Quartus software will warn of &quot;overflow&quot; unless the &quot;hex&quot; 
+file is 1 word per line. This behavior is observed during the FFT and Array 
+Processor projects, where the twiddle factor needs to be stored as read-only 
+memory.</p>
+<p>&nbsp;</p>
+
+<h2>FIFO</h2>
+<p>In the Array Processor project, a dual clock, look ahead FIFO is used. In 
+that project, after doing a read or write, it seems that you have to wait a cycle for the rdempty / wrfull flag to be 
+true. In other words, it&#39;s not possible to read / write continuously, because 
+the &quot;rdempty&quot; and &quot;wrfull&quot; flags are not immediately correct after each 
+read/write.</p>
+<p>&nbsp;</p>
+
+</body>
+
+</html>

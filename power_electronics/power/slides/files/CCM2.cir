@@ -1,0 +1,6 @@
+.subckt CCM2 1 2 3 4 5
++params: Ron=0 VD=0 RD=0
+Er 1 1x value={i(Et)*(Ron+(1-v(5))*RD/v(5))/v(5)}
+Et 1x 2 value={(1-v(5))*(v(3,4)+VD)/v(5)}
+Gd 4 3 value={(1-v(5))*i(Et)/v(5)}
+.ends

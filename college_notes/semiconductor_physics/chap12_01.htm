@@ -1,0 +1,196 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Small Signal Equivalent Circuits</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">Small Signal Equivalent Circuits</font></h1>
+<h2><font color="#008000">How to Come up with a Small Signal Model</font></h2>
+<p><font size="4">First, start with a two port model for the BJT. If the BJT is 
+connected in the common emitter configuration, the two port model would be:</font></p>
+<p><img border="0" src="images/pic0146.gif" width="750" height="244"></p>
+<p><font size="4">As a convention, the bias current is capitalized and the small 
+signal current is in lower case letters.</font></p>
+<p><font size="4">The first assumption of the small signal model is that the 
+transistor can follow the changes in potential quasistatically, allowing us to 
+say that.</font></p>
+<table border="0" cellpadding="12" cellspacing="1" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td nowrap><font face="Courier New" color="#ff8000" size="5">i<sub>b</sub> = 
+    I<sub>B</sub>(V<sub>BE</sub> + v<sub>be</sub> , V<sub>CE</sub> + v<sub>ce</sub>) 
+    - I<sub>B</sub>(V<sub>BE</sub> , V<sub>CE</sub>) </font></td>
+  </tr>
+</table>
+<p><font size="4">The next step is to to approximate that difference presented 
+above using partial derivatives.</font></p>
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    i<sub>b</sub> = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">&#8706;I<sub>B</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">&#8706;V<sub>BE</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="7">
+    |</font><font face="Courier New" color="#ff8000"><sub>V<sub>CE</sub></sub></font><font face="Courier New" color="#ff8000" size="5"> 
+    * v<sub>be</sub> + </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">&#8706;I<sub>B</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">&#8706;V<sub>CE</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="7">
+    |</font><font face="Courier New" color="#ff8000"><sub>V<sub>BE</sub></sub></font><font face="Courier New" color="#ff8000" size="5">
+    * v<sub>ce</sub> </font></td>
+  </tr>
+</table>
+<p><font size="4">Similarly, we have</font></p>
+
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    i<sub>c</sub> = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">&#8706;I<sub>C</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">&#8706;V<sub>BE</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="7">
+    |</font><font face="Courier New" color="#ff8000"><sub>V<sub>CE</sub></sub></font><font face="Courier New" color="#ff8000" size="5"> 
+    * v<sub>be</sub> + </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">&#8706;I<sub>C</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">&#8706;V<sub>CE</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="7">
+    |</font><font face="Courier New" color="#ff8000"><sub>V<sub>BE</sub></sub></font><font face="Courier New" color="#ff8000" size="5">
+    * v<sub>ce</sub> </font></td>
+  </tr>
+</table>
+<p><font size="4">The partial derivatives are all conductances, and call them g<sub>11</sub> 
+, g<sub>12</sub> , g<sub>21</sub> , g<sub>22 </sub>:</font></p>
+
+<p><font face="Courier New" color="#ff8000" size="5">i<sub>b</sub> = g<sub>11</sub> 
+v<sub>be</sub> + g<sub>12</sub> v<sub>ce</sub> <br>
+i<sub>c</sub> = g<sub>21</sub> v<sub>be</sub> + g<sub>22</sub> v<sub>ce</sub>
+</font></p>
+
+<p><font size="4">A equivalent circuit for the above would be:</font></p>
+
+<p><img border="0" src="images/pic0147.jpg" width="566" height="272"></p>
+
+<p>&nbsp;</p>
+
+<h2><font color="#008000">Hybrid-Pi Models</font></h2>
+
+<p><font size="4">It turns out that g<sub>12</sub> and g<sub>22</sub> can be 
+neglected, and this leads to the first hybrid-pi model:</font></p>
+
+<p><img border="0" src="images/pic0148.jpg" width="493" height="236"></p>
+
+<table border="3" cellpadding="12" cellspacing="1" style="border-collapse: collapse" bordercolor="#FF8000">
+  <tr>
+    <td><img border="0" src="images/pic0151.jpg" width="583" height="212"></td>
+  </tr>
+</table>
+<p><font size="4">If we don't neglect g<sub>12</sub> and g<sub>22</sub> , we are 
+using a second hybrid-pi model:</font></p>
+
+<p><img border="0" src="images/pic0149.jpg" width="504" height="239"></p>
+
+<p><font size="4">This second model is connected to the two port model that we 
+developed earlier by these equations:</font></p>
+
+<p><img border="0" src="images/pic0152.jpg" width="288" height="272"></p>
+
+<p><font size="4">The third hybrid-pi model is for frequency use:</font></p>
+
+<p><img border="0" src="images/pic0150.jpg" width="647" height="405"></p>
+
+<p><font size="4">This model is good for up to 500 MHz. At super high 
+frequencies, transistor can no longer follow the changes in potential quasistatically. 
+There would be delays in signal propagation across various device regions.</font></p>
+
+</body>
+
+</html>

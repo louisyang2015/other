@@ -1,0 +1,564 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Language" content="en-us" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>APU Instruction Set</title>
+<link rel="stylesheet" type="text/css" href="fpga.css" />
+</head>
+
+<body>
+
+<h1>Instruction Set</h1>
+<p class="center">Last updated May 15, 2011</p>
+<h2>Instruction Formats</h2>
+<p>Instructions are variable length. Each instruction word is 32 bit wide.</p>
+<p>The format of the first instruction word:</p>
+<table>
+			<tr>
+						<td>
+						[31:28]</td>
+						<td>
+						[27:24]</td>
+						<td>
+						[23:20]</td>
+						<td>
+						[19:16]</td>
+						<td>
+						[15:0]</td>
+			</tr>			
+			<tr>
+						<td>
+						Mode</td>
+						<td>
+						Code</td>
+						<td>
+						Source</td>
+						<td>
+						Dest</td>
+						<td>
+						Arg</td>
+			</tr>
+</table>
+<p>Op code = {Mode, Code}<br />
+Mode = ALU mode<br />
+Code = An additional code to differentiate operations that use the same ALU 
+mode.</p>
+<p>In the &quot;AP_control.v&quot; file, the &quot;Mode&quot; is called &quot;alu_mode&quot;, and the &quot;Code&quot; 
+is called &quot;op_code&quot;.</p>
+<p>Source is the value applied to the pins x1_sel and x0_sel.</p>
+<ul>
+				<li>x1_sel &lt;= bits[23:22]</li>
+				<li>x0_sel &lt;= bits[21:20]</li>
+</ul>
+<p>This means:</p>
+<table>
+			<tr>
+						<td>"source" code</td>
+						<td>X1 Selection</td>
+						<td>X0 Selection</td>
+			</tr>
+			<tr>
+						<td>0</td>
+						<td>A0</td>
+						<td>A0</td>
+			</tr>
+			<tr>
+						<td>1</td>
+						<td>A0</td>
+						<td>A1</td>
+			</tr>
+			<tr>
+						<td>2</td>
+						<td>A0</td>
+						<td>B0</td>
+			</tr>
+			<tr>
+						<td>3</td>
+						<td>A0</td>
+						<td>B1</td>
+			</tr>
+			<tr>
+						<td>4</td>
+						<td>A1</td>
+						<td>A0</td>
+			</tr>
+			<tr>
+						<td>E</td>
+						<td>B1</td>
+						<td>B0</td>
+			</tr>
+			</table>
+<p>Dest is the destination memory. This group of bits translate into which write 
+enable pin will be toggled on.</p>
+<table>
+			<tr>
+						<td>"dest" code</td>
+						<td>Write Enabled</td>
+			</tr>
+			<tr>
+						<td>0</td>
+						<td>A0r and A0i</td>
+			</tr>
+			<tr>
+						<td>1</td>
+						<td>A1r and A1i</td>
+			</tr>
+			<tr>
+						<td>2</td>
+						<td>B0r and B0i</td>
+			</tr>
+			<tr>
+						<td>3</td>
+						<td>B1r and B1i</td>
+			</tr>
+			<tr>
+						<td>4</td>
+						<td>A0r only</td>
+			</tr>
+			<tr>
+						<td>5</td>
+						<td>A1r only</td>
+			</tr>
+			<tr>
+						<td>6</td>
+						<td>B0r only</td>
+			</tr>
+			<tr>
+						<td>7</td>
+						<td>B1r only</td>
+			</tr>
+			<tr>
+						<td>8</td>
+						<td>A0i only</td>
+			</tr>
+			<tr>
+						<td>9</td>
+						<td>A1i only</td>
+			</tr>
+			<tr>
+						<td>A</td>
+						<td>B0i only</td>
+			</tr>
+			<tr>
+						<td>B</td>
+						<td>B1i only</td>
+			</tr>
+			<tr>
+						<td>C</td>
+						<td>A0r, A0i, A1r, A1i - FFT case</td>
+			</tr>
+			<tr>
+						<td>D</td>
+						<td>B0r, B0i, B1r, B1i - FFT case</td>
+			</tr>
+			<tr>
+						<td>E</td>
+						<td>All: A0r, A0i, A1r, A1i<br />
+						B0r, B0i, B1r, and B1i.</td>
+			</tr>
+			<tr>
+						<td>F</td>
+						<td>None - none of the write <br />
+						enables will be turned on.</td>
+			</tr>
+</table>
+<p>Arg = Instruction Argument. This is usually the (512 - length) value.</p>
+<h2>512 - length</h2>
+<p>Various array length values are encoded as 512 - length. So to do an operation for 
+6 numbers, don&#39;t pass a &quot;6&quot; to the array processor. Instead, pass a &quot;512-6&quot;, 
+which is &quot;506&quot;, to the array processor. This value is loaded into a counter, and 
+the overflow of the MSB, which is the decimal value of 512, indicating the end 
+of the array processor operation.</p>
+<p>&nbsp;</p>
+<h2>SSRAM Instructions</h2>
+<table>
+			<tr>
+						<td class="nowrap">
+						Op Code<br />
+						{Mode, Code}</td>
+						<td>
+						Description</td>
+			</tr>			
+			<tr>
+						<td>
+						F1</td>
+						<td class="left">
+						Configure SSRAM address generator (AG) registers:<br />
+						<strong>ssram_set_addr</strong>(int n)<br />
+						<strong>ssram_set_skip</strong>(int n)<br />
+						<strong>ssram_set_highest_addr</strong>(int n)<br />
+						<strong>ssram_set_block_size</strong>(int n)<br />
+						<br />
+						Word[0] dest must be &quot;F&quot; - no write to memory will occur<br />
+						Word[1][18:0] = n; <br />
+						Word[1][21:20] = ssram address generator load_mode[1:0]<br />
+						The &quot;block_size&quot; is subtracted from the current address. 
+						So it should be set to (skip - real block size). For 
+						example, if the real block size is 100, and the skip 
+						value is 10, then the wrap around calculation should add 
+						100 then subtract 10, for a net subtraction of 90.</td>
+			</tr>			
+			<tr>
+						<td>
+						01</td>
+						<td class="left">
+						<strong>ssram_reset</strong>(int length)<br />
+						<br />
+Sets a range of &quot;ssram&quot; as zero. Prior to using this instruction, the 
+						SSRAM address generator (AG) registers needs to be 
+						properly configured.<br />
+						<br />
+						Word[0] dest must be &quot;F&quot; - no write to memory will occur<br />
+						Word[0] argument = 512 - length</td>
+			</tr>			
+			<tr>
+						<td>
+						E1</td>
+						<td class="left">
+						<strong>ssram_write</strong>(SOURCE source, int imag, int length, int 
+						source_start)<br />
+						<br />
+						Stores buffer memory into SSRAM. Currently the SSRAM 
+						interface is 32 bit, so the source should be real or 
+						imaginary, not the entire complex number. For example, 
+						it can be A0r or A0i, but not A0.<br />
+						<br />
+						Prior to using this instruction, the SSRAM address 
+						generator (AG) registers needs to be properly 
+						configured.<br />
+						<br />
+						Word[0] source used - limited to a 32 bit source. The 
+						ALU is Y1=X1 for this instruction, so the lowest bit of 
+						the &quot;source&quot; code denote the real or imaginary setting.
+						<br />
+						Word[0]
+						source = 0000, means x1_sel is 00 (A0), and the 
+						ssram_sel is 0 (choose real part).<br />
+						Word[0]
+						source = 0001, means x1_sel is 00 (A0), and the 
+						ssram_sel is 1 (choose imaginary part).<br />
+						Word[0] dest must be &quot;F&quot; - no write to memory will occur<br />
+						Word[0] argument = 512 - length<br />
+						word[1] upper 16 bits = source_start, the first address 
+						of the memory buffer to copy from<br />
+						word[1] lower 16 bits = 0</td>
+			</tr>			
+			<tr>
+						<td>
+						03</td>
+						<td class="left">
+						<strong>ssram_read</strong>(DEST dest, int 
+						length, int dest_start)<br />
+						<br />
+Retrieve an array of numbers from the SSRAM. The SSRAM interface is 32 bit, so 
+						the destination most likely the real or imaginary 
+						component only - not the entire complex number. To read 
+						a complex number, read the real part first in one 
+						instruction, then read 
+						the imaginary part in a second instruction.<br />
+						<br />
+						Prior to using this instruction, the SSRAM address 
+						generator (AG) registers needs to be properly 
+						configured.<br />
+						<br />
+						When the address computed goes over highest_addr, the address
+used for ssram access will be the computed address minus &quot;block_size&quot;.<br />
+						Word[0] dest used, most likely a 32 bit destination<br />
+						Word[0] arg = 512 - length<br />
+						word[1] upper 16 bits = 0<br />
+						word[1] lower 16 bits = dest_start, the first address of 
+						the memory buffer to copy data into<br />
+						</td>
+			</tr>			
+</table>
+<p>
+<br />
+</p>
+<h2>Onchip Memory Instructions</h2>
+<table>
+			<tr>
+						<td class="nowrap">
+						Op Code<br />
+						{Mode, Code}</td>
+						<td>
+						Description</td>
+			</tr>			
+			<tr>
+						<td>
+						02</td>
+						<td class="left">
+						<strong>send_data</strong>(DEST dest, int[] i_array, int 
+						length)<br />
+						<br />
+						NIOS 2 will send data via the fifo_in<br />
+						word[0] dest = destination memory<br />
+						word[0] arg = 512 - length of the data<br />
+						word[1] = the first data value<br />
+						word[2] = the second data value, etc.</td>
+			</tr>			
+			<tr>
+						<td>
+						61</td>
+						<td class="left">
+						<strong>get_data</strong>(SOURCE source, int real, int 
+						start_index, int length)<br />
+						<br />
+Copy data to the &quot;fifo_out&quot; for NIOS 2 to read<br />
+						word[0] source used to choose the memory to read from<br />
+						word[0] dest must be &quot;F&quot; - no write to memory will occur<br />
+						word[0] arg = 512 - length<br />
+						word[1] MSB = 0 for getting the real component; 1 for 
+						imaginary<br />
+						word[1][8:0] = start index</td>
+			</tr>			
+			<tr>
+						<td>
+						20<br />
+						30<br />
+						40<br />
+						50<br />
+						60<br />
+						70</td>
+						<td class="left">
+						<strong>copy_general</strong>(ALU_COPY_MODE alu_mode, 
+						SOURCE src, DEST dest, int length, int src_start, int 
+						dest_start)<br />
+						<br />
+This operation copy data from &quot;source&quot; to &quot;dest&quot;. The source
+of the copy is source[source_start] to source[source_start + length - 1].<br />
+The destination of the copy is dest[dest_start] to
+dest[dest_start + length - 1].<br />
+						The exact operation depends on the ALU mode used.<br />
+						word[0] source, destination used<br />
+						word[0] arg = 512 - length<br />
+						word[1] upper 16 bits = source_start<br />
+						word[1] lower 16 bits = dest_start</td>
+			</tr>			
+			<tr>
+						<td>
+						E0</td>
+						<td class="left">
+						<strong>dual_round</strong>(SOURCE src, DEST dest, int 
+						length, int src_start, int dest_start)<br />
+						<br />
+						This operation is created after running the FFT module 
+						shows that rounding is needed if the final digital (LSB) 
+						is to be preserved. This operation is similar to the 
+						&quot;0x60&quot; operation - but the rounding is applied to both 
+						outputs. The 0x60 operation only has rounding on Y1. The 
+						&quot;0xE0&quot; operation pass X0 to Y0, and X1 to Y1, rounding 
+						both outputs.<br />
+						<br />
+						word[0] source, destination used<br />
+						word[0] arg = 512 - length<br />
+						word[1] upper 16 bits = source_start<br />
+						word[1] lower 16 bits = dest_start</td>
+			</tr>			
+			<tr>
+						<td>
+						00</td>
+						<td class="left">
+						<strong>reset_memory</strong>(DEST dest, int dest_start, int length)<br />
+						<br />
+This function loads zeros into the specified memory.<br />
+						word[0] destination used<br />
+						word[0] length = 512 - length<br />
+						word[1] lower 16 bits = destination start index 
+						(dest_start)</td>
+			</tr>			
+</table>
+<p>&nbsp;</p>
+<h2>FFT Instructions</h2>
+<table>
+			<tr>
+						<td class="nowrap">
+						Op Code<br />
+						{Mode, Code}</td>
+						<td>
+						Description</td>
+			</tr>			
+			<tr>
+						<td>
+						F0</td>
+						<td class="left">
+						<strong>bit_reverse_copy</strong>(int source, 
+DEST dest, int length, int bit_reverse_type)<br />
+						<br />
+						The bit reverse length is actually the half length of 
+						the FFT. For example, a length 32 FFT would have 16 
+						numbers in each array. The bit reverse would copy the 
+						first 16 values to memory 0 and the second 16 values to 
+						memory 1. This needs to be specified manually. The APU 
+						also does not infer the type of bit reverse necessary 
+						from the &quot;length&quot; code. The bit reverse type needs to be 
+						manually specified.<br />
+						<br />
+						The data is copied from &quot;source&quot; to &quot;dest&quot;. The starting 
+						index is 0. It&#39;s like copy, with starting index 0, and the destination address having a bit reverse applied 
+						to it.<br />
+						<br />
+						The source should be either &#39;4&#39; for (A1, A0) or &#39;0xE&#39; 
+						for (B1, B0). The destination should be either &#39;0xC&#39; for 
+						A0/1 or &#39;0xD&#39; for B0/1.<br />
+						<br />
+						word[0] source, destination used<br />
+						word[0] arg = 512 - length<br />
+						word[1][2:0] = bit reverse type</td>
+			</tr>			
+			<tr>
+						<td>
+						10</td>
+						<td class="left">
+						<strong>FFT</strong>(int source, DEST dest, int length, int fft_shift, int read_stage_number, 
+						int write_stage_number)<br />
+						<br />
+						The length is actually the half length. For example, a 
+						32 point FFT would use a length of 16.<br />
+						The destination is assumed based on the source. If the 
+						source is memory A, then the destination is memory B. If 
+						the source is memory B, then the destination is memory 
+						A. To make the control design easier, both the source 
+						and destination should be encoded in the instruction so 
+						that the control circuit does not have to assume.<br />
+						<br />
+						The source should be either &#39;4&#39; for (A1, A0) or &#39;0xE&#39; 
+						for (B1, B0). The destination should be either &#39;0xC&#39; for 
+						A0/1 or &#39;0xD&#39; for B0/1.<br />
+						<br />
+						word[0] source and destination used<br />
+						word[0] arg = 512 - length<br />
+						word[1][29:28] = fft_shift (code directly applied to ALU 
+						input)<br />
+						word[1][7:4] = FFT stage number for read address 
+						generator<br />
+						word[1][3:0] = FFT stage number for write address 
+						generator</td>
+			</tr>			
+</table>
+<p>&nbsp;</p>
+<h2>Math Instructions</h2>
+<table>
+			<tr>
+						<td class="nowrap">
+						Op Code<br />
+						{Mode, Code}</td>
+						<td>
+						Description</td>
+			</tr>			
+			<tr>
+						<td>
+						24</td>
+						<td class="left">
+						<strong>mac</strong>(SOURCE src, T_SOURCE t_src, DEST dest, int src_start, int dest_index, int 
+						length)<br />
+						<br />
+Carries out for example B0[dest_index] = A0[0]*A1[0] + A0[1]*A1[1] + ...
++ A0[source_length-1]*A1[source_length-1]<br />
+						<br />
+						One input the the multiplier comes from X1, and this 
+						input can draw from the four memory buffers A0, A1, B0, 
+						and B1. The other multiplier input comes from T, and 
+						this one can be: ONE (t_sel=01), A0 (t_sel=10), or 
+						A0_conjugate (t_sel=11). The instruction[21:20] field is the selection 
+						of the T input.<br />
+						<br />
+						word[0] source and dest used. <br />
+						word[0][21:20] as x0_sel has no effect in this case. 
+						This field should also be used to drive t_sel, only for 
+						this instruction.<br />
+						word[0] arg = 512 - length<br />
+						word[1][31:16] = source_start<br />
+						word[1][15:0] = dest_index</td>
+			</tr>			
+			<tr>
+						<td>
+						51</td>
+						<td class="left">
+						<strong>conjugate_mirror</strong>(SOURCE src, DEST dest, 
+						int length, int src_start, int dest_start)<br />
+						<br />
+						In the algorithm, the destination should not be the same 
+						as the source. For example, if the source is A0, then 
+						the destination should not be A0 as well.<br />
+						<br />
+Executes an operation where the conjugate of one array is copied 
+to another. If used with source A0 and destination A1, then A1[dest_start - k] = Complex.Conjugate(A0[src_start 
+						+ k]). The &quot;k&quot; runs from 0 to length-1.<br />
+						<br />
+						word[0] source and dest used<br />
+						word[0] arg = 512 - length<br />
+						word[1][31:16] = source_start<br />
+						word[1][15:0] = dest_start - in this case, the write 
+						address counter is running backward.</td>
+			</tr>			
+			<tr>
+						<td>
+						0E</td>
+						<td class="left">
+						<strong>compute_power</strong>(int length, int src_start, 
+						int dest_index)<br />
+						<br />
+Compute the power by adding the sum of square of the real and imaginary parts, 
+						for the values stored in buffer A0. This is implemented 
+						as A0 times its conjugate. Next find the log2 of this power (but it&#39;s not quite log2 - see 
+						ALU section for a table showing the exact mapping). Then take 16 minus the log2 result and store it at C0[dest_index].<br />
+						<br />
+						word[0] arg = 512 - length<br />
+						word[0] source needs to be encoded - the source is 
+						always A0<br />
+						word[0] dest must be &quot;F&quot; - no write to memory will occur<br />
+						word[1][31:16] = source_start<br />
+						word[1][15:0] = dest_index - in this case, the 
+						dest_index is for the &quot;C0&quot; memory inside the ALU, not 
+						for the write address generator.</td>
+			</tr>			
+			<tr>
+						<td>
+						31</td>
+						<td class="left">
+						<strong>compute_Rb</strong>(SOURCE src, DEST dest, int 
+						length, int src_start, int dest_start, int mu_k)<br />
+						<br />
+Computes: B0[k] = mu_k * Complex.Conjugate(A0[k]) * A1[k] * (double)(1 &lt;&lt; Pi_int[k]);<br />
+						The k will run from 0 to length-1<br />
+						word[0] arg = 512 - length<br />
+						word[0][23:22] src should be A0 or A1. The conjugate 
+						array source should always be A0, because only A0 is 
+						conjugated and feeding the T input.<br />
+						word[0] dest should be &quot;2&quot; or &quot;3&quot; - the target 
+						is always memory B0 or B1.<br />
+						word[1][31:16] = src_start, starting index applied to 
+						right side terms: A0, A1, Pi_int<br />
+						word[1][15:0] = dest_start, index applied to left side 
+						result: B0<br />
+						word[2] = mu_k</td>
+			</tr>			
+			<tr>
+						<td>
+						11</td>
+						<td class="left">
+						<strong>add_array</strong>(SOURCE src1, SOURCE src2, int 
+						src_start, int length, DEST dest)<br />
+						<br />
+Adds two arrays &quot;src1&quot; and &quot;src2&quot;, and puts them in the
+&quot;dest&quot; array. The indexes used will be &quot;start_index&quot; through
+&quot;start_index + length - 1&quot;.<br />
+						<br />
+						This is implemented as FFT operation with twiddle factor 
+						of 1.<br />
+						word[0] src contains the selection for x0_sel and 
+						x1_sel, so it contains both source 1 and 2.<br />
+						word[0] dest =dest<br />
+						word[0] arg = 512 - length<br />
+						word[1][31:16] = source start index (src_start)<br />
+						word[1][15:0] = destination start index (the same 
+						src_start is used)</td>
+			</tr>			
+</table>
+<p>&nbsp;</p>
+
+</body>
+
+</html>

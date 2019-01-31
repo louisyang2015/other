@@ -1,0 +1,17 @@
+﻿/*<a>*/
+a:link, a:visited { color: blue; }
+
+/*Alignment*/
+.right { text-align: right; }
+.center { text-align: center; }
+.nowrap { white-space: nowrap; }
+
+/*<input>*/
+input { width: 70px; }
+
+/*<table>*/
+table { border-collapse: collapse; margin-left: auto; margin-right: auto; }
+td { padding: 6px; }
+tr:nth-child(odd) { background-color: #f5f5dc; }
+
+

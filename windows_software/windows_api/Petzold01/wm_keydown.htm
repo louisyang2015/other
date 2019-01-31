@@ -1,0 +1,77 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>WM_KEYDOWN</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">WM_KEYDOWN</font></h1>
+<p><font size="4">The <font color="#0000FF">wParam</font> contains the virtual 
+keycode.  </font></p>
+<p><font size="4">The <font color="#0000FF">lParam</font> contains various other information --- 
+including the repeat count.</font></p>
+<p>&nbsp;</p>
+<h2><font color="#008000">Some Virtual Keycodes:</font></h2>
+<p><font color="#0000FF"></font><font size="4"><font color="#0000FF">VK_PRIOR</font> 
+--- Page Up<br>
+<font color="#0000FF">VK_NEXT</font> --- Page Down<br>
+<font color="#0000FF">VK_END</font> --- End<br>
+<font color="#0000FF">VK_HOME</font> --- Home<br>
+<font color="#0000FF">VK_LEFT</font>--- left arrow<br>
+<font color="#0000FF">VK_UP</font> --- up arrow<br>
+<font color="#0000FF">VK_RIGHT</font> --- right arrow<br>
+<font color="#0000FF">VK_DOWN</font> --- down arrow</font></p>
+<p>&nbsp;</p>
+<h2><font color="#008000">Shift States:</font></h2>
+<h2><font face="Courier New" color="#FF6600">iState = GetKeyState (VK_SHIFT);</font></h2>
+<p><font size="4">The iState variable will be negative (that is, the high bit is 
+set) if the Shift key is down.</font></p>
+<h2><font face="Courier New" color="#FF6600">iState = GetKeyState (VK_CAPITAL);</font></h2>
+<p><font size="4">The iState variable will have the low bit set if the Caps Lock 
+key is toggled on.</font></p>
+<p><font size="4">These are not real time keyboard status checks --- they are 
+the state of the keyboard when the WM_KEYDOWN message was create.</font></p>
+<p><font size="4">Do not assume &quot;shift&quot; + &quot;3&quot; = &quot;#&quot;. Keyboards from different 
+countries are different --- so for printable characters, use WM_CHAR messages.</font></p>
+<p>&nbsp;</p>
+<h2><font color="#008000">Typical WM_KEYDOWN handler:</font></h2>
+<p><font face="Courier New" color="#FF6600" size="4">case WM_KEYDOWN:<br>
+&nbsp;&nbsp;&nbsp; switch (wParam)<br>
+&nbsp;&nbsp;&nbsp; {<br>
+&nbsp;&nbsp;&nbsp; case VK_HOME:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SendMessage (hwnd, WM_VSCROLL, SB_TOP, 
+0) ;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break ;<br>
+<br>
+&nbsp;&nbsp;&nbsp; case VK_END:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SendMessage (hwnd, WM_VSCROLL, 
+SB_BOTTOM, 0) ;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break ;<br>
+<br>
+&nbsp;&nbsp;&nbsp; case VK_PRIOR:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SendMessage (hwnd, WM_VSCROLL, 
+SB_PAGEUP, 0) ;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break ;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; return 0;</font></p>
+<p>&nbsp;</p>
+<p><font size="4" color="#008000">Other notes:</font></p>
+<p><font size="4"><font color="#0000FF">WM_SETFOCUS</font> message indicates that the 
+window is receiving input focus. <font color="#0000FF">WM_KILLFOCUS</font> 
+signals that the window is losing the input focus</font></p>
+
+<p><font size="4">In addition to WM_KEYDOWN, we also have: WM_KEYUP, 
+WM_SYSKEYDOWN, WM_SYSKEYUP</font></p>
+
+<p>&nbsp;</p>
+<p><font size="4"><a href="examples/mouse_keyboard_template.cpp">Click here for 
+the code of a mouse and keyboard handling template program</a></font></p>
+
+</body>
+
+</html>

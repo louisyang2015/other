@@ -1,0 +1,479 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Counters</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">Counters</font></h1>
+<p><font size="4">Counter circuits have just one input where each pulse advance 
+the counter. This chapter looks at making counters using different flip flops.</font></p>
+<h2><font color="#008000">Counter using T Flip-Flop</font></h2>
+<p><font size="4">Say we want to count in this manner: 000, 100, 111, 010, 011, 
+000, ...</font></p>
+<p><font size="4">The overall design looks like:</font></p>
+<p><img border="0" src="images/pic0009.gif" width="600" height="222"></p>
+<p><font size="4">We need to relate the input to the flip-flops (T<sub>A</sub>, 
+T<sub>B</sub>, T<sub>C</sub>) to the current states, which are also the 
+flip-flop outputs (A, B, C)</font></p>
+<p><font size="4">First we build a truth table that looks like:</font></p>
+<table border="1" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td align="center" colspan="3"><font size="4">Present<br>
+    State</font></td>
+    <td align="center" rowspan="3" bgcolor="#FFFF99">&nbsp;</td>
+    <td align="center" colspan="3"><font size="4">Future<br>
+    State</font></td>
+    <td align="center" rowspan="3" bgcolor="#FFFF99">&nbsp;</td>
+    <td align="center" colspan="3"><font size="4">Flip-Flop<br>
+    Input</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">A</font></td>
+    <td align="center"><font size="4">B</font></td>
+    <td align="center"><font size="4">C</font></td>
+    <td align="center"><font size="4">A<sup>+</sup></font></td>
+    <td align="center"><font size="4">B<sup>+</sup></font></td>
+    <td align="center"><font size="4">C<sup>+</sup></font></td>
+    <td align="center"><font size="4">T<sub>A</sub></font></td>
+    <td align="center"><font size="4">T<sub>B</sub></font></td>
+    <td align="center"><font size="4">T<sub>C</sub></font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+  </tr>
+</table>
+<p><font size="4">Since A = 0, and A<sup>+</sup> = 1, the T Flip-Flop input is 1 
+for the change to occur, so T<sub>A</sub> = 1.</font></p>
+
+<p><font size="4">More generally, the relationship between state change and 
+input is:</font></p>
+
+<table border="1" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td align="center"><font size="4">Q</font></td>
+    <td align="center"><font size="4">Q</font><sup><font size="4">+</font></sup></td>
+    <td align="center"><font size="4">T</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">1</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">1</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">0</font></td>
+  </tr>
+</table>
+<p><font size="4">and we apply this truth table to every bit of change to 
+generate the values in the columns T<sub>A</sub> , T<sub>B</sub> , T<sub>C</sub> 
+.</font></p>
+
+<p><font size="4">The truth table for the counter 000, 100, 111, 010, 011, 000, 
+... </font></p>
+
+<table border="1" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td align="center" colspan="3"><font size="4">Present<br>
+    State</font></td>
+    <td align="center" rowspan="3" bgcolor="#FFFF99">&nbsp;</td>
+    <td align="center" colspan="3"><font size="4">Future<br>
+    State</font></td>
+    <td align="center" rowspan="3" bgcolor="#FFFF99">&nbsp;</td>
+    <td align="center" colspan="3"><font size="4">Flip-Flop<br>
+    Input</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">A</font></td>
+    <td align="center"><font size="4">B</font></td>
+    <td align="center"><font size="4">C</font></td>
+    <td align="center"><font size="4">A<sup>+</sup></font></td>
+    <td align="center"><font size="4">B<sup>+</sup></font></td>
+    <td align="center"><font size="4">C<sup>+</sup></font></td>
+    <td align="center"><font size="4">T<sub>A</sub></font></td>
+    <td align="center"><font size="4">T<sub>B</sub></font></td>
+    <td align="center"><font size="4">T<sub>C</sub></font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center" bgcolor="#FFFF99">&nbsp;</td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center" bgcolor="#FFFF99">&nbsp;</td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">1</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center" bgcolor="#FFFF99">&nbsp;</td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center" bgcolor="#FFFF99">&nbsp;</td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">1</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center" bgcolor="#FFFF99">&nbsp;</td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center" bgcolor="#FFFF99">&nbsp;</td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">1</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center" bgcolor="#FFFF99">&nbsp;</td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center" bgcolor="#FFFF99">&nbsp;</td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">1</font></td>
+  </tr>
+</table>
+<p><font size="4">Note that ABC column has only five rows, so there are three 
+don't-care conditions.</font></p>
+<p><font size="4">One possible set of K-map results:</font></p>
+<p><b><font size="4" face="Courier New" color="#008000">T<sub>A </sub>= A'B' + 
+AB<br>
+T<sub>B</sub> = A'C + AB'<br>
+T<sub>C</sub> = A + B</font></b></p>
+<p><font size="4">and the solution is:</font></p>
+<p><img border="0" src="images/fig_12_05.jpg" width="758" height="469"></p>
+<p>&nbsp;</p>
+<h2><font color="#008000">Counter using S-R Flip-Flops</font></h2>
+<p><font size="4">For an S-R flip-flop, the relationship between state change 
+and input is:</font></p>
+<table border="1" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td align="center"><font size="4">Q</font></td>
+    <td align="center"><font size="4">Q</font><sup><font size="4">+</font></sup></td>
+    <td align="center"><font size="4">S</font></td>
+    <td align="center"><font size="4">R</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">X</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">0</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">1</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">X</font></td>
+    <td align="center"><font size="4">0</font></td>
+  </tr>
+</table>
+<p><font size="4">The same counter as before now has the truth table:</font></p>
+<table border="1" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td align="center" colspan="3"><font size="4">Present<br>
+    State</font></td>
+    <td align="center" rowspan="3" bgcolor="#FFFF99">&nbsp;</td>
+    <td align="center" colspan="3"><font size="4">Future<br>
+    State</font></td>
+    <td align="center" rowspan="3" bgcolor="#FFFF99">&nbsp;</td>
+    <td align="center" colspan="6"><font size="4">Flip-Flop<br>
+    Input</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">A</font></td>
+    <td align="center"><font size="4">B</font></td>
+    <td align="center"><font size="4">C</font></td>
+    <td align="center"><font size="4">A<sup>+</sup></font></td>
+    <td align="center"><font size="4">B<sup>+</sup></font></td>
+    <td align="center"><font size="4">C<sup>+</sup></font></td>
+    <td align="center"><font size="4">S<sub>A</sub></font></td>
+    <td align="center"><font size="4">R<sub>A</sub></font></td>
+    <td align="center"><font size="4">S<sub>B</sub></font></td>
+    <td align="center"><font size="4">R<sub>B</sub></font></td>
+    <td align="center"><font size="4">S<sub>C</sub></font></td>
+    <td align="center"><font size="4">R<sub>C</sub></font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">X</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">X</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center" bgcolor="#FFFF99">&nbsp;</td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center" bgcolor="#FFFF99">&nbsp;</td>
+    <td align="center"><font size="4">X</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">0</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center" bgcolor="#FFFF99">&nbsp;</td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center" bgcolor="#FFFF99">&nbsp;</td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">X</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">1</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center" bgcolor="#FFFF99">&nbsp;</td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center" bgcolor="#FFFF99">&nbsp;</td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">X</font></td>
+    <td align="center"><font size="4">X</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">0</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center" bgcolor="#FFFF99">&nbsp;</td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center" bgcolor="#FFFF99">&nbsp;</td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">X</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">1</font></td>
+  </tr>
+</table>
+<p><font size="4">&quot;Present State&quot; and &quot;Future State&quot; are of course the same as 
+always --- only the flip flop input section is unique.</font></p>
+<table border="0" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td><b><font face="Courier New" size="4" color="#008000">S<sub>A</sub> = B'</font></b></td>
+    <td><b><font face="Courier New" size="4" color="#008000">S<sub>B</sub> = A</font></b></td>
+    <td><b><font face="Courier New" size="4" color="#008000">S<sub>C</sub> = AC' 
+    + BC'</font></b></td>
+  </tr>
+  <tr>
+    <td><b><font face="Courier New" size="4" color="#008000">R<sub>A</sub> = C</font></b></td>
+    <td><b><font face="Courier New" size="4" color="#008000">R<sub>B</sub> = A'C</font></b></td>
+    <td><b><font face="Courier New" size="4" color="#008000">R<sub>C</sub> = C</font></b></td>
+  </tr>
+</table>
+<p><font size="4">and the solution is:</font></p>
+<p><img border="0" src="images/fig_12_08.jpg" width="663" height="354"></p>
+<p><font size="4">where P is a pulse that triggers change --- basically a clock 
+since these flip flops have no clock.</font></p>
+<p><font size="4" color="#008000">Counter using J-K Flip-Flops</font></p>
+<p><font size="4">It's the same procedure as before, except that the 
+relationship between state change and flip-flop input</font></p>
+
+<table border="1" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td align="center"><font size="4">Q</font></td>
+    <td align="center"><font size="4">Q</font><sup><font size="4">+</font></sup></td>
+    <td align="center"><font size="4">J</font></td>
+    <td align="center"><font size="4">K</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">X</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center" bgcolor="#FFFF99"><font size="4">X</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center" bgcolor="#FFFF99"><font size="4">X</font></td>
+    <td align="center"><font size="4">1</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">X</font></td>
+    <td align="center"><font size="4">0</font></td>
+  </tr>
+</table>
+<p><font size="4">The difference between the SR and JK flip-flop is that for the 
+JK, the going from zero to one can be done by having only J(set) be one, or by 
+having both J and K be one.</font></p>
+
+<p>&nbsp;</p>
+
+<h2><font color="#008000">D Flip-Flops</font></h2>
+
+<p><font size="4">For D flip-flops, the design is simple because the flip-flop 
+input is the next state. The truth table that describes the counter does not 
+have a flip-flop input section:</font></p>
+
+<table border="1" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td align="center" colspan="3"><font size="4">Present<br>
+    State</font></td>
+    <td align="center" rowspan="3" bgcolor="#FFFF99">&nbsp;</td>
+    <td align="center" colspan="3"><font size="4">Future<br>
+    State</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">A</font></td>
+    <td align="center"><font size="4">B</font></td>
+    <td align="center"><font size="4">C</font></td>
+    <td align="center"><font size="4">A<sup>+</sup></font></td>
+    <td align="center"><font size="4">B<sup>+</sup></font></td>
+    <td align="center"><font size="4">C<sup>+</sup></font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center" bgcolor="#FFFF99">&nbsp;</td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">1</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center" bgcolor="#FFFF99">&nbsp;</td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">0</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center" bgcolor="#FFFF99">&nbsp;</td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">1</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center" bgcolor="#FFFF99">&nbsp;</td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+  </tr>
+</table>
+<p><b><font size="4" face="Courier New" color="#008000">D<sub>A</sub> = B'<br>
+D<sub>B</sub> = A + BC'<br>
+D<sub>C</sub> = BC' + AB'</font></b></p>
+
+<p><font size="4" color="#008000">Shift Registers</font></p>
+
+<p><font size="4">The goal here is to shift the content within a set of flip 
+flops. Shifting to the right is done by having each flip-flop take the output of 
+another flip-flop to the left.</font></p>
+
+<p><img border="0" src="images/fig_12_13.jpg" width="745" height="505"></p>
+<p><font size="4">Synchronization is done by clock in one case, and with and 
+gates in another case.</font></p>
+
+</body>
+
+</html>

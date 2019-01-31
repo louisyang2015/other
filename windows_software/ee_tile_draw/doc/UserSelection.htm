@@ -1,0 +1,43 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>UserSelection</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">UserSelection</font></h1>
+<p><font size="4">User's current selections are in this class.</font></p>
+<p><b><font size="4" color="#008000">From the user's perspective:</font></b></p>
+<p><font size="4">The UserSelection class records the user selection so that the 
+following design objectives are met:</font></p>
+<ul>
+  <li><font size="4">Say the user has been drawing the wires with a foreground 
+  color C1 and background color C2. Then the user switch to drawing something 
+  else, it's still the same foreground color C1 and background color C2.</font></li>
+  <li><font size="4">Say the user has been using vertical wires (orientation_id 
+  = 0). The user now draws a resistor. Then the user switches back to the wires 
+  after drawing the resistor --- the wires being used are still of the vertical 
+  kind.</font></li>
+</ul>
+<p><font size="4">The first requirement is easy --- more or less a global 
+&quot;Color&quot; variable</font></p>
+<p><font size="4">The second requirement means storing a &quot;type_id&quot; and an &quot;orientation_id&quot; 
+for each &quot;class_id&quot;</font></p>
+<p><font size="4" color="#008000"><b>The UserSelection class</b> </font>
+<font size="4">has an array of of pointers to &quot;ClassDefault&quot; objects. Each 
+ClassDefault object is a triplet of (class_id, type_id, orientation_id). The 
+user can add to this array and query this array for the type_id, and 
+orientation_id that is associated with a certain class_id.</font></p>
+<p><font size="4"><font color="#008000"><b>The UserSelection class is very 
+similar to the ImageList class</b></font> in that both classes uses &quot;shell_sort( 
+)&quot; to sort out an array of pointers and a binary search to search that same 
+array of pointers.</font></p>
+
+</body>
+
+</html>

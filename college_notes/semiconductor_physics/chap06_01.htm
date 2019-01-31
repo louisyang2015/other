@@ -1,0 +1,1182 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>The Ideal Diode Equation</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">The Ideal Diode Equation</font></h1>
+
+<p align="left"><font size="4">Throughout this documentation, the left side of 
+the junction is the p side, and the right side is the n side.</font></p>
+<h2><font color="#008000">Carrier Motion in the PN Junction According to the 
+Energy Band View</font></h2>
+<p><img border="0" src="images/pic0068.gif" width="500" height="402"></p>
+<p><font size="4">Note the triangle pattern. Electrons like low potential energy 
+and their number increases exponentially with lower potential energy. Holes like 
+high energy and they increase exponentially at higher energy levels.</font></p>
+
+<p><font size="4">The majority carrier currents are limited by the fact that 
+crossing to the other side requires overcoming a potential energy barrier. The 
+minority carriers can cross the depletion region easily, but there is limited 
+number of them to conduct a current.</font></p>
+
+<p><font size="4">Under equilibrium, the majority carrier currents and the 
+minority carrier currents balance each other out exactly so that carrier 
+concentration remains the same.</font></p>
+
+<p><img border="0" src="images/pic0069.gif" width="500" height="344"></p>
+
+<p><font size="4">If forward bias is applied to the diode, then the bending 
+decreases, and the majority carrier current will out number the minority carrier 
+currents. A linear change in voltage will create a linear change in the band 
+bending, which in turn changes the number of majority carriers that can cross 
+the depletion region by an exponential amount. So under forward bias conditions, 
+a linear change in voltage leads to an exponential increase in current.</font></p>
+
+<p><img border="0" src="images/pic0070.gif" width="500" height="323"></p>
+
+<p><font size="4">If reverse bias is applied to the diode, then the bending 
+increases, and the minority carrier carrier current will out number the majority 
+carrier current. However, the number of minority carriers is limited. So the 
+reverse bias current quickly saturates.</font></p>
+
+<p><img border="0" src="images/pic0071.gif" width="500" height="392"></p>
+
+<p><font size="4">Also note in the above pictures that under non-equilibrium 
+conditions, the Fermi level is not constant through out the whole semiconductor. 
+The Fermi level is split into two lines called </font>
+<font color="#FF8800" size="5">E<sub>Fn</sub></font><font size="4"> and </font>
+<font size="5" color="#FF8800">E<sub>Fp</sub></font><font size="4"> .</font></p>
+
+<p><font size="4">Under both forward and reverse bias, the current is maintained 
+through R-G center generation.</font></p>
+
+<p><font size="4">The following pictures depict the scenario for reverse bias 
+diodes.</font></p>
+
+<p><font size="4">First an electron hole pair is created on both sides of the 
+junction via the R-G center process.</font></p>
+
+<p><img border="0" src="images/pic0072.gif" width="760" height="443"></p>
+
+<p><font size="4">The minority carriers cross over the pn junction easily while 
+the majority carrier is stuck.</font></p>
+
+<p><img border="0" src="images/pic0073.gif" width="760" height="461"></p>
+
+<p><font size="4">The two additional majority carriers crowd out two similar 
+carriers at the end of the diode.</font></p>
+
+<p><img border="0" src="images/pic0074.gif" width="750" height="409"></p>
+
+<p><font size="4">The two carriers at the end of the diode interacts with the 
+voltage source. The electrons go to the voltage source while the holes recombine 
+with the electrons from the voltage source.</font></p>
+
+<p><img border="0" src="images/pic0075.gif" width="750" height="400"></p>
+
+<p>&nbsp;</p>
+
+<h2><font color="#008000">Minority Carrier Concentration in Quasineutral Regions</font></h2>
+
+<p><font size="4">We refer to the regions outside of the depletion region as 
+quasineutral regions.</font></p>
+
+<p><img border="0" src="images/pic0076.gif" width="600" height="211"></p>
+
+<p><font size="4">In the quasineutral regions, the electric field is 
+approximated to be zero.</font></p>
+
+<p><font size="4" color="#008000">Under forward bias, the overall picture for carrier concentrations:</font></p>
+
+<p><img border="0" src="images/pic0079.gif" width="750" height="417"></p>
+
+<p><font size="4">The majority carriers are in green. On the left side, p = N<sub>A</sub> 
+, while on the right side, n = N<sub>D</sub> .</font></p>
+
+<p><font size="4">It's not that the majority carrier concentration is the 
+EXACTLY same everywhere, it's just that the majority carrier concentration is so 
+many times bigger than the minority carrier concentration that the graph is 
+flat.</font></p>
+
+<p><font size="4">The minority carriers are in orange. At places far away from 
+the depletion region, the minority carriers follow the </font>
+<font color="#FF8800" size="5">pn = n<sub>i</sub><sup>2</sup></font><font size="4"> 
+rule.</font></p>
+
+<p><font size="4">Under forward bias, the majority carrier crossing the 
+depletion region out numbers the minority carrier cross the depletion region. 
+Once the majority carrier crossed over, it counts as a minority carrier. So 
+there is a build up of minority carriers near the depletion region. This build 
+up is highest on the border of the depletion region, and it decays 
+exponentially.</font></p>
+
+<p><font size="4">If it's reverse bias, then minority carrier crossings out 
+number majority carrier crossings. In that case there is a depletion of minority 
+carriers. </font><font color="#008000" size="4">The carrier concentration graph 
+for reverse bias looks like:</font></p>
+
+<p><img border="0" src="images/pic0080.gif" width="750" height="417"></p>
+
+<p><font size="4">The majority carrier concentration is always a far larger 
+number than minority carrier concentration, even for the forward bias case. So 
+low-level injection conditions prevail.</font></p>
+
+<p><font size="4">The equations for the minority carrier concentration:</font></p>
+
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    0 = D<sub>N</sub> </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">d<sup>2</sup> &#916;n<sub>p</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">dx<sup>2</sup>
+          </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    - </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">&#916;n<sub>p</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">T<sub>n</sub> </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    , for x &#8804; -x<sub>p</sub> </font></td>
+  </tr>
+</table>
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    0 = D<sub>P</sub> </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">d<sup>2</sup> &#916;p<sub>n</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">dx<sup>2</sup>
+          </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    - </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">&#916;p<sub>n</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">T<sub>p</sub> </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    , for x &#8805; x<sub>n</sub> </font></td>
+  </tr>
+</table>
+
+<p><font size="4">To solve that differential equation we need boundary 
+conditions.</font></p>
+
+<p><font face="Courier New" color="#FF8000" size="5">n<sub>p</sub>(x = -&#8734;) = n<sub>i</sub><sup>2</sup> 
+/ N<sub>A<br>
+</sub>&#8710;n<sub>p</sub>(x = -&#8734;) = 0</font></p>
+
+<p><font face="Times New Roman" size="4">Also:</font></p>
+
+<p><font face="Courier New" color="#FF8000" size="5">&#8710;p<sub>n</sub>(x = &#8734;) = 0</font></p>
+
+<p><font face="Times New Roman" size="4">We also need:</font></p>
+
+<p><font face="Courier New" color="#FF8000" size="5">&#8710;n<sub>p</sub>(x = -x<sub>p</sub>)<br>
+&#8710;p<sub>n</sub>(x = x<sub>n</sub>)</font></p>
+
+<p><font face="Times New Roman" size="4">To get results for the above two 
+boundary equations, we start with the quasi-fermi equations:</font></p>
+
+<p><font face="Courier New" color="#ff8000" size="5">n = n<sub>i</sub> e^[(F<sub>N</sub> 
+- E<sub>i</sub>) / (kT)]<br>
+p = n<sub>i</sub> e^[(E<sub>i</sub> - F<sub>P</sub>) / (kT)]</font></p>
+
+<p><font face="Courier New" size="5" color="#FF8000">np = n<sub>i</sub><sup>2</sup> 
+e^[(F<sub>N</sub> - F<sub>P</sub>) / (kT)]</font></p>
+
+<p><font face="Times New Roman" size="4">This result is valid throughout the 
+diode --- because we are allowing F<sub>N</sub> and F<sub>P</sub> to vary as 
+needed. We don't know the exact F<sub>N</sub> and F<sub>P </sub>, but we guess 
+that:</font></p>
+
+<p><img border="0" src="images/pic0077.gif" width="600" height="288"></p>
+
+<p><font face="Times New Roman" size="4">so for -x<sub>p </sub>&#8804; x &#8804; x<sub>n</sub> 
+, we guess that </font><font color="#FF8000" size="5" face="Times New Roman">F<sub>N</sub> 
+- F<sub>P</sub> = E<sub>Fn</sub> - E<sub>Fp</sub></font><font face="Times New Roman" size="4"> 
+.</font></p>
+
+<p><font face="Times New Roman" size="4">Let:</font></p>
+
+<p><font face="Times New Roman" size="4">V<sub>A</sub> = the voltage applied to 
+the diode.</font></p>
+
+<p><font face="Times New Roman" size="4">The bending of the Fermi energy level 
+is due entire to V<sub>A </sub>, so</font></p>
+
+<p><font face="Times New Roman" size="5" color="#FF8000">V<sub>A</sub> * q = E<sub>Fn</sub> 
+- E<sub>Fp</sub></font></p>
+
+<p><sub><font face="Times New Roman" size="5">Then the previous</font></sub></p>
+
+<p><font face="Courier New" size="5" color="#FF8000">np = n<sub>i</sub><sup>2</sup> 
+e^[(F<sub>N</sub> - F<sub>P</sub>) / (kT)]</font></p>
+
+<p><sub><font face="Times New Roman" size="5">becomes:</font></sub></p>
+
+<table border="3" cellpadding="12" cellspacing="1" style="border-collapse: collapse" bordercolor="#FF8800">
+  <tr>
+    <td nowrap><font size="4">Law of the Junction:</font><p><font face="Courier New" size="5" color="#FF8000">np = n<sub>i</sub><sup>2</sup> 
+e^[(q V<sub>A</sub>) / (kT)], for </font>
+    <font face="Courier New" color="#ff8000" size="5">-x<sub>p</sub> &#8804; x &#8804; x<sub>n</sub></font></td>
+  </tr>
+</table>
+
+<p><font size="4">We can use the law of the junction to figure out the level of 
+minority carrier concentration at x = -x<sub>p</sub> and x = x<sub>n</sub> .</font></p>
+
+<p><font face="Courier New" size="5" color="#FF8000">p(-x<sub>p</sub>) = N<sub>A</sub>
+</font></p>
+
+<p><font face="Courier New" size="5" color="#FF8000">n(-x<sub>p</sub>) * N<sub>A</sub> 
+= n<sub>i</sub><sup>2</sup> 
+e^[(q V<sub>A</sub>) / (kT)]</font></p>
+
+<p><font face="Courier New" size="5" color="#FF8000">n(-&#8734;) = n<sub>i</sub><sup>2</sup> 
+/ N<sub>A</sub> </font></p>
+
+<table border="3" cellpadding="12" cellspacing="1" style="border-collapse: collapse" bordercolor="#FF8000">
+  <tr>
+    <td>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">&#916;n<sub>p</sub>(-x<sub>p</sub>) 
+        = n(-x<sub>p</sub>) - n(-&#8734;) = </font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">n<sub>i</sub>
+              <sup>2</sup> </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">N<sub>A</sub>
+              </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="7">(</font> </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">e^[(q V<sub>A</sub>) / 
+        (kT)] - 1 </font></td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="7">)</font> </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+
+<p><font size="4">We do simlar things with p<sub>n</sub>(x<sub>n</sub>) and get:</font></p>
+
+<table border="3" cellpadding="12" cellspacing="1" style="border-collapse: collapse" bordercolor="#FF8000">
+  <tr>
+    <td>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">&#916;p<sub>n</sub>(x<sub>n</sub>) 
+        = p(x<sub>n</sub>) - p(&#8734;) = </font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">n<sub>i</sub>
+              <sup>2</sup> </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">N<sub>D</sub>
+              </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="7">(</font> </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">e^[(q V<sub>A</sub>) / 
+        (kT)] - 1 </font></td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="7">)</font> </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+
+<p><font size="4">With these boundary conditions that we recently derived, we 
+can solve the state equation for the junction:</font></p>
+
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    0 = D<sub>N</sub> </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">d<sup>2</sup> &#916;n<sub>p</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">dx<sup>2</sup>
+          </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    - </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">&#916;n<sub>p</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">T<sub>n</sub> </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    , for x &#8804; -x<sub>p</sub> </font></td>
+  </tr>
+</table>
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    0 = D<sub>P</sub> </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">d<sup>2</sup> &#916;p<sub>n</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">dx<sup>2</sup>
+          </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    - </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">&#916;p<sub>n</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">T<sub>p</sub> </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    , for x &#8805; x<sub>n</sub> </font></td>
+  </tr>
+</table>
+
+<p><font size="4">The resulting formula is easier to use if we translate the 
+origin to the edge of the depletion region. The book gives these results:</font></p>
+
+<p><font size="4">let:</font></p>
+
+<p><font face="Courier New" color="#ff8000" size="5">L<sub>P</sub> = [D<sub>P</sub> 
+T<sub>p</sub>]<sup>1/2<br>
+</sup>L<sub>N</sub> = [D<sub>N</sub> T<sub>n</sub>]<sup>1/2</sup></font></p>
+
+<p><font size="4">And translate the x value by:</font></p>
+
+<p><img border="0" src="images/pic0078.gif" width="750" height="788"></p>
+
+<p><font size="4">So x' is the distance away from the right side of the depletion 
+region, while x'' is the distance away from the left side of the depletion 
+region.</font></p>
+
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    &#916;p<sub>n</sub>(x') = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">n<sub>i</sub> <sup>2</sup>
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">N<sub>D</sub> </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="7">
+    (</font> </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    e^[(q V<sub>A</sub>) / (kT)] - 1 </font></td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="7">
+    )</font> </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="7">
+    (</font> </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    e^[-x'/L<sub>P</sub>]<sup> </sup></font></td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="7">
+    )</font> </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    , x' &#8805; 0 </font></td>
+  </tr>
+</table>
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    &#916;n<sub>p</sub>(x'') = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">n<sub>i</sub> <sup>2</sup>
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">N<sub>A</sub> </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="7">
+    (</font> </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    e^[(q V<sub>A</sub>) / (kT)] - 1 </font></td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="7">
+    )</font> </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="7">
+    (</font> </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    e^[-x''/L<sub>N</sub>]<sup> </sup></font></td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="7">
+    )</font> </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    , x'' &#8805; 0 </font></td>
+  </tr>
+</table>
+
+<p>&nbsp;</p>
+
+<h2><font color="#008000">Minority Carrier Currents</font></h2>
+
+<p><font size="4">From section 3.1:</font></p>
+
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    J<sub>N</sub> = q &#956;<sub>n </sub>n E + q D<sub>N</sub> </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">dn </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">dx </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    J<sub>P</sub> = q &#956;<sub>p </sub>p E - q D<sub>P</sub> </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">dp </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">dx </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+
+<p><font size="4">For x &lt; -x<sub>p</sub> and x &gt; x<sub>n</sub> , the electric 
+field is approximated as zero and so we have:</font></p>
+
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    J<sub>N</sub> = q D<sub>N</sub> </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">dn </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">dx </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    J<sub>P</sub> = -q D<sub>P</sub> </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">dp </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">dx </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+
+<p><font size="4">dp/dx = d<font face="Times New Roman"> &#8710;p(x)</font>/dx<br>
+dn/dx = d<font face="Times New Roman"> &#8710;n(x)</font>/dx</font></p>
+
+<p><font size="4">Using the expressions that we already found for<font face="Times New Roman"> 
+&#8710;p(x) and &#8710;n(x)</font></font><font face="Times New Roman" size="4">:</font></p>
+
+<table border="3" cellpadding="12" cellspacing="1" style="border-collapse: collapse" bordercolor="#FF8000">
+  <tr>
+    <td>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">J<sub>P</sub>(x') = q
+        </font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">D<sub>P</sub> n<sub>i</sub><sup>2</sup> </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">L<sub>P</sub> N<sub>D</sub>
+              </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="7">(</font> </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">e^[(q V<sub>A</sub>)/(kT)] - 1 </font></td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="7">)</font> </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="7">(</font> </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">e^[-x'/L<sub>P</sub>]
+        </font></td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="7">)</font> </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">, for x' &#8805; 0</font></td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+
+<p>&nbsp;</p>
+
+<table border="3" cellpadding="12" cellspacing="1" style="border-collapse: collapse" bordercolor="#FF8000">
+  <tr>
+    <td>
+        <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">J<sub>N</sub>(x'') = q
+        </font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">D<sub>N</sub> n<sub>i</sub><sup>2</sup> </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">L<sub>N</sub> N<sub>A</sub>
+              </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="7">(</font> </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">e^[(q V<sub>A</sub>)/(kT)] - 1 </font></td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="7">)</font> </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="7">(</font> </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">e^[-x''/L<sub>N</sub>]
+        </font></td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="7">)</font> </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">, for x&#39;' &#8805; 0</font></td>
+      </tr>
+    </table>
+    
+    </td>
+  </tr>
+</table>
+
+<p>&nbsp;</p>
+
+<h2><font color="#008000">Total Current</font></h2>
+
+<p><font size="4">The expressions for minority carrier current gives something 
+that looks like:</font></p>
+
+<p><img border="0" src="images/pic0081.gif" width="600" height="262"></p>
+
+<p><font size="4">If we assume J<sub>N</sub> and J<sub>P</sub> to be constant in 
+the depletion region:</font></p>
+
+<p><img border="0" src="images/pic0082.gif" width="600" height="262"></p>
+
+<p><font size="4">we can add up J<sub>N</sub> and J<sub>P</sub> to find the 
+total current density J</font></p>
+
+<table border="3" cellpadding="12" cellspacing="1" style="border-collapse: collapse" bordercolor="#FF8800">
+  <tr>
+    <td><font face="Courier New" color="#ff8000" size="5">J = J<sub>N</sub>(-x<sub>p</sub>) 
+    + J<sub>P</sub>(-x<sub>n</sub>)</font></td>
+  </tr>
+</table>
+
+<p><font size="4">let:</font></p>
+
+<p><font size="4">A = cross-sectional area of the diode</font></p>
+
+<p><font face="Courier New" color="#ff8000" size="5">I = AJ</font></p>
+
+<p><font size="4">I works out to be the ideal diode equation.</font></p>
+
+<table border="3" cellpadding="12" cellspacing="1" style="border-collapse: collapse" bordercolor="#FF8000" bgcolor="#FFFF99">
+  <tr>
+    <td><font size="4">The Ideal Diode Equation:</font><table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">I = I<sub>0</sub>
+        </font></td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="7">(</font> </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">e^[(q V<sub>A</sub>)/(kT)] 
+        - 1 </font></td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="7">)</font> </td>
+      </tr>
+    </table>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">I<sub>0</sub> = qA
+        </font></td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="7">(</font> </td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">D<sub>N</sub> n<sub>i</sub><sup>2</sup> </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">L<sub>N</sub> N<sub>A</sub>
+              </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">+ </font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">D<sub>P</sub> n<sub>i</sub><sup>2</sup> </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">L<sub>P</sub> N<sub>D</sub>
+              </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="7">)</font> </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+
+<p><font size="4">Note that higher doping, N<sub>A</sub> or N<sub>D</sub> , 
+would reduce current. I use to think that more carriers = more current, which 
+is a misconception.</font></p>
+
+<p><font size="4">For p+ - n diodes, one can simplify I<sub>0</sub> by using N<sub>A</sub> 
+= <font face="Times New Roman">&#8734; and letting that term go to zero. </font>
+</font></p>
+
+<p><font face="Times New Roman" size="4">Likewise, for p - n+ diodes, use N<sub>D</sub> 
+= &#8734;. </font></p>
+
+<p><font face="Times New Roman" size="4" color="#008000">As a general rule, the 
+heavily doped side of asymmetrical junction can be ignored in determining the 
+electrical characteristics of the junction.</font></p>
+
+<p>&nbsp;</p>
+
+<h2><font color="#008000">An Alternative Way of Getting the Ideal Diode 
+Equation's I<sub>0</sub></font></h2>
+
+<p><font face="Times New Roman" size="4">Exercise 6.4 on page 258 gives an 
+alternative way to get the ideal diode equation's I<sub>0 </sub>.</font></p>
+
+<p><font face="Times New Roman" size="4">Under reverse bias, there is a 
+depletion of the minority carriers near the depletion region.</font></p>
+
+<p><img border="0" src="images/pic0083.gif" width="600" height="183"></p>
+
+<p><font face="Times New Roman" size="4">The n<sub>p</sub> and p<sub>n</sub> 
+drops off exponentially as they near the depletion region. Instead of dealing 
+with the exponential drop off, <font color="#008000">we replace the exponential 
+distribution with a square distribution extending over one decay length.</font></font></p>
+
+<p><img border="0" src="images/pic0084.gif" width="750" height="321"></p>
+
+<p><font face="Times New Roman" size="4">In the interval where n<sub>p</sub> = 0 
+and p<sub>n</sub> = 0, minority carriers are constantly being generated. As soon 
+as the carriers are generated, they are swept across the depletion region 
+because under reverse bias, it's really easy for minority carriers to cross.</font></p>
+
+<p><font face="Times New Roman" size="5" color="#FF8800">For -x<sub>p</sub> - L<sub>N</sub> &lt; x 
+&lt; -x<sub>p</sub> :</font></p>
+
+<p><font face="Times New Roman" size="4">n<sub>p</sub> at equilibrium = n<sub>i</sub><sup>2</sup> 
+/ N<sub>A</sub></font></p>
+
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">&#8706;n </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">&#8706;t </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="7">
+    |</font><font face="Courier New" color="#ff8000" size="5"><sub>thermal R-G</sub> 
+    = - </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">&#916;n<sub>p</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">T<sub>n</sub> </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">n<sub>i</sub><sup>2</sup> 
+          / N<sub>A</sub> </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">T<sub>n</sub> </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+
+<p><font face="Times New Roman" size="5" color="#FF8800">For x<sub>n</sub> &lt; x &lt; 
+x<sub>n</sub> + L<sub>P</sub> :</font></p>
+
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">&#8706;p </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">&#8706;t </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="7">
+    |</font><font face="Courier New" color="#ff8000" size="5"><sub>thermal R-G</sub> = - </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">&#916;p<sub>n</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">T<sub>p</sub> </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">n<sub>i</sub><sup>2</sup> 
+          / N<sub>D</sub> </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">T<sub>p</sub> </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+
+<p><font face="Times New Roman" size="4">When reverse biased more than a few kT/q, the current is due 
+entire to minority carriers, so the saturation I<sub>0</sub> can be computed as:</font></p>
+
+<table border="0" cellpadding="12" cellspacing="1" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td nowrap><font face="Courier New" color="#ff8000" size="5">I<sub>0</sub> = 
+    qAL<sub>N</sub> *(</font><font face="Courier New" size="5">free electrons 
+    generated at -x<sub>p</sub> - L<sub>N</sub> &lt; x &lt; -x<sub>p</sub></font><font face="Courier New" color="#ff8000" size="5">)<br>
+    + qAL<sub>P</sub> *(</font><font face="Courier New" size="5">holes generated 
+    at x<sub>n</sub> &lt; x &lt; x<sub>n</sub> + L<sub>P</sub></font><font face="Courier New" color="#ff8000" size="5">)
+    </font></td>
+  </tr>
+</table>
+
+</body>
+
+</html>

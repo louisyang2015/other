@@ -1,0 +1,145 @@
+;detecting a pulse with IRQ5
+
+; definitions:
+N EQU 5               ;N = 5 for invoking IR5
+UN_MASK EQU 0DFH      ;1101 1111 is used to unmask IR5
+MASK5   EQU 020H      ;0010 0000 is used to mask IR5
+        ; The word "MASK" seems to be taken already
+
+STACK_SEG SEGMENT STACK 'STACK'
+    DB 128 DUP(?)
+STACK_SEG ENDS
+
+DATA_SEG SEGMENT 'DATA'
+    message1    db  'IRQ5 pulse detected', 0
+    tempvect    dw  2   dup(?)
+DATA_SEG ENDS
+
+CODE_SEG SEGMENT 'CODE'
+
+;****************************************************************
+; code execution starts here
+MAIN PROC FAR
+    ASSUME CS:CODE_SEG, SS:STACK_SEG, DS:DATA_SEG
+    
+    ; to enable this program return to the proper 
+    ; address after termination
+    PUSH DS
+    MOV AX, 0
+    PUSH AX
+    
+    ; to establish the data segment
+    mov ax, DATA_SEG
+    mov ds, ax
+    
+    mov ax, 0
+    mov es, ax   ; extra segment = 0
+    CLI         ; disable interrupt for now
+    
+    ; save the current interrupt vector
+    mov ax, es:[20H+N*4]
+    mov tempvect, ax
+    mov ax, es:[20H+N*4+2]
+    mov tempvect+2, AX
+    
+    ; establish interrupt vector
+    mov word ptr es:[40h+N*4], offset IntService
+    mov word ptr es:[40h+N*4+2], seg IntService    
+    
+    in al, 21h
+    and al, UN_MASK     ; unmask IR5
+    out 21h, al
+    
+    mov dx, 0       ; let dx be the done flag; dx = 1 when we are done
+    STI
+
+    ;******************************************
+    ; PROGRAM CODE STARTS HERE
+    ;******************************************
+    
+main_wait: 
+    cmp dx, 1
+    jne main_wait
+    
+main_end:
+    ; mopping up
+    CLI
+    
+    mov ax, tempvect    ; restore original vector
+    mov es:[20H+N*4], ax
+    mov ax, tempvect+2
+    mov es:[20H+N*4+2], ax
+    
+    STI
+
+    ret
+    ; end of MAIN() routine here
+
+;****************************************************************
+IntService:
+    mov ax, DATA_SEG
+    mov ds, ax
+    
+    push si
+  
+int_service_start:
+
+    mov si, offset message1
+    call PrintStr
+    call PrintNewLine
+
+int_service_end:    
+
+    pop si
+    
+    ;ask IR5 at this point?
+    in al, 21h
+    or al, MASK5     ; mask IR5
+    out 21h, al
+
+    mov dx, 1
+    mov al, 20h
+    out 20h, al
+    IRET
+    
+MAIN ENDP
+
+
+;****************************************************************
+; prints a string at location DS:SI
+; the string is assumed to be terminated by a null zero
+PrintStr proc near
+    push si
+    push ax
+    mov ah, 14
+PrintStr_start:
+    mov al, [si]
+    cmp al, 0
+    je PrintStr_end
+    int 10h
+    inc si
+    jmp PrintStr_start
+    
+PrintStr_end:
+    pop ax
+    pop si
+    ret
+PrintStr endp
+
+
+;****************************************************************
+; prints a newline character
+PrintNewLine proc near
+    push ax
+    mov ah, 14
+    mov al, 0DH
+    int 10h
+    mov al, 0AH
+    int 10h
+    pop ax
+    ret
+PrintNewLine endp
+
+CODE_SEG ENDS
+
+END

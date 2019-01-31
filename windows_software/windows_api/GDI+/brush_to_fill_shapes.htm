@@ -1,0 +1,54 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Using a Brush to Fill Shapes</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">Using a Brush to Fill Shapes</font></h1>
+<h2><font color="#008000">Brush:</font></h2>
+<p><font face="Courier New" size="4"><font color="#FF6600">SolidBrush 
+brush(Color(255, 255, 0, 0));</font> <font color="#008000">//Color(alpha, red, 
+green, blue)</font></font></p>
+<p>&nbsp;</p>
+<h2><font color="#008000">Ellipse:</font></h2>
+<p><font face="Courier New" size="4" color="#FF6600">graphics.FillEllipse(&amp;brush, 
+0, 0, 100, 60);</font></p>
+<p>&nbsp;</p>
+<h2><font color="#008000">Other Notes:</font></h2>
+<p><b><font size="4" color="#008000">Hatch Brush:</font></b></p>
+<p><font size="4">The following creates a light blue brush with red horizontal 
+lines:</font></p>
+<p><font size="4" face="Courier New">HatchBrush brush(HatchStyleHorizontal, 
+Color(255, 255, 0, 0),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Color(255, 128, 255, 255));<br>
+//HatchBrush(style, hatch color, brush color)<br>
+//for more choices, see the <font color="#FF6600">HatchStyle</font> enumeration</font></p>
+<p>&nbsp;</p>
+<p><font size="4" color="#008000"><b>Texture Brush:</b></font></p>
+<p><font size="4">The following creates a brush that's based on an image</font></p>
+<p><font face="Courier New" size="4">Image image(L&quot;ImageFile.jpg&quot;);<br>
+TextureBrush tBrush(&amp;image);<br>
+tBrush.SetTransform(&amp;Matrix(75.0/640.0, 0.0f, 0.0f,<br>
+&nbsp;&nbsp; 75.0/480.0, 0.0f, 0.0f));</font></p>
+<p><font size="4">assuming the original picture is 640x480, the &quot;SetTransform&quot; 
+scales it to 75x75</font></p>
+<p><font face="Courier New" size="4">graphics.FillEllipse(&amp;tBrush,Rect(0, 150, 
+150, 250));</font></p>
+<p><font size="4">When you draw with a texture brush and the drawing area is 
+larger than the brush area, there will be tiling of the brush image. You can 
+flip the image during this tiling:</font></p>
+<p><font face="Courier New" size="4">tBrush.SetWrapMode(WrapModeTileFlipX); 
+//flip horizontally<br>
+tBrush.SetWrapMode(WrapModeTileFlipY); //flip vertically<br>
+tBrush.SetWrapMode(WrapModeTileFlipXY); //flip both horiz, vert</font><br>
+&nbsp;</p>
+
+</body>
+
+</html>

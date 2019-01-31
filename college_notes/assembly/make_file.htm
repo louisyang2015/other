@@ -1,0 +1,30 @@
+<html>
+
+<head>
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Make File</title>
+</head>
+
+<body>
+
+<p><font size="5" color="#008000">Make File:</font></p>
+<p><font size="4">The make file (which by default is named &quot;makefile&quot;) specifies 
+dependency information among files, and then gcc use that dependency information 
+to direct the linker.</font></p>
+
+<p><font size="4" color="#FF6600" face="Courier New">eatlinux : eatlinux.o</font></p>
+<p><font size="4">this line is saying that to generate the executable file &quot;eatlinux&quot;, 
+we first need to have the file for eatlinux.o.</font></p>
+<p><font size="4">If one file depends on multiple files:</font></p>
+<p><font size="4" face="Courier New" color="#FF6600">linkbase : linkbase.o 
+linkparse.o linkfile.o</font></p>
+<p><font size="4">Following the dependency line is a line telling us how to 
+generate the first file using the dependency files:</font></p>
+<p><font size="4" color="#FF6600" face="Courier New">eatlinux : eatlinux.o<br>
+&nbsp;&nbsp;&nbsp; gcc eatlinux.o -o eatlinux</font></p>
+
+</body>
+
+</html>

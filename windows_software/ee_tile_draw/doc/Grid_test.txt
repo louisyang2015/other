@@ -1,0 +1,142 @@
+Grid app_grid;
+
+app_grid.set_parent_wnd(hWnd);
+
+	switch(message)
+	{
+	case WM_PAINT:
+		hdc = BeginPaint(hWnd, &ps);
+		OnPaint(hdc);
+		EndPaint(hWnd, &ps);
+		return 0;
+
+	case WM_SIZE:
+		OnSize(LOWORD (lParam), HIWORD (lParam));
+		return 0;
+
+	case WM_LBUTTONDOWN:
+		OnMouse(LOWORD (lParam), HIWORD (lParam));
+		return 0;
+
+	case WM_COMMAND:
+		OnMenu(LOWORD (wParam));
+		return 0;
+
+	case WM_DESTROY:
+		PostQuitMessage(0);
+		return 0;	
+
+	default:
+		return DefWindowProc(hWnd, message, wParam, lParam);
+	}
+
+//-----------------------------------------------------------
+//test code for the Grid class
+void OnSize(int x_max, int y_max) //handler for WM_SIZE:
+{
+	Rect drawing_area;
+	drawing_area.X = x_max / 4 + 2;
+	drawing_area.Y = 0 + 2;
+	drawing_area.Width = x_max - x_max / 4 - 5;
+	drawing_area.Height = y_max - 5;
+	
+	app_grid.set_drawing_area(drawing_area);
+}
+
+void OnPaint(HDC hdc) //handler for WM_PAINT
+{
+	//the size of the client area
+	RECT client_rect ;
+	GetClientRect (parent_wnd, &client_rect) ;
+
+	Graphics graphics(hdc);
+	app_grid.draw_to_screen(&graphics);
+}
+
+void OnMouse(int x, int y) //handler for WM_LBUTTONDOWN
+{
+	app_grid.mouse_select(x, y);
+}
+
+void OnMenu(int menu_id) //handler for WM_COMMAND
+{
+	switch(menu_id)
+	{	
+		//----------------------------------------------------
+		//File Menu
+
+		case ID_FILE_NEW2:
+			app_grid.reset();
+			break;
+
+		//End of File Menu
+		//----------------------------------------------------
+
+
+		//----------------------------------------------------
+		//Insert Menu
+
+		case ID_INSERT_CURRENT_ITEM:
+			app_grid.add_a_tile(1, Color.Black, Color.White);
+			break;
+		case ID_CLEAR_TILE:
+			app_grid.clear_tile();
+			break;
+
+		//end of Insert menu
+		//----------------------------------------------------
+
+
+		//----------------------------------------------------
+		//zoom menu
+
+		case ID_ZOOM_ADD_ROW:
+			app_grid.add_horz_tile();
+			break;
+		case ID_ZOOM_ADD_COLUMN:
+			app_grid.add_vert_tile();
+			break;
+		case ID_ZOOM_SUBTRACT_ROW:
+			app_grid.minus_horz_tile();
+			break;
+		case ID_ZOOM_SUBTRACT_COLUMN:
+			app_grid.minus_vert_tile();
+			break;
+
+		//end of zoom menu
+		//----------------------------------------------------
+
+
+		//----------------------------------------------------
+		//navigation menu
+		case ID_NAVIGATION_UP_SCREEN:
+			app_grid.move_up_a_screen();
+			break;
+		case ID_NAVIGATION_DOWN_SCREEN:
+			app_grid.move_down_a_screen();
+			break;
+		case ID_NAVIGATION_LEFT_SCREEN:
+			app_grid.move_left_a_screen();
+			break;
+		case ID_NAVIGATION_RIGHT_SCREEN:
+			app_grid.move_right_a_screen();
+			break;
+
+		case ID_NAVIGATION_UP:
+			app_grid.move_up();
+			break;
+		case ID_NAVIGATION_DOWN:
+			app_grid.move_down();
+			break;
+		case ID_NAVIGATION_LEFT:
+			app_grid.move_left();
+			break;
+		case ID_NAVIGATION_RIGHT:
+			app_grid.move_right();
+			break;
+
+		//end of navigation menu
+		//----------------------------------------------------
+	}
+}
+//-----------------------------------------------------------

@@ -1,0 +1,80 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Windows 2000 Services</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">Windows 2000 Services</font></h1>
+<p><font size="4">A basic service program --- it props up a message every 5 
+seconds</font></p>
+<ul>
+  <li><font size="4"><a href="code/basic_service.cpp.htm">basic_service.cpp</a></font></li>
+  <li><font size="4"><a href="code/work_thread.h">work_thread.h</a></font></li>
+  <li><font size="4"><a href="code/work_thread.cpp">work_thread.cpp</a></font></li>
+  <li><font size="4"><a href="code/BasicService.exe">BasicService.exe</a></font></li>
+  <li><font size="4"><a href="code/BasicService2.cpp">basic_service2.cpp</a> --- 
+  this one beeps instead of propping up a message. It is the original code from 
+  the book.</font></li>
+  <li><font size="4"><a href="code/BasicService2.exe">BasicService2.exe</a></font></li>
+</ul>
+<p><font size="4">This program installs services</font></p>
+<ul>
+  <li><font size="4"><a href="code/install.cpp">install.cpp</a></font></li>
+  <li><font size="4"><a href="code/install.exe">install.exe</a></font></li>
+  <li><font size="4">install usage:<br>
+  <font color="#FF6600">install BasicService &quot;Basic Service&quot; 
+  c:\temp\BasicService.exe</font><br>
+  The first parameter specifies the name of the service used internally by SCM. 
+  This name is later used to remove the service. The second parameter specifies 
+  the label used to display the service in the Services Applet of the Control 
+  Panel. The third parameter gives the fully qualified path to the service's 
+  executable.</font></li>
+</ul>
+<p><font size="4">This program removes services</font></p>
+<ul>
+  <li><font size="4"><a href="code/remove.cpp">remove.cpp</a></font></li>
+  <li><font size="4"><a href="code/Remove.exe">remove.exe</a></font></li>
+  <li><font size="4">remove usage:<br>
+  <font color="#FF6600">remove BasicService</font></font></li>
+</ul>
+<hr>
+<p><font size="4">A service is a background program. The key is that a service 
+can run even when no user is logged on to the system.</font></p>
+<p><font size="4">Briefly speaking, the work done by the service starts in a 
+function called <font color="#FF6600">work_thread</font> in the basic service 
+program. It's possible to write a service by just overriding the &quot;work_thread&quot; 
+function and leaving the rest unchanged.</font></p>
+<p><b><font size="4" color="#008000">Here's more detail:</font></b></p>
+<p><font size="4">Windows (the OS) will call the service program's
+<font color="#FF6600">main</font> (or <font color="#FF6600">WinMain</font>) upon 
+booting up, or upon the installation of the service.</font></p>
+<p><font size="4">The &quot;main&quot; function does registration work using &quot;<font color="#FF6600">StartServiceCtrlDispatcher</font>&quot;. 
+This part of the registration provides the address of the function &quot;<font color="#FF6600">ServiceMain</font>&quot; 
+to the Windows OS.</font></p>
+<p><font size="4">Windows OS then calls <font color="#FF6600">ServiceMain</font> 
+--- and ServiceMain does more registration work. See, why can't they just have a 
+one step registration? I think there are a lot more features built into this 
+system, which I won't get into because it's not needed at the moment. This 
+second stage registration, by &quot;ServiceMain&quot; will start the thread that does the 
+work &quot;work_thread&quot;, and will register a message handler function &quot;<font color="#FF6600">ServiceCtrlHandler</font>&quot; 
+with the Windows OS. Windows OS will send messages to this handler. From the 
+Windows Control Panel's Service applet, the user can start, stop, pause, and 
+continue a service. These messages will go to the &quot;ServiceCtrlHandler&quot; function.</font></p>
+<p><font size="4">&quot;ServiceMain&quot; also has to periodically report to the Windows 
+OS about &quot;progress&quot; being made with the registration process. The 
+Windows API function for this is &quot;<font color="#FF6600">SetServiceStatus</font>&quot;. 
+This is a lengthy function call, and many of the parameters for &quot;SetServiceStatus&quot; 
+does not change throughout the program. When the service needs to file a 
+progress report, the service will call &quot;SendStatusToSCM&quot;, which then calls &quot;SetServiceStatus&quot;.</font></p>
+
+<p><font size="4">In addition to &quot;ServiceMain&quot;, the &quot;ServiceCtrlHandler&quot; also files such status reports.</font></p>
+
+</body>
+
+</html>

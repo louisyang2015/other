@@ -1,0 +1,65 @@
+//normal message loop
+while (GetMessage (&msg, NULL, 0, 0))
+{
+	TranslateMessage (&msg) ;
+	DispatchMessage (&msg) ;
+}
+return msg.wParam ;
+
+
+//message loop using PeekMessage to use computer's idle time
+//"PeekMessage" will return immediately --- return value
+//is true if there's a message in the message queue
+while (TRUE)
+{
+	if (PeekMessage (&msg, NULL, 0, 0, PM_REMOVE))
+	{
+		if (msg.message == WM_QUIT)
+			break ;
+
+		TranslateMessage (&msg) ;
+		DispatchMessage (&msg) ;
+	}
+	else
+	{
+		[other program lines to do some work]
+	}
+}
+return msg.wParam ;
+
+
+//message loop that supports the keyboard accelerator table:
+while (GetMessage (&msg, NULL, 0, 0))
+{
+	if(!TranslateAccelerator(hwnd, hAccel, &msg))
+	{
+		TranslateMessage (&msg) ;
+		DispatchMessage (&msg) ;
+	}
+}
+
+
+//message loop that supports the modeless dialog box
+while (GetMessage (&msg, NULL, 0, 0))
+{
+    if (hDlgModeless == 0 ¦¦ !IsDialogMessage (hDlgModeless, &msg))
+    {
+        TranslateMessage (&msg) ;
+        DispatchMessage  (&msg) ;
+    }
+}
+
+
+//message loop that supports the modeless dialog box
+//and accelerators
+while (GetMessage (&msg, NULL, 0, 0))
+{
+    if (hDlgModeless == 0 ¦¦ !IsDialogMessage (hDlgModeless, &msg))
+    {
+        if (!TranslateAccelerator (hwnd, hAccel, &msg))
+        {
+            TranslateMessage (&msg) ;
+            DispatchMessage  (&msg) ;
+        }
+    }
+}

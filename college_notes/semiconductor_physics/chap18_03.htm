@@ -1,0 +1,512 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>MOSFET Threshold Considerations</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">MOSFET Threshold Considerations</font></h1>
+<p><font size="4">Various reasons mentioned in section 18.2 can shift the 
+voltage:</font></p>
+<p><img border="0" src="images/fig_18_17a.jpg" width="757" height="343"></p>
+<p><font size="4">In addition to the <font face="Times New Roman">&#8710;V, 
+interfacial traps can degrade g<sub>m </sub>:</font></font></p>
+<p><img border="0" src="images/fig_18_17b.jpg" width="729" height="344"></p>
+<h2><font face="Times New Roman" color="#008000">V<sub>T</sub> Relationships</font></h2>
+<p><font face="Times New Roman" size="4">Let V<sub>T</sub> be the threshold of a 
+real MOSFET, and let V<sub>T</sub>' be the threshold of an ideal MOSFET:</font></p>
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    V<sub>T</sub> = V<sub>T</sub>' + Ø<sub>MS</sub> - </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">Q<sub>F</sub> </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">C<sub>o</sub> </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    - </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">Q<sub>M</sub>&#947;<sub>M</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">C<sub>o</sub> </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    - </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">Q<sub>IT</sub>(<b><font color="#008000">2Ø<sub>F</sub></font></b>)
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">C<sub>o</sub> </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<p><font face="Times New Roman" size="4">The </font>
+<font size="5" face="Courier New">Ø</font><font face="Times New Roman" size="4"><sub>F</sub> 
+is the same </font><font size="5" face="Courier New">Ø</font><font face="Times New Roman" size="4"><sub>F</sub> 
+from chapter 16. A voltage of 2 * </font><font size="5" face="Courier New">Ø</font><font face="Times New Roman" size="4"><sub>F</sub> 
+applied to the semiconductor bulk will bend the energy bands of an ideal MOS 
+structure to the point of depletion - inversion transition.</font></p>
+<p><font face="Times New Roman" size="4">In example 18.5 for the previous 
+section (section 18.2), flat band voltage is defined as a voltage that makes the 
+energy bands flat on the semiconductor side. Ideally, this means that a voltage 
+of zero exists across the semiconductor segment:</font></p>
+<table border="2" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#FF8000">
+  <tr>
+    <td>
+    <table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    V<sub>FB</sub> = V<sub>G</sub></font></td>
+    <td noWrap align="middle"><font face="Courier New" size="7" color="#FF8000">
+    &#9474;</font></td>
+    <td noWrap align="middle" valign="bottom">
+    <font face="Courier New" color="#ff8000">Ø<sub>S</sub> = 0</font></td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">= Ø<sub>MS</sub> - </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">Q<sub>F</sub> </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">C<sub>o</sub> </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    - </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">Q<sub>M</sub>&#947;<sub>M</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">C<sub>o</sub> </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    - </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">Q<sub>IT</sub>(<b><font color="#008000">0</font></b>)
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">C<sub>o</sub> </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+
+    </td>
+  </tr>
+</table>
+<p><font face="Times New Roman" size="4">If that last term, Q<sub>IT</sub> , 
+does not change much in going from Q<sub>IT</sub>(0) to Q<sub>IT</sub>(2</font><font size="5" face="Courier New">Ø</font><font face="Times New Roman" size="4"><sub>F</sub>)</font></p>
+<table border="2" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#FF8000">
+  <tr>
+    <td><font face="Courier New" color="#ff8000" size="5">V<sub>T</sub> = V<sub>T</sub>' 
+    + V<sub>FB</sub> </font></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+
+<p><font face="Times New Roman" size="4" color="#008000">Threshold, Terminology, 
+and Technology</font></p>
+
+<p><font face="Times New Roman" size="4">An <font color="#008000">enhancement 
+mode</font> device is naturally off --- there is no channel at a gate bias of 
+zero.</font></p>
+
+<p><img border="0" src="images/fig_18_18a.jpg" width="798" height="299"></p>
+
+<p><font face="Times New Roman" size="4">A <font color="#008000">depletion mode</font> 
+device is naturally on --- a non zero V<sub>G</sub> has to be applied to turn 
+the channel off.</font></p>
+
+<p><img border="0" src="images/fig_18_18b.jpg" width="782" height="362"></p>
+
+<p><font face="Times New Roman" size="4">The problem with depletion mode devices 
+is that an unwanted channel can very easily exist between two adjacent MOS 
+devices --- because we have channels without applying power.</font></p>
+
+<p><img border="0" src="images/fig_18_19a.jpg" width="554" height="204"></p>
+
+<p><font face="Times New Roman" size="4">Up until around 1977, non-ideal factors 
+tend to shift V<sub>T</sub> negative and forced NMOS devices to be depletion 
+mode devices. This led to the total dominance of PMOS technology over NMOS. 
+Eventually, dopant concentration control improved and NMOS then dominates PMOS 
+because electrons have higher mobility than holes.</font></p>
+
+<p><font face="Times New Roman" size="4">Actually, even for enhancement-mode 
+devices, unwanted channels might still exist as long as the intermediate region 
+has a V<sub>T</sub> that is similar to the MOSFET. The oxide layer of the MOSFET 
+is called the <font color="#008000">gate oxide</font>, while the oxide layer of 
+the intermediate region is called <font color="#008000">field oxide</font>. The 
+real solution to unwanted is to have the field oxide be much thicker than the 
+gate oxide so that the intermediate region has a larger |V<sub>T</sub>| than the 
+device regions.</font></p>
+
+<p><img border="0" src="images/fig_18_19b.jpg" width="457" height="233"></p>
+
+<p>&nbsp;</p>
+
+<p><font face="Times New Roman" size="4" color="#008000">Threshold Adjustment</font></p>
+
+<p><font face="Times New Roman" size="4">Gate-oxide thickness and substrate 
+doping are predetermined by other design constraints.</font></p>
+
+<p><font face="Times New Roman" size="4">The 100 surface orientation introduces 
+the least charges at the oxide-semiconductor interface and is therefore used to 
+minimize &#8710;V<sub>G</sub> . Different gate materials can also affect &#8710;V<sub>G</sub> 
+. </font></p>
+
+<p><font face="Times New Roman" size="4">But the real control over V<sub>T</sub> 
+comes from the use of ion implantation. Precisely controlled number of ions are 
+implanted into the semiconductor - oxide boundary, which adds to the charges 
+that are already there at the boundary.</font></p>
+
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    &#916;V<sub>G</sub> </font></td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="7">
+    (</font> </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000">implanted
+    <br>
+    ions</font><font face="Courier New" color="#ff8000" size="5"> </font></td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="7">
+    )</font> </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    = - </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">Q<sub>1</sub> </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">C<sub>o</sub> </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+
+<p>&nbsp;</p>
+
+<h2><font color="#008000">Back Biasing</font></h2>
+
+<p><font face="Times New Roman" size="4">Reverse biasing the substrate - source 
+depletion region will affect V<sub>T</sub> . This is also known as the
+<font color="#008000">body effect</font>, or the <font color="#008000">
+substrate-bias effect</font>.</font></p>
+
+<p><font face="Times New Roman" size="4">Say with the substrate grounded </font>
+<font size="5" face="Courier New">Ø</font><sub><font face="Times New Roman" size="4">S</font></sub><font face="Times New Roman" size="4"> 
+= 2V will achieve inversion:</font></p>
+
+<p><img border="0" src="images/pic0181.gif" width="540" height="483"></p>
+
+<p><font face="Times New Roman" size="4">If a -1 volt is applied to the body, 
+the 2V that will achieve inversion comes from source to oxide:</font></p>
+
+<p><img border="0" src="images/pic0182.gif" width="540" height="387"></p>
+
+<p><font face="Times New Roman" size="4">The voltage from oxide to the bulk is 
+then 3 volts. In other words, V<sub>BS</sub> changes the inversion point in the 
+semiconductor from 2</font><font size="5" face="Courier New">Ø</font><sub><font face="Times New Roman" size="4">F</font></sub><font face="Times New Roman" size="4"> 
+to 2</font><font size="5" face="Courier New">Ø</font><sub><font face="Times New Roman" size="4">F</font></sub><font face="Times New Roman" size="4"> 
+- V<sub>BS</sub> .</font></p>
+
+<p><font face="Times New Roman" size="4">This 3 volts is not V<sub>T</sub> --- 
+the 3 volts just goes from the bulk terminal to the semiconductor - oxide 
+boundary. V<sub>T</sub> will include the voltage drop over the oxide in addition 
+to the 3 volts.</font></p>
+
+<p><font face="Times New Roman" size="4">The body effect changed the inversion
+</font><font size="5" face="Courier New">Ø</font><font size="5"><sub>S</sub></font><font face="Times New Roman" size="4"> 
+from 2V to 3V. The voltage drop over the oxide also changed. That is why V<sub>T</sub>(body 
+effect) is not simply &quot; V<sub>T</sub>(no body effect) + 1V &quot;.</font></p>
+
+<p><font face="Times New Roman" size="4">Likewise, the V<sub>GS</sub>'(at 
+threshold) is not 2 volt --- V<sub>GS</sub>'(at threshold) is 2 volts plus 
+certain number of volts across the oxide.</font></p>
+
+<p><font face="Times New Roman" size="4">The following equation for the ideal V<sub>T</sub> is first 
+presented in CH 17:</font></p>
+
+<table border="2" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#FF8000">
+  <tr>
+    <td>
+    <table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    V<sub>T</sub>&#39; = 2&#934;<sub>F</sub> ± </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">K<sub>S</sub> </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">K<sub>O</sub> </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    x<sub>o</sub></font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">&nbsp;</td>
+        <td>
+        <div style="POSITION: relative; TOP: 4ex">
+          <font face="Courier New" color="#ff8000" size="3">1/2</font></div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+        <table cellSpacing="0" cellPadding="6" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <font face="Courier New" color="#ff8000" size="7">(</font> </td>
+            <td noWrap align="middle">
+            <table cellSpacing="0" cellPadding="0" border="0">
+              <tr>
+                <td noWrap align="middle">
+                <div style="POSITION: relative; TOP: 0.7ex">
+                  <font face="Courier New" color="#ff8000" size="5">4qN<sub>B</sub>
+                  </font>
+                </div>
+                </td>
+              </tr>
+              <tr>
+                <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+              </tr>
+              <tr>
+                <td noWrap align="middle">
+                <div style="POSITION: relative; TOP: -0.7ex">
+                  <font face="Courier New" color="#ff8000" size="5">K<sub>S</sub>&#949;<sub>0</sub>
+                  </font>
+                </div>
+                </td>
+              </tr>
+            </table>
+            </td>
+            <td noWrap align="middle">
+            <font face="Courier New" color="#ff8000" size="5">(±Ø<sub>F</sub>)
+            </font></td>
+            <td noWrap align="middle">
+            <font face="Courier New" color="#ff8000" size="7">)</font> </td>
+          </tr>
+        </table>
+        </td>
+        <td>&nbsp;</td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+    <p><font size="4">(+) for n-channel devices<br>
+    (-) for p-channel devices<br>
+    N<sub>B</sub> = N<sub>A</sub> or N<sub>D</sub> as appropriate</font></td>
+  </tr>
+</table>
+<p><font face="Times New Roman" size="4">To take the body effect in to account, 
+V<sub>GB</sub>'(at threshold) equals V<sub>T</sub>' with all the (</font><font size="5" face="Courier New">Ø</font><sub><font face="Times New Roman" size="4">F</font></sub><font face="Times New Roman" size="4">) 
+replaced by (2</font><font size="5" face="Courier New">Ø</font><sub><font face="Times New Roman" size="4">F</font></sub><font face="Times New Roman" size="4"> 
+- V<sub>BS</sub>). This V<sub>BS</sub> is of course a constant, it should really 
+be called V<sub>BS</sub>'(at threshold).</font></p>
+
+<p><font face="Times New Roman" size="4">Due to the changing quantity of voltage 
+over the oxide section, V<sub>GS</sub>'(at threshold) is not V<sub>T</sub>'.</font></p>
+
+<table border="2" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#FF8000">
+  <tr>
+    <td><font face="Courier New" color="#ff8000" size="5">&#916;V<sub>T</sub>' = (V<sub>GS 
+    | at threshold</sub>' - V<sub>T</sub>') </font>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">&#916;V<sub>T</sub>' = (V<sub>T</sub>' 
+        - 2Ø<sub>F</sub>) </font></td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="7">[</font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">&nbsp;</td>
+            <td>
+            <div style="POSITION: relative; TOP: 4ex">
+              <font face="Courier New" color="#ff8000" size="3">1/2</font></div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+            <table cellSpacing="0" cellPadding="6" border="0">
+              <tr>
+                <td noWrap align="middle">
+                <font face="Courier New" color="#ff8000" size="7">(</font> </td>
+                <td noWrap align="middle">
+                <font face="Courier New" color="#ff8000" size="5">1 - </font>
+                </td>
+                <td noWrap align="middle">
+                <table cellSpacing="0" cellPadding="0" border="0">
+                  <tr>
+                    <td noWrap align="middle">
+                    <div style="POSITION: relative; TOP: 0.7ex">
+                      <font face="Courier New" color="#ff8000" size="5">V<sub>BS</sub>
+                      </font>
+                    </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+                  </tr>
+                  <tr>
+                    <td noWrap align="middle">
+                    <div style="POSITION: relative; TOP: -0.7ex">
+                      <font face="Courier New" color="#ff8000" size="5">2Ø<sub>F</sub>
+                      </font>
+                    </div>
+                    </td>
+                  </tr>
+                </table>
+                </td>
+                <td noWrap align="middle">
+                <font face="Courier New" color="#ff8000" size="7">)</font> </td>
+              </tr>
+            </table>
+            </td>
+            <td>&nbsp;</td>
+          </tr>
+        </table>
+        </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">- 1 </font></td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="7">]</font></td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<p><font face="Times New Roman" size="4">The book used the above relationship 
+for both ideal and non-ideal cases. So &#8710;V<sub>T</sub> = (V<sub>GS</sub>(at 
+threshold) - V<sub>T</sub>) follows the same relationship as above.</font></p>
+
+</body>
+
+</html>

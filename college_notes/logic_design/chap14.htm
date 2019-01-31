@@ -1,0 +1,277 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>State Graph Examples</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">State Graph Examples</font></h1>
+<h2><font color="#008000">Sequence Detector 1</font></h2>
+<p><font size="4">The output Z will be 1 for any input sequence X that ends in 
+101.</font></p>
+<p><font size="4">A Moore machine would require four states: an initial state, 
+state 1, state 10, and state 101. When we advance to the fourth state, output a 
+1. Partial drawing:</font></p>
+<p><img border="0" src="images/pic0011.gif" width="564" height="100"></p>
+<p><font size="4">full Moore solution:</font></p>
+<p><img border="0" src="images/fig_14_06.jpg" width="382" height="278"></p>
+<p><font size="4">The Mealy solution requires less states but is more 
+complicated and less intuitive. As before there is an initial state, a 1 state, 
+and a 10 state. We output a 1 when we go from the 10 state to the 1 state. 
+Partial drawing:</font></p>
+
+<p><img border="0" src="images/pic0012.gif" width="424" height="125"></p>
+
+<p><font size="4">full Mealy solution:</font></p>
+
+<p><img border="0" src="images/fig_14_04.jpg" width="352" height="198"></p>
+
+<p><font size="4">Note that in Mealy solutions, the issue is not just what state 
+we are at, but how we got to that state --- the state S<sub>1</sub> could mean 
+the network ends in 1, or that the network ends in 101, depending on how we got 
+to S<sub>1</sub> .</font></p>
+
+<p><font size="4"><i>actually, I guess the easiest way to do these pattern 
+things is to use a series of flip-flops as a shift register. These flip flops 
+will remember the last few inputs. Then we just check the last few inputs with a 
+simple combinational network.</i></font></p>
+
+<p>&nbsp;</p>
+
+<h2><font color="#008000">Sequence Detector 2</font></h2>
+
+<p><font size="4">This time, have the output (Z) be 1 when the input sequence 
+ends in 010 or 1001.</font></p>
+
+<p><i><font size="4">Note: the Moore approach is note done for this problem</font></i></p>
+
+<p><font size="4" color="#008000">Mealy Approach:</font></p>
+
+<p><font size="4">If we are checking for ONLY the pattern 010, we can use three 
+states: S<sub>initial</sub> , S<sub>0</sub> , S<sub>01</sub> , then we jump back 
+to S<sub>0</sub> for the input 010. In this case that last zero is the end of a 
+pattern, so we can end up on S<sub>0</sub> --- there's no need to &quot;remember&quot; 
+whether that zero is the first zero, or that some pattern precedes the zero.</font></p>
+
+<p><font size="4">But now we are checking for both patterns, 010 and 1001, 
+simultaneously. say we have a sequence like:</font></p>
+
+<p><font size="4" face="Courier New">01001</font></p>
+
+<p><font size="4">Z needs to be 1 on both the first one and that second one. 
+Note that while completing the pattern 010, we also have completed the first 
+half of the pattern 1001. So when we found the pattern 010, we need to remember 
+that we have a &quot;10&quot; so that we can correctly the pattern &quot;1001&quot;.&nbsp; </font></p>
+
+<p><font size="4">Basically the state &quot;10&quot; is not needed for detecting solely 
+010. But it is needed for this example due to overlaps between the two patterns.</font></p>
+
+<p><font size="4">Like wise, when we we check for the pattern &quot;1001&quot;, we need to 
+remember we have a &quot;01&quot; so that we can correctly identify the pattern &quot;010&quot;.</font></p>
+
+<table border="1" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td align="center"><font size="4">State</font></td>
+    <td align="center"><font size="4">Sequence Ends in:</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">S<sub>init</sub></font></td>
+    <td align="center">&nbsp;</td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">S<sub>0</sub></font></td>
+    <td align="center"><font size="4">0</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">S<sub>1</sub></font></td>
+    <td align="center"><font size="4">1</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">S<sub>10</sub></font></td>
+    <td align="center"><font size="4">10</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">S<sub>01</sub></font></td>
+    <td align="center"><font size="4">01</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">S<sub>100</sub></font></td>
+    <td align="center"><font size="4">100</font></td>
+  </tr>
+</table>
+
+<p><font size="4">To detect only the pattern 010: <i>(remember we need the state 
+10 because we need to detect 1001 as well)</i></font></p>
+
+<p><img border="0" src="images/pic0013.gif" width="624" height="200"></p>
+
+<p><font size="4">To detect the pattern 1001:</font></p>
+
+<p><img border="0" src="images/pic0014.gif" width="654" height="370"></p>
+
+<p><font size="4">actually, going from S<sub>01</sub> to S<sub>10</sub> should 
+output 1 --- because it detects the pattern 010, which reflected in the solution 
+for the pattern 010. The merger of these two solutions:</font></p>
+
+<p><img border="0" src="images/pic0015.gif" width="700" height="396"></p>
+
+<p><font size="4">For the complete solution, some obvious lines need to be 
+added:</font></p>
+
+<p><img border="0" src="images/pic0016.gif" width="685" height="521"></p>
+
+<p><font size="4">Now the key to the way I did this problem is to first see what 
+states are necessary and having a way to split up the problem into two parts. 
+The book gets the same result but the book's method is not as good as mine 
+because it is non-systematic. The book basically keep tagging on arrows and 
+states until it worked.</font></p>
+
+<p>&nbsp;</p>
+
+<h2><font color="#008000">Pattern Detector</font> </h2>
+
+<p><font size="4">Create a Moore network that will output a 1 if the total 
+number of 1's received is odd and at least two consecutive 0's have been 
+received.</font></p>
+
+<table border="1" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td align="center"><font size="4">S<sub>11</sub></font></td>
+    <td><font size="4">Even number of ones</font></td>
+    <td><font size="4">This is also the initial state</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">S<sub>1</sub></font></td>
+    <td><font size="4">Odd number of ones</font></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">S<sub>110</sub></font></td>
+    <td><font size="4">Even number of ones followed by a zero</font></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">S<sub>1100</sub></font></td>
+    <td><font size="4">Even number of ones plus having two zeros in a row</font></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">S<sub>10</sub></font></td>
+    <td><font size="4">Odd number of ones followed by a zero</font></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">S<sub>100</sub></font></td>
+    <td><font size="4">Odd number of ones plus having two zeros in a row</font></td>
+    <td><font size="4">Output a one at this state</font></td>
+  </tr>
+</table>
+
+<p><font size="4">Partial solution:</font></p>
+
+<p><img border="0" src="images/pic0017.gif" width="400" height="538"></p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h2><font color="#008000">Example 3 on page 370</font></h2>
+
+<p><font size="4">A sequential network that has two inputs (X<sub>1</sub> , X<sub>2</sub>) 
+that will hold its state constant unless:</font></p>
+
+<p><font size="4"><i>Note: X<sub>1</sub>X<sub>2</sub> = 01, 11 means (X<sub>1</sub> 
+= 0, X<sub>2</sub> = 1) followed by (X<sub>1</sub> = 1, X<sub>2</sub> = 1)</i></font></p>
+
+<ul>
+  <li><font size="4">X<sub>1</sub>X<sub>2</sub> = 01, 11 causes the output to 
+  become 0.</font></li>
+  <li><font size="4">X<sub>1</sub>X<sub>2</sub> = 10, 11 causes the output to 
+  become 1.</font></li>
+  <li><font size="4">X<sub>1</sub>X<sub>2</sub> = 10, 01 causes the output to 
+  change value.</font></li>
+</ul>
+
+<p><font size="4">Moore solution:</font></p>
+
+<p><font size="4">We need to be able to remember the previous input as well as 
+the current output:</font></p>
+
+<table border="1" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td nowrap><font size="4">S<sub>0,00</sub></font></td>
+    <td><font size="4">Current output is 0. Previous input is 00 or 11, meaning 
+    that there is no state change coming.</font></td>
+  </tr>
+  <tr>
+    <td nowrap><font size="4">S<sub>0,01</sub></font></td>
+    <td><font size="4">Current output is 0. Previous input is 01.</font></td>
+  </tr>
+  <tr>
+    <td nowrap><font size="4">S<sub>0,10</sub></font></td>
+    <td><font size="4">Current output is 0. Previous input is 10.</font></td>
+  </tr>
+  <tr>
+    <td nowrap><font size="4">S<sub>1,00</sub></font></td>
+    <td><font size="4">Current output is 1. Previous input is 00 or 11.</font></td>
+  </tr>
+  <tr>
+    <td nowrap><font size="4">S<sub>1,01</sub></font></td>
+    <td><font size="4">Current output is 1. Previous input is 01.</font></td>
+  </tr>
+  <tr>
+    <td nowrap><font size="4">S<sub>1,10</sub></font></td>
+    <td><font size="4">Current output is 1. Previous input is 10.</font></td>
+  </tr>
+</table>
+
+<p><font size="4">Partial solution:</font></p>
+
+<p><img border="0" src="images/pic0018.gif" width="680" height="562"></p>
+
+<p><font size="4">Note that each state can receive four different kinds of 
+inputs, so if fully drawn, each circle can have up to four arrows leaving it.</font></p>
+
+<p>&nbsp;</p>
+
+<h2><font color="#008000">Serial Data Encoding Schemes</font></h2>
+
+<p><img border="0" src="images/fig_14_17.jpg" width="706" height="364"></p>
+
+<p><font size="4">The NRZ (non-return-to-zero) code is just using high to encode 
+a 1 and a low to encode a 0.</font></p>
+
+<p><font size="4">The NRZI (non-return-to-zero-inverted) code has a transition 
+for 1 and no transition for 0.</font></p>
+
+<p><font size="4">The RZ (return-to-zero) code uses low for 0 and a high to low 
+transition for 1.</font></p>
+
+<p><font size="4">The Manchester code uses a low to high transition for 0 and a 
+high to low transition for 1.</font></p>
+
+<p><font size="4" color="#008000">NRZ to Manchester converter:</font></p>
+
+<p><font size="4">Use a CLOCK2 that is twice as fast as the clock that governs 
+the sending of the bits. So basically the same bit will be &quot;received&quot; twice.</font></p>
+
+<p><font size="4">Mealy solution --- each 1 is received twice, output a 1 then 
+output a 0. Like wise, each 0 is received twice.</font></p>
+
+<p><img border="0" src="images/fig_14_18b.jpg" width="303" height="219"></p>
+
+<p><font size="4">Note that at S<sub>2</sub> we can not receive a 0. So on the 
+states table, X = 0 at S<sub>2</sub> will be a don't-care condition.</font></p>
+
+<p><font size="4">Moore solution:</font></p>
+
+<p><img border="0" src="images/fig_14_19b.jpg" width="264" height="220"></p>
+
+</body>
+
+</html>

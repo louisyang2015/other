@@ -1,0 +1,79 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Memory Models</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">Memory Models</font></h1>
+<p align="left"><font color="#008000" size="5">The Segment Concept</font></p>
+<p><font size="4">In 1974, the 8080 computer was introduced. The CPU was 8 bit, 
+but the memory address bus was 16 bit --- so that it can access 64K of memory.</font></p>
+<p><font size="4">When the 8086 came out with a 20 bit address line, but a 16 
+bit CPU. The decision at the time was to address the memory using segment:offset 
+--- where each segment is 64K long. This was done so that the 8080 programs will 
+run in 8086 without modification.</font></p>
+<p><font size="4">real address = segment register * 16 + offset register</font></p>
+<p><font size="4">&quot;segment register&quot; * 16 means two adjacent segment addresses 
+are 16 bytes apart</font></p>
+<p><font size="4">both the offset address and segment address are a 16 bit 
+numbers</font></p>
+<p><font size="4">The CPU can see 1 Meg --- 20 bits, but the segment offset 
+system mean that it's seeing the 1 Meg through 16 bit blinders.</font></p>
+<p><font size="4">These segments are not mutually protected --- you can have 
+overlapping segments that interfere with one another.</font></p>
+<p>&nbsp;</p>
+<p><font size="4">Example: The PC keeps its time and date information in a 
+series of memory bytes that starts at address 0040:006C --- or we can say that 
+the address is 0000:046C</font></p>
+
+<p>&nbsp;</p>
+
+<p><font color="#008000" size="5">Real Mode</font></p>
+
+<p><font size="4">Real mode means you will be accessing 1 meg of memory at most. 
+Segments are not protected from one another.</font></p>
+
+<p><font color="#008000" size="5">Real Mode Flat Model</font></p>
+
+<p><font size="4">Here your entire program will fit inside a 64K block of 
+memory. You won't be using that segment::offset trick to access 1 Meg of memory. 
+The segment registers are set by the OS and you don't fool with them at all.</font></p>
+
+<p><font size="5" color="#008000">Real Mode Segmented Model</font></p>
+
+<p><font size="4">Here you are using the segment:offset thing. You will need to 
+tell the CPU where the two different components of that 20-bit address are.</font></p>
+
+<p><font size="4">SS : SP<br>
+SS : BP<br>
+ES : DI<br>
+DS : SI<br>
+CS : BX</font></p>
+
+<p><font size="4">Because you have two segment registers available, you can have 
+two data segments (ES, DS).</font></p>
+
+<p><font size="5" color="#008000">Protected Mode Flat</font></p>
+
+<p><font size="4">The segments are protected from one another --- in programming 
+terms, the segment registers are part of the operating system and can not be 
+read nor changed directly.</font></p>
+
+<p>&nbsp;</p>
+<p><font size="5" color="#008000">Far versus Near pointers</font></p>
+<p><font size="4">near pointer is an address using the offset register only, 
+while the segment address remains &quot;normal&quot;, or &quot;in program&quot;</font></p>
+<p><font size="4">far pointer is an address using the combined value of a 
+segment and an offset register --- example: the video refresh buffer is not 
+usually part of the data segment, so if you are going to work with it, you will 
+need a &quot;far pointer&quot; --- you will need to adjust the segment address.</font></p>
+
+</body>
+
+</html>

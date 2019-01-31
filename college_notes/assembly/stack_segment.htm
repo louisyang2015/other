@@ -1,0 +1,116 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>The Stack Segment</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">The Stack Segment</font></h1>
+<p><font size="4">The stack segment is defined with the third word being 
+&quot;stack&quot;:</font></p>
+
+<p><font size="4" color="#FF6600">SEGMENT stack stack</font></p>
+
+<p><font size="4">or</font></p>
+
+<p><font size="4" color="#FF6600">SEGMENT MyStack stack</font></p>
+
+<p><font size="4">Then you reserve bytes to serve as the stack segment:</font></p>
+
+<p><font size="4" color="#FF6600">SEGMENT stack stack<br>
+&nbsp;&nbsp;&nbsp; resb 64&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ; reserve<br>
+stacktop:</font></p>
+
+<p><font size="4">To use the stack to store stuff, you need to set up the SP and 
+SS registers. In real flat mode, DOS will set SP and SS for you. In flat 
+segmented mode, you need to set SS and SP early in the program:</font></p>
+
+<p><font size="4" color="#FF6600">mov ax, stack <br>
+mov ss, ax<br>
+mov sp, stacktop</font></p>
+
+<p><font size="4">You then have this scenario:</font></p>
+
+<p><img border="0" src="images/pic003.gif" width="210" height="126"></p>
+
+<p><font size="4">SP points to the last byte in the 64 byte array reserved for 
+the stack. As you store things, the SP address will move downward (toward 
+lower memory).</font></p>
+
+<p><font size="5" color="#008000">PUSH Examples:</font></p>
+
+<p><font size="4" color="#FF6600">PUSHF </font><font size="4" color="#008000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+; push the Flags register<br>
+</font><font size="4" color="#FF6600">PUSHA&nbsp; </font>
+<font size="4" color="#008000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ; push AX, CX, DX, 
+BX, SP, BP, SI, and DI, in that order, all at once<br>
+</font><font size="4" color="#FF6600">PUSHAD </font>
+<font size="4" color="#008000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ; push EAX, 
+ECX, EDX, EBX, ESP, ESP, EBP, ESI, and EDI, all at once<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+; it's for 386 and beyond only<br>
+</font><font size="4" color="#FF6600">PUSH AX</font><font size="4" color="#008000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+; push the AX register<br>
+</font><font size="4" color="#FF6600">PUSH [BX] </font>
+<font size="4" color="#008000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ; push the 
+word stored in memory at DS:BX</font></p>
+
+<p><font size="5" color="#008000">POP Examples:</font></p>
+
+<p><font size="4" color="#FF6600">POPF</font><font size="4" color="#008000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+; pop the top of the stack into Flags<br>
+</font><font size="4" color="#FF6600">POPA</font><font size="4" color="#008000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+; pop the top 16 bytes from the stack into AX, CX, DX, BX, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+; SP, BP, SI, and DI<br>
+</font><font size="4" color="#FF6600">POPAD</font><font size="4" color="#008000">&nbsp;&nbsp;&nbsp; 
+; pop the top 32 bytes into EAX, ECX, EDX, EBX, ESP,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+; EBP, ESI, and EDI<br>
+</font><font size="4" color="#FF6600">POP SI</font><font size="4" color="#008000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+; pop the top of the stack into SI<br>
+</font><font size="4" color="#FF6600">POP CS&nbsp;&nbsp; </font>
+<font size="4" color="#008000">&nbsp;&nbsp;&nbsp;&nbsp; ; pop the top of the 
+stack into CS<br>
+</font><font size="4" color="#FF6600">POP [BX]</font><font size="4" color="#008000">&nbsp;&nbsp;&nbsp; 
+; pop the top of the stack into memory at DS:BX</font></p>
+
+<p>&nbsp;</p>
+
+<p><font size="4" color="#008000">push and pop limitations:</font></p>
+
+<p><font size="4">none of the 8-bit mini-registers can be pushed onto the stack</font></p>
+
+<p><font size="4">Only 386 and beyond can push segment registers onto the stack.</font></p>
+
+<p>&nbsp;</p>
+
+<p><font size="5" color="#008000">Other notes:</font></p>
+
+<p><font size="4">&quot;MOV&quot; will not operate on the flag registers. So you can get a 
+copy of the flag registers into BX by:</font></p>
+
+<p><font size="4" color="#FF6600">PUSHF<br>
+POP BX</font></p>
+
+<p><font size="4">When doing push, the Intel CPU will decrement the SP by two, 
+and then it will store the word. Some CPUs will do stack push operations the 
+other way around.</font></p>
+
+<p><img border="0" src="images/pic004.gif" width="296" height="244"></p>
+
+<p><font size="4">Note how the Intel byte ordering is that higher ordered bits 
+are stored at higher memory locations.</font></p>
+
+<p><font size="4">In real mode, there is only one stack in action at a time. The 
+stack that you are using actually gets used by DOS and BIOS as well --- when you 
+call a DOS or BIOS interrupt, they will use the stack. </font></p>
+
+</body>
+
+</html>

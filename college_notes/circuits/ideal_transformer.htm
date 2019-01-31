@@ -1,0 +1,350 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>The Ideal Transformer</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">The Ideal Transformer</font></h1>
+<p><font size="4">How an ideal transformer works is a physics issue --- this 
+documentation only deals with the circuit issues.</font></p>
+<h2><font color="#008000">Ideal Transformer Basic Equations:</font></h2>
+<p><font size="4">The circuit symbol for an ideal transformer:</font></p>
+<table border="0" cellpadding="10" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" bgcolor="#FFFF99">
+  <tr>
+    <td><img border="0" src="images/pic0112.gif" width="600" height="315"></td>
+  </tr>
+</table>
+<p><font size="4"><font color="#008000">Note that i<sub>2</sub>(t) is going in 
+the opposite of the direction implied by V<sub>2</sub>(t)</font> --- this is 
+done to result in simpler equations. Other than the i<sub>2</sub>(t), the 
+orientation is exactly the same as the mutual inductance case.</font></p>
+<p><font size="4">N<sub>1</sub> and N<sub>2</sub> is the number of turns in the 
+inductor coils.</font></p>
+<p><font size="4">Let the ratio of turns (<font color="#008000">n</font>) be 
+defined as:</font></p>
+<table cellSpacing="0" cellPadding="6" border="0" bgcolor="#FFFF99" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    n = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">N<sub>2</sub> </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">N<sub>1</sub> </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<p><font size="4">Then the two sides of the transformer are related by:</font></p>
+<table cellSpacing="0" cellPadding="6" border="0" bgcolor="#FFFF99" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    V<sub>1</sub> = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">V<sub>2</sub> </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">n </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<table border="0" cellpadding="10" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" bgcolor="#FFFF99">
+  <tr>
+    <td><font face="Courier New" color="#ff8000" size="5">I<sub>1</sub> = I<sub>2</sub> 
+    * n </font></td>
+  </tr>
+</table>
+<p><font size="4">The way to remember the above two equation is that the left 
+side of the transformer has big current while the right side has big voltage.</font></p>
+<p><font size="4">These are the basic laws of the transformer and is all that I 
+used to do the problems for this section. Make nodal or mesh equations for each 
+side of the transformer, and then relate the two sides with the above equations. 
+The rest of this section gives additional insight, but is not essential.</font></p>
+<h2><font color="#008000">Input Impedance</font></h2>
+<p><font size="4">Consider this case:</font></p>
+<p><img border="0" src="images/pic0113.gif" width="600" height="240"></p>
+<p><font size="4">The input impedance is:</font></p>
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    Z<sub>1</sub> = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">V<sub>1</sub> </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">i<sub>1</sub> </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">V<sub>2</sub> / n
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">i<sub>2</sub> * n
+          </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">V<sub>2</sub> / i<sub>2</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">n<sup>2</sup> </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<p><font size="4">And </font><font color="#FF8000"><font size="5">V<sub>2</sub> 
+/ i<sub>2</sub> = Z</font><sub><font size="5">L</font><font size="4"> </font>
+</sub></font><font size="4">, so:</font></p>
+
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    Z<sub>1</sub> = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">Z<sub>L</sub> </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">n<sup>2</sup> </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<p><font size="4">So after you figure out Z<sub>L</sub> , the left side becomes:</font></p>
+
+<p><img border="0" src="images/pic0114.gif" width="256" height="300"></p>
+
+<p><font size="4">which means that the ideal inductor has been effectively 
+removed from the circuit.</font></p>
+
+<p><font size="4">The book goes into far more detail on how to &quot;reflect&quot; voltage 
+sources, current sources, and impedances from one side of the transformer to the 
+other side --- but I think all of this is rather not needed, since the 
+transformer equations are quite simple already.</font></p>
+
+<h2><font color="#008000">External Connection between the two sides of a 
+Transformer</font></h2>
+
+<p><font size="4">Another reason to not document the reflection thing in detail 
+is that if the two sides of the transformer are not isolated, then the 
+reflection thing is useless.</font></p>
+
+<p><font size="4">Example:</font></p>
+
+<p><img border="0" src="images/pic0115.gif" width="700" height="318"></p>
+
+<p><font size="4">You can not reflect 10<img border="0" src="images/angle_symbol.gif" width="30" height="24">0<sup>o</sup> 
+or 2<font face="Times New Roman">&#937; to the right side and make the transformer 
+disappear.</font></font></p>
+
+<p><font face="Times New Roman" size="4">Transformer Equations:</font></p>
+
+<p><font face="Times New Roman" size="5" color="#FF8000">I<sub>1</sub> = I<sub>2</sub> 
+* 2<br>
+V<sub>1</sub> = V<sub>2</sub> / 2</font></p>
+
+<p><font face="Times New Roman" size="4">Nodal Equations:</font></p>
+
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">V<sub>1</sub> - 10
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">2 </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    + </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">V<sub>1</sub> - V<sub>2</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">2 </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    + I<sub>1</sub> = 0 </font></td>
+  </tr>
+</table>
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">V<sub>2</sub> </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">2j </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    + </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">V<sub>2</sub> - V<sub>1</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">2 </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    - I<sub>2</sub> = 0 </font></td>
+  </tr>
+</table>
+
+</body>
+
+</html>

@@ -1,0 +1,71 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>&quot;Data Types&quot;</title>
+</head>
+
+<body>
+
+<p align="left"><font size="5" color="#008000">&quot;Data Types&quot;</font></p>
+<p><font size="4">The notion of &quot;type&quot; in assembly language is almost wholly a 
+question of size.</font></p>
+<p><font size="4">To reserve bytes:</font></p>
+<p><font size="4"><font color="#FF6600">resb 64</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<font color="#008000">; reserve 64 bytes for the program stack</font></font></p>
+<p><font size="4">To declare a byte:</font></p>
+<p><font size="4" color="#FF6600">DB 6E</font></p>
+<p><font size="4">To give the allocation a name lable:</font></p>
+
+<p><font size="4" color="#FF6600">MyByte DB 07H&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</font><font size="4" color="#008000">; 8 bits in size</font></p>
+
+<p><font size="4" color="#FF6600">MyWord DW 0FFFFH&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</font><font size="4" color="#008000">; 16 bits in size</font></p>
+
+<p><font size="4" color="#FF6600">MyDouble DD 0B8000000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</font><font size="4" color="#008000">; 32 bits in size</font></p>
+
+<p>&nbsp;</p>
+
+<p><font size="4">To use the variables:</font></p>
+
+<p><font size="4" color="#FF6600">Counter DB 0</font></p>
+
+<p><font size="4" color="#FF6600">MixTag</font><font size="4" color="#FF6600"> 
+DW 32</font></p>
+
+<p><font size="4" color="#FF6600">...</font></p>
+
+<p><font size="4" color="#FF6600">MOV BL, BYTE [Counter] </font>
+<font size="4" color="#008000">; move the zero into BL (move MEM[counter]) into 
+BL<br>
+</font><i><font size="4" color="#008000">; with MASM, you don't need that &quot;BYTE&quot; 
+because you already defined &quot;Counter&quot; to be a byte<br>
+; but with NASM, you would need that &quot;BYTE&quot; directive</font></i></p>
+
+<p><font size="4" color="#FF6600">MOV BL, BYTE MixTag<br>
+</font><i><font size="4" color="#008000">; MixTag is a word (2 bytes), BUT the 
+use of &quot;BYTE&quot; moves just one byte of MixTag<br>
+; although this is peculiar, the assembler will not generate an error since 
+there is no<br>
+; ambiguity</font></i></p>
+
+<p>&nbsp;</p>
+
+<p><font size="4">When operating on memory addresses, you sometimes need to tell 
+the assembly are you operating on just a single byte at that memory address or a 
+single word at that memory address.</font></p>
+
+<p><font size="4"><font color="#FF6600">NEG BYTE [BX]</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<font color="#008000">; Negates byte quantity at DS:BX</font></font></p>
+
+<p><font size="4"><font color="#FF6600">NEG WORD [BX]</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<font color="#008000">; Negates word quantity at DS:BX</font></font></p>
+
+</body>
+
+</html>

@@ -1,0 +1,170 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Modal Dialog Boxes</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">Modal Dialog Boxes</font></h1>
+<p><font size="4">First, create a dialog with the resource editor</font></p>
+<p><font size="4">To invoke the dialog box:</font></p>
+<h2><font face="Courier New" color="#FF6600">DialogBox (app_instance, 
+TEXT(&quot;about_box&quot;), <br>
+&nbsp;&nbsp;&nbsp; hwnd, AboutDlgProc);</font></h2>
+<p>&nbsp;</p>
+<h2><font color="#008000">The Dialog Procedure</font></h2>
+<p><font size="4" color="#FF6600" face="Courier New"><b>BOOL</b> CALLBACK 
+AboutDlgProc (HWND hDlg, UINT message,<br>
+&nbsp;&nbsp;&nbsp; WPARAM wParam, LPARAM lParam)<br>
+{<br>
+&nbsp;&nbsp;&nbsp; switch (message)<br>
+&nbsp;&nbsp;&nbsp; {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case WM_INITDIALOG:<br>
+</font><font size="4" color="#008000" face="Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+//initialization here</font><font size="4" color="#FF6600" face="Courier New"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return TRUE;</font></p>
+<p><font size="4" color="#FF6600" face="Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+case WM_COMMAND:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if(LOWORD (wParam) 
+== IDOK)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br>
+</font><font size="4" face="Courier New" color="#008000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+//record user choices here</font><font size="4" color="#FF6600" face="Courier New"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+EndDialog (hDlg, TRUE);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+return TRUE;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else 
+if(LOWORD (wParam) == IDCANCEL)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+EndDialog (hDlg, FALSE);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+return TRUE;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; }</font></p>
+<p><font face="Courier New" size="4" color="#FF6600">&nbsp;&nbsp;&nbsp; return 
+FALSE;<br>
+}</font></p>
+<p><font size="4">Note that the return value is BOOL --- for a window procedure 
+it's LRESULT</font></p>
+<p><font size="4">The dialog procedure return TRUE if the message is processed 
+or FALSE if it is not.</font></p>
+<p><font size="4">The second argument to &quot;EndDialog&quot; is also the return value of 
+the &quot;DialogBox&quot; function that creates the modal dialog in the first place.</font></p>
+<p><font size="4">A dialog box procedure does not need to process WM_PAINT or 
+WM_DESTROY messages. A dialog box procedure will not receive a WM_CREATE 
+message. Instead, initialization happens in the WM_INITDIALOG message.</font></p>
+<p><font size="4">The messages for a modal dialog box don't go through your 
+program's message queue, so you needn't worry about the effect of keyboard 
+accelerators within the dialog box.</font></p>
+<p><font size="4">Even when the dialog box is displayed, WndProc can continue to 
+receive messages from the dialog box. Inside AboutDlgProc, you would use:</font></p>
+<p><b><font size="4" color="#FF6600" face="Courier New">SendMessage (GetParent(hDlg), 
+...);</font></b></p>
+<p><font size="4">One of the examples in the book does process WM_PAINT message 
+for a particular control.</font></p>
+<p><font size="4" color="#FF6600" face="Courier New">case WM_PAINT:<br>
+&nbsp;&nbsp;&nbsp; PaintTheBlock (hCtrlBlock, iColor, iFigure);<br>
+&nbsp;&nbsp;&nbsp; break;<br>
+}<br>
+<b>return FALSE;</b></font></p>
+<p><font size="4">so because the dialog procedure is just handling WM_PAINT for 
+a particular control, the dialog procedure is still relying on the &quot;real&quot; window 
+procedure to handle WM_PAINT for the other controls. That's why it return FALSE 
+in response to WM_PAINT.</font></p>
+<p><font size="4">For reference, here's the book's &quot;PaintTheBlock&quot;:</font></p>
+<p><font size="4" face="Courier New">void PaintTheBlock (HWND hCtrl, int iColor, 
+int iFigure)<br>
+{<br>
+&nbsp;&nbsp;&nbsp; InvalidateRect (hCtrl, NULL, TRUE);<br>
+&nbsp;&nbsp;&nbsp; UpdateWindow (hCtrl);<br>
+&nbsp;&nbsp;&nbsp; PaintWindow (hCtrl, iColor, iFigure);<br>
+}</font></p>
+<p><font size="4">and this &quot;PaintWindow&quot; is used both by the main window and by 
+the dialog window</font></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><font color="#008000">Working with Dialog Box Controls</font></h2>
+<p><font size="4">One issue with dialog box controls is that you don't 
+immediately know the window handle of all the controls --- you only know the 
+window handle of the control from which you are getting the message. You can get 
+the windows handle using the function:</font></p>
+<p><b><font size="4" face="Courier New" color="#FF6600">hwndCtrl = GetDlgItem (hDlg, 
+id);</font></b></p>
+<p><font size="4">Thus, you can send messages to the dialog box controls --- but 
+Windows provide additional shortcuts. </font></p>
+<p><font size="4">instead of:</font></p>
+<p><font face="Courier New" size="4">SendMessage (GetDlgItem(hDlg, id), id, 
+wParam, lParam);</font></p>
+<p><font size="4">use:</font></p>
+<h2><font face="Courier New" color="#FF6600">SendDlgItemMessage (hDlg, id, iMsg, 
+wParam, lParam);</font></h2>
+<p><font size="4">To turn off all the check marks for all radio button controls 
+with IDs from idFirst to idLast except for the radio button with an ID of
+<font face="Courier New" color="#FF6600">idCheck</font>, which is checked:</font></p>
+<h2><font face="Courier New" color="#FF6600">CheckRadioButton (hDlg, idFirst, 
+idLast, idCheck);</font></h2>
+<p><font size="4">For setting/reading check boxes: iCheck = 1 means the button 
+is checked; iCheck = 0 means the button is unchecked.</font></p>
+<p><font size="4" face="Courier New" color="#FF6600">CheckDlgButton (hDlg, 
+idCheckbox, iCheck);</font></p>
+<p><font size="4" face="Courier New" color="#FF6600">iCheck = IsDlgButtonChecked 
+(hDlg, idCheckbox);</font></p>
+<p><font size="4">To set the text property of a control to a number:</font></p>
+<p><font size="4" face="Courier New" color="#FF6600">SetDlgItemInt (hDlg, 
+control_id, a_number, true);</font></p>
+<p><font size="4">To enable/disable a control:</font></p>
+<p><font size="4" face="Courier New" color="#FF6600">EnableWindow (hwndCtrl, 
+bEnable);</font></p>
+<p><font size="4">bEnable = TRUE (non-zero) will enable a control; FALSE (zero) 
+will disable a control</font></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><b><font size="4" color="#008000">Keyboard Issues</font></b></p>
+<p><font size="4">For all controls that you want to access using the Tab key, 
+specify WS_TABSTOP in the window style.</font></p>
+<p><font size="4">For a particular series of controls in the dialog box 
+template, Windows will use the cursor movement keys to shift the input focus 
+from the first control that has the WS_GROUP style up to, but not including, the 
+next control that has the WS_GROUP style.</font></p>
+<p>&nbsp;</p>
+<p><b><font size="4" color="#008000">About using custom controls in dialog box 
+design:</font></b></p>
+<p><font size="4">Define your own window class, and also write a window 
+procedure for it. In the dialog designer, choose custom control and then in the 
+properties dialog for this control, use the window class name for the &quot;class&quot; 
+field.</font></p>
+<p>&nbsp;</p>
+<p><font size="4" color="#008000">Other Notes:</font></p>
+<p><font size="4">When you use child window controls in dialog boxes, the 
+Windows dialog box manager picks up many of the responsibilities.</font></p>
+<p><font size="4">When designing a dialog box, the coordinates and sizes are not 
+in unites of pixels. Instead they are based on the size of the font used for the 
+dialog box. X-coordinates and width are expressed in units of 1/4 of an average 
+character width. Y-coordinates and height are expressed in units of 1/8 of the 
+character height.</font></p>
+<p><font size="4">The dialog box procedure within your program handles messages 
+to the dialog box. Although it looks very much like a window procedure, it is 
+not a true window procedure. The &quot;real&quot; window procedure for the dialog box is 
+within Windows. That &quot;real&quot; window procedure calls your dialog box procedure 
+with many of the messages that it receives.</font></p>
+<p><font size="4">Use &quot;IDOK&quot; for the OK button. Use &quot;IDCANCEL&quot; for the cancel 
+button.</font></p>
+<p><font size="4">Use global variables to hold dialog box settings. The 
+alternative is to use DialogBoxParam --- which has an extra &quot;pointer&quot; argument. 
+Another alternative is that the argument to EndDialog is actually an &quot;int&quot;, not 
+just a &quot;bool&quot; --- so maybe you can pack a pointer there.</font></p>
+
+</body>
+
+</html>

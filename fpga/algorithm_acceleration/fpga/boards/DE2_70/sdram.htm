@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Language" content="en-us" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>SDRAM</title>
+<link rel="stylesheet" type="text/css" href="fpga.css" />
+</head>
+
+<body>
+
+<h1>SDRAM</h1>
+<p class="center">Last updated Apr 10, 2010</p>
+<p>The SDRAM controller is available in the SOPC builder.</p>
+<p>The settings used are:</p>
+<p><img src="images/pic001.jpg" width="650" height="774" /></p>
+<p><img src="images/pic002.jpg" width="650" height="774" /></p>
+<p>The pin driving the actual SDRAM chip&#39;s clock is generated using a PLL, and 
+has a <strong>315 degree of phase shift</strong> relative to the clock driving 
+the NIOS 2 system and the SDRAM controller on the FPGA. The result is a small 
+lead for the clock that is driving the SDRAM.</p>
+
+</body>
+
+</html>

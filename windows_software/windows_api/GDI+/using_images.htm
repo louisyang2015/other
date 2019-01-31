@@ -1,0 +1,174 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Using Images</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">Using Images, Bitmaps, and Metafiles</font></h1>
+<h2><font color="#008000">To Display an Image in General:</font></h2>
+<p><font face="Courier New" size="4" color="#FF6600"><b>Image image(L&quot;Grapes.jpg&quot;);<br>
+</b>graphics.DrawImage(&amp;image, 60, 10);</font></p>
+<p><font size="4">To be efficient though, you should supply the dimension of the 
+picture:</font></p>
+<p><b><font size="4" face="Courier New" color="#FF6600">graphics.DrawImage(&amp;image, 
+60, 10, image.GetWidth(), image.GetHeight());</font></b></p>
+<p><font size="4">The autoscaling might not produce the same size image as the 
+scaling using &quot;.GetWidth&quot; and &quot;.GetHeight&quot;</font></p>
+<p>&nbsp;</p>
+<h2><font color="#008000">Bitmaps:</font></h2>
+<p><b><font face="Courier New" size="4" color="#FF6600">HICON hIcon = 
+LoadIcon(NULL, IDI_APPLICATION);<br>
+Bitmap bitmap(hIcon);<br>
+graphics.DrawImage(&amp;bitmap, 10, 10);</font></b></p>
+<p>&nbsp;</p>
+<h2><font color="#008000">Metafiles:</font></h2>
+<p><font size="4">Displaying a metafile is just:</font></p>
+<p><font face="Courier New" size="4">Image image(L&quot;SampleMetafile.emf&quot;);<br>
+graphics.DrawImage(&amp;image, 60, 10);</font></p>
+<p><font size="4">But the real meat is the ability to record metafiles and then 
+later play it back.</font></p>
+<p><font size="4">To record:</font></p>
+<p><font face="Courier New" size="4">Metafile metafile(L&quot;SampleMetafile.emf&quot;, <b>
+<font color="#FF6600">hdc</font></b>);<br>
+//note the metafile constructor needs a handle to the<br>
+//device context<br>
+<br>
+Graphics graphics(&amp;metafile);<br>
+Pen greenPen(Color(255, 0, 255, 0));<br>
+SolidBrush solidBrush(Color(255, 0, 0, 255));<br>
+<br>
+// Add a rectangle and an ellipse to the metafile.<br>
+graphics.DrawRectangle(&amp;greenPen, Rect(50, 10, 25, 75));<br>
+graphics.DrawEllipse(&amp;greenPen, Rect(100, 10, 25, 75));<br>
+<br>
+// Add an ellipse (drawn with antialiasing) to the metafile.<br>
+graphics.SetSmoothingMode(SmoothingModeHighQuality);<br>
+graphics.DrawEllipse(&amp;greenPen, Rect(150, 10, 25, 75));<br>
+<br>
+// Add some text (drawn with antialiasing) to the metafile.<br>
+FontFamily fontFamily(L&quot;Arial&quot;);<br>
+Font font(&amp;fontFamily, 24, FontStyleRegular, UnitPixel);<br>
+&nbsp;&nbsp; <br>
+graphics.SetTextRenderingHint(TextRenderingHintAntiAlias);<br>
+graphics.RotateTransform(30.0f);<br>
+graphics.DrawString(L&quot;Smooth Text&quot;, 11, &amp;font, <br>
+PointF(50.0f, 50.0f), &amp;solidBrush);</font><br>
+<br>
+<font size="4">The recording stops (and the recorded commands are saved to the 
+file) when the Graphics object goes out of scope.</font></p>
+<p><font size="4">A metafile contains its own graphics state, which is defined 
+by the Graphics object used to record the metafile. Any properties of the 
+Graphics object (clip region, world transformation, smoothing mode, and the 
+like) that you set while recording the metafile will be stored in the metafile. 
+When you display the metafile, the drawing will be done according to those 
+stored properties.</font></p>
+<p><font size="4">To Play back the metafile:</font></p>
+<p><font face="Courier New" size="4">Graphics playbackGraphics(hdc);<br>
+playbackGraphics.DrawImage(&amp;metafile, 200, 100);</font></p>
+<p><font size="4">The metafile's own mode settings during recording will take 
+precedence during playback. For example:</font></p>
+<p><font size="4" face="Courier New">
+graphics.SetSmoothingMode(SmoothingModeHighQuality);<br>
+//has no effect on the play back of the metafile<br>
+graphics.DrawImage(&amp;meta, 0, 0);<br>
+//playback will use the meta-file's own smoothing mode</font></p>
+<p>&nbsp;</p>
+<h2><font color="#008000">Other Notes:</font></h2>
+<p><b><font size="4" color="#008000">Scaling and Cropping an Image:</font></b></p>
+<p><font face="Courier New" size="4">Image image(L&quot;Apple.gif&quot;);<br>
+UINT width = image.GetWidth();<br>
+UINT height = image.GetHeight();<br>
+<br>
+// Make the destination rectangle 30 percent wider and<br>
+// 30 percent taller than the original image.<br>
+// Put the upper-left corner of the destination<br>
+// rectangle at (150, 20).<br>
+Rect destinationRect(150, 20, 1.3 * width, 1.3 * height);<br>
+<br>
+// Draw the image unaltered with its upper-left corner at (0, 0).<br>
+graphics.DrawImage(&amp;image, 0, 0);<br>
+<br>
+// Draw a portion of the image. Scale that portion of the image<br>
+// so that it fills the destination rectangle.<br>
+graphics.DrawImage(<br>
+&nbsp;&nbsp;&nbsp; &amp;image,<br>
+&nbsp;&nbsp;&nbsp; destinationRect,<br>
+&nbsp;&nbsp;&nbsp; 0, 0,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+// upper-left corner of source rectangle<br>
+&nbsp;&nbsp;&nbsp; 0.75 * width,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // width of 
+source rectangle<br>
+&nbsp;&nbsp;&nbsp; 0.75 * height);&nbsp;&nbsp;&nbsp;&nbsp; // height of source 
+rectangle</font></p>
+<p>&nbsp;</p>
+<p><b><font size="4" color="#008000">Rotating, Reflecting, and Skewing Images</font></b></p>
+<p><font size="4">You can rotate, reflect, and skew an image by specifying 
+destination points for the upper-left, upper-right, and lower-left corners of 
+the original image.</font></p>
+<p><img border="0" src="images/pic01.gif" width="451" height="192"></p>
+<p><font face="Courier New" size="4">Point destinationPoints[] = {<br>
+&nbsp;&nbsp;&nbsp; Point(200, 20),&nbsp;&nbsp; // destination for upper-left 
+point of original<br>
+&nbsp;&nbsp;&nbsp; Point(110, 100),&nbsp; // destination for upper-right point 
+of original<br>
+&nbsp;&nbsp;&nbsp; Point(250, 30)};&nbsp; // destination for lower-left point of 
+original<br>
+<br>
+Image image(L&quot;Stripes.bmp&quot;);<br>
+<br>
+// Draw the image unaltered with its upper-left corner at (0, 0).<br>
+graphics.DrawImage(&amp;image, 0, 0);<br>
+<br>
+// Draw the image mapped to the parallelogram.<br>
+graphics.DrawImage(&amp;image, destinationPoints, 3); </font></p>
+<p>&nbsp;</p>
+<p><b><font size="4" color="#008000">Using Interpolation Mode to Control Image 
+Quality During Scaling</font></b></p>
+<p><font face="Courier New" size="4">//Shrink the image using high-quality 
+interpolation.<br>
+//call before &quot;graphics.DrawImage&quot;<br>
+graphics.SetInterpolationMode(InterpolationModeHighQualityBicubic);</font></p>
+<p><font face="Courier New" size="4">//for other choices, look up the
+<font color="#FF6600">InterpolationMode</font> enumeration</font></p>
+<p>&nbsp;</p>
+<p><b><font size="4" color="#008000">Using a Cached Bitmap to Improve 
+Performance</font></b></p>
+<p><font size="4">A <b>CachedBitmap</b> object stores an image in the format of 
+the current display device.</font></p>
+<p><font face="Courier New" size="4">Bitmap&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+bitmap(L&quot;Texture.jpg&quot;);<br>
+CachedBitmap&nbsp; cBitmap(&amp;bitmap, &amp;graphics);<br>
+&nbsp;</font></p>
+<p><font face="Courier New" size="4">graphics.DrawCachedBitmap(&amp;cBitmap, 
+upper_left_x, upper_left_y);</font></p>
+<p><font size="4">Note: A <b>CachedBitmap</b> object matches the format of the 
+display device at the time the <b>CachedBitmap</b> object was constructed. If 
+the user of your program changes the display settings, your code should 
+construct a new <b>CachedBitmap</b> object. The <b>DrawImage</b> method will 
+fail if you pass it a <b>CachedBitmap</b> object that was created prior to a 
+change in the display format.</font></p>
+<p>&nbsp;</p>
+<p><b><font size="4" color="#008000">Reading and Writing Metadata</font></b></p>
+<p><font size="4">GDI+ provides a uniform way of storing and retrieving metadata 
+from image files in various formats. In GDI+, a piece of metadata is called a <i>
+property item</i>. You can store and retrieve metadata by calling the <b>
+SetPropertyItem</b> and <b>GetPropertyItem</b> methods of the <b>Image</b> 
+class, and you don't have to be concerned about the details of how a particular 
+file format stores that metadata. You can determine the property items that are 
+stored in an image file by calling <b>Image::GetPropertyIDList</b>.</font></p>
+<p><font size="4">Examples:</font></p>
+<ul>
+  <li><font size="4"><a href="examples/read_meta_from_file.cpp">code for reading 
+  metadata from a file</a></font></li>
+  <li><font size="4"><a href="examples/write_meta_to_file.cpp">code for writing 
+  metadata to a file</a></font></li>
+</ul>
+
+</body>
+
+</html>

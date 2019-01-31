@@ -1,0 +1,102 @@
+﻿svg { border: 2px solid steelblue; }
+
+h1, h2 { color: green; text-align: center; }
+
+h2 { margin-top: 0px; }
+
+/* Layout of 'container_div' */
+#container_div { display: flex; flex-direction: row; width: 1000px; }
+
+#explanation_div { margin: 0 10px 0 10px; }
+
+/*Various explanation <div> start out as hidden*/
+#growing_influence_div, #ethnic_diversity_div, #financial_success_div { display: none; }
+
+
+/* Axis */
+.axis .domain { fill: none; stroke: black; }
+
+.axis .tick line { stroke: black; }
+
+.axis_grid_line .domain { fill: none; }
+
+.axis_grid_line .tick line { stroke: lightgray; }
+
+.axis_text { text-anchor: middle; font-size: 30px; }
+
+/* Highlighted text */
+#chart01_text { background-color: yellow; }
+
+
+/* ********* Population Growth Visual ********* */
+/* Santa Clara Population */
+.sc_pop { fill: steelblue; }
+.sc_pop_highlighted { fill: orange; }
+.sc_pop_line { stroke: steelblue; stroke-width: 2px; }
+.sc_pop_text { fill: steelblue; font-size: 30px; text-anchor: middle; }
+
+.usa_pop { fill: #47a329; }
+.usa_pop_highlighted { fill: orange; }
+.usa_pop_line { stroke: #47a329; stroke-width: 2px; }
+.usa_pop_text { fill: #47a329; font-size: 30px; text-anchor: middle; }
+
+/* ********* Growing Influence Visual ********* */
+/* color suggestions come from "http://colorbrewer2.org/" */
+
+.alameda_area { stroke: #e41a1c; fill: #e41a1c; background-color: #e41a1c; color: white; }
+.contra_costa_area { stroke: #377eb8; fill: #377eb8; background-color: #377eb8; color: white; }
+.marin_area { stroke: #4daf4a; fill: #4daf4a; background-color: #4daf4a; color: white; }
+
+.napa_area { stroke: #984ea3; fill: #984ea3; background-color: #984ea3; color: white; }
+.san_francisco_area { stroke: #ff7f00; fill: #ff7f00; background-color: #ff7f00; color: white; }
+.san_mateo_area { stroke: #ffff33; fill: #ffff33; background-color: #ffff33; color: black; }
+
+.santa_clara_area { stroke: #a65628; fill: #a65628; background-color: #a65628; color: white; }
+.solano_area { stroke: #f781bf; fill: #f781bf; background-color: #f781bf; color: black; }
+.sonoma_area { stroke: #999999; fill: #999999; background-color: #999999; color: black; }
+
+#growing_influence_div div { text-align: center; padding: 5px; }
+
+.AreaGraph_label_dark { font-size: 30px; }
+.AreaGraph_label_light { font-size: 30px; fill: white; }
+
+
+
+/* ********* Asian Immigration Visual ********* */
+.asian_area { stroke: #fbb4ae; fill: #fbb4ae; background-color: #fbb4ae; }
+.black_area { stroke: #b3cde3; fill: #b3cde3; background-color: #b3cde3; }
+.white_area { stroke: #ccebc5; fill: #ccebc5; background-color: #ccebc5; }
+.other_area { stroke: #decbe4; fill: #decbe4; background-color: #decbe4; }
+
+.AreaGraph_label_asian { font-size: 30px; fill: #c31909; }
+.AreaGraph_label_white { font-size: 30px; fill: #3e852e; }
+
+#ethnic_diversity_div div { text-align: center; padding: 5px; }
+
+.sc_asian { fill: #c31909; }
+.sc_asian_highlighted { fill: orange; }
+.sc_asian_line { stroke: #c31909; stroke-width: 2px; }
+.sc_asian_text { fill: #c31909; font-size: 30px; text-anchor: middle; }
+
+.usa_asian { fill: #a48341; }
+.usa_asian_highlighted { fill: orange; }
+.usa_asian_line { stroke: #a48341; stroke-width: 2px; }
+.usa_asian_text { fill: #a48341; font-size: 30px; text-anchor: middle; }
+
+
+/* ********* Financial Success Visual ********* */
+.stock_price { fill: steelblue; }
+.stock_price_line { stroke: steelblue; stroke-width: 2px; }
+
+.sp500_price { fill: #47a329; }
+.sp500_price_line { stroke: #47a329; stroke-width: 2px; }
+
+.sp500_legend_line { stroke: #47a329; stroke-width: 2px; }
+.sp500_legend_text { fill: #47a329; font-size: 26px; }
+
+
+/* ********** Event Graph *********** */
+.event_text { text-anchor: middle; }
+#event_div { position: absolute; padding: 0 15px 0 15px; 
+             border: 2px solid steelblue;
+             background-color: white; }

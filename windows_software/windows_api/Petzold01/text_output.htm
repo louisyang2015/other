@@ -1,0 +1,72 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Text Output</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">Text Output</font></h1>
+
+<h2 align="left"><font color="#008000">TextOut:</font></h2>
+<h2 align="left"><font face="Courier New" color="#FF6600">TextOut(hdc, x, y, 
+psText, iLength);</font></h2>
+<p align="left"><font size="4">To specify alignment:</font></p>
+<h2 align="left"><font color="#FF6600" face="Courier New">SetTextAlign(hdc, 
+TA_RIGHT | TA_TOP);</font></h2>
+<p align="left"><font size="4">Windows will interpret the coordinates passed to 
+subsequent TextOut functions as specifying the top-right corner of the txt 
+string rather than the top left corner</font></p>
+<p align="left"><font size="4">When printing text, to preserve the current 
+background:</font></p>
+
+<p align="left"><font size="4" face="Courier New" color="#FF6600">SetBkMode (hdc, 
+TRANSPARENT);</font></p>
+
+<p align="left"><font size="4">An alternative to TextOut is to use &quot;DrawText&quot;</font></p>
+<p align="left">&nbsp;</p>
+<h2 align="left"><font color="#008000">Information about the current font:</font></h2>
+<p align="left"><b><font face="Courier New" size="4" color="#FF6600">TEXTMETRIC 
+tm;<br>
+hdc = GetDC(hwnd);<br>
+GetTextMetrics(hdc, &amp;tm);<br>
+ReleaseDC(hwnd, hdc);</font></b></p>
+<p align="left"><font size="4">The fields of the TEXTMETRIC:</font></p>
+<p align="left"><font face="Courier New" size="4" color="#FF6600">typedef struct 
+tagTEXTMETRIC<br>
+{<br>
+<b>&nbsp;&nbsp;&nbsp; LONG tmHeight;<br>
+&nbsp;&nbsp;&nbsp; LONG tmAveCharWidth;<br>
+&nbsp;&nbsp;&nbsp; LONG tmMaxCharWidth;</b><br>
+}TEXTMETRIC, *PTEXTMETRIC;</font></p>
+<p align="left"><font size="4">these fields are in logical coordinates.</font></p>
+<p align="left"><font size="4">To get information about the system:</font></p>
+<h2 align="left"><font face="Courier New" color="#FF6600">
+GetSystemMetrics(SM_CXSCREEN);</font></h2>
+<p align="left"><font size="4">To see other possibilities, run the author's 
+program &quot;<a href="SysMets3.exe">SysMets3</a>&quot;</font></p>
+
+<p align="left">&nbsp;</p>
+
+<h2 align="left"><font color="#008000">Fonts:</font></h2>
+
+<p align="left"><font size="4">To use the basic fixed-pitch font of the system:</font></p>
+
+<p align="left"><font size="4" face="Courier New" color="#FF6600">SelectObject (hdc, 
+GetStockObject (SYSTEM_FIXED_FONT));</font></p>
+
+<p align="left"><font size="4">Other options: <font color="#0000FF">
+SYSTEM_FIXED_FONT</font>, <font color="#0000FF">OEM_FIXED_FONT</font></font></p>
+
+<p align="left"><font size="4">The font files have *.FON extensions.</font></p>
+
+<p align="left"><font size="4">The <font face="Courier New" color="#FF6600">
+CreateFont()</font> function has a lot of arguments.</font></p>
+
+</body>
+
+</html>

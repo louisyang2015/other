@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Language" content="en-us" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>TimeQuest Concepts and Terminolo</title>
+<link rel="stylesheet" type="text/css" href="fpga.css" />
+</head>
+
+<body>
+
+<h1>TimeQuest Concepts and Terminology</h1>
+<p class="center">Last updated May 29, 2011</p>
+<h2>Setup Time Slack</h2>
+<p><img src="images/setup_requirement.gif" width="468" height="250" /></p>
+<p>Data must arrive at time t2, ahead of the clock rising edge, to satisfy the 
+setup time. The data actually arrive early at time t1, and the earliness of the 
+(t2 - t1) gap is the setup time slack.</p>
+<p>&nbsp;</p>
+<h2>Hold Time Slack</h2>
+<p><img src="images/hold_requirement.gif" width="871" height="250" /></p>
+<p>Data must remain until time t3, after the clock edge has risen, to satisfy 
+the hold time. The next piece of data actually arrive late at time t4. The 
+lateness of the (t4 - t3) gap is the hold time slack.</p>
+<p>&nbsp;</p>
+<h2>Terminology</h2>
+<table>
+				<tr>
+								<td>Term</td>
+								<td>Definition</td>
+				</tr>
+				<tr>
+								<td>Cell</td>
+								<td class="left">Device building blocks (look up 
+								tables, multipliers, etc.)</td>
+				</tr>
+				<tr>
+								<td>Pin</td>
+								<td class="left">Input or output of cells</td>
+				</tr>
+				<tr>
+								<td>Net</td>
+								<td class="left">Connection between pins</td>
+				</tr>
+				<tr>
+								<td>Port</td>
+								<td class="left">Top-level inputs and outputs</td>
+				</tr>
+</table>
+<p>An I/O element is both a cell (since it&#39;s a device building block) and a port 
+(since it&#39;s a top level input / output).</p>
+<p><img src="images/terminology.gif" width="1212" height="881" /></p>
+
+</body>
+
+</html>

@@ -1,0 +1,1055 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Internal Forced Convection</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">Internal Forced Convection</font></h1>
+<p><font size="4">Internal forced convection is about fluid flowing in a pipe.</font></p>
+<p>&nbsp;</p>
+<h2><font color="#008000">Mean Velocity (V<sub>m</sub>)</font></h2>
+<p><font size="4">When fluid flows in a pipe, the layer of fluid touching the 
+inside of the pipe is actually not moving, and the fluid in the middle of the 
+pipe is moving the fastest </font><font color="#FF8000"><font size="5">(V<sub>max</sub>)</font><font size="4">
+</font></font><font size="4">.</font></p>
+<p><img border="0" src="images/pic0067.jpg" width="290" height="390"></p>
+<p><font size="4">In problems they usually give you the rate of flow in terms of 
+volume per second. In this case:<br>
+V<sub>m</sub> * (cross sectional area of pipe) = Volume per second rate of flow</font></p>
+<p>&nbsp;</p>
+<h2><font color="#008000">Mean Temperature (T<sub>m</sub>) and Bulk Mean 
+Temperature (T<sub>b</sub>)</font></h2>
+<p><font size="4">There's also a temperature profile in the flow.</font></p>
+<p><img border="0" src="images/pic0068.jpg" width="294" height="379"></p>
+<p><font size="4">The velocity profile and V<sub>m</sub> stay the same in the 
+direction of flow, but the temperature profile and T<sub>m</sub> changes in the 
+direction of flow. So T<sub>m</sub> is the mean temperature only for a 
+particular cross section of the pipe.</font></p>
+<p><font size="4">The mean temperature for the entire pipe is called the
+<font color="#008000">bulk mean fluid temperature (T<sub>b</sub>)</font>. It is 
+the average of the mean temperature at the inlet and outlet of the pipe.</font></p>
+<p><font size="4">T<sub>b</sub> = (T<sub>m,i</sub> + T<sub>m,e</sub>) / 2</font></p>
+<p><font size="4">We evaluate the properties of the fluid at this T<sub>b</sub> 
+temperature.</font></p>
+<p>&nbsp;</p>
+<h2><font color="#008000">Reynolds Number (Re)</font></h2>
+<table border="0" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" bgcolor="#FFFF99">
+  <tr>
+    <td>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">Re = </font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">V<sub>m</sub> D
+              </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">&#956; / <i>&#961;</i>
+              </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+      </tr>
+    </table>
+    <p><font size="4">V<sub>m</sub> = mean velocity<br>
+    D = diameter of the pipe, for circular pipes<br>
+    <font face="Times New Roman">&#956; = dynamic viscosity<br>
+    &#961; = fluid density<br>
+    &#956; / &#961; = &#957; = kinematic viscosity</font></font></p>
+    <p><font face="Times New Roman" size="4">For non circular pipes, D is the
+    <font color="#008000">hydraulic diameter</font> defined as:</font></p>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">D = </font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">4A<sub>C</sub>
+              </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">p </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+      </tr>
+    </table>
+    <p><font face="Times New Roman" size="4">A<sub>C</sub> = cross-sectional 
+    area of the pipe<br>
+    p = perimeter of the pipe</font></p>
+    <p><font face="Times New Roman" size="4" color="#008000">The value of Re 
+    tells us what kind of flow it is:</font></p>
+    <table border="0" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+      <tr>
+        <td><font face="Courier New" color="#ff8000" size="5">Re &lt; 2300</font></td>
+        <td><font face="Courier New" color="#ff8000" size="5">laminar flow
+        </font></td>
+      </tr>
+      <tr>
+        <td><font face="Courier New" color="#ff8000" size="5">2300 &#8804; Re &#8804; 10,000
+        </font></td>
+        <td><font face="Courier New" color="#ff8000" size="5">transitional flow
+        </font></td>
+      </tr>
+      <tr>
+        <td><font face="Courier New" color="#ff8000" size="5">Re &gt; 10,000 </font>
+        </td>
+        <td><font face="Courier New" size="5" color="#FF8000">turbulent</font><font face="Courier New" color="#ff8000" size="5"> 
+        flow </font></td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<h2><font color="#008000">The Entrance Region</font></h2>
+<p><font size="4">This is how velocity changes in the entrance region.</font></p>
+<p><img border="0" src="images/pic0069.jpg" width="748" height="238"></p>
+<p><font size="4">Notice the velocity boundary layer will eventually meet in the 
+center of the pipe. Prior to the boundary layer meeting, we say we are in the
+<font color="#008000">hydrodynamic entrance region</font>. The length of this 
+region is called the <font color="#008000">hydrodynamic entry length</font>
+</font><font size="5" color="#FF8000">(L<sub>h</sub>)</font><font size="4"> .</font></p>
+<p><img border="0" src="images/pic0070.jpg" width="756" height="321"></p>
+<p><font size="4">Similarly we also get a thermal boundary layer that eventually 
+meets in the middle. The length of the <font color="#008000">thermal entrance 
+region</font> is called <font color="#008000">thermal entry length</font> </font>
+<font size="5" color="#FF8000">(L<sub>t</sub>)</font><font size="4">.</font></p>
+<p><font size="4">Both the friction coefficient (f) and heat transfer 
+coefficient (h) are highest at the inlet. The effect of the entrance region is 
+always to enhance the average friction and heat transfer coefficients.</font></p>
+<p><img border="0" src="images/pic0071.jpg" width="453" height="700"></p>
+<table border="0" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" bgcolor="#FFFF99">
+  <tr>
+    <td><font size="4" color="#008000">Formulas for Entry Lengths</font><p>
+    <font size="4">Laminar flow:</font></p>
+    <p><font face="Courier New" color="#ff8000" size="5">L<sub>h, laminar</sub> 
+    &#8776; 0.05 Re D <br>
+    L<sub>t, laminar</sub> &#8776; 0.05 Re Pr D </font></p>
+    <p><font face="Courier New" color="#ff8000" size="5">L<sub>h, turbulent</sub> 
+    &#8776; L<sub>t, turbulent</sub> &#8776; 10 D <br>
+    </font><font size="4">where D is the diameter of the tube</font></td>
+  </tr>
+</table>
+<p><font size="4"><font color="#008000">Thermally Fully Developed Region</font> 
+--- This is the region after the thermal boundary layer meets in the middle. In 
+this region, both the surface temperature T<sub>S</sub> and mean temperature T<sub>m
+</sub>changes as a function of position, but the temperature profile </font>
+<font color="#FF8000" size="4">(T<sub>S</sub> - T) / (T<sub>S</sub> - T<sub>m</sub>)</font><font size="4"><sub>
+</sub>remains constant, and the heat transfer coefficient also remains constant.</font></p>
+<p><font size="4" color="#008000">Nusselt Numbers (Nu)</font></p>
+<p><img border="0" src="images/pic0072.jpg" width="698" height="569"></p>
+<p><font size="4">Long before &quot;x&quot; reach 10D, the Nu values settles out. Also, 
+the Nu values are very alike for both &quot;surface temperature (T<sub>S</sub>)&quot; = 
+constant conditions and &quot;heat flux (q<sub>S</sub>)&quot; = constant conditions.</font></p>
+<p><font size="4"><font color="#008000">Ignoring the Entrance Length</font> --- 
+In practice, the tubes are usually several times longer than either entrance 
+region, and thus the flow through the tubes is often assumed to be fully 
+developed for the entire length of the tube. This approach gives reasonable 
+results for long tubes and underestimates the heat transfer (conservative 
+results) for short tubes. </font></p>
+<p>&nbsp;</p>
+<h2><font color="#008000">General Thermal Analysis</font></h2>
+<table border="0" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" bgcolor="#FFFF99">
+  <tr>
+    <td><font size="4" color="#008000">Heat Transfer to a Fluid Flowing through 
+    a Pipe:</font><p><font face="Courier New" color="#ff8000" size="5">Q = m C<sub>P</sub> 
+    (T<sub>e</sub> - T<sub>i</sub>) </font></p>
+    <p><font size="4">Q = heat transferred from the pipe to the fluid<br>
+    m = flow rate in terms of mass per second<br>
+    T<sub>e</sub> = mean temperature at the pipe exit<br>
+    T<sub>i</sub> = mean temperature at the pipe inlet</font></td>
+  </tr>
+</table>
+<h2><font color="#008000">Constant Surface Heat Flux (q<sub>S</sub> = constant)</font></h2>
+
+<p><font size="4">This situation can happen if the tube is subjected to 
+radiation or electrical resistance heating. </font></p>
+
+<p><font size="4">We have:</font></p>
+
+<p><font face="Courier New" color="#ff8000" size="5">q<sub>S</sub> = h<sub>x</sub> 
+(T<sub>S</sub> - T<sub>m</sub>) </font></p>
+
+<p><font size="4">The h<sub>x</sub> is the local heat transfer coefficient. It 
+is approximately constant --- due to the Nu number being mostly constant. Since 
+q<sub>S</sub> is also constant, then <b><font color="#008000">T<sub>S</sub> - T<sub>m
+</sub>is constant.</font></b></font></p>
+
+<p><font size="4">A graph of temperature (T) versus &quot;x&quot;:</font></p>
+
+<p><img border="0" src="images/pic0073.jpg" width="448" height="605"></p>
+
+<p><font size="4">The slope of the temperature line comes from:</font></p>
+
+<p><font face="Courier New" color="#ff8000" size="5">Q = q<sub>S</sub> * A<sub>S</sub> 
+= m * C<sub>P</sub> (T<sub>e</sub> - T<sub>i</sub> ) </font></p>
+
+<p><font size="4">Q = heat transferred from the pipe to the fluid<br>
+q<sub>S</sub> = heat flux (which is constant for the entire pipe)<br>
+A<sub>S</sub> = the inside surface area of the pipe<br>
+m = fluid flow in terms of mass per unit time<br>
+C<sub>P</sub> = specific heat<br>
+T<sub>e</sub> = mean temperature at the exit<br>
+T<sub>i</sub> = mean temperature at the inlet</font></p>
+
+<p><font size="4">T<sub>e</sub> doesn't have to be the temperature at the very 
+end of the tube --- it can be represent the temperature of any point beyond T<sub>i</sub> 
+. Say that T<sub>e</sub> is &quot;dx&quot; units beyond T<sub>i</sub> , and also express A<sub>S</sub> 
+as:</font></p>
+
+<p><font face="Courier New" color="#ff8000" size="5">A<sub>S</sub> = p * dx
+</font></p>
+
+<p><font size="4">where &quot;p&quot; is the perimeter of a cross section of the tube.</font></p>
+
+<p><font face="Courier New" color="#ff8000" size="5">q<sub>S</sub> * p * dx = m 
+* C<sub>P</sub> * [T(x) - T<sub>i</sub>]</font></p>
+
+<p><font size="4">and let T(x) - T<sub>i</sub> be &quot;dT&quot; and we will get a 
+differential equation.</font></p>
+
+<table border="0" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" bgcolor="#FFFF99">
+  <tr>
+    <td><font size="4">If the heat flux q<sub>S</sub> = constant, </font><br>
+&nbsp;<table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">dT<sub>m</sub>
+              </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">dx </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">= </font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">q<sub>S</sub> p
+              </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">m C<sub>P</sub>
+              </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+      </tr>
+    </table>
+    <p><font size="4">T<sub>m</sub> = mean temperature, which is position 
+    dependent<br>
+    p = perimeter of a cross section of the tube<br>
+    m = flow rate in terms of mass per unit time<br>
+    C<sub>P</sub> = specific heat of the fluid</font></td>
+  </tr>
+</table>
+<h2><font color="#008000">Constant Surface Temperature (q<sub>S</sub> = 
+constant)</font></h2>
+
+<p><font size="4">This situation can happen if there is phase change, such as 
+boiling or condensation at the outer surface of the tube.</font></p>
+
+<p><font size="4">Here's a graph of the temperature as a function of position:</font></p>
+
+<p><img border="0" src="images/pic0074.jpg" width="465" height="553"></p>
+
+<p><font size="4">The mean temperature approach T<sub>S</sub> exponentially. 
+This is because the greater the temperature difference T<sub>m</sub>(x) - T<sub>S</sub> 
+, the greater the heat transfer, and so faster the T<sub>m</sub> approach T<sub>S</sub> 
+. When T<sub>m</sub> is closer to T<sub>S</sub> , the heat transfer is not as 
+great any more and so T<sub>m</sub> will not change as quickly as before.</font></p>
+
+<p><font size="4">If we take a small slice of the fluid flowing through the 
+tube:</font></p>
+
+<p><font face="Courier New" color="#ff8000" size="5">m C<sub>P</sub> dT<sub>m</sub> 
+= h (T<sub>S</sub> - T<sub>m</sub> ) dA<sub>S</sub> </font></p>
+<p><font size="4">m = flow rate in terms of mass per unit volume<br>
+C<sub>p</sub> = specific heat</font></p>
+<p><font size="4">The left term is the heat change as a slice of fluid move 
+through the tube. The right term is the heat transferred from the wall of the 
+pipe to the slice of fluid.</font></p>
+<table border="0" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" bgcolor="#FFFF99">
+  <tr>
+    <td><font size="4" color="#008000">Exit temperature when surface temperature 
+    T<sub>S</sub> = constant:</font><p>
+    <font face="Courier New" color="#ff8000" size="5">T<sub>e</sub> = T<sub>S</sub> 
+    - (T<sub>S</sub> - T<sub>i</sub> ) exp( (-h A<sub>S</sub>) / (m C<sub>p</sub>) 
+    ) </font></p>
+    <p><font size="4">T<sub>e</sub> = mean temperature at the exit of the pipe<br>
+    T<sub>i</sub> = mean temperature at the inlet of the pipe<br>
+    T<sub>S</sub> = temperature on the surface of the pipe<br>
+    A<sub>S</sub> = surface area of the pipe<br>
+    m = flow rate in terms of mass per second</font></td>
+  </tr>
+</table>
+<p><font size="4">We can let T<sub>e</sub> be any point beyond T<sub>i</sub> if 
+we just modify A<sub>S</sub> to be the surface area of the pipe from the T<sub>i</sub> 
+point to the T<sub>e </sub>point.</font></p>
+
+<p><font size="4">The &quot;(-h A<sub>S</sub>) / (m C<sub>p</sub>)&quot; term is called 
+NTU (number of transfer units). When NTU &gt; 5, T<sub>m</sub>(x)
+<font face="Times New Roman">&#8776; T<sub>i</sub> and the heat transfer from the wall 
+of the pipe to the fluid is minimal. Extending the pipe beyond NTU &gt; 5 will not 
+change heat transfer.</font></font></p>
+
+<table border="0" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" bgcolor="#FFFF99">
+  <tr>
+    <td><font color="#008000" size="4">Heat transfer when pipe surface 
+    temperature T<sub>S</sub> = constant:</font><p>
+    <font face="Courier New" color="#ff8000" size="5">Q = h A<sub>S</sub> &#916;T<sub>ln</sub>
+    </font></p>
+    <p><font size="4">where</font></p>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">&#916;T<sub>ln</sub> =
+        </font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">&#916;T<sub>e</sub> - 
+              &#916;T<sub>i</sub> </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">ln(&#916;T<sub>e</sub> 
+              / &#916;T<sub>i</sub> ) </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+      </tr>
+    </table>
+    <p><font face="Courier New" color="#ff8000" size="5">&#916;T<sub>i</sub> = T<sub>S</sub> 
+    - T<sub>i</sub> </font></p>
+    <p><font face="Courier New" color="#ff8000" size="5">&#916;T<sub>e</sub> = T<sub>S</sub> 
+    - T<sub>e</sub> </font></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+
+<h2><font face="Times New Roman" color="#008000">Laminar Flow in Tubes</font></h2>
+
+<table border="0" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" bgcolor="#FFFF99">
+  <tr>
+    <td><font face="Times New Roman" size="4"><font color="#008000">The velocity 
+    profile for laminar flow in tubes:</font><br>
+&nbsp;</font><table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">V(r) = 2V<sub>m</sub>
+        </font></td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="7">(</font> </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">1 - </font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">r<sup>2</sup>
+              </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">R<sup>2</sup>
+              </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="7">)</font> </td>
+      </tr>
+    </table>
+    <p><font face="Times New Roman" size="4">V = velocity<br>
+    V<sub>m</sub> = mean velocity at a particular point<br>
+    The above formula means that maximum velocity, at r = 0, is twice the mean 
+    velocity.</font></td>
+  </tr>
+</table>
+
+<p>&nbsp;</p>
+
+<table border="0" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" bgcolor="#FFFF99">
+  <tr>
+    <td><font size="4" color="#008000">Pressure drop for laminar flow in tubes:<br>
+&nbsp;</font><table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">&#916;P = f </font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">L <i>&#961;</i> V<sub>m</sub><sup>2</sup> </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">2 D </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+      </tr>
+    </table>
+    <p><font size="4">where:</font></p>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">f = </font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">64 </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">Re </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+      </tr>
+    </table>
+    <p><font size="4">L = length of the tube (<font face="Times New Roman">&#8710;P is 
+    the pressure drop over this length</font>)<br>
+    <font face="Times New Roman">&#961; = density of fluid<br>
+    V<sub>m</sub> = mean velocity<br>
+    D = diameter of the tube</font></font><p>
+    <font face="Times New Roman" size="4">f is called the friction factor; this 
+    is not the same thing as the friction coefficient!</font><p>
+    <font face="Times New Roman" size="4">The &#8710;P = f * (...) expression is for 
+    all types of flows, while the f = (...) is only for laminar flow</font></td>
+  </tr>
+</table>
+
+<p>&nbsp;</p>
+
+<table border="0" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" bgcolor="#FFFF99">
+  <tr>
+    <td><font face="Times New Roman" size="4" color="#008000">The pumping power 
+    (W<sub>pump</sub>) required to create a pressure drop &#8710;P in a fluid flowing 
+    through a tube:<br>
+    This formula applies to all types of flow</font><p>
+    <font face="Courier New" color="#ff8000" size="5">W<sub>pump</sub> = V * &#916;P
+    </font></p>
+    <p><font size="4">W<sub>pump</sub> is in Watts (or other units of power). W 
+    is not energy (Joules) here.<br>
+    V = flow rate in volume per second</font></td>
+  </tr>
+</table>
+
+<p>&nbsp;</p>
+
+<table border="0" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" bgcolor="#FFFF99">
+  <tr>
+    <td><font color="#008000" size="4">Nusselt Number for laminar flow:</font><p>
+    <font size="4" color="#008000">For circular tube when the tube's heat flux q<sub>S</sub> 
+    = constant,</font></p>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">Nu = </font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">hD </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">k </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">= 4.36 </font></td>
+      </tr>
+    </table>
+    <p><font size="4" color="#008000">For circular tube when the tube's surface 
+    temperature T<sub>S</sub> = constant</font></p>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">Nu = </font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">hD </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">k </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">= 3.66 </font></td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+
+<p>&nbsp;</p>
+
+<p><font face="Times New Roman" size="4">Laminary flow in non-circular tubes use 
+the hydraulic diameter D<sub>h</sub> as the characteristic distance.</font></p>
+
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    D<sub>h</sub> = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">4 * cross sectional 
+          area </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">perimeter </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+
+<p><img border="0" src="images/table_08-01.jpg" width="802" height="959"></p>
+
+<p>&nbsp;</p>
+
+<table border="0" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" bgcolor="#FFFF99">
+  <tr>
+    <td><font face="Times New Roman" size="4" color="#008000">Nusselt number for 
+    laminar flow in the entrance region:</font><p>
+    <font size="4" color="#008000">for a tube:</font></p>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">Nu = </font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">hD </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">k </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">= 3.66 + </font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">0.065 (D/L) Re 
+              Pr </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">1 + 0.04 [(D/L) 
+              Re Pr]<sup>2/3</sup> </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+      </tr>
+    </table>
+    <p><i><font size="4">for flow between isothermal parallel plates of length L:</font></i></p>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">Nu = </font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">hD </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">k </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">= 7.54 + </font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">0.03 (D<sub>h</sub> /L) Re Pr
+              </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">1 + 0.016 [(D<sub>h</sub> 
+              /L) Re Pr]<sup>2/3</sup> </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+
+<p>&nbsp;</p>
+
+<h2><font color="#008000">Turbulent Flow in Tubes</font></h2>
+
+<table border="0" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" bgcolor="#FFFF99">
+  <tr>
+    <td><font size="4" color="#008000">The friction factor (f) in turbulent 
+    flow:</font><p><font size="4" color="#008000">For smooth tubes:</font></p>
+    <p><font face="Courier New" color="#ff8000" size="5">f = (0.790 ln Re - 
+    1.64)<sup>-2</sup> <br>
+    </font><font size="4"><br>
+    <font color="#008000">For tubes with rough surfaces:</font></font></p>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">1 </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">f<sup>1/2</sup>
+              </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">= -2.0 log </font>
+        </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="7">(</font> </td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">&#949;/D </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">3.7 </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">+ </font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">2.51 </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">Re * f<sup>1/2</sup>
+              </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="7">)</font> </td>
+      </tr>
+    </table>
+    <p><font size="4">The above equation is iterative. To get a starting value, 
+    use:</font></p>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">1 </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">f<sup>1/2</sup>
+              </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">&#8776; -1.8 log </font>
+        </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="7">(</font> </td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">6.9 </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">Re </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">+ </font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">(&#949;/D)<sup>1.11</sup>
+              </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">3.7<sup>1.11</sup>
+              </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="7">)</font> </td>
+      </tr>
+    </table>
+    <p><font size="4">You need the friction factor f to get the pressure drop
+    </font><font face="Times New Roman" size="4">&#8710;P. The formula for &#8710;P is the 
+    same for all kinds of flow --- it's just that there is a different f for 
+    each type of flow</font></p>
+    <p><font face="Times New Roman" size="4">f is also part of the formula for 
+    the Nusselt number.</font></td>
+  </tr>
+</table>
+
+<p>&nbsp;</p>
+
+<table border="0" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" bgcolor="#FFFF99">
+  <tr>
+    <td><font face="Times New Roman" size="4" color="#008000">Nusselt number for 
+    turbulent flow:<br>
+&nbsp;</font><table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">Nu = </font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">(f/8)(Re - 1000) 
+              Pr </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">1 + 12.7(f/8)<sup>0.5</sup> 
+              (Pr<sup>2/3</sup> - 1) </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+      </tr>
+    </table>
+    <p><font face="Times New Roman" size="4">The above equation is valid over 
+    the range:</font></p>
+    <ul>
+      <li><font face="Courier New" color="#ff8000" size="5">0.5 &#8804; Pr &#8804; 2000</font></li>
+      <li><font face="Courier New" size="5" color="#FF8000">3 * 10<sup>3</sup> &lt; 
+      Re &lt; 5 * 10<sup>6</sup></font></li>
+    </ul>
+    <p><font face="Times New Roman" size="4">For liquid metals, meaning 0.004 &lt; 
+    Pr &lt; 0.01, we use:</font></p>
+    <p><font face="Times New Roman" size="4">If surface temperature T<sub>S</sub> 
+    = constant :</font></p>
+    <p><font face="Courier New" color="#ff8000" size="5">Nu = 4.8 + 0.0156 Re<sup>0.85</sup> 
+    Pr<sub>S</sub><sup>0.93</sup> </font></p>
+    <p><font face="Times New Roman" size="4">If surface heat flux q<sub>S</sub> 
+    = constant :</font></p>
+    <p><font face="Courier New" color="#ff8000" size="5">Nu = 6.3 + 0.0167 Re<sup>0.85</sup> 
+    Pr<sub>S</sub><sup>0.93</sup> </font></p>
+    <p><font face="Times New Roman" size="4">The Pr<sub>s</sub> denotes that Pr 
+    should be evaluated at the surface temperature T<sub>S</sub> .</font></td>
+  </tr>
+</table>
+
+<p><font face="Times New Roman" size="4">The entrance region for turbulent flow 
+situations is so short that it is ignored, so the book gave no separate 
+equations for the entrance region of turbulent flow.</font></p>
+
+<p><font face="Times New Roman" size="4">If the tube is non-circular, replace D 
+with D<sub>h</sub> , where D<sub>h</sub> = 4 * cross sectional area / perimeter</font></p>
+
+<p><font face="Times New Roman" size="4"><font color="#008000">Heat Transfer 
+Enhancement </font>--- If we roughen the surface of the tubes, we get a higher 
+heat transfer coefficient. But rough tubes will also require greater power to 
+pump fluid through them.</font></p>
+
+<p><font face="Times New Roman" size="4">Tables regarding the roughness of a 
+pipe:</font></p>
+
+<p><img border="0" src="images/pic0076.jpg" width="389" height="470"></p>
+
+<p><img border="0" src="images/table_08-03.jpg" width="394" height="636"></p>
+
+<p><font face="Times New Roman" size="4">Also, some times the listed diameter of 
+a pipe is not the internal diameter of the pipe:</font></p>
+
+<p><img border="0" src="images/table_08-02.jpg" width="385" height="517"></p>
+
+<p>&nbsp;</p>
+
+<h2><font face="Times New Roman" color="#008000">Flow through Tube Annulus</font></h2>
+
+<p><img border="0" src="images/pic0079.jpg" width="399" height="257"></p>
+
+<p><font face="Times New Roman" size="4">In this situation, one fluid flows 
+through the central tube, while the other fluid flows outside of the central 
+smaller tube and inside a larger tube.</font></p>
+
+<p><font face="Times New Roman" size="4">D<sub>h</sub> = 4 * A<sub>C</sub> / p
+</font></p>
+
+<p><font face="Courier New" color="#ff8000" size="5">D<sub>h</sub> = D<sub>o</sub> 
+- D<sub>i</sub> </font></p>
+
+<p><font face="Times New Roman" size="4">There are two Nu numbers, Nu<sub>i</sub> 
+for the inner tube's surface and Nu<sub>o</sub> for the outer tube's surface. 
+For <font color="#008000">fully developed turbulent flow</font>, these two Nu 
+numbers are equal to one another. Compute the Nu by first using the formula for 
+Nu in turbulent flow, and then multiplying the result with the following 
+correction factor F :</font></p>
+
+<p><font face="Courier New" color="#ff8000" size="5">F = 0.86 * (D<sub>i</sub> / 
+D<sub>o</sub>)<sup>-0.16</sup> </font></p>
+
+<p><font face="Times New Roman" size="4">For </font>
+<font face="Times New Roman" size="4" color="#008000">fully developed laminar 
+flow</font><font face="Times New Roman" size="4">, there's a table in the book :</font></p>
+
+<p><img border="0" src="images/table_08-04.jpg" width="381" height="410"></p>
+
+</body>
+
+</html>

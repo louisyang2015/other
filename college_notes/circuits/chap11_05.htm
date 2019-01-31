@@ -1,0 +1,175 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Filters</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">Filters</font></h1>
+<p><font size="4">Filters are divided into two groups. <font color="#008000">
+Passive filters</font> use only capacitors and inductors to achieve filtering.<font color="#008000"> 
+Active filters</font> use amplifiers in addition to capacitors and inductors.</font></p>
+<h2><font color="#008000">Passive Filters</font></h2>
+<p><font size="4">The voltage drop across a capacitor will be high if the 
+frequency is low --- so taking the output across a capacitor is always going to 
+result in a low pass filter.</font></p>
+<p><font size="4">The voltage drop across an inductor will be high if the 
+frequency is high --- so taking the output across an inductor is always going to 
+result in a high pass filter.</font></p>
+<p><font size="4">Example: the following is a low pass filter</font></p>
+<p><img border="0" src="images/pic0165.gif" width="339" height="200"></p>
+<p><font size="4">If we take the output across the resistor, then it would be 
+the opposite of what the output over the capacitor would do. At high frequency, 
+when the output over the capacitor is high, the output over the resistor would 
+be low so the output over the resistor is a high pass filter.</font></p>
+<p><font size="4">The filter from two sections ago, the series RCL circuit:</font></p>
+<p><img border="0" src="images/pic0166.gif" width="354" height="350"></p>
+<p><font size="4">V<sub>O1</sub> is shown to be a mid band filter, where at the 
+resonance frequency w<sub>0 </sub>, V<sub>O1</sub> = V<sub>I</sub> . We can also 
+deduce that V<sub>O2</sub> will be zero at the same resonance frequency w<sub>0</sub> 
+, and that V<sub>O2</sub> is a band reject filter with an output graph that 
+looks like:</font></p>
+<p><img border="0" src="images/pic0167.gif" width="369" height="200"></p>
+<p><font size="4">Another name for this kind of filter is that it's a notch 
+filter. Another circuit that implements a notch filter:</font></p>
+<p><img border="0" src="images/pic0170.gif" width="600" height="348"></p>
+<p><font size="4">The idea is that at low frequency, the current will go through 
+the inductor easily and leave the bulk of the voltage drop for the resistor. At 
+high frequency, the current will go through the capacitor easily and leave the 
+bulk of the voltage drop for the resistor.</font></p>
+<p>&nbsp;</p>
+<h2><font color="#008000">Active Filters</font></h2>
+<p><font size="4">Passive circuits can not really have a gain &gt; 1. While it is 
+true that in the series RLC circuit, the output voltage across the capacitor can 
+be quite high, putting almost any load across the capacitor will change things 
+drastically. The reason is that any load will allow the current to walk around 
+the capacitor.</font></p>
+
+<p><font size="4">Active filters use amplifiers in addition to capacitors and 
+inductors. It's the amplifier that will enable the gain to be greater than one, 
+while the capacitor and inductors are the components doing the filtering.</font></p>
+
+<p><font size="4">This section involve two different kinds of amplifiers --- the 
+ideal op-amp that is from section 3.3, and also a new operational 
+transconductance amplifier (OTA).</font></p>
+
+<p><img border="0" src="images/pic0168.gif" width="780" height="234"></p>
+
+<p><font size="4">In the OTA, the output is a current that is a multiple of the 
+input voltage.</font></p>
+
+<p><font size="4">For both the ideal op-amp and ideal OTA, the goal is to have 
+the amplifier work no matter what components are attached at the input and at 
+the output.</font></p>
+
+<table border="1" cellpadding="12" cellspacing="1" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td align="center" nowrap>&nbsp;</td>
+    <td align="center" nowrap><font size="4">Ideal R<sub>in</sub></font></td>
+    <td align="center" nowrap><font size="4">Ideal R<sub>out</sub></font></td>
+    <td align="center" nowrap><font size="4">Ideal Gain</font></td>
+    <td align="center" nowrap><font size="4">Input Currents</font></td>
+    <td align="center" nowrap><font size="4">Input Voltage</font></td>
+  </tr>
+  <tr>
+    <td align="center" nowrap><font size="4">Op-amp</font></td>
+    <td align="center" nowrap><font face="Times New Roman" size="4">&#8734;</font></td>
+    <td align="center" nowrap><font size="4">0</font></td>
+    <td align="center" nowrap><font face="Times New Roman" size="4">&#8734;</font></td>
+    <td align="center" nowrap><font size="4">0</font></td>
+    <td align="center" nowrap><font size="4">0</font></td>
+  </tr>
+  <tr>
+    <td align="center" nowrap><font size="4">OTA</font></td>
+    <td align="center" nowrap><font face="Times New Roman" size="4">&#8734;</font></td>
+    <td align="center" nowrap><font face="Times New Roman" size="4">&#8734;</font></td>
+    <td align="center" nowrap><font size="4">g<sub>m</sub></font></td>
+    <td align="center" nowrap><font size="4">0</font></td>
+    <td align="center" nowrap><font size="4">nonzero</font></td>
+  </tr>
+</table>
+<p><font size="4">For the op-amp, ideal R<sub>out</sub> is 0 because the ideal 
+op-amp is viewed as a voltage provider. The ideal OTA has an ideal R<sub>out</sub> 
+of 0 because it's suppose to be a current provider.</font></p>
+
+<p><font size="4">OTA can be configured to act as a resistor. The reason that 
+this is done is that OTA can be made of transistors, and transistors takes up 
+much less space than a resistor.</font></p>
+
+<p><img border="0" src="images/pic0169.gif" width="393" height="250"></p>
+
+<p><font size="4">It is not hard to show that:</font></p>
+
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    R<sub>eq</sub> = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">V<sub>in</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">I<sub>in</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">1 </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">g<sub>m</sub> </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<p><font size="4">The OTA's transconductance g<sub>m</sub> is  programmed by a control current that the book 
+calls I<sub>ABC </sub>. The book's number is that the sensitivity of g<sub>m</sub> 
+to I<sub>ABC</sub> is typically 20 S/A. This number is used to do the problems 
+for this section.</font></p>
+
+<p><font size="4">The book has a lot of examples, but I did not see anything 
+new. Even with OTA, you derive a transfer function in the frequency domain, then 
+if there is a quadratic term in the denominator that is in the form</font></p>
+
+<pre><font size="4">	1 + 2ST * (jw) + (jw * T)<sup>2</sup></font></pre>
+<p><font size="4">we get to say that the quality factor of the filter is Q = 
+1/(2S) .</font></p>
+
+</body>
+
+</html>

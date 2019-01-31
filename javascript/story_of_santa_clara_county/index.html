@@ -1,0 +1,204 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <title>Story of Santa Clara County</title>
+  <script src="js/d3.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/data_formatting.js"></script>
+  <script src="js/d3_wrapper.js"></script>
+  <script src="js/visuals.js"></script>
+  <link href="css/style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <h1>Story of Santa Clara County</h1>
+
+  <p>
+    In 1860, Santa Clara county has a population of 12 thousand, and was dwarfed by 
+    San Francisco's 57 thousand. Probably nobody outside of the Bay Area heard 
+    of Santa Clara county back then.
+  </p>
+  <p>
+    In the next hundred and fifty years, Santa Clara county would grow to contain
+    1.8 million people, host the headquarters of some of the largest technology
+    companies in the world, and achieve the highest median household income of
+    any county in California.
+  </p>
+
+  <div>
+    <select id="Graphs_cb" onchange="update_visualization()">
+      <option value="Population Growth">Population Growth</option>
+      <option value="Growing Influence">Growing Influence</option>
+      <option value="Asian Immigration">Asian Immigration</option>
+      <option value="Financial Success">Financial Success</option>
+    </select>
+  </div>
+
+  <div id="container_div">
+    <div id="svg_div">
+      <svg id="chart01" width="700" height="500"></svg>
+    </div>
+    <div id="explanation_div">
+
+      <div id="pop_growth_div">
+        <h2>Population Growth</h2>
+        <p>
+          Starting at 1940, the population of Santa Clara County has grown rapidly.
+        </p>
+        <p>
+          <input id="CompareWithUSA_cb" type="checkbox" onchange="update_population_graph()" />
+          <span>Compare with USA Growth</span>
+        </p>
+        <p>
+          <input id="SC_Events_cb" type="checkbox" onchange="update_population_graph()" />
+          <span>Show Events</span>
+        </p>
+      </div>
+
+      <div id="growing_influence_div">
+        <h2>Growing Influence</h2>
+        <p>
+          The Bay Area was once centered on San Francisco, which in 1860 
+          contained half of the total Bay Area population. However, the 
+          San Francisco county is also the smallest one in terms of land 
+          area. As time went on, the population spread to other nearby counties,
+          with the Alameda and Santa Clara counties becoming the two most 
+          populous counties.
+        </p>
+        <div>
+          <div class="alameda_area">Alameda</div>
+          <div class="contra_costa_area">Contra Costa</div>
+          <div class="marin_area">Marin</div>
+          <div class="napa_area">Napa</div>
+          <div class="san_francisco_area">San Francisco</div>
+          <div class="san_mateo_area">San Mateo</div>
+          <div class="santa_clara_area">Santa Clara</div>
+          <div class="solano_area">Solano</div>
+          <div class="sonoma_area">Sonoma</div>
+        </div>
+      </div>
+
+      <div id="ethnic_diversity_div">
+        <h2>Asian Immigration</h2>
+        <p>
+          As recent as the 1970 census, Asians were a small minority in the Santa Clara county.
+          As the technology industry and trade with Asia took off, more and more Asians came.
+          In the 2010 census, the population of the Santa Clara county is 35% White, 32% Asian,
+          and 27% Hispanic. Prior to the 1980 census, the Hispanic population was counted as White.
+        </p>
+        <div>
+          <div class="white_area">White + Hispanic</div>
+          <div class="black_area">Black</div>
+          <div class="other_area">Other</div>
+          <div class="asian_area">Asian</div>
+        </div>
+        <p>
+          <input id="CompareWithUSA_Asian_cb" type="checkbox" onchange="update_ethnicity_graph()" />
+          <span>Compare with USA Asian Population</span>
+        </p>
+        <p>
+          <input id="AsianImmigrationEvents_cb" type="checkbox" onchange="update_ethnicity_graph()" />
+          <span>Show Events</span>
+        </p>
+      </div>
+
+      <div id="financial_success_div">
+        <h2>Financial Success</h2>
+        <p>Santa Clara county hosts headquarters of some of the largest technology 
+        companies in the world.</p>
+        <p>When these companies find a breakthrough, their stock can outperform
+        the broader market by an order of magnitude.</p>
+        <p>
+          <select id="Companies_cb" onchange="update_stock_graph()">
+            <option value="AAPL">Apple</option>
+            <option value="CSCO">Cisco</option>
+            <option value="GOOG">Google</option>
+            <option value="HPQ">HP</option>
+            <option value="INTC">Intel</option>
+          </select>
+          <input id="LogScale_cb" type="checkbox" onchange="update_stock_graph()" />
+          <span>Log Scale</span> <br />
+          <input id="SP500_cb" type="checkbox" onchange="update_stock_graph()" />
+          <span>Compare with S&amp;P 500</span>
+        </p>
+        <p>
+          <input id="StockEvents_cb" type="checkbox" onchange="update_stock_graph()" />
+          <span>Show Events</span>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div id="event_div"></div>
+
+  <script>
+    // need to hide the "event_div" by default
+    // this tag is under control of the event_graph object
+    d3.select('#event_div').style('visibility', 'collapse');
+
+    // show the initial graph
+    update_population_graph();
+
+    function update_visualization() {
+      // Hide all explanation <div> tags
+      pop_growth_div.style.display = 'none';
+      growing_influence_div.style.display = 'none';
+      ethnic_diversity_div.style.display = 'none';
+      financial_success_div.style.display = 'none';
+
+      if (Graphs_cb.value === 'Population Growth') {
+        pop_growth_div.style.display = 'block';
+        update_population_graph();
+      }
+        
+      else if (Graphs_cb.value === 'Growing Influence') {
+        growing_influence_div.style.display = 'block';
+        plot_county_distribution();
+      }
+
+      else if (Graphs_cb.value === 'Asian Immigration') {
+        ethnic_diversity_div.style.display = 'block';
+        update_ethnicity_graph();
+      }
+        
+      else if (Graphs_cb.value === 'Financial Success') {
+        financial_success_div.style.display = 'block';
+        update_stock_graph();
+      }
+    }
+
+    function update_population_graph() {
+      if (CompareWithUSA_cb.checked === true)
+        plot_sc_vs_usa_growth(SC_Events_cb.checked);
+      else plot_sc_population(SC_Events_cb.checked);
+    }
+
+    function update_ethnicity_graph() {
+      // always plot the area graph
+      plot_ethnic_distribution();
+
+      // labels need to be hidden if historical events are shown
+      var show_label = true;
+      if (AsianImmigrationEvents_cb.checked) show_label = false;
+            
+      if (CompareWithUSA_Asian_cb.checked)
+        // add comparison with the rest of USA
+        plot_sc_vs_usa_asian_distribution(show_label);
+      else {
+        if (show_label) add_text_labels_to_ethnicity_graph();
+      }
+
+      if (AsianImmigrationEvents_cb.checked) plot_asian_immigration_events();
+    }
+
+    function update_stock_graph() {
+      plot_stock(Companies_cb.value, LogScale_cb.checked, SP500_cb.checked);
+      if (StockEvents_cb.checked)
+        plot_stock_events(Companies_cb.value);
+    }
+  
+  
+  </script>
+</body>
+</html>

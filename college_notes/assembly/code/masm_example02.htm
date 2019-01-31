@@ -1,0 +1,89 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>MASM example #2</title>
+</head>
+
+<body>
+
+<p><font face="Courier New" size="4">TITLE LABORATORY 10 PART 2<br>
+<br>
+DATA_SEG SEGMENT 'DATA'<br>
+&nbsp;&nbsp;&nbsp; PARAMETER DW 0ABCDH <br>
+&nbsp;&nbsp;&nbsp; <font color="#008000">ORG 100H</font><br>
+&nbsp;&nbsp;&nbsp; ;This section defines the array elements<br>
+&nbsp;&nbsp;&nbsp; ;The offset address is now 100(hex)<br>
+&nbsp;&nbsp;&nbsp; ARRAY DW 4646H, 4646H ,4646H ,4646H ,4646H 
+,4646H,4646H,<font color="#008000">0abcdH</font><br>
+&nbsp;&nbsp;&nbsp; DW 23 dup(0), 0abcdh<br>
+&nbsp;&nbsp;&nbsp; ORG 200H<br>
+&nbsp;&nbsp;&nbsp; FOUND DW 32 DUP(-1)<br>
+&nbsp;&nbsp;&nbsp; COUNT DW 0<br>
+DATA_SEG ENDS<br>
+<br>
+STACK_SEG SEGMENT STACK 'STACK'<br>
+&nbsp;&nbsp;&nbsp; DB 128 DUP(?)<br>
+STACK_SEG ENDS<br>
+<br>
+CODE_SEG SEGMENT 'CODE'<br>
+<br>
+LAB10 PROC FAR<br>
+&nbsp;&nbsp;&nbsp; ASSUME CS:CODE_SEG, SS:STACK_SEG, DS:DATA_SEG<br>
+&nbsp;&nbsp;&nbsp; PUSH DS<br>
+&nbsp;&nbsp;&nbsp; MOV AX, 0<br>
+&nbsp;&nbsp;&nbsp; PUSH AX<br>
+<br>
+&nbsp;&nbsp;&nbsp; ; PROGRAM CODE STARTS HERE<br>
+&nbsp;&nbsp;&nbsp; MOV AX, DATA_SEG<br>
+&nbsp;&nbsp;&nbsp; MOV DS, AX<br>
+<br>
+&nbsp;&nbsp;&nbsp; MOV AX, PARAMETER<br>
+<br>
+&nbsp;&nbsp;&nbsp; MOV CX, 32 ;CX = number of unchecked memory cells<br>
+&nbsp;&nbsp;&nbsp; <font color="#008000">MOV SI, OFFSET ARRAY&nbsp;&nbsp;&nbsp; 
+;moves the address into SI</font><br>
+<br>
+COMPARE_LOOP: CMP AX, [SI]<br>
+&nbsp;&nbsp;&nbsp; JE PARAM_FOUND<br>
+<br>
+&nbsp;&nbsp;&nbsp; ;This block gets executed if not found<br>
+PARAM_NOT_FOUND:<br>
+&nbsp;&nbsp;&nbsp; INC SI ; each word is two bytes<br>
+&nbsp;&nbsp;&nbsp; INC SI<br>
+&nbsp;&nbsp;&nbsp; DEC CX ; one less byte to check<br>
+&nbsp;&nbsp;&nbsp; JZ DONE ; quit when cx = 0, or no byte to check<br>
+&nbsp;&nbsp;&nbsp; JMP COMPARE_LOOP<br>
+<br>
+;This block gets executed if found<br>
+PARAM_FOUND:<br>
+&nbsp;&nbsp;&nbsp; ;store current SI into FOUND[COUNT*2]<br>
+&nbsp;&nbsp;&nbsp; ;because if count = 5, we need to store at<br>
+&nbsp;&nbsp;&nbsp; ;FOUND[10], since each address is 2 bytes<br>
+&nbsp;&nbsp;&nbsp; MOV DI, OFFSET FOUND<br>
+&nbsp;&nbsp;&nbsp; ADD DI, COUNT<br>
+&nbsp;&nbsp;&nbsp; ADD DI, COUNT<br>
+&nbsp;&nbsp;&nbsp; MOV [DI], SI<br>
+<br>
+&nbsp;&nbsp;&nbsp; ;COUNT = COUNT + 1<br>
+&nbsp;&nbsp;&nbsp; MOV DX, COUNT<br>
+&nbsp;&nbsp;&nbsp; INC DX<br>
+&nbsp;&nbsp;&nbsp; MOV COUNT, DX<br>
+<br>
+&nbsp;&nbsp;&nbsp; ;keep looking<br>
+&nbsp;&nbsp;&nbsp; JMP PARAM_NOT_FOUND<br>
+<br>
+DONE:<br>
+&nbsp;&nbsp;&nbsp; RET <br>
+LAB10 ENDP<br>
+<br>
+CODE_SEG ENDS<br>
+<br>
+END LAB10</font></p>
+
+</body>
+
+</html>

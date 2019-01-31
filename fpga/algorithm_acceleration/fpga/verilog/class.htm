@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Language" content="en-us" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Class</title>
+<link rel="stylesheet" type="text/css" href="fpga.css" />
+</head>
+
+<body>
+
+<h1>Class</h1>
+<p class="center">Last updated November 16, 2011</p>
+<h2>Input Signals Class:</h2>
+<pre>module XXX_tb;
+	class MyInSignal;
+		int sig1, sig2;
+		task set_to_x;
+			sig1 = -1; sig2 = -1;
+		endtask
+		task set_to_0;
+			sig1 = 0; sig2 = 0;
+		endtask
+		task set_to_1;
+			sig1 = 1; sig2 = 1;
+		endtask
+	endclass
+	
+	MyInSignal is = new;
+	
+	task apply_input_signals;
+		sig1 = int_to_bit(is.sig1);
+		sig2 = int_to_bit(is.sig2);
+	endtask
+	
+	function bit int_to_bit(int n);
+		if(n == 0) return 0;
+		else if (n == 1) return 1;
+		else return $urandom_range(1, 0);
+	endfunction
+endmodule
+</pre>
+<h2>Output Signals Class</h2>
+
+<pre>module XXX_tb;
+	class MyOutSignals;
+		bit sig1, sig2;
+	endclass
+	
+	MyOutSignals os = new;
+
+	task run_and_check(int n);
+		int i;
+		for(i=0; i&lt;n; i++) begin
+			clk_1;
+			assert(os.sig1 == sig1)
+			else $display("something is wrong with: sig1 at time %t", $time);
+			assert(os.sig2 == sig2)
+			else $display("something is wrong with: sig2 at time %t", $time);
+		end
+	endtask
+endmodule</pre>
+
+</body>
+
+</html>

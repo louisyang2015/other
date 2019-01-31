@@ -1,0 +1,33 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>What Happens When a .COM File Runs</title>
+</head>
+
+<body>
+
+<p align="left"><font size="5" color="#008000">What Happens When a .COM File 
+Runs</font></p>
+<p><font size="4">The .COM file is loaded into memory at a location of DOS's 
+choosing. It doesn't change the file when it loads the file; the file is loaded 
+exactly as it was saved to disk by the assembler.</font></p>
+<p><font size="4">AX, BX, DX, BP, SI, and DI are set to 0.</font></p>
+<p><font size="4">The instruction pointer IP is set to 0100H.</font></p>
+<p><font size="4">The number of bytes loaded from disk and stored into memory is 
+placed in the CX register.</font></p>
+<p><font size="4">The stack pointer is set to the highest address in the 
+program's segment, minus one. (stack starts at the very top of the segment and 
+grows toward lower memory)</font></p>
+<p><font size="4">All four segment registers: CS, SS, DS, and ES are set to the 
+same value: the segment address of the single segment in which the .COM program 
+must run. DOS chooses the value.</font></p>
+<p><font size="4">DOS transfers control to the instruction at CS:IP, and your 
+program is off and running.</font></p>
+
+</body>
+
+</html>

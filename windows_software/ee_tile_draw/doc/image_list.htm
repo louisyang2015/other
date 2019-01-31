@@ -1,0 +1,32 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>ImageList</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">ImageList</font></h1>
+<p><font size="4">This class will load the various &quot;.wmf&quot; files first, and load 
+it once. After start up, the image list will return a pointer to an image when 
+the image is requested by ID. A separate method, &quot;get_rotate&quot;, will get the 
+image for the rotation button.</font></p>
+
+<p><font size="4">The ImageList itself is quite easy to understand, no need to 
+explain it much. <font color="#008000"><b>ImageList also contains GDI+ startup 
+code in the constructor and the shutdown code in the destructor.</b></font> The 
+reason is that the memory pointers to Image objects needs to be de-allocated 
+first before the GDI+ shutdown. Once the GDI+ shutdown code has executed, I 
+could not use &quot;delete image&quot; to de-allocate the memory.</font></p>
+
+<p><font size="4">While writing the ImageList class, I have decided to use 
+&quot;Shell sort&quot; as my basic sorting algorithm. So this ImageList class has a well 
+documented shell sort for me to save for the future.</font></p>
+
+</body>
+
+</html>

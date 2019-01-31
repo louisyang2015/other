@@ -1,0 +1,105 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Language" content="en-us" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Datapath Timing</title>
+<link rel="stylesheet" type="text/css" href="fpga.css" />
+</head>
+
+<body>
+
+<h1>Datapath Timing</h1>
+<p class="center">Last updated April 3, 2011</p>
+<p>To have an array construction complete, the various address counters start at 
+different times, depending on the pipeline delay of the process.</p>
+
+<h2>FFT Butterfly</h2>
+<p><img src="images/timing_fft.gif" width="600" height="189" /></p>
+<ul>
+				<li>At t = 0, the address feeding the left hand memory is 
+				launched. The memory takes one cycle to capture the address sand 
+				a second cycle to launch the corresponding data.</li>
+				<li>At t = 2, the left hand memory is launching the data. The 
+				multiplexer selection code need to be launched at this time as 
+				well.</li>
+				<li>At t = 3, the data is launched from the multiplexer output.</li>
+				<li>The ALU will be in butterfly mode, and there are 6 cycles of 
+				delay between the input and output. At t = 9, the ALU launches 
+				the results Y0 and Y1.</li>
+				<li>There is no delay between ALU output and the memory. At t = 
+				9, the address and write enable (wren) signals feeding the right 
+				hand side memory needs to be correct.</li>
+</ul>
+<p>&nbsp;</p>
+<h2>SSRAM Write</h2>
+<p><img src="images/timing_ssram_write.gif" width="600" height="190" /></p>
+<ul>
+				<li>The data launches from the left hand multiplexer at t = 3.</li>
+				<li>The ALU is in bypass mode, and that is one cycle of delay. 
+				The multiplexer feeding the SSRAM interface module chooses from 
+				Y1.real or Y1.imag. The multiplexer input, SSRAM input write 
+				address, and write enable signals need to be correct at time t = 
+				4.</li>
+</ul>
+<p>&nbsp;</p>
+<h2>SSRAM Read</h2>
+<p><img src="images/timing_ssram_read.gif" width="450" height="201" /></p>
+<ul>
+				<li>At time t = 0 the read address is provided to the SSRAM 
+				interface module. At t = 1 the read address is launched at the 
+				SSRAM.</li>
+				<li>The SSRAM catches the read address at t = 2 and launch the 
+				corresponding data at t = 3. This data is caught by the FPGA 
+				pins and launched at t = 4. The multiplexer in the middle choose 
+				the source for the right hand side memory&#39;s &quot;writedata&quot; lines. 
+				This multiplexer has no delay, so the SSRAM data will be 
+				launched to the memory on the right at t = 4. The right hand 
+				memory&#39;s write enable and write address lines needs to be 
+				launched at t = 4 as well.</li>
+</ul>
+<p>&nbsp;</p>
+<h2>Copying from Instruction FIFO</h2>
+<p>At one point it was thought that the instruction FIFO will plug into the ALU, 
+and the memories will take data from the ALU output. This turned out to be 
+impractical, because the instruction FIFO will almost certainly not have all the 
+data necessary in the beginning. The pipeline would then have to be stalled as 
+the NIOS 2 fills the instruction FIFO with the necessary data.</p>
+<p>So currently every memory buffer (A0r, A0i, ... B1r, B1i) data as access to 
+the instruction FIFO output, which is known as i_q[31:0] in the code.</p>
+<p>&nbsp;</p>
+<h2>Other Operations</h2>
+<p>Timing for other operations differ mainly in the time it takes to go through 
+the ALU.</p>
+<p><img src="images/timing_mem_copy.gif" width="600" height="190" /></p>
+<ul>
+				<li>The read memory is on the left hand side and the write 
+				memory is on the right hand side. The read address is launched 
+				at time t = 0.</li>
+				<li>The data from the read memory will be launched into the ALU 
+				at time t = 3. The ALU is in bypass mode. The write enable and 
+				write address signals has to launch at time t = 4.</li>
+</ul>
+<p><img src="images/timing_mac.gif" width="600" height="214" /></p>
+<ul>
+				<li>Internal to the ALU, the product is launched at accumulator 
+				(ACC) at t = 3+4 = 7.</li>
+				<li>In one MAC operation, the MAC result shows up on Y0 output 
+				at 
+				time t = 9.</li>
+				<li>In another MAC operation, the logarithm of the MAC result is 
+				stored in internal memory, at time t = 9.</li>
+</ul>
+<p><img src="images/timing_rb.gif" width="600" height="237" /></p>
+<ul>
+				<li>In the calculation of the &quot;rb&quot; variable, the C0 memory 
+				contains the amount of shifting that needs to be done. The C0 
+				memory read address signals c0_addr[..] need to launch at time t 
+				= 8, two cycles before the launch of the signal from the &quot;re_pre_shift&quot; 
+				register.</li>
+</ul>
+
+</body>
+
+</html>

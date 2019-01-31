@@ -1,0 +1,51 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Software Interrupts</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">Software Interrupts</font></h1>
+<p><font size="4">DOS and BIOS both offer services. However, due to various code 
+rewrites, the memory address of the code doing the services can change.</font></p>
+<p><font size="4">The first 1024 bytes of memory in any x86 machine is a table 
+of addresses. It holds the memory address of the code providing the DOS and BIOS 
+services. Four bytes per address means that there are 256 entries (entry number 
+0 to 255). This table of address is called the &quot;interrupt vector table&quot;. When 
+DOS and BIOS boots up, they will fill in the slots of this table. </font></p>
+<p><font size="4">Since the PC first began, interrupt 21H has pointed the way to 
+DOS's services dispatcher. The address of the dispatcher has changed with every 
+DOS version, but regardless of version, programs can find the address of the 
+dispatcher in slot 21H of the interrupt vector table.</font></p>
+<p><img border="0" src="images/pic005.gif" width="452" height="447"></p>
+<p><font size="4">When the CPU encounters the &quot;<font color="#FF6600">INT 21H</font>&quot; 
+instruction, the CPU will:</font></p>
+<ul>
+  <li><font size="4">store the address of the instruction after the INT 21H</font></li>
+  <li><font size="4">go to the interrupt vector table and fetch the address from 
+  slot 21H</font></li>
+  <li><font size="4">jumps execution to the address stored in slot 21H</font></li>
+  <li><font size="4">get the return address off the stack</font></li>
+  <li><font size="4">resume program execution at the instruction after the INT 
+  21H</font></li>
+</ul>
+<p><font size="4">This is why after all these years of modification, the DOS 
+services are still available by calling INT 21H</font></p>
+<p><font size="4"><font color="#008000">Hardware Interrupts</font> --- there is 
+a metal pin on the CPU chip that is moved from one voltage level to another by a 
+circuit board device like a disk drive controller or a serial port board. 
+Through this pin, the CPU is tapped on the shoulder by the external device. The 
+CPU recognizes this tab as a hardware interrupt. This tab will also trigger a 
+trip through the interrupt vector table. </font></p>
+<p><font size="4">The difference between a software interrupt and a hardware 
+interrupt is what kind of even triggers the trip through the interrupt vector 
+table. Is it an &quot;INT&quot; instruction or the CPU itself.</font></p>
+
+</body>
+
+</html>

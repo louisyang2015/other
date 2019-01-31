@@ -1,0 +1,108 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Child Windows</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">Child Windows</font></h1>
+<p align="left"><font size="4"><a href="examples/child_window_template.cpp">Click here for a template of a program using a 
+child window</a></font></p>
+<p align="left"><b><font size="4" color="#008000">Code synopsis:</font></b></p>
+<p align="left"><font face="Courier New" size="4" color="#FF6600">HINSTANCE 
+app_instance; </font><font face="Courier New" size="4" color="#008000">//set in 
+WinMain</font><font face="Courier New" size="4" color="#FF6600"><br>
+<br>
+</font><font face="Courier New" size="4" color="#008000">//variables for the 
+child window</font><font face="Courier New" size="4" color="#FF6600"><br>
+LRESULT CALLBACK ChildWndProc (HWND, UINT, WPARAM, LPARAM);<br>
+TCHAR szChildClass[] = TEXT(&quot;child_window&quot;);<br>
+HWND hwndChild;<br>
+const int CHILD_WND_ID = 100;</font><font size="4" face="Courier New"><font color="#008000"><br>
+...<br>
+in WinMain<br>
+...<br>
+//a window class for the child window</font><br>
+app_instance = hInstance;<br>
+<font color="#FF6600">wndclass.lpfnWndProc = ChildWndProc ;<br>
+wndclass.cbWndExtra = sizeof (long) ;<br>
+wndclass.hIcon = NULL ;<br>
+wndclass.lpszClassName = szChildClass;<br>
+RegisterClass (&amp;wndclass);<br>
+</font><font color="#008000">...<br>
+in WndProc<br>
+...</font><font color="#FF6600"><br>
+</font></font><font face="Courier New" size="4" color="#008000">//handle to the 
+child window</font><font face="Courier New" size="4" color="#FF6600"><br>
+static HWND hwndChild;<br>
+</font><font face="Courier New" size="4" color="#008000">...</font><font face="Courier New" size="4" color="#FF6600"><br>
+case WM_CREATE:<br>
+&nbsp;&nbsp;&nbsp; {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; hwndChild = CreateWindow(szChildClass, 
+NULL,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+WS_CHILDWINDOW | WS_VISIBLE,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0, 0, 0, 0,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; hwnd, (HMENU)(CHILD_WND_ID),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; app_instance,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; NULL);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 0 ;<br>
+&nbsp;&nbsp;&nbsp; }</font><font face="Courier New" size="4" color="#008000"><br>
+...</font><font face="Courier New" size="4" color="#FF6600"><br>
+case WM_SIZE:<br>
+&nbsp;&nbsp;&nbsp; {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int cxClient = LOWORD (lParam);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int cyClient = HIWORD (lParam); <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MoveWindow(hwndChild, cxClient / 4, 
+cyClient / 4,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cxClient / 2, 
+cyClient / 2, true);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 0;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+</font><font face="Courier New" size="4" color="#008000">...<br>
+in ChildWndProc<br>
+...</font><font face="Courier New" size="4" color="#FF6600"><br>
+case WM_PAINT:<br>
+</font><font face="Courier New" size="4" color="#008000">&nbsp;&nbsp;&nbsp; 
+//draws an ellipse and a rectangle</font></p>
+<p align="left"><b><font size="4" color="#008000">About the code:</font></b></p>
+<p align="left"><font size="4">The child window needs its own windows class and 
+windows procedure --- this is registered in WinMain</font></p>
+<p align="left"><font size="4">The child window is created in WM_CREATE handler 
+of the parent. The function call CreateWindow(...) needs an instance of the 
+application. The instance of the application is the first argument into WinMain. 
+There are several ways to get this application instance --- but I chose to just 
+copy it to a global variable.</font></p>
+<p align="left"><font size="4">The handle to the main window &quot;hwnd&quot; can be used 
+to store and retrieve various data (including that application instance). The &quot;hwnd&quot; 
+is an entry point into an entire data structure. Access the data structure with 
+the functions <font face="Courier New" color="#FF6600">GetWindowLong</font> and
+<font face="Courier New" color="#FF6600">SetWindowLong</font>.</font></p>
+<p align="left"><font size="4">When the child window is created, its size is 
+left as (0, 0, 0, 0). The child window gets its real size in the WM_SIZE message 
+of the parent window.</font></p>
+<p align="left">&nbsp;</p>
+<h2 align="left"><font color="#008000">Messaging the Parent Window:</font></h2>
+<h2 align="left"><font face="Courier New" color="#FF6600">hwndParent = GetParent 
+(hwnd);<br>
+SendMessage (hwndParent, message_ID, wParam, lParam);</font></h2>
+<p align="left"><font size="4">the message ID is a numerical value that is set 
+to WM_USER or above.</font></p>
+<p align="left">&nbsp;</p>
+<p align="left"><b><font size="4" color="#008000">Other notes:</font></b></p>
+<p align="left"><font size="4">When using child windows, the mouse message 
+lParam contains coordinates relative to the upper left corner of the client area 
+of the child window, not relative to the client area of the &quot;parent&quot; window.
+</font></p>
+
+<p align="left"><font size="4">The parent window can give focus to a particular 
+child window with <font face="Courier New" color="#FF6600">SetFocus (hwndList);</font></font></p>
+
+</body>
+
+</html>

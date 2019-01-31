@@ -1,0 +1,43 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>File Access in C</title>
+</head>
+
+<body>
+
+<p><font face="Courier New" size="4">#include &lt;stdio.h&gt;<br>
+#include &lt;windows.h&gt; <font color="#009933">//allows the constant &quot;MAX_PATH&quot;</font><font color="#008000"><br>
+</font>
+<br>
+void main()<br>
+{<br>
+&nbsp;&nbsp;&nbsp; <b>char filename[MAX_PATH]; </b><font color="#009933"><b>//on 
+my machine, MAX_PATH = 260</b></font><br>
+&nbsp;&nbsp;&nbsp; char c;<br>
+&nbsp;&nbsp;&nbsp; <b>FILE *f;</b><br>
+<br>
+&nbsp;&nbsp;&nbsp; <font color="#009933">// get file name</font><br>
+&nbsp;&nbsp;&nbsp; printf(&quot;Enter filename: &quot;);<br>
+&nbsp;&nbsp;&nbsp; gets(filename);<br>
+<br>
+&nbsp;&nbsp;&nbsp; <font color="#009933">// open the file</font><br>
+&nbsp;&nbsp;&nbsp; <b>f = fopen(filename, &quot;r&quot;);</b><br>
+&nbsp;&nbsp;&nbsp; if (f)<br>
+&nbsp;&nbsp;&nbsp; {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#009933">// read until eof</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; while ((<b>c = fgetc(f)</b>) != EOF)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; printf(&quot;%c&quot;,c);<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; <font color="#009933">// close the file</font><br>
+&nbsp;&nbsp;&nbsp; <b>fclose(f);</b><br>
+}</font></p>
+
+</body>
+
+</html>

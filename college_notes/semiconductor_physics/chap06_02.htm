@@ -1,0 +1,422 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Deviations from the Ideal</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">Deviations from the Ideal</font></h1>
+<p><img border="0" src="images/pic0085.gif" width="750" height="524"></p>
+<p><font size="4">The ideal region actually coves just a small part of the total 
+graph --- interval #4. From left to right, the non-ideal effects are:</font></p>
+
+<ol>
+  <li><font size="4" color="#008000">Breakdown region, either avalanching or zener 
+  process.</font></li>
+  <li><font size="4" color="#FF8000">Additional reverse current due to thermal 
+  generation in the depletion region</font></li>
+  <li><font size="4" color="#008000">Additional forward current due to thermal 
+  recombination in the depletion region</font></li>
+  <li><font size="4" color="#FF8000">*** Ideal region ***</font></li>
+  <li><font size="4" color="#008000">Reduced slope due to high level injection</font></li>
+  <li><font size="4" color="#FF8000">Further reduction of slope due to internal 
+  resistance</font></li>
+</ol>
+<h2>&nbsp;</h2>
+
+<h2><font color="#008000">Reverse Bias Breakdown</font></h2>
+
+<p><font size="4">Although called a &quot;breakdown&quot; --- this is a reversible process 
+that does not damage the diode in anyway.</font></p>
+
+<p><font size="4">Let:</font></p>
+
+<p><font size="4">V<sub>BR</sub> = break down voltage. This is a positive 
+number. So V<sub>BR</sub> = 60 volt means that diode breakdown occurs at V<sub>A</sub> 
+= -60 volt.</font></p>
+
+<p><font size="4">N<sub>B</sub> = doping on the lightly doped side of the 
+junction</font></p>
+
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    V<sub>BR</sub> &#945; </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">1 </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">(N<sub>B</sub>)<sup>
+          0.75</sup> </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<p><font size="4">There are two reasons why diodes breakdown: avalanching or 
+zener process.</font></p>
+
+<p><font size="4">To get the breakdown voltage for a planar p+ - n or p - n+ 
+step-junction, use the chart from the book:</font></p>
+
+<p><img border="0" src="images/pic0086.jpg" width="1036" height="858"></p>
+
+<p><b><font size="4" color="#008000">Avalanching</font></b></p>
+
+<p><font size="4">In reverse bias, the minority carrier current is the dominant 
+one. As the minority carriers cross the depletion region, they might collide 
+with atoms in the depletion region. At some critical electric field </font>
+<font size="5" color="#FF8000">E<sub>CR</sub></font><font size="4"> , the 
+collisions are powerful enough that it frees electrons from the atoms in the 
+depletion region. The newly created electron hole pairs are then swept away by 
+the electric field, and they too collide with depletion region atoms and create 
+more carriers.</font></p>
+
+<p><font size="4">The electric field is maximum at x = 0, so this E<sub>CR</sub> 
+can be computed using methods of chapter 5. We get an expression for the 
+electric field in terms of x, then we evaluate that expression at x = 0. For a 
+step function, E<sub>CR</sub> is approximately:</font></p>
+
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    (E<sub>CR</sub>)<sup>2</sup> = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">2q </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">K<sub>S</sub> &#949;<sub>0</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="7">
+    (</font> </td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">N<sub>A</sub> N<sub>D</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">N<sub>A</sub> + N<sub>D</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="7">
+    )</font> </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    V<sub>BR</sub> </font></td>
+  </tr>
+</table>
+
+<p><font size="4">Note that electric fields are negative values.</font></p>
+
+<p><b><font size="4" color="#008000">Zener Process</font></b></p>
+
+<p><font size="4">This is when valence electrons on the p-side of the junction 
+cross the depletion region using the quantum mechanic process of tunneling.</font></p>
+
+<p><img border="0" src="images/pic0087.gif" width="600" height="299"></p>
+
+<p><font size="4">Normally, only high energy electrons <font color="#FF8000">
+(orange)</font> can cross over the depletion region. But low energy electrons
+<font color="#008000">(green)</font> can also cross over if (1) the depletion 
+region width is very narrow, and (2) the bending is sufficiently great that 
+there are empty electron states opposite of low energy electrons (green). To 
+satisfy these two requirements, the Zener diodes are usually heavily doped on 
+both sides of the junction.</font></p>
+
+<p><font size="4">The avalanching process can trigger a larger flow than the 
+Zener process. However, avalanching requires a greater reverse bias voltage to 
+work. The Zener process makes a significant contribution to the breakdown 
+current where V<sub>BR</sub> &lt; 6E<sub>G</sub> / q (~6.7 V in Si at 300 K), and 
+dominates in diodes where V<sub>BR</sub> &lt; 4E<sub>G</sub> / q (~4.5 V in Si at 
+300 K). Comparing this with the chart for break down voltage given earlier in 
+this documentation, we can see that the Zener process dominates for diode with 
+relatively low breakdown voltages.</font></p>
+
+<p><font size="4">Due to the special requirements for the zener process, 
+avalanching is usually the dominant process. However historically, the Zener 
+process was the first proposed to explain reverse-bias breakdown. All diodes 
+that use this reverse-bias breakdown became known as Zener diodes --- even 
+though many of them have V<sub>BR</sub> in excess of 6*E<sub>G</sub> /q and are 
+functionally avalanche diodes.</font></p>
+
+<p>&nbsp;</p>
+
+<h2><font color="#008000">Thermal Generation in the Depletion Region</font></h2>
+
+<p><img border="0" src="images/pic0089.jpg" width="685" height="584"></p>
+
+<p><font size="4">Under reverse bias, the carriers in the depletion region is 
+below equilibrium. So there is thermal generation of carriers in the depletion 
+region. Any carrier generated is immediately swept away by the electric field of 
+the depletion region, which amounts to a current that we call </font>
+<font color="#FF8000" size="5">I<sub>R-G</sub></font><font size="4"> .</font></p>
+
+<table border="3" cellpadding="12" cellspacing="1" style="border-collapse: collapse" bordercolor="#FF8000">
+  <tr>
+    <td>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">I<sub>R-G</sub> = -
+        </font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">qAn<sub>i</sub>
+              </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">2T<sub>0</sub>
+              </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">W </font></td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+
+<p><font size="4">where:</font></p>
+
+<p><font size="4">A = cross-sectional area of the junction<br>
+W = width of the junction</font></p>
+
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    T<sub>0</sub> = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">1 </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">2 </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="7">
+    (</font> </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    T<sub>p</sub> </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">n<sub>1</sub> </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">n<sub>i</sub> </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    + T<sub>n</sub> </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">p<sub>1</sub> </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">n<sub>i</sub> </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="7">
+    )</font> </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">1 </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">2 </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="7">
+    (</font> </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    T<sub>p</sub> e^[(E<sub>T</sub>-E<sub>i</sub>)/(kT)] + T<sub>n</sub> e^[(E<sub>i</sub>-E<sub>T</sub>)/(kT)]
+    </font></td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="7">
+    )</font> </td>
+  </tr>
+</table>
+
+<p><font size="4">If we denote the ideal diode law's result as I<sub>DIFF</sub> 
+, then the total current is</font></p>
+
+<p><font size="4">I = I<sub>DIFF</sub> + I<sub>R-G</sub></font></p>
+
+<p><font size="4">where I<sub>DIFF</sub> = I<sub>0</sub> {e^[(qV<sub>A</sub>)/(kT)] 
+- 1}</font></p>
+
+<p><font size="4">At room temperature under reverse bias, the I<sub>R-G</sub> 
+component is many times greater than the I<sub>DIFF</sub> .</font></p>
+
+<p><font size="4">The I<sub>R-G</sub> also does not saturate, because increase 
+reverse bias widens the depletion region, which increases I<sub>R-G </sub>.</font></p>
+
+<p>&nbsp;</p>
+
+<h2><font color="#008000">Thermal Recombination in the Depletion Region</font></h2>
+
+<p><img border="0" src="images/pic0090.jpg" width="577" height="556"></p>
+
+<p><font size="4">Under forward bias, the majority carrier current is the 
+dominant current. There are majority carriers that can not make it over the 
+potential energy hill but still gets drawn in to the depletion region, where 
+they recombine. Although these carriers do not actually cross the depletion 
+region, from the view of the p side and n side, they went into the depletion 
+region and did not return, so they count as current.</font></p>
+
+<p><font size="4">This current is also labeled I<sub>R-G</sub> , and the result 
+for it is very complex. Furthermore, it does not matter much because under 
+forward bias, I<sub>DIFF</sub> increases so quickly that it soon over takes I<sub>R-G</sub> 
+. For the brief moment of time when I<sub>R-G</sub> is dominant under the 
+forward bias, it makes the slope of V<sub>A</sub> versus ln(I) graph q/(2kT).</font></p>
+
+<p><img border="0" src="images/pic0088.gif" width="500" height="511"></p>
+
+<p>&nbsp;</p>
+
+<h2><font color="#008000">High Level Injection</font></h2>
+
+<p><font size="4">One of the assumption during deriving the ideal diode equation 
+is that the excess carriers at the edge of the depletion region is of low level 
+injection. But when the forward bias voltage is sufficiently large, it's no 
+longer low level injection.</font></p>
+
+<p><img border="0" src="images/pic0091.jpg" width="574" height="507"></p>
+
+<p><font size="4">The book didn't say much about the effect of high level 
+injection, except that the high level injection effects are obscured by the 
+slope-over associated with internal diode resistance (next item). In return 
+though, high level injection can reduce the internal diode resistance.</font></p>
+
+<p>&nbsp;</p>
+
+<h2><font color="#008000">Internal Resistance</font></h2>
+
+<p><font size="4">A resistance can be assigned to the p side and n side of the 
+pn junction diode.</font></p>
+
+<p><img border="0" src="images/pic0092.jpg" width="1094" height="1053"></p>
+
+<p><font size="4">Taking this internal resistance </font>
+<font color="#FF8000" size="5">R<sub>S</sub></font><font size="4"> into account, 
+the ideal diode equation can be rewritten as:</font></p>
+
+<p><font face="Courier New" color="#ff8000" size="5">I = I<sub>0</sub> e^[q(V<sub>A</sub> 
+- I*R<sub>S</sub>)/(kT)]</font></p>
+
+</body>
+
+</html>

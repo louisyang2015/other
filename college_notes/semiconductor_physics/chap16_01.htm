@@ -1,0 +1,718 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Electrostatics</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">Electrostatics</font></h1>
+<p><font size="4">MOS = Metal - Oxide - Semiconductor. This designation is 
+reserved for the common scenario of metal followed by SiO<sub>2</sub> followed 
+by Si. Other metal - insulator - semiconductor combinations are called MIS 
+(Metal - Insulator - Semiconductor).</font></p>
+<p><font size="4">A picture of a MOS structure:</font></p>
+<p><img border="0" src="images/fig_16_01.jpg" width="377" height="312"></p>
+<p><font size="4">The silicon layer is also called the substrate.</font></p>
+<p><font size="4">It's assumed that the oxide layer, SiO<sub>2</sub> , is a 
+perfect insulator. Also, it's assumed that the semiconductor layer is sufficient 
+thick so that a portion of it is free of electric fields --- this field free 
+portion is called the Si &quot;bulk&quot;.</font></p>
+<p><font size="4" color="#008000">Energy band diagrams:</font></p>
+<p><img border="0" src="images/fig_16_02.jpg" width="728" height="307"></p>
+<p><font size="4">The insulator band diagram is just like that for a 
+semiconductor except that the band gap is much wider.</font></p>
+<p><font size="4">It's assumed that <font face="Times New Roman">&#934;<sub>M</sub> = 
+&#934;<sub>S</sub> so that the E<sub>F</sub> of both the metal and semiconductor are 
+the same. The book says that this assumption is only temporary and will be 
+eliminated by chapter 18.</font></font></p>
+<p><font face="Times New Roman" size="4">In chapter 14, the band bending between 
+metal&nbsp; and semiconductor boundary comes from &#934;<sub>M</sub> and &#934;<sub>S</sub> 
+being unequal, but here we are assuming that the two work functions are equal. 
+The band banding comes from an externally applied voltage. If a voltage is 
+applied across the MOS, a part of that voltage will fall over the starting 
+portion of the Si --- resulting in electric field over a portion of Si and 
+causing the band there to bend. </font></p>
+<p><font face="Times New Roman" size="4">I think the reason the book said the &quot;</font><font face="Times New Roman" size="4">&#934;<sub>M</sub> 
+= &#934;<sub>S</sub>&quot; assumption can be omitted because if &quot;</font><font face="Times New Roman" size="4">&#934;<sub>M</sub> 
+&#8800; &#934;<sub>S</sub>&quot;, all that will do is create some default band bending. For now, 
+we are assuming that the band bending is coming from an externally applied 
+voltage.</font></p>
+<p><font face="Times New Roman" size="4" color="#008000">Effect of an Applied 
+Bias</font></p>
+<p><font face="Times New Roman" size="4">The slope of the fermi energy E<sub>F</sub> 
+remain flat because the SiO<sub>2</sub> insulator means that there will be no 
+current flowing through the metal or the semiconductor. </font></p>
+<p><font face="Times New Roman" size="4">But the E<sub>F</sub> of the metal and 
+the E<sub>F</sub> of the semiconductor will differ:</font></p>
+<p><font face="Times New Roman" size="5" color="#FF8000">-qV = E<sub>F</sub>(metal) 
+- E<sub>F</sub>(semiconductor)</font></p>
+<p><font face="Times New Roman" size="4">Think of the two E<sub>F</sub> flat 
+lines as handles. The semiconductor side is grounded, so the E<sub>F</sub> there 
+doesn't move. On the metal side, the E<sub>F </sub>move upward if V<sub>G</sub> 
+&lt; 0 and downward if V<sub>G</sub> &gt; 0. The reasoning is that V<sub>G</sub> &gt; 0 
+means electrons being sucked away into the source, so the energy level of the 
+highest electrons are lowered.</font></p>
+<p><font face="Times New Roman" size="4">Within the oxide, the electric field is 
+constant because there is no carrier. The E<sub>C</sub> and E<sub>V</sub> lines 
+rise and fall in a constant manner in the oxide region.</font></p>
+<p><font face="Times New Roman" size="4" color="#008000">Charge Build up due to 
+Bias</font></p>
+<p><font face="Times New Roman" size="4">Say the Si substrate is n-type. If a 
+positive voltage is applied at the gate, then holes are pumped into the metal 
+side. On the Si side the majority carriers, electrons, are created to balance 
+out the excess holes on the metal side. The Si side therefore gets a negative 
+charge and the metal side gets a positive charge.</font></p>
+<p><img border="0" src="images/fig_16_05a.jpg" width="655" height="213"></p>
+<p><font face="Times New Roman" size="4">The Si side has more majority carriers 
+than the unbiased state, and this is called <font color="#008000">accumulation</font>.</font></p>
+<p><font face="Times New Roman" size="4">When V<sub>G</sub> &lt; 0, electrons are 
+pumped into the metal and electrons on the Si side of the oxide are pushed away. 
+Those electrons will leave behind donors that look like positive charges.</font></p>
+<p><img border="0" src="images/fig_16_05c.jpg" width="646" height="240"></p>
+<p><font face="Times New Roman" size="4">The section of the Si side near the 
+oxide now has less majority carrier than the zero bias state, and this is called
+<font color="#008000">depletion</font>.</font></p>
+<p><font face="Times New Roman" size="4">At the start of the depletion, it's 
+just the absence of electrons --- holes are not really the majority carrier yet. 
+As V<sub>G</sub> become more and more negative, more and more holes are created 
+on the Si side. Eventually, the number of holes exceed the number of donors (p<sub>S</sub> 
+&gt; N<sub>D</sub>), where p<sub>S </sub>is surface charge desnity and N<sub>D</sub> 
+is donor density. When the original majority carrier is somehow exceeded by the 
+original minority carrier, it's called <font color="#008000">inversion</font>.</font></p>
+<p><img border="0" src="images/fig_16_05g.jpg" width="647" height="310"></p>
+<p><font face="Times New Roman" size="4">V<sub>T</sub> is the threshold voltage 
+that marks the onset of inversion.</font></p>
+<p><font face="Times New Roman" size="4">When V<sub>G</sub> = V<sub>T</sub> , we 
+are in the depletion - inversion transition point, where the number of holes 
+equal the number of donors.</font></p>
+<p><img border="0" src="images/fig_16_05e.jpg" width="634" height="261"></p>
+<p><font face="Times New Roman" size="4">In this special state, we have:</font></p>
+<table border="2" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#FF8000">
+  <tr>
+    <td><font face="Courier New" color="#ff8000" size="5">E<sub>i</sub>(surface) 
+    - E<sub>i</sub>(bulk) = 2[E<sub>F</sub> - E<sub>i</sub>(bulk)] </font></td>
+  </tr>
+</table>
+<p><font face="Times New Roman" size="4">pictorially this means that:</font></p>
+<p><img border="0" src="images/pic0179.gif" width="500" height="299"></p>
+<p><font face="Times New Roman" size="4">where the two orange distances marked 
+are equal.</font></p>
+<p><font face="Times New Roman" size="4">So depending on the gate voltage, the 
+MOS layer can be in one of three states: accumulation, depletion, and inversion. 
+This chart summarize these states for n-type and p-type MOS structures.</font></p>
+<p><img border="0" src="images/fig_16_ex01.jpg" width="765" height="265"></p>
+<h2>&nbsp;</h2>
+
+<h2><font face="Times New Roman" color="#008000">Electrostatics --- Quantitative 
+Formulation</font></h2>
+
+<p><font face="Times New Roman" size="4">Charge appearing near the metal-oxide 
+interface can be modeled as a &#948; (impulse) function.</font></p>
+
+<p><font face="Times New Roman" size="4">Let &#934;(x) be the potential inside the 
+semiconductor, where &quot;x&quot; is the distance from the oxide-semiconductor interface. 
+The symbol V is used for the externally applied voltage, and only part of V 
+appears in the semiconductor region.</font></p>
+
+<p><img border="0" src="images/fig_16_07.jpg" width="560" height="756"></p>
+
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    &#934;(x) = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">1 </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">q </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    [E<sub>i</sub>(bulk) - E<sub>i</sub>(x)] </font></td>
+  </tr>
+</table>
+<p><font face="Times New Roman" size="4">&#934;(x) is zero in the field free region 
+of the semiconductor, and &#934;<sub>S</sub> = &#934;(s) is used to denote the surface 
+potential.</font></p>
+
+<table border="2" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#FF8000">
+  <tr>
+    <td>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">&#934;<sub>s</sub> = </font>
+        </td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">1 </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">q </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">[E<sub>i</sub> (bulk) 
+        - E<sub>i</sub> (surface)] </font></td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<p><font face="Times New Roman" size="4">Note when the energy band is flat, then 
+there is no charge and &#934;<sub>S</sub> = 0.</font></p>
+
+<p><font face="Times New Roman" size="4">The value &#934;<sub>F</sub> defined below 
+is an important material parameter:</font></p>
+
+<table border="2" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#FF8000">
+  <tr>
+    <td>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">&#934;<sub>F</sub> = </font>
+        </td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">1 </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">q </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">[E<sub>i</sub>(bulk) - 
+        E<sub>F</sub>] </font></td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<p><font face="Times New Roman" size="4">This &#934;<sub>F</sub> is doping related. &#934;<sub>F</sub> 
+&gt; 0 if the semiconductor is p-type and &#934;<sub>F</sub> &lt; 0 if the semiconductor is 
+n-type. In kT/q units, |&#934;<sub>F</sub>| is between 9 and 18.</font></p>
+
+<p><font face="Times New Roman" size="4">For non-degenerate semiconductors:</font></p>
+
+<table border="2" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#FF8000">
+  <tr>
+    <td>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">&#934;<sub>F</sub> = </font>
+        </td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">kT </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">q </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">ln(N<sub>A </sub>/ n<sub>i</sub>) 
+        ... p-type semiconductor </font></td>
+      </tr>
+    </table>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">&#934;<sub>F</sub> = -
+        </font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">kT </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">q </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">ln(N<sub>D</sub> / n<sub>i</sub>) 
+        ... n-type semiconductor </font></td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<p><font face="Times New Roman" size="4">&#934;<sub>S</sub> and &#934;<sub>F</sub> are 
+related:</font></p>
+
+<table border="2" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#FF8000">
+  <tr>
+    <td><font face="Courier New" color="#ff8000" size="5">&#934;<sub>S</sub> = 2&#934;<sub>F</sub>
+    </font><font color="#ff8000" size="4" face="Times New Roman">at the 
+    depletion-inversion transition point</font></td>
+  </tr>
+</table>
+<p><font face="Times New Roman" size="4">So for a p-type semiconductor, &#934;<sub>F</sub> 
+&gt; 0, and</font></p>
+
+<ul>
+  <li><font face="Times New Roman" size="4">0 &lt; &#934;<sub>S</sub> &lt; 2&#934;<sub>F</sub> 
+  if semiconductor is depleted</font></li>
+  <li><font face="Times New Roman" size="4">&#934;<sub>S</sub> &gt; 2&#934;<sub>F</sub> if 
+  semiconductor is inverted</font></li>
+  <li><font face="Times New Roman" size="4">&#934;<sub>S</sub> &lt; 0 if semiconductor 
+  is accumulated</font></li>
+</ul>
+<p><font face="Times New Roman" size="4">For an n-type semiconductor the 
+inequalities would be reversed because &#934;<sub>F</sub> would be negative.</font></p>
+
+<p><font face="Times New Roman" size="4" color="#008000">Accumulation solution:</font></p>
+
+<p><img border="0" src="images/fig_16_08a.jpg" width="577" height="400"></p>
+
+<p><font face="Times New Roman" size="4">In accumulation, the charges is 
+approximated by a &#948; function at the boundary between the oxide and the 
+semiconductor. The electric field (E) and electric potential (&#934;) would both be 
+zero for all x &gt; 0.</font></p>
+
+<p><font face="Times New Roman" size="4" color="#008000">Depletion Solution:</font></p>
+
+<p><img border="0" src="images/fig_16_08b.jpg" width="580" height="267"></p>
+
+<p><img border="0" src="images/fig_16_08c.jpg" width="586" height="270"></p>
+
+<p><font face="Times New Roman" size="4">In the depletion scenario, the charge 
+distribution is approximately a step function --- just like the depletion region 
+in a p-n junction. Assuming p-type semiconductor:</font></p>
+
+<p><font face="Courier New" color="#ff8000" size="5"><i>&#961;</i> = -qN<sub>A</sub> 
+, 0 &#8804; x &#8804; W </font></p>
+
+<p><font face="Times New Roman" size="4">As depletion increases, the depletion 
+width W will also increase.</font></p>
+
+<p><font face="Times New Roman" size="4">Note that all of the following are only 
+valid for the 0 &#8804; x &#8804; W range. Electric field and voltage are both zero for x &#8805; 
+W.</font></p>
+
+<p><font face="Times New Roman" size="4">Poisson's equation:</font></p>
+
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">dE </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">dx </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5"><i>&#961;</i> </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">K<sub>S</sub>&#949;<sub>0</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<p><font face="Times New Roman" size="4">The electric field (E) is integrated to 
+be:</font></p>
+
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    E(x) = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">qN<sub>A</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">K<sub>S</sub>&#949;<sub>0</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    (W - x)</font></td>
+  </tr>
+</table>
+<p><font face="Times New Roman" size="4">A second integration would give the 
+voltage &#934;</font></p>
+
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    &#934;(x) = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">qN<sub>A</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">2K<sub>S</sub>&#949;<sub>0</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    (W - x)<sup>2</sup> </font></td>
+  </tr>
+</table>
+<p><font face="Times New Roman" size="4">Use x = 0 to get a relationship between 
+&#934;<sub>S</sub> and W:</font></p>
+
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    W<sup>2</sup> = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">2K<sub>S</sub>&#949;<sub>0</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">qN<sub>A</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    &#934;<sub>S</sub> </font></td>
+  </tr>
+</table>
+<p><font face="Times New Roman" size="4">At the transition between depletion and 
+inversion, the depletion width is:</font></p>
+
+<table border="2" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#FF8000">
+  <tr>
+    <td>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">W<sub>T</sub><sup>2</sup> 
+        = </font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">2K<sub>S</sub>&#949;<sub>0</sub>
+              </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">qN<sub>A</sub>
+              </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">(2&#934;<sub>F</sub>)
+        </font></td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<p><font face="Times New Roman" size="4">A plot of W<sub>T</sub> versus doping:</font></p>
+
+<p><img border="0" src="images/fig_16_09.jpg" width="697" height="492"></p>
+
+<p><font face="Times New Roman" size="4" color="#008000">Inversion solution:</font></p>
+
+<p><img border="0" src="images/fig_16_08d.jpg" width="595" height="409"></p>
+
+<p><font face="Times New Roman" size="4">In inversion, most of the charge is 
+once again at the oxide-semiconductor boundary. Also, while the depletion width 
+widens as depletion increases, this width only changes slightly once the 
+semiconductor inverts.</font></p>
+
+<p><font face="Times New Roman" size="4">The charge distribution solution for 
+inversion is to add a &#948; function on top of the depletion scenario solution. The 
+electric field and electric potential solutions for inversion are held fix at 
+their &#934;<sub>S</sub> = 2&#934;<sub>F</sub> values.</font></p>
+
+<p><font face="Times New Roman" size="4" color="#008000">Gate voltage 
+relationship</font></p>
+
+<p><font face="Times New Roman" size="4">The gate voltage V<sub>G</sub> is 
+dropped partly across the oxide and partly across the semiconductor:</font></p>
+
+<p><font face="Courier New" color="#ff8000" size="5">V<sub>G</sub> = &#934;<sub>S</sub> 
++ &#916;&#934;<sub>ox</sub> </font></p>
+
+<p><font face="Times New Roman" size="4">There are no carriers in the oxide so E<sub>ox</sub> 
+= constant. If the oxide is x<sub>o</sub> units thick, then:</font></p>
+
+<p><font face="Courier New" color="#ff8000" size="5">&#916;&#934;<sub>ox</sub> = x<sub>o</sub> 
+E<sub>ox</sub> </font></p>
+
+<p><font face="Times New Roman" size="4">Let E<sub>S</sub> be the electric field 
+on the semiconductor side of the oxide - semiconductor boundary. In EE 140 
+(Electromagnetism) there's a law relating two electric fields normal to an 
+interface between two dissimilar materials.</font></p>
+
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    E<sub>ox</sub> = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">K<sub>S</sub> </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">K<sub>O</sub> </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    E<sub>S</sub> </font></td>
+  </tr>
+</table>
+
+<p><font face="Times New Roman" size="4">K<sub>S</sub> is the semiconductor 
+dielectric constant, K<sub>O</sub> is the oxide dielectric constant.</font></p>
+
+<table border="2" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#FF8000">
+  <tr>
+    <td>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">V<sub>G</sub> = &#934;<sub>S</sub> 
+        + </font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">K<sub>S</sub>
+              </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">K<sub>O</sub>
+              </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">E<sub>S</sub>x<sub>o</sub>
+        </font></td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+
+<p><font face="Times New Roman" size="4">Previously we solved for the electric 
+field (E) inside the semiconductor and E<sub>S</sub> is just E(x = 0):</font></p>
+
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    E<sub>S</sub><sup>2</sup> = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">2qN<sub>A</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">K<sub>S</sub>&#949;<sub>0</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    &#934;<sub>S</sub> </font></td>
+  </tr>
+</table>
+
+<p><font face="Times New Roman" size="4">Previously we said we are assuming that 
+under accumulation and inversion, the voltage and electric fields inside the 
+semiconductor portion is unchanged. This is called the delta-depletion solution 
+because the impulse function &#948; is the Greek small letter delta. The following 
+graph compares the delta-depletion solution with the theoretical &quot;exact&quot; 
+solution.</font></p>
+<p><img border="0" src="images/fig_16_10.jpg" width="472" height="656"></p>
+<p><font face="Times New Roman" size="4">Note that under accumulation or 
+inversion, it takes a large change in the gate voltage V<sub>G</sub> to produce 
+a small change in the semiconductor voltage &#934;<sub>S</sub>.</font></p>
+
+</body>
+
+</html>

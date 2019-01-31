@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Language" content="en-us" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Overall Control</title>
+<link rel="stylesheet" type="text/css" href="fpga.css" />
+<style type="text/css">
+.style1 {
+				color: #008000;
+}
+.style2 {
+				color: #FF0000;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Overall Control</h1>
+<p><img src="images/control.gif" width="1024" height="663" /></p>
+<p>The &quot;FFT_Control&quot; block controls the &quot;FFT_datapath&quot; with the help of address 
+generators. The strategy is to set the various control signals as needed, then 
+set &quot;<span class="style1">start</span>&quot; to high to get the address generators 
+going. Then wait for the &quot;<span class="style2">wren</span>&quot; to go low to 
+indicate that the write stage is over.</p>
+<h2>Data Movement</h2>
+<p>To move data from one memory to another, pass it through the ALU with the 
+mode &quot;00&quot;, which is the bypass mode. In this mode, the delay through the ALU is 
+one cycle.</p>
+<p><img src="images/datapath_timing.gif" width="800" height="262" /></p>
+<p>To meet the timing requirements, the &quot;start&quot; for the read address generator (Rdaddress_GEN) 
+goes up at t = 0, then the &quot;start&quot; for the twiddle address generator (Taddress_GEN) 
+goes up at t = 1, and finally the &quot;start&quot; for write address generator (Wraddress_GEN) 
+goes up at t = 4.</p>
+<h2>FFT</h2>
+<p>The FFT butterfly takes up three cycles - two for the pipelined 32 bit 
+multiplier, and one more for the adders.</p>
+<p><img src="images/datapath_timing_fft.gif" width="800" height="262" />&nbsp;</p>
+<p>So if the &quot;start&quot; pin goes high for Rdaddress_GEN goes up at t = 0, the start 
+for Wraddress_GEN goes up at t = 6.</p>
+<h2>Inverse-FFT</h2>
+<p>The inverse FFT is done by swapping real and imaginary parts. This can be 
+expressed with the formula:</p>
+<p>F<sup>-1</sup>(x)&nbsp; = swap( F(swap(x)) ) / N,</p>
+<p>where the &quot;swap&quot; function means to swap the real and imaginary parts.</p>
+<p>So the inverse FFT is basically the same as FFT, but with the following 
+modifications:</p>
+<ul>
+				<li>When loading the values from shared memory (memSr and memSi) 
+				into the FFT memories (memA0 and memA1), swap the real and 
+				imaginary parts as the data pass through the ALU (ALU_mode = 
+				2&#39;b10). This corresponds to the inner &quot;swap(x)&quot; function shown 
+				in the above formula.</li>
+				<li>When passing the data through the butterfly stages, divide 
+				by 2 on each pass. This corresponds to the / N part of the above 
+				formula. When N = 256, there will be 8 passes through the 
+				butterflies. Dividing by 2 each time yields a total division of 
+				256.</li>
+				<li>When loading the data back into shared memory, swap the real 
+				and imaginary parts as they pass through the ALU again. This 
+				corresponds to the outer &quot;swap&quot; function in the F<sup>-1</sup>(x) 
+				formula shown above.</li>
+</ul>
+
+</body>
+
+</html>

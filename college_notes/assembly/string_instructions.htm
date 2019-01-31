@@ -1,0 +1,67 @@
+<html>
+
+<head>
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>String Instructions</title>
+</head>
+
+<body>
+
+<p><font color="#008000" size="5">String Instructions</font></p>
+<p><font size="4">In assembly, any continuous sequence of bytes or words in 
+memory may be considered a string --- not simply sequences of human-readable 
+characters. The x86 CPUs have a group of instructions for dealing with these 
+&quot;strings&quot; (or more generally a sequence of bytes).</font></p>
+<p><font size="4">The plan of these string instructions is to:</font></p>
+<ul>
+  <li><font size="4">set up two &quot;strings&quot; by pointing the (<font color="#FF6600"><b>DS:SI</b></font>) 
+  source index register to the start of one string, and the (<font color="#FF6600"><b>ES:DI</b></font>) 
+  destination index register to the start of another string</font></li>
+  <li><font size="4">the register <font color="#FF6600"><b>CX</b></font> would 
+  hold the common length of both strings.</font></li>
+</ul>
+<p>&nbsp;</p>
+<p><font size="5" color="#008000">The STOSW instruction</font></p>
+<p><font size="4">To fill the memory location <b><font color="#FF6600">[ES:DI]</font></b> 
+with the value in <font color="#FF6600"><b>AX</b></font>, and then advance the 
+register <b><font color="#FF6600">DI</font></b> by 2 bytes:</font></p>
+<p><b><font size="4" face="Courier New" color="#FF6600">stosw</font></b></p>
+<p><font size="4">basically &quot;stosw&quot; is equivalent to:</font></p>
+<p><font size="4" color="#FF6600" face="Courier New">mov [ES:DI], ax<br>
+inc DI<br>
+inc DI</font></p>
+<p><font size="4">The &quot;rep&quot; prefix will execute the command CX times.</font></p>
+<p><font size="4" face="Courier New"><font color="#FF6600"><b>rep stosw</b></font>
+</font></p>
+<p><font size="4">If CX = 5, then we have stosw executed 5 times, as in:</font></p>
+<p><font size="4" face="Courier New" color="#FF6600">stosw<br>
+stosw<br>
+stosw<br>
+stosw<br>
+stosw</font></p>
+<p><font size="4">A more dramatic way of saying it is that &quot;REP STOSW&quot; is a 
+software machine gun, where CX is the number of times that AX is to be 
+machine-gunned into memory.</font></p>
+<p>&nbsp;</p>
+<p><b><font size="4" color="#008000">REP MOVSW </font></b></p>
+<p><font size="4">copies from one memory place to another memory place</font></p>
+<p>&nbsp;</p>
+<p><font color="#008000" size="5">The direction flag (DF)</font></p>
+<p><font size="4">When this flag is set (DF = 1), &quot;stosw&quot; and its fellow string 
+instructions work downhill, from higher memory to lower memory. When this flag 
+is cleared (DF = 0), the string instructions work uphill, from lower memory to 
+higher memory.</font></p>
+<p><font size="4" face="Courier New" color="#FF6600"><b>CLD</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</font><font size="4" face="Courier New" color="#008000">; clears DF</font></p>
+<p><font size="4" face="Courier New" color="#FF6600"><b>STD</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</font><font size="4" face="Courier New" color="#008000">; sets DF</font></p>
+<p><font size="4">also remember that POPF can also change DF by popping an 
+entire new set of flags from the stack into the Flags register.</font></p>
+<p><font size="4">DF governs whether DI, SI gets incremented or decremented --- 
+not CX. When using REP, CX always gets decremented.</font></p>
+
+</body>
+
+</html>

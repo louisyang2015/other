@@ -1,0 +1,448 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Carrier Concentrations</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">Carrier Concentrations</font></h1>
+<table style="BORDER-COLLAPSE: collapse" borderColor="#ff8000" cellSpacing="1" cellPadding="12" border="3">
+  <tr>
+    <td><font size="5">Let:</font>
+    <p><font size="4">n = number of electrons / cm<sup>3</sup></font></p>
+    <p><font size="4">p = number of holes / cm<sup>3</sup></font></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<h2><font color="#008000">Formulas for n and p</font></h2>
+<table border="3" cellpadding="12" cellspacing="1" style="border-collapse: collapse" bordercolor="#FF8000">
+  <tr>
+    <td>
+    <table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    n = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle" rowSpan="2">
+        <font face="Times New Roman" color="#ff8000" size="7">&#8747;</font> </td>
+        <td noWrap>
+        <div style="LEFT: -1.2ex; POSITION: relative; TOP: -0.6ex">
+          <font face="Courier New" color="#ff8000" size="3">E<sub>top</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap>
+        <div style="LEFT: -1.2ex; POSITION: relative; TOP: 0.1ex">
+          <font face="Courier New" color="#ff8000" size="3">E<sub>c</sub> </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    g<sub>c</sub>(E) f(E) dE </font></td>
+  </tr>
+</table>
+
+<TABLE cellSpacing=0 cellPadding=6 border=0>
+<TBODY>
+<TR>
+<TD noWrap align=middle><FONT face="Courier New" color=#ff8000 size=5>p = 
+</FONT></TD>
+<TD noWrap align=middle>
+<TABLE cellSpacing=0 cellPadding=0 border=0>
+<TBODY>
+<TR>
+<TD noWrap align=middle rowSpan=2><FONT face="Times New Roman" color=#ff8000 
+size=7>&#8747;</FONT> </TD>
+<TD noWrap>
+<DIV style="LEFT: -1.2ex; POSITION: relative; TOP: -0.6ex"><FONT 
+face="Courier New" color=#ff8000 size=3>E<SUB>v</SUB> </FONT></DIV></TD></TR>
+<TR>
+<TD noWrap>
+<DIV style="LEFT: -1.2ex; POSITION: relative; TOP: 0.1ex"><FONT 
+face="Courier New" color=#ff8000 size=3>E<SUB>bottom</SUB> 
+</FONT></DIV></TD></TR></TBODY></TABLE></TD>
+<TD noWrap align=middle><FONT face="Courier New" color=#ff8000 
+size=5>g<SUB>v</SUB> (E) [1 - f(E)] dE </FONT></TD></TR></TBODY></TABLE>
+    </td>
+  </tr>
+</table>
+<p><font size="4">The general results to those integrals are rather complicated 
+and is not documented. <i>(It's in the book on page 51)</i></font></p>
+
+<p><font size="4">There is a special case where the Fermi energy of the material 
+is more than 3kT away from E<sub>V</sub> or E<sub>C</sub> , then we can simplify 
+f(E) as mentioned in section 2.4 .</font></p>
+
+<table border="3" cellpadding="12" cellspacing="1" style="border-collapse: collapse" bordercolor="#FF8000">
+  <tr>
+    <td nowrap><font size="4">For a <font color="#008000">nondegenerate</font> 
+    semiconductor, where</font><p><font size="5" color="#FF8000">E<sub>V</sub> + 
+    3kT <font face="Times New Roman">&#8804; E<sub>F</sub> &#8804; E<sub>C</sub> - 3kT</font></font></p>
+    <p>&nbsp;</p>
+    <p><font face="Courier New" color="#ff8000" size="5">n = N<sub>C</sub> e^[(E<sub>F</sub> 
+    - E<sub>C</sub>)/(kT)]<br>
+    p = N<sub>V</sub> e^[(E<sub>V</sub> - E<sub>F</sub>)/(kT)] </font></p>
+    <p><font size="4">where:</font></p>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">N<sub>C</sub> = 2 *
+        </font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">&nbsp;</td>
+            <td>
+            <div style="POSITION: relative; TOP: 4ex">
+              <font face="Courier New" color="#ff8000" size="3">3/2</font></div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+            <table cellSpacing="0" cellPadding="6" border="0">
+              <tr>
+                <td noWrap align="middle">
+                <font face="Courier New" color="#ff8000" size="7">(</font> </td>
+                <td noWrap align="middle">
+                <table cellSpacing="0" cellPadding="0" border="0">
+                  <tr>
+                    <td noWrap align="middle">
+                    <div style="POSITION: relative; TOP: 0.7ex">
+                      <font face="Courier New" color="#ff8000" size="5">(m<sub>n</sub><sup>*</sup>)kT </font>
+                    </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+                  </tr>
+                  <tr>
+                    <td noWrap align="middle">
+                    <div style="POSITION: relative; TOP: -0.7ex">
+                      <font face="Courier New" color="#ff8000" size="5">2&#960;&#295;<sup>2</sup>
+                      </font>
+                    </div>
+                    </td>
+                  </tr>
+                </table>
+                </td>
+                <td noWrap align="middle">
+                <font face="Courier New" color="#ff8000" size="7">)</font> </td>
+              </tr>
+            </table>
+            </td>
+            <td>&nbsp;</td>
+          </tr>
+        </table>
+        </td>
+      </tr>
+    </table>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">N<sub>V</sub> = 2 *
+        </font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">&nbsp;</td>
+            <td>
+            <div style="POSITION: relative; TOP: 4ex">
+              <font face="Courier New" color="#ff8000" size="3">3/2</font></div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+            <table cellSpacing="0" cellPadding="6" border="0">
+              <tr>
+                <td noWrap align="middle">
+                <font face="Courier New" color="#ff8000" size="7">(</font> </td>
+                <td noWrap align="middle">
+                <table cellSpacing="0" cellPadding="0" border="0">
+                  <tr>
+                    <td noWrap align="middle">
+                    <div style="POSITION: relative; TOP: 0.7ex">
+                      <font face="Courier New" color="#ff8000" size="5">(m<sub>p</sub><sup>*</sup>)kT </font>
+                    </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+                  </tr>
+                  <tr>
+                    <td noWrap align="middle">
+                    <div style="POSITION: relative; TOP: -0.7ex">
+                      <font face="Courier New" color="#ff8000" size="5">2&#960;&#295;<sup>2</sup>
+                      </font>
+                    </div>
+                    </td>
+                  </tr>
+                </table>
+                </td>
+                <td noWrap align="middle">
+                <font face="Courier New" color="#ff8000" size="7">)</font> </td>
+              </tr>
+            </table>
+            </td>
+            <td>&nbsp;</td>
+          </tr>
+        </table>
+        </td>
+      </tr>
+    </table>
+    <p><i><font size="4">(m<sub>n</sub><sup>*</sup>) , (m<sub>n</sub><sup>*</sup>) 
+    --- effective mass numbers, see section 2.3<br>
+    k = Boltzmann constant; T = temperature</font></i></p>
+    <p>&nbsp;</p>
+    <p><font size="4">N<sub>C</sub> is called the &quot;effective&quot; density of 
+    conduction band states<br>
+    N<sub>V</sub> is called the &quot;effective&quot; density of valence band states</font></p>
+    <p><font size="4">At 300 K, N<sub>C, V </sub>= (2.510 * 10<sup>19</sup> / cm<sup>3</sup>) 
+    * [ (m<sub>n,p</sub><sup>*</sup>) / (m<sub>0</sub>) ]<sup>3/2<br>
+    </sup>For Silicon, (m<sub>n</sub><sup>*</sup>)/(m<sub>0</sub>) = 1.18, (m<sub>p</sub><sup>*</sup>)/(m<sub>0</sub>) 
+    = 0.81</font></p>
+    <p>&nbsp;</p>
+    <p><font size="4">Let:</font></p>
+    <p><font color="#ff8000" size="5">n<sub>i</sub> = number of electrons / cm<sup>3</sup><sub>
+    </sub>in the intrinsic version of the semiconductor</font></p>
+    <p><font color="#ff8000" size="5">E<sub>i</sub> = the Fermi energy of the 
+    intrinsic version of the semiconductor</font></p>
+    <table border="0" cellpadding="12" cellspacing="1" style="border-collapse: collapse" bordercolor="#111111" bgcolor="#FFFF99">
+      <tr>
+        <td><font size="5">As long as the semiconductor is nondegenerate:</font><p>
+        <font face="Courier New" color="#ff8000" size="5">n = n<sub>i</sub> e^[(E<sub>F</sub> 
+        - E<sub>i</sub>)/(kT)]</font></p>
+        <p><font face="Courier New" color="#ff8000" size="5">p = n<sub>i</sub> 
+        e^[(E<sub>i</sub> - E<sub>F</sub>)/(kT)]</font></p>
+        <p><font face="Courier New" size="5" color="#FF8000">np = (n<sub>i</sub>)<sup>2</sup></font></td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+
+<p>&nbsp;</p>
+
+<h2><font color="#008000">Formula for calculating n<sub>i</sub></font></h2>
+
+<table border="3" cellpadding="12" cellspacing="1" style="border-collapse: collapse" bordercolor="#FF8000">
+  <tr>
+    <td><font face="Courier New" color="#ff8000" size="5">(n<sub>i</sub>)<sup>2</sup> 
+    = N<sub>C</sub> N<sub>V</sub> e^[-E<sub>G</sub>/(kT)]</font></td>
+  </tr>
+</table>
+
+<p>&nbsp;</p>
+
+<h2><font color="#008000">Charge Neutrality Relationship</font></h2>
+
+<p><font size="4">A semiconductor might have more holes than electrons, or more 
+electrons than holes, but the net charge of a semiconductor is zero.</font></p>
+
+<p><font size="4">For each donor that is added to an intrinsic semiconductor, 
+the donor's fifth electron break free to become a carrier. If the fifth electron 
+does break free, then the donor will acquire a positive charge, and the free 
+electron carrier counts as a negative charge.</font></p>
+
+<p><font size="4">For each acceptor that is added to an intrinsic semiconductor, 
+the acceptor might get an electron to satisfy the octet rule. If the acceptor 
+does get an electron, the acceptor acquires a negative charge. That electron has 
+to be from some other atom, so the the atom that lost the electron to the 
+acceptor gets a hole and acquires a positive charge.</font></p>
+
+<table border="3" cellpadding="12" cellspacing="1" style="border-collapse: collapse" bordercolor="#FF8000">
+  <tr>
+    <td><font size="4">Let:</font><p><font size="5" color="#FF8000">N<sub>D</sub><sup>+</sup> 
+    = number of ionized donors per cm<sup>3</sup></font></p>
+    <p><font size="4">p = number of holes per cm<sup>3</sup></font></p>
+    <p><font size="5" color="#FF8000">N<sub>D</sub><sup>+</sup> + p = number of positive charges</font></p>
+    <p>&nbsp;</p>
+    <p><font size="5" color="#FF8000">N<sub>A</sub><sup>-</sup> = number of 
+    ionized acceptors per cm<sup>3</sup></font></p>
+    <p><font size="4">n = number of electrons per cm<sup>3</sup></font></p>
+    <p><font size="5" color="#FF8000">n + N<sub>A</sub><sup>-</sup> = the number of negative 
+    charges</font></p>
+    <p>&nbsp;</p>
+    <p><font size="5" face="Courier New" color="#FF8000">N<sub>D</sub><sup>+</sup> 
+    + p = n + N<sub>A</sub><sup>-</sup></font></p>
+    <p>&nbsp;</p>
+    <p><font size="4">Let:</font></p>
+    <p><font size="4">N<sub>A</sub> = number of acceptors per cm<sup>3<br>
+    </sup>N<sub>D</sub> = number of donors per cm<sup>3</sup></font></p>
+    <p><font size="4">If we assume total ionization, then we can say:</font></p>
+    <table border="0" cellpadding="12" cellspacing="1" style="border-collapse: collapse" bordercolor="#111111" bgcolor="#FFFF99">
+      <tr>
+        <td><font face="Courier New" color="#FF8000"><font size="5">p + N<sub>D</sub> 
+        = n + N</font><sub><font size="5">A</font></sub></font></td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+
+<p>&nbsp;</p>
+
+<h2><font color="#008000">Solving for n and p</font></h2>
+
+<p><font size="4" color="#008000">For nondegenerate semiconductors facing total 
+ionization, we can use:</font></p>
+
+<p><font face="Courier New" size="5" color="#FF8000">np = (n<sub>i</sub>)<sup>2<br>
+</sup></font><font face="Courier New" color="#FF8000"><font size="5">p + N<sub>D</sub> 
+= n + N</font><sub><font size="5">A</font></sub></font></p>
+
+<p><font size="4">to solve for n, p. Additionally, if N<sub>A</sub> is the 
+dominant dopant such that N<sub>A</sub> &gt;&gt; N<sub>D</sub> and N<sub>A</sub> &gt;&gt; n<sub>i</sub> 
+, we can assume p = N<sub>A</sub> . Alternatively if N<sub>D</sub> is the 
+dominant, we then assume n = N<sub>D</sub> .</font></p>
+
+<p>&nbsp;</p>
+
+<h2><font color="#008000">Formula for Fermi Energy</font></h2>
+
+<p><font size="4" color="#008000">Formula for E<sub>i</sub> , the Fermi energy 
+of intrinsic semiconductors</font></p>
+
+<table border="3" cellpadding="12" cellspacing="1" style="border-collapse: collapse" bordercolor="#FF8000">
+  <tr>
+    <td>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">E<sub>i</sub> = </font>
+        </td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">E<sub>C</sub> + 
+              E<sub>V</sub> </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">2 </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">+ </font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">3 </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">4 </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">kT ln </font></td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="7">(</font> </td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">(m<sub>p</sub><sup>*</sup>)</font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">(m<sub>n</sub><sup>*</sup>)</font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="7">)</font> </td>
+      </tr>
+    </table>
+    <p><font size="4">For silicon at room temperature, E<sub>i</sub> lies 0.0073 
+    eV below midgap. This is small, but it does matter in some problems.</font></td>
+  </tr>
+</table>
+
+<p><font size="4" color="#008000">Formula for E<sub>F</sub> , the Fermi energy 
+of doped semiconductors</font></p>
+
+<table border="3" cellpadding="12" cellspacing="1" style="border-collapse: collapse" bordercolor="#FF8000">
+  <tr>
+    <td><font face="Courier New" color="#ff8000" size="5">E<sub>F</sub> - E<sub>i</sub> 
+    = kT ln(N<sub>D</sub> / n<sub>i</sub>)</font><p>
+    <font face="Courier New" color="#ff8000" size="5">E<sub>i</sub> - E<sub>F</sub> 
+    = kT ln(N<sub>A</sub> / n<sub>i</sub>)</font></td>
+  </tr>
+</table>
+
+<p><i><font size="4">You can derive the above formulas with n = N<sub>c</sub> 
+e^(...), n<sub>i</sub> = N<sub>c</sub> e^(...), and use n/n<sub>i</sub> to 
+cancel out the N<sub>c</sub> and some terms in the e^(...).</font></i></p>
+
+<p><font size="4">When the doping is sufficiently high, E<sub>F</sub> gets too 
+close to E<sub>V</sub> or E<sub>C</sub> and the semiconductor is no longer 
+nondegenerate.</font></p>
+
+<p><img border="0" src="images/pic0023.jpg" width="984" height="458"></p>
+
+<p><i><font size="4">Actually, this picture is a bit misleading. It turns out 
+later, section 3.2, that under equilibrium, in a semiconductor that has 
+different doping levels at different places, the Fermi Energy level is constant 
+throughout the whole Semiconductor, and it's the E<sub>i</sub> , E<sub>V</sub> , 
+and E<sub>C</sub> that bends toward or away from the flat E<sub>F</sub> line.</font></i></p>
+
+<p>&nbsp;</p>
+
+<p><font size="4" color="#008000">How High Temperature Affects Carrier 
+Concentration</font></p>
+
+<p><font size="4">As temperature goes up, more and more holes and electron 
+become carriers. Through doping, you can have more holes than electron carriers, 
+or more electron carriers than holes, but this difference can be overwhelmed by 
+temperature. At high temperature, all semiconductor can become intrinsic. </font></p>
+
+<p><font size="4">GaAs has a higher band gap energy than Si. So more heat/energy 
+is needed in the GaAs to create enough electrons and holes to blur the 
+difference caused by doping. Therefore, GaAs devices can inherently operate at a 
+higher maximum temperature than corresponding Si devices.</font></p>
+
+</body>
+
+</html>

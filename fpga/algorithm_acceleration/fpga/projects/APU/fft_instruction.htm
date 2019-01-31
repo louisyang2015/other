@@ -1,0 +1,250 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+
+<head>
+<meta http-equiv="Content-Language" content="en-us" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Execution of FFT Instructions</title>
+<link rel="stylesheet" type="text/css" href="fpga.css" />
+</head>
+
+<body>
+
+<h1>Execution of FFT Instructions</h1>
+<p class="center">Last updated May 1, 2011</p>
+<h2>Bit Reverse Copy (0xF0)</h2>
+<table>
+			<tr>
+						<td class="nowrap">DECODE0</td>
+						<td class="left">wm0_sel &lt;= 2&#39;b00; // mem0.data &lt;= y0<br />
+						wm1_sel &lt;= 2&#39;b01; // mem1.data &lt;= y1<br />
+						<br />
+						go to DECODE1</td>
+						<td class="left">&nbsp;</td>
+			</tr>
+			<tr>
+						<td class="nowrap">DECODE1</td>
+						<td class="left">go to DECODE2</td>
+						<td class="left">&nbsp;</td>
+			</tr>
+			<tr>
+						<td class="nowrap">DECODE2</td>
+						<td class="left">if(i_rdempty == 0) <br />
+						&nbsp;&nbsp;&nbsp; bit_reverse[2:0] &lt;= i_q[2:0];<br />
+&nbsp;&nbsp;&nbsp;
+						go to DECODE99</td>
+						<td class="left">&nbsp;</td>
+			</tr>
+			<tr>
+						<td class="nowrap">DECODE99</td>
+						<td class="left">go to START0</td>
+						<td class="left">&nbsp;</td>
+			</tr>
+			<tr>
+						<td class="nowrap">START0</td>
+						<td class="left">go to START1</td>
+						<td class="left">&nbsp;</td>
+			</tr>
+			<tr>
+						<td class="nowrap">START1</td>
+						<td class="left">go to START2</td>
+						<td class="left">&nbsp;</td>
+			</tr>
+			<tr>
+						<td class="nowrap">START2</td>
+						<td class="left">go to START3</td>
+						<td class="left">&nbsp;</td>
+			</tr>
+			<tr>
+						<td class="nowrap">START3</td>
+						<td class="left">go to START4</td>
+						<td class="left">&nbsp;</td>
+			</tr>
+			<tr>
+						<td class="nowrap">START4</td>
+						<td class="left">go to ARRAYING</td>
+						<td class="left">write_ag_run &lt;= 1;</td>
+			</tr>
+			<tr>
+						<td class="nowrap">FLUSH1</td>
+						<td class="left">go to FLUSH2</td>
+						<td class="left">&nbsp;</td>
+			</tr>
+			<tr>
+						<td class="nowrap">FLUSH2</td>
+						<td class="left">go to FLUSH3</td>
+						<td class="left">&nbsp;</td>
+			</tr>
+			<tr>
+						<td class="nowrap">FLUSH3</td>
+						<td class="left">go to FLUSH4</td>
+						<td class="left">&nbsp;</td>
+			</tr>
+			<tr>
+						<td class="nowrap">FLUSH4</td>
+						<td class="left">go to END</td>
+						<td class="left">write_ag_run &lt;= 0;</td>
+			</tr>
+</table>
+<p>&nbsp;</p>
+<h2>FFT (0x10)</h2>
+
+<table>
+			<tr>
+						<td class="nowrap">DECODE0</td>
+						<td class="left">wm0_sel &lt;= 2&#39;b00; // mem0.data &lt;= y0<br />
+						wm1_sel &lt;= 2&#39;b01; // mem1.data &lt;= y1<br />
+						<br />
+						go to DECODE1</td>
+						<td class="left">&nbsp;</td>
+						<td class="left">&nbsp;</td>
+			</tr>
+			<tr>
+						<td class="nowrap">DECODE1</td>
+						<td class="left">go to DECODE2</td>
+						<td class="left">&nbsp;</td>
+						<td class="left">&nbsp;</td>
+			</tr>
+			<tr>
+						<td class="nowrap">DECODE2</td>
+						<td class="left">if(i_rdempty == 0) <br />
+&nbsp;&nbsp;&nbsp; fft_shift &lt;= i_q[29:28];<br />
+						&nbsp;&nbsp;&nbsp; r_fft_stage &lt;= i_q[7:4];<br />
+&nbsp;&nbsp;&nbsp; w_fft_stage &lt;= i_q[3:0];<br />
+&nbsp;&nbsp;&nbsp;
+						go to DECODE99</td>
+						<td class="left">&nbsp;</td>
+						<td class="left">&nbsp;</td>
+			</tr>
+			<tr>
+						<td class="nowrap">DECODE99</td>
+						<td class="left">go to START0</td>
+						<td class="left">&nbsp;</td>
+						<td class="left">&nbsp;</td>
+			</tr>
+			<tr>
+						<td class="nowrap">START0</td>
+						<td class="left">go to START1</td>
+						<td class="left">&nbsp;</td>
+						<td class="left">t_ag_run &lt;= 1;</td>
+			</tr>
+			<tr>
+						<td class="nowrap">START1</td>
+						<td class="left">go to START2</td>
+						<td class="left">&nbsp;</td>
+						<td class="left">&nbsp;</td>
+			</tr>
+			<tr>
+						<td class="nowrap">START2</td>
+						<td class="left">go to START3</td>
+						<td class="left">&nbsp;</td>
+						<td class="left">&nbsp;</td>
+			</tr>
+			<tr>
+						<td class="nowrap">START3</td>
+						<td class="left">go to START4</td>
+						<td class="left">&nbsp;</td>
+						<td class="left">&nbsp;</td>
+			</tr>
+			<tr>
+						<td class="nowrap">START4</td>
+						<td class="left">go to START5</td>
+						<td class="left">&nbsp;</td>
+						<td class="left">&nbsp;</td>
+			</tr>
+			<tr>
+						<td class="nowrap">START5</td>
+						<td class="left">go to START6</td>
+						<td class="left">&nbsp;</td>
+						<td class="left">&nbsp;</td>
+			</tr>
+			<tr>
+						<td class="nowrap">START6</td>
+						<td class="left">go to START7</td>
+						<td class="left">&nbsp;</td>
+						<td class="left">&nbsp;</td>
+			</tr>
+			<tr>
+						<td class="nowrap">START7</td>
+						<td class="left">go to START8</td>
+						<td class="left">&nbsp;</td>
+						<td class="left">&nbsp;</td>
+			</tr>
+			<tr>
+						<td class="nowrap">START8</td>
+						<td class="left">go to START9</td>
+						<td class="left">&nbsp;</td>
+						<td class="left">&nbsp;</td>
+			</tr>
+			<tr>
+						<td class="nowrap">START9</td>
+						<td class="left">go to ARRAYING</td>
+						<td class="left">write_ag_run &lt;= 1;</td>
+						<td class="left">&nbsp;</td>
+			</tr>
+			<tr>
+						<td class="nowrap">ARRAYING</td>
+						<td class="left">&nbsp;</td>
+						<td class="left">&nbsp;</td>
+						<td class="left">if(length_counter[N])<br />
+						&nbsp;&nbsp;&nbsp; t_ag_run &lt;= 0;</td>
+			</tr>
+			<tr>
+						<td class="nowrap">FLUSH1</td>
+						<td class="left">go to FLUSH2</td>
+						<td class="left">&nbsp;</td>
+						<td class="left">&nbsp;</td>
+			</tr>
+			<tr>
+						<td class="nowrap">FLUSH2</td>
+						<td class="left">go to FLUSH3</td>
+						<td class="left">&nbsp;</td>
+						<td class="left">&nbsp;</td>
+			</tr>
+			<tr>
+						<td class="nowrap">FLUSH3</td>
+						<td class="left">go to FLUSH4</td>
+						<td class="left">&nbsp;</td>
+						<td class="left">&nbsp;</td>
+			</tr>
+			<tr>
+						<td class="nowrap">FLUSH4</td>
+						<td class="left">go to FLUSH5</td>
+						<td class="left">&nbsp;</td>
+						<td class="left">&nbsp;</td>
+			</tr>
+			<tr>
+						<td class="nowrap">FLUSH5</td>
+						<td class="left">go to FLUSH6</td>
+						<td class="left">&nbsp;</td>
+						<td class="left">&nbsp;</td>
+			</tr>
+			<tr>
+						<td class="nowrap">FLUSH6</td>
+						<td class="left">go to FLUSH7</td>
+						<td class="left">&nbsp;</td>
+						<td class="left">&nbsp;</td>
+			</tr>
+			<tr>
+						<td class="nowrap">FLUSH7</td>
+						<td class="left">go to FLUSH8</td>
+						<td class="left">&nbsp;</td>
+						<td class="left">&nbsp;</td>
+			</tr>
+			<tr>
+						<td class="nowrap">FLUSH8</td>
+						<td class="left">go to FLUSH9</td>
+						<td class="left">&nbsp;</td>
+						<td class="left">&nbsp;</td>
+			</tr>
+			<tr>
+						<td class="nowrap">FLUSH9</td>
+						<td class="left">go to END</td>
+						<td class="left">write_ag_run &lt;= 0;</td>
+						<td class="left">&nbsp;</td>
+			</tr>
+</table>
+
+</body>
+
+</html>

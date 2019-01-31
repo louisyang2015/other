@@ -1,0 +1,69 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>About the Device Context</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">About the Device Context</font></h1>
+<h2><font color="#008000">Getting a Device Context Handle</font></h2>
+<p><font size="4">Inside WM_PAINT:</font></p>
+<h2><font color="#FF6600" face="Courier New">hdc = BeginPaint(hwnd, &amp;ps);<br>
+</font><font face="Courier New" color="#008000">...</font><font color="#FF6600" face="Courier New"><br>
+EndPaint(hwnd, &amp;ps);</font></h2>
+<p><font size="4">While processing messages other than WM_PAINT:</font></p>
+<h2><font face="Courier New"><font color="#FF6600">hdc = GetDC (hwnd);</font><br>
+<font color="#008000">...</font><br>
+<font color="#FF6600">ReleaseDC (hwnd, hdc);</font></font></h2>
+<p><font size="4">Unless you are using BeginPaint, EndPaint pair, windows will 
+not validate the screen. To validate the entire client area, use:</font></p>
+<h2><font face="Courier New" color="#FF6600">ValidateRect (hwnd, NULL);</font></h2>
+<p>&nbsp;</p>
+<h2><font color="#008000">To information about a device context:</font></h2>
+<h2><font face="Courier New" color="#FF6600">iValue = GetDeviceCaps (hdc, iIndex);</font></h2>
+<p><font size="4">for a list of iIndex values that you can use, run the
+<a href="DevCaps1.exe">author's &quot;DevCaps1&quot; program</a></font></p>
+<p>&nbsp;</p>
+<h2><font color="#008000">Color:</font></h2>
+<p><font size="4">In Windows, color is stored in a COLORREF value, which is 
+really a 32 bit integer. The RGB macro will format this COLORREF value:</font></p>
+<h2><font face="Courier New" color="#FF6600">RGB (255, 255, 0);</font></h2>
+<p><font size="4">You can determine the closest pure nondithered color of a 
+particular color value by calling GetNearestColor:</font></p>
+<h2><font color="#FF6600" face="Courier New">crPureColor = GetNearestColor (hdc, 
+crColor);</font></h2>
+<p>&nbsp;</p>
+<h2><font color="#008000">Other Information --- Other types of device contexts</font></h2>
+<p><font size="4">BeginPaint, GetDC, and GetWindowDC actually calls the 
+following very general function to create a device context:</font></p>
+<p><font face="Courier New" color="#FF6600"><font size="4">hdc = CreateDC (pszDriver, 
+pszDevice, pszOutput, pData);<br>
+</font></font><font face="Courier New" color="#008000" size="4">...</font><font face="Courier New" color="#FF6600"><font size="4"><br>
+DeleteDC (hdc)</font>;</font></p>
+<p><font size="4">To obtain a device context handle for the entire display:</font></p>
+<p><font face="Courier New" color="#FF6600" size="4">hdc = CreateDC ( 
+_T(&quot;DISPLAY&quot;), NULL, NULL, NULL);</font></p>
+<p><font size="4">If you just want to obtain information and not do any drawing, 
+get an &quot;information context&quot;:</font></p>
+<p><font size="4" color="#FF6600" face="Courier New">hdc = CreateIC ( 
+_T(&quot;DISPLAY&quot;), NULL, NULL, NULL);</font></p>
+<p><font size="4">When working with bitmaps, here's the code for getting a 
+&quot;memory device context&quot;:</font></p>
+<p><font face="Courier New" size="4" color="#FF6600">hdcMem = CreateCompatibleDC 
+(hdc);<br>
+</font><font face="Courier New" size="4" color="#008000">...</font><font face="Courier New" size="4" color="#FF6600"><br>
+DeleteDC (hdcMem);</font></p>
+<p><font size="4">A metafile device context --- any GDI calls you make using 
+hdcMeta are not displayed but becomes part of the metafile.</font></p>
+<p><font face="Courier New" size="4" color="#FF6600">hdcMeta = CreateMetaFile (pszFilename);<br>
+</font><font face="Courier New" size="4" color="#008000">...</font><font face="Courier New" size="4" color="#FF6600"><br>
+hmf = CloseMetaFile (hdcMeta);</font></p>
+
+</body>
+
+</html>

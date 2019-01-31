@@ -1,0 +1,183 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Multitasking and Multithreading</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">Multitasking and Multithreading</font></h1>
+<p><font size="4"><a href="examples/thread_template.cpp">Click here for a program that does a  job in the background.</a> 
+The Thread is turn on-off using an event object.</font></p>
+<p>&nbsp;</p>
+<h2><font color="#008000"><b>The Basics:</b></font></h2>
+<p><font size="4">The API function is CreateThread(...), but most programmers 
+instead use:</font></p>
+<h2><font face="Courier New" color="#FF6600">#include &lt;process.h&gt;</font></h2>
+<h2><font face="Courier New" color="#FF6600">_beginthread (Thread, 0, pParam);</font></h2>
+<h2><font face="Courier New" color="#FF6600">void Thread(void* pParam)<br>
+{<br>
+</font><font face="Courier New" color="#008000">&nbsp;&nbsp;&nbsp; //thread 
+function<br>
+<br>
+&nbsp;&nbsp;&nbsp; </font><font face="Courier New" color="#FF6600">volatile Data* 
+data_ptr = (Data*)pParam;<br>
+&nbsp;&nbsp;&nbsp; while(!data_ptr-&gt;bKill)<br>
+&nbsp;&nbsp;&nbsp; {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font>
+<font face="Courier New" color="#008000">//do processing here</font><font face="Courier New" color="#FF6600"><br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; _endthread();</font><font face="Courier New" color="#008000"><br>
+</font><font face="Courier New" color="#FF6600">}</font></h2>
+<p><font size="4">The 3rd argument to <font face="Courier New" color="#FF6600">_beginthread</font> 
+is a pointer to a programmer defined data type. In the template above, it's 
+assumed to have a &quot;bKill&quot; variable that will terminate the thread. You can use 
+NULL for pParam if you don't need to use it.</font></p>
+<p><font size="4">The pointer to the pParam is defined as &quot;volatile&quot; because 
+that is a shared variable that could be set outside of the function. Without 
+&quot;volatile&quot; an optimizing compiler might not do the check &quot;while(!data_ptr-&gt;bKill)&quot;, 
+thinking that &quot;!data_ptr-&gt;bKill&quot; could not possibly change --- since there's no 
+code changing it in the while loop.</font></p>
+<p><font size="4">Always rely on a flag like bKill to terminate the thread 
+gracefully. The &quot;<font face="Courier New" color="#FF6600">KillThread</font>&quot; 
+function will kill a thread, but it won't free the resources that the thread has 
+allocated. Threads are not processes: allocated resources are shared among all 
+threads in a process; so they are not automatically freed when the thread 
+terminates.</font></p>
+<p><font size="4">The <font face="Courier New" color="#FF6600">_endthread</font> 
+exists the thread --- use it rather than the usual &quot;return&quot; statement.</font></p>
+<p><font size="4">If the thread is going too fast and making the main window 
+unresponsive, try &quot;<b><font face="Courier New" color="#FF6600">sleep(milliseconds)</font></b>&quot; 
+to slow down the thread.</font></p>
+<p><font size="4">Whenever you do multithreaded applications, you need to change 
+the default project settings because the defaults use a single thread runtime. 
+In the &quot;Project---&gt;Settings...&quot; menu item:</font></p>
+<p><img border="0" src="images/pic07.gif" width="577" height="379"></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><font color="#008000">Critical Section</font></h2>
+<p><font size="4" color="#008000">... create object globally ...</font></p>
+<h2><font color="#FF6600" face="Courier New">CRITICAL_SECTION cs;<br>
+InitializeCriticalSection (&amp;cs);</font></h2>
+<p><font size="4" color="#008000">...use the object locally...</font></p>
+<h2><font face="Courier New"><font color="#FF6600">EnterCriticalSection (&amp;cs);<br>
+</font><font color="#008000">//do stuff</font><font color="#FF6600"><br>
+LeaveCriticalSection (&amp;cs);</font></font></h2>
+<p><font size="4">...at the end of the program...</font></p>
+<h2><font face="Courier New" color="#FF6600">DeleteCriticalSection (&amp;cs);</font></h2>
+<p><font size="4">Between the &quot;enter critical section&quot; and &quot;leave critical 
+section&quot; parts, the thread is said to own the critical section object. No two 
+threads can enter the critical section at the same time (kind of like a traffic 
+intersection with traffic lights). If a second thread call &quot;enter critical 
+section&quot; while the first thread is still in the critical section, the second 
+thread will be blocked. Due to this blocking, keep critical sections short and 
+use them to make a copy of the shared data instead of working directly on the 
+data.</font></p>
+<p><font size="4">Also, critical sections can be used to coordinate threads 
+within a single process only. To coordinate two different processes that share a 
+resource (such as shared memory), use a &quot;mutext&quot; object. The word &quot;mutext&quot; 
+stands for &quot;mutual exclusion&quot;.</font></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><b><font color="#008000" size="4">Messaging Between the Main Window and a 
+Thread:</font></b></p>
+<p><font size="4">The thread can tell the main window things by sending it 
+messages. The main window can tell thread things by modifying the data reference 
+by the pointer passed to the &quot;<font face="Courier New" color="#FF6600">Thread(void* 
+pParam)</font>&quot; function.</font></p>
+<p><font size="4"><font color="#008000">...globally...</font><br>
+<b><font face="Courier New" color="#FF6600">#define WM_CALC_DONE (WM_USER + 0)<br>
+#define WM_CALC_ABORTED (WM_USER + 1)</font></b></font></p>
+<p><font size="4"><font color="#008000">...inside Thread(...) ...</font><br>
+<b><font color="#FF6600" face="Courier New">SendMessage (data_ptr-&gt;hwnd, 
+WM_CALC_DONE, 0, 0);</font></b></font></p>
+<p><font size="4"><font color="#008000">...inside WndProc...</font><br>
+<b><font face="Courier New" color="#FF6600">case WM_CALC_DONE:<br>
+&nbsp;&nbsp;&nbsp; return 0;</font></b></font></p>
+<p><b><font size="4" face="Courier New" color="#FF6600">case WM_CALC_ABORTED:<br>
+&nbsp;&nbsp;&nbsp; return 0;</font></b></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><font color="#008000">The Event Object</font></h2>
+<p><font size="4">This allows you to keep a thread around for the entire 
+duration of the program, and only kick it into action when necessary</font></p>
+<p><font size="4">An event object has two states --- set or unset. When the 
+object is &quot;unset&quot;, the function call &quot;WaitForSingleObject is blocked&quot;. When the 
+event object is &quot;set&quot;, &quot;WaitForSingleObject&quot; will return immediately.</font></p>
+<p><font size="4">code:</font></p>
+<p><font size="4"><font color="#008000">...in WndProc...</font><br>
+<b><font face="Courier New" color="#FF6600">static HANDLE hEvent</font></b></font></p>
+<p><font size="4"><font color="#008000">...in WM_CREATE...</font><br>
+<font face="Courier New"><b><font color="#FF6600">hEvent = CreateEvent (NULL, 
+FALSE, FALSE, NULL);</font><br>
+</b><font color="#008000">//3rd argument means the event is initially not set</font></font></font></p>
+<p><font size="4"><font color="#008000">...in Thread...</font><br>
+<b><font face="Courier New" color="#FF6600">while(TRUE)<br>
+{<br>
+&nbsp;&nbsp;&nbsp; WaitForSingleObject (data_ptr-&gt;hEvent, INFINITE);<br>
+&nbsp;&nbsp;&nbsp; </font></b><font color="#008000" face="Courier New">//hangs 
+while the event object is not set (un-signaled)</font></font></p>
+<p><font size="4"><b><font face="Courier New" color="#FF6600">&nbsp;&nbsp;&nbsp;
+</font></b><font face="Courier New" color="#008000">//do stuff</font><font face="Courier New" color="#FF6600"><b><br>
+}<br>
+</b></font></font><font face="Courier New" color="#008000" size="4">//no need 
+for _endthread() here</font></p>
+<p><font size="4"><font color="#008000">...in WndProc...</font><br>
+<font color="#008000" face="Courier New">//to set a signal (to set the event 
+object), and hence allow the <br>
+//&quot;WaitForSingleObject(...) function to continue</font><br>
+<b><font color="#FF6600" face="Courier New">SetEvent (hEvent);</font></b></font></p>
+<p><font size="4">When we use:<br>
+<font color="#FF6600" face="Courier New">hEvent = CreateEvent (NULL, FALSE, 
+FALSE, NULL);</font></font></p>
+<p><font size="4">The event will be unset when &quot;WaitForSingleObject&quot; returns. If 
+we change the second argument to:<br>
+<font color="#FF6600" face="Courier New">hEvent = CreateEvent (NULL, TRUE, 
+FALSE, NULL);</font></font></p>
+<p><font size="4">the event will still be set when &quot;WaitForSingleObject&quot; 
+returns. In that case, you unset an event with:<br>
+<font face="Courier New" color="#FF6600">ResetEvent (hEvent);</font></font></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><b><font size="4" color="#008000">Other Notes:</font></b></p>
+<p><font size="4">Book's recommended program architecture: <i>&quot;have a primary 
+thread that creates all the windows that your program needs, includes all the 
+window procedures for these windows, and process all the messages for these 
+windows. Any other threads are simply background crunchers. They do not interact 
+with the user except through communication with the primary thread.&quot; </i>--- My 
+own additional input: the author's own &quot;multi2.c&quot; program does not run well and 
+shows the limitation of his ideas. Threads will execute at the highest speed 
+possible. The background task can make the main window unresponsive. So use <b>
+<font face="Courier New" color="#FF6600">sleep(milliseconds)</font></b> to pause 
+the thread, or use timers (no thread at all). Also, use threads to do the 
+blocking function calls --- which is common in networking.</font></p>
+<p><font size="4">Threads are built on functions --- so you can create two 
+threads based on the same function. The static variables in the function will be 
+shared, but the automatic variables will be unique to each thread.</font></p>
+<p><font size="4">Because a thread can be interrupted at any time, the problem 
+with thread programming are synchronization issues. Basically pay attention to 
+all the variables that you share among different threads.</font></p>
+<p><font size="4">Example:</font></p>
+<p><font size="4">The &quot;data_ptr&quot; is pointer to a variable shared between the 
+main window and a new thread</font></p>
+<p><font face="Courier New" color="#008000">...in the new thread...</font><font face="Courier New" color="#FF6600"><br>
+while(!data_ptr-&gt;bKill)<br>
+{<br>
+&nbsp;&nbsp;&nbsp; </font><font face="Courier New" color="#008000">//data_ptr-&gt;bKill 
+is assumed to be true for the duration<br>
+&nbsp;&nbsp;&nbsp; //of this loop, problems might occur if the thread is <br>
+&nbsp;&nbsp;&nbsp; //interrupted and the main program changed the<br>
+&nbsp;&nbsp;&nbsp; //data_ptr-&gt;bKill</font><font face="Courier New" color="#FF6600"><br>
+}</font></p>
+<p><font size="4">race condition --- when the program assumes that one thread 
+will finish preparing data that is needed by another thread</font></p>
+<p><font size="4">dead lock --- when two threads have blocked each other's 
+execution</font></p>
+
+</body>
+
+</html>

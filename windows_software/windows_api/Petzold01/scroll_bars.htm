@@ -1,0 +1,67 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Scroll Bars</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">Scroll Bars</font></h1>
+<h2 align="left"><font face="Courier New" color="#FF6600">SetScrollInfo (hwnd, 
+iBar, &amp;si, bRedraw) ;<br>
+GetScrollInfo (hwnd, iBar, &amp;si) ;</font></h2>
+<p align="left"><font size="4">The iBar is either <font color="#0000FF">SB_VERT</font> 
+or <font color="#0000FF">SB_HORZ</font></font></p>
+<p align="left"><font size="4" face="Courier New">typedef struct tagSCROLLINFO<br>
+{<br>
+&nbsp;&nbsp;&nbsp;&nbsp; UINT cbSize ;&nbsp;&nbsp;&nbsp;&nbsp; // set to sizeof 
+(SCROLLINFO)<br>
+&nbsp;&nbsp;&nbsp;&nbsp; UINT fMask ;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // values to 
+set or get<br>
+&nbsp;&nbsp;&nbsp;&nbsp; int&nbsp; nMin ;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // 
+minimum range value<br>
+&nbsp;&nbsp;&nbsp;&nbsp; int&nbsp; nMax ;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // 
+maximum range value<br>
+&nbsp;&nbsp;&nbsp;&nbsp; UINT nPage ;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // page size<br>
+&nbsp;&nbsp;&nbsp;&nbsp; int&nbsp; nPos ;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // 
+current position<br>
+&nbsp;&nbsp;&nbsp;&nbsp; int&nbsp; nTrackPos ;&nbsp; // current tracking 
+position<br>
+}<br>
+SCROLLINFO, * PSCROLLINFO ;</font></p>
+<p align="left"><font size="4">Usage:</font></p>
+<h2 align="left"><font color="#FF6600" face="Courier New">SCROLLINFO si;<br>
+si.cbSize = sizeof(si);</font></h2>
+<p align="left"><font size="4">note that you have to set cbSize</font></p>
+<p align="left"><font size="4">before passing &quot;si&quot; to &quot;SetScrollInfo&quot; or &quot;GetScrollInfo&quot;, 
+you need to set the &quot;fMask&quot; flag:<br>
+<font color="#0000FF">SIF_RANGE</font> --- for nMin, nMax<br>
+<font color="#0000FF">SIF_POS</font> --- for nPos<br>
+<font color="#0000FF">SIF_PAGE</font> --- nPage<br>
+<font color="#0000FF">SIF_TRACKPOS</font> --- nTrackPos --- use this only with 
+GetScrollInfo while processing a WM_VSCROLL or WM_HSCROLL message with a 
+notification code of SB_THUMBTRACK or SB_THUMBPOSITION</font></p>
+<p align="left"><font size="4"><font color="#0000FF">SIF_ALL</font> --- get/set 
+all values</font></p>
+<p align="left"><font size="4">Windows will limit the maximum scroll bar 
+position to <font color="#0000FF">si.nMax - si.nPage + 1</font></font></p>
+<p align="left"><font size="4">To move the current window very quickly, use:</font></p>
+<h2 align="left"><font face="Courier New" color="#FF6600">ScrollWindow(hwnd, 
+delta_x, delta_y, NULL, NULL);</font></h2>
+<p align="left"><font size="4"><a href="examples/scroll_bar_template.cpp">Click 
+here for a template program handling scroll bars</a></font></p>
+<p align="left"><font size="4">Regarding the scroll bar thumb, it assumes the 
+strategy of handling &quot;<font color="#0000FF">SB_THUMBTRACK</font>&quot; and ignoring &quot;<font color="#0000FF">SB_THUMBPOSITION</font>&quot;</font></p>
+
+<p align="left">&nbsp;</p>
+
+<p align="left">
+<img border="0" src="images/pic007.gif" width="800" height="569"></p>
+
+</body>
+
+</html>

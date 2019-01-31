@@ -1,0 +1,89 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Rectangles and Regions</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">Rectangles and Regions</font></h1>
+<h2><font color="#008000">RECT functions</font></h2>
+
+<h2><font face="Courier New" color="#FF6600">FillRect (hdc, &amp;rect, hBrush);<br>
+FrameRect (hdc, &amp;rect, hBrush); </font><font face="Courier New" color="#008000">
+//draw border only</font><font face="Courier New" color="#FF6600"><br>
+InvertRect (hdc, &amp;rect);</font></h2>
+
+<h2><font face="Courier New" color="#FF6600">SetRect (&amp;rect, xLeft, yTop, xRight, 
+yBottom);</font></h2>
+<p><font size="4">To obtain the intersection of two rectangles:</font></p>
+<h2><font face="Courier New" color="#FF6600">IntersectRect (&amp;DestRect, 
+&amp;SrcRect1, &amp;SrcRect2);</font></h2>
+<p><font size="4">To obtain the union of two rectangles:</font></p>
+<h2><font face="Courier New" color="#FF6600">UnionRect (&amp;DestRect, &amp;SrcRect1, 
+&amp;SrcRect2);</font></h2>
+<p><font size="4">To determine whether a point is in a rectangle:</font></p>
+<h2><font face="Courier New" color="#FF6600">bInRect = PtInRect (&amp;rect, point);</font></h2>
+<p>&nbsp;</p>
+<h2><font color="#008000">Creating Regions</font></h2>
+<h2><font face="Courier New" color="#FF6600">HRGN hRgn;<br>
+hRgn = CreateRectRgn (xLeft, yTop, xRight, yBottom);<br>
+hRgn = CreateRectRgnIndirect (&amp;rect);</font></h2>
+<h2><font face="Courier New" color="#FF6600">hRgn = CreateEllipticRgn (xLeft, 
+yTop, xRight, yBottom);<br>
+hRgn = CreateEllipticRgnIndirect (&amp;rect);</font></h2>
+<h2><font face="Courier New" color="#FF6600">hRgn = CreatePolygonRgn (&amp;point, 
+iCount, iPolyFillMode);</font></h2>
+<p><font size="4">point = an array of structure of type <font color="#0000FF">
+POINT</font><br>
+iPolyFillMode = <font color="#0000FF">ALTERNATE</font> or <font color="#0000FF">
+WINDING</font></font></p>
+<p>&nbsp;</p>
+<h2><font color="#008000">Deleting Regions</font></h2>
+<h2><font face="Courier New" color="#FF6600">DeleteObject (hRgn);</font></h2>
+<p>&nbsp;</p>
+<h2><font color="#008000">Combining Regions</font></h2>
+<h2><font face="Courier New" color="#FF6600">iRgnType = CombineRgn (nDestRgn, 
+hSrcRgn1, hSrcRgn2, iCombine);</font></h2>
+<p><font size="4">iCombine can be:<br>
+<font color="#0000FF">RGN_AND<br>
+RGN_OR<br>
+RGN_XOR<br>
+RGN_DIFF<br>
+RGN_COPY</font></font></p>
+<p><font size="4">iRgnType can be:<br>
+<font color="#0000FF">NULLREGION<br>
+SIMPLEREGION<br>
+COMPLEXREGION<br>
+ERROR</font></font></p>
+<p>&nbsp;</p>
+<h2><font color="#008000">Drawing a region</font></h2>
+<h2><font face="Courier New" color="#FF6600">FillRgn (hdc, hRgn, hBrush);<br>
+FrameRgn (hdc, hRgn, hBrush, xFrame, yFrame);<br>
+InvertRgn (hdc, hRgn);<br>
+PaintRgn (hdc, hRgn);</font></h2>
+<p><font size="4">all of the above use logical coordinates</font></p>
+<p>&nbsp;</p>
+<h2><font color="#008000">Using Regions to do clipping</font></h2>
+<h2><font face="Courier New" color="#FF6600">SelectObject (hdc, hRgn);<br>
+SelectClipRgn (hdc, hRgn);</font></h2>
+<p><font size="4">The clipping region is in device coordinates. Also, the GDI 
+makes a copy of the clipping region, so you can delete the region object after 
+you select it in the device context.</font></p>
+<p>&nbsp;</p>
+<h2><font color="#008000">Using Regions with WM_PAINT</font></h2>
+<p><font size="4">to erase the client area:</font></p>
+<p><font size="4" face="Courier New" color="#FF6600">InvalidateRect (hwnd, NULL, 
+TRUE);</font></p>
+<p><font size="4">or</font></p>
+<h2><font face="Courier New" color="#FF6600">InvalidateRgn (hwnd, hRgn, bErase);</font></h2>
+<p><font size="4">To validate a region:</font></p>
+<h2><font face="Courier New" color="#FF6600">ValidateRgn (hwnd, hRgn);</font></h2>
+
+</body>
+
+</html>

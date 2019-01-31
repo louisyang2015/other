@@ -1,0 +1,105 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>MESFET</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">MESFET</font></h1>
+<p><font size="4" color="#008000">General Introduction</font></p>
+<p><font size="4">MESFET = Metal Semiconductor FET</font></p>
+<p><font size="4">The idea behind the MESFET is that sometimes an MS contact can 
+be like a diode, a rectifying contact that produces a depletion region.</font></p>
+<p><font size="4">A GaAs MESFET is pictured below.</font></p>
+<p><img border="0" src="images/fig_15_20.jpg" width="488" height="662"></p>
+<p><font size="4">Note that in these single gate structures, the width of the 
+channel is &quot;a&quot;, not the &quot;2a&quot; used in the I<sub>D</sub> equations for the J-FET.</font></p>
+<p><font size="4">These GaAs MESFET are used in high frequency applications 
+where GaAs is preferred over Si because of its superior electron-transport 
+properties.</font></p>
+<p><font size="4">There are two basic versions of MESFET. The
+<font color="#008000">enhancement mode</font> version (E-MESFET) starts out with 
+the gate-channel depletion already blocking out the entire channel. An forward 
+bias is needed to reduce the depletion region and allow conduction.</font></p>
+<p><img border="0" src="images/fig_15_21b.jpg" width="764" height="219"></p>
+<p><font size="4">The <font color="#008000">depletion mode</font> version (D-MESFET) 
+is the version in the previous discussions, where things start out such that the 
+depletion region does not choke off the channel. A reverse bias V<sub>P</sub> is 
+needed to block the channel and prevent conduction.</font></p>
+<p><img border="0" src="images/fig_15_21a.jpg" width="437" height="218"></p>
+<p>&nbsp;</p>
+<h2><font color="#008000">Short Channel Considerations</font></h2>
+<p><font size="4">One thing already mentioned before is that the saturation of 
+current at high drain-source voltages happen only if the channel is relatively 
+long, such that the pinched off segment of the channel is a relatively short 
+part of the overall channel.</font></p>
+<p><font size="4">Another effect of short channels is that short channels can 
+lead to very high electric fields between the drain and the source. The channel 
+in commercial devices is routinely <font face="Times New Roman">&#8804;</font> 1<font face="Times New Roman">&#956;m. 
+A 1 volt applied across such channels lead to average electric fields greater 
+than 10<sup>4</sup> V / cm. The actual electric field is the greatest near the 
+drain.</font></font></p>
+<p><font face="Times New Roman" size="4">The I<sub>D</sub> equations are based 
+on the equation for drift current, which assumes that higher electric field is 
+directly proportional to electron speed. As seen from the following chart from 
+chapter 3:</font></p>
+<p><img border="0" src="images/fig_03_04.jpg" width="763" height="471"></p>
+<p><font face="Times New Roman" size="4">for high electric fields, the electron 
+speed eventually saturates. So the electron mobility is high for small electric 
+fields, but drops to zero for larger electric fields.</font></p>
+<p><font face="Times New Roman" size="4">One way to compensate for short channel 
+effects is to use a more complicated equation for v<sub>d</sub>(E) instead of 
+just assuming that the electron velocity depends linearly on the electric field. 
+The book mentions:</font></p>
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    v<sub>d</sub> = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">&#956;<sub>0</sub> E
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">1 + &#956;<sub>0</sub> E 
+          / v<sub>sat</sub> </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<p><font size="4">The presence of an upper limit on the speed of the electron 
+also means that the channel might not reach pinch off at all in some devices. 
+The current I<sub>d</sub> is constant throughout all points in the channel. As 
+the depletion region widens and the channel narrows, electrons must go faster to 
+maintain a constant flow of current. Say that electrons reach their maximum 
+speed at location y<sub>1</sub> , then the channel looks like:</font></p>
+<p><img border="0" src="images/fig_15_22.jpg" width="545" height="224"></p>
+<p><font size="4">where the depletion region stops growing at y = y<sub>1</sub> 
+. To model this case, break the channel into two different parts and use two 
+different models. For 0 &lt; y &lt; y<sub>1</sub> , use the previous long channel 
+model where <font face="Times New Roman">the electron speed v<sub>d</sub> = &#956;<sub>n</sub> 
+* E. For y<sub>1</sub> &lt; y &lt; L, use v<sub>d</sub> = v<sub>sat</sub> . Also, in 
+this case the saturation does not come from a pinch off in the channel, so V<sub>Dsat</sub> 
+is NOT V<sub>G</sub> - V<sub>P</sub> .</font> </font></p>
+
+</body>
+
+</html>

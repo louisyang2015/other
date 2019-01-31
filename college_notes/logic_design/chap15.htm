@@ -1,0 +1,1583 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Reduction of State Tables</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">Reduction of State Tables</font></h1>
+<p><font size="4" color="#008000">Row Matching</font></p>
+<table border="1" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td rowspan="2" align="center"><font size="4">Present<br>
+    State</font></td>
+    <td rowspan="4" align="center">&nbsp;</td>
+    <td colspan="2" align="center"><font size="4">Next State</font></td>
+    <td rowspan="4" align="center">&nbsp;</td>
+    <td colspan="2" align="center"><font size="4">Output</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">X = 0</font></td>
+    <td align="center"><font size="4">X = 1</font></td>
+    <td align="center"><font size="4">X = 0</font></td>
+    <td align="center"><font size="4">X = 1</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">H</font></td>
+    <td align="center"><font size="4">A</font></td>
+    <td align="center"><font size="4">A</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">I</font></td>
+    <td align="center"><font size="4">A</font></td>
+    <td align="center"><font size="4">A</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+  </tr>
+</table>
+<p><font size="4">Both state H and state I responds the same way to input --- so 
+those two states are equivalent (H <font face="Times New Roman">&#8801;</font> I). We 
+can replace all occurrence of I with H in the states table.</font></p>
+<p>&nbsp;</p>
+<h2><font color="#008000">Equivalent States</font></h2>
+<p><font size="4">Two states are <font color="#008000">equivalent</font> iff for every single input X, the 
+outputs are the same and the next states are equivalent.</font></p>
+<p><font size="4">This definition is a circular one. To detect equivalence we go 
+over a states table and any two states that have the same output are suspected 
+of being equivalent. For every pair of these equivalent suspects, we look at 
+their future states and eventually detect or reject equivalence.</font></p>
+<p><font size="4">Example:</font></p>
+<table border="1" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td rowspan="2" nowrap align="center"><font size="4">Present<br>
+    State</font></td>
+    <td rowspan="10" nowrap align="center">&nbsp;</td>
+    <td colspan="2" nowrap align="center"><font size="4">Next State</font></td>
+    <td rowspan="10" nowrap align="center">&nbsp;</td>
+    <td rowspan="2" nowrap align="center"><font size="4">Present<br>
+    Output</font></td>
+  </tr>
+  <tr>
+    <td nowrap align="center"><font size="4">X = 0</font></td>
+    <td nowrap align="center"><font size="4">X = 1</font></td>
+  </tr>
+  <tr>
+    <td nowrap align="center"><font size="4">a</font></td>
+    <td nowrap align="center"><font size="4">d</font></td>
+    <td nowrap align="center"><font size="4">c</font></td>
+    <td nowrap align="center"><font size="4">0</font></td>
+  </tr>
+  <tr>
+    <td nowrap align="center"><font size="4">b</font></td>
+    <td nowrap align="center"><font size="4">f</font></td>
+    <td nowrap align="center"><font size="4">h</font></td>
+    <td nowrap align="center"><font size="4">0</font></td>
+  </tr>
+  <tr>
+    <td nowrap align="center"><font size="4">c</font></td>
+    <td nowrap align="center"><font size="4">e</font></td>
+    <td nowrap align="center"><font size="4">d</font></td>
+    <td nowrap align="center"><font size="4">1</font></td>
+  </tr>
+  <tr>
+    <td nowrap align="center"><font size="4">d</font></td>
+    <td nowrap align="center"><font size="4">a</font></td>
+    <td nowrap align="center"><font size="4">e</font></td>
+    <td nowrap align="center"><font size="4">0</font></td>
+  </tr>
+  <tr>
+    <td nowrap align="center"><font size="4">e</font></td>
+    <td nowrap align="center"><font size="4">c</font></td>
+    <td nowrap align="center"><font size="4">a</font></td>
+    <td nowrap align="center"><font size="4">1</font></td>
+  </tr>
+  <tr>
+    <td nowrap align="center"><font size="4">f</font></td>
+    <td nowrap align="center"><font size="4">f</font></td>
+    <td nowrap align="center"><font size="4">b</font></td>
+    <td nowrap align="center"><font size="4">1</font></td>
+  </tr>
+  <tr>
+    <td nowrap align="center"><font size="4">g</font></td>
+    <td nowrap align="center"><font size="4">b</font></td>
+    <td nowrap align="center"><font size="4">h</font></td>
+    <td nowrap align="center"><font size="4">0</font></td>
+  </tr>
+  <tr>
+    <td nowrap align="center"><font size="4">h</font></td>
+    <td nowrap align="center"><font size="4">c</font></td>
+    <td nowrap align="center"><font size="4">g</font></td>
+    <td nowrap align="center"><font size="4">1</font></td>
+  </tr>
+</table>
+<p><font size="4">To track our progress, use this chart:</font></p>
+
+<table border="2" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#FF8000">
+  <tr>
+    <td><font size="4">b</font></td>
+    <td>&nbsp;</td>
+    <td bgcolor="#FF8000">&nbsp;</td>
+    <td bgcolor="#FF8000">&nbsp;</td>
+    <td bgcolor="#FF8000">&nbsp;</td>
+    <td bgcolor="#FF8000">&nbsp;</td>
+    <td bgcolor="#FF8000">&nbsp;</td>
+    <td bgcolor="#FF8000">&nbsp;</td>
+  </tr>
+  <tr>
+    <td><font size="4">c</font></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td bgcolor="#FF8000">&nbsp;</td>
+    <td bgcolor="#FF8000">&nbsp;</td>
+    <td bgcolor="#FF8000">&nbsp;</td>
+    <td bgcolor="#FF8000">&nbsp;</td>
+    <td bgcolor="#FF8000">&nbsp;</td>
+  </tr>
+  <tr>
+    <td><font size="4">d</font></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td bgcolor="#FF8000">&nbsp;</td>
+    <td bgcolor="#FF8000">&nbsp;</td>
+    <td bgcolor="#FF8000">&nbsp;</td>
+    <td bgcolor="#FF8000">&nbsp;</td>
+  </tr>
+  <tr>
+    <td><font size="4">e</font></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td bgcolor="#FF8000">&nbsp;</td>
+    <td bgcolor="#FF8000">&nbsp;</td>
+    <td bgcolor="#FF8000">&nbsp;</td>
+  </tr>
+  <tr>
+    <td><font size="4">f</font></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td bgcolor="#FF8000">&nbsp;</td>
+    <td bgcolor="#FF8000">&nbsp;</td>
+  </tr>
+  <tr>
+    <td><font size="4">g</font></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td bgcolor="#FF8000">&nbsp;</td>
+  </tr>
+  <tr>
+    <td><font size="4">h</font></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td><font size="4">a</font></td>
+    <td><font size="4">b</font></td>
+    <td><font size="4">c</font></td>
+    <td><font size="4">d</font></td>
+    <td><font size="4">e</font></td>
+    <td><font size="4">f</font></td>
+    <td><font size="4">g</font></td>
+  </tr>
+</table>
+
+<p><font size="4">We put an &quot;X&quot; in the box whenever we confirmed the two states 
+are not equivalent. We keep searching for non-equivalence so that in the end we 
+will uncover all equivalent states.</font></p>
+
+<p><font size="4">The first way to confirm that states are non-equivalent is if 
+they have different outputs. &quot;a&quot; and &quot;c&quot; have different outputs, so they can not 
+be equivalent. Pairs of states that have different outputs:</font></p>
+
+<table border="2" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#FF8000">
+  <tr>
+    <td><font size="4">b</font></td>
+    <td>&nbsp;</td>
+    <td bgcolor="#FF8000">&nbsp;</td>
+    <td bgcolor="#FF8000">&nbsp;</td>
+    <td bgcolor="#FF8000">&nbsp;</td>
+    <td bgcolor="#FF8000">&nbsp;</td>
+    <td bgcolor="#FF8000">&nbsp;</td>
+    <td bgcolor="#FF8000">&nbsp;</td>
+  </tr>
+  <tr>
+    <td><font size="4">c</font></td>
+    <td><font size="4">X</font></td>
+    <td><font size="4">X</font></td>
+    <td bgcolor="#FF8000">&nbsp;</td>
+    <td bgcolor="#FF8000">&nbsp;</td>
+    <td bgcolor="#FF8000">&nbsp;</td>
+    <td bgcolor="#FF8000">&nbsp;</td>
+    <td bgcolor="#FF8000">&nbsp;</td>
+  </tr>
+  <tr>
+    <td><font size="4">d</font></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><font size="4">X</font></td>
+    <td bgcolor="#FF8000">&nbsp;</td>
+    <td bgcolor="#FF8000">&nbsp;</td>
+    <td bgcolor="#FF8000">&nbsp;</td>
+    <td bgcolor="#FF8000">&nbsp;</td>
+  </tr>
+  <tr>
+    <td><font size="4">e</font></td>
+    <td><font size="4">X</font></td>
+    <td><font size="4">X</font></td>
+    <td>&nbsp;</td>
+    <td><font size="4">X</font></td>
+    <td bgcolor="#FF8000">&nbsp;</td>
+    <td bgcolor="#FF8000">&nbsp;</td>
+    <td bgcolor="#FF8000">&nbsp;</td>
+  </tr>
+  <tr>
+    <td><font size="4">f</font></td>
+    <td><font size="4">X</font></td>
+    <td><font size="4">X</font></td>
+    <td>&nbsp;</td>
+    <td><font size="4">X</font></td>
+    <td>&nbsp;</td>
+    <td bgcolor="#FF8000">&nbsp;</td>
+    <td bgcolor="#FF8000">&nbsp;</td>
+  </tr>
+  <tr>
+    <td><font size="4">g</font></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><font size="4">X</font></td>
+    <td>&nbsp;</td>
+    <td><font size="4">X</font></td>
+    <td><font size="4">X</font></td>
+    <td bgcolor="#FF8000">&nbsp;</td>
+  </tr>
+  <tr>
+    <td><font size="4">h</font></td>
+    <td><font size="4">X</font></td>
+    <td><font size="4">X</font></td>
+    <td>&nbsp;</td>
+    <td><font size="4">X</font></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><font size="4">X</font></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td><font size="4">a</font></td>
+    <td><font size="4">b</font></td>
+    <td><font size="4">c</font></td>
+    <td><font size="4">d</font></td>
+    <td><font size="4">e</font></td>
+    <td><font size="4">f</font></td>
+    <td><font size="4">g</font></td>
+  </tr>
+</table>
+
+<p><font size="4">Next, we note the equivalence requirements for each pair of 
+states that we have not ruled out:</font></p>
+
+<table border="1" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td align="center" nowrap><font size="4">Suspected <br>
+    Equivalence</font></td>
+    <td align="center" nowrap><font size="4">Requirement for <br>
+    Equivalence</font></td>
+    <td align="center"><font size="4">Conclusions<br>
+    <i>(higher number conclusions are built <br>
+    on lower number conclusions)</i></font></td>
+  </tr>
+  <tr>
+    <td align="center" nowrap><font size="4">a <font face="Times New Roman">&#8801; b</font></font></td>
+    <td align="center" nowrap><font size="4">d <font face="Times New Roman">&#8801; f,
+    </font>c <font face="Times New Roman">&#8801; h</font></font></td>
+    <td><font size="4">#1. (d <font face="Times New Roman">&#8801; f) is false</font></font></td>
+  </tr>
+  <tr>
+    <td align="center" nowrap><font size="4">a <font face="Times New Roman">&#8801; d</font></font></td>
+    <td align="center" nowrap><font size="4">a <font face="Times New Roman">&#8801; d,
+    </font>c <font face="Times New Roman">&#8801; e</font></font></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td align="center" nowrap><font size="4">a <font face="Times New Roman">&#8801; g</font></font></td>
+    <td align="center" nowrap><font size="4">b <font face="Times New Roman">&#8801; d,
+    </font>c <font face="Times New Roman">&#8801; h</font></font></td>
+    <td><font size="4">#2. (b <font face="Times New Roman">&#8801; d) is false</font></font></td>
+  </tr>
+  <tr>
+    <td align="center" nowrap><font size="4">b <font face="Times New Roman">&#8801; d</font></font></td>
+    <td align="center" nowrap><font size="4">a <font face="Times New Roman">&#8801; f,
+    </font>e <font face="Times New Roman">&#8801; h</font></font></td>
+    <td><font size="4">#1. (a <font face="Times New Roman">&#8801; f) is false</font></font></td>
+  </tr>
+  <tr>
+    <td align="center" nowrap><font size="4">b <font face="Times New Roman">&#8801; g</font></font></td>
+    <td align="center" nowrap><font size="4">b <font face="Times New Roman">&#8801; f,
+    </font>h <font face="Times New Roman">&#8801; h</font></font></td>
+    <td><font size="4">#1. (b <font face="Times New Roman">&#8801; f) is false</font></font></td>
+  </tr>
+  <tr>
+    <td align="center" nowrap><font size="4">c <font face="Times New Roman">&#8801; e</font></font></td>
+    <td align="center" nowrap><font size="4">c <font face="Times New Roman">&#8801; e,
+    </font>a <font face="Times New Roman">&#8801; d</font></font></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td align="center" nowrap><font size="4">c <font face="Times New Roman">&#8801; f</font></font></td>
+    <td align="center" nowrap><font size="4">e <font face="Times New Roman">&#8801; f,
+    </font>b <font face="Times New Roman">&#8801; d</font></font></td>
+    <td><font size="4">#2. (b <font face="Times New Roman">&#8801; d) is false</font></font></td>
+  </tr>
+  <tr>
+    <td align="center" nowrap><font size="4">c <font face="Times New Roman">&#8801; h</font></font></td>
+    <td align="center" nowrap><font size="4">c <font face="Times New Roman">&#8801; e,
+    </font>d <font face="Times New Roman">&#8801; g</font></font></td>
+    <td><font size="4">#3. (d <font face="Times New Roman">&#8801; g) is false</font></font></td>
+  </tr>
+  <tr>
+    <td align="center" nowrap><font size="4">d <font face="Times New Roman">&#8801; g</font></font></td>
+    <td align="center" nowrap><font size="4">a <font face="Times New Roman">&#8801; b, 
+    e</font> <font face="Times New Roman">&#8801; h</font></font></td>
+    <td><font size="4">#2. (a <font face="Times New Roman">&#8801; b) is false</font></font></td>
+  </tr>
+  <tr>
+    <td align="center" nowrap><font size="4">e <font face="Times New Roman">&#8801; f</font></font></td>
+    <td align="center" nowrap><font size="4">c <font face="Times New Roman">&#8801; f,
+    </font>a <font face="Times New Roman">&#8801; b</font></font></td>
+    <td><font size="4">#2. (a <font face="Times New Roman">&#8801; b) is false</font></font></td>
+  </tr>
+  <tr>
+    <td align="center" nowrap><font size="4">e <font face="Times New Roman">&#8801; h</font></font></td>
+    <td align="center" nowrap><font size="4">c <font face="Times New Roman">&#8801; c,
+    </font>a <font face="Times New Roman">&#8801; g</font></font></td>
+    <td><font size="4">#3. (a <font face="Times New Roman">&#8801; g) is false</font></font></td>
+  </tr>
+  <tr>
+    <td align="center" nowrap><font size="4">f <font face="Times New Roman">&#8801; h</font></font></td>
+    <td align="center" nowrap><font size="4">c <font face="Times New Roman">&#8801; f,
+    </font>b <font face="Times New Roman">&#8801; g</font></font></td>
+    <td><font size="4">#2. (b <font face="Times New Roman">&#8801; g) is false</font></font></td>
+  </tr>
+</table>
+
+<p><font size="4">As we draw conclusions, we cross out more boxes in the chart. 
+#1 conclusions are drawn on the first pass through the above list of suspected 
+equivalent states.</font></p>
+
+<table border="2" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#FF8000">
+  <tr>
+    <td><font size="4">b</font></td>
+    <td><font size="4" color="#008000">#1</font></td>
+    <td bgcolor="#FF8000">&nbsp;</td>
+    <td bgcolor="#FF8000">&nbsp;</td>
+    <td bgcolor="#FF8000">&nbsp;</td>
+    <td bgcolor="#FF8000">&nbsp;</td>
+    <td bgcolor="#FF8000">&nbsp;</td>
+    <td bgcolor="#FF8000">&nbsp;</td>
+  </tr>
+  <tr>
+    <td><font size="4">c</font></td>
+    <td><font size="4">X</font></td>
+    <td><font size="4">X</font></td>
+    <td bgcolor="#FF8000">&nbsp;</td>
+    <td bgcolor="#FF8000">&nbsp;</td>
+    <td bgcolor="#FF8000">&nbsp;</td>
+    <td bgcolor="#FF8000">&nbsp;</td>
+    <td bgcolor="#FF8000">&nbsp;</td>
+  </tr>
+  <tr>
+    <td><font size="4">d</font></td>
+    <td>&nbsp;</td>
+    <td><font size="4" color="#008000">#1</font></td>
+    <td><font size="4">X</font></td>
+    <td bgcolor="#FF8000">&nbsp;</td>
+    <td bgcolor="#FF8000">&nbsp;</td>
+    <td bgcolor="#FF8000">&nbsp;</td>
+    <td bgcolor="#FF8000">&nbsp;</td>
+  </tr>
+  <tr>
+    <td><font size="4">e</font></td>
+    <td><font size="4">X</font></td>
+    <td><font size="4">X</font></td>
+    <td>&nbsp;</td>
+    <td><font size="4">X</font></td>
+    <td bgcolor="#FF8000">&nbsp;</td>
+    <td bgcolor="#FF8000">&nbsp;</td>
+    <td bgcolor="#FF8000">&nbsp;</td>
+  </tr>
+  <tr>
+    <td><font size="4">f</font></td>
+    <td><font size="4">X</font></td>
+    <td><font size="4">X</font></td>
+    <td><font size="4" color="#008000">#2</font></td>
+    <td><font size="4">X</font></td>
+    <td><font size="4" color="#008000">#2</font></td>
+    <td bgcolor="#FF8000">&nbsp;</td>
+    <td bgcolor="#FF8000">&nbsp;</td>
+  </tr>
+  <tr>
+    <td><font size="4">g</font></td>
+    <td><font size="4" color="#008000">#2</font></td>
+    <td><font size="4" color="#008000">#1</font></td>
+    <td><font size="4">X</font></td>
+    <td><font size="4" color="#008000">#2</font></td>
+    <td><font size="4">X</font></td>
+    <td><font size="4">X</font></td>
+    <td bgcolor="#FF8000">&nbsp;</td>
+  </tr>
+  <tr>
+    <td><font size="4">h</font></td>
+    <td><font size="4">X</font></td>
+    <td><font size="4">X</font></td>
+    <td><font size="4" color="#008000">#3</font></td>
+    <td><font size="4">X</font></td>
+    <td><font size="4" color="#008000">#3</font></td>
+    <td><font size="4" color="#008000">#2</font></td>
+    <td><font size="4">X</font></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td><font size="4">a</font></td>
+    <td><font size="4">b</font></td>
+    <td><font size="4">c</font></td>
+    <td><font size="4">d</font></td>
+    <td><font size="4">e</font></td>
+    <td><font size="4">f</font></td>
+    <td><font size="4">g</font></td>
+  </tr>
+</table>
+
+<p><font size="4">After 3 passes we can not find anymore non-equivalent pairs. 
+The equivalent states are: <font color="#008000">a <font face="Times New Roman">
+&#8801;</font> d</font> and <font color="#008000">c <font face="Times New Roman">&#8801;</font> 
+e</font>.</font></p>
+
+<p><font size="4">So we can replace all &quot;d&quot; with &quot;a&quot; and replace all &quot;e&quot; with 
+&quot;c&quot;. The simplified states table:</font></p>
+
+<table border="1" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td rowspan="2" nowrap align="center"><font size="4">Present<br>
+    State</font></td>
+    <td rowspan="8" nowrap align="center">&nbsp;</td>
+    <td colspan="2" nowrap align="center"><font size="4">Next State</font></td>
+    <td rowspan="8" nowrap align="center">&nbsp;</td>
+    <td rowspan="2" nowrap align="center"><font size="4">Present<br>
+    Output</font></td>
+  </tr>
+  <tr>
+    <td nowrap align="center"><font size="4">X = 0</font></td>
+    <td nowrap align="center"><font size="4">X = 1</font></td>
+  </tr>
+  <tr>
+    <td nowrap align="center"><font size="4">a</font></td>
+    <td nowrap align="center"><font size="4">a</font></td>
+    <td nowrap align="center"><font size="4">c</font></td>
+    <td nowrap align="center"><font size="4">0</font></td>
+  </tr>
+  <tr>
+    <td nowrap align="center"><font size="4">b</font></td>
+    <td nowrap align="center"><font size="4">f</font></td>
+    <td nowrap align="center"><font size="4">h</font></td>
+    <td nowrap align="center"><font size="4">0</font></td>
+  </tr>
+  <tr>
+    <td nowrap align="center"><font size="4">c</font></td>
+    <td nowrap align="center"><font size="4">c</font></td>
+    <td nowrap align="center"><font size="4">a</font></td>
+    <td nowrap align="center"><font size="4">1</font></td>
+  </tr>
+  <tr>
+    <td nowrap align="center"><font size="4">f</font></td>
+    <td nowrap align="center"><font size="4">f</font></td>
+    <td nowrap align="center"><font size="4">b</font></td>
+    <td nowrap align="center"><font size="4">1</font></td>
+  </tr>
+  <tr>
+    <td nowrap align="center"><font size="4">g</font></td>
+    <td nowrap align="center"><font size="4">b</font></td>
+    <td nowrap align="center"><font size="4">h</font></td>
+    <td nowrap align="center"><font size="4">0</font></td>
+  </tr>
+  <tr>
+    <td nowrap align="center"><font size="4">h</font></td>
+    <td nowrap align="center"><font size="4">c</font></td>
+    <td nowrap align="center"><font size="4">g</font></td>
+    <td nowrap align="center"><font size="4">1</font></td>
+  </tr>
+</table>
+
+<p>&nbsp;</p>
+
+<p><font size="4" color="#008000">Equivalent Sequential Networks</font></p>
+
+<p><font size="4">Two sequential networks are equivalent if they are capable of 
+doing the same work. N<sub>1</sub> is equivalent to N<sub>2</sub> if for each 
+state p in N<sub>1</sub> there is a state q in N<sub>2</sub> such that p
+<font face="Times New Roman">&#8801; q, and vice versa.</font></font></p>
+
+<p><font face="Times New Roman" size="4">Say we are given two state tables. One 
+table has four states named (A, B, C, D) while the other table has four states 
+named (S<sub>0 </sub>, S<sub>1 </sub>, S<sub>2 </sub>, S<sub>3</sub>). We can 
+discover whether the two networks are equivalent by considering all possible 
+equivalence of states. We use a chart like we did before:</font></p>
+
+<table border="1" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td><font size="4">S</font><sub><font size="4">0</font></sub></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><font size="4">S</font><sub><font size="4">1</font></sub></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><font size="4">S</font><sub><font size="4">2</font></sub></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><font size="4">S</font><sub><font size="4">3</font></sub></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td><font size="4">A</font></td>
+    <td><font size="4">B</font></td>
+    <td><font size="4">C</font></td>
+    <td><font size="4">D</font></td>
+  </tr>
+</table>
+
+<p><font face="Times New Roman" size="4">and if A and S<sub>0</sub> are not 
+equivalent, then we put an X in the (A, S<sub>0</sub>) box. If for every state 
+in the (A, B, C, D) network we find an equivalent state in the (S<sub>0 </sub>, 
+S<sub>1 </sub>, S<sub>2 </sub>, S<sub>3</sub>) network, then these two networks 
+are equivalent.</font></p>
+
+<h2>&nbsp;</h2>
+
+<h2><font face="Times New Roman" color="#008000">Incompletely Specified State 
+Tables</font></h2>
+
+<p><font face="Times New Roman" size="4">Sometimes, certain sequences never 
+occur as inputs and we have don't care conditions in the states table for those 
+input sequences. Incompletely specified tables can be filled so to simplify the 
+network.</font></p>
+
+<p><font face="Times New Roman" size="4">Say we are trying to implement the 
+following network:</font></p>
+
+<table border="1" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td>&nbsp;</td>
+    <td align="center"><font size="4">t<sub>0</sub></font></td>
+    <td align="center"><font size="4">t<sub>1</sub></font></td>
+    <td align="center"><font size="4">t<sub>2</sub></font></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center"><font size="4">t<sub>0</sub></font></td>
+    <td align="center"><font size="4">t<sub>1</sub></font></td>
+    <td align="center"><font size="4">t<sub>2</sub></font></td>
+  </tr>
+  <tr>
+    <td><font size="4">X =</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td>&nbsp;</td>
+    <td><font size="4">Z =</font></td>
+    <td align="center"><font size="4">-</font></td>
+    <td align="center"><font size="4">-</font></td>
+    <td align="center"><font size="4">0</font></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center"><font size="4">-</font></td>
+    <td align="center"><font size="4">-</font></td>
+    <td align="center"><font size="4">1</font></td>
+  </tr>
+</table>
+
+<p><font face="Times New Roman" size="4">In this case, only two input sequences 
+are possible. Note that we are not trying to detect these two sequences, we are 
+saying that these two sequences are the only input possible. Also, we do not 
+care about the output of Z for the first two bits of input, so any output of Z 
+is fine for the first two bits.</font></p>
+
+<p><img border="0" src="images/pic0019.gif" width="499" height="284"></p>
+
+<table border="1" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td nowrap align="center" rowspan="2">&nbsp;</td>
+    <td nowrap align="center" rowspan="6">&nbsp;</td>
+    <td colspan="2" nowrap align="center"><font size="4">Next State</font></td>
+    <td nowrap align="center" rowspan="6">&nbsp;</td>
+    <td colspan="2" nowrap align="center"><font size="4">Z</font></td>
+  </tr>
+  <tr>
+    <td nowrap align="center"><font size="4">X = 0</font></td>
+    <td nowrap align="center"><font size="4">X = 1</font></td>
+    <td nowrap align="center"><font size="4">X = 0</font></td>
+    <td nowrap align="center"><font size="4">X = 1</font></td>
+  </tr>
+  <tr>
+    <td nowrap align="center"><font size="4">S<sub>0</sub></font></td>
+    <td nowrap align="center"><font size="4">-</font></td>
+    <td nowrap align="center"><font size="4">S<sub>1</sub></font></td>
+    <td nowrap align="center"><font size="4">-</font></td>
+    <td nowrap align="center"><font size="4">-</font></td>
+  </tr>
+  <tr>
+    <td nowrap align="center"><font size="4">S<sub>1</sub></font></td>
+    <td nowrap align="center"><font size="4">S<sub>2</sub></font></td>
+    <td nowrap align="center"><font size="4">S<sub>3</sub></font></td>
+    <td nowrap align="center"><font size="4">-</font></td>
+    <td nowrap align="center"><font size="4">-</font></td>
+  </tr>
+  <tr>
+    <td nowrap align="center"><font size="4">S<sub>2</sub></font></td>
+    <td nowrap align="center"><font size="4">S<sub>0</sub></font></td>
+    <td nowrap align="center"><font size="4">-</font></td>
+    <td nowrap align="center"><font size="4">0</font></td>
+    <td nowrap align="center"><font size="4">-</font></td>
+  </tr>
+  <tr>
+    <td nowrap align="center"><font size="4">S<sub>3</sub></font></td>
+    <td nowrap align="center"><font size="4">S<sub>0</sub></font></td>
+    <td nowrap align="center"><font size="4">-</font></td>
+    <td nowrap align="center"><font size="4">1</font></td>
+    <td nowrap align="center"><font size="4">-</font></td>
+  </tr>
+</table>
+
+<p><font face="Times New Roman" size="4">S<sub>2</sub> can be set to match S<sub>0</sub> 
+:</font></p>
+
+<table border="1" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td nowrap align="center" rowspan="2">&nbsp;</td>
+    <td nowrap align="center" rowspan="6">&nbsp;</td>
+    <td colspan="2" nowrap align="center"><font size="4">Next State</font></td>
+    <td nowrap align="center" rowspan="6">&nbsp;</td>
+    <td colspan="2" nowrap align="center"><font size="4">Z</font></td>
+  </tr>
+  <tr>
+    <td nowrap align="center"><font size="4">X = 0</font></td>
+    <td nowrap align="center"><font size="4">X = 1</font></td>
+    <td nowrap align="center"><font size="4">X = 0</font></td>
+    <td nowrap align="center"><font size="4">X = 1</font></td>
+  </tr>
+  <tr>
+    <td nowrap align="center"><font size="4">S<sub>0</sub></font></td>
+    <td nowrap align="center"><font size="4" color="#FF8000">S<sub>0</sub></font></td>
+    <td nowrap align="center"><font size="4">S<sub>1</sub></font></td>
+    <td nowrap align="center"><font size="4" color="#FF8000">0</font></td>
+    <td nowrap align="center"><font size="4">-</font></td>
+  </tr>
+  <tr>
+    <td nowrap align="center"><font size="4">S<sub>1</sub></font></td>
+    <td nowrap align="center"><font size="4">S<sub>2</sub></font></td>
+    <td nowrap align="center"><font size="4">S<sub>3</sub></font></td>
+    <td nowrap align="center"><font size="4">-</font></td>
+    <td nowrap align="center"><font size="4">-</font></td>
+  </tr>
+  <tr>
+    <td nowrap align="center"><font size="4">S<sub>2</sub></font></td>
+    <td nowrap align="center"><font size="4">S<sub>0</sub></font></td>
+    <td nowrap align="center"><font size="4" color="#FF8000">S<sub>1</sub></font></td>
+    <td nowrap align="center"><font size="4">0</font></td>
+    <td nowrap align="center"><font size="4">-</font></td>
+  </tr>
+  <tr>
+    <td nowrap align="center"><font size="4">S<sub>3</sub></font></td>
+    <td nowrap align="center"><font size="4">S<sub>0</sub></font></td>
+    <td nowrap align="center"><font size="4">-</font></td>
+    <td nowrap align="center"><font size="4">1</font></td>
+    <td nowrap align="center"><font size="4">-</font></td>
+  </tr>
+</table>
+
+<p>&nbsp;</p>
+
+<table border="1" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td nowrap align="center" rowspan="2">&nbsp;</td>
+    <td nowrap align="center" rowspan="5">&nbsp;</td>
+    <td colspan="2" nowrap align="center"><font size="4">Next State</font></td>
+    <td nowrap align="center" rowspan="5">&nbsp;</td>
+    <td colspan="2" nowrap align="center"><font size="4">Z</font></td>
+  </tr>
+  <tr>
+    <td nowrap align="center"><font size="4">X = 0</font></td>
+    <td nowrap align="center"><font size="4">X = 1</font></td>
+    <td nowrap align="center"><font size="4">X = 0</font></td>
+    <td nowrap align="center"><font size="4">X = 1</font></td>
+  </tr>
+  <tr>
+    <td nowrap align="center"><font size="4">S<sub>0</sub></font></td>
+    <td nowrap align="center"><font size="4" color="#FF8000">S<sub>0</sub></font></td>
+    <td nowrap align="center"><font size="4">S<sub>1</sub></font></td>
+    <td nowrap align="center"><font size="4" color="#FF8000">0</font></td>
+    <td nowrap align="center"><font size="4">-</font></td>
+  </tr>
+  <tr>
+    <td nowrap align="center"><font size="4">S<sub>1</sub></font></td>
+    <td nowrap align="center"><font size="4">S<sub>0</sub></font></td>
+    <td nowrap align="center"><font size="4">S<sub>3</sub></font></td>
+    <td nowrap align="center"><font size="4" color="#FF8000">1</font></td>
+    <td nowrap align="center"><font size="4">-</font></td>
+  </tr>
+  <tr>
+    <td nowrap align="center"><font size="4">S<sub>3</sub></font></td>
+    <td nowrap align="center"><font size="4">S<sub>0</sub></font></td>
+    <td nowrap align="center"><font size="4" color="#FF8000">S<sub>3</sub></font></td>
+    <td nowrap align="center"><font size="4">1</font></td>
+    <td nowrap align="center"><font size="4">-</font></td>
+  </tr>
+</table>
+
+<p><font face="Times New Roman" size="4">The final simplified table:</font></p>
+
+<table border="1" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td nowrap align="center" rowspan="2">&nbsp;</td>
+    <td nowrap align="center" rowspan="4">&nbsp;</td>
+    <td colspan="2" nowrap align="center"><font size="4">Next State</font></td>
+    <td nowrap align="center" rowspan="4">&nbsp;</td>
+    <td colspan="2" nowrap align="center"><font size="4">Z</font></td>
+  </tr>
+  <tr>
+    <td nowrap align="center"><font size="4">X = 0</font></td>
+    <td nowrap align="center"><font size="4">X = 1</font></td>
+    <td nowrap align="center"><font size="4">X = 0</font></td>
+    <td nowrap align="center"><font size="4">X = 1</font></td>
+  </tr>
+  <tr>
+    <td nowrap align="center"><font size="4">S<sub>0</sub></font></td>
+    <td nowrap align="center"><font size="4" color="#FF8000">S<sub>0</sub></font></td>
+    <td nowrap align="center"><font size="4">S<sub>1</sub></font></td>
+    <td nowrap align="center"><font size="4" color="#FF8000">0</font></td>
+    <td nowrap align="center"><font size="4">-</font></td>
+  </tr>
+  <tr>
+    <td nowrap align="center"><font size="4">S<sub>1</sub></font></td>
+    <td nowrap align="center"><font size="4">S<sub>0</sub></font></td>
+    <td nowrap align="center"><font size="4">S<sub>1</sub></font></td>
+    <td nowrap align="center"><font size="4" color="#FF8000">1</font></td>
+    <td nowrap align="center"><font size="4">-</font></td>
+  </tr>
+</table>
+
+<p>&nbsp;</p>
+
+<h2><font color="#008000">Equivalent State Assignments</font></h2>
+
+<p><font face="Times New Roman" size="4">Say we have three states S<sub>0</sub> 
+, S<sub>1</sub> , and S<sub>2</sub> . There are four ways (00, 01, 10, 11) to 
+assign the first state, three ways to assign the second state, and two remaining 
+ways to assign the third state, for a total of 24 ways to do state assignment.</font></p>
+
+<p><img border="0" src="images/table_15_08.jpg" width="650" height="114"></p>
+
+<p><font face="Times New Roman" size="4">The cost of the logic required to 
+realize a sequential network is strongly dependent on the way this state 
+assignment is made.</font></p>
+
+<p><font face="Times New Roman" size="4">We do not have to check all 24 methods 
+of assignment to find the cheapest implementation. If we interchange two columns 
+in one of the given assignments, the cost of implementation should not change 
+because interchanging columns is equivalent to re-labeling the flip-flops. So 
+method 1 and method 3 in the above assignment table have the same cost.</font></p>
+
+<p><font face="Times New Roman" size="4">If symmetrical flip-flops such as J-K 
+flip-flops are used, complementing one or more columns of the state assignment 
+will have no effect on the cost of realization. The reason is that J-K flip 
+flops have two inputs that are opposite of one another anyways. For D 
+flip-flips, complementing a column may result in adding an inverter at the 
+flip-flop input. But even then we might avoid the inverter by say using NAND 
+gates instead of AND gates. The conclusion is that complementing one or more 
+columns of the state assignment will in general not change the cost of 
+implementation much.</font></p>
+
+<p><font face="Times New Roman" size="4">Two state assignments are
+<font color="#008000">equivalent</font> if one can be derived from the other by 
+permuting and complementing columns. Two state assignments which are not 
+equivalent are said to be <font color="#008000">distinct</font>.</font></p>
+
+<p><font face="Times New Roman" size="4">There are only a few distinct 
+assignments for 3-state and 4-state networks, so we can actually find the 
+optimal assignment by trying them all.</font></p>
+
+<p><img border="0" src="images/table_15_10.jpg" width="654" height="247"></p>
+
+<p><font face="Times New Roman" size="4">But the number of distinct assignments 
+increases rapidly with the number of states. By the time there are nine states, 
+even a high speed computer will have problem trying all possible distinct 
+assignments.</font></p>
+
+<p><img border="0" src="images/table_15_11.jpg" width="362" height="331"></p>
+
+<p>&nbsp;</p>
+<h2><font color="#008000">Guidelines for State Assignment</font></h2>
+<p><font size="4">Assignment for two states are said to be adjacent if they 
+differ in only one variable --- because they would then be adjacent on the 
+K-map.</font></p>
+
+<p><font size="4">1. States which have the same next state for a given input 
+should be given adjacent assignments</font></p>
+
+<p><font size="4">2. States which are the next states of the same state should 
+be given adjacent assignments</font></p>
+
+<p><font size="4">3. States which have the same output for a given input should 
+be given adjacent assignments.</font></p>
+
+<p><font size="4">First figure out all the adjacencies recommended. Then using a 
+K-Map, satisfy as many of these adjacencies as possible.</font></p>
+
+<p><font size="4">Normally, the adjacencies from the first guideline should be 
+given priority, followed by the adjacencies from the second guideline. The third 
+guideline has the lowest priority. The following example will give more insight 
+as to how these guidelines work.</font></p>
+
+<p><font size="4">Say we have 7 states total, so that 3 flip-flop variables 
+(ABC) are needed. A portion of the states table looks like:</font></p>
+
+<table border="1" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td align="center"><font size="4">Present<br>
+    State</font></td>
+    <td align="center">&nbsp;</td>
+    <td align="center"><font size="4">X = 0</font></td>
+    <td align="center"><font size="4">X = 1</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">S<sub>0</sub></font></td>
+    <td align="center">&nbsp;</td>
+    <td align="center"><font size="4">S<sub>1</sub></font></td>
+    <td align="center"><font size="4">S<sub>2</sub></font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">S<sub>2</sub></font></td>
+    <td align="center">&nbsp;</td>
+    <td align="center"><font size="4">S<sub>1</sub></font></td>
+    <td align="center"><font size="4">S<sub>4</sub></font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">S<sub>4</sub></font></td>
+    <td align="center">&nbsp;</td>
+    <td align="center"><font size="4">S<sub>1</sub></font></td>
+    <td align="center"><font size="4">S<sub>6</sub></font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">S<sub>6</sub></font></td>
+    <td align="center">&nbsp;</td>
+    <td align="center"><font size="4">S<sub>1</sub></font></td>
+    <td align="center"><font size="4">S<sub>6</sub></font></td>
+  </tr>
+</table>
+<p><font size="4">These four states have the same future state when X = 0, so 
+they should be adjacent as in:</font></p>
+
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td colspan="2"><font size="4">A</font></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><font size="4">0</font></td>
+    <td><font size="4">1</font></td>
+  </tr>
+  <tr>
+    <td rowspan="4" valign="top"><font size="4">BC</font></td>
+    <td><font size="4">00</font></td>
+    <td colspan="2" rowspan="4">
+    <table border="1" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+      <tr>
+        <td width="40"><font size="4">S</font><sub><font size="4">0</font></sub></td>
+        <td width="40">&nbsp;</td>
+      </tr>
+      <tr>
+        <td width="40"><font size="4">S</font><sub><font size="4">2</font></sub></td>
+        <td width="40">&nbsp;</td>
+      </tr>
+      <tr>
+        <td width="40"><font size="4">S</font><sub><font size="4">4</font></sub></td>
+        <td width="40">&nbsp;</td>
+      </tr>
+      <tr>
+        <td width="40"><font size="4">S</font><sub><font size="4">6</font></sub></td>
+        <td width="40">&nbsp;</td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+  <tr>
+    <td><font size="4">01</font></td>
+  </tr>
+  <tr>
+    <td><font size="4">11</font></td>
+  </tr>
+  <tr>
+    <td><font size="4">10</font></td>
+  </tr>
+</table>
+<p><font size="4">As in S<sub>0</sub> = (A=0, B=0, C=0), S<sub>2</sub> = (001), 
+and so on.</font></p>
+
+<p><font size="4">These four states have S<sub>1</sub> as a common next state, 
+and let say that S<sub>1</sub> is denoted as (110)</font></p>
+
+<p><font size="4">The next states graphs will look like:</font></p>
+
+<p><font size="4">A<sup>+</sup> K-map:</font></p>
+
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td colspan="4"><font size="4">XA</font></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><font size="4">00</font></td>
+    <td><font size="4">01</font></td>
+    <td><font size="4">11</font></td>
+    <td><font size="4">10</font></td>
+  </tr>
+  <tr>
+    <td rowspan="4" valign="top"><font size="4">BC</font></td>
+    <td><font size="4">00</font></td>
+    <td colspan="4" rowspan="4">
+    <table border="1" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+      <tr>
+        <td width="40" align="center"><font size="4">1</font></td>
+        <td width="40" align="center">&nbsp;</td>
+        <td width="40" align="center">&nbsp;</td>
+        <td width="40" align="center">&nbsp;</td>
+      </tr>
+      <tr>
+        <td width="40" align="center"><font size="4">1</font></td>
+        <td width="40" align="center">&nbsp;</td>
+        <td width="40" align="center">&nbsp;</td>
+        <td width="40" align="center">&nbsp;</td>
+      </tr>
+      <tr>
+        <td width="40" align="center"><font size="4">1</font></td>
+        <td width="40" align="center">&nbsp;</td>
+        <td width="40" align="center">&nbsp;</td>
+        <td width="40" align="center">&nbsp;</td>
+      </tr>
+      <tr>
+        <td width="40" align="center"><font size="4">1</font></td>
+        <td width="40" align="center">&nbsp;</td>
+        <td width="40" align="center">&nbsp;</td>
+        <td width="40" align="center">&nbsp;</td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+  <tr>
+    <td><font size="4">01</font></td>
+  </tr>
+  <tr>
+    <td><font size="4">11</font></td>
+  </tr>
+  <tr>
+    <td><font size="4">10</font></td>
+  </tr>
+</table>
+<p><font size="4">B<sup>+</sup> K-map:</font></p>
+
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td colspan="4"><font size="4">XA</font></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><font size="4">00</font></td>
+    <td><font size="4">01</font></td>
+    <td><font size="4">11</font></td>
+    <td><font size="4">10</font></td>
+  </tr>
+  <tr>
+    <td rowspan="4" valign="top"><font size="4">BC</font></td>
+    <td><font size="4">00</font></td>
+    <td colspan="4" rowspan="4">
+    <table border="1" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+      <tr>
+        <td width="40" align="center"><font size="4">1</font></td>
+        <td width="40" align="center">&nbsp;</td>
+        <td width="40" align="center">&nbsp;</td>
+        <td width="40" align="center">&nbsp;</td>
+      </tr>
+      <tr>
+        <td width="40" align="center"><font size="4">1</font></td>
+        <td width="40" align="center">&nbsp;</td>
+        <td width="40" align="center">&nbsp;</td>
+        <td width="40" align="center">&nbsp;</td>
+      </tr>
+      <tr>
+        <td width="40" align="center"><font size="4">1</font></td>
+        <td width="40" align="center">&nbsp;</td>
+        <td width="40" align="center">&nbsp;</td>
+        <td width="40" align="center">&nbsp;</td>
+      </tr>
+      <tr>
+        <td width="40" align="center"><font size="4">1</font></td>
+        <td width="40" align="center">&nbsp;</td>
+        <td width="40" align="center">&nbsp;</td>
+        <td width="40" align="center">&nbsp;</td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+  <tr>
+    <td><font size="4">01</font></td>
+  </tr>
+  <tr>
+    <td><font size="4">11</font></td>
+  </tr>
+  <tr>
+    <td><font size="4">10</font></td>
+  </tr>
+</table>
+<p><font size="4">C<sup>+</sup> K-map:</font></p>
+
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td colspan="4"><font size="4">XA</font></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><font size="4">00</font></td>
+    <td><font size="4">01</font></td>
+    <td><font size="4">11</font></td>
+    <td><font size="4">10</font></td>
+  </tr>
+  <tr>
+    <td rowspan="4" valign="top"><font size="4">BC</font></td>
+    <td><font size="4">00</font></td>
+    <td colspan="4" rowspan="4">
+    <table border="1" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+      <tr>
+        <td width="40" align="center"><font size="4">0</font></td>
+        <td width="40" align="center">&nbsp;</td>
+        <td width="40" align="center">&nbsp;</td>
+        <td width="40" align="center">&nbsp;</td>
+      </tr>
+      <tr>
+        <td width="40" align="center"><font size="4">0</font></td>
+        <td width="40" align="center">&nbsp;</td>
+        <td width="40" align="center">&nbsp;</td>
+        <td width="40" align="center">&nbsp;</td>
+      </tr>
+      <tr>
+        <td width="40" align="center"><font size="4">0</font></td>
+        <td width="40" align="center">&nbsp;</td>
+        <td width="40" align="center">&nbsp;</td>
+        <td width="40" align="center">&nbsp;</td>
+      </tr>
+      <tr>
+        <td width="40" align="center"><font size="4">0</font></td>
+        <td width="40" align="center">&nbsp;</td>
+        <td width="40" align="center">&nbsp;</td>
+        <td width="40" align="center">&nbsp;</td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+  <tr>
+    <td><font size="4">01</font></td>
+  </tr>
+  <tr>
+    <td><font size="4">11</font></td>
+  </tr>
+  <tr>
+    <td><font size="4">10</font></td>
+  </tr>
+</table>
+<p><font size="4">So each adjacency in guideline 1 is actually one adjacency for 
+each future state K-map. In this case, there are three flip-flops, and one 
+adjacency in guideline 1 results in three adjacencies in the K-maps.</font></p>
+
+<p><font size="4">Now to see how guideline two works:</font></p>
+
+<table border="1" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td align="center"><font size="4">Present<br>
+    State</font></td>
+    <td align="center" rowspan="2">&nbsp;</td>
+    <td align="center"><font size="4">X = 0</font></td>
+    <td align="center"><font size="4">X = 1</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">S<sub>3</sub></font></td>
+    <td align="center"><font size="4">S<sub>5</sub></font></td>
+    <td align="center"><font size="4">S<sub>2</sub></font></td>
+  </tr>
+</table>
+<p><font size="4">Now let S<sub>5</sub> and S<sub>2</sub> be adjacent so that S<sub>5</sub> 
+= 101 and S<sub>2</sub> = 001; S<sub>3</sub> = 111</font></p>
+
+<p><font size="4">A<sup>+</sup> K-map:</font></p>
+
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td colspan="4"><font size="4">XA</font></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><font size="4">00</font></td>
+    <td><font size="4">01</font></td>
+    <td><font size="4">11</font></td>
+    <td><font size="4">10</font></td>
+  </tr>
+  <tr>
+    <td rowspan="4" valign="top"><font size="4">BC</font></td>
+    <td><font size="4">00</font></td>
+    <td colspan="4" rowspan="4">
+    <table border="1" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+      <tr>
+        <td width="40" align="center"><font size="4">&nbsp;</font></td>
+        <td width="40" align="center">&nbsp;</td>
+        <td width="40" align="center">&nbsp;</td>
+        <td width="40" align="center">&nbsp;</td>
+      </tr>
+      <tr>
+        <td width="40" align="center"><font size="4">&nbsp;</font></td>
+        <td width="40" align="center">&nbsp;</td>
+        <td width="40" align="center">&nbsp;</td>
+        <td width="40" align="center">&nbsp;</td>
+      </tr>
+      <tr>
+        <td width="40" align="center">&nbsp;</td>
+        <td width="40" align="center"><font size="4">1</font></td>
+        <td width="40" align="center"><font size="4">0</font></td>
+        <td width="40" align="center">&nbsp;</td>
+      </tr>
+      <tr>
+        <td width="40" align="center"><font size="4">&nbsp;</font></td>
+        <td width="40" align="center">&nbsp;</td>
+        <td width="40" align="center">&nbsp;</td>
+        <td width="40" align="center">&nbsp;</td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+  <tr>
+    <td><font size="4">01</font></td>
+  </tr>
+  <tr>
+    <td><font size="4">11</font></td>
+  </tr>
+  <tr>
+    <td><font size="4">10</font></td>
+  </tr>
+</table>
+<p><font size="4">B<sup>+</sup> K-map:</font></p>
+
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td colspan="4"><font size="4">XA</font></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><font size="4">00</font></td>
+    <td><font size="4">01</font></td>
+    <td><font size="4">11</font></td>
+    <td><font size="4">10</font></td>
+  </tr>
+  <tr>
+    <td rowspan="4" valign="top"><font size="4">BC</font></td>
+    <td><font size="4">00</font></td>
+    <td colspan="4" rowspan="4">
+    <table border="1" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+      <tr>
+        <td width="40" align="center"><font size="4">&nbsp;</font></td>
+        <td width="40" align="center">&nbsp;</td>
+        <td width="40" align="center">&nbsp;</td>
+        <td width="40" align="center">&nbsp;</td>
+      </tr>
+      <tr>
+        <td width="40" align="center"><font size="4">&nbsp;</font></td>
+        <td width="40" align="center">&nbsp;</td>
+        <td width="40" align="center">&nbsp;</td>
+        <td width="40" align="center">&nbsp;</td>
+      </tr>
+      <tr>
+        <td width="40" align="center">&nbsp;</td>
+        <td width="40" align="center"><font size="4">0</font></td>
+        <td width="40" align="center"><font size="4">0</font></td>
+        <td width="40" align="center">&nbsp;</td>
+      </tr>
+      <tr>
+        <td width="40" align="center"><font size="4">&nbsp;</font></td>
+        <td width="40" align="center">&nbsp;</td>
+        <td width="40" align="center">&nbsp;</td>
+        <td width="40" align="center">&nbsp;</td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+  <tr>
+    <td><font size="4">01</font></td>
+  </tr>
+  <tr>
+    <td><font size="4">11</font></td>
+  </tr>
+  <tr>
+    <td><font size="4">10</font></td>
+  </tr>
+</table>
+<p><font size="4">C<sup>+</sup> K-map:</font></p>
+
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td colspan="4"><font size="4">XA</font></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><font size="4">00</font></td>
+    <td><font size="4">01</font></td>
+    <td><font size="4">11</font></td>
+    <td><font size="4">10</font></td>
+  </tr>
+  <tr>
+    <td rowspan="4" valign="top"><font size="4">BC</font></td>
+    <td><font size="4">00</font></td>
+    <td colspan="4" rowspan="4">
+    <table border="1" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+      <tr>
+        <td width="40" align="center"><font size="4">&nbsp;</font></td>
+        <td width="40" align="center">&nbsp;</td>
+        <td width="40" align="center">&nbsp;</td>
+        <td width="40" align="center">&nbsp;</td>
+      </tr>
+      <tr>
+        <td width="40" align="center"><font size="4">&nbsp;</font></td>
+        <td width="40" align="center">&nbsp;</td>
+        <td width="40" align="center">&nbsp;</td>
+        <td width="40" align="center">&nbsp;</td>
+      </tr>
+      <tr>
+        <td width="40" align="center">&nbsp;</td>
+        <td width="40" align="center"><font size="4">1</font></td>
+        <td width="40" align="center"><font size="4">1</font></td>
+        <td width="40" align="center">&nbsp;</td>
+      </tr>
+      <tr>
+        <td width="40" align="center"><font size="4">&nbsp;</font></td>
+        <td width="40" align="center">&nbsp;</td>
+        <td width="40" align="center">&nbsp;</td>
+        <td width="40" align="center">&nbsp;</td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+  <tr>
+    <td><font size="4">01</font></td>
+  </tr>
+  <tr>
+    <td><font size="4">11</font></td>
+  </tr>
+  <tr>
+    <td><font size="4">10</font></td>
+  </tr>
+</table>
+<p><font size="4">S<sub>5</sub> and S<sub>2</sub> differ by one bit, so for the 
+case of three flip-flops there are two adjacencies. Note that this is one less 
+than the adjacencies produced by guideline 1, hence usually guideline 1 
+recommendations have higher priority.</font></p>
+
+<p><font size="4">Now if we have a state table that say:</font></p>
+
+<table border="1" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td align="center"><font size="4">Present<br>
+    State</font></td>
+    <td align="center" rowspan="3">&nbsp;</td>
+    <td align="center"><font size="4">X = 0</font></td>
+    <td align="center"><font size="4">X = 1</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">S<sub>3</sub></font></td>
+    <td align="center"><font size="4">S<sub>5</sub></font></td>
+    <td align="center"><font size="4">S<sub>2</sub></font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">S<sub>5</sub></font></td>
+    <td align="center"><font size="4">S<sub>5</sub></font></td>
+    <td align="center"><font size="4">S<sub>2</sub></font></td>
+  </tr>
+</table>
+<p><font size="4">Then this (S<sub>5</sub> , S<sub>2</sub>) adjacency is 
+recommended by guideline 2 twice, and they would produce four adjacencies in the 
+K-maps. This is one more adjacency than a &quot;normal&quot; guideline 1 recommendation, 
+so in this particular (S<sub>5</sub> , S<sub>2</sub>)2x recommendation would 
+have higher priority than a normal guideline 1 recommendation. Basically the 
+number of adjacencies that each recommendation is expected to produce acts as an 
+effectiveness number.</font></p>
+
+<p><font size="4">To see how guideline three works, use the states table:</font></p>
+
+<table border="1" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td align="center" rowspan="2"><font size="4">Present<br>
+    State</font></td>
+    <td align="center" rowspan="4">&nbsp;</td>
+    <td align="center" colspan="2"><font size="4">Next State</font></td>
+    <td align="center" rowspan="4">&nbsp;</td>
+    <td align="center" colspan="2"><font size="4">Output (Z)</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">X = 0</font></td>
+    <td align="center"><font size="4">X = 1</font></td>
+    <td align="center"><font size="4">X = 0</font></td>
+    <td align="center"><font size="4">X = 1</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">S<sub>3</sub></font></td>
+    <td align="center"><font size="4">...</font></td>
+    <td align="center"><font size="4">...</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">S<sub>5</sub></font></td>
+    <td align="center"><font size="4">...</font></td>
+    <td align="center"><font size="4">...</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">0</font></td>
+  </tr>
+</table>
+<p><font size="4">and we make S<sub>3</sub> S<sub>5</sub> adjacent: S<sub>3</sub> 
+= 111, S<sub>5</sub> = 101</font></p>
+
+<p><font size="4">K-map for output (Z):</font></p>
+
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td colspan="4"><font size="4">XA</font></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><font size="4">00</font></td>
+    <td><font size="4">01</font></td>
+    <td><font size="4">11</font></td>
+    <td><font size="4">10</font></td>
+  </tr>
+  <tr>
+    <td rowspan="4" valign="top"><font size="4">BC</font></td>
+    <td><font size="4">00</font></td>
+    <td colspan="4" rowspan="4">
+    <table border="1" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+      <tr>
+        <td width="40" align="center"><font size="4">&nbsp;</font></td>
+        <td width="40" align="center">&nbsp;</td>
+        <td width="40" align="center">&nbsp;</td>
+        <td width="40" align="center">&nbsp;</td>
+      </tr>
+      <tr>
+        <td width="40" align="center"><font size="4">&nbsp;</font></td>
+        <td width="40" align="center"><font size="4">1</font></td>
+        <td width="40" align="center"><font size="4">0</font></td>
+        <td width="40" align="center">&nbsp;</td>
+      </tr>
+      <tr>
+        <td width="40" align="center">&nbsp;</td>
+        <td width="40" align="center"><font size="4">0</font></td>
+        <td width="40" align="center"><font size="4">0</font></td>
+        <td width="40" align="center">&nbsp;</td>
+      </tr>
+      <tr>
+        <td width="40" align="center"><font size="4">&nbsp;</font></td>
+        <td width="40" align="center">&nbsp;</td>
+        <td width="40" align="center">&nbsp;</td>
+        <td width="40" align="center">&nbsp;</td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+  <tr>
+    <td><font size="4">01</font></td>
+  </tr>
+  <tr>
+    <td><font size="4">11</font></td>
+  </tr>
+  <tr>
+    <td><font size="4">10</font></td>
+  </tr>
+</table>
+<p><font size="4">In this case, S<sub>3</sub> and S<sub>5</sub> shares one 
+common output: Z = 0 when X = 1.&nbsp; This results in one adjacency between S<sub>3</sub> 
+and S<sub>5</sub> in the K-map. There is an adjacency between the two S<sub>3</sub> 
+squares (0111 and 1111), but that is not due to the guideline 3. No matter where 
+S<sub>3</sub> is assigned, this (0111 and 1111) adjacency will always exist.</font></p>
+
+<p><font size="4">If the output for S<sub>3</sub> and S<sub>5</sub> are 
+identical for both X = 0 and X = 1, we would get two adjacencies:</font></p>
+
+<table border="1" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td align="center" rowspan="2"><font size="4">Present<br>
+    State</font></td>
+    <td align="center" rowspan="4">&nbsp;</td>
+    <td align="center" colspan="2"><font size="4">Next State</font></td>
+    <td align="center" rowspan="4">&nbsp;</td>
+    <td align="center" colspan="2"><font size="4">Output (Z)</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">X = 0</font></td>
+    <td align="center"><font size="4">X = 1</font></td>
+    <td align="center"><font size="4">X = 0</font></td>
+    <td align="center"><font size="4">X = 1</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">S<sub>3</sub></font></td>
+    <td align="center"><font size="4">...</font></td>
+    <td align="center"><font size="4">...</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">0</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">S<sub>5</sub></font></td>
+    <td align="center"><font size="4">...</font></td>
+    <td align="center"><font size="4">...</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">0</font></td>
+  </tr>
+</table>
+<p><font size="4">K-map for output (Z):</font></p>
+
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td colspan="4"><font size="4">XA</font></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><font size="4">00</font></td>
+    <td><font size="4">01</font></td>
+    <td><font size="4">11</font></td>
+    <td><font size="4">10</font></td>
+  </tr>
+  <tr>
+    <td rowspan="4" valign="top"><font size="4">BC</font></td>
+    <td><font size="4">00</font></td>
+    <td colspan="4" rowspan="4">
+    <table border="1" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+      <tr>
+        <td width="40" align="center"><font size="4">&nbsp;</font></td>
+        <td width="40" align="center">&nbsp;</td>
+        <td width="40" align="center">&nbsp;</td>
+        <td width="40" align="center">&nbsp;</td>
+      </tr>
+      <tr>
+        <td width="40" align="center"><font size="4">&nbsp;</font></td>
+        <td width="40" align="center"><font size="4">1</font></td>
+        <td width="40" align="center"><font size="4">0</font></td>
+        <td width="40" align="center">&nbsp;</td>
+      </tr>
+      <tr>
+        <td width="40" align="center">&nbsp;</td>
+        <td width="40" align="center"><font size="4">1</font></td>
+        <td width="40" align="center"><font size="4">0</font></td>
+        <td width="40" align="center">&nbsp;</td>
+      </tr>
+      <tr>
+        <td width="40" align="center"><font size="4">&nbsp;</font></td>
+        <td width="40" align="center">&nbsp;</td>
+        <td width="40" align="center">&nbsp;</td>
+        <td width="40" align="center">&nbsp;</td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+  <tr>
+    <td><font size="4">01</font></td>
+  </tr>
+  <tr>
+    <td><font size="4">11</font></td>
+  </tr>
+  <tr>
+    <td><font size="4">10</font></td>
+  </tr>
+</table>
+<p><font size="4">So guideline 3 can gives the least adjacencies out of all 
+three guidelines and therefore has the lowest priority. However guideline 3 can 
+give 2 adjacencies if two states have totally identical output, and in such case 
+guideline 3 should be given the same priority as guideline 2. If there are 
+multiple outputs Z<sub>1</sub> , Z<sub>2</sub> , Z<sub>3</sub> , ... then 
+guideline 3 would have an even higher priority --- but then it's harder for two 
+states to have the same output across the various Zs.</font></p>
+
+<p><font size="4">These guidelines can generate multiple results. So I think 
+computer software that optimize networks work by first using the three 
+guidelines to generate a number of state assignment possibilities, and then work 
+out each possibility to find the best recommendation.</font></p>
+
+</body>
+
+</html>

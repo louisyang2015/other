@@ -1,0 +1,119 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Using Debug</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">Using Debug</font></h1>
+
+<p align="left"><font size="5" color="#008000">Basic Usage</font></p>
+<p align="left"><font size="4"><i>debug is a real mode thing --- it doesn't even 
+work in protected mode</i></font></p>
+<p align="left"><font size="4">load a file into memory with debug:</font></p>
+<p align="left"><font face="Courier New" size="4" color="#FF6600">debug sam.txt</font></p>
+<p align="left"><font size="4">To do a hex <font color="#FF6600"><b>d</b></font>ump:</font></p>
+<p align="left"><font size="4" face="Courier New" color="#FF6600">-d</font></p>
+<p align="left"><font size="4">To start the hex dump at memory location &quot;0100&quot;:</font></p>
+<p align="left"><font face="Courier New" size="4" color="#FF6600">-d 0100</font></p>
+<p align="left"><font size="4">To start <font color="#FF6600"><b>e</b></font>ntering 
+stuff at memory location &quot;010e&quot;:</font></p>
+<p align="left"><font size="4" face="Courier New" color="#FF6600">-e 010e<br>
+38E3:010E 61<br>
+...</font></p>
+<p align="left"><font size="4">To examine <font color="#FF6600"><b>r</b></font>egisters:</font></p>
+<p align="left"><font size="4" color="#FF6600" face="Courier New">-r</font></p>
+<p align="left"><font size="4">To change the AX register:</font></p>
+<p align="left"><font size="4" face="Courier New" color="#FF6600">-r ax<br>
+ax 0013</font></p>
+<p align="left"><font size="4">To <font color="#FF6600"><b>w</b></font>rite the 
+current memory image back to disk:</font></p>
+<p align="left"><font size="4" color="#FF6600" face="Courier New">-w</font></p>
+<p align="left"><i><font size="4">When debug loads a file from disk, it places 
+the number of bytes in the file in the BX and CX registers. When you write the 
+memory content back to file, BX and CX also contains the number of bytes to 
+write back to file. Before using &quot;w&quot;, always make sure BX and CX reflect the 
+length of the file.</font></i></p>
+<p align="left"><font size="4">To <font color="#FF6600"><b>a</b></font>ssemble 
+(enter) an instruction:</font></p>
+<p align="left"><font face="Courier New" size="4" color="#FF6600">-a<br>
+0B06:0100 </font><font face="Courier New" size="4" color="#008000">mov ax, 0002<br>
+</font><font face="Courier New" size="4" color="#FF6600">0B06:0103<br>
+-r<br>
+AX=0000 BX=0000 CX=0000 DX=0000 SP=FFEE BP=0000 SI=0000 DI=0000<br>
+DS=0B06 ES=0B06 SS=0B06 CS=0B06 IP=0100 NV UP EI PL NZ NA PO NC<br>
+0B06:0100 B80200 </font><font face="Courier New" size="4" color="#008000">MOV 
+AX,0002</font></p>
+<p align="left"><font size="4">To execute the current instruction and then stop 
+(<font color="#FF6600"><b>t</b></font>race):</font></p>
+<p align="left"><font size="4" color="#FF6600" face="Courier New">-t</font></p>
+<p align="left"><font size="4">To <font color="#FF6600"><b>q</b></font>uit debug:</font></p>
+<p align="left"><font size="4" color="#FF6600" face="Courier New">-q</font></p>
+
+<p align="left">&nbsp;</p>
+<p align="left"><font size="5" color="#008000">Inspecting the Video Refresh 
+Buffer (DOS)</font></p>
+<p align="left"><font size="4">This buffer is when a specific character on the 
+screen maps to a specific byte in the buffer.</font></p>
+<p align="left"><font size="4">For color screen, the segment address of the 
+video refresh buffer is 0B800H. <i>For black and white screen, the segment 
+address is 0B000H.</i></font></p>
+<p align="left"><font size="4">It takes two bytes to display a character. First 
+byte is the Ascii character code. Second byte is an attribute value that 
+specifies how to display a character.</font></p>
+<p align="left"><font size="4">The following set of DOS prompt activities 
+inspects the video refresh buffer. First uses &quot;cls&quot; to clear the screen. Then 
+start debug and aligns the segment register at B800. Finally do a dump at that 
+address.</font></p>
+<p align="left"><font size="4" face="Courier New" color="#FF6600">cls</font></p>
+<p align="left"><font size="4" face="Courier New" color="#FF6600">debug<br>
+-r es<br>
+ES 1980<br>
+:b800<br>
+-d es:0<br>
+-d</font></p>
+<p align="left"><font size="5" color="#008000">The BIOS revision date (DOS):</font></p>
+<p align="left"><font size="4" face="Courier New" color="#FF6600">-d ffff:0005</font></p>
+<p align="left"><font size="4">note, when you do this dump, only the first line 
+is valid. The real mode has just 1 Meg of memory --- and ffff:0005 is already 
+near the upper edge. Sure the debug program will continue to display more stuff, 
+such as &quot;ffff:0080&quot;</font></p>
+<p align="left"><font color="#008000" size="5">Rebooting the computer (DOS)</font></p>
+<p align="left"><font size="4">An instruction at the top of memory will reboot 
+the computer.</font></p>
+<p align="left"><font size="4">All IBM-compatible PCs have a JMP instruction at 
+address 0FFFF:0 --- when the CPU wakes up after being turned off all night, it 
+will start executing at that address</font></p>
+<p align="left"><font size="4">Here's the screen shot:</font></p>
+<p align="left"><font size="4" face="Courier New" color="#FF6600">Microsoft 
+Windows 2000 [Version 5.00.2195]<br>
+(C) Copyright 1985-2000 Microsoft Corp.<br>
+<br>
+C:\&gt;debug<br>
+-r cs<br>
+CS 0B06<br>
+:ffff<br>
+-r ip<br>
+IP 0100<br>
+:0<br>
+-r<br>
+AX=0000 BX=0000 CX=0000 DX=0000 SP=FFEE BP=0000 SI=0000 DI=0000<br>
+DS=0B06 ES=0B06 SS=0B06 CS=FFFF IP=0000 NV UP EI PL NZ NA PO NC<br>
+FFFF:0000 EA5BE000F0 JMP F000:E05B<br>
+<b>-g</b></font></p>
+<p align="left"><font size="4">EA 5B E0 00 F0 --- is the 5 byte machine 
+instruction</font></p>
+<p align="left"><font size="4">JMP F000:E05B --- is the more understandable 
+version of the machine instruction</font></p>
+<p align="left"><font size="4">That last &quot;g&quot; command will start execution of the 
+instruction --- on DOS it's suppose to reboot. But in my current Windows 2000, 
+the window hangs...</font></p>
+
+</body>
+
+</html>

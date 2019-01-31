@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Language" content="en-us" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Multiple Clocks Design</title>
+<link rel="stylesheet" type="text/css" href="../fpga.css" />
+</head>
+
+<body>
+
+<h1>Multiple Clocks Design</h1>
+<p class="center">Last updated October 4, 2010</p>
+<h2>PLL</h2>
+<p>Use a PLL to generate multiple clocks. A cyclone 2 PLL has 3 outputs. One 
+output (C2) can also drive a dedicated external I/O pin and the internal global 
+clock network at the same time. This (C2) is the one to use for driving off chip 
+SDRAM.</p>
+<h2>Synchronizer Chain</h2>
+<p>Data being transferred from one clock to another needs to be synchronized. </p>
+<p><img src="files/sync_chain.gif" width="835" height="240" /></p>
+<p>If &quot;SIG&quot; is something from another clock domain, then the first flip flop 
+might not be stable upon the rising edge of CLK. The first flip flop&#39;s output 
+&quot;META&quot; is meta-stable - its behavior during the clock rising edge is not normal. 
+But as long as META settles out quickly, then &quot;SIG1&quot; should be considered a 
+&quot;normal&quot; signal that can be analyzed by the timing software. A second register 
+is added to further boost the MTBF of the circuit.</p>
+<table cellpadding="10" cellspacing="0">
+				<tr>
+								<td class="left_yellow">
+<p class="code">
+<span class="keyword">module</span>  <span class="data">sync_chain</span><br />
+ &nbsp;&nbsp;&nbsp;    <span class="keyword">#</span>(<span class="keyword">parameter</span>  N=1)<br />
+ &nbsp;&nbsp;&nbsp;    (<span class="keyword">input</span>  clk,  <br />
+ &nbsp;&nbsp;&nbsp;    <span class="keyword">input</span>  [N-1:0]  data_in,<br />
+ &nbsp;&nbsp;&nbsp;    <span class="keyword">output</span>  <span class="keyword">reg</span>  [N-1:0]  data_out);
+<br />
+ &nbsp;&nbsp;&nbsp;    <br />
+ &nbsp;&nbsp;&nbsp;    <span class="keyword">reg</span>  [N-1:0]  d;
+<br />
+ &nbsp;&nbsp;&nbsp;    <br />
+ &nbsp;&nbsp;&nbsp;    <span class="keyword">always</span>  @  (<span class="keyword">posedge</span>  clk)  <span class="keyword">begin</span><br />
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        d  &lt;=  data_in;
+<br />
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        data_out  &lt;=  d;
+<br />
+ &nbsp;&nbsp;&nbsp;    <span class="keyword">end</span><br />
+ &nbsp;&nbsp;&nbsp;    <br />
+<span class="keyword">endmodule</span>
+</p>								
+								</td>
+				</tr>
+</table>
+<h2>SDC File additions</h2>
+<pre>derive_pll_clocks
+set_clock_groups -asynchronous -group [get_clocks {clk}] -group [get_clocks {inst1|altpll_component|pll|clk[0]}]</pre>
+<p>The first command creates the PLL outputs as clocks.</p>
+<p>The second command separates the original clock and the PLL clock into two 
+clock groups. TimeQuest then will not analyze the clock transfers between these 
+two clock domains.</p>
+<h2>Documents</h2>
+
+<ul>
+				<li><a href="files/synchronization_pres.pdf">A 
+				synchronization presentation</a> by Ryan Donohue</li>
+				<li>Altera Cyclone 2 datasheet has a chapter on its PLL 
+				capabilities</li>
+				<li>Altera Quartus II Handbook Volume 3, Part 2 talks about 
+				Timing Analysis.</li>
+</ul>
+
+</body>
+
+</html>

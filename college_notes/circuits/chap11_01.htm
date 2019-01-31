@@ -1,0 +1,217 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Transfer Functions of Circuits</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">Transfer Functions of Circuits</font></h1>
+<p><font size="4">Given:</font></p>
+<p><img border="0" src="images/pic0154.gif" width="488" height="200"></p>
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    Z<sub>eq</sub> = R + jwL + </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">1 </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">jwC </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<p><font size="4">If we use the substitution:</font></p>
+<table border="0" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" bgcolor="#FFFF99">
+  <tr>
+    <td><font face="Courier New" color="#FF8000" size="7">s = jw</font></td>
+  </tr>
+</table>
+<p><font size="4">then the Z<sub>eq</sub> function is:</font></p>
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    Z<sub>eq</sub> = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">s<sup>2</sup>*LC + s*RC + 1 </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">sC </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<p><font size="4">This is a <font color="#008000">driving point function</font> 
+--- A driving point function describes the impedance or admittance defined at a 
+pair of terminals.</font></p>
+
+<p><font size="4">An equation in terms of &quot; s &quot; that describes the input and 
+output of a circuit is called a <font color="#008000">transfer function</font>.
+</font></p>
+
+<p><font size="4" color="#008000">Example:</font></p>
+
+<p><img border="0" src="images/pic0155.gif" width="770" height="218"></p>
+
+<p><font size="4">&quot; V<sub>o</sub>(s) / V<sub>s</sub>(s) &quot; would be the transfer 
+function describing the gain.</font></p>
+
+<p><font size="4">To get the transfer function describing the gain, you usually 
+use intermediate variables. In this case, get an expression relating V<sub>s</sub>(s) 
+and V<sub>in</sub>(s), a second expression relating V<sub>in</sub>(s) to V<sub>o</sub>(s). 
+Then you put the two expressions together to get &quot; V<sub>o</sub>(s) / V<sub>s</sub>(s) 
+&quot;</font></p>
+
+<p><font size="4">The final answer to the above example:</font></p>
+
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    G<sub>v</sub>(s) = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">V<sub>o</sub>(s)
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">V<sub>s</sub>(s)
+          </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">1000*R<sub>in</sub>*C<sub>in</sub>s </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">1 + R<sub>in</sub>C<sub>in</sub>s </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    * </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">1 </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">R<sub>o</sub>*C<sub>o</sub>s + 1 </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<p><font size="4">There are four types of transfer functions:</font></p>
+
+<p><img border="0" src="images/pic0156.gif" width="715" height="321"></p>
+
+<p><font size="4">The transfer functions and the driving point functions have 
+this general format:</font></p>
+
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    H(s) = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">K<sub>0</sub> (s - z<sub>1</sub>)
+          (s - z<sub>2</sub>) ... (s - z<sub>n</sub>) </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">(s - p<sub>1</sub>) (s 
+          - p<sub>2</sub>) ... (s - p<sub>n</sub>) </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<p><font size="4">The p's are called poles. The z's are called zeros. The poles 
+and zeros can be complex --- but if they are complex, they must appear in 
+conjugate pairs because the original polynomial is made of real coefficients.</font></p>
+
+</body>
+
+</html>

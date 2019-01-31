@@ -1,0 +1,344 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Bode Plots --- Magnitude Characteristic</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">Bode Plots --- Magnitude Characteristic</font></h1>
+<p><font size="4">In the magnitude plot portion of bode plots, the vertical axis 
+is in decibels.</font></p>
+<h2><font color="#008000">About decibels</font></h2>
+<p><font size="4">Decibel (dB) is used to describe the ratio of powers:</font></p>
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    number of dB = 10 * log<sub>10</sub> </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">P<sub>1</sub> </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">P<sub>2</sub> </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<p><font size="4">power is directly proportional to the square of voltage or 
+current, so:</font></p>
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    number of dB = 10 * log<sub>10</sub> </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">|V<sub>1</sub> |
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">|V<sub>2</sub> |
+          </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    number of dB = 10 * log<sub>10</sub> </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">|I<sub>1</sub> |
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">|I<sub>2</sub> |
+          </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<p><font size="4">So the y-value for the bode magnitude plot is 20 * log<sub>10</sub> 
+(magnitude of a function).</font></p>
+<h2><font color="#008000">The Bode Magnitude Graph is a Sum of Terms</font></h2>
+<p><font size="4">Say we are given the transfer function:</font></p>
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    G<sub>v</sub>(jw) = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">10*(1 + 0.1jw)
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">(1 + jw) (1 + 
+          0.02jw) </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<p><font size="4">The magnitude is:</font></p>
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    |G<sub>v</sub>(jw)| = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">10*|1 + 0.1jw|
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">|1 + jw| |1 + 
+          0.02jw| </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<p><font size="4">The y-value of the Bode Magnitude graph is 20 * log<sub>10</sub> 
+(|G<sub>v</sub>(jw)|):</font></p>
+<p><font face="Courier New" color="#ff8000" size="5">20 * log<sub>10</sub> |G<sub>v</sub>(jw)| 
+= 20*log<sub>10</sub> 10 + 20*log<sub>10</sub> |1 + 0.1jw| - 20*log<sub>10</sub> 
+|1 + jw| - 20*log<sub>10</sub> |1 + 0.02jw| </font></p>
+<p><font size="4">If we know how the graph for each term will look like, then we 
+will know how the graph for the whole thing will look like.</font></p>
+<h2>&nbsp;</h2>
+<h2><font color="#008000">The Graph for a Single Term</font></h2>
+<p><b><font size="4" color="#008000">The function:</font></b></p>
+<p><font size="4" face="Courier New" color="#FF8000">y = 20 log<sub>10</sub> |1 
++ p * wj|,<br>
+where p is some positive number</font></p>
+<p><font size="4">has the following approximation:</font></p>
+<table border="1" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td align="center" nowrap><font size="4">w</font></td>
+    <td align="center" nowrap><font size="4">approximate y</font></td>
+    <td align="center" nowrap><font size="4">exact y</font></td>
+  </tr>
+  <tr>
+    <td align="center" nowrap><font size="4">(1 / p) / 100</font></td>
+    <td align="center" nowrap><font size="4">0</font></td>
+    <td align="center" nowrap><font size="4">0.00043</font></td>
+  </tr>
+  <tr>
+    <td align="center" nowrap><font size="4">(1 / p) / 10</font></td>
+    <td align="center" nowrap><font size="4">0</font></td>
+    <td align="center" nowrap><font size="4">0.04321</font></td>
+  </tr>
+  <tr>
+    <td align="center" bgcolor="#FFFF99" nowrap><font size="4">1 / p</font></td>
+    <td align="center" bgcolor="#FFFF99" nowrap><font size="4">0</font></td>
+    <td align="center" bgcolor="#FFFF99" nowrap><font size="4">3.0103</font></td>
+  </tr>
+  <tr>
+    <td align="center" nowrap><font size="4">10 / p</font></td>
+    <td align="center" nowrap><font size="4">20</font></td>
+    <td align="center" nowrap><font size="4">20.043</font></td>
+  </tr>
+  <tr>
+    <td align="center" nowrap><font size="4">100 / p</font></td>
+    <td align="center" nowrap><font size="4">40</font></td>
+    <td align="center" nowrap><font size="4">40</font></td>
+  </tr>
+</table>
+<p><img border="0" src="images/pic0157.gif" width="656" height="275"></p>
+<p><font size="4">Note that at w = 1/p, the real graph bends 3 dB above the 
+approximation --- this w is known as the break frequency or the 3dB frequency.</font></p>
+<p><font size="4">Also note that (1 + p * wj) and (1 - p * wj) has the same 
+magnitude.</font></p>
+<p>&nbsp;</p>
+<p><b><font size="4" color="#008000">The function:</font></b></p>
+<p><font size="4" face="Courier New" color="#FF8000">y = 20 log<sub>10</sub> |wj|</font></p>
+<p><font size="4">has the following approximation:</font></p>
+<table border="1" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td align="center" nowrap><font size="4">w</font></td>
+    <td align="center" nowrap><font size="4">approximate y</font></td>
+    <td align="center" nowrap><font size="4">exact y</font></td>
+  </tr>
+  <tr>
+    <td align="center" nowrap><font size="4">1 / 100</font></td>
+    <td align="center" nowrap><font size="4">-40</font></td>
+    <td align="center" nowrap><font size="4">-40</font></td>
+  </tr>
+  <tr>
+    <td align="center" nowrap><font size="4">1 / 10</font></td>
+    <td align="center" nowrap><font size="4">-20</font></td>
+    <td align="center" nowrap><font size="4">-20</font></td>
+  </tr>
+  <tr>
+    <td align="center" nowrap><font size="4">1</font></td>
+    <td align="center" nowrap><font size="4">0</font></td>
+    <td align="center" nowrap><font size="4">0</font></td>
+  </tr>
+  <tr>
+    <td align="center" nowrap><font size="4">10</font></td>
+    <td align="center" nowrap><font size="4">20</font></td>
+    <td align="center" nowrap><font size="4">20</font></td>
+  </tr>
+  <tr>
+    <td align="center" nowrap><font size="4">100</font></td>
+    <td align="center" nowrap><font size="4">40</font></td>
+    <td align="center" nowrap><font size="4">40</font></td>
+  </tr>
+</table>
+<p><img border="0" src="images/pic0158.gif" width="561" height="250"></p>
+<p>&nbsp;</p>
+<p><b><font size="4" color="#008000">The function:</font></b></p>
+<p><font size="4" face="Courier New" color="#FF8000">y = 20 log<sub>10</sub> |1 
++ B*(jw) + (p * jw)<sup>2</sup>|,<br>
+where B is some number<br>
+where p is some positive number</font></p>
+<p><font size="4">has the following approximation:</font></p>
+<table border="1" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td align="center" nowrap><font size="4">w</font></td>
+    <td align="center" nowrap><font size="4">approximate y</font></td>
+    <td align="center" nowrap><font size="4">exact y</font></td>
+  </tr>
+  <tr>
+    <td align="center" nowrap><font size="4">(1 / p) / 100</font></td>
+    <td align="center" nowrap><font size="4">0</font></td>
+    <td align="center" nowrap><font size="4">20 log<sub>10 </sub>{(9999 / 10000)<sup>2</sup> 
+    + [B / (100 * p)]<sup>2</sup>}<sup>1/2</sup></font></td>
+  </tr>
+  <tr>
+    <td align="center" nowrap><font size="4">(1 / p) / 10</font></td>
+    <td align="center" nowrap><font size="4">0</font></td>
+    <td align="center" nowrap><font size="4">20 log<sub>10 </sub>{(99 / 100)<sup>2</sup> 
+    + [B / (10 * p)]<sup>2</sup>}<sup>1/2</sup></font></td>
+  </tr>
+  <tr>
+    <td align="center" bgcolor="#FFFF99" nowrap><font size="4">1 / p</font></td>
+    <td align="center" bgcolor="#FFFF99" nowrap><font size="4">depends on B</font></td>
+    <td align="center" bgcolor="#FFFF99" nowrap><font size="4">20 log<sub>10 </sub>(B / 
+    p)</font></td>
+  </tr>
+  <tr>
+    <td align="center" nowrap><font size="4">10 / p</font></td>
+    <td align="center" nowrap><font size="4">40</font></td>
+    <td align="center" nowrap><font size="4">20 log<sub>10 </sub>{(99)<sup>2</sup> + (B 
+    * 10 / p)<sup>2</sup>}<sup>1/2</sup></font></td>
+  </tr>
+  <tr>
+    <td align="center" nowrap><font size="4">100 / p</font></td>
+    <td align="center" nowrap><font size="4">80</font></td>
+    <td align="center" nowrap><font size="4">20 log<sub>10 </sub>{(9999)<sup>2</sup> + 
+    (B * 100 / p)<sup>2</sup>}<sup>1/2</sup></font></td>
+  </tr>
+</table>
+<p><font size="4">The approximation is arrived at by neglecting the effect of 
+'B' --- as long as B is small, the above approximation is good.</font></p>
+<p><font size="4">What happens at the point w = 1/p should be numerically 
+evaluated --- this zone is colored yellow in the following picture.</font></p>
+<p><img border="0" src="images/pic0159.gif" width="630" height="335"></p>
+<p><font size="4">Note that since the p is squared, it doesn't matter if the 'p' 
+is a negative number</font></p>
+<p>&nbsp;</p>
+<h2><font color="#008000">Summary</font></h2>
+<p><font size="4">The term:</font></p>
+
+<p><font face="Courier New" size="4" color="#FF8000">(1 
++ p * wj)</font></p>
+
+<p><font size="4">if in the numerator, it means bending upward at a rate of 20 
+dB per decade starting at the frequency w = 1/p. <i>If in the denominator, it 
+means bending downward at a rate of 20 dB per decade starting at the frequency w 
+= 1/p.</i></font></p>
+
+<p><font size="4">The term:</font></p>
+
+<p><font face="Courier New" size="4" color="#FF8000">(wj)</font></p>
+
+<p><font size="4">if in the numerator, it means that the graph's starting slope 
+is +20 dB per decade. <i>If in the denominator, it 
+means the starting slope is -20 dB per decade.</i></font></p>
+
+<p><font size="4">The term:</font></p>
+
+<p><font face="Courier New" size="4" color="#FF8000">(1 + B*(jw) + (p * jw)<sup>2</sup>)</font></p>
+
+<p><font size="4">if in the numerator, it means bending upward at a rate of 40 
+dB per decade starting at the frequency w = 1/p. In addition, the exact value at 
+w = 1/p should be numerically evaluated. <i>If in the denominator, it 
+means bending downward at a rate of 40 dB per decade starting at the frequency w 
+= 1/p.</i></font></p>
+
+<p><font size="4">The above observations tell you which way the graph bends. To 
+have an actual graph, you should pick a small value of &quot; w &quot;, calculate the 
+magnitude of the function at that value, and use this (w, magnitude) as a 
+starting point.</font></p>
+
+</body>
+
+</html>

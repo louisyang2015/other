@@ -1,0 +1,644 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Mutual Inductance</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">Mutual Inductance</font></h1>
+<p><font size="4">The details on how mutual inductance work is a physics topic. 
+This documentation just talks about mutual inductance from the view point of 
+circuit analysis.</font></p>
+<p><font size="4">Given the circuit diagram:</font></p>
+<table border="0" cellpadding="8" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" bgcolor="#FFFF99">
+  <tr>
+    <td><img border="0" src="images/pic0106.gif" width="600" height="291"></td>
+  </tr>
+</table>
+<p><font size="4">The value of the voltages are:</font></p>
+<table cellSpacing="0" cellPadding="6" border="0" bgcolor="#FFFF99" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    v<sub>1</sub>(t) = L<sub>1</sub> </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">di<sub>1</sub>(t)
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">dt </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    + M </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">di<sub>2</sub>(t)
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">dt </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<table cellSpacing="0" cellPadding="6" border="0" bgcolor="#FFFF99" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    v<sub>2</sub>(t) = L<sub>2</sub> </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">di<sub>2</sub>(t)
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">dt </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    + M </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">di<sub>1</sub>(t)
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">dt </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<p><font size="4">The idea behind the equations is of course: (voltage across 
+inductor) = (voltage due to self-inductance) + (voltage due to mutual 
+inductance)</font></p>
+
+<p><font size="4">The dot next to the inductor denotes inductor orientation --- 
+I guess we can call the dot end the head of the inductor. If we flip the 
+inductor around, the magnetic flux would be going the other way, and we would 
+have -M*dI/dt instead of the +M*dI/dt. <font color="#008000"><b>V<sub>1</sub> 
+and V<sub>2</sub> needs to be set so that the positive sign is on the dot end of 
+the inductor. I<sub>1</sub> and I<sub>2</sub> needs to be set so that they are 
+both entering the inductor.</b></font> If the given orientation is not so, then 
+we should redraw the circuit (flip the voltages and currents around) until the 
+orientation is exactly as the picture above.</font></p>
+
+<p><font size="4" color="#008000">Example:</font></p>
+
+<p><img border="0" src="images/pic0107.gif" width="600" height="291"></p>
+
+<p><font size="4">should be redrawn as:</font></p>
+
+<p><img border="0" src="images/pic0108.gif" width="600" height="309"></p>
+
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    v<sub>1</sub>(t) = L<sub>1</sub> </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">d -i<sub>1</sub>(t)
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">dt </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    + M </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">d -i<sub>2</sub>(t)
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">dt </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    -v<sub>2</sub>(t) = L<sub>2</sub> </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">d -i<sub>2</sub>(t)
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">dt </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    + M </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">d -i<sub>1</sub>(t)
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">dt </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<h2><font color="#008000">Mutual Inductance in Phasor Form:</font></h2>
+
+<table border="0" cellpadding="8" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td bgcolor="#FFFF99"><font size="5" face="Courier New" color="#FF8000">V<sub>1</sub> 
+    = jwL<sub>1 </sub>I<sub>1</sub> + jwM I<sub>2</sub></font><p>
+    <font size="5" face="Courier New" color="#FF8000">V<sub>2</sub> = jwL<sub>2
+    </sub>I<sub>2</sub> + jwM I<sub>1</sub></font></td>
+  </tr>
+</table>
+<p><font size="4" color="#008000">Example: The equivalent inductance of parallel 
+inductors</font></p>
+
+<p><img border="0" src="images/pic0109.gif" width="500" height="299"></p>
+
+<p><font size="4">The mutual inductance between L<sub>1</sub> and L<sub>2</sub> 
+is M</font></p>
+
+<p><font size="4">What's L<sub>eq</sub> such that: jwL<sub>eq</sub> * I = V ??</font></p>
+
+<p><img border="0" src="images/pic0110.gif" width="500" height="286"></p>
+
+<p><font size="5" color="#FF8000">V = jwL<sub>1</sub> I<sub>1</sub> + jwM (-I<sub>2</sub>)<br>
+-V = jwL<sub>2</sub> (-I<sub>2</sub>) + jwM I<sub>1</sub></font></p>
+
+<p><font size="4">Solve for I<sub>1 </sub>, I<sub>2</sub> . Then it's possible 
+to show that:</font></p>
+
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    I<sub>1</sub> + I<sub>2</sub> = I = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">v(L<sub>1</sub> + L<sub>2</sub> 
+          + 2M) </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">jw(L<sub>1</sub> L<sub>2</sub> 
+          - M<sup>2</sup>) </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<p><font size="4"><span style="background-color: #99FFCC">Final Anwser:</span></font></p>
+
+<table cellSpacing="0" cellPadding="6" border="0" bgcolor="#99FFCC" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    L<sub>eq</sub> = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">L<sub>1</sub> L<sub>1</sub> 
+          - M<sup>2</sup> </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">L<sub>1</sub> + L<sub>2</sub> 
+          + 2M </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<h2><font color="#008000">Energy Analysis</font></h2>
+
+<p><font size="4">A review of relevant material from chapter 5:</font></p>
+
+<p><font size="4">For an inductor:</font></p>
+
+<table cellSpacing="0" cellPadding="6" border="0" bgcolor="#FFFF99" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    power(t) = i(t) * v(t) = </font></td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="7">
+    (</font> </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    L* </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">d i(t) </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">dt </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="7">
+    )</font> </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    i(t) </font></td>
+  </tr>
+</table>
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="7">
+    (</font> </td>
+    <td noWrap align="middle"><font color="#ff8000" size="4">energy<br>
+    in<br>
+    inductor</font><font face="Courier New" color="#ff8000" size="5"> </font>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="7">
+    )</font> </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    = W<sub>L</sub> (t) = </font></td>
+    <td noWrap align="middle">
+    <font face="Times New Roman" color="#ff8000" size="7">&#8747;</font> </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    power(t) * i(t) dt </font></td>
+  </tr>
+</table>
+<table cellSpacing="0" cellPadding="6" border="0" bgcolor="#FFFF99" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td noWrap align="middle"><font color="#FF8000" face="Courier New" size="5">
+    w(t) </font><font face="Courier New" color="#ff8000" size="5">= </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">1 </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">2 </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    Li<sup>2</sup>(t) </font></td>
+  </tr>
+</table>
+
+<p><font size="4">For a magnetically coupled inductor:</font></p>
+
+<p><img border="0" src="images/pic0106.gif" width="600" height="291"></p>
+
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="7">
+    (</font> </td>
+    <td noWrap align="middle"><font color="#ff8000" size="4">energy<br>
+    stored</font><font face="Courier New" color="#ff8000" size="5"> </font></td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="7">
+    )</font> </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    = </font></td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="7">
+    (</font> </td>
+    <td noWrap align="middle"><font color="#ff8000" size="4">energy<br>
+    in L<sub>1</sub></font></td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="7">
+    )</font> </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    + </font></td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="7">
+    (</font> </td>
+    <td noWrap align="middle"><font color="#ff8000" size="4">energy<br>
+    in L<sub>2</sub></font></td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="7">
+    )</font> </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    + </font></td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="7">
+    (</font> </td>
+    <td noWrap align="middle"><font color="#ff8000" size="4">energy due to<br>
+    mutual inductance</font></td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="7">
+    )</font> </td>
+  </tr>
+</table>
+<table cellSpacing="0" cellPadding="6" border="0" bgcolor="#FFFF99" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    w(t) = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">1 </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">2 </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    L<sub>1 </sub>[i<sub>1</sub>(t)]<sup>2</sup> + </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">1 </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">2 </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    L<sub>2 </sub>[i<sub>2</sub>(t)]<sup>2</sup> + M i<sub>1</sub>(t)i<sub>2</sub>(t)
+    </font></td>
+  </tr>
+</table>
+
+<p><font size="4">If we change the dots so that the mutual inductance is working 
+to reduce the inductance of L<sub>1</sub> and L<sub>2</sub> :</font></p>
+
+<p><img border="0" src="images/pic0111.gif" width="430" height="209"></p>
+
+<p><font size="4">then we should have -M instead of the previous +M</font></p>
+
+<table cellSpacing="0" cellPadding="6" border="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" size="5">w(t) = </font>
+    </td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" size="5">1 </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#111111" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" size="5">2 </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" size="5">L<sub>1 </sub>[i<sub>1</sub>(t)]<sup>2</sup> 
+    + </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" size="5">1 </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#111111" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" size="5">2 </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" size="5">L<sub>2 </sub>[i<sub>2</sub>(t)]<sup>2</sup>
+    <font color="#FF8000"><b>-</b></font> M i<sub>1</sub>(t)i<sub>2</sub>(t)
+    </font></td>
+  </tr>
+</table>
+
+<p><font size="4">An inductor can not store negative energy --- so the above 
+expression means that there is an upper bound for M. If M is too large, w(t) 
+will become negative --- which is not possible in real life.</font></p>
+
+<p><font size="4">It turns out that:</font></p>
+
+<table border="0" cellpadding="10" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" bgcolor="#FFFF99">
+  <tr>
+    <td><font face="Courier New" color="#ff8000" size="5">M &#8804; (L<sub>1</sub> L<sub>2</sub>)<sup>1/2</sup></font></td>
+  </tr>
+</table>
+
+<p><font size="4">To prove that <font color="#FF8000">M
+<font face="Times New Roman">&#8804; (L<sub>1</sub> L<sub>2</sub>)<sup>1/2</sup></font></font></font><font face="Times New Roman" size="4"> 
+, use the inequality:</font></p>
+
+<pre><font size="4" color="#FF8000">	(a - b)<sup>2</sup> &#8805; 0
+	a<sup>2</sup> + b<sup>2</sup> &#8805; 2ab
+	(1/2)a<sup>2</sup> + (1/2)b<sup>2</sup> &#8805; ab</font></pre>
+<pre><font size="4" color="#FF8000">	</font><font size="4">a matches up with</font><font size="4" color="#FF8000"> (L<sub>1</sub>)<sup>1/2</sup> i<sub>1</sub>(t)
+	</font><font size="4">b matches up with</font><font size="4" color="#FF8000"> (L<sub>2</sub>)<sup>1/2</sup> i<sub>2</sub>(t)
+	</font><font size="4">and so M matches up with</font><font size="4" color="#FF8000"> L<sub>1</sub>L<sub>2</sub></font></pre>
+<h2><font face="Times New Roman" color="#008000">Coefficient of Coupling (k)</font></h2>
+<table cellSpacing="0" cellPadding="6" border="0" bgcolor="#FFFF99" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    k = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">M </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">(L<sub>1</sub>L<sub>2</sub>)<sup>1/2</sup></font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<p><font face="Times New Roman" size="4">0 &#8804; k &#8804; 1</font></p>
+
+<p><font size="4">If k &gt; 0.5, the inductor is said to be <font color="#008000">
+tightly coupled</font>. If k &#8804; 0.5, the inductors are said to be
+<font color="#008000">loosely coupled</font>.</font></p>
+
+<p><font size="4">k = 0 means no coupling and no mutual inductance</font></p>
+
+</body>
+
+</html>

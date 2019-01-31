@@ -1,0 +1,69 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>WM_CHAR</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">WM_CHAR</font></h1>
+<p align="left"><font size="4">The keyboards generate WM_KEYDOWN, WM_KEYUP 
+messages --- if the key the user typed in is a printable character, Windows will 
+add in the WM_CHAR message. Since this is something that Windows add in to 
+compensate for locale differences, not all keys will cause windows to add in a 
+WM_CHAR message.</font></p>
+<p align="left"><font size="4">The character code delivered with the WM_CHAR 
+message is:</font></p>
+<h2 align="left"><font face="Courier New" color="#FF6600">(TCHAR) wParam</font></h2>
+<p align="left"><font size="4">In addition to the basic alphabet and numbers, 
+WM_CHAR is also generated for:</font></p>
+<p align="left"><font size="4"><font color="#0000FF">'\b'</font> --- Backspace<br>
+<font color="#0000FF">'\t'</font> --- Tab<br>
+<font color="#0000FF">'\n' </font>--- ctrl-Enter<br>
+<font color="#0000FF">'\r'</font> --- Enter</font></p>
+<p align="left">&nbsp;</p>
+<p align="left"><font size="4">WM_CHAR sample code:</font></p>
+<p align="left"><font face="Courier New" size="4" color="#FF6600">case WM_CHAR:<br>
+&nbsp;&nbsp;&nbsp; switch (wParam)<br>
+&nbsp;&nbsp;&nbsp; {<br>
+&nbsp;&nbsp;&nbsp; case `\b':&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</font><font face="Courier New" size="4" color="#008000">// backspace</font><font face="Courier New" size="4" color="#FF6600"><br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break ;<br>
+&nbsp;&nbsp;&nbsp; case `\t':&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</font><font face="Courier New" size="4" color="#008000">// tab</font><font face="Courier New" size="4" color="#FF6600"><br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break ;<br>
+<br>
+&nbsp;&nbsp;&nbsp; case `\n':&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</font><font face="Courier New" size="4" color="#008000">// linefeed</font><font face="Courier New" size="4" color="#FF6600"><br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break ;<br>
+<br>
+&nbsp;&nbsp;&nbsp; case `\r':&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</font><font face="Courier New" size="4" color="#008000">// carriage return</font><font face="Courier New" size="4" color="#FF6600"><br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break ;<br>
+<br>
+&nbsp;&nbsp;&nbsp; default:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</font><font face="Courier New" size="4" color="#008000">// character codes</font><font face="Courier New" size="4" color="#FF6600"><br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break ;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; return 0 ;</font></p>
+<p align="left">&nbsp;</p>
+<p align="left"><font size="4" color="#008000">Other notes:</font></p>
+<p align="left"><font size="4">In addition to WM_CHAR, there's also WM_DEADCHAR, 
+WM_SYSCHAR, and WM_SYSDEADCHAR.</font></p>
+
+<p align="left">&nbsp;</p>
+<p align="left"><font size="4"><a href="examples/mouse_keyboard_template.cpp">
+Click here for the code of a mouse and keyboard handling template program</a></font></p>
+
+</body>
+
+</html>

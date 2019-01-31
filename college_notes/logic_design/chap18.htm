@@ -1,0 +1,511 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Logic Design with Registers and Counters</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">Logic Design with Registers and 
+Counters</font></h1>
+<h2><font color="#008000">Shift Registers</font></h2>
+<p><font size="4" color="#008000">7491 Shift Register</font></p>
+<p><img border="0" src="images/fig_18_01.jpg" width="833" height="400"></p>
+<p><font size="4">When AB = 1, a one is shifted into the left most flip-flop. 
+When AB = 0, a zero is shifted into the left most flip-flop. The content of each 
+flip flop is shifted to the right on each clock pulse. </font></p>
+<p><font size="4">The flip flops will change on the rising edge of each clock 
+pulse. From the &quot;Clock&quot; signal to the actual clock there are two inverters --- 
+which cancels one another out.</font></p>
+<p><font size="4" color="#008000">74178 Shift Register</font></p>
+<p><font size="4">This one has more features.</font></p>
+<p><img border="0" src="images/fig_18_03a.jpg" width="458" height="298"></p>
+<p><font size="4"><a href="images/fig_18_03b.jpg">Click here to view the 
+internals</a></font></p>
+<p><font size="4">From the &quot;Clock&quot; signal to the actual clock there are three 
+inverters total. So this register changes states on the falling edge.</font></p>
+<table border="1" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td colspan="2" align="center"><font size="4">Inputs</font></td>
+    <td colspan="4" align="center"><font size="4">Next State</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">SH<br>
+    (shift)</font></td>
+    <td align="center"><font size="4">L<br>
+    (load)</font></td>
+    <td align="center"><font size="4">Q<sub>A</sub></font><sup><font size="4">+</font></sup></td>
+    <td align="center"><font size="4">Q<sub>B</sub></font><sup><font size="4">+</font></sup></td>
+    <td align="center"><font size="4">Q<sub>C</sub></font><sup><font size="4">+</font></sup></td>
+    <td align="center"><font size="4">Q<sub>D</sub></font><sup><font size="4">+</font></sup></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">Q<sub>A</sub></font></td>
+    <td align="center"><font size="4">Q<sub>B</sub></font></td>
+    <td align="center"><font size="4">Q<sub>C</sub></font></td>
+    <td align="center"><font size="4">Q<sub>D</sub></font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">D<sub>A</sub></font></td>
+    <td align="center"><font size="4">D<sub>B</sub></font></td>
+    <td align="center"><font size="4">D<sub>C</sub></font></td>
+    <td align="center"><font size="4">D<sub>D</sub></font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">X</font></td>
+    <td align="center"><font size="4">SI</font></td>
+    <td align="center"><font size="4">Q<sub>A</sub></font></td>
+    <td align="center"><font size="4">Q<sub>B</sub></font></td>
+    <td align="center"><font size="4">Q<sub>C</sub></font></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<h2><font color="#008000">Integrated Circuit Counters</font></h2>
+<p><font size="4">There are ripple (asynchronous) counters and synchronous 
+counters. They both use flip-flops to store the current count. Flip-flops 
+respond only to clock pulses, and so both types of counters will load or count 
+only if there is a clock pulse. The so called &quot;asynchronous&quot; counters just have 
+an asynchronous clear so that a clock pulse is not needed to reset the counter 
+to zero.</font></p>
+<p><font size="4" color="#008000">The Ripple Counter</font></p>
+<p><font size="4">This is a very simple looking counter using T flip-flops. The 
+starting state look like:</font></p>
+<p><img border="0" src="images/pic0020.gif" width="800" height="239"></p>
+<p><font size="4">Note that the clock is only connected directly to T flip-flip 
+A. The output of flip-flop A is the clock for flip-flop B, and so on. </font>
+</p>
+<p><font size="4">After the 1rst pulse:</font></p>
+<p><img border="0" src="images/pic0021.gif" width="800" height="265"></p>
+<p><font size="4">It's important that the flip-flops respond only to the FALLING 
+edge of the clock. So when flip-flop A goes from zero to one, flip-flop B will 
+not change. Flip-flop B changes only if flip-flop A changes from 1 to 0.</font></p>
+<p><font size="4">After the 2nd pulse:</font></p>
+<p><img border="0" src="images/pic0022.gif" width="800" height="265"></p>
+<p><font size="4">After the 3rd pulse:</font></p>
+<p><img border="0" src="images/pic0023.gif" width="800" height="265"></p>
+<p><font size="4">After the 4th pulse:</font></p>
+<p><img border="0" src="images/pic0024.gif" width="800" height="265"></p>
+<p><font size="4">After the 5th pulse:</font></p>
+<p><img border="0" src="images/pic0025.gif" width="800" height="265"></p>
+<p><font size="4">and so on...</font></p>
+<p><font size="4">When the counter reaches 1111, it will go back to 0000 on the 
+next pulse.</font></p>
+<p><font size="4">A complete ripple counter:</font></p>
+<p><img border="0" src="images/fig_18_06.jpg" width="795" height="575"></p>
+<p><font size="4">Note that externally we need a wire that goes from B to Q<sub>A</sub> 
+--- this connection is not present inside the integrated circuit.</font></p>
+<p><font size="4">R<sub>1</sub>R<sub>2</sub> = 1 will reset the counter to 0000 
+without the need of any clock signal, which is why this is an &quot;asynchronous&quot; 
+counter.</font></p>
+<p><font size="4" color="#008000">74S163 Counter</font></p>
+<p><font size="4"><a href="images/fig_18_07.jpg">Click here to view the internals</a></font></p>
+<p><font size="4">There are two inverters from &quot;Clock&quot; symbol to the actual 
+clock, so the state changes happen on the 0 to 1 transition.</font></p>
+<p><font size="4">This flip has clear and load features that are activated by 
+negative logic:</font></p>
+
+<table border="1" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td rowspan="2" align="center"><font size="4">Clear</font></td>
+    <td rowspan="2" align="center"><font size="4">Load</font></td>
+    <td rowspan="2" align="center"><font size="4">PT<br>
+    (Enable Count)</font></td>
+    <td align="center" colspan="4"><font size="4">Next State</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">Q<sub>D</sub><sup>+</sup></font></td>
+    <td align="center"><font size="4">Q<sub>C</sub><sup>+</sup></font></td>
+    <td align="center"><font size="4">Q<sub>B</sub><sup>+</sup></font></td>
+    <td align="center"><font size="4">Q<sub>A</sub><sup>+</sup></font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">X</font></td>
+    <td align="center"><font size="4">X</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">X</font></td>
+    <td align="center"><font size="4">D<sub>D</sub></font></td>
+    <td align="center"><font size="4">D<sub>C</sub></font></td>
+    <td align="center"><font size="4">D<sub>B</sub></font></td>
+    <td align="center"><font size="4">D<sub>A</sub></font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">Q<sub>D</sub></font></td>
+    <td align="center"><font size="4">Q<sub>C</sub></font></td>
+    <td align="center"><font size="4">Q<sub>B</sub></font></td>
+    <td align="center"><font size="4">Q<sub>A</sub></font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center" colspan="4"><font size="4">Present State + 1</font></td>
+  </tr>
+</table>
+<p><font size="4">This is a synchronized counter, and so clearing does requires 
+a clock cycle. Always use clear instead of loading zeros, because clearing 
+results in more don't care conditions than loading.</font></p>
+
+<p><font size="4">This counter also has a carry output so that two 4-bit 
+counters can combine to form an 8-bit counter:</font></p>
+
+<p><img border="0" src="images/fig_18_08.jpg" width="767" height="230"></p>
+
+<p><font size="4">Whenever the counter on the right side reach 15, it will 
+trigger a count in the counter on the left side.</font></p>
+
+<p><font size="4">If we want to count this sequence:</font></p>
+
+<p><font face="Arial" size="4">&nbsp;&nbsp;&nbsp; <i>5, 6, 7, 8, 9, 10, 11, 12, 
+13, 14, 15, 5, 6, 7, ...</i></font></p>
+
+<p><font size="4">we just need to load a 5 whenever the counter reaches 15.</font></p>
+
+<p><img border="0" src="images/fig_18_09.jpg" width="424" height="259"></p>
+
+<p><font size="4">If we want to count this sequence:</font></p>
+
+<p><font face="Arial" size="4">&nbsp;&nbsp;&nbsp; <i>0, 1, 2, 3, 4, 5, 6, 7, 8, 
+9, 10, 11, 12, 13, 0, 1, 2, 3, ...</i></font></p>
+
+<p><font size="4">we need to clear the counter whenever it reaches 13</font></p>
+
+<p><img border="0" src="images/fig_18_10.jpg" width="441" height="248"></p>
+
+<p>&nbsp;</p>
+
+<h2><font color="#008000">Design of Sequential Networks Using Counters</font></h2>
+
+<p><img border="0" src="images/fig_18_11.jpg" width="440" height="361"></p>
+
+<p><font size="4">The majority of the transitions go S<sub>0</sub>
+<font face="Wingdings 3">&quot;</font> S<sub>1</sub> <font face="Wingdings 3">&quot;</font> 
+S<sub>2</sub> <font face="Wingdings 3">&quot;</font> S<sub>3</sub>
+<font face="Wingdings 3">&quot;</font> S<sub>4</sub> <font face="Wingdings 3">&quot;</font> 
+S<sub>5</sub> <font face="Wingdings 3">&quot;</font> S<sub>6</sub>
+<font face="Wingdings 3">&quot;</font> S<sub>0</sub> . To handle these transitions, 
+use a 3-bit counter such that:</font></p>
+
+<p><font size="4">S<sub>0</sub> = 000<br>
+S<sub>1</sub> = 001<br>
+S<sub>2</sub> = 010<br>
+...</font></p>
+
+<p><font size="4">Then for the state table, most of the time we will simply be 
+incrementing the counter:</font></p>
+
+<table border="1" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td align="center"><font size="4">C</font></td>
+    <td align="center"><font size="4">B</font></td>
+    <td align="center"><font size="4">A</font></td>
+    <td align="center"><font size="4">X</font></td>
+    <td align="center">&nbsp;</td>
+    <td align="center"><font size="4">C</font><sup><font size="4">+</font></sup></td>
+    <td align="center"><font size="4">B</font><sup><font size="4">+</font></sup></td>
+    <td align="center"><font size="4">A</font><sup><font size="4">+</font></sup></td>
+    <td align="center">&nbsp;</td>
+    <td align="center"><font size="4">Clear</font></td>
+    <td align="center"><font size="4">Load</font></td>
+    <td align="center"><font size="4">PT</font></td>
+    <td align="center"><font size="4">D</font><sub><font size="4">C</font></sub></td>
+    <td align="center"><font size="4">D</font><sub><font size="4">B</font></sub></td>
+    <td align="center"><font size="4">D</font><sub><font size="4">A</font></sub></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center">&nbsp;</td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center">&nbsp;</td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">X</font></td>
+    <td align="center"><font size="4">X</font></td>
+    <td align="center"><font size="4">X</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center">&nbsp;</td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center">&nbsp;</td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">X</font></td>
+    <td align="center"><font size="4">X</font></td>
+    <td align="center"><font size="4">X</font></td>
+  </tr>
+</table>
+<p><font size="4">At state 6, we go back to state 0, not onto state 7:</font></p>
+
+<table border="1" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td align="center"><font size="4">C</font></td>
+    <td align="center"><font size="4">B</font></td>
+    <td align="center"><font size="4">A</font></td>
+    <td align="center"><font size="4">X</font></td>
+    <td align="center">&nbsp;</td>
+    <td align="center"><font size="4">C</font><sup><font size="4">+</font></sup></td>
+    <td align="center"><font size="4">B</font><sup><font size="4">+</font></sup></td>
+    <td align="center"><font size="4">A</font><sup><font size="4">+</font></sup></td>
+    <td align="center">&nbsp;</td>
+    <td align="center"><font size="4">Clear</font></td>
+    <td align="center"><font size="4">Load</font></td>
+    <td align="center"><font size="4">PT</font></td>
+    <td align="center"><font size="4">D</font><sub><font size="4">C</font></sub></td>
+    <td align="center"><font size="4">D</font><sub><font size="4">B</font></sub></td>
+    <td align="center"><font size="4">D</font><sub><font size="4">A</font></sub></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center">&nbsp;</td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center">&nbsp;</td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">X</font></td>
+    <td align="center"><font size="4">X</font></td>
+    <td align="center"><font size="4">X</font></td>
+    <td align="center"><font size="4">X</font></td>
+    <td align="center"><font size="4">X</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center">&nbsp;</td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center">&nbsp;</td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">X</font></td>
+    <td align="center"><font size="4">X</font></td>
+    <td align="center"><font size="4">X</font></td>
+    <td align="center"><font size="4">X</font></td>
+    <td align="center"><font size="4">X</font></td>
+  </tr>
+</table>
+<p><font size="4">There is no state 7:</font></p>
+
+<table border="1" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td align="center"><font size="4">C</font></td>
+    <td align="center"><font size="4">B</font></td>
+    <td align="center"><font size="4">A</font></td>
+    <td align="center"><font size="4">X</font></td>
+    <td align="center">&nbsp;</td>
+    <td align="center"><font size="4">C</font><sup><font size="4">+</font></sup></td>
+    <td align="center"><font size="4">B</font><sup><font size="4">+</font></sup></td>
+    <td align="center"><font size="4">A</font><sup><font size="4">+</font></sup></td>
+    <td align="center">&nbsp;</td>
+    <td align="center"><font size="4">Clear</font></td>
+    <td align="center"><font size="4">Load</font></td>
+    <td align="center"><font size="4">PT</font></td>
+    <td align="center"><font size="4">D</font><sub><font size="4">C</font></sub></td>
+    <td align="center"><font size="4">D</font><sub><font size="4">B</font></sub></td>
+    <td align="center"><font size="4">D</font><sub><font size="4">A</font></sub></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center">&nbsp;</td>
+    <td align="center"><font size="4">X</font></td>
+    <td align="center"><font size="4">X</font></td>
+    <td align="center"><font size="4">X</font></td>
+    <td align="center">&nbsp;</td>
+    <td align="center"><font size="4">X</font></td>
+    <td align="center"><font size="4">X</font></td>
+    <td align="center"><font size="4">X</font></td>
+    <td align="center"><font size="4">X</font></td>
+    <td align="center"><font size="4">X</font></td>
+    <td align="center"><font size="4">X</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center">&nbsp;</td>
+    <td align="center"><font size="4">X</font></td>
+    <td align="center"><font size="4">X</font></td>
+    <td align="center"><font size="4">X</font></td>
+    <td align="center">&nbsp;</td>
+    <td align="center"><font size="4">X</font></td>
+    <td align="center"><font size="4">X</font></td>
+    <td align="center"><font size="4">X</font></td>
+    <td align="center"><font size="4">X</font></td>
+    <td align="center"><font size="4">X</font></td>
+    <td align="center"><font size="4">X</font></td>
+  </tr>
+</table>
+<p><font size="4">The only transitions that are not simple increments:</font></p>
+
+<table border="1" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td align="center"><font size="4">C</font></td>
+    <td align="center"><font size="4">B</font></td>
+    <td align="center"><font size="4">A</font></td>
+    <td align="center"><font size="4">X</font></td>
+    <td align="center">&nbsp;</td>
+    <td align="center"><font size="4">C</font><sup><font size="4">+</font></sup></td>
+    <td align="center"><font size="4">B</font><sup><font size="4">+</font></sup></td>
+    <td align="center"><font size="4">A</font><sup><font size="4">+</font></sup></td>
+    <td align="center">&nbsp;</td>
+    <td align="center"><font size="4">Clear</font></td>
+    <td align="center"><font size="4">Load</font></td>
+    <td align="center"><font size="4">PT</font></td>
+    <td align="center"><font size="4">D</font><sub><font size="4">C</font></sub></td>
+    <td align="center"><font size="4">D</font><sub><font size="4">B</font></sub></td>
+    <td align="center"><font size="4">D</font><sub><font size="4">A</font></sub></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center">&nbsp;</td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center">&nbsp;</td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">X</font></td>
+    <td align="center"><font size="4">X</font></td>
+    <td align="center"><font size="4">X</font></td>
+    <td align="center"><font size="4">X</font></td>
+    <td align="center"><font size="4">X</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center">&nbsp;</td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center">&nbsp;</td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">X</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">0</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center">&nbsp;</td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center">&nbsp;</td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">X</font></td>
+    <td align="center"><font size="4">X</font></td>
+    <td align="center"><font size="4">X</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center">&nbsp;</td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center">&nbsp;</td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">X</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">1</font></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+
+<h2><font color="#008000">3-State Buffer</font></h2>
+
+<p><img border="0" src="images/fig_18_14.jpg" width="388" height="107"></p>
+
+<p><font size="4">When B = 1, C = A. <br>
+When B = 0, there's an open circle between A and C, and this state is called 
+Hi-Z (high impedance).</font></p>
+
+<p><font size="4">Circles can appear on the B and C terminals.</font></p>
+
+<p><img border="0" src="images/fig_18_15.jpg" width="686" height="325"></p>
+
+<p><font size="4">A circle on the B terminals means that B = 0 will create a 
+short circle between A and C, while B = 1 will create an open circle.</font></p>
+
+<p><font size="4">A circle on the C terminal means that C = A INVERTED when a 
+short circle exists between C and A.</font></p>
+
+<p><font size="4">Two 3-state buffer forms a multiplexer:</font></p>
+
+<p><img border="0" src="images/fig_18_16.jpg" width="356" height="174"></p>
+
+<p><font size="4">A 3-state buffer basically serve as the enabler of output from 
+flip-flops:</font></p>
+
+<p><img border="0" src="images/fig_18_18.jpg" width="767" height="228"></p>
+
+<p><font size="4">If we want a register G that pick and choose from registers A, 
+B, C, and D, we can use this network:</font></p>
+
+<p><img border="0" src="images/fig_18_19.jpg" width="762" height="351"></p>
+
+<p><font size="4">This is an alternative to using a multiplexer to pick and 
+choose from registers.</font></p>
+
+<p><font size="4">The enabling signals have a circle, meaning a zero signal will 
+enable. To cope with this, the negative logic kind of decoder is used such that 
+the decoder outputs have only one 0. A normal decoder outputs one 1.</font></p>
+
+</body>
+
+</html>

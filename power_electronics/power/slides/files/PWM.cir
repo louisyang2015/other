@@ -1,0 +1,5 @@
+.subckt PWM 1 2
+*1 is input
+*2 is output
+Epwm 2 0 value={LIMIT(V(1)*0.25,0.1,0.9)}
+.ends

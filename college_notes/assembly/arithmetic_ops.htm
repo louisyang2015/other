@@ -1,0 +1,60 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Arithmetic Operations</title>
+</head>
+
+<body>
+
+<p><font size="5" color="#008000">Arithmetic Operations</font></p>
+<p><font size="4" color="#FF6600">ADD DI, AX</font></p>
+<p><b><font size="4" color="#008000">Multiplication and Division </font></b>
+<font size="4">--- IMUL, etc. --- these instruction have many forms depending on 
+the size of the operands. The answer will might go into two different places 
+because one register is sometimes not enough to hold the answer. <i>(I think I 
+don't have to worry about this stuff --- just let the C/C++ compiler generate 
+the machine code)</i>.</font></p>
+
+<p>&nbsp;</p>
+
+<p><font size="4" color="#FF6600">INC AX</font></p>
+<p><font size="4" color="#FF6600">DEC BX</font></p>
+<p><font size="4">If AX = 0xFFFF, and you do &quot;INC AX&quot;, the new AX is zero --- 
+the carry flag is not set for this, but the zero flag will be set.</font></p>
+
+<p>&nbsp;</p>
+
+<p><font size="4"><font color="#FF6600">NEG BYTE [BX]</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<font color="#008000">; Negates byte quantity at DS:BX</font></font></p>
+
+<p><font size="4"><font color="#FF6600">NEG WORD [BX]</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<font color="#008000">; Negates word quantity at DS:BX</font></font></p>
+
+<p>&nbsp;</p>
+<p><font face="Courier New" size="4" color="#FF6600">SHL &lt;register/memory&gt;, 
+&lt;count&gt;</font><font face="Courier New" size="4" color="#008000">&nbsp; ; Shifts 
+left &quot;count&quot; number of bits</font></p>
+<p><font face="Courier New" size="4" color="#FF6600">SHR &lt;register/memory&gt;, 
+&lt;count&gt;</font><font face="Courier New" size="4" color="#008000"> ; Shifts right 
+&quot;count&quot; number of bits</font></p>
+<p><font size="4">On the 8086 and 8088, count can be 1 or the CL register; 
+(starting with 286, count can be any immediate value from 1 to 255)</font></p>
+<p><font size="4">The last bit shifted out goes into the carry flag</font></p>
+
+<p>&nbsp;</p>
+<p><font size="5" color="#008000">Bitwise logical instructions</font></p>
+
+<p><font size="4" color="#FF6600">AND DX, SI</font></p>
+
+<p><font size="4">others: OR, XOR, NOT</font></p>
+
+<p><font size="4">Segment registers can not be used in any of the bitwise 
+logical instructions.</font></p>
+
+</body>
+
+</html>

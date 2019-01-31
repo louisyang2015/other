@@ -1,0 +1,151 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Recoloring</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">Recoloring</font></h1>
+<p><b><font color="#008000" size="4">The Color Matrix</font></b></p>
+<p><font size="4">A color vector is a 4-tuple of the form (red, green, blue, 
+alpha). As in most graphic transformations, you are going to add a &quot;1&quot; as the 
+5th element. Then you can apply linear transformations (rotation, scaling, and the like) to 
+the color vector by multiplying by a 5x5 matrix.</font></p>
+<p><font size="4"><a href="examples/color_matrix2.cpp">Click here for example 
+code of using a color matrix</a></font></p>
+<p><font size="4">An Identity matrix will do no transformation. To
+<font color="#008000"><b>translate a color component</b></font>, do the 
+following modification:</font></p>
+<table cellpadding="12" cellspacing="0" border="1" style="border-collapse: collapse" bordercolor="#111111">
+  <tr vAlign="top">
+    <td width="43%"><font size="4">Red</font></td>
+    <td width="57%"><font size="4">[4][0]</font></td>
+  </tr>
+  <tr vAlign="top">
+    <td width="43%"><font size="4">Green</font></td>
+    <td width="57%"><font size="4">[4][1]</font></td>
+  </tr>
+  <tr vAlign="top">
+    <td width="43%"><font size="4">Blue</font></td>
+    <td width="57%"><font size="4">[4][2]</font></td>
+  </tr>
+  <tr vAlign="top">
+    <td width="43%"><font size="4">Alpha</font></td>
+    <td width="57%"><font size="4">[4][3]</font></td>
+  </tr>
+</table>
+<p><font size="4">So to increase the red component by 0.75, you would use a 
+matrix:</font></p>
+<p><font face="Courier New" size="4">ColorMatrix colorMatrix = {<br>
+&nbsp;&nbsp;&nbsp; 1.0f,&nbsp; 0.0f, 0.0f, 0.0f, 0.0f,<br>
+&nbsp;&nbsp;&nbsp; 0.0f,&nbsp; 1.0f, 0.0f, 0.0f, 0.0f,<br>
+&nbsp;&nbsp;&nbsp; 0.0f,&nbsp; 0.0f, 1.0f, 0.0f, 0.0f,<br>
+&nbsp;&nbsp;&nbsp; 0.0f,&nbsp; 0.0f, 0.0f, 1.0f, 0.0f,<br>
+&nbsp;&nbsp;&nbsp; 0.75f, 0.0f, 0.0f, 0.0f, 1.0f};</font></p>
+<p><font size="4">If you apply the matrix to the image on the right, you would 
+get the one on the left:</font></p>
+<p><img border="0" src="images/pic08.gif" width="264" height="88"></p>
+<table cellpadding="12" border="1" style="border-collapse: collapse" bordercolor="#111111" cellspacing="0">
+  <tr vAlign="top">
+    <th align="left"><font size="4">Original Image Color<span style="font-weight: 400"> 
+    (left)</span></font></th>
+    <th align="left"><font size="4">Translated Image Color<span style="font-weight: 400"> 
+    (right)</span></font></th>
+  </tr>
+  <tr vAlign="top">
+    <td><font size="4">Black (0, 0, 0, 1)</font></td>
+    <td><font size="4">(0.75, 0, 0, 1)</font></td>
+  </tr>
+  <tr vAlign="top">
+    <td><font size="4">Red (1, 0, 0, 1)</font></td>
+    <td><font size="4">(1, 0, 0, 1)</font></td>
+  </tr>
+  <tr vAlign="top">
+    <td><font size="4">Green (0, 1, 0, 1)</font></td>
+    <td><font size="4">(0.75, 1, 0, 1)</font></td>
+  </tr>
+  <tr vAlign="top">
+    <td><font size="4">Blue (0, 0, 1, 1)</font></td>
+    <td><font size="4">(0.75, 0, 1, 1)</font></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<h2><font color="#008000">Scaling Colors</font></h2>
+<table cellpadding="12" border="1" style="border-collapse: collapse" bordercolor="#111111" cellspacing="0">
+  <tr vAlign="top">
+    <th align="left"><font size="4">Component to be scaled</font></th>
+    <th align="left"><font size="4">Matrix entry</font></th>
+  </tr>
+  <tr vAlign="top">
+    <td><font size="4">Red</font></td>
+    <td><font size="4">[0][0]</font></td>
+  </tr>
+  <tr vAlign="top">
+    <td><font size="4">Green</font></td>
+    <td><font size="4">[1][1]</font></td>
+  </tr>
+  <tr vAlign="top">
+    <td><font size="4">Blue</font></td>
+    <td><font size="4">[2][2]</font></td>
+  </tr>
+  <tr vAlign="top">
+    <td><font size="4">Alpha</font></td>
+    <td><font size="4">[3][3]</font></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p><font size="4">You can also use matrices to &quot;rotate&quot; color or to &quot;shear&quot; 
+colors.</font></p>
+<p>&nbsp;</p>
+<h2><font color="#008000">Using a Color Remap Table</font></h2>
+
+<p><font size="4">Say you want to go from the picture on the left to the picture 
+on the right:</font></p>
+
+<p><img border="0" src="images/pic09.gif" width="270" height="99"></p>
+
+<p><font size="4">That is: to replace every red pixel with a blue pixel</font></p>
+
+<p><font face="Courier New" size="4">Image&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+image(L&quot;RemapInput.bmp&quot;);<br>
+ImageAttributes&nbsp; imageAttributes;<br>
+UINT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+width = image.GetWidth();<br>
+UINT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+height = image.GetHeight();<br>
+ColorMap&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; colorMap[1];<br>
+<br>
+<font color="#FF6600">colorMap[0].oldColor = Color(255, 255, 0, 0);&nbsp; // 
+opaque red<br>
+colorMap[0].newColor = Color(255, 0, 0, 255);&nbsp; // opaque blue<br>
+<br>
+imageAttributes.SetRemapTable(1, colorMap, ColorAdjustTypeBitmap);</font></font></p>
+
+<p><font size="4">The colors are changed only for rendering — the color values of the image 
+itself (stored in an <b>Image</b> or <b>Bitmap</b> object) are not changed.</font></p>
+
+<p><font size="4">If you are working on a metafile, do not use that 
+&quot;ColorAdjustTypeBitmap&quot; thing!</font></p>
+
+<p><font face="Courier New" size="4">graphics.DrawImage(&amp;image, 10, 10, width, 
+height); <b><br>
+</b><font color="#008000">// background is red</font></font></p>
+
+<p><font face="Courier New" size="4">graphics.DrawImage(<br>
+&nbsp;&nbsp;&nbsp; &amp;image, <br>
+&nbsp;&nbsp;&nbsp; Rect(150, 10, width, height), // destination rectangle <br>
+&nbsp;&nbsp;&nbsp; 0, 0, // upper-left corner of source rectangle <br>
+&nbsp;&nbsp;&nbsp; width, // width of source rectangle<br>
+&nbsp;&nbsp;&nbsp; height, // height of source rectangle<br>
+&nbsp;&nbsp;&nbsp; UnitPixel,<br>
+&nbsp;&nbsp;&nbsp; <font color="#FF6600">&amp;imageAttributes</font>);
+<font color="#008000">//background is blue</font></font></p>
+
+</body>
+
+</html>

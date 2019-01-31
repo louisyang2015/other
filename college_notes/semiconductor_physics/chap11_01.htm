@@ -1,0 +1,427 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Ideal Transistor Analysis</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">Ideal Transistor Analysis</font></h1>
+<p><font size="4">The ideal BJT transistor analysis is very similar to the ideal 
+diode analysis. It's just that with the BJT there are two depletion regions 
+instead of one.</font></p>
+<p><font size="4">Note: the following analysis applies to the pnp transistor 
+only.</font></p>
+<p><font size="4" color="#008000">Notations:</font></p>
+<p><img border="0" src="images/pic0122.jpg" width="603" height="494"></p>
+<p><font size="4" color="#008000">Like in the ideal diode analysis, you first 
+solve for the minority carriers.</font></p>
+<table border="1" cellpadding="12" cellspacing="1" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td align="left">&nbsp;</td>
+    <td align="center"><font size="4">State Equation</font></td>
+    <td align="center"><font size="4">Boundary Conditions</font></td>
+  </tr>
+  <tr>
+    <td align="left"><font size="4">Emitter Region</font></td>
+    <td><img border="0" src="images/pic0123.jpg" width="309" height="93"></td>
+    <td><img border="0" src="images/pic0124.jpg" width="447" height="157"></td>
+  </tr>
+  <tr>
+    <td align="left"><font size="4">Base Region</font></td>
+    <td><img border="0" src="images/pic0125.jpg" width="302" height="97"></td>
+    <td><img border="0" src="images/pic0126.jpg" width="385" height="138"></td>
+  </tr>
+  <tr>
+    <td align="left"><font size="4">Collector Region</font></td>
+    <td><img border="0" src="images/pic0127.jpg" width="308" height="102"></td>
+    <td><img border="0" src="images/pic0128.jpg" width="434" height="130"></td>
+  </tr>
+</table>
+<p><font size="4" color="#008000">After you get minority carrier expressions
+<font face="Times New Roman">&#8710;n<sub>E</sub>(x''), &#8710;p<sub>B</sub>(x), &#8710;n<sub>C</sub>(x')</font>, 
+calculate the minority carrier diffusion currents at the edge of the depletion 
+regions.</font></p>
+<p><img border="0" src="images/pic0129.jpg" width="336" height="587"></p>
+<h2>&nbsp;</h2>
+<h2><font color="#008000">The General Results (W arbitrary)</font></h2>
+<p><font size="4" color="#008000">For the emitter and collector regions:</font></p>
+<table border="3" cellpadding="12" cellspacing="1" style="border-collapse: collapse" bordercolor="#FF8000">
+  <tr>
+    <td><img border="0" src="images/pic0130.jpg" width="396" height="96"><p>
+    <img border="0" src="images/pic0131.jpg" width="422" height="87"></td>
+  </tr>
+</table>
+<p><font size="4">The I<sub>Cn</sub> has a negative sign because we are reusing 
+the ideal diode results, and those results assume a current flowing from the p 
+junction to the n junction. I<sub>Cn</sub> is flowing from the n base to the p 
+collector.</font></p>
+<p><font size="4">For the base region we use the narrow base diode results, 
+which are hyperbolic functions.</font></p>
+<table border="3" cellpadding="12" cellspacing="1" style="border-collapse: collapse" bordercolor="#FF8000">
+  <tr>
+    <td><img border="0" src="images/pic0132.jpg" width="735" height="92"><p>
+    <img border="0" src="images/pic0133.jpg" width="940" height="101"></p>
+    <p><img border="0" src="images/pic0134.jpg" width="945" height="102"></td>
+  </tr>
+</table>
+<p><font size="4">Under active mode biasing, the </font>
+<font color="#FF8000" size="5">[e^(qV<sub>CB</sub> / kT) - 1]</font><font size="4"> 
+terms are small compared to the </font><font color="#FF8000" size="5">[e^(qV<sub>EB</sub> 
+/ kT) - 1]</font><font size="4"> terms</font></p>
+<p><font size="5" color="#FF8000">I<sub>E</sub> = I<sub>En</sub> + I<sub>Ep</sub></font></p>
+<p><font size="5" color="#FF8000">I<sub>C</sub> = I<sub>Cn</sub> + I<sub>Cp</sub></font></p>
+<p>&nbsp;</p>
+<h2><font color="#008000">Ebers-Moll Equations and Model</font></h2>
+<p><font size="4">The equation representation for I<sub>E</sub> and I<sub>C</sub> 
+would be large and unwieldy, but they are nevertheless listed on page 396 of the 
+book. The Ebers-Moll model is a circuit representation of those equations.</font></p>
+<table border="3" cellpadding="12" cellspacing="1" style="border-collapse: collapse" bordercolor="#FF8000" bgcolor="#FFFF99">
+  <tr>
+    <td><img border="0" src="images/pic0136.gif" width="750" height="368"><p>
+    <font face="Courier New" color="#ff8000" size="5">I<sub>E</sub> = I<sub>F</sub> 
+    - &#945;<sub>R</sub> I<sub>R</sub> </font></p>
+    <p><font face="Courier New" color="#ff8000" size="5">I<sub>C</sub> = &#945;<sub>F</sub> 
+    I<sub>F</sub> - I<sub>R</sub> </font></p>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">I<sub>F</sub> = I<sub>F0</sub></font></td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="7">(</font> </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">e^[(qV<sub>EB</sub>)/(kT)] 
+        - 1 </font></td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="7">)</font> </td>
+      </tr>
+    </table>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">I<sub>R</sub> = I<sub>R0</sub></font></td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="7">(</font> </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">e^[(qV<sub>CB</sub>)/(kT)] 
+        - 1 </font></td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="7">)</font> </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<p><font size="4">The four parameters, <font face="Times New Roman">&#945;<sub>F
+</sub>, &#945;<sub>R</sub> , I<sub>F0</sub> , and I<sub>R0</sub> can be deduced from 
+a match to experimental data, or we can use these relationships to compute them:</font></font></p>
+<p><img border="0" src="images/pic0135.jpg" width="526" height="211"></p>
+<p><font face="Courier New" color="#ff8000" size="5">&#945;<sub>F</sub> I<sub>F0</sub> 
+= &#945;<sub>R</sub> I<sub>R0</sub> </font></p>
+<p>&nbsp;</p>
+<h2><font color="#008000">The Simplified Results (W &lt;&lt; L<sub>B</sub>)</font></h2>
+<p><font size="4">The <font face="Times New Roman">&#8710;</font>p<sub>B</sub>(x) in 
+the base region is a line:</font></p>
+<p><img border="0" src="images/pic0137.jpg" width="550" height="416"></p>
+<table border="3" cellpadding="12" cellspacing="1" style="border-collapse: collapse" bordercolor="#FF8000" bgcolor="#FFFF99">
+  <tr>
+    <td>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">&#916;p<sub>B</sub>(x) = &#916;p<sub>B</sub>(0) 
+        + [&#916;p<sub>B</sub>(W) - &#916;p<sub>B</sub>(0)] </font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">x </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">W </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<p><font size="4">The above distribution remains fairly close to linear even for 
+W/L<sub>B</sub> ratios as large as unity.</font></p>
+<p><font size="4">Using W &lt;&lt; L<sub>B </sub>, the BJT performance parameters 
+results are:</font></p>
+<table border="3" cellpadding="12" cellspacing="1" style="border-collapse: collapse" bordercolor="#FF8000" bgcolor="#FFFF99">
+  <tr>
+    <td>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">1 </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">y </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">= 1 + </font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">D<sub>E</sub> N<sub>B</sub> 
+              W </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">D<sub>B</sub> N<sub>E</sub> 
+              L<sub>E</sub> </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+      </tr>
+    </table>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">1 </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">&#945;<sub>T</sub>
+              </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">= 1 + </font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">(W)<sup>2</sup>
+              </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">2 * (L<sub>B</sub>)<sup>2</sup> </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+      </tr>
+    </table>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">1 </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">&#945;<sub>dc</sub>
+              </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">= 1 + </font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">D<sub>E</sub> N<sub>B</sub> 
+              W </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">D<sub>B</sub> N<sub>E</sub> 
+              L<sub>E</sub> </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">+ </font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">(W)<sup>2</sup>
+              </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">2 * (L<sub>B</sub>)<sup>2</sup> </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+      </tr>
+    </table>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">1 </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">&#946;<sub>dc</sub>
+              </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">= </font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">D<sub>E</sub> N<sub>B</sub> 
+              W </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">D<sub>B</sub> N<sub>E</sub> 
+              L<sub>E</sub> </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">+ </font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">(W)<sup>2</sup>
+              </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">2 * (L<sub>B</sub>)<sup>2</sup> </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+
+</body>
+
+</html>

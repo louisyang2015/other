@@ -1,0 +1,172 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Iterative Networks</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">Iterative Networks</font></h1>
+<p><font size="4">iterative network - a number of identical cells interconnected 
+in a regular manner. The regular structure of an iterative network makes it 
+easier to fabricate in integrated circuit form.</font></p>
+<p><img border="0" src="images/fig_17_01.jpg" width="760" height="177"></p>
+<p><font size="4">The input X<sub>1 </sub>, X<sub>2</sub> , ... is accepted in 
+parallel. A signal propagates from gate to gate, so that a<sub>n+1</sub> is 
+correct only after a<sub>n</sub> becomes correct.</font></p>
+<p><font size="4">The design of an iterative network is almost the same as the 
+design of a sequential network. In a sequential network we move from one state 
+to another state with an increment in time. In an iterative network, each cell 
+could be in a different state than the previous cell. The lines a<sub>1</sub> 
+through a<sub>n+1</sub> is used to carry state information. Moving from one cell 
+to another is moving through an edge on the states graph.</font></p>
+<h2><font color="#008000">Parity Checker</font></h2>
+<p><font size="4">Output a one if the number of ones so far is odd; output a 
+zero if the number of ones so far is even.</font></p>
+<table border="1" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td align="center" rowspan="2"><font size="4">Current State</font></td>
+    <td align="center" colspan="2"><font size="4">Next State</font></td>
+    <td align="center" colspan="2"><font size="4">Output</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">X = 0</font></td>
+    <td align="center"><font size="4">X = 1</font></td>
+    <td align="center"><font size="4">X = 0</font></td>
+    <td align="center"><font size="4">X = 1</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">S<sub>0</sub> (even number of ones)</font></td>
+    <td align="center"><font size="4">S</font><sub><font size="4">0</font></sub></td>
+    <td align="center"><font size="4">S</font><sub><font size="4">1</font></sub></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">1</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">S<sub>1</sub> (odd number of ones)</font></td>
+    <td align="center"><font size="4">S<sub>1</sub></font></td>
+    <td align="center"><font size="4">S<sub>0</sub></font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">0</font></td>
+  </tr>
+</table>
+<p><font size="4">If we use S<sub>0</sub> = 0 and S<sub>1</sub> = 1, then the 
+next state line is as same as output, and we have:</font></p>
+<table border="1" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td align="center"><font size="4">S</font></td>
+    <td align="center"><font size="4">X</font></td>
+    <td align="center"><font size="4">Next State<br>
+    (Output)</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">1</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">1</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">0</font></td>
+  </tr>
+</table>
+<p><font size="4">The above table is for a single cell, and can be satisfied by 
+using a XOR gate. The iterative network for a parity checker:</font></p>
+<p><img border="0" src="images/fig_17_02.jpg" width="746" height="208"></p>
+<p><font size="4">The sequential version of the network is to just use a flip 
+flop for the gap in between the cells</font></p>
+<p><img border="0" src="images/fig_17_03.jpg" width="335" height="155"></p>
+<p>&nbsp;</p>
+<h2><font color="#008000">Comparator</font></h2>
+<p><font size="4">Comparing two numbers bit by bit. Eventually we want to have 
+three output signals (Z<sub>1</sub> Z<sub>2 </sub>Z<sub>3</sub>) depending on 
+the result of the comparison.</font></p>
+<p><img border="0" src="images/fig_17_04.jpg" width="856" height="147"></p>
+<p><font size="4">Each XY pair is a bit by bit comparison of the two numbers, 
+with the most significant bits compared first. The A and B lines describe the 
+state of the comparison so far.</font></p>
+<table cellPadding="10" border="1" style="border-collapse: collapse" bordercolor="#111111" cellspacing="0">
+  <tr>
+    <td align="center" rowspan="2"><font size="4">Present State</font></td>
+    <td colSpan="4" align="center"><font size="4">Next State (X, Y)</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">00</font></td>
+    <td align="center"><font size="4">01</font></td>
+    <td align="center"><font size="4">11</font></td>
+    <td align="center"><font size="4">10</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">x = y; s0</font></td>
+    <td align="center"><font size="4">s0</font></td>
+    <td align="center"><font size="4">s2</font></td>
+    <td align="center"><font size="4">s0</font></td>
+    <td align="center"><font size="4">s1</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">x &gt; y; s1</font></td>
+    <td align="center"><font size="4">s1</font></td>
+    <td align="center"><font size="4">s1</font></td>
+    <td align="center"><font size="4">s1</font></td>
+    <td align="center"><font size="4">s1</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">x &lt; y; s2</font></td>
+    <td align="center"><font size="4">s2</font></td>
+    <td align="center"><font size="4">s2</font></td>
+    <td align="center"><font size="4">s2</font></td>
+    <td align="center"><font size="4">s2</font></td>
+  </tr>
+</table>
+<p><font size="4">At the very end of the iterative network:</font></p>
+<table border="1" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td align="center">&nbsp;</td>
+    <td align="center"><font size="4">Z<sub>1</sub></font></td>
+    <td align="center"><font size="4">Z<sub>2</sub></font></td>
+    <td align="center"><font size="4">Z<sub>3</sub></font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">S</font><sub><font size="4">0</font></sub></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">0</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">S</font><sub><font size="4">1</font></sub></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">1</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">S<sub>2</sub></font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+  </tr>
+</table>
+<p><font size="4">The book used the encoding: S<sub>0</sub> = 00, S<sub>1</sub> 
+= 01, S<sub>2</sub> = 10</font></p>
+<p><font size="4">There are more examples from the book, but I don't think I 
+need to go over them. The design of an iterative network basically follows the 
+same steps as the sequential network, except that there is no need for flip 
+flops because we are not storing the states. Instead, we are pass the states 
+onto the next identical cell.</font></p>
+
+</body>
+
+</html>

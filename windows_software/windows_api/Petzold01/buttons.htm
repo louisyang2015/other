@@ -1,0 +1,81 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>The Button Controls</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">The Button Controls</font></h1>
+
+<p align="left"><font size="4"><a href="examples/button_template.cpp">Click here 
+for the code of a program that demonstrates two buttons</a></font></p>
+<h2 align="left"><font color="#008000">About Button Creation:</font></h2>
+<p align="left"><font size="4">buttons have the Windows class name: &quot;button&quot;</font></p>
+<p align="left"><font size="4">Push buttons have the windows style:
+<font color="#0000FF">BS_PUSHBUTTON</font> or <font color="#0000FF">
+BS_DEFPUSHBUTTON</font></font></p>
+<p align="left"><font size="4">Check boxes have the window style:
+<font color="#0000FF">BS_CHECKBOX</font> or <font color="#0000FF">
+BS_AUTOCHECKBOX</font></font></p>
+<p align="left"><font size="4">Radio buttons have the window style:
+<font color="#0000FF">BS_RADIOBUTTON</font> or <font color="#0000FF">
+BS_AUTORADIOBUTTON</font></font></p>
+<p align="left"><font size="4">Tri-State check boxes have the window style:
+<font color="#0000FF">BS_3STATE</font> or <font color="#0000FF">BS_AUTO3STATE</font></font></p>
+<p align="left"><font size="4">Group boxes have the window style:
+<font color="#0000FF">BS_GROUPBOX</font></font></p>
+<p align="left">&nbsp;</p>
+<p align="left"><font size="4">The button sends <font color="#0000FF">WM_COMMAND</font> 
+messages </font></p>
+<h2 align="left"><font color="#008000">WM_COMMAND message format:</font></h2>
+<h2 align="left"><font face="Courier New" color="#FF6600">LOWORD (wParam) </font>
+<font face="Courier New" color="#008000">//Child Window ID</font><font face="Courier New" color="#FF6600"><br>
+HIWORD (wParam) </font><font face="Courier New" color="#008000">//Notification 
+code</font><font face="Courier New" color="#FF6600"><br>
+lParam </font><font face="Courier New" color="#008000">//Child window handle</font></h2>
+<p align="left"><font size="4">Useful notification codes:</font></p>
+<h2 align="left"><font color="#0000FF">BN_CLICKED</font></h2>
+<p align="left">&nbsp;</p>
+<h2 align="left"><font color="#008000">Messages for the Check Boxes and Radio 
+Buttons:</font></h2>
+<p align="left"><font size="4">This will return non-zero if the button is 
+checked; 0 if NOT checked<br>
+<font color="#FF6600" face="Courier New">iCheck = (int)SendMessage (hwndButton, 
+BM_GETCHECK, 0, 0);</font></font></p>
+<p align="left"><font size="4">To check the button:<br>
+<font face="Courier New" color="#FF6600">SendMessage (hwndButton, BM_SETCHECK, 
+1, 0);</font></font></p>
+<p align="left"><font size="4">To uncheck the button:<br>
+<font face="Courier New" color="#FF6600">SendMessage (hwnd, BM_SETCHECK, 0, 0);</font></font></p>
+<p align="left">&nbsp;</p>
+<h2 align="left"><font color="#008000">Messages for setting the push button:</font></h2>
+<p align="left"><font size="4">To cause the button to become depressed:</font><font face="Courier New" size="4" color="#FF6600"><br>
+SendMessage (hwndButton, BM_SETSTATE, 1, 0);</font></p>
+<p align="left"><font size="4">To cause the button to become UN-depressed:</font><font color="#FF6600" face="Courier New" size="4"><br>
+SendMessage (hwndButton, BM_SETSTATE, 0, 0);</font></p>
+<p align="left">&nbsp;</p>
+<h2 align="left"><font color="#008000">Functions for all buttons:</font></h2>
+<p align="left"><font size="4" face="Courier New" color="#FF6600">SetWindowText 
+(hwnd, pszString);</font></p>
+<p align="left"><font size="4" face="Courier New" color="#FF6600">iLength = 
+GetWindowTextLength (hwnd);<br>
+GetWindowText (hwnd, pszBuffer, iMaxLength);</font></p>
+<p align="left"><font size="4" face="Courier New" color="#FF6600">ShowWindow (hwndChild, 
+SW_SHOWNORMAL);<br>
+ShowWindow (hwndChild, SW_HIDE);</font></p>
+<p align="left"><font size="4" face="Courier New" color="#FF6600">EnableWindow (hwndChild, 
+TRUE);<br>
+EnableWindow (hwndChild, FALSE);</font></p>
+<p align="left">&nbsp;</p>
+<p align="left"><b><font size="4" color="#008000">Other Notes:</font></b></p>
+<p align="left"><font size="4">The <font color="#0000FF">BM_SETSTYLE</font> 
+message lets you change the button style after the button is created</font></p>
+
+</body>
+
+</html>

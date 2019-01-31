@@ -1,0 +1,44 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Constructing and Drawing Paths</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">Constructing and Drawing Paths</font></h1>
+<p><font size="4">A <b>path</b> is a sequence of graphics primitives (lines, 
+rectangles, curves, text, and the like) that can be manipulated and drawn as a 
+single unit. </font></p>
+<p><font face="Courier New" size="4">Pen pen(Color(255, 255, 0, 0));<br>
+<font color="#FF6600">GraphicsPath path;</font><br>
+path.AddArc(175, 50, 50, 50, 0, -180);<br>
+//others: AddLine, AddCurve, AddRectangle, AddEllipse<br>
+<br>
+<font color="#FF6600">graphics.DrawPath(</font>&amp;pen, &amp;path);</font></p>
+<p><font size="4">A path is be divided into <b><i>figures</i></b>.</font></p>
+<p><font size="4">Say you do:</font></p>
+<p><font face="Courier New" size="4">path.AddLine(...<br>
+path.AddLine(...<br>
+path.AddRectangle(...<br>
+path.AddEllipse(...</font></p>
+<p><font size="4">There are 3 figures generated --- The first figure consists of 
+the two lines, the second figure consists of the rectangle, and the third figure 
+consists of the ellipse.</font></p>
+<p><font size="4"><a href="examples/figure.cpp">Click here for code that 
+explicitly constructs &quot;figures&quot;</a></font></p>
+<p>&nbsp;</p>
+<p><b><font size="4" color="#008000">Graphics::FillPath</font></b></p>
+<p><font size="4">The <font color="#FF6600" face="Courier New">FillPath</font> 
+method fills the path according to the fill mode (alternate or winding) 
+currently set for the path. The default mode is
+<font color="#FF6600" face="Courier New">FillModeAlternate</font></font><font color="#FF6600"></font></p>
+<p><font size="4" face="Courier New">graphics.FillPath(&amp;brush, &amp;path);</font></p>
+
+</body>
+
+</html>

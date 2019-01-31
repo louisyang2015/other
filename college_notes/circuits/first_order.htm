@@ -1,0 +1,392 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Transient Analysis of First Order Circuits</title>
+<base target="_blank">
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">Transient Analysis of First Order 
+Circuits</font></h1>
+<p><font size="4"><b><font color="#008000">First Order Circuits</font></b> --- a 
+circuit with one capacitor or one inductor. The current and voltage for these 
+circuits are described by a differential equation of the form:</font></p>
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">d x(t) </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">dt </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    + a*x(t) = f(t) </font></td>
+  </tr>
+</table>
+<p><font size="4"><font color="#008000"><b>If f(t) is a constant source,</b></font> 
+the solution will take the form:</font></p>
+<p><font size="4" color="#FF8000" face="Courier New">x(t) = k<sub>1</sub> + k<sub>2</sub> 
+e<sup>-t/T</sup></font></p>
+<p><font size="4">k<sub>1</sub> is called the steady state solution since:</font></p>
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <font face="Times New Roman" color="#ff8000" size="6">lim</font> </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.9ex">
+          <font face="Courier New" color="#ff8000" size="3">t<font face="Wingdings" size="4">à</font>&#8734;</font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    x(t) = k<sub>1</sub> </font></td>
+  </tr>
+</table>
+<p><font size="4">T --- is the time constant of the circuit.</font></p>
+<p><font size="4">The <font color="#FF8000" face="Courier New">K<sub>2</sub> e<sup>-t/T</sup></font> 
+term is roughly zero after 4 time constants. </font></p>
+<p><font size="4">Another property of T is that the initial slope of the curve
+<font color="#FF8000" face="Courier New">y = K<sub>2</sub> e<sup>-t/T</sup></font> 
+will intersect the horizon axis at T. Example, the graph of:
+<font face="Courier New" color="#FF8000">y = e<sup>-t/1</sup></font></font></p>
+<p><img border="0" src="images/pic0048.gif" width="514" height="420"></p>
+<hr color="#FF8000">
+<h2><font color="#008000">Inductor and Capacitor Behavior</font></h2>
+<p><font size="4"><font color="#008000"><b>Inductors</b></font> will try to hold 
+the current constant. </font></p>
+<p><font size="4">The differential equation for an inductor is:</font></p>
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    v(t) = L * </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">d i(t) </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">dt </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<p><font size="4">This equation produces a v(t) --- so it's best to use loop 
+analysis with inductor circuits.</font></p>
+<p><font size="4">At switching time, inductors will act as current sources.</font></p>
+<p><font size="4"><font color="#008000"><b>Capacitors</b></font> will try to 
+hold the voltage constant. </font></p>
+<p><font size="4">The differential equation for a capacitor is:</font></p>
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    i(t) = C * </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">d v(t) </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">dt </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<p><font size="4">This equation produces a i(t) --- so it's best to use nodal 
+analysis with capacitor circuits.</font></p>
+<p><font size="4">At switching time, capacitors will act as voltage sources.</font></p>
+<p><font size="4"><b><font color="#008000">A way to avoid confusing one 
+differential equation with another</font></b> is to first recognize the pattern:</font></p>
+<p><img border="0" src="images/pic0049.gif" width="273" height="110"></p>
+<p><font size="4">For capacitors, that blue box is C. For inductors that blue 
+box is L.</font></p>
+<p><font size="4">The yellow box is whatever the device attempts holds constant 
+at switching time. Capacitors hold voltage constant, so the yellow box for 
+capacitor is v(t). Inductors hold current constant, so the yellow box is i(t) 
+for inductors.</font></p>
+<hr color="#FF8000">
+<p><b><font size="4" color="#008000">Example of setting up a differential 
+equation:</font></b></p>
+<p><img border="0" src="images/pic0050.gif" width="450" height="239"></p>
+<p><font size="4">It's a capacitor, so use nodal analysis:</font></p>
+
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">v(t) - v<sub>s</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">R </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    = C * </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">d v(t) </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">dt </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<p><b><font size="4" color="#008000">Second Example of setting up a differential 
+equation:</font></b></p>
+
+<p><img border="0" src="images/pic0051.gif" width="450" height="225"></p>
+
+<p><font size="4">It's an inductor, so use loop analysis:</font></p>
+
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    i(t)*R + L </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">d i(t) </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">dt </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    = v<sub>s</sub> </font></td>
+  </tr>
+</table>
+<hr color="#FF8000">
+<h2><font color="#008000">Solving First Order Differential Equations - Finding K<sub>1</sub>, 
+K<sub>2</sub></font></h2>
+
+<p><font size="4">The solution to the first homogeneous order differential 
+equation is:</font></p>
+
+<p><font size="4" color="#FF8000" face="Courier New">x(t) = k<sub>1</sub> + k<sub>2</sub> 
+e<sup>-t/T</sup></font></p>
+
+<p><font size="4">To get k<sub>1</sub>, k<sub>2</sub>, you would have to compute 
+some kind of initial condition or steady state condition. You need to use 
+circuit analysis to find out x(<font face="Times New Roman">&#8734;</font>), and that 
+allows you to get k<sub>1</sub>. Then you use circuit analysis to get x(0) or 
+x'(0) to get k<sub>2 </sub>.</font></p>
+
+<h2><font color="#008000">Two Options for Finding the Time Constant (T)</font></h2>
+
+<p><font size="4">The standard way is to set up the differential equation, then 
+find root for the characteristic equation, and get the T.</font></p>
+
+<p><font size="4">An alternative way to get the T make use of these two results:</font></p>
+
+<p><font size="4">In a circuit with a single capacitor, </font><b>
+<font size="5" color="#FF8000"><span style="background-color: #FFFF99">T = RC</span></font></b><font size="4">, 
+where R is the Thevenin resistance from the viewpoint of the capacitor.</font></p>
+
+<p><font size="4">In a circuit with a single inductor, </font><b>
+<font size="5" color="#FF8000"><span style="background-color: #FFFF99">T = L/R</span></font></b><font size="4">, 
+where R is the Thevenin resistance from the viewpoint of the inductor.</font></p>
+
+<p><font size="4">With first order circuits, you don't have to set up 
+differential equations. You can just compute the Thevenin resistance and then 
+compute the T.</font></p>
+
+<hr color="#FF8000">
+<p><b><font size="4" color="#008000">Example:</font></b></p>
+
+<p><font size="4" color="#FF8000">Find i(t):</font></p>
+
+<p><img border="0" src="images/pic0052.gif" width="630" height="332"></p>
+
+<p><font size="4">The format of the answer is:</font></p>
+
+<pre><font size="4" color="#FF8000">	i(t) = K<sub>1</sub> + K<sub>2</sub>e<sup>-t/T</sup></font></pre>
+<p><font size="4">The three constants will be solved in the following order: K<sub>1</sub>, 
+K<sub>2</sub>, T</font></p>
+<p><b><font size="4" color="#008000">To find K<sub>1 </sub>:</font></b></p>
+<p><img border="0" src="images/pic0053.gif" width="630" height="371"></p>
+<p>&nbsp;</p>
+<p><font size="4">i(<font face="Times New Roman">&#8734;</font>) = 9/2 mA<br>
+<font color="#008000"><b>K<sub>1</sub> = 9/2 mA</b></font></font></p>
+<p><b><font size="4" color="#008000">To find K<sub>2</sub>, first find i(0) :</font></b></p>
+<p><img border="0" src="images/pic0054.gif" width="630" height="364"></p>
+<p><font size="4">V<sub>c</sub> = 32 volt,</font></p>
+<p><font size="4">So at the time t = 0, the capacitor will try to preserve the 
+voltage at 32 volt</font></p>
+<p><img border="0" src="images/pic0055.gif" width="630" height="364"></p>
+<p><font size="4">i(0) = 16/3 mA</font></p>
+<p><font size="4">Use i(0) to get: <b><font color="#008000">K<sub>2</sub> = 5/6 
+mA</font></b></font></p>
+<p><font size="4">Finally, to get T, we need the Thevenin resistance from the 
+view point of the capacitor:</font></p>
+<p><img border="0" src="images/pic0056.gif" width="630" height="364"></p>
+<p><font size="4">R<sub>th</sub> = 2k<font face="Times New Roman">&#937;</font> in 
+parallel with 6k<font face="Times New Roman">&#937; = 3/2 k&#937;</font></font></p>
+<p><font face="Times New Roman" size="4">T = RC = 1.5 * 10<sup>3</sup> * 100 * 
+10<sup>-6</sup> <br>
+<font color="#008000"><b>T = 0.15 s</b></font></font></p>
+<p><b><font face="Times New Roman" size="4" color="#008000">Final Answer:</font></b></p>
+<pre><b><font size="5" color="#008000">	i(t) = 9/2 + (5/6)e<sup>-t/0.15</sup> (mA)</font></b></pre>
+<p><font face="Times New Roman" size="4">With inductor first order circuits, the 
+procedure is the same except that at t = 0, the inductor is trying to maintain a 
+specific current level and so is acting as a current source.</font></p>
+<hr color="#FF8000">
+<p><b><font face="Times New Roman" size="4" color="#008000">Switching Action at 
+t = t<sub>0</sub></font></b></p>
+<p><font face="Times New Roman" size="4">In the previous example, the switching 
+action occurs at time t = 0. If the switch occurs at another time, say time t = 
+t<sub>0</sub>, the solution will be shifted to t<sub>0</sub> units. The format 
+of this shifted solution is:</font></p>
+<p><font face="Times New Roman" size="5" color="#FF8000">x(t) = K<sub>1</sub> + 
+K<sub>2</sub> e<sup>-(t-t0)/T</sup></font></p>
+<p><b><font face="Times New Roman" size="4" color="#008000">Superposition:</font></b></p>
+<p><font face="Times New Roman" size="4">If there are more than one independent 
+sources, you can get the total response by using superposition.</font></p>
+<p><b><font face="Times New Roman" size="4" color="#008000">Pulse Response:</font></b></p>
+<p><font face="Times New Roman" size="4">A pulse response problem is just two 
+switching problems back to back.</font></p>
+<p><font face="Times New Roman" size="4">Example:</font></p>
+<p><img border="0" src="images/pic0057.gif" width="550" height="267"></p>
+<p><img border="0" src="images/pic0058.gif" width="400" height="237"></p>
+<p><font face="Times New Roman" size="4">This situation is the same as having 
+v(t) = 9 volt, all the time, and then having a switch right above v(t) that 
+starts out as open, then closes at time zero, and finally swings back to open at 
+time 0.3 second.</font></p>
+<p><font face="Times New Roman" size="4">v<sub>o</sub>(t) will exponentially 
+approach one steady state, and then it will exponentially approach a second 
+steady state.</font></p>
+<p><img border="0" src="images/pic0059.gif" width="441" height="257"></p>
+<p>&nbsp;</p>
+<h2><font face="Times New Roman" color="#FF8000">Problems:</font></h2>
+<p><font size="4">Note, the quantities that we are looking for are all in </font>
+<font color="#FF8000" size="4">orange.</font></p>
+<table border="0" cellpadding="8" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td nowrap align="left" valign="top"><font size="5">#6.47</font></td>
+    <td><font size="5">Find v<sub>o</sub>(t) for t &gt; 0 :</font><p>
+    <img border="0" src="images/pic0060.gif" width="500" height="323"></td>
+  </tr>
+  <tr>
+    <td nowrap align="left" valign="top"><font size="5">#6.50</font></td>
+    <td><font size="5">Find v<sub>o</sub>(t) for t &gt; 0 :</font><p>
+    <img border="0" src="images/pic0061.gif" width="595" height="324"></td>
+  </tr>
+  <tr>
+    <td nowrap align="left" valign="top"><font size="5">#6.52</font></td>
+    <td><font size="5">Find i<sub>o</sub>(t) for t &gt; 0 :</font><p>
+    <img border="0" src="images/pic0062.gif" width="600" height="348"></td>
+  </tr>
+</table>
+<p><font face="Times New Roman" size="4">Solutions:</font></p>
+
+<ul>
+  <li><font face="Times New Roman" size="4"><a href="images/pic0073.gif">#6.47</a></font></li>
+  <li><font face="Times New Roman" size="4"><a href="images/pic0074.gif">#6.47 
+  (cont.)</a></font></li>
+  <li><font face="Times New Roman" size="4"><a href="images/pic0075.gif">#6.47 
+  (page 3), #6.50</a></font></li>
+  <li><font face="Times New Roman" size="4"><a href="images/pic0076.gif">#6.50 
+  (cont.)</a></font></li>
+  <li><font face="Times New Roman" size="4"><a href="images/pic0077.gif">#6.50 
+  (page 3)</a></font></li>
+  <li><font face="Times New Roman" size="4"><a href="images/pic0078.gif">#6.52</a></font></li>
+  <li><font face="Times New Roman" size="4"><a href="images/pic0079.gif">#6.52 
+  (cont.)</a></font></li>
+  <li><font face="Times New Roman" size="4"><a href="images/pic0080.gif">#6.52 
+  (page 3)</a></font></li>
+  <li><font face="Times New Roman" size="4"><a href="images/pic0081.gif">#6.52 
+  (page 4)</a></font></li>
+</ul>
+
+</body>
+
+</html>

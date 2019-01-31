@@ -1,0 +1,11 @@
+.subckt CCM-DCM1 1  2  3  4  5
++ params: L=100u fs=1E5
+Et 1 2 value={(1-v(u))*v(3,4)/v(u)}
+Gd 4 3 value={(1-v(u))*i(Et)/v(u)}
+* Ga 0 a value={MAX(i(Et),0)}
+Ga 0 a value={i(Et)}
+Va a b
+Ra b 0 10k
+Eu u 0 table {MAX(v(5),
++ v(5)*v(5)/(v(5)*v(5)+2*L*fs*i(Va)/v(3,4)))} (0 0) (1 1)
+.ends

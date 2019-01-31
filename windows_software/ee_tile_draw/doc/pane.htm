@@ -1,0 +1,47 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Pane</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">Pane</font></h1>
+<p><font size="4">The Pane class is a lot like the Grid class --- just fewer 
+options and much easier to program.</font></p>
+
+<h2><font color="#008000">Size:</font></h2>
+
+<table border="2" cellpadding="8" cellspacing="0" style="border-collapse: collapse" bordercolor="#008000">
+  <tr>
+    <td><img border="0" src="images/pic028.gif" width="89" height="178"></td>
+    <td><font size="4">The pane is always 2 rows by 5 columns</font></td>
+  </tr>
+</table>
+<h2><font color="#008000">Data Structure:</font></h2>
+
+<table border="2" cellpadding="8" cellspacing="0" style="border-collapse: collapse" bordercolor="#008000">
+  <tr>
+    <td><img border="0" src="images/pic029.gif" width="164" height="332"></td>
+    <td><font size="4">The cells are indexed left to right, up to down</font><p>
+    <font size="4">An array of integers (size 10 of course) stores the component 
+    ID to be shown at each cell.</font></p>
+    <p><font size="4">A number stores the current selection (0 through 9)</font></p>
+    <p><font size="4">A Rect &quot;drawing_area&quot; stores the rectangle bounding the 
+    entire grid.</font></p>
+    <p><font size="4">Integer arrays &quot;x_coords&quot; and &quot;y_coords&quot; stores the pixel 
+    coordinates that is necessary to draw the grid lines (These are 3 x numbers and 6 
+    y 
+    numbers referencing the red points of this grid)</font><p><font size="4">At 
+    construction time, the Pane object will initialize its internal color 
+    variables and will use those same colors for the duration of the program.</font></td>
+  </tr>
+</table>
+
+</body>
+
+</html>

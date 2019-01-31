@@ -1,0 +1,997 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Transient Heat Conduction</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">Transient Heat Conduction</font></h1>
+<p><font size="4">This chapter deals with problems where the temperature is 
+changing as a function of time. Of course, when temperature changes with time, 
+the heat flow is also changing with time.</font></p>
+<p>&nbsp;</p>
+<h2><font color="#008000">Lumped System Analysis</font></h2>
+<p><font size="4">Lumped system analysis means that we treat the object as 
+having uniform temperature distribution --- that the temperature is the same 
+everywhere in an object.</font></p>
+<p><font size="4">A picture of the lumped system situation:</font></p>
+<p><img border="0" src="images/pic0035.jpg" width="404" height="285"></p>
+<p><font size="4">The object starts out at a uniform temperature </font>
+<font color="#FF8000" size="5">T<sub>i</sub></font><font size="4"> , with the 
+environment at temperature </font><font color="#FF8000" size="5">T</font><font face="Times New Roman"><font color="#FF8000" size="5"><sub>&#8734;</sub></font><font size="4"> 
+. The object eventually takes on the temperature of the environment. During the 
+change from T<sub>i</sub> to T<sub>&#8734;</sub> , the temperature is uniform 
+throughout the object . Heat is convected to the body, and then conducted within 
+the body.</font></font></p>
+<table border="0" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bgcolor="#FFFF99">
+  <tr>
+    <td>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">T(t) - T<sub>&#8734;</sub>
+              </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">T<sub>i</sub> - 
+              T<sub>&#8734;</sub> </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">= e<sup>-bt</sup>
+        </font></td>
+      </tr>
+    </table>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">b = </font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">hA<sub>s</sub>
+              </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">pVC<sub>p</sub>
+              </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+      </tr>
+    </table>
+    <p><font size="4">The unit for b is (1/s)</font></p>
+    <p><font size="4">p = density of the object<br>
+    C<sub>p</sub> = specific heat of the object</font></td>
+  </tr>
+</table>
+<p><font size="4">The quantity [T(t) - T<sub>&#8734;</sub>] / [T<sub>i</sub> - T<sub>&#8734;</sub>] 
+is so frequently used in this chapter that it is designated as </font>
+<font color="#FF8000" size="5">&#952;</font><font size="4"> .</font></p>
+<table border="0" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bgcolor="#FFFF99">
+  <tr>
+    <td>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">T(t) - T<sub>&#8734;</sub>
+              </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">T<sub>i</sub> - 
+              T<sub>&#8734;</sub> </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">= &#952; </font></td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<p><font size="4">&#952; is called the excess temperature. As T(t) changes from T<sub>i</sub> 
+to T<font face="Times New Roman"><sub>&#8734;</sub> , &#952; changes from 1 to 0.</font></font></p>
+<h2><font color="#008000">When to use lumped system analysis?</font></h2>
+<p><font size="4">To have approximately uniform temperature, we need a high k so 
+that heat flows quickly within an object, and a low so that the amount of 
+perturbation to the object's energy level is minimized.</font></p>
+<p><font size="4">We can use the lumped system assumption if this Bi
+<font face="Times New Roman">&#8804;</font> 0.1 . </font></p>
+<table border="2" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#FF8000">
+  <tr>
+    <td>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">Bi = </font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">h </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">k </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">* </font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">V </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">A<sub>s</sub>
+              </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+      </tr>
+    </table>
+    <p><font size="4">Bi = Biot Number<br>
+    A<sub>s</sub> = surface area of the object<br>
+    V / A<sub>s</sub> = characteristic Length</font></p>
+    <p><font size="4">h = heat convection coefficient for the surface of the 
+    object<br>
+    k = heat conduction coefficient for the internal areas of the object</font></td>
+  </tr>
+</table>
+<p><font size="4"><i>The book mentions that a 20 percent uncertainty in the 
+convection heat transfer coefficient h is in most cases considered &quot;normal&quot; and 
+&quot;expected&quot;.</i></font></p>
+<p><font size="4"><b><font color="#008000">Later on, the book gives another 
+definition for Bi, and this second version of Bi is used for the rest of the 
+chapter.</font></b> The first Bi defined above is only used for estimating how 
+valid would a lumped system analysis be.</font></p>
+<p><i><font size="4">The rest of this chapter does not use the lumped system 
+assumption. Objects are assumed to have a uniform temperature at the beginning, 
+when t = 0, but the temperatures at different parts of the object will differ 
+for t &gt; 0.</font></i></p>
+<p>&nbsp;</p>
+<h2><font color="#008000">Transient Heat Conduction in a Wall</font></h2>
+<p><img border="0" src="images/pic0036.jpg" width="267" height="438"></p>
+<p><font size="4">We have a large plane wall that is infinite in width and 
+height, but is finite in thickness. The number </font>
+<font color="#FF8000" size="5">L</font><font size="4"> is the half thickness of 
+the wall. The wall initially has a uniform temperature of T<sub>i</sub> and the 
+environment is at a temperature of T<font face="Times New Roman"><sub>&#8734;</sub> .</font></font></p>
+<p><font face="Times New Roman" size="4">We define:</font></p>
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    &#952;(x, t) = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">T(x, t) - T<sub>&#8734;</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">T<sub>i</sub> - T<sub>&#8734;</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<table border="0" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" bgcolor="#FFFF99">
+  <tr>
+    <td>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">Bi = </font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">hL </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">k </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+      </tr>
+    </table>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">&#964; = </font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">&#945;t </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">L<sup>2</sup>
+              </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+      </tr>
+    </table>
+    <p><font size="4">Bi --- Biot number<br>
+    <font face="Times New Roman">&#964; --- Fourier Number</font></font></p>
+    <p><font face="Times New Roman" size="4">Biot and Fourier numbers do not 
+    have dimensions</font></p>
+    <p><font face="Courier New" color="#ff8000" size="5">&#952;(x, t) = A<sub>1</sub> 
+    e^[-&#955;<sub>1</sub><sup>2</sup>&#964;] cos(&#955;<sub>1</sub>x/L) <br>
+    &#952;<sub>0,wall</sub> = &#952;(0, t) = A<sub>1</sub> e^[-&#955;<sub>1</sub><sup>2</sup>&#964;]</font></p>
+    <p><font size="4">The <font face="Times New Roman">&#952;<sub>0</sub> solution 
+    gives condition for the middle of the plane wall.</font></font></p>
+    <p><font face="Courier New" size="5" color="#FF8000">Q<sub>max</sub> = mC<sub>p</sub>(T<sub>&#8734;
+    </sub>- T<sub>i</sub>)</font></p>
+    <p><font size="4">Q<sub>max</sub> is the maximum heat transfer possible, 
+    which happens when t = 0.</font></p>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">Q </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">Q<sub>max</sub>
+              </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">= 1 - &#952;<sub>0,wall</sub> 
+        * </font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">sin &#955;<sub>1</sub>
+              </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">&#955;<sub>1</sub>
+              </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<p><font face="Times New Roman" size="4">The numbers A<sub>1</sub> and &#955;<sub>1</sub> 
+are from <a href="images/table_04-01_04-02.jpg">a table in the book</a>. First 
+you figure out Bi, then you use the table and interpolation to figure out A<sub>1</sub> 
+and &#955;<sub>1</sub> . <font color="#008000"><b>Note that there are different 
+columns of A<sub>1</sub> and &#955;<sub>1 </sub>for different geometries. </b></font>
+When solving for &#952;<sub>wall </sub>, use the columns for the wall.</font></p>
+<p><font size="4"><i>The Fourier number is kind of like a conductivity number.
+<font face="Times New Roman">&#964; = (The rate at which heat is conducted) / (The 
+rate at which heat is stored).</font></i></font></p>
+<p><i><font face="Times New Roman" size="4">The solutions presented above are 
+approximations. They are the first term of the series solutions to the 
+differential equations modeling the heat problems.</font></i></p>
+<p><i><font face="Times New Roman" size="4">To ease computation, the book has 
+graphs, usually a different curve for each value of Bi --- but I do not use them 
+because this approach would be too inaccurate.</font></i></p>
+<p><i><font face="Times New Roman" size="4">Bi can be infinity if h is really 
+large and gets modeled as infinity.</font></i></p>
+<p>&nbsp;</p>
+<h2><font color="#008000">Transient Heat Conduction in a Cylinder</font></h2>
+<p><img border="0" src="images/pic0037.jpg" width="226" height="436"></p>
+<p><font size="4">For the cylinder we have <font face="Times New Roman">&#952;(r, t) 
+instead of the &#952;(x, t) in the wall scenario.<br>
+</font></font><font face="Times New Roman" size="4">The wall's half thickness L 
+is now the radius r<sub>o</sub> of the cylinder.</font></p>
+<table border="2" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#FF8000">
+  <tr>
+    <td>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">Bi = </font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">hr<sub>o</sub> </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">k </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+      </tr>
+    </table>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">&#964; = </font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">&#945;t </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">r<sub>o</sub><sup>2</sup>
+              </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+      </tr>
+    </table>
+    <p><font face="Courier New" color="#ff8000" size="5">&#952;(r, t) = A<sub>1</sub> 
+    e^[-&#955;<sub>1</sub><sup>2</sup>&#964;] J<sub>0</sub>(&#955;<sub>1</sub>x/r<sub>0</sub>)
+    <br>
+    &#952;<sub>0,cylinder</sub> = &#952;(0, t) = A<sub>1</sub> e^[-&#955;<sub>1</sub><sup>2</sup>&#964;]</font><p>&nbsp;<table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">Q </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">Q<sub>max</sub>
+              </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">= 1 - 2&#952;<sub>0</sub> *
+        </font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">J<sub>1</sub>(&#955;<sub>1</sub>)
+              </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">&#955;<sub>1</sub>
+              </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<p><font face="Times New Roman" size="4">values of A<sub>1</sub> , &#955;<sub>1</sub> 
+, J<sub>0</sub>(...) , J<sub>1</sub>(...), are obtained by looking up
+<a href="images/table_04-01_04-02.jpg">tables in the book</a>.</font></p>
+<p>&nbsp;</p>
+<h2><font color="#008000">Transient Heat Conduction in a Cylinder</font></h2>
+<p><img border="0" src="images/pic0038.jpg" width="211" height="347"></p>
+<table border="2" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#FF8000">
+  <tr>
+    <td>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">Bi = </font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">hr<sub>o</sub> </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">k </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+      </tr>
+    </table>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">&#964; = </font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">&#945;t </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">r<sub>o</sub><sup>2</sup>
+              </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+      </tr>
+    </table>
+    <p>&nbsp;<table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">&#952;(r, t) = A<sub>1</sub> 
+        e^[-&#955;<sub>1</sub><sup>2</sup>&#964;] </font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">sin(&#955;<sub>1</sub>r / r<sub>o</sub>)</font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">&#955;<sub>1</sub>r 
+              / r<sub>o</sub> </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+      </tr>
+    </table>
+    <p><font face="Courier New" color="#ff8000" size="5">&#952;<sub>0,sphere</sub> = &#952;(0, t) = A<sub>1</sub> e^[-&#955;<sub>1</sub><sup>2</sup>&#964;]</font><p>
+    &nbsp;<table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">Q </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">Q<sub>max</sub>
+              </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">= 1 - 3&#952;<sub>0</sub> *
+        </font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">sin(&#955;<sub>1</sub>)
+              - &#955;<sub>1</sub> * cos(&#955;<sub>1</sub>)</font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">&#955;<sub>1</sub><sup>3</sup> </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<p><font face="Times New Roman" size="4">Again, you look up values of A<sub>1</sub> 
+and &#955;<sub>1</sub> using
+<a href="images/table_04-01_04-02.jpg">tables in the book</a>.</font></p>
+
+<p>&nbsp;</p>
+
+<h2><font color="#008000">Transient Heat Conduction in Semi-Infinite Solids</font></h2>
+
+<p><img border="0" src="images/pic0039.gif" width="400" height="258"></p>
+
+<p><font size="4">In the semi-infinite solids model, we are trying to find the 
+temperature at a point just under the surface of a solid. We have an x-axis that 
+is going into the solid, and if the point is close enough to the surface of the 
+solid, we can treat the surface as an infinitely large surface. This is so that 
+one surface alone is responsible for the temperature change.</font></p>
+
+<p><font size="4">Just like the previous sections, the environment is at 
+temperature </font><font color="#FF8000" size="5">T</font><font face="Times New Roman"><font color="#FF8000" size="5"><sub>&#8734;</sub></font><font size="4"> 
+, the solid has initial temperature </font></font><font face="Times New Roman">
+<font size="5" color="#FF8000">T</font><sub><font size="5" color="#FF8000">i</font><font size="4">
+</font></sub><font size="4">. The solid has convection coefficient </font>
+<font color="#FF8000" size="5">h</font><font size="4"> and conduction 
+coefficient </font><font size="5" color="#FF8000">k</font><font size="4">.</font></font></p>
+
+<p><font face="Times New Roman" size="4">If h is very large or infinite, then 
+the surface temperature of the solid object will equal the environmental 
+temperature T<sub>&#8734;</sub> in a very short amount of time.</font></p>
+
+<p><font face="Times New Roman" size="4">What's new is that the object also has 
+thermal diffusivity </font>
+<font color="#FF8000" size="5" face="Times New Roman">&#945;</font><font face="Times New Roman" size="4"> 
+. <i>Thermal diffusivity was defined in chapter 2.</i></font></p>
+
+<p><font face="Times New Roman" size="4">The solution for the semi-infinite 
+solid model:</font></p>
+
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    &#952;(x, t) = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">T(x, t) - T<sub>&#8734;</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">T<sub>i</sub> - T<sub>&#8734;</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    1 - &#952; = erfc </font></td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="7">
+    (</font> </td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">x </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">2 * (&#945;t)<sup>1/2</sup>
+          </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="7">
+    )</font> </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    - exp </font></td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="7">
+    (</font> </td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">hx </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">k </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle">&nbsp;</td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    +</font></td>
+    <td noWrap align="middle">&nbsp;</td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">h<sup>2</sup> &#945;t
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">k<sup>2</sup> </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="7">
+    )</font> </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    * erfc </font></td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="7">
+    (</font> </td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">x </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">2 * (&#945;t)<sup>1/2</sup>
+          </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    + </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">h * (&#945;t)<sup>1/2</sup>
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">k </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="7">
+    )</font> </td>
+  </tr>
+</table>
+
+<p><font size="4">The value of erfc(...) is obtained by looking up a
+<a href="images/table_04-03.jpg">table in the book</a>.</font></p>
+
+<p><font face="Times New Roman" size="4">For the case of large or infinite h, 
+the above formula simplfiles to:</font></p>
+
+<table border="0" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" bgcolor="#FFFF99">
+  <tr>
+    <td>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">1 - &#952; = erfc </font>
+        </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="7">(</font> </td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">x </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">2 * (&#945;t)<sup>1/2</sup>
+              </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="7">)</font> </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+
+<p>&nbsp;</p>
+
+<h2><font color="#008000">Overlapping Geometries</font></h2>
+
+<p><font face="Times New Roman" size="4" color="#008000">If two geometries 
+overlap to form a new geometry, the &#952; for the new geometry is the product of the 
+two &#952; values for the old geometry.</font></p>
+
+<p><font face="Times New Roman" size="4">For example, a short cylinder is the 
+overlap of an infinitely long cylinder and a infinitely large wall.</font></p>
+
+<p><img border="0" src="images/pic0040.jpg" width="437" height="372"><img border="0" src="images/pic0041.jpg" width="282" height="355"></p>
+
+<p><font face="Times New Roman" size="4">This product rule works for geometries 
+that are formed by overlapping three basic geometries as well.</font></p>
+
+<p><font face="Times New Roman" size="4">A <a href="images/table_04-03.jpg">
+table from the book</a> shows more example of this product rule. <i>Note that 
+the x coordinate is measured from the surface in a semi-infinite solid, and from 
+the midplane in a plane wall.</i></font></p>
+
+<p><font face="Times New Roman" size="4">There is a similar rule for the heat 
+transfer.</font></p>
+
+<p><font face="Times New Roman" size="4">Let:</font></p>
+
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">Q </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">Q<sub>max</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    = r </font></td>
+  </tr>
+</table>
+
+<p><font face="Times New Roman" size="4">If a solid is formed by the 
+intersection of two basic geometries:</font></p>
+
+<table border="0" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" bgcolor="#FFFF99">
+  <tr>
+    <td><font face="Courier New" color="#ff8000" size="5">r<sub>total</sub> = r<sub>1</sub> 
+    + r<sub>2</sub> - r<sub>1</sub> r<sub>2</sub> </font></td>
+  </tr>
+</table>
+
+<p><font face="Times New Roman" size="4">If a solid is formed by the 
+intersection of three basic geometries:</font></p>
+
+<table border="0" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" bgcolor="#FFFF99">
+  <tr>
+    <td><font face="Courier New" color="#ff8000" size="5">r<sub>total</sub> = r<sub>1</sub> 
+    + r<sub>2</sub> + r<sub>3</sub> - r<sub>1</sub> r<sub>2</sub> - r<sub>1</sub> 
+    r<sub>3</sub> - r<sub>2</sub> r<sub>3</sub> + r<sub>1</sub> r<sub>2</sub> r<sub>3</sub>
+    </font></td>
+  </tr>
+</table>
+
+</body>
+
+</html>

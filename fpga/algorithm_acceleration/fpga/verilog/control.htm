@@ -1,0 +1,130 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+
+<head>
+<meta http-equiv="Content-Language" content="en-us" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Control</title>
+<link rel="stylesheet" type="text/css" href="fpga.css" />
+</head>
+
+<body>
+
+<h1>Control</h1>
+<p class="center">Last updated April 4, 2011</p>
+<h2>Case</h2>
+<p class="code"><span class="keyword">always</span> @ (address)<br />
+&nbsp;&nbsp;&nbsp; <span class="keyword">case</span>(address)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0: <span class="comment">//...</span>
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1: <span class="comment">//...</span>
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2: <span class="comment">//...</span>
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="keyword">default</span>:
+<span class="comment">//...</span> <br />
+&nbsp;&nbsp;&nbsp; <span class="keyword">endcase</span> </p>
+<p>The &quot;case&quot; can select on multiple bits:</p>
+<p class="code"><span class="keyword">always</span> @ (carry, oflow)<br />
+&nbsp;&nbsp;&nbsp; <span class="keyword">case</span>({carry,oflow})<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2&#39;b00 : <span class="keyword">begin</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ...<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="keyword">end</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2&#39;b10 : <span class="keyword">begin</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ...<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="keyword">end</span><br />
+&nbsp;&nbsp;&nbsp; <span class="keyword">endcase</span> </p>
+<p>Example of multiple cases leading to the same result:</p>
+<p class="code"><span class="keyword">module</span> <span class="data">
+decoder_2_4</span>(<br />
+&nbsp;&nbsp;&nbsp; <span class="keyword">input</span> <span class="keyword">wire</span> 
+[1:0] a,<br />
+&nbsp;&nbsp;&nbsp; <span class="keyword">input</span> <span class="keyword">wire</span> 
+en,<br />
+&nbsp;&nbsp;&nbsp; <span class="keyword">output</span> <span class="keyword">reg</span> 
+[3:0] y); <br />
+<br />
+&nbsp;&nbsp;&nbsp; <span class="keyword">always</span> @ *<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="keyword">case</span>({en, 
+a})<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3&#39;b000, 
+3&#39;b001, 3&#39;b010, 3&#39;b011: y = 4&#39;b0000; <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3&#39;b100: y = 
+4&#39;b0001; <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3&#39;b101: y = 
+4&#39;b0010; <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3&#39;b110: y = 
+4&#39;b0100; <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3&#39;b111: y = 
+4&#39;b1000; <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="keyword">endcase</span><br />
+<span class="keyword">endmodule</span> </p>
+<p>The &#39;?&#39; character is treated as don&#39;t care. </p>
+<p>In the &quot;casez&quot; statement, the &#39;z&#39; value and the &#39;?&#39; character are treated as 
+don&#39;t care. In a &quot;casex&quot; statement, the &#39;z&#39;, &#39;x&#39;, and &#39;?&#39; are all treated as 
+don&#39;t care.</p>
+<p>A Case statement is:</p>
+<ul>
+				<li>FULL if all possible branches are specified</li>
+				<li>PARALLEL if it does not contain branches that can be 
+				executed simultaneously </li>
+</ul>
+<p>&nbsp;</p>
+<h2>If</h2>
+<p>The &quot;if&quot; block must be inside an &quot;always&quot; block:</p>
+<p class="code"><span class="keyword">if</span>(reset)<br />
+&nbsp;&nbsp;&nbsp; counter = 0; <br />
+<span class="keyword">else</span> <br />
+&nbsp;&nbsp;&nbsp; counter = counter + 1; </p>
+<p>Cascaded If:</p>
+<p class="code"><span class="keyword">if</span>(reset) <br />
+<span class="keyword">begin</span> <br />
+&nbsp;&nbsp;&nbsp; <span class="comment">//...</span> <br />
+<span class="keyword">end</span><br />
+<span class="keyword">else</span> <span class="keyword">if</span> (counter == 
+15) <br />
+<span class="keyword">begin</span> <br />
+&nbsp;&nbsp;&nbsp; <span class="comment">//...</span> <br />
+<span class="keyword">end</span> <br />
+<span class="keyword">else</span> <br />
+<span class="keyword">begin</span> <br />
+&nbsp;&nbsp;&nbsp; <span class="comment">//...</span> <br />
+<span class="keyword">end</span> </p>
+<p>The &quot;if&quot; statement generates priority network.</p>
+<p>&nbsp;</p>
+<h2>Always</h2>
+<p>Keywords for the sensitivity list: &quot;posedge&quot; and &quot;negedge&quot;.</p>
+<h3>Non-Blocking Statement Evaluation</h3>
+<p>Verilog simulation carries out non-blocking assignments at the end of the 
+always statement. So it looks like:</p>
+<p class="code"><span class="keyword">always</span> @ *<br />
+<span class="keyword">begin</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<span class="comment">//x-entry = x</span> <br />
+&nbsp;&nbsp;&nbsp; ...<br />
+&nbsp;&nbsp;&nbsp; x &lt;= ...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<span class="comment">//x-exit = ...</span> <br />
+&nbsp;&nbsp;&nbsp; y &lt;= x &amp; ...&nbsp;&nbsp;&nbsp;&nbsp; <span class="comment">
+//y = x-entry &amp; ...</span> <br />
+&nbsp;&nbsp;&nbsp; ...<br />
+<span class="keyword">end</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<span class="comment">//x = x-exit</span> <br />
+</p>
+<p>Assigning to clocked registers should always use non-blocking assignment.</p>
+<h3>Latch Creation in &quot;Always&quot; Combinational Circuits</h3>
+<p class="code"><span class="keyword">always</span> @(i0, i1)<br />
+<span class="keyword">begin</span><br />
+&nbsp;&nbsp;&nbsp; eq = p0 | p1; <br />
+&nbsp;&nbsp;&nbsp; p0 = ~i0 &amp; ~i1; <br />
+&nbsp;&nbsp;&nbsp; p1 = i0 &amp; i1; <br />
+<span class="keyword">end</span> </p>
+<p>At the time of the &quot;eq = p0 | p1&quot; line, the &quot;p0&quot; and &quot;p1&quot; haven&#39;t been 
+assigned any value. The value used is then from the previous activation 
+(previous change in i0, i1). So latches will be synthesized in this design so to 
+remember the values of &quot;p0&quot; and &quot;p1&quot;.</p>
+<p>Use &quot;<strong>always @ *</strong>&quot;,&nbsp; so that it will always update itself 
+whenever any variable changes.</p>
+<p>&nbsp;</p>
+
+</body>
+
+</html>

@@ -1,0 +1,166 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>The Common Dialog Boxes</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">The Common Dialog Boxes</font></h1>
+<p><font size="4">To use these functions, you basically initialize the fields of 
+a structure and pass a pointer to the structure to a function in the common 
+dialog box library. The function creates and displays the dialog box. When the 
+user makes the dialog box go away, the function you called returns control to 
+your program and you obtain information from the structure you passed to it.</font></p>
+<p><font size="4">To use common dialog boxes, you will need:<br>
+<font face="Courier New" color="#FF6600">#include &lt;commdlg.h&gt;</font></font></p>
+<p><font size="4">To test out a common dialog box function, this documentation 
+uses the following structure:</font></p>
+
+<p><font size="4" face="Courier New" color="#FF6600">#include &lt;windows.h&gt;<br>
+#include &lt;commdlg.h&gt;<br>
+<br>
+int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+PSTR szCmdLine, int iCmdShow)<br>
+{<br>
+</font><b><font size="4" face="Courier New" color="#008000">&nbsp;&nbsp;&nbsp; 
+// dialog box test code here<br>
+</font></b><font size="4" face="Courier New" color="#FF6600">&nbsp;&nbsp;&nbsp; 
+return 0;<br>
+}</font></p>
+
+<p><font size="4">But note that the following code has the &quot;hwndOwner&quot; set equal 
+to NULL --- meaning the dialog box has no parent window. In actual programs, 
+they will have a parent window.</font></p>
+
+<h2>&nbsp;</h2>
+
+<h2><font color="#008000">Opening File:</font></h2>
+
+<p><font face="Courier New" color="#FF6600" size="4">static TCHAR szFilter[] = 
+TEXT (&quot;Text Files (*.TXT)\0*.txt\0&quot;) \<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+TEXT (&quot;ASCII Files (*.ASC)\0*.asc\0&quot;) \<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+TEXT (&quot;C++ Files (*.cpp)\0*.cpp\0&quot;) \<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+TEXT (&quot;All Files (*.*)\0*.*\0\0&quot;) ;<br>
+<br>
+static OPENFILENAME ofn;<br>
+<br>
+ofn.lStructSize = sizeof (OPENFILENAME) ;<br>
+ofn.hwndOwner = NULL ;</font><font face="Courier New" size="4" color="#008000">//set 
+owner of the file dialog</font><font face="Courier New" color="#FF6600" size="4"><br>
+ofn.hInstance = hInstance ;<br>
+ofn.lpstrFilter = szFilter; </font>
+<font face="Courier New" size="4" color="#008000">//filter string</font><font face="Courier New" color="#FF6600" size="4"><br>
+ofn.lpstrCustomFilter = NULL ;<br>
+ofn.nMaxCustFilter= 0 ;<br>
+ofn.nFilterIndex = 3 ; </font><font face="Courier New" size="4" color="#008000">
+//choosing a particular filter out of the whole set</font><font face="Courier New" color="#FF6600" size="4"><br>
+ofn.lpstrFile = NULL ; </font><font face="Courier New" size="4" color="#008000">
+// Set in Open and Close functions</font><font face="Courier New" color="#FF6600" size="4"><br>
+ofn.nMaxFile = MAX_PATH ;<br>
+ofn.lpstrFileTitle= NULL ; </font>
+<font face="Courier New" size="4" color="#008000">// Set in Open and Close 
+functions</font><font face="Courier New" color="#FF6600" size="4"><br>
+ofn.nMaxFileTitle = MAX_PATH ;<br>
+ofn.lpstrInitialDir = NULL ;<br>
+ofn.lpstrTitle= NULL ;<br>
+ofn.Flags = 0 ; </font><font face="Courier New" size="4" color="#008000">// Set 
+in Open and Close functions</font><font face="Courier New" color="#FF6600" size="4"><br>
+ofn.nFileOffset = 0 ;<br>
+ofn.nFileExtension= 0 ;<br>
+ofn.lpstrDefExt = TEXT (&quot;txt&quot;) ;</font><font face="Courier New" size="4" color="#008000">//file 
+extension</font><font face="Courier New" color="#FF6600" size="4"><br>
+ofn.lCustData = 0L ;<br>
+ofn.lpfnHook = NULL ;<br>
+ofn.lpTemplateName= NULL ;<br>
+<br>
+GetOpenFileName (&amp;ofn) ;<br>
+</font><font face="Courier New" size="4" color="#008000">//return BOOL non zero 
+if the user successfully picked a file<br>
+//name and pressed OK</font></p>
+
+<h2>&nbsp;</h2>
+
+<h2><font color="#008000">Saving a File:</font></h2>
+
+<p><font size="4">same thing as the opening file code except:</font></p>
+
+<p><font face="Courier New" color="#FF6600" size="4">ofn.Flags = 
+OFN_OVERWRITEPROMPT; </font><font face="Courier New" size="4" color="#008000">
+//prompts user before overwriting file<br>
+...<br>
+</font><font face="Courier New" color="#FF6600" size="4">GetSaveFileName (&amp;ofn);</font></p>
+
+<h2>&nbsp;</h2>
+
+<h2><font color="#008000">Choosing Color:</font></h2>
+
+<p><font size="4" face="Courier New" color="#FF6600">static CHOOSECOLOR cc ;<br>
+static COLORREF crCustColors[16] ;<br>
+<br>
+cc.lStructSize = sizeof (CHOOSECOLOR) ;<br>
+cc.hwndOwner = NULL ;<br>
+cc.hInstance = NULL ;<br>
+cc.rgbResult = RGB (0x80, 0x80, 0x80) ;<br>
+cc.lpCustColors = crCustColors ;<br>
+cc.Flags = CC_RGBINIT | CC_FULLOPEN ;<br>
+cc.lCustData = 0 ;<br>
+cc.lpfnHook = NULL ;<br>
+cc.lpTemplateName = NULL ;<br>
+<br>
+ChooseColor (&amp;cc);</font></p>
+
+<h2>&nbsp;</h2>
+
+<h2><font color="#008000">Choosing Font:</font></h2>
+
+<p><font face="Courier New" size="4" color="#FF6600">CHOOSEFONT cf ;<br>
+static LOGFONT logfont ; </font>
+<font face="Courier New" size="4" color="#008000">//global</font><font face="Courier New" size="4" color="#FF6600"><br>
+<br>
+cf.lStructSize = sizeof (CHOOSEFONT) ;<br>
+cf.hwndOwner = NULL ;<br>
+cf.hDC = NULL ;<br>
+cf.lpLogFont = &amp;logfont ;<br>
+cf.iPointSize = 0 ;<br>
+cf.Flags = CF_INITTOLOGFONTSTRUCT | CF_SCREENFONTS | CF_EFFECTS ;<br>
+cf.rgbColors = 0 ;<br>
+cf.lCustData = 0 ;<br>
+cf.lpfnHook = NULL ;<br>
+cf.lpTemplateName = NULL ;<br>
+cf.hInstance = NULL ;<br>
+cf.lpszStyle = NULL ;<br>
+cf.nFontType = 0 ; </font><font face="Courier New" size="4" color="#008000">// 
+Returned from ChooseFont</font><font face="Courier New" size="4" color="#FF6600"><br>
+cf.nSizeMin = 0 ;<br>
+cf.nSizeMax = 0 ;<br>
+<br>
+ChooseFont (&amp;cf) ;</font></p>
+
+<p><font size="4">Note: use the WM_SETFONT message to change the font of many 
+controls</font></p>
+
+<p><font color="#FF6600" size="4" face="Courier New">static HFONT hFont ; </font>
+<font size="4" face="Courier New" color="#008000">//global</font></p>
+<p><font color="#FF6600"><font face="Courier New" size="4">HFONT hFontNew ;<br>
+RECT&nbsp; rect ;<br>
+&nbsp;&nbsp;&nbsp;&nbsp; <br>
+hFontNew = CreateFontIndirect (&amp;logfont) ;<br>
+SendMessage (hwndEdit, WM_SETFONT, (WPARAM) hFontNew, 0) ;<br>
+DeleteObject (hFont) ;<br>
+hFont = hFontNew ;<br>
+GetClientRect (hwndEdit, &amp;rect) ;<br>
+InvalidateRect (hwndEdit, &amp;rect, TRUE) ;</font><br>
+&nbsp;</font></p>
+
+</body>
+
+</html>

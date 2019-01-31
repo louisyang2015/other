@@ -1,0 +1,115 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Language" content="en-us" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Write Address Generator</title>
+<link rel="stylesheet" type="text/css" href="fpga.css" />
+</head>
+
+<body>
+
+<h1>Write Address Generator</h1>
+<p>module Wraddress_GEN(input clk, start, <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>input [2:0] mode,</strong><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; output reg wren, m0_sel, m1_sel,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; output reg memA0_wren, memA1_wren, 
+memB0_wren, memB1_wren,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; output reg [7:0] wraddress0, 
+wraddress1);</p>
+<p>&nbsp;</p>
+
+<table>
+			<tr>
+						<td>Mode</td>
+						<td>Description</td>
+			</tr>
+			<tr>
+						<td>0</td>
+						<td class="left">
+						<p><strong>FFT</strong></p>
+						<p>The wraddress0 always counts from 0 to 127 over and 
+						over again.</p>
+						<p>The wraddress1 swaps the ordering of a linear address 
+						sequence.</p>
+						<ul>
+										<li>For the first 128 clock cycles, 
+										wraddress1 = 1, 0, 3, 2, 5, 4, 7, 6, ...</li>
+										<li>For the second 128 clock cycles, the 
+										swap is every two numbers, so that 
+										wraddress1 = 2, 3, 0, 1, 6, 7, 4, 5, ...</li>
+										<li>For the third 128 clock cycles, 
+										wraddress1 = 4, 5, 6, 7, 0, 1, 2, 3, 12, 
+										13, 14, 15, 8, 9, 10, 11, ...</li>
+										<li>For the last 128 clock cycles, the 
+										pattern does not continue and wraddress1 
+										just counts from 0 to 127</li>
+						</ul>
+						<p>The m0_sel choose whether Y0 or Y1 will feed into 
+						memA0 and memB0. The m1_sel choose whether Y0 or Y1 will 
+						feed into memA1 and memB1. The default feed is 
+						considered as {m0_sel, m1_sel} = {0, 1}.</p>
+						<ul>
+										<li>For the first 128 clock cycles, a 
+										reversal happens every other cycle.</li>
+										<li>For the second 128 clock cycles, a 
+										reversal happens every two clock cycles.
+										</li>
+										<li>And so on ...</li>
+										<li>For the final 128 clock cycles, 
+										there is no reversal and {m0_sel, 
+										m1_sel} = {0, 1} always.</li>
+						</ul>
+						<p>The {memA0_wren, memA1_wren, memB0_wren, memB1_wren} 
+						is:</p>
+						<ul>
+										<li>{0, 0, 1, 1} during the first 128 
+										clock cycles because the FFT is reading 
+										from A and writing to B</li>
+										<li>{1, 1, 0, 0} during the second 128 
+										clock cycles because the FFT is reading 
+										from B and writing to A</li>
+										<li>And so on ...</li>
+						</ul>
+						</td>
+			</tr>
+			<tr>
+						<td>2</td>
+						<td class="left">
+						<p><strong>memS Write</strong></p>
+						<p>This is for copying from memA0 and memA1 to memS.</p>
+						</td>
+			</tr>
+			<tr>
+						<td>3</td>
+						<td class="left">
+						<p><strong>memA0/1 Bit-Reversed Write</strong></p>
+						<p>This is for copying from memS to memA0 and memA1, in 
+						a bit reverse manner. This is preparation for FFT.</p>
+						<p>The address generated goes from 0 to 0x8F, in 
+						bit-reverse manner. For the first 128 addresses, from 0 
+						to 127, the MSB is zero. So in the bit-reverse result, 
+						the LSB is zero. During this time, memA0_wren is high 
+						while memA1_wren is low. For the second set of 128 
+						addresses, from 128 to 255, memA0_wren is low and 
+						memA1_wren is high.</p>
+						<p>Both wraddress0 and wraddress1 gets the same 
+						bit-reversed address. It&#39;s the memA0_wren and memA1_wren 
+						that determines which memory will actually have the 
+						&quot;write enable&quot; signal.</p>
+						<p>Constant signals:</p>
+						<ul>
+										<li>memB0_wren &lt;= 0; </li>
+										<li>memB1_wren &lt;= 0;</li>
+										<li>m0_sel &lt;= 1; //so the output is 
+										always obtained from Y1 of the ALU</li>
+										<li>m1_sel &lt;= 1;</li>
+						</ul>
+						</td>
+			</tr>
+</table>
+
+</body>
+
+</html>

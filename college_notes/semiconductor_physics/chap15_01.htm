@@ -1,0 +1,781 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Field Effect Introduction --- The J-FET and MESFET</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">Field Effect Introduction --- The J-FET 
+and MESFET</font></h1>
+<p><font size="4" color="#008000">General Introduction</font></p>
+<p><i><font size="4">The field effect transistor was first conceived in the 1920s. 
+In late 1964, commercial MOSFETs are available from Fairchild Semiconductor and 
+RCA. By the late 60s, DRAM is introduced as a one transistor dynamic memory 
+cell. In the 80s, the CMOS became the integrated circuit technology of choice.</font></i></p>
+
+<p><i><font size="4">GaAs has electron transport properties that are superior to 
+silicon, but GaAs lacks a quality homomorphic (Ga or As containing) insulator 
+comparable to SiO<sub>2</sub> . However, new technology is allowing the growth 
+of different lattice-matched semiconductors on top of each other. The alloy 
+semiconductor AlGaAs can assume the role of &quot;insulator&quot; because it has a higher 
+band gap than GaAs. This results in the MODFET, touted to be the fastest three 
+terminal semiconductor device.</font></i></p>
+
+<p>&nbsp;</p>
+
+<h2><font color="#008000">J-FET (Junction Field Effect Transistor)</font></h2>
+
+<p><img border="0" src="images/fig_15_08.jpg" width="464" height="226"></p>
+
+<p><font size="4">The J-FET works by having a reverse bias between the p-type 
+gate and the n-type channel. The amount of reverse bias will control the 
+depletion region width between the p-type gate and the n-type channel, and this 
+width controls the amount of current flowing from source to drain.</font></p>
+
+<p><font size="4">The carriers move from source to drain, so for an n-channel 
+device, the current actually goes from drain to source.</font></p>
+
+<p><font size="4">Here is a more realistic picture of the J-FET.</font></p>
+
+<p><img border="0" src="images/fig_15_09.jpg" width="554" height="429"></p>
+
+<h2><font color="#008000">Qualitative Theory of Operation</font></h2>
+<p><img border="0" src="images/fig_15_11c.jpg" width="391" height="105"></p>
+<p><font size="4">As the voltage grows across the n-channel, so does the 
+depletion region.</font></p>
+<p><img border="0" src="images/fig_15_11d.jpg" width="361" height="106"></p>
+<p><font size="4">As V<sub>DS</sub> increases, the upper and lower depletion 
+regions will meet up at the drain end of the n-channel.</font></p>
+<p><font size="4">At first, the I-V relationship is basically linear --- more 
+voltage will yield more current.</font></p>
+<p><img border="0" src="images/fig_15_12a.jpg" width="294" height="275"></p>
+<p><font size="4">As the depletion regions widen, the loss of conductive medium 
+will result in less additional current per additional voltage.</font></p>
+<p><img border="0" src="images/fig_15_12b.jpg" width="297" height="292"></p>
+<p><font size="4">When the two depletion regions meet, we say that the n-channel 
+is pinched off. The current saturates and additional voltage does not result in 
+additional current.</font></p>
+<p><img border="0" src="images/fig_15_11ef.jpg" width="378" height="301"></p>
+<p><img border="0" src="images/fig_15_12c.jpg" width="303" height="258"></p>
+<p><font size="4">Why does pinch-off not totally eliminate all current flow? --- 
+Although the depletion region cuts through the channel, the existence of the 
+depletion region does not mean there is no current. Depletion region&nbsp; is 
+not truly devoid of carriers, they just have few carriers compared to the 
+background doping. Semiconductor physics is full of cases where large current 
+flows through the depletion region. Also, if the current through the n-channel 
+is zero, then the voltage everywhere in the n-channel is also zero, and the 
+pinch-off condition would cease to exist. In other words, the flow of current is 
+necessary to maintain the pinch off condition.</font></p>
+<p><font size="4">Why does the current saturate? --- The original channel length 
+is L. The pinch-off reduces the channel length by <font face="Times New Roman">
+&#8710;L. As long as L and L - &#8710;L are approximately the same, we have the same 
+pinch-off voltage,&nbsp; V<sub>DSat</sub> (5 volt), across nearly the same kind 
+of channel. Voltages above the pinch-off voltage, V<sub>D</sub> - V<sub>DSat</sub> 
+, exists across the depleted section of the channel and does not contribute to 
+increasing current. For the short channel devices, L - &#8710;L is not the same as L; 
+so that V<sub>DSat</sub> falls over a significantly shorter channel as V<sub>D</sub> 
+increases, and we get a drain current that does not really saturate.</font></font></p>
+<p><font face="Times New Roman" size="4">So far we set V<sub>G</sub> to zero so 
+that the reverse bias above and below the channel is due purely to the drain 
+voltage V<sub>D</sub> . If we set V<sub>G</sub> to less than zero, V<sub>G</sub> 
+will help produce the depletion region above and below the channel. This 
+decrease the drain current and lowers the V<sub>DSat</sub> .  </font></p>
+<p><img border="0" src="images/fig_15_14ab.jpg" width="675" height="290"></p>
+<p><font face="Times New Roman" size="4">At sufficiently 
+negative V<sub>G</sub> = V<sub>P</sub> , even V<sub>D</sub> = 0 will result in the entire 
+n-channel being depleted.</font></p>
+<p><img border="0" src="images/fig_15_14c.jpg" width="460" height="274"></p>
+<p>&nbsp;</p>
+<h2><font face="Times New Roman" color="#008000">Quantitative I<sub>D</sub> - V<sub>D</sub> 
+Relationships</font></h2>
+<p><img border="0" src="images/fig_15_15.jpg" width="580" height="695"></p>
+<p><font face="Times New Roman" size="4">L = Length of the channel<br>
+2a = width of the channel<br>
+W(y) = width of the depletion region = W<sub>top</sub>(y) = W<sub>bottom</sub>(y)<br>
+Z = depth of the channel<br>
+Note that y is running horizontally, left to right, while x is running 
+vertically, up to down.</font></p>
+<p><font face="Times New Roman" size="4">It's assume that W(y) can be increased 
+to &quot;a&quot; without inducing breakdown in the p<sup>+</sup>-n junctions.</font></p>
+<p><font face="Times New Roman" size="4">The equation for the current going 
+through the N-Channel starts with the assumption that it's a drift current (not 
+a diffusion current).</font></p>
+<p><font face="Courier New" color="#ff8000" size="5">J<sub>N</sub> = q&#956;<sub>n</sub> 
+N<sub>D</sub> E<sub>y</sub> </font></p>
+<p><font face="Times New Roman" size="4">Then integrate this over the xz plane 
+to get the I<sub>D</sub> :</font></p>
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    I<sub>D</sub> = - </font></td>
+    <td noWrap align="middle">
+    <font face="Times New Roman" color="#ff8000" size="7">&#8747;</font> </td>
+    <td noWrap align="middle">
+    <font face="Times New Roman" color="#ff8000" size="7">&#8747;</font> </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    J<sub>N</sub> dx dz = 2qZ&#956;<sub>n</sub> N<sub>D</sub> a * </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">dV </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">dy </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="7">
+    (</font> </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    1 - </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">W </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">a </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="7">
+    )</font> </td>
+  </tr>
+</table>
+<p><font face="Times New Roman" size="4">From that equation the book made 
+additional modifications. To get rid of the dV/dy, the book used:</font></p>
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    I<sub>D</sub> = x * </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">dV </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">dy </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle">
+    <font face="Times New Roman" color="#ff8000" size="7">&#8747;</font> </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    I<sub>D</sub> dy = </font></td>
+    <td noWrap align="middle">
+    <font face="Times New Roman" color="#ff8000" size="7">&#8747;</font> </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    x * dV </font></td>
+  </tr>
+</table>
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    I<sub>D</sub> * L = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle" rowSpan="2">
+        <font face="Times New Roman" color="#ff8000" size="7">&#8747;</font> </td>
+        <td noWrap align="middle">
+        <div style="LEFT: -1.2ex; POSITION: relative; TOP: -0.6ex">
+          <font face="Courier New" color="#ff8000" size="3">V<sub>D</sub> </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="LEFT: -1.2ex; POSITION: relative; TOP: 0.1ex">
+          <font face="Courier New" color="#ff8000" size="3">0</font></div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    x * dV </font></td>
+  </tr>
+</table>
+<p><font face="Times New Roman" size="4">To get rid of the W/a, the book used 
+the formula for the depletion width of a step junction from chapter 5, (page 
+216):</font></p>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <font face="Courier New" size="5" color="#FF8000">W</font><font face="Courier New" color="#ff8000" size="5"> = </font>
+        </td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">&nbsp;</td>
+            <td>
+            <div style="POSITION: relative; TOP: 4ex">
+              <font face="Courier New" color="#ff8000" size="3">1/2</font></div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+            <table cellSpacing="0" cellPadding="6" border="0">
+              <tr>
+                <td noWrap align="middle">
+                <font face="Courier New" color="#ff8000" size="7">(</font> </td>
+                <td noWrap align="middle">
+                <table cellSpacing="0" cellPadding="0" border="0">
+                  <tr>
+                    <td noWrap align="middle">
+                    <div style="POSITION: relative; TOP: 0.7ex">
+                      <font face="Courier New" color="#ff8000" size="5">2K<sub>s</sub> 
+                      &#949;<sub>0</sub>(N<sub>A</sub> + N<sub>D</sub>)</font>
+                    </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+                  </tr>
+                  <tr>
+                    <td noWrap align="middle">
+                    <div style="POSITION: relative; TOP: -0.7ex">
+                      <font face="Courier New" color="#ff8000" size="5">q N<sub>D</sub> 
+                      N<sub>A</sub> </font>
+                    </div>
+                    </td>
+                  </tr>
+                </table>
+                </td>
+                <td noWrap align="middle">
+                <font face="Courier New" color="#ff8000" size="5">(V<sub>bi</sub> 
+                - V<sub>A</sub>)</font></td>
+                <td noWrap align="middle">
+                <font face="Courier New" color="#ff8000" size="7">)</font> </td>
+              </tr>
+            </table>
+            </td>
+            <td>&nbsp;</td>
+          </tr>
+        </table>
+        </td>
+      </tr>
+    </table>
+<p><font face="Times New Roman" size="4">This width varies along the y-axis. For 
+a particular y value, the voltage applied over the depletion region is:</font></p>
+<p><font face="Courier New" color="#ff8000" size="5">V<sub>A</sub> = (V<sub>G</sub> 
+- V(y)) </font></p>
+<p><font face="Times New Roman" size="4">Also, the gate-channel doping is P<sup>+</sup> - N 
+so that (N<sub>A</sub> + N<sub>D</sub>) / N<sub>A</sub> &#8776; 1</font></p>
+<p><font face="Times New Roman" size="4">A third modification applied by the 
+book is to note that previously V<sub>P</sub> is defined to be the voltage that 
+causes a pinch off. So the channel width &quot;a&quot; is the width of the depletion 
+region at pinch off:</font></p>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#008000" size="5"><b>a</b></font><font face="Courier New" color="#ff8000" size="5"> = </font>
+        </td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">&nbsp;</td>
+            <td>
+            <div style="POSITION: relative; TOP: 4ex">
+              <font face="Courier New" color="#ff8000" size="3">1/2</font></div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+            <table cellSpacing="0" cellPadding="6" border="0">
+              <tr>
+                <td noWrap align="middle">
+                <font face="Courier New" color="#ff8000" size="7">(</font> </td>
+                <td noWrap align="middle">
+                <table cellSpacing="0" cellPadding="0" border="0">
+                  <tr>
+                    <td noWrap align="middle">
+                    <div style="POSITION: relative; TOP: 0.7ex">
+                      <font face="Courier New" color="#ff8000" size="5">2K<sub>s</sub> 
+                      &#949;<sub>0</sub></font>
+                    </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+                  </tr>
+                  <tr>
+                    <td noWrap align="middle">
+                    <div style="POSITION: relative; TOP: -0.7ex">
+                      <font face="Courier New" color="#ff8000" size="5">q N<sub>D</sub></font>
+                    </div>
+                    </td>
+                  </tr>
+                </table>
+                </td>
+                <td noWrap align="middle">
+                <font face="Courier New" color="#ff8000" size="5">(V<sub>bi</sub> 
+                -  </font>
+                <font face="Courier New" color="#008000" size="5"><b>V<sub>P</sub></b></font><font face="Courier New" color="#ff8000" size="5">)</font></td>
+                <td noWrap align="middle">
+                <font face="Courier New" color="#ff8000" size="7">)</font> </td>
+              </tr>
+            </table>
+            </td>
+            <td>&nbsp;</td>
+          </tr>
+        </table>
+        </td>
+      </tr>
+    </table>
+<p><font face="Times New Roman" size="4">The final drain current equation is:</font></p>
+<table border="2" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#FF8000">
+  <tr>
+    <td>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">I<sub>D</sub> = </font>
+        </td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">2qZ&#956;<sub>n</sub> 
+              N<sub>D</sub> a </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">L </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="7">{</font> </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">V<sub>D</sub> - </font>
+        </td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="4">2 </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="4">3 </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">(V<sub>bi</sub> - V<sub>P</sub>) </font></td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="7">[</font> </td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">&nbsp;</td>
+            <td>
+            <div style="POSITION: relative; TOP: 3.2ex">
+              <font face="Courier New" color="#ff8000" size="3">3/2</font></div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+            <table cellSpacing="0" cellPadding="6" border="0">
+              <tr>
+                <td noWrap align="middle">
+                <font face="Courier New" color="#ff8000" size="7">(</font> </td>
+                <td noWrap align="middle">
+                <table cellSpacing="0" cellPadding="0" border="0">
+                  <tr>
+                    <td noWrap align="middle">
+                    <div style="POSITION: relative; TOP: 0.7ex">
+                      <font face="Courier New" color="#ff8000" size="3">V<sub>D</sub> 
+                      + V<sub>bi</sub> - V<sub>G</sub> </font>
+                    </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+                  </tr>
+                  <tr>
+                    <td noWrap align="middle">
+                    <div style="POSITION: relative; TOP: -0.7ex">
+                      <font face="Courier New" color="#ff8000" size="3">V<sub>bi</sub> 
+                      - V<sub>P</sub> </font>
+                    </div>
+                    </td>
+                  </tr>
+                </table>
+                </td>
+                <td noWrap align="middle">
+                <font face="Courier New" color="#ff8000" size="7">)</font> </td>
+              </tr>
+            </table>
+            </td>
+            <td>&nbsp;</td>
+          </tr>
+        </table>
+        </td>
+        <td noWrap align="middle">
+        <font face="Courier New" size="5" color="#FF8000">&nbsp;</font><font face="Courier New" color="#ff8000" size="5">- </font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">&nbsp;</td>
+            <td>
+            <div style="POSITION: relative; TOP: 3.2ex">
+              <font face="Courier New" color="#ff8000" size="3">3/2</font></div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+            <table cellSpacing="0" cellPadding="6" border="0">
+              <tr>
+                <td noWrap align="middle">
+                <font face="Courier New" color="#ff8000" size="7">(</font> </td>
+                <td noWrap align="middle">
+                <table cellSpacing="0" cellPadding="0" border="0">
+                  <tr>
+                    <td noWrap align="middle">
+                    <div style="POSITION: relative; TOP: 0.7ex">
+                      <font face="Courier New" color="#ff8000" size="3">V<sub>bi</sub> 
+                      - V<sub>G</sub> </font>
+                    </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+                  </tr>
+                  <tr>
+                    <td noWrap align="middle">
+                    <div style="POSITION: relative; TOP: -0.7ex">
+                      <font face="Courier New" color="#ff8000" size="3">V<sub>bi</sub> 
+                      - V<sub>P</sub> </font>
+                    </div>
+                    </td>
+                  </tr>
+                </table>
+                </td>
+                <td noWrap align="middle">
+                <font face="Courier New" color="#ff8000" size="7">)</font> </td>
+              </tr>
+            </table>
+            </td>
+            <td>&nbsp;</td>
+          </tr>
+        </table>
+        </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="7">]</font> </td>
+        <td noWrap align="middle">
+        <font face="Courier New" size="7" color="#FF8000">}</font> </td>
+      </tr>
+    </table>
+    <p><font size="4">where</font></p>
+    <p><font face="Courier New" color="#ff8000" size="5">0 &#8804; V<sub>D</sub> &#8804; V<sub>Dsat</sub>
+    </font></p>
+    <p><font face="Courier New" color="#ff8000" size="5">V<sub>P</sub> &#8804; V<sub>G</sub> 
+    &#8804; 0 </font></td>
+  </tr>
+</table>
+<p><font face="Times New Roman" size="4" color="#008000">Saturation:</font></p>
+<p><font face="Times New Roman" size="4">To get the saturation version of the I<sub>D</sub> 
+equation, use the definition that saturation occurs when the reverse bias on the 
+gate-channel is V<sub>P</sub> :</font></p>
+<table border="2" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#FF8000">
+  <tr>
+    <td>
+        <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">I<sub>D</sub> = </font>
+        </td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">2qZ&#956;<sub>n</sub> 
+              N<sub>D</sub> a </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">L </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="7">{</font> </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">V<sub>G</sub> - V<sub>P</sub> 
+        - </font>
+        </td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="4">2 </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="4">3 </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">(V<sub>bi</sub> - V<sub>P</sub>) </font></td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="7">[</font> </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">1 - </font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">&nbsp;</td>
+            <td>
+            <div style="POSITION: relative; TOP: 3.2ex">
+              <font face="Courier New" color="#ff8000" size="3">3/2</font></div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+            <table cellSpacing="0" cellPadding="6" border="0">
+              <tr>
+                <td noWrap align="middle">
+                <font face="Courier New" color="#ff8000" size="7">(</font> </td>
+                <td noWrap align="middle">
+                <table cellSpacing="0" cellPadding="0" border="0">
+                  <tr>
+                    <td noWrap align="middle">
+                    <div style="POSITION: relative; TOP: 0.7ex">
+                      <font face="Courier New" color="#ff8000" size="3">V<sub>bi</sub> 
+                      - V<sub>G</sub> </font>
+                    </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+                  </tr>
+                  <tr>
+                    <td noWrap align="middle">
+                    <div style="POSITION: relative; TOP: -0.7ex">
+                      <font face="Courier New" color="#ff8000" size="3">V<sub>bi</sub> 
+                      - V<sub>P</sub> </font>
+                    </div>
+                    </td>
+                  </tr>
+                </table>
+                </td>
+                <td noWrap align="middle">
+                <font face="Courier New" color="#ff8000" size="7">)</font> </td>
+              </tr>
+            </table>
+            </td>
+            <td>&nbsp;</td>
+          </tr>
+        </table>
+        </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="7">]</font> </td>
+        <td noWrap align="middle">
+        <font face="Courier New" size="7" color="#FF8000">}</font> </td>
+      </tr>
+    </table>
+    
+    </td>
+  </tr>
+</table>
+<p><font face="Times New Roman" size="4">to get:</font></p>
+<table border="2" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#FF8000">
+  <tr>
+    <td><font face="Courier New" color="#ff8000" size="5">V<sub>P</sub> = V<sub>G</sub> 
+    - V<sub>Dsat</sub> </font></td>
+  </tr>
+</table>
+<p><font face="Times New Roman" size="4">Saturation current is also measured by 
+the semi-empirical &quot;square-law&quot;:</font></p>
+<table border="2" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#FF8000">
+  <tr>
+    <td><font face="Courier New" color="#ff8000" size="5">I<sub>Dsat</sub> = I<sub>D0</sub>(1 
+    - V<sub>G</sub>/V<sub>P</sub>)<sup>2</sup> </font></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<h2><font face="Times New Roman" color="#008000">A.C. Response</font></h2>
+<p><font face="Times New Roman" size="4">The low frequency small signal model 
+for the J-FET:</font></p>
+
+<p><img border="0" src="images/fig_15_19ab.jpg" width="398" height="341"></p>
+
+<p><font face="Times New Roman" size="4">note that g<sub>d</sub> is a 
+conductance, not a resistance. Note that one component of i<sub>d</sub> depends 
+on only v<sub>ds</sub> while the other component depends on only v<sub>gs</sub> 
+.</font></p>
+
+<p><font face="Courier New" color="#ff8000" size="5">i<sub>d</sub> = g<sub>d</sub> 
+v<sub>ds</sub> + g<sub>m</sub> v<sub>gs</sub> </font></p>
+
+<p><font face="Times New Roman" size="4">The g<sub>d</sub> and g<sub>m</sub> are 
+computed from:</font></p>
+
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    g<sub>d</sub> = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">&#8706; I<sub>D</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">&#8706; V<sub>D</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap>
+    <div STYLE="line-height: 97%">
+    <font size="6" face="Courier New" color="#ff8000">&#9474;<br>
+    &#9474;</font><font face="Courier New" color="#ff8000">V<sub>G</sub> 
+    = constant </font>
+    </div>
+    </td>
+  </tr>
+</table>
+<p><font face="Times New Roman" size="4">and</font></p>
+
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    g<sub>m</sub> = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">&#8706; I<sub>D</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">&#8706; V<sub>G</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap>
+    <div STYLE="line-height: 97%">
+    <font size="6" face="Courier New" color="#ff8000">&#9474;<br>
+    &#9474;</font><font face="Courier New" color="#ff8000">V<sub>D</sub> 
+    = constant </font>
+    </td>
+    </td>
+  </tr>
+</table>
+<p><font face="Times New Roman" size="4">These derivatives are computed as:</font></p>
+
+<p><img border="0" src="images/table_15_01.jpg" width="834" height="280"></p>
+
+<p><font face="Times New Roman" size="4">At higher frequencies, the reverse bias 
+of the gate-channel junctions produce a capacitance that is partially between 
+the gate and source, and partially between the gate and drain. The high 
+frequency reverse bias small signal model:</font></p>
+
+<p><img border="0" src="images/fig_15_19c.jpg" width="390" height="179"></p>
+
+</body>
+
+</html>

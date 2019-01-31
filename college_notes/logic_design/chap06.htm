@@ -1,0 +1,478 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Karnaugh Maps</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">Karnaugh Maps</font></h1>
+<h2><font color="#008000">3 Variable Karnaugh Maps</font></h2>
+
+<p><font size="4">Example on page 119:</font></p>
+
+<table border="1" cellpadding="12" cellspacing="1" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td align="center"><font size="4">A</font></td>
+    <td align="center"><font size="4">B</font></td>
+    <td align="center"><font size="4">C</font></td>
+    <td align="center">&nbsp;</td>
+    <td align="center"><font size="4">Number</font></td>
+    <td align="center">&nbsp;</td>
+    <td align="center"><font size="4">F</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center">&nbsp;</td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center">&nbsp;</td>
+    <td align="center"><font size="4">0</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center">&nbsp;</td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center">&nbsp;</td>
+    <td align="center"><font size="4">0</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center">&nbsp;</td>
+    <td align="center"><font size="4">2</font></td>
+    <td align="center">&nbsp;</td>
+    <td align="center"><font size="4">1</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center">&nbsp;</td>
+    <td align="center"><font size="4">3</font></td>
+    <td align="center">&nbsp;</td>
+    <td align="center"><font size="4">1</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center">&nbsp;</td>
+    <td align="center"><font size="4">4</font></td>
+    <td align="center">&nbsp;</td>
+    <td align="center"><font size="4">1</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center">&nbsp;</td>
+    <td align="center"><font size="4">5</font></td>
+    <td align="center">&nbsp;</td>
+    <td align="center"><font size="4">0</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center">&nbsp;</td>
+    <td align="center"><font size="4">6</font></td>
+    <td align="center">&nbsp;</td>
+    <td align="center"><font size="4">1</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center">&nbsp;</td>
+    <td align="center"><font size="4">7</font></td>
+    <td align="center">&nbsp;</td>
+    <td align="center"><font size="4">0</font></td>
+  </tr>
+</table>
+<p><font size="4">K-Map Numbering:</font></p>
+
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td colspan="2" align="center"><font size="4">A</font></td>
+  </tr>
+  <tr>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">1</font></td>
+  </tr>
+  <tr>
+    <td rowspan="4" align="center" valign="top"><font size="4">BC</font></td>
+    <td align="center"><font size="4">00</font></td>
+    <td align="center" colspan="2" rowspan="4">
+    <table border="1" cellpadding="12" cellspacing="1" style="border-collapse: collapse" bordercolor="#111111">
+      <tr>
+        <td><font size="5">0</font></td>
+        <td><font size="5">4</font></td>
+      </tr>
+      <tr>
+        <td><font size="5">1</font></td>
+        <td><font size="5">5</font></td>
+      </tr>
+      <tr>
+        <td><font size="5">3</font></td>
+        <td><font size="5">7</font></td>
+      </tr>
+      <tr>
+        <td><font size="5">2</font></td>
+        <td><font size="5">6</font></td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">01</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">11</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">10</font></td>
+  </tr>
+</table>
+<p><font size="4">Filling the K-Map:</font></p>
+
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td colspan="2" align="center"><font size="4">A</font></td>
+  </tr>
+  <tr>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">1</font></td>
+  </tr>
+  <tr>
+    <td rowspan="4" align="center" valign="top"><font size="4">BC</font></td>
+    <td align="center"><font size="4">00</font></td>
+    <td align="center" colspan="2" rowspan="4">
+    <table border="1" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+      <tr>
+        <td><font size="5">0</font></td>
+        <td bgcolor="#00FFFF"><font size="5">1</font></td>
+      </tr>
+      <tr>
+        <td><font size="5">0</font></td>
+        <td><font size="5">0</font></td>
+      </tr>
+      <tr>
+        <td bgcolor="#FFFF99"><font size="5">1</font></td>
+        <td><font size="5">0</font></td>
+      </tr>
+      <tr>
+        <td bgcolor="#FFFF99"><font size="5">1</font></td>
+        <td bgcolor="#00FFFF"><font size="5">1</font></td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">01</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">11</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">10</font></td>
+  </tr>
+</table>
+<p><b><font size="4" face="Courier New" color="#008000">F = BA' + AC'</font></b></p>
+
+<p>&nbsp;</p>
+
+<h2><font color="#008000">4 Variable Karnaugh Maps</font></h2>
+
+<p><font size="4">Example on page 125:</font></p>
+
+<p><font size="4">f = <font face="Times New Roman">&#8721;m(1, 3, 5, 7, 9) + &#8721;d(6, 12, 
+13)</font></font></p>
+
+<p><font face="Times New Roman" size="4">&quot;d&quot; is a don't care term</font></p>
+
+<p><font size="4">The K-Map Numbering:</font></p>
+
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td colspan="4"><font size="4">ab</font></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><font size="4">00</font></td>
+    <td><font size="4">01</font></td>
+    <td><font size="4">11</font></td>
+    <td><font size="4">10</font></td>
+  </tr>
+  <tr>
+    <td rowspan="4" valign="top"><font size="4">cd</font></td>
+    <td><font size="4">00</font></td>
+    <td colspan="4" rowspan="4">
+    <table border="1" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+      <tr>
+        <td width="50" align="center"><font size="5">0</font></td>
+        <td width="50" align="center"><font size="5">4</font></td>
+        <td width="50" align="center"><font size="5">12</font></td>
+        <td width="50" align="center"><font size="5">8</font></td>
+      </tr>
+      <tr>
+        <td width="50" align="center"><font size="5">1</font></td>
+        <td width="50" align="center"><font size="5">5</font></td>
+        <td width="50" align="center"><font size="5">13</font></td>
+        <td width="50" align="center"><font size="5">9</font></td>
+      </tr>
+      <tr>
+        <td width="50" align="center"><font size="5">3</font></td>
+        <td width="50" align="center"><font size="5">7</font></td>
+        <td width="50" align="center"><font size="5">15</font></td>
+        <td width="50" align="center"><font size="5">11</font></td>
+      </tr>
+      <tr>
+        <td width="50" align="center"><font size="5">2</font></td>
+        <td width="50" align="center"><font size="5">6</font></td>
+        <td width="50" align="center"><font size="5">14</font></td>
+        <td width="50" align="center"><font size="5">10</font></td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+  <tr>
+    <td><font size="4">01</font></td>
+  </tr>
+  <tr>
+    <td><font size="4">11</font></td>
+  </tr>
+  <tr>
+    <td><font size="4">10</font></td>
+  </tr>
+</table>
+<p><font size="4">Filling the K-Map:</font></p>
+
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td colspan="4"><font size="4">ab</font></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><font size="4">00</font></td>
+    <td><font size="4">01</font></td>
+    <td><font size="4">11</font></td>
+    <td><font size="4">10</font></td>
+  </tr>
+  <tr>
+    <td rowspan="4" valign="top"><font size="4">cd</font></td>
+    <td><font size="4">00</font></td>
+    <td colspan="4" rowspan="4">
+    <table border="1" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+      <tr>
+        <td align="center">&nbsp;</td>
+        <td align="center">&nbsp;</td>
+        <td align="center"><font size="5">x</font></td>
+        <td align="center">&nbsp;</td>
+      </tr>
+      <tr>
+        <td align="center" bgcolor="#FFFF99"><b><font size="5" color="#0000FF">1</font></b></td>
+        <td align="center" bgcolor="#FFFF99"><b><font size="5" color="#0000FF">1</font></b></td>
+        <td align="center"><b><font size="5" color="#0000FF">x</font></b></td>
+        <td align="center"><b><font size="5" color="#0000FF">1</font></b></td>
+      </tr>
+      <tr>
+        <td align="center" bgcolor="#FFFF99"><font size="5">1</font></td>
+        <td align="center" bgcolor="#FFFF99"><font size="5">1</font></td>
+        <td align="center">&nbsp;</td>
+        <td align="center">&nbsp;</td>
+      </tr>
+      <tr>
+        <td align="center">&nbsp;</td>
+        <td align="center"><font size="5">x</font></td>
+        <td align="center">&nbsp;</td>
+        <td align="center">&nbsp;</td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+  <tr>
+    <td><font size="4">01</font></td>
+  </tr>
+  <tr>
+    <td><font size="4">11</font></td>
+  </tr>
+  <tr>
+    <td><font size="4">10</font></td>
+  </tr>
+</table>
+<p><b><font size="4" face="Courier New" color="#008000">f = a'd + c'd</font></b></p>
+
+<h2>&nbsp;</h2>
+
+<h2><font color="#008000">Product of Sums Example</font></h2>
+
+<p><font size="4">This is also from page 125:</font></p>
+
+<p><font size="4">f = <font face="Times New Roman">&#8719;M(1, 5, 6, 7, 9, 12, 13, 14)</font></font></p>
+
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td colspan="4"><font size="4">wx</font></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><font size="4">00</font></td>
+    <td><font size="4">01</font></td>
+    <td><font size="4">11</font></td>
+    <td><font size="4">10</font></td>
+  </tr>
+  <tr>
+    <td rowspan="4" valign="top"><font size="4">yz</font></td>
+    <td><font size="4">00</font></td>
+    <td colspan="4" rowspan="4">
+    <table border="1" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+      <tr>
+        <td align="center">&nbsp;</td>
+        <td align="center">&nbsp;</td>
+        <td align="center"><font size="4">0</font></td>
+        <td align="center">&nbsp;</td>
+      </tr>
+      <tr>
+        <td align="center"><font size="4">0</font></td>
+        <td align="center"><font size="4">0</font></td>
+        <td align="center"><font size="4">0</font></td>
+        <td align="center"><font size="4">0</font></td>
+      </tr>
+      <tr>
+        <td align="center">&nbsp;</td>
+        <td align="center" bgcolor="#FFFF99"><font size="4">0</font></td>
+        <td align="center">&nbsp;</td>
+        <td align="center">&nbsp;</td>
+      </tr>
+      <tr>
+        <td align="center">&nbsp;</td>
+        <td align="center" bgcolor="#FFFF99"><font size="4">0</font></td>
+        <td align="center"><font size="4">0</font></td>
+        <td align="center">&nbsp;</td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+  <tr>
+    <td><font size="4">01</font></td>
+  </tr>
+  <tr>
+    <td><font size="4">11</font></td>
+  </tr>
+  <tr>
+    <td><font size="4">10</font></td>
+  </tr>
+</table>
+
+<p><font size="4">Remember that the maxterm &quot;encoding&quot; is &quot;opposite&quot; of the 
+minterm encoding. The yellow area above is encoded: (w + x' + y').</font></p>
+
+<p><b><font size="4" face="Courier New" color="#008000">f = (y + z') (w' + x' + 
+z) (w + x' + y')</font></b></p>
+
+<p>&nbsp;</p>
+
+<h2><font color="#008000">Implicants</font></h2>
+
+<p><font size="4">an implicant --- any single 1 or any group of 1's which can be 
+combined together on a map of the function F</font></p>
+
+<p><font size="4">prime implicant --- an implicant that cannot be combined with 
+another term to eliminate a variable. (These are basically maxed out groups)</font></p>
+
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td colspan="4"><font size="4">ab</font></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><font size="4">00</font></td>
+    <td><font size="4">01</font></td>
+    <td><font size="4">11</font></td>
+    <td><font size="4">10</font></td>
+  </tr>
+  <tr>
+    <td rowspan="4" valign="top"><font size="4">cd</font></td>
+    <td><font size="4">00</font></td>
+    <td colspan="4" rowspan="4">
+    <table border="1" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+      <tr>
+        <td align="center" bgcolor="#FF99FF"><font size="5">1</font></td>
+        <td align="center">&nbsp;</td>
+        <td align="center" bgcolor="#00FFFF"><font size="5">1</font></td>
+        <td align="center" bgcolor="#66FFCC"><font size="5">1</font></td>
+      </tr>
+      <tr>
+        <td align="center">&nbsp;</td>
+        <td align="center">&nbsp;</td>
+        <td align="center" bgcolor="#00FFFF"><font size="5">1</font></td>
+        <td align="center" bgcolor="#66FFCC"><font size="5">1</font></td>
+      </tr>
+      <tr>
+        <td align="center" bgcolor="#FFFF99"><font size="5">1</font></td>
+        <td align="center">&nbsp;</td>
+        <td align="center">&nbsp;</td>
+        <td align="center">&nbsp;</td>
+      </tr>
+      <tr>
+        <td align="center" bgcolor="#FFFF99"><font size="5">1</font></td>
+        <td align="center"><font size="5">1</font></td>
+        <td align="center">&nbsp;</td>
+        <td align="center">&nbsp;</td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+  <tr>
+    <td><font size="4">01</font></td>
+  </tr>
+  <tr>
+    <td><font size="4">11</font></td>
+  </tr>
+  <tr>
+    <td><font size="4">10</font></td>
+  </tr>
+</table>
+<p><font size="4">The yellow group is a prime implicant because it is a maxed 
+out group that can not be expanded any further to eliminate variables. The other 
+colors are not prime implicants because those groupings can be expanded further 
+to eliminate variables.</font></p>
+
+<p><font size="4">essential&nbsp; --- a minterm that is covered by only one 
+prime implicant. This essential prime &quot;owner&quot; must be included in the minimum 
+sum of products.</font></p>
+
+<p><img border="0" src="images/fig_06_18.jpg" width="772" height="449"></p>
+
+</body>
+
+</html>

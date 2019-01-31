@@ -1,0 +1,303 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Flip Flops</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">Flip Flops</font></h1>
+<p align="left"><font size="4" color="#008000">Stable states:</font></p>
+<p align="left"><font size="4">A single inverter with feed back is not stable 
+because the output will cause the input to change:</font></p>
+<p align="left">
+<img border="0" src="images/pic0004.gif" width="350" height="196"></p>
+<p align="left"><font size="4">But two inverters in a series can form two 
+different stable states:</font></p>
+<p align="left">
+<img border="0" src="images/pic0005.gif" width="500" height="345"></p>
+<h2 align="left">&nbsp;</h2>
+<h2 align="left"><font color="#008000">The Set-Reset Flip-Flop</font></h2>
+<p align="left">
+<img border="0" src="images/pic0006.gif" width="350" height="276"></p>
+<p align="left"><font size="4">Q and Q' are complementary outputs</font></p>
+<p align="left"><font size="4">When R (reset) = 1, Q goes to zero. When S (set) 
+= 1, Q goes to one. R and S has to be one for a short duration of time for Q to 
+change, so R and S needs to be a pulse that last a certain amount of time.
+</font></p>
+<p align="left"><font size="4">R and S can not be one at the same time --- that 
+behavior is not defined.</font></p>
+<table border="1" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td align="center"><font size="4">S(t)</font></td>
+    <td align="center"><font size="4">R(t)</font></td>
+    <td align="center"><font size="4">Q(t)</font></td>
+    <td align="center"><font size="4">Q(t + <font face="Times New Roman">&#949;</font>)</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">1</font></td>
+  </tr>
+  <tr>
+    <td align="center" bgcolor="#FFFF99"><font size="4">0</font></td>
+    <td align="center" bgcolor="#FFFF99"><font size="4">1</font></td>
+    <td align="center" bgcolor="#FFFF99"><font size="4">0</font></td>
+    <td align="center" bgcolor="#FFFF99"><font size="4">0</font></td>
+  </tr>
+  <tr>
+    <td align="center" bgcolor="#FFFF99"><font size="4">0</font></td>
+    <td align="center" bgcolor="#FFFF99"><font size="4">1</font></td>
+    <td align="center" bgcolor="#FFFF99"><font size="4">1</font></td>
+    <td align="center" bgcolor="#FFFF99"><font size="4">0</font></td>
+  </tr>
+  <tr>
+    <td align="center" bgcolor="#00FFFF"><font size="4">1</font></td>
+    <td align="center" bgcolor="#00FFFF"><font size="4">0</font></td>
+    <td align="center" bgcolor="#00FFFF"><font size="4">0</font></td>
+    <td align="center" bgcolor="#00FFFF"><font size="4">1</font></td>
+  </tr>
+  <tr>
+    <td align="center" bgcolor="#00FFFF"><font size="4">1</font></td>
+    <td align="center" bgcolor="#00FFFF"><font size="4">0</font></td>
+    <td align="center" bgcolor="#00FFFF"><font size="4">1</font></td>
+    <td align="center" bgcolor="#00FFFF"><font size="4">1</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">not defined</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">not defined</font></td>
+  </tr>
+</table>
+<p align="left"><font size="4">where Q(t) is the current state and Q(t +
+<font face="Times New Roman">&#949;) is the future state. Another notation is to 
+write Q as the current state and Q<sup>+</sup> as the future state.</font></font></p>
+<p align="left"><font face="Times New Roman" size="4">From the truth table, you 
+can get the Boolean equation: Q<sup>+</sup> = S + QR'</font></p>
+<p align="left"><font face="Times New Roman" size="4">which reads the next state 
+is 1 if:</font></p>
+<ul>
+  <li>
+  <p align="left"><font face="Times New Roman" size="4">S is one </font></li>
+  <li>
+  <p align="left"><font face="Times New Roman" size="4">current state is one and 
+  R is zero. </font></li>
+</ul>
+<p align="left"><font face="Times New Roman" size="4">The simplest drawing 
+though, is a NOR-NOR implementation. From chapter 8, we know that to get to a 
+NOR NOR implementation, you need to start with a OR-AND implementation.</font></p>
+<p align="left"><font face="Times New Roman" size="4">K-map:</font></p>
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td colspan="4" align="left" valign="top">SR</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>00</td>
+    <td>01</td>
+    <td>11</td>
+    <td>10</td>
+  </tr>
+  <tr>
+    <td rowspan="2" align="left" valign="top">Q</td>
+    <td>0</td>
+    <td colspan="4" rowspan="2">
+    <table border="1" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+      <tr>
+        <td width="40" align="center"><font size="5">0</font></td>
+        <td width="40" align="center"><font size="5">0</font></td>
+        <td width="40" align="center"><font size="5">x</font></td>
+        <td width="40" align="center">&nbsp;</td>
+      </tr>
+      <tr>
+        <td width="40" align="center">&nbsp;</td>
+        <td width="40" align="center"><font size="5">0</font></td>
+        <td width="40" align="center"><font size="5">x</font></td>
+        <td width="40" align="center">&nbsp;</td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+  <tr>
+    <td>1</td>
+  </tr>
+</table>
+<p align="left"><font face="Times New Roman" size="4">Q<sup>+</sup> = (R') (S + 
+Q)</font></p>
+<p align="left"><font face="Times New Roman" size="4">Q<sup>+</sup> = {[(R') (S 
++ Q)]' }'<br>
+Q<sup>+</sup> = [R + (S + Q)']'</font></p>
+<p align="left"><font face="Times New Roman" size="4">The NOR gate 
+implementation can be drawn as:</font></p>
+<p align="left">
+<img border="0" src="images/pic0007.gif" width="250" height="248"></p>
+<p align="left"><font color="#008000" size="4">The Trigger Flip-Flop</font></p>
+<p align="left">
+<img border="0" src="images/pic0008.gif" width="250" height="247"></p>
+<p align="left"><font face="Times New Roman" size="4">A pluse at T will flip the 
+output Q.</font></p>
+<table border="1" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td align="center"><font size="4">T</font></td>
+    <td align="center"><font size="4">Q</font></td>
+    <td align="center"><font size="4">Q<sup>+</sup></font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">1</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">1</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">0</font></td>
+  </tr>
+</table>
+<p align="left"><font face="Times New Roman" size="4">A clocked T flip-flop 
+would behave like:</font></p>
+<p align="left">
+<img border="0" src="images/fig_11_14.jpg" width="437" height="205"></p>
+<p align="left"><font size="4" color="#008000">The J-K Flip-Flop</font></p>
+<p align="left"><font face="Times New Roman" size="4">This J-K flip-flop 
+combines the features of the S-R and T flip-flops. The J and K inputs act just 
+like the S and R inputs if we apply a one to either input. If we apply a one to 
+both J and K at the same time, then it acts as a T flip flop.</font></p>
+<table border="1" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td align="center"><font size="4">J (Set)</font></td>
+    <td align="center"><font size="4">K (Reset)</font></td>
+    <td align="center"><font size="4">Q</font></td>
+    <td align="center"><font size="4">Q<sup>+</sup></font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">1</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">0</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">1</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">1</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">1</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">0</font></td>
+  </tr>
+</table>
+<p align="left"><font face="Times New Roman" size="4">The clock version of the 
+J-K flip-flop:</font></p>
+<p align="left">
+<img border="0" src="images/fig_11_16.jpg" width="384" height="253"></p>
+<p align="left">&nbsp;</p>
+<h2 align="left"><font color="#008000">The D Flip-Flop</font></h2>
+<table border="1" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td align="center"><font size="4">D</font></td>
+    <td align="center"><font size="4">Q</font></td>
+    <td align="center"><font size="4">Q<sup>+</sup></font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">0</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">1</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">1</font></td>
+  </tr>
+</table>
+<p align="left"><font face="Times New Roman" size="4">The signal that appears on 
+D will appear at Q after a delay that is triggered by the clock.</font></p>
+<p align="left">
+<img border="0" src="images/fig_11_19.jpg" width="569" height="198"></p>
+<p align="left"><font face="Times New Roman" size="4" color="#008000">Clear and 
+Preset Inputs</font></p>
+<p align="left"><font face="Times New Roman" size="4">These are additional 
+inputs that a flip-flop can have to set the flip-flop state regardless of the 
+clock or other input pins. A one at &quot;clear&quot; sets the flip-flop to zero. A one at 
+&quot;preset&quot; sets the flip-flop to one.</font></p>
+<p align="left"><font face="Times New Roman" size="4" color="#008000">Register</font></p>
+<p align="left"><font face="Times New Roman" size="4">A register is a group of 
+flip-flops, where each flip-flop holds one bit of data.</font></p>
+<p align="left">
+<img border="0" src="images/fig_11_22.jpg" width="751" height="406"></p>
+
+</body>
+
+</html>

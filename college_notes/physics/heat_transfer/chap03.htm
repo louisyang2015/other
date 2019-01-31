@@ -1,0 +1,1098 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Steady Heat Conduction</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">Steady Heat Conduction</font></h1>
+<p><font size="4"><font color="#008000">The Thermal Resistance Concept</font> 
+--- is to model heat transfer using:</font></p>
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    Q = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">T<sub>1</sub> - T<sub>2</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">R </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<p><font size="4">The unit for R is (<sup>o</sup>C / W)</font></p>
+<p>&nbsp;</p>
+<h2><font color="#008000">Conduction through a wall:</font></h2>
+<p><img border="0" src="images/pic0017.gif" width="500" height="332"></p>
+<table border="0" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" bgcolor="#FFFF99">
+  <tr>
+    <td>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">R<sub>wall</sub> =
+        </font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">L </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">kA </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<p><font size="4">This R is called the <font color="#008000">conduction 
+resistance</font></font></p>
+<p>&nbsp;</p>
+<h2><font color="#008000">Convection from a surface:</font></h2>
+<p><img border="0" src="images/pic0018.gif" width="500" height="341"></p>
+<table border="0" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" bgcolor="#FFFF99">
+  <tr>
+    <td>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">R<sub>conv</sub> =
+        </font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">1 </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">hA </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<p><font size="4">This R is called the <font color="#008000">convection 
+resistance</font></font></p>
+<p><font size="4">If the &quot;h&quot; is picked so that radiation is modeled by &quot;Q&nbsp; 
+= h<sub>rad</sub> A (T<sub>surface</sub> - T<sub>surrounding</sub>)&quot;, then the 
+exact same formula as above gives a R<sub>rad</sub> that models radiation.</font></p>
+<p><font size="4">If the &quot;h&quot; is picked to model both convection and radiation, 
+then the R also models both convection and radiation.</font></p>
+<p><font size="4" color="#008000">Thermal resistors in series or in parallel can 
+be combined using the same rules for combining resistors in electrical 
+engineering. </font><font size="4">Instead of voltage, we have a temperature 
+value at each node.</font></p>
+<p>&nbsp;</p>
+<p><font size="4">The <font color="#008000">overall heat transfer coefficient 
+(U)</font> is defined as:</font></p>
+<p><font face="Courier New" color="#ff8000" size="5">Q = UA &#916;T </font></p>
+<p><font size="4">and this U is the inverse of R.</font></p>
+<p>&nbsp;</p>
+<h2><font color="#008000">Thermal contact resistance</font></h2>
+<p><font size="4">This is an extra resistance that you get at the boundary 
+between two materials. The reason is that the materials are not smooth, so at 
+their boundary there are air gaps that act as insulators.</font></p>
+<p><img border="0" src="images/pic0019.jpg" width="749" height="531"></p>
+<p><font size="4">The thermal contact resistance </font>
+<font size="5" color="#FF8000">R<sub>c</sub></font><font size="4"> is defined 
+as:</font></p>
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    R<sub>c</sub> = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">&#916;T<sub>interface</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">Q/A </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<p><font size="4">Note that R<sub>c</sub> is resistance per area. Larger 
+interface area is less resistance, so R = R<sub>c</sub> / A .</font></p>
+<p><i><font size="4">A surface that is less rough will produce a smaller R<sub>c</sub> 
+.</font></i></p>
+<p><i><font size="4">Two surfaces that are squished together with greater 
+pressure will produce less R<sub>c</sub> .</font></i></p>
+<p><i><font size="4">Most experimentally determined value of the thermal contact 
+resistance R<sub>c</sub> fall between 0.000005 and 0.0005 m<sup>2</sup> <sup>o</sup>C 
+/ W. So R<sub>c</sub> is significant if the materials involved are good thermal 
+conductors, such as metals.</font></i></p>
+<p><i><font size="4">R<sub>c</sub> can be minimized by applying a thermally 
+conducting liquid called a thermal grease on the surfaces before they are 
+pressed against eachother. We can also try to replace the air in the air gaps 
+with a better conducting gas. Finally, we can also put a thin metallic foil 
+between the two surfaces.</font></i></p>
+<p><font size="4"><i>There is considerable uncertainty in the contact 
+conductance data reported in the literature, and care should be exercised when 
+using them.</i></font></p>
+<p>&nbsp;</p>
+<p><font color="#008000" size="4">Multiple Layers</font></p>
+<p><font size="4">In example 3-6, the cross-section of a wall is modeled as:</font></p>
+<p><img border="0" src="images/pic0020.gif" width="300" height="535"></p>
+<p><font size="4">The three colors shows that there are three different types of 
+materials.</font></p>
+<p><font size="4">We can divide this cross-section vertically or horizontally.</font></p>
+<p><img border="0" src="images/pic0021.gif" width="520" height="471"></p>
+<p><img border="0" src="images/pic0022.gif" width="520" height="453"></p>
+<p>&nbsp;</p>
+<h2><font color="#008000">Thermal Resistance in Cylinders</font></h2>
+<p><img border="0" src="images/pic0023.jpg" width="478" height="431"></p>
+<table border="0" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" bgcolor="#FFFF99">
+  <tr>
+    <td>
+    <table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    R<sub>cyl</sub> = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">ln (r<sub>2</sub> / r<sub>1</sub>)
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">2&#960;Lk </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">ln(Outer Radius / 
+          Inner Radius) </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">2&#960; * (Length) * 
+          (Thermal conductivity) </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+
+    </td>
+  </tr>
+</table>
+<h2><font color="#008000">Thermal Resistance in Spheres</font></h2>
+<table border="0" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" bgcolor="#FFFF99">
+  <tr>
+    <td>
+    <table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    R<sub>sph</sub> = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">r<sub>2</sub> - r<sub>1</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">4&#960; r<sub>1</sub> r<sub>2</sub> 
+          k </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">Outer Radius - Inner 
+          Radius </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">4&#960; * (Outer radius) 
+          * (Inner Radius) * (Thermal conductivity) </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+
+    </td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+
+<h2><font color="#008000">Critical Radius of Insulation for Cylinders</font></h2>
+
+<p><font size="4">Adding insulation will sometimes actually improve heat 
+transfer.</font></p>
+
+<p><font size="4">A cross section of&nbsp; a cylinder:</font></p>
+
+<p><img border="0" src="images/pic0024.jpg" width="388" height="334"></p>
+
+<p><font size="4">More insulation not just increase R<sub>ins</sub> , but also 
+decrease R<sub>conv</sub> by increasing the surface area of the cylinder. For a 
+very small insulation radius, insulation can actually increase heat transfer 
+rate. This happens in wires, which is good because it lowers the temperature of 
+the wire.</font></p>
+
+<p><img border="0" src="images/pic0025.jpg" width="391" height="462"></p>
+
+<p><font size="4">The critical radius of insulation  </font>
+<font size="5" color="#FF8000">r<sub>cr</sub></font><font size="4"> :</font></p>
+
+<table border="0" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" bgcolor="#FFFF99">
+  <tr>
+    <td>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">R<sub>cr, cylinder</sub> =
+        </font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">k </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">h </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+      </tr>
+    </table>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">R<sub>cr, sphere</sub> =
+        </font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">2k </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">h </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<p><i><font size="4">The largest value of the critical radius we are likely to 
+encounter is 1cm. The critical radius would be much less in forced convection.</font></i></p>
+<p>&nbsp;</p>
+<h2><font color="#008000">Heat Transfer from Finned Surfaces</font></h2>
+<p><font size="4" color="#008000">The energy balance equation:</font></p>
+<p><img border="0" src="images/pic0026.gif" width="630" height="515"></p>
+<p><font size="4"><font color="#008000">(Heat conducting into the volume 
+element)</font> = <font color="#FF6666">(Heat conducting out of the volume 
+element)</font> + <font color="#FF8000">(Heat</font> <font color="#FF8000">
+leaving the volume element by convection)</font></font></p>
+<p><font size="4" color="#008000">The differential equation:</font></p>
+<p><img border="0" src="images/pic0027.gif" width="600" height="317"></p>
+<table border="0" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" bgcolor="#FFFF99">
+  <tr>
+    <td>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">d<sup>2</sup>&#952;
+              </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">dx<sup>2</sup>
+              </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">- a<sup>2</sup>&#952; = 0
+        </font></td>
+      </tr>
+    </table>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">a<sup>2</sup> = </font>
+        </td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">hp </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">kA </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+      </tr>
+    </table>
+    <p><font face="Courier New" color="#ff8000" size="5">&#952; = T - T<sub>&#8734;</sub>
+    </font></p>
+    <p><font face="Courier New" size="5" color="#FF8000">&#952; </font>
+    <font size="4">is called the <font color="#008000">temperature excess</font></font></p>
+    <p><font size="4">k = thermal conductivity for the fin<br>
+    h = convection coefficient for the fin<br>
+    T = temperature at a particular location on the fin<br>
+    T<font face="Times New Roman"><sub>&#8734;</sub> = environmental temperature</font></font><p>
+    <font face="Times New Roman" size="4">The unit for a<sup>2</sup> is 1/m<sup>2</sup></font></td>
+  </tr>
+</table>
+<h2>&nbsp;</h2>
+
+<h2><font color="#008000">Solution for Infinitely Long Fin</font></h2>
+
+<p><font size="4">It's not really that the length of the fin is infinite, but 
+the fin is long enough so that the temperature at the tip of the fin will be 
+equal to environmental temperature.</font></p>
+
+<p><img border="0" src="images/pic0028.gif" width="600" height="625"></p>
+
+<p><font size="4">The solution to the differential equation:</font></p>
+
+<table border="0" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" bgcolor="#FFFF99">
+  <tr>
+    <td>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">T(x) - T<sub>&#8734;</sub>
+              </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">T<sub>b</sub> - 
+              T<sub>&#8734;</sub> </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">= e<sup>-ax</sup> = 
+        e^[-x * ((hp) / (kA))<sup>1/2</sup> ] </font></td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<p><font size="4">The heat transfer going into the fin is:</font></p>
+
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    Q = -kA </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">dT </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">dx </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="7">
+    |</font><sub><font face="Courier New" color="#ff8000" size="5">x = 0 </font>
+    </sub></td>
+  </tr>
+</table>
+<table border="0" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" bgcolor="#FFFF99">
+  <tr>
+    <td><font face="Courier New" color="#ff8000" size="5">Q<sub>long fin</sub> = 
+    (hpkA)<sup>1/2</sup> (T<sub>b</sub> - T<sub>&#8734;</sub> ) </font></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<h2><font color="#008000">Insulated Fin Tip</font></h2>
+<p><font size="4">Under this assumption, the tip is insulated so that the heat 
+lost at the tip is zero:</font></p>
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    Q = -kA </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">dT </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">dx </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="7">
+    |</font><font face="Courier New" color="#ff8000" size="5"><sub>x = L</sub> = 
+    -kA </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">d&#952; </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">dx </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="7">
+    |</font><font face="Courier New" color="#ff8000" size="5"><sub>x = L</sub> = 
+    0 </font></td>
+  </tr>
+</table>
+<p><i><font size="4">Note that infinitely long fin and insulated fin tip are 
+mutually exclusive assumptions.</font></i></p>
+<p><font size="4">Using the above boundary condition, we get:</font></p>
+<table border="0" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" bgcolor="#FFFF99">
+  <tr>
+    <td>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">T(x) - T<sub>&#8734;</sub>
+              </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">T<sub>b</sub> - 
+              T<sub>&#8734;</sub> </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">= </font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">cosh( a*(L - x) 
+              ) </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">cosh(aL) </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+      </tr>
+    </table>
+    <table border="0" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+      <tr>
+        <td nowrap><font face="Courier New" color="#ff8000" size="5">Q<sub>insulated 
+        tip</sub> = (hpkA)<sup>1/2</sup> (T<sub>b</sub> - T<sub>&#8734;</sub> ) * 
+        tahn(aL) </font></td>
+      </tr>
+    </table>
+    <p><font size="4">L = length of the fin</font></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<h2><font color="#008000">Length Correction</font></h2>
+<p><font size="4">To account for the heat loss at the tip of the fin, we can 
+attempt a length correction where the additional surface area of the fin equals 
+the area at the tip of the fin.</font></p>
+<p><img border="0" src="images/pic0029.jpg" width="463" height="532"></p>
+<table border="0" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" bgcolor="#FFFF99">
+  <tr>
+    <td>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">L<sub>c</sub> = L +
+        </font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">A </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">p </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+      </tr>
+    </table>
+    <p><font size="4">L<sub>c</sub> = corrected fin length</font></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<h2><font color="#008000">Fin Efficiency (<font face="Times New Roman">&#951;<sub>fin</sub></font>)</font></h2>
+<p><font size="4">If the fin is a super conductor of heat, then the fin can 
+dissipate </font><font color="#FF8000" size="5">h*(Surface area of fin)*(T<sub>b</sub> 
+- T<sub><font face="Times New Roman">&#8734;</font></sub>)</font><font size="4"> 
+amount of heat, which we will call </font><font color="#FF8000" size="5">Q<sub>fin, 
+max</sub> .</font></p>
+<table border="0" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" bgcolor="#FFFF99">
+  <tr>
+    <td>
+    <table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" size="5" color="#FF8000">
+    &#951;</font><font face="Courier New" color="#ff8000" size="5"><sub>fin</sub> = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">Q<sub>fin</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">Q<sub>fin, max</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">Actual heat transfer 
+          rate from the fin </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="4">(Ideal heat transfer 
+          rate from the fin <br> if the entire fin were at base temperature)</font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <font color="#ff8000" size="5" face="Times New Roman">&#951;</font><font face="Courier New" color="#ff8000" size="5"><sub>long 
+        fin</sub> = </font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">1 </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">aL </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+      </tr>
+    </table>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <font color="#ff8000" size="5" face="Times New Roman">&#951;</font><font face="Courier New" color="#ff8000" size="5"><sub>insulated 
+        tip</sub> = </font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">tanh(aL) </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">aL </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<p><font size="4">The fin efficiency of most fins used in practice is above 90 
+percent.</font></p>
+
+<p>&nbsp;</p>
+
+<h2><font color="#008000">Fin Effectiveness </font>
+<font face="Times New Roman" color="#008000">(&#949;)</font></h2>
+
+<table border="0" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" bgcolor="#FFFF99">
+  <tr>
+    <td>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">&#949;<sub>fin</sub> =
+        </font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">Q<sub>fin</sub>
+              </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">Q<sub>no fin</sub>
+              </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">= </font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">Q<sub>fin</sub>
+              </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">hA(T<sub>b</sub> 
+              - T<sub>&#8734;</sub> ) </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+      </tr>
+    </table>
+    <p><font size="4">Q<sub>fin</sub> = heat transfer rate from the fin</font></td>
+  </tr>
+</table>
+<p><font size="4">Fin effectiveness and fin efficiency are related:</font></p>
+
+<p><font face="Courier New" color="#ff8000" size="5">A * &#949;<sub>fin</sub> = (fin 
+surface area) * </font><font color="#ff8000" size="5" face="Times New Roman">&#951;</font><font face="Courier New" color="#ff8000" size="5"><sub>fin</sub>
+</font></p>
+
+<p><font size="4">The <font color="#008000">overall effectiveness of the fin</font> 
+considers the scenario with the fins versus the scenario without the fins:</font></p>
+
+<table border="0" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" bgcolor="#FFFF99">
+  <tr>
+    <td>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">&#949;<sub>fin, overall</sub> 
+        = </font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">Q<sub>total, fin</sub>
+              </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">Q<sub>total, no 
+              fin</sub> </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<p><font size="4">This is a better way to measure the performance of the fin 
+surface than to simply measuring the effectiveness of an individual fin.</font></p>
+
+<p>&nbsp;</p>
+
+<h2><font color="#008000">Proper Length of a Fin</font></h2>
+
+<p><font size="4">For a really long fin, the temperature drops exponentially and 
+reaches the environmental temperature at some length. The part of the fin beyond 
+this length is ineffective.</font></p>
+
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">Q<sub>fin</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">Q<sub>long fin</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    = tanh(aL) </font></td>
+  </tr>
+</table>
+<p><img border="0" src="images/pic0030.jpg" width="393" height="494"></p>
+
+<p><font size="4">when aL = 5, tanh(aL) = 1.000, so a fin whose &quot;aL&quot; = 5 can be 
+considered to be an indefinitely long fin.</font></p>
+
+<p>&nbsp;</p>
+
+<h2><font color="#008000">Heat Sinks</font></h2>
+
+<p><font size="4">A heat sink is just a structure with a bunch of fins to help 
+dissipate heat. Here's a <a href="images/pic0032.jpg">table of heat sinks</a> from the book.</font></p>
+
+<p><font size="4">The performance of a heat sink is given as a thermal 
+resistance.</font></p>
+<p><font size="4">So if I have a hot transistor:</font></p>
+<p><img border="0" src="images/pic0031.jpg" width="390" height="406"></p>
+<p><font size="4">where:</font></p>
+<ul>
+  <li><font size="4">the transistor dissipates 3 watt</font></li>
+  <li><font size="4">environmental temperature = 25 <sup>o</sup>C</font></li>
+</ul>
+<p><font size="4">and I want the transistor to be kept at 85 <sup>o</sup>C or 
+less, then use a heat sink that has a thermal resistance of:</font></p>
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">85 <sup>o</sup>C - 
+          25 <sup>o</sup>C </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">3 Watt </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    = <b>20 (<sup>o</sup>C / Watt)</b></font></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<h2><font color="#008000">Common Configurations of Surface to Surface Heat 
+Transfer by Conduction</font></h2>
+<p><font size="4">When heat goes from one surface to another by conduction, it 
+is modeled by:</font></p>
+
+<table border="0" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" bgcolor="#FFFF99">
+  <tr>
+    <td><font face="Courier New" color="#ff8000" size="5">Q = Sk(T<sub>1</sub> - 
+    T<sub>2</sub>)</font><p><font size="4">S is called the <font color="#008000">
+    conduction shape factor</font></font></td>
+  </tr>
+</table>
+<p><font size="4">The above equation is for conduction only. If the space 
+between the two surfaces are filled by fluid or gas, the above equation does not 
+apply.</font></p>
+
+<p><font size="4">S depends on the geometry of the system, which is listed the 
+tables in the book:</font></p>
+
+<p><img border="0" src="images/pic0033.jpg" width="1166" height="1437"></p>
+<p><img border="0" src="images/pic0034.jpg" width="1190" height="1353"></p>
+
+</body>
+
+</html>

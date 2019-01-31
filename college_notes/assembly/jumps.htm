@@ -1,0 +1,114 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Jumps</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">Jumps</font></h1>
+<p><b><font size="4" color="#FF6600">start:</font></b></p>
+
+<p><b><font size="4" color="#FF6600">&nbsp;&nbsp;&nbsp; JMP start</font></b></p>
+
+<p>&nbsp;</p>
+
+<p><font size="4"><b><font color="#FF6600">JZ</font></b> (Jump if Zero) tests ZF. 
+If ZF is found set to 1, a jump occurs.</font></p>
+
+<p><font size="4"><font color="#FF6600"><b>JNZ</b></font> (Jump if Not Zero)</font></p>
+
+<p><font size="4">Note: the bitwise logical operation NOT does not set any flag, 
+even if it causes the operand to become zero.</font></p>
+
+<p>&nbsp;</p>
+
+<p><font size="5" color="#008000">Comparisons of two numbers:</font></p>
+
+<p><font size="4" face="Courier New" color="#FF6600"><b>CMP &lt;op1&gt;, &lt;op2&gt;</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</font><font size="4" face="Courier New" color="#008000">; Sets OF, SF, ZF, AF, 
+PF, and CF</font></p>
+
+<p><font size="4">the result of the operation can be remembered easily if you 
+think &quot;op1 - op2&quot;</font></p>
+
+<p><font size="4">After &quot;CMP&quot;, you call a jump function to jump based on the 
+flag. Here is where it can get complicated.</font></p>
+
+<p><font size="4">There are two mnemonics for each machine instruction: JLE 
+(Jump if less than or equal to) and JNG (Jump if not greater than) both amounts 
+to the same thing. They are synonyms and generate the same op code.</font></p>
+
+<p><font size="4">Another complication is that there is a separate set of 
+instruction for signed and unsigned comparisons. Signed values are thought of as 
+being greater than or less than. Unsigned values are thought of as being above 
+or below.</font></p>
+
+<p><font size="4">A selected list of jump instructions:</font></p>
+
+<p><font size="4"><font face="Courier New"><font color="#FF6600"><b>JE</b></font>&nbsp;&nbsp;&nbsp;&nbsp;
+</font>--- jump if equal<br>
+<font face="Courier New"><font color="#FF6600"><b>JNE</b></font>&nbsp;&nbsp;&nbsp;
+</font>--- jump if not equal<br>
+<font face="Courier New"><font color="#FF6600"><b>JG</b></font>&nbsp;&nbsp;&nbsp;&nbsp;
+</font>--- jump if greater than<br>
+<font face="Courier New"><font color="#FF6600"><b>JGE</b></font>&nbsp;&nbsp;&nbsp;
+</font>--- jump if greater than or equal<br>
+<font face="Courier New"><font color="#FF6600"><b>JL</b></font>&nbsp;&nbsp;&nbsp;&nbsp;
+</font>--- jump if less than<br>
+<font face="Courier New"><font color="#FF6600"><b>JLE</b></font>&nbsp;&nbsp;&nbsp;
+</font>--- jump if less than or equal</font></p>
+
+<p>&nbsp;</p>
+
+<p><font size="5" color="#008000">A &quot;For Loop&quot; using the LOOP instruction</font></p>
+<p><font size="4">The way to do the for loop is to:</font></p>
+<p><font size="4" face="Courier New" color="#FF6600">... set CX to the number of 
+times that you want to do the task ...</font></p>
+<p><font size="4" face="Courier New" color="#FF6600">DoTask:<br>
+&nbsp;&nbsp;&nbsp; ... task ...<br>
+&nbsp;&nbsp;&nbsp; dec cx<br>
+&nbsp;&nbsp;&nbsp; jnz DoTask</font></p>
+<p><font size="4">The loop instruction combines those last two lines:</font></p>
+<p><font size="4" face="Courier New" color="#FF6600">... set CX to the number of 
+times that you want to do the task ...</font></p>
+<p><font size="4" face="Courier New" color="#FF6600">DoTask:<br>
+&nbsp;&nbsp;&nbsp; ... task ...<br>
+&nbsp;&nbsp;&nbsp; loop DoTask</font></p>
+<p><font size="4">a complement for LOOP is <b><font color="#FF6600">JCXZ</font></b> 
+--- jump when CX is zero.</font></p>
+
+<p>&nbsp;</p>
+
+<p><font size="5" color="#008000">Comparing two bits:</font></p>
+
+<p><b><font size="4" face="Courier New" color="#FF6600">TEST &lt;operand&gt;, &lt;bit 
+mask&gt;</font></b></p>
+
+<p><font size="4">TEST performs an AND logical operation between two operands, 
+and then sets the flags as AND would, without altering the destination operand, 
+as AND would.</font></p>
+
+<p><font size="4">Example:</font></p>
+
+<p><font size="4" face="Courier New" color="#FF6600">test AX, 8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+; 8 in binary is 0000 1000 B</font></p>
+
+<p><font size="4">Zero flag is set if set if bit 3 of AX is zero. Zero flag is 
+cleared if bit 3 of AX is one.</font></p>
+
+<p>&nbsp;</p>
+
+<p><font size="4"><font color="#008000">phantoms of the opcode idea:</font> 
+&quot;test&quot; is a phantom of opcode &quot;AND&quot; --- test does what AND does and sets the 
+flag like AND does, but doesn't follow through to change the destination 
+operand. &quot;cmp&quot; is a phantom of the opcode for &quot;SUB&quot; because &quot;cmp&quot; does not 
+follow through and change the destination operand.</font></p>
+
+</body>
+
+</html>

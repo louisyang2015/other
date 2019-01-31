@@ -1,0 +1,1081 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Radiation Heat Transfer</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">Radiation Heat Transfer</font></h1>
+<h2><font color="#008000">The View Factor (F<sub>ij</sub>)</font></h2>
+<p><font color="#FF8000" size="5">F<sub>ij</sub></font><font size="4"> = the 
+fraction of the radiation leaving surface i that strikes surface j directly.</font></p>
+<p><font size="4">I prefer to think of it as the fraction of rays that leave one 
+source surface and strikes another target surface.</font></p>
+<p><font size="4"><i>F<sub>ij</sub> is sometimes written as F<sub>i-&gt;j</sub> for 
+ease of reading.</i></font></p>
+<p><font size="4">The book starts out with a differential equation treatment. 
+The differential view factor, between two differential areas is:</font></p>
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    dF<sub>dA1 <font face="Wingdings" size="4">à</font> dA2</sub> = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">cos &#952;<sub>1</sub> 
+          cos &#952;<sub>2</sub> </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">&#960;r<sup>2</sup>
+          </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    dA<sub>2</sub> </font></td>
+  </tr>
+</table>
+<p><img border="0" src="images/pic0105.jpg" width="374" height="372"></p>
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    F<sub>dA1 <font face="Wingdings" size="4">à</font> dA2</sub> = </font></td>
+    <td noWrap align="middle">
+    <font face="Times New Roman" color="#ff8000" size="7">&#8747;</font> </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    dF<sub>dA1 <font face="Wingdings" size="4">à</font> dA2</sub></font></td>
+  </tr>
+</table>
+<p><font size="4">and this F would be the view factor between two differential 
+areas.</font></p>
+<p><font size="4">The view factor between two complete set of surfaces:</font></p>
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    F<sub>12</sub> = F<sub>A1 <font face="Wingdings" size="4">à</font> A2</sub> 
+    = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">1 </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">A<sub>1</sub> </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle" rowSpan="2">
+        <font face="Times New Roman" color="#ff8000" size="7">&#8747;</font> </td>
+        <td noWrap align="middle">
+        <div style="LEFT: -1.2ex; POSITION: relative; TOP: -0.6ex">
+          <font face="Courier New" color="#ff8000" size="3">0</font></div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="LEFT: -1.2ex; POSITION: relative; TOP: 0.1ex">
+          <font face="Courier New" color="#ff8000" size="3">A<sub>2</sub> </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle" rowSpan="2">
+        <font face="Times New Roman" color="#ff8000" size="7">&#8747;</font> </td>
+        <td noWrap align="middle">
+        <div style="LEFT: -1.2ex; POSITION: relative; TOP: -0.6ex">
+          <font face="Courier New" color="#ff8000" size="3">0</font></div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="LEFT: -1.2ex; POSITION: relative; TOP: 0.1ex">
+          <font face="Courier New" color="#ff8000" size="3">A<sub>1</sub> </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">cos &#952;<sub>1</sub> 
+          cos &#952;<sub>2</sub> </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">&#960; r<sup>2</sup>
+          </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    dA<sub>1</sub> dA<sub>2</sub> </font></td>
+  </tr>
+</table>
+<p><font size="4">The view factor F<sub>A2 -&gt; A1</sub> is readily determined 
+from the above equation by interchanging the subscripts 1 and 2.</font></p>
+<p><font size="4">The above integral is actually not practical even for simple 
+geometries. View factors are computed and listed as part of tables and graphs.</font></p>
+<ul>
+  <li><font size="4"><a href="images/table_12-01.jpg">Table 12-1</a> has view 
+  factor for three dimensional geometries; these equations are also available 
+  through the TI 89 calculator as scripts</font></li>
+  <li><font size="4"><a href="images/table_12-02.jpg">Table 12-2</a> has view 
+  factor for infinitely long geometries</font></li>
+  <li><font size="4">Page 611 - 612 has the view factors in graphical forms.</font></li>
+</ul>
+<p>&nbsp;</p>
+<h2><font color="#008000">View Factor Relationships</font></h2>
+<p><font size="4" color="#008000">Reciprocity Relation</font></p>
+<table border="0" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" bgcolor="#FFFF99">
+  <tr>
+    <td><font face="Courier New" color="#ff8000" size="5">A<sub>1</sub> F<sub>12</sub> 
+    = A<sub>2</sub> F<sub>21</sub> </font></td>
+  </tr>
+</table>
+<p><font size="4">F<sub>i -&gt; i</sub> = the fraction of radiation striking it 
+self. This would be zero for a flat or convex surface, but non zero for a 
+concave surface.</font></p>
+<p><font size="4" color="#008000">The Summation Rule</font></p>
+<p><font size="4">For a surface with 6 enclosures numbered 1, 2, 3, 4, 5, i :</font></p>
+<p><img border="0" src="images/pic0106.jpg" width="332" height="443"></p>
+<p><font size="5">F<sub>ii</sub> + F<sub>i1</sub> + F<sub>i2</sub> + F<sub>i3</sub> 
++ F<sub>i4</sub> + F<sub>i5</sub> = 1</font></p>
+<p><font size="4">For an N-surface enclosure, there are N<sup>2</sup> view 
+factors. The number of view factors to evaluate directly are:</font></p>
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">1 </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">2 </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    N(N - 1) </font></td>
+  </tr>
+</table>
+<p><font size="4">The remaining view factors can be evaluated with the summation 
+and reciprocity relations.</font></p>
+<p><font size="4" color="#008000">The Superposition Rule</font></p>
+<p><img border="0" src="images/pic0107.jpg" width="445" height="329"></p>
+<p><font size="4" color="#008000">The Symmetry Rule</font></p>
+<p><img border="0" src="images/pic0108.jpg" width="442" height="280"></p>
+<p><font size="4" color="#008000">The Crossed-Strings Method</font></p>
+<p><font size="4">This method works on infinitely long surfaces. These 
+geometries can be assumed to be two-dimensional because radiation escaping 
+through the ends will be negligible. For example, if we have two infinitely long 
+surfaces with a cross section that looks like:</font></p>
+<p>&nbsp;</p>
+<p><font size="4">then the view factor is:</font></p>
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    F<sub>1<font face="Wingdings" size="4">à</font>2</sub> = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">(L<sub>5</sub> + L<sub>6</sub>) - (L<sub>3</sub> + L<sub>4</sub>)</font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">2L<sub>1</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<p><font size="4">note that L<sub>2</sub> is not used.</font></p>
+<p><font size="4">In general, the crossed-strings method is:</font></p>
+<table border="0" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" bgcolor="#FFFF99">
+  <tr>
+    <td>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">F<sub>i<font face="Wingdings" size="4">à</font>j</sub> 
+        = </font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">&#931;(Crossed 
+              Strings) - &#931;(Uncrossed strings) </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">2 × (String on 
+              surface i) </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<p><font size="4">The crossed-strings method is applicable even when the two 
+surfaces considered share a common edge, as in a triangle.</font></p>
+
+<p>&nbsp;</p>
+
+<h2><font color="#008000">Radiation Heat Transfer: Black Surfaces</font></h2>
+
+<p><font size="4">The black surface case is the easiest because there is no 
+reflection involved. If we have two black surfaces, Q<sub>1-&gt;2</sub> = (heat 
+radiated from surface 1 to surface 2) - (heat radiated from surface 2 to surface 
+1).</font></p>
+
+<p><font face="Courier New" color="#ff8000" size="5">Q = A<sub>1</sub> F<sub>1<font face="Wingdings" size="4">à</font>2</sub> 
+&#963;T<sub>1</sub><sup>4</sup> - A<sub>2</sub> F<sub>2<font face="Wingdings" size="4">à</font>1</sub> 
+&#963;T<sub>2</sub><sup>4</sup> </font></p>
+
+<p><font size="4">and A<sub>1</sub> F<sub>12</sub> = A<sub>2</sub> F<sub>21</sub> 
+, so</font></p>
+
+<table border="0" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" bgcolor="#FFFF99">
+  <tr>
+    <td><font face="Courier New" color="#ff8000" size="5">Q = A<sub>1</sub> F<sub>1<font face="Wingdings" size="4">à</font>2</sub> 
+    &#963;(T<sub>1</sub><sup>4</sup> - T<sub>2</sub><sup>4</sup>)</font></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+
+<h2><font color="#008000">Radiation Heat Transfer: Diffuse, Gray Surfaces</font></h2>
+
+<p><font size="4">Here, we do take into account reflection, but we still make 
+the simplification that the surfaces involved are opaque (not transparent), 
+diffuse, and gray.</font></p>
+
+<p><font size="4">For a black body, the energy radiated is just: </font>
+<font size="5">E = </font><font face="Times New Roman"><font size="5">&#963; T<sup>4</sup></font><font size="4"> 
+, where E is in Watt per meter<sup>2</sup> .To take into account reflection, we 
+use a more complicated version of E, which we call J:</font></font></p>
+
+<p><img border="0" src="images/pic0109.jpg" width="454" height="390"></p>
+
+<table border="0" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" bgcolor="#FFFF99">
+  <tr>
+    <td><font face="Courier New" color="#ff8000" size="5">J = &#949;E + <i>&#961;</i>G
+    </font>
+    <p><font face="Courier New" color="#ff8000" size="5">J = &#949;E + (1 - &#949;)G
+    </font></td>
+  </tr>
+</table>
+<p><font size="4">Note that J has two components, one of which is E, and the 
+other one is a reflected component of the incident radiation. The &quot;
+<font face="Times New Roman">&#961; = 1 -</font> <font face="Times New Roman">&#949; &quot; 
+comes from assuming &quot; &#945; = &#949; &quot;.</font></font></p>
+
+<p><font size="4">For a black surface, the heat leaving a surface is just A *
+<font face="Times New Roman">&#963;T<sup>4</sup> --- that all of the heat leaving is 
+due to the temperature of the black body.</font></font></p>
+
+<p><font face="Times New Roman" size="4">In this gray surface scenario, the heat 
+leaving is due partly to the surface temperature &quot;&#949;E&quot;, and also due partly to 
+the reflected ray &quot;&#961;G&quot;. Heat leaving is modeled as </font></p>
+
+<table border="0" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" bgcolor="#FFFF99">
+  <tr>
+    <td>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">Q = </font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">E - J </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">R </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+      </tr>
+    </table>
+    <p><font size="4">where</font></p>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">R = </font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">1 - &#949; </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">A &#949; </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<p><img border="0" src="images/pic0110.jpg" width="292" height="203"></p>
+
+<p><font size="4">Note that the nodes in this case are not temperatures, but 
+they are heat flux values.</font></p>
+
+<p><font size="4">If the surface is black, then R<sub>i</sub> = 0.</font></p>
+
+<p><font size="4">The radiation between two surfaces is modeled as: </font></p>
+
+<p><img border="0" src="images/pic0111.jpg" width="305" height="486"></p>
+
+<p><font size="4">Note that each surface gets its own resistor value that is R = 
+(1 - <font face="Times New Roman">&#949;</font>) / (A<font face="Times New Roman">&#949;</font>) 
+to model the difference between J and E. Then another resistor value R = 1/(AF) 
+models the radiation between surfaces. This middle resistor is based on:</font></p>
+
+<p><font size="4">Q = (radiation from surface i to j) - (radiation from surface 
+j to i)</font></p>
+
+<p><font face="Courier New" color="#ff8000" size="5">Q<sub>i<font face="Wingdings" size="4">à</font>j</sub> 
+= A<sub>i</sub> F<sub>i<font face="Wingdings" size="4">à</font>j</sub> J<sub>i</sub> 
+- A<sub>j</sub> F<sub>j<font face="Wingdings" size="4">à</font>i</sub> J<sub>j</sub>
+</font></p>
+
+<p><font face="Courier New" color="#ff8000" size="5">Q<sub>i<font face="Wingdings" size="4">à</font>j</sub> 
+= A<sub>i</sub> F<sub>i<font face="Wingdings" size="4">à</font>j</sub> (J<sub>i</sub> 
+- J<sub>j</sub>)</font></p>
+
+<p><font size="4">which is basically the same thing as radiation without 
+reflection. It's up to R<sub>i</sub> and R<sub>j</sub> to measure the 
+reflection.</font></p>
+
+<p><font size="4">Not that the subscript i = source, and j = target. This is a 
+convention that will reappear throughout the remainder of the section.</font></p>
+
+<p><font size="4">If there is a single surface that is radiating to multiple 
+surfaces, the resistances encountered would look something like:</font></p>
+
+<p><img border="0" src="images/pic0112.jpg" width="390" height="328"></p>
+
+<p><font size="4">The first resistance is called the <font color="#008000">
+surface resistance</font> and use the R = (1 - <font face="Times New Roman">&#949;</font>) 
+/ (A<font face="Times New Roman">&#949;</font>) formula. The second set of resistance 
+is called <font color="#008000">space resistance</font> and use the R=1/(AF) 
+formula.</font></p>
+
+<p>&nbsp;</p>
+
+<h2><font color="#008000">The Direct Method (Matrix Method)</font></h2>
+
+<p><font size="4">If we use a series of resistance values and solve the thing 
+like a circuit for all the J values, that is called the <font color="#008000">
+network method</font>. This method is not workable once we have more than three 
+or four surfaces because things just become too complicated to be drawn.</font></p>
+
+<p><font size="4">The direct method means bypassing the heat resistance circuit 
+and go directly to a system of equations.</font></p>
+
+<p><font size="4">We write one equation for each surface that is emitting 
+radiation:</font></p>
+
+<p><img border="0" src="images/pic0112.jpg" width="390" height="328"></p>
+
+<p><font size="4">If the heat leaving the surface is known, then the equation 
+for the surface is:</font></p>
+
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    Q = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 1.5ex">
+          <font face="Courier New" color="#ff8000" size="3">N</font></div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <font face="Times New Roman" color="#ff8000" size="7">&#931;</font> </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -1.4ex">
+          <font face="Courier New" color="#ff8000" size="3">n = 1</font></div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">J - J<sub>n</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">R<sub>n</sub> </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<p><font size="4">If the temperature of the surface is known, we an write:</font></p>
+
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">&#963;T<sup>4</sup> - J
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">R </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 1.5ex">
+          <font face="Courier New" color="#ff8000" size="3">N</font></div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <font face="Times New Roman" color="#ff8000" size="7">&#931;</font> </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -1.4ex">
+          <font face="Courier New" color="#ff8000" size="3">n = 1</font></div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">J - J<sub>n</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">R<sub>n</sub> </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<p><font size="4">Simplified version of the above two equations:</font></p>
+
+<table border="0" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" bgcolor="#FFFF99">
+  <tr>
+    <td><font size="4">Subscript i is the source, j is the target</font><p>
+    <font size="4">If heat transfer rate Q is known:</font></p>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">Q<sub>i</sub> = A<sub>i</sub>
+        </font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 1.5ex">
+              <font face="Courier New" color="#ff8000" size="3">N</font></div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <font face="Times New Roman" color="#ff8000" size="7">&#931;</font> </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -1.4ex">
+              <font face="Courier New" color="#ff8000" size="3">j = 1</font></div>
+            </td>
+          </tr>
+        </table>
+        </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">F<sub>i<font face="Wingdings" size="4">à</font>j</sub>(J<sub>i</sub> 
+        - J<sub>j</sub>) </font></td>
+      </tr>
+    </table>
+    <p><font size="4">If surface temperature T is known:</font></p>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">&#963;T<sub>i</sub><sup>4</sup> 
+        = J<sub>i</sub> + </font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">1 - &#949;<sub>i</sub>
+              </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">&#949;<sub>i</sub>
+              </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 1.5ex">
+              <font face="Courier New" color="#ff8000" size="3">N</font></div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <font face="Times New Roman" color="#ff8000" size="7">&#931;</font> </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -1.4ex">
+              <font face="Courier New" color="#ff8000" size="3">j = 1</font></div>
+            </td>
+          </tr>
+        </table>
+        </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">F<sub>i<font face="Wingdings" size="4">à</font>j</sub>(J<sub>i</sub> 
+        - J<sub>j</sub>) </font></td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+
+<h2><font color="#008000">Two-Surface Enclosure and Three-Surface Enclosure 
+Networks</font></h2>
+
+<p><font size="4">To speed up problem solving, the book provides simplified 
+equations for common two-surface enclosure and three-surface enclosure 
+situations.</font></p>
+
+<p><font size="4" color="#008000">Two-Surface Enclosure</font></p>
+
+<p><img border="0" src="images/pic0113.jpg" width="463" height="462"></p>
+
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    Q<sub>12</sub> = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">E<sub>b1</sub> - E<sub>b2</sub>
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">R<sub>1</sub> + R<sub>12</sub> 
+          + R<sub>2</sub> </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<p><font size="4">The simplified equation is:</font></p>
+
+<table border="0" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td bgcolor="#FFFF99">
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">Q<sub>12</sub> =
+        </font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">
+              &#963;(T<sub>1</sub><sup>4</sup> - T<sub>2</sub><sup>4</sup>)</font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">
+              (1 - &#949;<sub>1</sub>)/(A<sub>1</sub> &#949;<sub>1</sub>) 
+              + 1/(A<sub>1</sub> F<sub>12</sub>) 
+              + (1 - &#949;<sub>2</sub>)/(A<sub>2</sub> &#949;<sub>2</sub>)</font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<p><font size="4"><a href="images/table_12-03.jpg">Table 12-3</a> has some common two-surface enclosure arrangements</font></p>
+
+<p><font size="4" color="#008000">Three-Surface Enclosure</font></p>
+
+<p><img border="0" src="images/pic0114.jpg" width="916" height="480"></p>
+
+<p><font size="4">The book did not provide simplification for the three-surface 
+enclosure, only a set of nodal equations for the J values.</font></p>
+
+<p>&nbsp;</p>
+
+<h2><font color="#008000">Radiation Shields and the Radiation Effect</font></h2>
+
+<p><font size="4">Radiation heat transfer between two surfaces can be reduced 
+greatly by inserting a thin, high reflectivity (low emissivity) sheet of 
+material between the two surfaces --- a <font color="#008000">radiation shield</font>. 
+Multilayer radiation shields separated by evacuated space are commonly used in 
+cryogenic and space applications.</font></p>
+
+<p><font size="4">The book go over the situation where two parallel pates are 
+separated by a radiation shield. The radiation shield concept applies similarly 
+to&nbsp;other geometries as well.</font></p>
+
+<p><img border="0" src="images/pic0115.jpg" width="769" height="391"></p>
+
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    Q<sub>12 no shield</sub> = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">
+          A&#963;(T<sub>1</sub><sup>4</sup> - T<sub>2</sub><sup>4</sup>)</font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">
+          1/&#949;<sub>1</sub> + 1/&#949;<sub>2</sub> - 1 </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    Q<sub>12 no shield</sub> = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">
+          A&#963;(T<sub>1</sub><sup>4</sup> - T<sub>2</sub><sup>4</sup>)</font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">(1/&#949;<sub>1</sub> + 
+          1/&#949;<sub>2</sub> - 1) + (1/&#949;<sub>31</sub> + 1/&#949;<sub>32</sub> - 1)
+          </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+
+<p><font size="4">If the emissivities of all surfaces are equal:</font></p>
+
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    Q<sub>12 N shields</sub> = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">1 </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">N + 1 </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    * Q<sub>12 no shield</sub> </font></td>
+  </tr>
+</table>
+
+<p><font size="4">Note that these equations apply to the parallel plate version 
+of the radiation shield setup only.</font></p>
+
+<p><font size="4" color="#008000">Radiation Effect on Temperature Measurements</font></p>
+
+<p><font size="4">If there is a temperature difference between the fluid in a 
+room and the walls of the room, a thermometer does not really measure the 
+temperature of the fluid in the room.</font></p>
+
+<p><font size="4">Say the fluid temperature is higher than the wall temperature:</font></p>
+
+<p><img border="0" src="images/pic0116.jpg" width="366" height="332"></p>
+
+<p><font size="4">the fluid is then losing heat to the thermometer by 
+convection, and the thermometer is losing heat to the wall by radiation.</font></p>
+
+<p><font size="4">If the temperature reading on the thermometer is not changing, 
+then:</font></p>
+
+<p><font face="Courier New" color="#ff8000" size="5">h(T<sub>f</sub> - T<sub>th</sub>) 
+= &#949;<sub>th</sub> &#963;(T<sub>th</sub><sup>4</sup> - T<sub>w</sub><sup>4</sup>)
+</font></p>
+
+<p><font size="4">where the subscript &quot;th&quot; denote properties of the thermometer.</font></p>
+
+<p><font size="4">The difference between T<sub>f</sub> and T<sub>th</sub> is the 
+most significant when h is small and <font face="Times New Roman">&#949; is large.</font></font></p>
+
+<p><font face="Times New Roman" size="4">If used outdoors, a thermometer must be 
+protected from direct sunlight.</font></p>
+
+<p><font face="Times New Roman" size="4">Because people lose a lot of heat to 
+radiation, the temperature of the walls contributes significantly to the 
+temperature felt by a person.</font></p>
+
+<p>&nbsp;</p>
+
+<h2><font face="Times New Roman" color="#008000">Radiation Exchange with 
+Emitting and Absorbing Gases</font></h2>
+
+<p><font face="Times New Roman" size="4">So far, we have treated the gas as if 
+it has no impact on radiation.</font></p>
+
+<p><font face="Times New Roman" size="4">Gases that consist of monatomic 
+molecules and symmetric diatomic molecules are essentially transparent to 
+radiation. Gases with asymmetric molecules do participate in the radiation 
+process. Two common examples are H<sub>2</sub>O and CO<sub>2</sub> .</font></p>
+
+<p><font face="Times New Roman" size="4">Special issues about how gases interact 
+with radiation:</font></p>
+
+<ul>
+  <li><font face="Times New Roman" size="4">Gaseous radiation is volumetric 
+  phenomena.</font></li>
+  <li><font face="Times New Roman" size="4">Gas emit and absorb radiation at a 
+  number of narrow wavelength bands. Despite this, satisfactory results can be 
+  obtained by assuming the gas to be gray, using a single effective &#949; value for 
+  its emissivity.</font></li>
+  <li><font face="Times New Roman" size="4">How gas interacts with radiation 
+  depends on multiple factors: temperature, pressure, thickness of the gas 
+  layer, and composition of the gas mixture.</font></li>
+</ul>
+
+<p><font face="Times New Roman" size="4"><font color="#008000">scattering</font> 
+--- the change of direction of radiation due to reflection, refraction, and 
+diffraction.</font></p>
+
+<p><font face="Times New Roman" size="4">As radiation passes through a volume of 
+gas, its intensity decreases exponentially. This is called <font color="#008000">
+Beer's Law</font>:</font></p>
+
+<table border="0" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" bgcolor="#FFFF99">
+  <tr>
+    <td><font face="Courier New" color="#ff8000" size="5">&#949;<sub>&#955;</sub> = &#945;<sub>&#955;</sub> 
+    = 1 - &#964;<sub>&#955;</sub> = 1 - exp(-k<sub>&#955;</sub> L) </font></td>
+  </tr>
+</table>
+
+<p><font face="Times New Roman" size="4">optically thick medium --- have &#949; &#8776; 1 
+and acts like a black surface.</font></p>
+
+<p><font face="Times New Roman" size="4">emissivity of H<sub>2</sub>O, under a 
+pressure of 1 atm, is in figure 12-36a (page 643)</font></p>
+<p><font face="Times New Roman" size="4">To get the emissivity at pressure other 
+than 1 atm, a C<sub>w</sub> factor is used:</font></p>
+<p><font face="Times New Roman" size="5" color="#FF8000">&#949;<sub>w</sub> = C<sub>w</sub> 
+* &#949;<sub>w, 1 atm</sub></font></p>
+<p><font face="Times New Roman" size="4">The radiation emissions of H<sub>2</sub>O 
+and CO<sub>2</sub> overlap in terms of wavelength. Therefore, the emissivity of 
+a mixture of H<sub>2</sub>O and CO<sub>2</sub> is not the isolated emissivities 
+added together.</font></p>
+<p><font face="Times New Roman" size="5" color="#FF8000">&#949;<sub>g</sub> = &#949;<sub>c</sub> 
++ &#949;<sub>w</sub> - &#8710;&#949;</font></p>
+<p><font face="Times New Roman" size="4">&#949;<sub>c</sub> is the &#949; for carbon 
+dioxide, and &#949;<sub>w</sub> is the &#949; for water.</font></p>
+<p><font face="Times New Roman" size="4">&#8710;&#949; is the <font color="#008000">
+emissivity correction factor</font>, which accounts for the overlap of emission 
+bands. &#8710;&#949; is plotted in figure 12-38 on page 644.</font></p>
+<p><font face="Times New Roman" size="4">The values found in the book are 
+measured using a system where radiation passes through a hemispherical gas body 
+to a small surface element located at the center of the base of the hemisphere. 
+To use these emissivity numbers for geometries other than hemispheres, use a 
+value called <font color="#008000">mean beam length L</font>. &quot;L&quot; is in table 
+12-4 on page 645.</font></p>
+<p><font face="Times New Roman" size="4">To get the absorptivity value of gas
+</font><font face="Times New Roman" size="5">(&#945;<sub>g</sub>)</font><font face="Times New Roman" size="4"> 
+:</font></p>
+<table border="2" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#FF8000">
+  <tr>
+    <td nowrap><font face="Courier New" color="#ff8000" size="5">&#945;<sub>g</sub> = 
+    &#945;<sub>c</sub> + &#945;<sub>w</sub> - &#916;&#945; </font>
+    <p><font size="4">where:</font></p>
+    <p><font face="Times New Roman" size="4">&#8710;&#945; = &#8710;&#949;</font></p>
+    <p><font face="Courier New" color="#ff8000" size="5">CO<sub>2</sub>:<br>
+    &#945;<sub>c</sub> = C<sub>c</sub> * (T<sub>g</sub>/T<sub>s</sub>)<sup>0.65</sup> 
+    * &#949;<sub>c</sub>(T<sub>s</sub> , P<sub>c</sub> * L * T<sub>s</sub> / T<sub>g</sub>)
+    </font></p>
+    <p><font face="Courier New" color="#ff8000" size="5">H<sub>2</sub>O:<br>
+    &#945;<sub>w</sub> = C<sub>w</sub> * (T<sub>g</sub>/T<sub>s</sub>)<sup>0.45</sup> 
+    * &#949;<sub>w</sub>(T<sub>s</sub> , P<sub>w</sub> * L * T<sub>s</sub> / T<sub>g</sub>)
+    </font></p>
+    <p><font size="4">where:</font></p>
+    <p><font face="Times New Roman" size="4">&#949;(a, b) = the &#949; takes two arguments 
+    because the &#949; is from the graphs on page 643, <br>
+    which takes two arguments</font></p>
+    <p><font face="Times New Roman" size="4">T<sub>s</sub> = the temperature of 
+    the surface surrounding the gas<br>
+    T<sub>g</sub> = the temperature of the gas itself<br>
+    P = pressure<br>
+    L = mean beam length</font></td>
+  </tr>
+</table>
+<p><font face="Times New Roman" size="4">Once the &#949; for a gas is found, the gas 
+would emit radiation at:</font></p>
+<p><font face="Courier New" color="#ff8000" size="5">Q<sub>leaving gas</sub> = &#949;<sub>g</sub> 
+A<sub>s</sub> &#963; T<sub>g</sub><sup>4</sup> </font></p>
+<p><font face="Times New Roman" size="4">If the surface surrounding the gas is a 
+black surface, then it would emit radiation at A<sub>s</sub> &#963; T<sub>s</sub><sup>4</sup> 
+. The gas would absorb:</font></p>
+<p><font face="Courier New" color="#ff8000" size="5">Q<sub>absorbed by gas</sub> 
+= &#945;<sub>g</sub> A<sub>s</sub> &#963; T<sub>s</sub><sup>4</sup> </font></p>
+<p><font size="4">The net heat flow:</font></p>
+<p><font face="Courier New" color="#ff8000" size="5">Q<sub>net</sub> = Q<sub>leaving 
+gas</sub> - Q<sub>absorbed by gas</sub> </font></p>
+<p><font face="Courier New" color="#ff8000" size="5">Q<sub>net</sub> = A<sub>s</sub> 
+&#963;(&#949;<sub>g</sub> T<sub>g</sub><sup>4</sup> - &#945;<sub>g</sub> T<sub>s</sub><sup>4</sup>)</font></p>
+<p><font face="Times New Roman" size="4">The above assumes that a black surface 
+surrounds the gas. If the surface is not black, but &#949;<sub>s</sub> &gt; 0.7, we can 
+use:</font></p>
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    Q<sub>net,gray</sub> = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">&#949;<sub>s</sub> + 1
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">2 </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    Q<sub>net,black</sub> </font></td>
+  </tr>
+</table>
+<p><font size="4">For smaller values of <font face="Times New Roman">&#949;, the 
+analysis is more complicated because of the radiation reflected by the surface.</font></font></p>
+
+</body>
+
+</html>

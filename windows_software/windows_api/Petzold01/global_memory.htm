@@ -1,0 +1,54 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>About Global Memory</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">About Global Memory</font></h1>
+<p><font size="4">To allocate a memory block using Windows API:</font></p>
+<h2><font face="Courier New" color="#FF6600">HGLOBAL hGlobal = GlobalAlloc (uiFlags, 
+dwSize);</font></h2>
+<p><font size="4">A reallocation function:</font></p>
+<p><font size="4" face="Courier New" color="#FF6600">hGlobal = GlobalReAlloc (hGlobal, 
+dwSize, uiFlags);</font></p>
+<p><font size="4">To get the size of the memory block:</font></p>
+<p><font size="4" face="Courier New" color="#FF6600">dwSize = GlobalSize (hGlobal);</font></p>
+<p><font size="4">to free the global memory block:</font></p>
+<h2><font color="#FF6600" face="Courier New">GlobalFree (hGlobal);</font></h2>
+<p>&nbsp;</p>
+<p><font size="4">For clipboard usage, use this uiFlags:</font></p>
+<h2><font color="#FF6600" face="Courier New">uiFlags = GHND | GMEM_SHARE</font></h2>
+<p><font size="4">where</font></p>
+<h2><font color="#FF6600" face="Courier New">GHND = GMEM_MOVEABLE | 
+GMEM_ZEROINIT</font></h2>
+<p><font size="4">moveable means when the user is not using it, Windows can move 
+this memory around in virtual memory as needed to prevent fragmentation.</font></p>
+<p><font size="4">zeroinit means all bytes will be zero at start, so there's no 
+need to pad in the null zero terminator for a string.</font></p>
+<p>&nbsp;</p>
+<p><font size="4">To access the global memory, say as &quot;int&quot; type:</font></p>
+<p><font size="4" face="Courier New" color="#FF6600">int* p;<br>
+GLOBALHANDLE hGlobal;</font></p>
+<p><font size="4" face="Courier New" color="#FF6600">hGlobal = GlobalAlloc (GHND, 
+1024);</font></p>
+<h2><font face="Courier New" color="#FF6600">p = (int*) GlobalLock (hGlobal);<br>
+</font><font face="Courier New" color="#008000">//translates the handle in to a 
+pointer</font></h2>
+<p><font size="4" face="Courier New" color="#FF6600">GlobalUnlock (hGlobal);</font></p>
+<p>&nbsp;</p>
+<p><font size="4">To get the handle when given the &quot;p&quot; pointer:</font></p>
+<p><font size="4" face="Courier New" color="#FF6600">hGlobal = GlobalHandle (p);</font></p>
+<p>&nbsp;</p>
+<p><font size="4" color="#008000">Other notes:</font></p>
+<p><font size="4">You can lock a memory block multiple times. Each lock requires 
+a corresponding unlock.</font></p>
+
+</body>
+
+</html>

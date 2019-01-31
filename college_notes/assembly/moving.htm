@@ -1,0 +1,122 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Moving Data Around</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">Moving Data Around</font></h1>
+<p align="left"><font size="4">As with many other instructions: the first 
+operand belonging to a machine instruction is the &quot;destination operand&quot;. The 
+second operand is the &quot;source operand&quot;.</font></p>
+
+<p align="left"><font size="5" color="#008000">Examples:</font></p>
+
+<p align="left"><font size="4" color="#FF6600">MOV AX, 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</font><font size="4" color="#008000">; source is immediate data</font></p>
+
+<p align="left"><font size="4" color="#FF6600">MOV BX, CX&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</font><font size="4" color="#008000">; both are 16-bit register data</font></p>
+
+<p align="left"><font size="4" color="#FF6600">MOV DL, BH&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</font><font size="4" color="#008000">; both are 8-bit register data</font></p>
+
+<p align="left"><font size="4" color="#FF6600">MOV [BP], DI&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</font><font size="4" color="#008000">; destination is memory data at SS:BP</font></p>
+
+<p align="left"><font size="4" color="#FF6600">MOV DX, [SI]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</font><font size="4" color="#008000">; source is memory data at DS:SI</font></p>
+
+<p align="left"><font size="4" color="#FF6600">MOV BX, [ES:BX]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</font><font size="4" color="#008000">; source is memory data at ES:BX</font></p>
+
+<p align="left"><font size="4" color="#FF6600">MOV [CS:SI], AX</font><font size="4" color="#008000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+; CS (code segment) used as segment address</font></p>
+
+<p align="left">&nbsp;</p>
+
+<p align="left"><font size="4" color="#FF6600">MyData DW 0744h</font></p>
+
+<p align="left"><font size="4" color="#008000">...</font></p>
+
+<p align="left"><font size="4" color="#FF6600">MOV AX, MyData </font>
+<font size="4" color="#008000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ; AX holds 
+the address of the MyData label</font></p>
+
+<p align="left"><font size="4" color="#FF6600">MOV AX, [MyData] </font>
+<font size="4" color="#008000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ; AX holds 
+the value of MyData (0744h)</font></p>
+
+<p align="left">&nbsp;</p>
+
+<p align="left"><font size="4">Related to the &quot;move&quot; instruction is the 
+&quot;exchange&quot; instruction for swapping values:</font></p>
+
+<p align="left"><font size="4" color="#FF6600">XCHG CL, CH</font></p>
+
+<p align="left">&nbsp;</p>
+
+<p align="left"><font size="4" color="#008000">Segment Register Assumptions:
+</font><font size="4">In the examples with [BP], [SI] and so on, a certain 
+segment address is assumed so that you don't have to write [SS:BP] and [DS:SI]. 
+In flat models you do not use segment overrides.</font></p>
+
+<p align="left">&nbsp;</p>
+
+<p align="left"><font size="5" color="#008000">Limitations of &quot;MOV&quot;:</font></p>
+
+<p align="left"><font size="4">You can move register to memory, memory to 
+register, and register to register --- but not memory to memory</font></p>
+
+<p align="left"><font size="4">You cannot directly move an immediate value (any 
+number like 0FF00H) directly into a segment register like ES, DS, SS, or CS. 
+Instead, you must first move the immediate value into a register like AX, and 
+then move AX into ES.</font></p>
+
+<p align="left"><font size="4">You can not move from one segment register 
+directly to another.</font></p>
+
+<p align="left"><font size="4">In real mode, only BP, BX, SI, and DI may hold 
+offset for memory data <i>--- why was general-purpose register BX singled out 
+for special treatment? Think of it as the difference between dreams and reality 
+for Intel. In the best of all worlds, every register could be used for all 
+purposes. Unfortunately, when CPU designers get together and argue about what 
+their nascent CPU is supposed to do, they are forced to face the fact that there 
+are only so many transistors on the chip to do the job. Each 8086/8088 register 
+has a &quot;hidden agenda&quot;, an set of abilities that none of the others share. When 
+you get into 32 bit protected mode, many of the &quot;real mode&quot; limitations go away.</i></font></p>
+
+<p align="left">&nbsp;</p>
+<p align="left"><font color="#008000" size="5">MASM specifics:</font></p>
+
+<p align="left"><font size="4" color="#008000">Syntax variations:</font></p>
+
+<p align="left"><font size="4" color="#FF6600">MOV AX, [ES:BX] </font>
+<font size="4" color="#008000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ; NASM 
+variation</font></p>
+
+<p align="left"><font size="4" color="#FF6600">MOV AX, BS:[BX]</font><font size="4" color="#008000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+;&nbsp; MASM variation</font></p>
+
+<p align="left"><font size="4" color="#FF6600">ES: MOV AX, [BX]</font><font size="4" color="#008000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+; MS-DOS 's &quot;DEBUG&quot; command variation</font></p>
+
+<p align="left">&nbsp;</p>
+<p align="left"><font size="4">In MASM, you can use the assume directive to 
+avoid specifying a segment</font></p>
+<p align="left"><font size="4">NASM:</font></p>
+<p align="left"><font size="4" color="#FF6600">MOV AX, [ES:JunkChunk]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</font><font size="4" color="#008000">; move word variable JunkChunk into AX</font></p>
+<p align="left"><font size="4">MASM:</font></p>
+<p align="left"><font size="4" color="#FF6600">ASSUME ES:JunkSegment</font></p>
+<p align="left"><font size="4" color="#FF6600">MOV AX, [JunkChunk]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</font><font size="4" color="#008000">&nbsp;; no need for &quot;ES:JunkChunck&quot;</font></p>
+
+</body>
+
+</html>

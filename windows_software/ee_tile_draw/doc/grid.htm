@@ -1,0 +1,189 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>The Grid Class</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">The Grid Class</font></h1>
+<p align="left"><font size="4">The Grid class is a data structure class for this 
+program. It is to hold a bunch of tile objects that contains information about 
+what the user drew.</font></p>
+<p align="left"><font size="4">Physically, the grid is rendered as a drawing 
+area that occupies the right 3/4 of the client window.</font></p>
+<h2 align="left"><font color="#008000">Tile</font></h2>
+<p align="left"><font size="4">This class is used by the &quot;Grid&quot;. It has no 
+methods --- it's just a collection of data: the <b><font color="#FF6600">x</font></b> coordinate of the tile's 
+location in the overall grid, <font color="#FF6600"><b>y</b></font> coordinate, the picture (<b><font color="#FF6600">component_id</font></b>), the 
+<b><font color="#FF6600">foreground</font></b> color of the picture, and the 
+<font color="#FF6600"><b>background</b></font> color for the tile.</font></p>
+
+<p align="left"><font size="4">Each Tile object is meant to be an element in a 
+link list --- so it has a <b><font color="#FF6600">pNext</font></b> pointer to 
+the next &quot;Tile&quot; object. The destructor and constructor of the &quot;Tile&quot; object has 
+been written to take this &quot;pNext&quot; into account.</font></p>
+
+<p align="left">&nbsp;</p>
+
+<h2 align="left"><font color="#008000">Hash table for the Tile Objects</font></h2>
+
+<p align="left"><font size="4">The &quot;Grid&quot; class contains and manages the &quot;Tile&quot; objects in a 
+hash table fashion. &quot;Grid&quot; has an array of 16K &quot; Tile* &quot; pointers --- and the 
+array is called &quot;<b><font color="#FF6600">m_tiles</font></b>&quot;. 16K means that a 14 bit address is used in the 
+indexing. 7 of these 12 bits comes from the x coordinate, and the other 7 bits 
+comes from the y coordinate. Example:</font></p>
+
+<p align="left"><font size="4">For example, the user draws an object at a tile 
+with coordinates (1100010, 1000111). A tile object representing the user's 
+selections will be dynamically created, and the pointer &quot;m_tiles[1100010 
+1000111]&quot;, which is also &quot;m_tiles[12615]&quot; will be pointing to this new tile 
+object.</font></p>
+
+<p align="left"><b><font size="4" color="#008000">Performance Notes about this 
+set up:</font></b></p>
+
+<p align="left"><font size="4">As in all hash tables, we have a chance of 
+collision. Here, if two coordinates have lower 7 bits that are equal, then these 
+two coordinates will hash onto the same address in the &quot;m_tiles&quot; array. As 
+usual, these collisions are resolved by linked list of buckets.</font></p>
+
+<p align="left"><font size="4">Let say that we have two coordinates that hash to 
+the same address. There is at least a gap of 127 tiles in between them:</font></p>
+
+<p align="left">
+<img border="0" src="images/pic016.gif" width="427" height="347"></p>
+
+<p align="left"><font size="4">Any two of these red tiles will hash to the same 
+place --- we are using the lowest 7 bits of the coordinate as hash values, and 
+those lowest 7 bits will repeat every 2^7 = 128 tiles.</font></p>
+
+<p align="left"><font size="4">The above picture gives some performance 
+conclusions about the choice of the hash table:</font></p>
+
+
+  <ul>
+    <li><font size="4">If the total picture is 128 tiles x 128 tiles big, then we 
+    won't have collisions</font></li>
+    <li><font size="4">If the total picture is 129 x 129 though, we can have a 
+    worst case condition of 4 tiles hashing to the same &quot;m_tiles[...]&quot; pointer</font></li>
+    <li><font size="4">If the total picture is 256 x 256 or smaller, we can have 
+    a worst case condition of 4 tiles hashing to the same &quot;m_tiles[...]&quot; pointer</font></li>
+    <li><font size="4">At size 257 x 257, the worst case is 9 tiles hashing to 
+    the same &quot;m_tiles[...]&quot; pointer</font></li>
+  </ul>
+  <p><font size="4">Even at size 257 x 257 --- searching through a bucket linked 
+  list 9 units long isn't that bad. Also, 257 x 257 seems to be a really big 
+  size to me at this time --- I am just guessing pictures won't get that big.</font></p>
+
+  <p><font size="4">The 16K pointers will take up 64K of memory. I have 
+  considered using just 6 bits of the address field, and hence 4K pointers 
+  taking up 64K of memory. However, the program on the hard drive is almost 200 K 
+already as of now --- and running it seems to take almost 2 Meg of memory ? --- 
+1 Meg for the program, 1 Meg for the GDI+ DLL? So based on these information, I 
+decided to use the 7 bit system over the 6 bit system --- because it shouldn't add significantly to 
+the overall size of the program.</font></p>
+
+  <p>&nbsp;</p>
+
+  <h2><font color="#008000">Grid Class --- other concepts</font></h2>
+
+  <p><font size="4">The Grid class methods are described well enough in the 
+  header file. But the member variables of &quot;Grid&quot; can benefit from a few 
+  pictures that this HTML documentation can provide.</font></p>
+
+  <p><font size="4">The tiles seen on screen are described in several ways in 
+  the code for Grid class</font></p>
+
+  <p><font size="4" color="#008000"><b>Absolute coordinate</b></font></p>
+
+  <p><font size="4">Tiles have an absolute coordinate that is a pair of 32 bit 
+  integers --- x and y. Upon program start, the upper left corner of the drawing 
+  area will get these coordinates:</font></p>
+
+  <p><img border="0" src="images/pic017.gif" width="545" height="371"></p>
+
+  <p><font size="4">There's an upper and lower bound in &quot;global_constants.h&quot; for 
+  the absolute coordinates and those boundaries are enforced by various error 
+  checking statements.</font></p>
+
+  <p><b><font size="4" color="#008000">Absolute coordinates are used in:</font></b></p>
+
+  <p><font size="4">Tile class's: <b><font color="#FF6600">x</font></b>, <b>
+  <font color="#FF6600">y</font></b></font></p>
+
+  <p><font size="4">Grid class's: </font></p>
+
+<ul>
+  <li><font size="4"><b><font color="#FF6600">current_x, current_y</font></b> 
+  --- for the tile that the user currently selected</font></li>
+  <li><font size="4"><font color="#FF6600"><b>upper_left_tile_x, 
+  upper_left_tile_y</b></font> --- for the tile that the is in the upper left 
+  cornner</font></li>
+  <li><font size="4"><b><font color="#FF6600">user_max_x, user_max_y, user_min_x, 
+  user_min_y</font></b> --- to mark the extend of the user's selections by 
+  recording the extreme coordinates that the user has drawn on.</font></li>
+</ul>
+
+  <p><b><font size="4" color="#008000">Relative Coordinates</font></b></p>
+
+  <p><font size="4">This means that the tiles that are shown on screen are 
+  thought of as:</font></p>
+
+  <p><img border="0" src="images/pic018.gif" width="593" height="352"></p>
+
+  <p><font size="4">these coordinates are not stored --- but they are generated 
+  in the code as needed by using:</font></p>
+
+  <p><b><font size="4" color="#FF6600">x = current_x - upper_left_tile_x;<br>
+  y = current_y - upper_left_tile_y;</font></b></p>
+
+  <p><b><font size="4" color="#008000">pixel coordinates</font></b></p>
+
+  <p><font size="4">On screen, the &quot;Grid&quot; object is bounded by one large 
+  rectangle, where the individual tiles are separated from one another by dotted 
+  lines:</font></p>
+
+  <p><img border="0" src="images/pic019.gif" width="600" height="401"></p>
+
+  <p><font size="4">The pixel coordinates of the container rectangle (high 
+  lighted blue below) is stored in the Grid member variable:
+  <font color="#FF6600"><b>drawing_area</b></font></font></p>
+
+  <p><font size="4">The red marks are the pixel locations stored in Grid member 
+  variable, integer arrays: <font color="#FF6600"><b>x_coords[ ], y_coords[ ]</b></font>. 
+  For example, referring the picture below, the Y value of the 6 red marks on 
+  the side are stored in y_coords[0] through y_coords[5]. The X coordinate of 
+  the 8 red marks across the top are stored in x_coords[0] through x_coords[7].
+  </font></p>
+
+  <p><img border="0" src="images/pic020.gif" width="600" height="401"></p>
+
+  <p><font size="4">The x_coords[ ], and y_coords[ ] integer arrays play a very 
+  important role in the source code. They guide drawing and hit testing.</font></p>
+
+  <p><font size="4">In addition, get_tile_rect(...) uses x_coords[ ], and 
+  y_coords[ ] to return a rectangle that covers a particular tile --- which is 
+  then used for a clipping region during the WM_PAINT updates.</font></p>
+
+  <p><font size="4"><font color="#FF6600"><b>x_tiles_per_screen, 
+  y_tiles_per_screen</b></font> --- they control the zoom level by specifying 
+  how many tiles will appear in the drawing area at one time.</font></p>
+
+  <p><font size="4">Because <font color="#008000"><b>almost every public member 
+  function of &quot;Grid&quot; needs to trigger a repaint</b></font>, the Grid class needs 
+  a copy of the handle to the window. The user of the Grid class must call --- &quot;set_parent_wnd&quot;</font></p>
+
+  <p><font size="4"><font color="#008000"><b>Grid has two drawing functions</b></font> 
+  --- &quot;draw_to_screen&quot; will draw the tiles that curerntly appear on screen; &quot;draw_all&quot; 
+  will draw all tiles, and is meant for writing to image files.</font></p>
+
+  <p>&nbsp;</p>
+
+</body>
+
+</html>

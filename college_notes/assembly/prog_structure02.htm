@@ -1,0 +1,56 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>The Structure of an Assembly Program in Real Segmented Mode</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">The Structure of an Assembly Program in 
+Real Segmented Mode</font></h1>
+<p><font size="4"><a href="code/hello_world2.asm">Click here for A &quot;Hello World&quot; 
+program for the real flat mode</a></font></p>
+<p><font size="4">In the real segmented mode, you for have at least three 
+segments: one for code, one for data, and one for stack. In real mode, there can 
+only be one stack segment --- while you can have multiple code and data segments</font></p>
+<p><font size="4">These segments are declared using the segment directive:</font></p>
+<p><font size="4" color="#FF6600" face="Courier New">SEGMENT code<br>
+...</font></p>
+<p><font size="4" color="#FF6600" face="Courier New">SEGMENT data<br>
+...</font></p>
+<p><font size="4" color="#FF6600" face="Courier New">SEGMENT stack stack<br>
+...</font></p>
+<p><font size="4">That last &quot;segment stack stack&quot; is different from the others 
+--- it's telling the assembler that this particular segment is of the type 
+&quot;stack&quot; and the name of the segment is also called &quot;stack&quot;.
+<a href="stack_segment.htm">Click here for the page on the stack segment</a></font></p>
+<p><font size="4">Under this real mode segmented programming model, DOS sets the 
+code segment register of course, but DOS will not set the data segment and stack 
+segment registers when the program starts up. You have to set the segment 
+registers yourself using:</font></p>
+<p><font size="4" color="#FF6600">mov ax,data&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</font><font size="4" color="#008000">; Move segment address of data segment 
+into AX</font><font size="4" color="#FF6600"><br>
+mov ds,ax&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font>
+<font size="4" color="#008000">; Copy address from AX into DS</font><font size="4" color="#FF6600"><br>
+mov ax,stack&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font>
+<font size="4" color="#008000">&nbsp;; Move segment address of stack segment 
+into AX</font><font size="4" color="#FF6600"><br>
+mov ss,ax&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font>
+<font size="4" color="#008000">; Copy address from AX into SS</font></p>
+
+<p>&nbsp;</p>
+<p><font size="4">The presence of multiple segments mean that the code segment 
+might not be the first segment (although I think it's best to keep the code 
+segment as the first segment). The assembler directive <b><font color="#FF6600">
+..start:</font></b> is a special label that will tell the assembler and linker 
+where the first segment is. The ..start: lable becomes important when there are 
+multiple code segments.</font></p>
+
+</body>
+
+</html>

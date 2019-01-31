@@ -1,0 +1,88 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Using Image Encoders and Decoders</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">Using Image Encoders and Decoders</font></h1>
+<h2><font color="#008000">Getting the Class ID for an encoder:</font></h2>
+
+<ul>
+  <li><font size="4"><a href="examples/get_encoder_id.cpp">Here's a helper 
+  function useful for getting the CLSID for an encoder</a></font></li>
+  <li><font size="4"><a href="examples/get_encoder_id_usage.cpp">Example usage 
+  code</a></font></li>
+</ul>
+<p>&nbsp;</p>
+
+<h2><font color="#008000">Converting a BMP Image to a PNG Image</font></h2>
+
+<p><font size="4">First get the class ID for the encoder. Then use that class ID 
+with the &quot;Save&quot; method of the Image object.</font></p>
+
+<p><font face="Courier New" size="4">CLSID&nbsp;&nbsp; encoderClsid;<br>
+Image*&nbsp;&nbsp; image = new Image(L&quot;Bird.bmp&quot;);<br>
+Status&nbsp; stat = image-&gt;Save(L&quot;Bird.png&quot;, &amp;encoderClsid, NULL);<br>
+if(stat == Ok)<br>
+&nbsp;&nbsp;&nbsp; printf(&quot;Bird.png was saved successfully\n&quot;);<br>
+else<br>
+&nbsp;&nbsp;&nbsp; printf(&quot;Failure: stat = %d\n&quot;, stat); </font><br>
+&nbsp;</p>
+
+<p><font size="4"><a href="examples/bmp_to_png_conversion.cpp">Click here for 
+the complete code</a></font></p>
+
+<p>&nbsp;</p>
+
+<h2><font color="#008000">JPEG Compression</font></h2>
+
+<p><font size="4">When you compress a bitmap into JPEG, the basic idea is the 
+same as the BMP ---&gt; PNG compression. You get the class ID of the encoder, then 
+you call the &quot;save&quot; method of Image. But when saving into the &quot;JPEG&quot; format, you 
+can set the compression level from 0(most compression) to 100(least compression)</font></p>
+
+<p><font size="4">key lines:</font></p>
+
+<p><font face="Courier New" size="4">CLSID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+encoderClsid;<br>
+EncoderParameters encoderParameters;<br>
+ULONG&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+quality;</font></p>
+
+<p><font face="Courier New" size="4">Image* image = new Image(L&quot;Shapes.bmp&quot;);<br>
+GetEncoderClsid(L&quot;image/jpeg&quot;, &amp;encoderClsid);</font></p>
+
+<p><font face="Courier New" size="4">encoderParameters.Count = 1;<br>
+encoderParameters.Parameter[0].Guid = EncoderQuality;<br>
+encoderParameters.Parameter[0].Type = EncoderParameterValueTypeLong;<br>
+encoderParameters.Parameter[0].NumberOfValues = 1;</font></p>
+
+<p><font face="Courier New" size="4">// Save the image as a JPEG with quality 
+level 50.<br>
+<font color="#FF6600">quality = 50;<br>
+encoderParameters.Parameter[0].Value = &amp;quality;</font><br>
+image-&gt;Save(L&quot;Shapes050.jpg&quot;, &amp;encoderClsid, &amp;encoderParameters);</font></p>
+
+<p><font size="4"><a href="examples/jpeg_compression.cpp">Click here for the 
+full program code</a></font></p>
+
+<p>&nbsp;</p>
+
+<h2><font color="#008000">Creating and Saving a Multiple-Frame Image</font></h2>
+
+<p><font size="4">To save the first page, call the <b>Save</b> method of the <b>
+Image</b> class. To save subsequent pages, call the <b>SaveAdd</b> method of the
+<b>Image</b> class.</font></p>
+
+<p><font size="4"><a href="examples/multi_frame_demo.cpp">Click here for a full 
+demo program's code</a></font></p>
+
+</body>
+
+</html>

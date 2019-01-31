@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Language" content="en-us" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>FFT Addressing Requirements</title>
+<link rel="stylesheet" type="text/css" href="fpga.css" />
+</head>
+
+<body>
+
+<h1>FFT Addressing Requirements</h1>
+<h2>The Radix-2 FFT</h2>
+<p>The radix-2 FFT uses a butterfly structure that takes two input and creates 
+two output. The data needs to be positioned such that the butterfly takes inputs 
+from two memory elements, and sends outputs to two memory elements. There must 
+not be a situation where the butterfly wants two inputs from the same memory, or 
+has to write two outputs to the same memory.</p>
+<p><img src="images/addr_requirements.gif" width="500" height="464" /></p>
+<h2>&nbsp;</h2>
+<h2>Eight Point FFT</h2>
+<p>Figuring out a way to line data up for the 8-point FFT is sufficient to 
+illustrate a general addressing algorithm.</p>
+<p><img src="images/fft_addr_algorithm.gif" width="1024" height="705" /></p>
+<p>Note that with this algorithm, the data processing is not done in place. So 
+there will be one set of memory holding the data being read, and a separate set 
+of memory holding the data being written.</p>
+<h2>&nbsp;</h2>
+<h2>FFT Addressing when Reading</h2>
+<p>The address value when reading from the memory is sequential counting, from 0 
+to 7 in this case. The butterfly will alternate where it get its input. This 
+alternating depends on the FFT stage. </p>
+<p>&nbsp;</p>
+<h2>FFT Addressing when Writing</h2>
+<p>The Mem0 address is sequential. There is alternation of where to put the 
+output. The alternating pattern is related to the FFT stage.</p>
+<p>The Mem1 address inverts a bit of the sequential address. For example, in the 
+second FFT stage, the Mem1 address is 2, 3, 0, 1. This is the sequential address 
+0, 1, 2, 3, with the second LSB inverted.</p>
+<p>&nbsp;</p>
+
+</body>
+
+</html>

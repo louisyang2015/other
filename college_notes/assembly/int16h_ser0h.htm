@@ -1,0 +1,35 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>BIOS Interrupt 16h, Service 0</title>
+</head>
+
+<body>
+
+<p><font size="4">BIOS Interrupt 16h, Service 0</font></p>
+<p><font size="4">This service reads a key</font></p>
+<p><font size="4" face="Courier New"><font color="#FF8000">MOV AH, 0</font></font></p>
+<p><font size="4" face="Courier New"><font color="#FF8000">INT 16H</font></font></p>
+<p><font color="#008000" size="4">;waits for a key to be pressed</font></p>
+<p><font color="#008000" size="4">;when a key is pressed, its corresponding 
+ASCII code is placed into AL</font></p>
+<p><font size="4">In procedure form:</font></p>
+<p><font color="#008000" size="4">;  wait for the user to press a 
+key and<br>
+; return with a character code in AL</font><font size="4" face="Courier New"><br>
+<font color="#FF8000">GetKey proc near:<br>
+&nbsp;&nbsp;&nbsp; MOV AH, 0<br>
+&nbsp;&nbsp;&nbsp; INT 16H<br>
+&nbsp;&nbsp;&nbsp; RET<br>
+GetKey endp</font></font></p>
+<p><font face="Courier New" size="4"><font color="#FF8000">call GetKey<br>
+cmp AL, 'q' </font>&nbsp;&nbsp; <font color="#008000">;check to see if the &quot;q&quot; 
+key is pressed</font></font></p>
+
+</body>
+
+</html>

@@ -1,0 +1,148 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Multi-Level Gate Networks</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">Multi-Level Gate Networks</font></h1>
+<p><font size="4" color="#008000">Multi-Level Gate Networks</font></p>
+<p><font size="4">The maximum number of gates cascaded in series between a 
+network input and the output is referred to as the number of
+<font color="#008000">levels</font> of gates. Inverters don’t count.</font></p>
+<p><font size="4" color="#008000">Other Types of Logic Gates</font></p>
+<p><font size="4">majority gate – has an odd number of inputs, and its output is 
+1 iff a majority of its inputs are 1; </font></p>
+<p><font size="4">minority gate – has an odd number of inputs, and its output is 
+1 iff a minority of its inputs are 1</font></p>
+<p><font size="4" color="#008000">Functionally Complete Sets of Logic Gates</font></p>
+<p><font size="4">The AND-OR-NOT is a functionally complete set of gates. The 
+NAND gate is also functionally complete.</font></p>
+<table border="1" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td nowrap><font size="4"><font color="#008000">X NAND X</font> = (X * X)’ = 
+    X’ + X’ = X’ = <font color="#008000">NOT X</font></font></td>
+  </tr>
+  <tr>
+    <td nowrap><font size="4"><font color="#008000">(A NAND B) NAND (A NAND B)</font> 
+    = ((A * B)’ * (A * B)’)’ </font>
+    <p><font size="4">= (A * B) + (A * B) = <font color="#008000">A * B</font></font></td>
+  </tr>
+  <tr>
+    <td nowrap><font size="4"><font color="#008000">(A NAND A) NAND (B NAND B)</font> 
+    = A’ NAND B’ = (A’ * B’)’ = <font color="#008000">A * B</font></font></td>
+  </tr>
+</table>
+<p><font size="4">To notice how a gate is functionally complete, study the truth 
+table for the gate.</font></p>
+<p>&nbsp;</p>
+<h2><font color="#008000">Eight Basic Forms</font></h2>
+<p><font size="4">There are a total of eight basic forms for two level networks. 
+You can cycle through four of those forms by complementing the minterm Boolean 
+equation twice.</font></p>
+
+<table border="1" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td nowrap><font size="4">AND - OR</font></td>
+    <td nowrap><font size="4" color="#FF8000">F = A + BC' + B'CD</font></td>
+  </tr>
+  <tr>
+    <td nowrap><font size="4">NAND - NAND</font></td>
+    <td nowrap><font size="4">F = [(A + BC' + B'CD)']'<br>
+    <font color="#FF8000">F = [A' (BC')' (B'CD)']'</font></font></td>
+  </tr>
+  <tr>
+    <td nowrap><font size="4">OR - NAND</font></td>
+    <td nowrap><font size="4" color="#FF8000">F = [A' (B' + C) (B + C' + D')]'</font></td>
+  </tr>
+  <tr>
+    <td nowrap><font size="4">NOR - OR</font></td>
+    <td nowrap><font size="4" color="#FF8000">F = A + (B' + C)' + (B + C' + D')'</font></td>
+  </tr>
+</table>
+<p><font size="4">The four remaining forms can be cycled through by 
+complementing the maxterm version of the Boolean equation twice.</font></p>
+
+<p><img border="0" src="images/fig_08_14.jpg" width="750" height="1168"></p>
+
+<p>&nbsp;</p>
+
+<h2><font color="#008000">Visually Changing Gates</font></h2>
+
+<p><font size="4">A circle means inversion. Two circles mean double inversion, 
+which doesn't really do anything. So we can go from:</font></p>
+
+<p><img border="0" src="images/pic0001.gif" width="400" height="214"></p>
+
+<p><font size="4">to</font></p>
+
+<p><img border="0" src="images/pic0002.gif" width="400" height="214"></p>
+
+<p><font size="4">(AB)' = A' + B' , so an OR gate with inverted input is really 
+a NAND gate.</font></p>
+
+<p><font size="4">d</font></p>
+
+<p><img border="0" src="images/pic0003.gif" width="450" height="209"></p>
+
+<p><font size="4">Going from a multilevel OR - AND topology to the NAND topology 
+requires inverting inputs to the OR levels:</font></p>
+
+<p><img border="0" src="images/fig_08_16.jpg" width="750" height="588"></p>
+
+<p><font size="4">For example, in level 3, (b') becomes (b). Other than 
+inverting the input signal at levels 5, 3, and 1, we just replaced all AND / OR 
+gates with NAND gates.</font></p>
+
+<p><font size="4" color="#008000">Mixed Logic and Polarity Indication</font></p>
+<p><font size="4">Inside of a logic device we speak of zeros and ones. But 
+outside of a logic device we speak of high and low voltages.</font></p>
+<p><font size="4"><font color="#008000">active high</font> - positive logic; 
+this means that the active or true state corresponds to a high voltage</font></p>
+<p><font size="4"><font color="#008000">active low</font> - the active or true 
+state corresponds to a low voltage</font></p>
+<p><font size="4">Consider a variable &quot;ENABLE&quot; which is used to enable the 
+operation of a logic circuit. If ENABLE is active high, this implies that a high 
+voltage will enable the logic circuit, and if ENABLE is active low, a low 
+voltage will enable the circuit.</font></p>
+<p><font size="4">A few naming conventions:</font></p>
+<table cellPadding="10" border="1" style="border-collapse: collapse" bordercolor="#111111" cellspacing="0">
+  <tr>
+    <td><font size="4">Active High</font></td>
+    <td><font size="4">Active Low</font></td>
+  </tr>
+  <tr>
+    <td><font size="4">ENABLE(H)</font></td>
+    <td><font size="4">ENABLE(L)</font></td>
+  </tr>
+  <tr>
+    <td><font size="4">ENABLE.H</font></td>
+    <td><font size="4">ENABLE.L</font></td>
+  </tr>
+  <tr>
+    <td><font size="4">ENABLE+</font></td>
+    <td><font size="4">ENABLE-</font></td>
+  </tr>
+  <tr>
+    <td><font size="4">ENABLE</font></td>
+    <td><font size="4">~ENABLE</font></td>
+  </tr>
+  <tr>
+    <td><font size="4">ENABLE</font></td>
+    <td><font size="4">/ENABLE</font></td>
+  </tr>
+</table>
+<p><font size="4">On the schematics, a half arrow symbol is used to denote 
+active low input or output. This half arrow is similar to the notation circle 
+--- but the circle is a logical description while the half arrow is an 
+electrical description.</font></p>
+<p><img border="0" src="images/fig_08_21.jpg" width="750" height="336"></p>
+
+</body>
+
+</html>

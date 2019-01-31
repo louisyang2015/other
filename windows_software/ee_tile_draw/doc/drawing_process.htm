@@ -1,0 +1,42 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>The Whole Drawing Process</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">The Whole Drawing Process</font></h1>
+<p><font size="4">As user interacts with the program, the data is stored in the 
+Grid and UserSelection objects. These interactions take the form of clicking on 
+menu items, clicking on the Pane object, clicking on the Grid, and pressing the 
+keyboard buttons.</font></p>
+<p><font size="4">The handlers for the menu, mouse, and keyboard record and 
+manipulate data in these objects:</font></p>
+<p><img border="0" src="images/pic021.gif" width="706" height="82"></p>
+<p><font size="4">and after updaing app_grid and app_user_selection, the handler 
+functions will invalidate the screen.</font></p>
+<p><font size="4">So all drawing is in the handler function for WM_PAINT</font></p>
+<p><img border="0" src="images/pic022.gif" width="588" height="152"></p>
+<p><font size="4">WM_PAINT has a handler called &quot;OnPaint&quot;, which then calls 
+app_grid.draw</font></p>
+<p><font size="4">A portion of the app_grid.draw will draw a single tile. That 
+portion has a pointer to the Tile object that we are drawing. This &quot;tile&quot; 
+pointer will give us information on the tile's background color, foreground 
+color, and component ID.</font></p>
+<p><img border="0" src="images/pic023.gif" width="640" height="365"></p>
+<p><font size="4">Grid::Draw will paint the background, and will pass the 
+drawing of the component to &quot;component.draw&quot;</font></p>
+<p><img border="0" src="images/pic024.gif" width="692" height="358"></p>
+<p><font size="4">The component.draw will get a pointer to an image representing 
+the component from the &quot;image class&quot;</font></p>
+<p><font size="4">The &quot;image class&quot; is globally defined and has already loaded 
+the various &quot;.wmf&quot; files into memory</font></p>
+
+</body>
+
+</html>

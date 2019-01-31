@@ -1,0 +1,39 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Working with multiple files</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">Working with multiple files</font></h1>
+<p><font size="4">The goal here is to have the declarations in one file be used 
+in another file.</font></p>
+<p><img border="0" src="images/pic006.gif" width="737" height="370"></p>
+<p><font size="4"><b><font face="Courier New" color="#FF6600">EXTERN ClrScr</font></b> 
+--- is basically a promise to the assembler that this symbol will be found in 
+another file. We say that the file is <b><font color="#008000">importing</font></b> 
+a variable.</font></p>
+<p><font size="4"><font color="#FF6600" face="Courier New"><b>GLOBAL ClrScr</b></font> 
+--- is to tell the assembler that this symbol will be referenced from outside 
+the module. We say that the file is <b><font color="#008000">exporting</font></b> 
+a variable.</font></p>
+<p><font size="4">external modules do not have a <font color="#008000">..start:</font> 
+label, and they do not have a stack segment; but they have data and code 
+segments defined using the <b><font color="#FF6600">PUBLIC</font></b> keyword. 
+The PUBLIC keyword means the segment will be shared across modules --- PUBLIC 
+for segments is basically GLOBAL for variables.</font></p>
+<p><b><font size="4" face="Courier New" color="#FF6600">SEGMENT data PUBLIC</font></b></p>
+<p><b><font size="4" face="Courier New" color="#FF6600">SEGMENT code PUBLIC</font></b></p>
+<p><font size="4">There's no type checking in NASM (MASM has some type checking 
+features). So if you declare an EXTERN to be a byte (say with DB) and then try 
+to link that EXTERN to a GLOBAL that is in fact a word, the assembler will not 
+alert you --- it's your problem.</font></p>
+
+</body>
+
+</html>

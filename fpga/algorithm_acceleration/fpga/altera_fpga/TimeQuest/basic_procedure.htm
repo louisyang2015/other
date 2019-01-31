@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+
+<head>
+<meta http-equiv="Content-Language" content="en-us" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>TimeQuest Basic Procedure</title>
+<link rel="stylesheet" type="text/css" href="fpga.css" />
+</head>
+
+<body>
+
+<h1>TimeQuest Basic Procedure</h1>
+<p class="center">Last updated June 1, 2011</p>
+<p><strong>Perform &quot;Analysis and Synthesis&quot;.</strong> Go to Processing menu --&gt; 
+Start menu --&gt; Analysis and Synthesis. This is just an initial compilation to 
+check for source code errors and to identify the input and output ports.</p>
+<p><strong>TimeQuest settings to enable</strong> (Assignments menu --&gt; 
+Settings):</p>
+<ul>
+				<li>Enable common clock path pessimism removal</li>
+				<li>Enable multi-corner timing analysis during compilation</li>
+</ul>
+<p><strong>Launch the TimeQuest Timing Analyzer.</strong> Go to Tools menu --&gt; 
+TimeQuest Timing Analyzer. If the software will ask to automatically generate an 
+SDC file, do not automatically generate an SDC file.</p>
+<p><strong>Create post-map netlist.</strong> In the TimeQuest Timing Analyzer, go 
+to Netlist menu --&gt; Create Timing Netlist menu item --&gt; choose &quot;Post-map&quot;, then 
+&quot;OK&quot;. Don&#39;t use the command in the task pane because that one creates 
+a &quot;post-fit&quot; netlist.</p>
+<p><strong>Constraint the clock port.</strong> Go to Constraints menu --&gt; Create 
+Clock menu item. The clock is 50MHz, so the period is 20ns. Clock name = clk. 
+For &quot;Targets&quot;, use the GUI to add the port &quot;clk&quot;, which will result in the SDC 
+command &quot;[get_ports {clk}]&quot;. Press &quot;run&quot;. In the console window, check to be 
+sure that the constraint command is executed successfully.</p>
+<p><strong>derive_pll_clocks.</strong> Type in the command &quot;derive_pll_clocks&quot;</p>
+<p><strong>Save the SDC file.</strong> In the TimeQuest Timing Analyzer &quot;Tasks&quot; 
+pane, click &quot;Write SDC File&quot;. </p>
+<p><strong>Open the SDC file and edit it manually.</strong> Go to the File menu 
+--&gt; Open.</p>
+<p><strong>Rename the PLL clocks.</strong> The &quot;derive_pll_clocks&quot; command uses 
+node names as clock names. Edit the &quot;-name&quot; part of the &quot;create_generated_clock&quot; 
+commands.</p>
+<p><strong>Add a virtual clock for constraining the IOs.</strong></p>
+<pre>create_clock -name sys_clk_virt -period 10.000</pre>
+<p><strong>Add clock uncertainty line:</strong></p>
+<pre>derive_clock_uncertainty</pre>
+<p><strong>Constraint the IO ports.</strong> Dummy (always-pass) examples are 
+shown below:</p>
+<pre>set_input_delay -clock sys_clk_virt -min 2 [get_ports {switches*}]
+set_input_delay -clock sys_clk_virt -max 4 [get_ports {switches*}]</pre>
+<pre>set_output_delay -clock sys_clk_virt -min 1 [get_ports {sseg*}]
+set_output_delay -clock sys_clk_virt -max 4 [get_ports {sseg*}]</pre>
+<p><strong>Add the SDC file to the Quartus II project.</strong></p>
+<p><strong>Perform a full compilation.</strong> This time the compilation is driven 
+by the SDC file just added.</p>
+<p>After a full compilation, it&#39;s possible to create a new &quot;timing netlist&quot; just 
+by clicking the item in the task pane.</p>
+<p>If there is change to only the SDC file, no change to the design itself, then 
+just re-run the timing analysis. In the task pane, right click on the &quot;Read SDC 
+File&quot; task and choose &quot;Start Again&quot;. To regenerate the reports, right click in 
+the report pane and choose &quot;Regenerate All Out of Date&quot;.</p>
+
+</body>
+
+</html>

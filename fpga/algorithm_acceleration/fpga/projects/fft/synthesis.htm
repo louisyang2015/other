@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Language" content="en-us" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Synthesis Notes</title>
+<link rel="stylesheet" type="text/css" href="fpga.css" />
+</head>
+
+<body>
+
+<h1>Synthesis Notes</h1>
+<h2>Multiplier Pipelining</h2>
+<p>On the Cyclone II, the code originally uses a single cycle 32 bit multiplier. 
+This failed to meet the 100 MHz timing target. (<a href="images/quartus_32bit_mult_fail.gif">screen 
+shot</a>)</p>
+<p>That&#39;s why the multiplier has to be recoded so to use pipelining. Altera&#39;s 
+LPM has a multiplier, and the megaWizard window does have an option to specify 
+pipelining. But this multiplier failed to simulate in ModelSim. The output is 
+always &quot;X&quot;. So in this project, the multiplier is a manually coded one called 
+&quot;MyMult32&quot;.</p>
+<h2>Uneven 64-Bit Memory Allocation</h2>
+<p>On the Cyclone II, 64-bit wide memory requires two on chip memory units. When 
+allocating 64 bit memory, Quartus does not allocate them to two modules equally. 
+It will allocate the maximum 36 bits allowed to one memory unit, and 28 bits to 
+the other memory unit. (<a href="images/quartus_rom64_split.gif">screen shot</a>). 
+It&#39;s uncertain what effect, if any, this has on timing.</p>
+<h2>Memory Warnings</h2>
+<p>Quartus will issue warnings the first time it compiles a memory that is being 
+initialized by &quot;hex&quot; files. (<a href="images/quartus_mem_warning.gif">screen 
+shot</a>) This warning goes away on future compilations. The &quot;hex&quot; files produce 
+no warning in ModelSim, and the FPGA memories do get properly initialized.</p>
+<h2>Resource Utilization</h2>
+<p><img src="images/quartus_resource.gif" width="1331" height="208" /></p>
+<p>Comparison with the Altera FFT module used in the AEC project during Fall 
+2010:</p>
+<p><img src="images/quartus_resource_fall2010.gif" width="1376" height="467" /></p>
+<p>This larger FFT module is based on radix-4 FFT, while mine is based on 
+radix-2 FFT. The algorithm difference is the main reason for the resource 
+difference. The radix-2 FFT will be 4 times slower. But in the AEC algorithm, 
+radix-2 FFT, which takes 1024 cycles to complete, should be sufficient. Also, 
+for the Fall 2010 AEC project, I wrote extra code to speed up NIOS 2 reading 
+from or writing to the radix-4 FFT.</p>
+<p>Note the radix-4 algorithm is not using memory efficiently, and memory is a 
+premium. The radix-4 algorithm claims 19,145 bits, but is using 30 M4Ks. The 
+simpler radix-2 is using far more 57,536 bits, but just 16 M4Ks.</p>
+<p>The memory usage is roughly as follows:</p>
+<ul>
+				<li>Shared Memory: 256 complex numbers *&nbsp; 64 bits per 
+				number = 16,384 bits (4 M4Ks)</li>
+				<li>FFT Memory: Due to the FFT algorithm not being an in-place 
+				sort, 256 * 2 complex numbers * 8 bits per number = 32,768 bits 
+				(8 M4Ks)</li>
+				<li>Twiddle Factor Memory: 128 complex numbers * 64 bits per 
+				number = 8,192 bits (2 M4Ks)</li>
+				<li>Total: 57,344 bits (14 M4Ks).</li>
+</ul>
+<p>The multiplier usage comes from the need to multiply two complex numbers. 
+This uses four 32-bit multipliers, which is sixteen 18-bit multipliers.</p>
+
+</body>
+
+</html>

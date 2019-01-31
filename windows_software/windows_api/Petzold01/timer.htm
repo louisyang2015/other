@@ -1,0 +1,67 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>The Timer</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">The Timer</font></h1>
+<p align="left"><font face="Courier New" size="4" color="#FF6600">const int 
+TIMER_SEC = 1; </font><font face="Courier New" size="4" color="#008000">//timer 
+ID</font><font face="Courier New" size="4" color="#FF6600"><br>
+const int TIMER_MIN = 2;</font><font face="Courier New" size="4" color="#008000"> 
+//timer ID</font></p>
+<p align="left"><font face="Courier New" color="#008000" size="4">... in 
+WM_CREATE ...</font></p>
+<p align="left"><font face="Courier New" size="4" color="#008000">//set a timer 
+to go off every 1000 milliseconds (= 1 second)<br>
+</font><font face="Courier New" color="#FF6600" size="4">SetTimer (hwnd, 
+TIMER_SEC, 1000, NULL);</font></p>
+<p align="left"><font face="Courier New" size="4" color="#008000">//set a timer 
+to go off every 60,000 milliseconds (= 1 minute)<br>
+</font><font face="Courier New" color="#FF6600" size="4">SetTimer (hwnd, 
+TIMER_MIN, 60000, NULL);</font></p>
+<p align="left"><font face="Courier New" color="#008000" size="4">... in 
+WM_TIMER ...</font></p>
+<p align="left"><font face="Courier New" color="#FF6600" size="4">case WM_TIMER:<br>
+&nbsp;&nbsp;&nbsp; switch(wParam)<br>
+&nbsp;&nbsp;&nbsp; {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case TIMER_SEC:<br>
+</font><font face="Courier New" color="#008000" size="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ... once per 
+second processing ...<br>
+</font><font face="Courier New" color="#FF6600" size="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case TIMER_MIN:<br>
+</font><font face="Courier New" color="#008000" size="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ... once per 
+minute processing ...<br>
+</font><font face="Courier New" color="#FF6600" size="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
+&nbsp;&nbsp;&nbsp; }</font></p>
+<p align="left"><font face="Courier New" color="#008000" size="4">... in 
+WM_DESTROY ...</font></p>
+<p align="left"><font face="Courier New" color="#FF6600" size="4">case 
+WM_DESTROY:<br>
+&nbsp;&nbsp;&nbsp; KillTimer (hwnd, TIMER_SEC);<br>
+&nbsp;&nbsp;&nbsp; KillTimer (hwnd, TIMER_MIN);<br>
+&nbsp;&nbsp;&nbsp; PostQuitMessage (0);<br>
+&nbsp;&nbsp;&nbsp; return 0;</font></p>
+<p align="center">&nbsp;</p>
+<p align="left"><b><font size="4" color="#008000">Possible Uses of the Timer:</font></b></p>
+<p align="left"><font size="4">If a program must do a large amount of 
+processing, divide the job into smaller parts and do each upon the receipt of a 
+WM_TIMER message</font></p>
+<p align="left"><font size="4">maintaining periodic updates to the program --- 
+clock, autosave, status bar, etc.</font></p>
+<p align="left"><font size="4">terminating &quot;demo&quot; versions of programs</font></p>
+<p align="left"><font size="4">pacing the program --- to eliminate the 
+inconsistencies that can result from variations in processor speed</font></p>
+<p align="left"><b><font size="4" color="#008000">Other notes:</font></b></p>
+<p align="left"><font size="4">If your program is busy, you won't get any timer 
+messages</font></p>
+
+</body>
+
+</html>

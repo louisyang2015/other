@@ -1,0 +1,62 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Drawing Filled Areas</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">Drawing Filled Areas</font></h1>
+<h2><font color="#008000">The Bounding Box Functions:</font></h2>
+<h2><img border="0" src="images/pic004.gif" width="316" height="193"></h2>
+<h2><font face="Courier New" color="#FF6600">Rectangle (hdc, xLeft, yTop, xRight, 
+yBottom);<br>
+Ellipse (hdc, xLeft, yTop, xRight, yBottom);</font></h2>
+<h2><img border="0" src="images/pic005.gif" width="418" height="227"><font face="Courier New" color="#FF6600"><br>
+RoundRect (hdc, xLeft, yTop, xRight, yBottom, xCornerEllipse, yCornerEllipse);</font></h2>
+<h2><font face="Courier New" color="#FF6600">
+<img border="0" src="images/pic006.gif" width="406" height="254"><br>
+Arc (hdc, xLeft, yTop, xRight, yBottom, xStart, yStart, xEnd, yEnd);</font></h2>
+
+<h2><img border="0" src="images/pic008.gif" width="413" height="251"><br>
+<font face="Courier New" color="#FF6600">Chord (hdc, xLeft, yTop, xRight, 
+yBottom, xStart, yStart, xEnd, yEnd);</font></h2>
+
+<h2><img border="0" src="images/pic009.gif" width="416" height="253"><br>
+<font color="#FF6600" face="Courier New">Pie (hdc, xLeft, yTop, xRight, yBottom, 
+xStart, yStart, xEnd, yEnd);</font></h2>
+
+<p>&nbsp;</p>
+<h2><font color="#008000">Polygon</font></h2>
+<h2><font face="Courier New" color="#FF6600">Polygon (hdc, apt, iCount);</font></h2>
+<h2><font color="#FF6600" face="Courier New">SetPolyFillMode (hdc, iMode);</font></h2>
+<p><font size="4">understanding the fill mode: imagine a line drawn from a point 
+in an enclosed area to infinity. The enclosed area is filled if the imaginary 
+line cross an odd number of boundary lines. This default mode is ALTERNATE.</font></p>
+<p><img border="0" src="images/pic010.gif" width="738" height="335"></p>
+<h2><font color="#008000">The Brush</font></h2>
+<h2><font face="Courier New" color="#FF6600">HBRUSH hBrush;<br>
+hBrush = GetStockObject (GRAY_BRUSH);<br>
+SelectObject (hdc, hBrush);</font></h2>
+<h2>&nbsp;</h2>
+<h2><font face="Courier New" color="#FF6600">hBrush = CreateSolidBrush (crColor);</font></h2>
+<p>&nbsp;</p>
+<h2><img border="0" src="images/pic011.gif" width="543" height="177"><br>
+<font face="Courier New" color="#FF6600">hBrush = CreateHatchBrush (iHatchStyle, 
+crColor);</font></h2>
+<p>&nbsp;</p>
+<h2><font face="Courier New" color="#FF6600">DeleteObject(hBrush);</font></h2>
+<p><font size="4">As usual, do not delete pen or brush while it's selected into 
+the device context.</font></p>
+<p><font size="4">To get information about a brush:<br>
+<font face="Courier New" color="#FF6600">GetObject (hBrush, sizeof (LOGBRUSH), (LPVOID) 
+&amp;logbrush);</font></font></p>
+<p>&nbsp;</p>
+
+</body>
+
+</html>

@@ -1,0 +1,279 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Boolean Algebra</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">Boolean Algebra</font></h1>
+<p><font size="4">One way to proof theorems is to use truth tables and cover all 
+cases.</font></p>
+<p><font size="4">Associative Laws:</font></p>
+<p><font size="4" face="Courier New" color="#FF8000">(XY)Z = X(YZ) = XYZ<br>
+(X + Y) + Z = X + (Y + Z) = X + Y + Z</font></p>
+<p><font size="4">Distributive Laws:</font></p>
+<table border="0" cellpadding="12" cellspacing="1" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td><font face="Courier New" size="4" color="#FF8000">X(Y + Z) = XY + XZ</font></td>
+  </tr>
+  <tr>
+    <td bgcolor="#FFFF99"><font face="Courier New" size="4" color="#FF8000">X + 
+    YZ = (X + Y)(X + Z)</font></td>
+  </tr>
+</table>
+<p><font size="4">The second distributive law states that &quot;OR&quot; distributes over 
+&quot;AND&quot; --- as oppose to the first distributive law, which use &quot;AND&quot; distributes 
+over &quot;OR&quot;. It's easier to visualize if we replace the + with OR and replace the 
+* with &quot;AND&quot;.</font></p>
+<p><font size="4">The second form of the distributive is very useful --- as 
+useful as the first form of the distributive law.</font></p>
+<h2><font color="#008000">Simplification Theorems</font></h2>
+<table border="0" cellpadding="12" cellspacing="1" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td><font face="Courier New" size="4" color="#FF8000">XY + 
+    XY' = X</font></td>
+    <td><font face="Courier New" size="4" color="#FF8000">(X + 
+    Y)(X + Y') = X</font></td>
+  </tr>
+  <tr>
+    <td><font face="Courier New" size="4" color="#FF8000">X + 
+    XY = X</font></td>
+    <td bgcolor="#FFFF99"><font face="Courier New" size="4" color="#FF8000">X(X 
+    + Y) = X</font></td>
+  </tr>
+  <tr>
+    <td bgcolor="#FFFF99"><font face="Courier New" size="4" color="#FF8000">(X + 
+    Y)'Y = XY</font></td>
+    <td><font face="Courier New" size="4" color="#FF8000">XY' 
+    + Y = X + Y</font></td>
+  </tr>
+</table>
+
+<p><font size="4">The non-highlighted theorems can be arrived at with basic 
+application of the first or second distributive law.</font></p>
+
+<h2><font color="#008000">DeMorgan's Laws</font></h2>
+<table border="0" cellpadding="12" cellspacing="1" style="border-collapse: collapse" bordercolor="#111111" bgcolor="#FFFF99">
+  <tr>
+    <td><font face="Courier New" size="4" color="#FF8000">(X + Y)' = X'Y'</font></td>
+  </tr>
+  <tr>
+    <td><font face="Courier New" size="4" color="#FF8000">(XY)' = X' + Y'</font></td>
+  </tr>
+</table>
+<h2><font color="#008000">Duality</font></h2>
+<p><font size="4">Dual expressions are formed by replacing AND with OR, OR with 
+AND, 0 with 1, and 1 with 0.</font></p>
+<p><font size="4"><font color="#008000">Multiplying Out and Factoring 
+Expressions</font> ---- yet another useful rule introduced</font></p>
+<table border="0" cellpadding="12" cellspacing="1" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td bgcolor="#FFFF99"><font face="Courier New" size="4" color="#FF8000">(X + 
+    Y)(X' + Z) = XZ + X'Y</font></td>
+  </tr>
+</table>
+<p><font size="4">This rule is a companion rule for the second distributive 
+rule: (X + Y)(X + Z) = X + YZ. Together, the two rules save time when 
+multiplying factors that share identical terms.</font></p>
+<p><font size="4">Also, X + YZ = (X + Y)(X + Z) can be used to factor things in 
+general, while XZ + X'Y factors special situations where two terms have a common 
+factor.</font></p>
+<p><font size="4" color="#008000">Exclusive-OR</font></p>
+<p><font size="4">The XOR symbol is a plus sign with a circle around it</font></p>
+<table border="1" cellpadding="12" cellspacing="1" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td align="center"><font size="4">X</font></td>
+    <td align="center"><font size="4">Y</font></td>
+    <td align="center"><font size="4">X <font face="MingLiU">&#8853;</font> Y</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">1</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">1</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">0</font></td>
+  </tr>
+</table>
+<p><font size="4" color="#008000">Equivalence</font></p>
+<table border="1" cellpadding="12" cellspacing="1" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td align="center"><font size="4">X</font></td>
+    <td align="center"><font size="4">Y</font></td>
+    <td align="center"><font size="4">X <font face="Times New Roman">&#8801; Y</font></font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">1</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">0</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">1</font></td>
+  </tr>
+</table>
+<p><font size="4">The XOR and equivalence are complement operations. A XOR gate 
+followed by an inverter equals an equivalence gate. This is why equivalence is 
+also called the exclusive NOR operation.</font></p>
+<p><font size="4" color="#008000">Negative Logic </font><font size="4">--- Here, 
+the zero represents the logical one (HIGH voltage). The Boolean equation for 
+negative logic is the dual of the Boolean equation for positive logic.</font></p>
+<p><font size="4">Example:</font></p>
+<p><font size="4">The positive logic table:</font></p>
+<table border="1" cellpadding="12" cellspacing="1" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td align="center"><font size="4">e<sub>1</sub></font></td>
+    <td align="center"><font size="4">e<sub>2</sub></font></td>
+    <td align="center"><font size="4">e<sub>3</sub></font></td>
+    <td align="center"><font size="4">e<sub>o</sub></font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">0</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">0</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">0</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">1</font></td>
+  </tr>
+</table>
+<p><font size="4">The negative logic table:</font></p>
+<table border="1" cellpadding="12" cellspacing="1" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td align="center"><font size="4">e<sub>1</sub></font></td>
+    <td align="center"><font size="4">e<sub>2</sub></font></td>
+    <td align="center"><font size="4">e<sub>3</sub></font></td>
+    <td align="center"><font size="4">e<sub>o</sub></font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">1</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">1</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">1</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">1</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">1</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">1</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">1</font></td>
+    <td align="center"><font size="4">1</font></td>
+  </tr>
+  <tr>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+    <td align="center"><font size="4">0</font></td>
+  </tr>
+</table>
+<p><font size="4">The Boolean equation for the positive logic table: e<sub>o</sub> 
+= e<sub>1</sub> e<sub>2</sub> e<sub>3</sub> <br>
+The Boolean equation for the negative logic table: e<sub>o</sub> = e<sub>1</sub> 
++ e<sub>2</sub> + e<sub>3</sub> </font></p>
+<p><b><font size="4" color="#FF8000">So the two equations are duals.</font></b></p>
+<p><font size="4">For the positive logic table, an input voltage of (LOW, LOW 
+HIGH) will correspond to row (001) and will yield output 0, which is LOW.</font></p>
+<p><font size="4">For the negative logic table, the same input corresponds to 
+the row (110), and will yield output 1, which is LOW.</font></p>
+<p><font size="4"><b><font color="#FF8000">For a given set of input voltages, 
+the output voltage is the same in both cases.</font></b> It is just the logical 
+interpretation of these voltages that differs in the two cases.</font></p>
+
+</body>
+
+</html>

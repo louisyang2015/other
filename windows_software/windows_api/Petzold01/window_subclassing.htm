@@ -1,0 +1,61 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Window Subclassing</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">Window Subclassing</font></h1>
+<p align="left"><font size="4">The Windows controls like buttons, list boxes, 
+edit boxes, and so on are child windows. They already have a window class 
+registered with the OS --- so you don't need to use RegisterClass(...) You just 
+call CreateWindow with the right window class.</font></p>
+<p align="left"><font size="4">The message processing for these window controls 
+are inside the OS --- so there's no way to change it directly. However, we can 
+have a new address (function pointer) that serve as the window procedure for the 
+control.</font></p>
+<p align="left"><font size="4" face="Courier New" color="#008000">...global...</font><font size="4" face="Courier New" color="#FF6600"><br>
+WNDPROC old_address;</font></p>
+<p align="left"><font face="Courier New" size="4" color="#008000">...in 
+WM_CREATE of main window...</font><font face="Courier New" size="4" color="#FF6600"><br>
+old_address = (WNDPROC)SetWindowLong (hwnd_control,<br>
+&nbsp;&nbsp;&nbsp; GWL_WNDPROC, (LONG)new_proc);</font></p>
+<p align="left"><font face="Courier New" size="4" color="#008000">...new windows 
+procedure function...</font><font face="Courier New" size="4" color="#FF6600"><br>
+LRESULT CALLBACK new_proc (HWND hwnd, UINT message,<br>
+&nbsp;&nbsp;&nbsp; WPARAM wParam, LPARAM lParam)<br>
+{<br>
+&nbsp;&nbsp;&nbsp; int id = GetWindowLong (hwnd, GWL_ID);</font></p>
+<p align="left"><font face="Courier New" size="4" color="#FF6600">&nbsp;&nbsp;&nbsp; 
+switch(message)<br>
+&nbsp;&nbsp;&nbsp; {<br>
+&nbsp;&nbsp;&nbsp; case WM_KEYDOWN:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if(wParam == VK_TAB)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SetFocus 
+(...);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;</font></p>
+<p align="left"><font face="Courier New" size="4" color="#FF6600">&nbsp;&nbsp;&nbsp; 
+case WM_SETFOCUS:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; idFocus = id;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; return CallWindowProc (old_address, hwnd, message, wParam, 
+lParam);<br>
+}</font></p>
+<p align="left"><font size="4">In the book, they kept the old addresses of each 
+control, even if the controls are of the same type --- for example, the book's 
+example has three scrollbars. The book kept the procedure address for each 
+scrollbar, and I am not sure if it's necessary --- but it's the safe way to do 
+things.</font></p>
+<p align="left"><font size="4"><a href="examples/window_subclassing.cpp">Click 
+here for an program that has two buttons and uses Windows Subclassing to move 
+the input focus between the two buttons</a></font></p>
+
+</body>
+
+</html>

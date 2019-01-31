@@ -1,0 +1,281 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Doing Laplace Transform on the Circuit Itself</title>
+</head>
+
+<body>
+
+<h2 align="center"><font color="#008000">Doing Laplace Transform on the Circuit 
+Itself</font></h2>
+<p><font size="4">To solve a circuit, you can write the circuit equations first, 
+then do the Laplace transform on the circuit equations. However, it is even 
+faster if we just do the Laplace transform on the circuit first, then write the 
+circuit equations second.</font></p>
+<p><b><font size="4" color="#008000">Capacitor:</font></b></p>
+<p><font size="4">The capacitor's time domain equations are:</font></p>
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    v(t) = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">1 </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">C </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle" rowSpan="2">
+        <font face="Times New Roman" color="#ff8000" size="7">&#8747;</font> </td>
+        <td noWrap align="middle">
+        <div style="LEFT: -1.2ex; POSITION: relative; TOP: -0.6ex">
+          <font face="Courier New" color="#ff8000" size="3">t</font></div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="LEFT: -1.2ex; POSITION: relative; TOP: 0.1ex">
+          <font face="Courier New" color="#ff8000" size="3">0</font></div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    i(x) dx + v(0) </font></td>
+  </tr>
+</table>
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    i(t) = C </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">d v(t) </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">dt </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<p><font size="4">When we do a Laplace transform, we get:</font></p>
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    V(s) = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">I(s) </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">sC </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    + </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">v(0) </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">s </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<table border="0" cellpadding="6" cellspacing="1" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td><font face="Courier New" color="#ff8000" size="5">I(s) = sC V(s) - C 
+    v(0) </font></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<table border="0" cellpadding="12" cellspacing="1" style="border-collapse: collapse" bordercolor="#111111" bgcolor="#FFFF99">
+  <tr>
+    <td><font size="4">So</font><p>
+    <img border="0" src="images/pic0178.gif" width="361" height="300"></p>
+    <p><font size="4">becomes:</font></p>
+    <p><img border="0" src="images/pic0179.gif" width="389" height="300"></p>
+    <p><font size="4">or</font></p>
+    <p><img border="0" src="images/pic0180.gif" width="715" height="300"></p>
+    <p><font size="4">note that the direction of the initial current is going 
+    against I(s)</font></td>
+  </tr>
+</table>
+<p><b><font size="4" color="#008000">Inductor:</font></b></p>
+<p><font size="4">The frequency domain equations for an inductor:</font></p>
+<table border="0" cellpadding="6" cellspacing="1" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td><font face="Courier New" color="#ff8000" size="5">V(s) = sL I(s) - L 
+    i(0) </font></td>
+  </tr>
+</table>
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    I(s) = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">V(s) </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">sL </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    + </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">i(0) </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">s </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<table border="0" cellpadding="12" cellspacing="1" style="border-collapse: collapse" bordercolor="#111111" bgcolor="#FFFF99">
+  <tr>
+    <td><font size="4">So</font><p>
+    <img border="0" src="images/pic0181.gif" width="320" height="320"></p>
+    <p><font size="4">becomes:</font></p>
+    <p><img border="0" src="images/pic0182.gif" width="670" height="340"></p>
+    <p><font size="4">or</font></p>
+    <p><img border="0" src="images/pic0183.gif" width="540" height="576"></p>
+    <p><font size="4">Note that the initial voltage's signs are upside down</font></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p><b><font size="4" color="#008000">Mutual Inductance:</font></b></p>
+<p><font size="4">The frequency domain equations for the mutual inductor:</font></p>
+<table border="0" cellpadding="6" cellspacing="1" style="border-collapse: collapse" bordercolor="#111111" bgcolor="#FFFF99">
+  <tr>
+    <td nowrap><font face="Courier New" color="#ff8000" size="5"><b>V<sub>1</sub>(s) 
+    = L<sub>1</sub>s I<sub>1</sub>(s) + Ms I<sub>2</sub>(s)</b> - L<sub>1 </sub>
+    i<sub>1</sub>(0) - M i<sub>2</sub>(0) </font></td>
+  </tr>
+</table>
+<table border="0" cellpadding="6" cellspacing="1" style="border-collapse: collapse" bordercolor="#111111" bgcolor="#FFFF99">
+  <tr>
+    <td nowrap><font face="Courier New" color="#ff8000" size="5"><b>V<sub>2</sub>(s) 
+    = L<sub>2</sub>s I<sub>2</sub>(s) + Ms I<sub>1</sub>(s)</b> - L<sub>2 </sub>
+    i<sub>2</sub>(0) - M i<sub>1</sub>(0) </font></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<table border="0" cellpadding="12" cellspacing="1" style="border-collapse: collapse" bordercolor="#111111" bgcolor="#FFFF99">
+  <tr>
+    <td><font size="4">So</font><p>
+    <img border="0" src="images/pic0184.gif" width="640" height="326"></p>
+    <p><font size="4">becomes:</font></p>
+    <p><img border="0" src="images/pic0185.gif" width="1297" height="320"></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<hr>
+<p><font size="4">Once you convert the components to their frequency domain 
+versions, you can use circuit analysis techniques to get V<sub>O</sub>(s) or 
+whatever it is that you need. Then you do an inverse transform to get v<sub>o</sub>(t).</font></p>
+<p><font size="4"><font color="#008000">The Laplace transform has no &quot;knowledge&quot; 
+of what goes on before time zero.</font> The resulting expression for v<sub>o</sub>(t) 
+always has a term &quot;u(t)&quot; attached to it because that expression is not valid for 
+time &lt; 0. Another side affect is that both of the following voltage forms will 
+have a Laplace transform of 10/s.</font></p>
+<p><img border="0" src="images/pic0176.gif" width="647" height="300"></p>
+<p><img border="0" src="images/pic0177.gif" width="647" height="300"></p>
+<p><font size="4">The two different wave forms can create different values for 
+the voltage/current of capacitor/inductor at time zero. So although the Laplace 
+transform on a voltage source would treat both of these wave forms equally, the 
+Laplace transform on the capacitor/inductor portions of the circuit might 
+produce different results.</font></p>
+
+</body>
+
+</html>

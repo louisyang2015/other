@@ -1,0 +1,46 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Regions</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">Regions</font></h1>
+<p><b><font size="4" color="#008000">Region construction:</font></b></p>
+<p><font size="4" face="Courier New">Region region1(Rect(50, 0, 50, 150));<br>
+Region region2(Rect(0, 50, 150, 50));</font></p>
+<p><font size="4" face="Courier New">// Create a plus-shaped region by forming 
+the union of region1 and region2.<br>
+// The union replaces region1.<br>
+region1.<font color="#FF6600">Union(</font>&amp;region2);</font></p>
+<p><font size="4" face="Courier New">// Construct a region based on the path.<br>
+Region region(&amp;path);</font></p>
+<p>&nbsp;</p>
+<p><b><font size="4" color="#008000">Hit Testing with a Region:</font></b></p>
+<p><font size="4" face="Courier New">Point point(60, 10);<br>
+// Assume that the variable &quot;point&quot; contains the location</font></p>
+<p><font size="4" face="Courier New">if(region1.<font color="#FF6600">IsVisible(</font>point, 
+&amp;graphics))<br>
+{<br>
+&nbsp;&nbsp;&nbsp; // The point is in the region. Use an opaque brush.<br>
+}<br>
+else<br>
+{<br>
+&nbsp;&nbsp;&nbsp; // The point is not in the region. Use a semitransparent 
+brush.<br>
+}</font></p>
+<p>&nbsp;</p>
+<p><b><font size="4" color="#008000">Clipping with a Region:</font></b></p>
+<p><font size="4" face="Courier New">graphics.<font color="#FF6600">SetClip(</font>&amp;region);</font></p>
+
+<p><font size="4" face="Courier New">graphics.<font color="#FF6600">SetClip(</font>&amp;region, 
+CombineModeIntersect);</font></p>
+
+</body>
+
+</html>

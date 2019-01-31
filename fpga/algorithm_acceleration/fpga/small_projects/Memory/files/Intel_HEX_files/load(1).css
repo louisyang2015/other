@@ -1,0 +1,1025 @@
+#interwiki-completelist {
+	FONT-WEIGHT: bold
+}
+BODY.page-Main_Page #ca-delete {
+	DISPLAY: none !important
+}
+BODY.page-Main_Page #mp-topbanner {
+	CLEAR: both
+}
+#toolbar {
+	MARGIN-BOTTOM: 6px; HEIGHT: 22px
+}
+DIV#content OL {
+	MARGIN-BOTTOM: 0.5em
+}
+DIV#content UL {
+	MARGIN-BOTTOM: 0.5em
+}
+DIV#mw_content OL {
+	MARGIN-BOTTOM: 0.5em
+}
+DIV#mw_content UL {
+	MARGIN-BOTTOM: 0.5em
+}
+OL.references {
+	FONT-SIZE: 90%
+}
+DIV.reflist {
+	FONT-SIZE: 90%
+}
+DIV.refbegin {
+	FONT-SIZE: 90%
+}
+DIV.reflist OL.references {
+	LIST-STYLE-TYPE: inherit; FONT-SIZE: 100%
+}
+SUP.reference {
+	FONT-STYLE: normal; FONT-WEIGHT: normal
+}
+SPAN.brokenref {
+	DISPLAY: none
+}
+SPAN.citation {
+	FONT-STYLE: normal; WORD-WRAP: break-word
+}
+CITE {
+	FONT-STYLE: normal; WORD-WRAP: break-word
+}
+
+@media Screen, Handheld    
+{
+SPAN.citation *.printonly {
+	DISPLAY: none
+}
+    }
+TABLE.navbox {
+	BORDER-BOTTOM: #aaa 1px solid; TEXT-ALIGN: center; BORDER-LEFT: #aaa 1px solid; PADDING-BOTTOM: 1px; MARGIN: auto; PADDING-LEFT: 1px; WIDTH: 100%; PADDING-RIGHT: 1px; CLEAR: both; FONT-SIZE: 88%; BORDER-TOP: #aaa 1px solid; BORDER-RIGHT: #aaa 1px solid; PADDING-TOP: 1px
+}
+TABLE.navbox + TABLE.navbox {
+	MARGIN-TOP: -1px
+}
+.navbox-title {
+	TEXT-ALIGN: center; PADDING-LEFT: 1em; PADDING-RIGHT: 1em
+}
+.navbox-abovebelow {
+	TEXT-ALIGN: center; PADDING-LEFT: 1em; PADDING-RIGHT: 1em
+}
+TABLE.navbox TH {
+	TEXT-ALIGN: center; PADDING-LEFT: 1em; PADDING-RIGHT: 1em
+}
+.navbox-group {
+	TEXT-ALIGN: right; PADDING-LEFT: 1em; PADDING-RIGHT: 1em; WHITE-SPACE: nowrap; FONT-WEIGHT: bold
+}
+.navbox {
+	BACKGROUND: #fdfdfd
+}
+.navbox-subgroup {
+	BACKGROUND: #fdfdfd
+}
+.navbox-list {
+	BORDER-BOTTOM-COLOR: #fdfdfd; BORDER-TOP-COLOR: #fdfdfd; BORDER-RIGHT-COLOR: #fdfdfd; BORDER-LEFT-COLOR: #fdfdfd
+}
+.navbox-title {
+	BACKGROUND: #ccccff
+}
+TABLE.navbox TH {
+	BACKGROUND: #ccccff
+}
+.navbox-abovebelow {
+	BACKGROUND: #ddddff
+}
+.navbox-group {
+	BACKGROUND: #ddddff
+}
+.navbox-subgroup .navbox-title {
+	BACKGROUND: #ddddff
+}
+.navbox-subgroup .navbox-group {
+	BACKGROUND: #e6e6ff
+}
+.navbox-subgroup .navbox-abovebelow {
+	BACKGROUND: #e6e6ff
+}
+.navbox-even {
+	BACKGROUND: #f7f7f7
+}
+.navbox-odd {
+	BACKGROUND: none transparent scroll repeat 0% 0%
+}
+.collapseButton {
+	TEXT-ALIGN: right; WIDTH: auto; FLOAT: right; FONT-WEIGHT: normal
+}
+.navbox .collapseButton {
+	WIDTH: 6em
+}
+.navbar {
+	FONT-SIZE: 88%; FONT-WEIGHT: normal
+}
+.navbox .navbar {
+	FONT-SIZE: 100%
+}
+.infobox {
+	BORDER-BOTTOM: #aaa 1px solid; TEXT-ALIGN: left; BORDER-LEFT: #aaa 1px solid; PADDING-BOTTOM: 0.2em; LINE-HEIGHT: 1.5em; BACKGROUND-COLOR: #f9f9f9; MARGIN: 0.5em 0px 0.5em 1em; PADDING-LEFT: 0.2em; PADDING-RIGHT: 0.2em; FLOAT: right; COLOR: black; CLEAR: right; FONT-SIZE: 88%; BORDER-TOP: #aaa 1px solid; BORDER-RIGHT: #aaa 1px solid; PADDING-TOP: 0.2em
+}
+.infobox CAPTION {
+	FONT-SIZE: 125%; FONT-WEIGHT: bold
+}
+.infobox TD {
+	VERTICAL-ALIGN: top
+}
+.infobox TH {
+	VERTICAL-ALIGN: top
+}
+.bordered.infobox {
+	BORDER-COLLAPSE: collapse
+}
+.bordered.infobox TD {
+	BORDER-BOTTOM: #aaa 1px solid; BORDER-LEFT: #aaa 1px solid; BORDER-TOP: #aaa 1px solid; BORDER-RIGHT: #aaa 1px solid
+}
+.bordered.infobox TH {
+	BORDER-BOTTOM: #aaa 1px solid; BORDER-LEFT: #aaa 1px solid; BORDER-TOP: #aaa 1px solid; BORDER-RIGHT: #aaa 1px solid
+}
+.bordered.infobox .borderless TD {
+	BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; BORDER-TOP: 0px; BORDER-RIGHT: 0px
+}
+.bordered.infobox .borderless TH {
+	BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; BORDER-TOP: 0px; BORDER-RIGHT: 0px
+}
+.sisterproject.infobox {
+	WIDTH: 20em; FONT-SIZE: 90%
+}
+.standard-talk.infobox {
+	BORDER-BOTTOM: #c0c090 1px solid; BORDER-LEFT: #c0c090 1px solid; BACKGROUND-COLOR: #f8eaba; BORDER-TOP: #c0c090 1px solid; BORDER-RIGHT: #c0c090 1px solid
+}
+.bordered.standard-talk.infobox TD {
+	BORDER-BOTTOM: #c0c090 1px solid; BORDER-LEFT: #c0c090 1px solid; BORDER-TOP: #c0c090 1px solid; BORDER-RIGHT: #c0c090 1px solid
+}
+.bordered.standard-talk.infobox TH {
+	BORDER-BOTTOM: #c0c090 1px solid; BORDER-LEFT: #c0c090 1px solid; BORDER-TOP: #c0c090 1px solid; BORDER-RIGHT: #c0c090 1px solid
+}
+.bordered.infobox .mergedtoprow TD {
+	BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; BORDER-TOP: #aaa 1px solid; BORDER-RIGHT: #aaa 1px solid
+}
+.bordered.infobox .mergedtoprow TH {
+	BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; BORDER-TOP: #aaa 1px solid; BORDER-RIGHT: #aaa 1px solid
+}
+.bordered.infobox .mergedrow TD {
+	BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; BORDER-TOP: 0px; BORDER-RIGHT: #aaa 1px solid
+}
+.bordered.infobox .mergedrow TH {
+	BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; BORDER-TOP: 0px; BORDER-RIGHT: #aaa 1px solid
+}
+.geography.infobox {
+	TEXT-ALIGN: left; LINE-HEIGHT: 1.2em; BORDER-COLLAPSE: collapse; FONT-SIZE: 90%
+}
+.geography.infobox TD {
+	PADDING-BOTTOM: 0.4em; PADDING-LEFT: 0.6em; PADDING-RIGHT: 0.6em; BORDER-TOP: #aaa 1px solid; PADDING-TOP: 0.4em
+}
+.geography.infobox TH {
+	PADDING-BOTTOM: 0.4em; PADDING-LEFT: 0.6em; PADDING-RIGHT: 0.6em; BORDER-TOP: #aaa 1px solid; PADDING-TOP: 0.4em
+}
+.geography.infobox .mergedtoprow TD {
+	PADDING-BOTTOM: 0.2em; PADDING-LEFT: 0.6em; PADDING-RIGHT: 0.6em; BORDER-TOP: #aaa 1px solid; PADDING-TOP: 0.4em
+}
+.geography.infobox .mergedtoprow TH {
+	PADDING-BOTTOM: 0.2em; PADDING-LEFT: 0.6em; PADDING-RIGHT: 0.6em; BORDER-TOP: #aaa 1px solid; PADDING-TOP: 0.4em
+}
+.geography.infobox .mergedrow TD {
+	BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; PADDING-BOTTOM: 0.2em; PADDING-LEFT: 0.6em; PADDING-RIGHT: 0.6em; BORDER-TOP: 0px; BORDER-RIGHT: 0px; PADDING-TOP: 0px
+}
+.geography.infobox .mergedrow TH {
+	BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; PADDING-BOTTOM: 0.2em; PADDING-LEFT: 0.6em; PADDING-RIGHT: 0.6em; BORDER-TOP: 0px; BORDER-RIGHT: 0px; PADDING-TOP: 0px
+}
+.geography.infobox .mergedbottomrow TD {
+	BORDER-BOTTOM: #aaa 1px solid; PADDING-BOTTOM: 0.4em; PADDING-LEFT: 0.6em; PADDING-RIGHT: 0.6em; BORDER-TOP: 0px; PADDING-TOP: 0px
+}
+.geography.infobox .mergedbottomrow TH {
+	BORDER-BOTTOM: #aaa 1px solid; PADDING-BOTTOM: 0.4em; PADDING-LEFT: 0.6em; PADDING-RIGHT: 0.6em; BORDER-TOP: 0px; PADDING-TOP: 0px
+}
+.geography.infobox .maptable TD {
+	BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; PADDING-BOTTOM: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; BORDER-TOP: 0px; BORDER-RIGHT: 0px; PADDING-TOP: 0px
+}
+.geography.infobox .maptable TH {
+	BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; PADDING-BOTTOM: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; BORDER-TOP: 0px; BORDER-RIGHT: 0px; PADDING-TOP: 0px
+}
+.plainrowheaders.wikitable TH[scope=row] {
+	TEXT-ALIGN: left; FONT-WEIGHT: normal
+}
+.wikitable TD UL {
+	TEXT-ALIGN: left
+}
+.wikitable TD OL {
+	TEXT-ALIGN: left
+}
+.wikitable TD DL {
+	TEXT-ALIGN: left
+}
+DIV.listenlist {
+	PADDING-LEFT: 40px; BACKGROUND: url(http://upload.wikimedia.org/wikipedia/commons/3/3f/Gnome_speakernotes_30px.png)
+}
+DIV.medialist {
+	MARGIN: 1em; MIN-HEIGHT: 50px; BACKGROUND-REPEAT: no-repeat; BACKGROUND-POSITION: left top
+}
+DIV.medialist UL {
+	LIST-STYLE-TYPE: none; MARGIN: 0px; LIST-STYLE-IMAGE: none
+}
+DIV.medialist UL LI {
+	PADDING-BOTTOM: 0.5em
+}
+DIV.medialist UL LI LI {
+	PADDING-BOTTOM: 0px; FONT-SIZE: 91%
+}
+DIV#content A[href$='.pdf'].external {
+	PADDING-RIGHT: 18px; BACKGROUND: url(http://upload.wikimedia.org/wikipedia/commons/2/23/Icons-mini-file_acrobat.gif) no-repeat right center
+}
+DIV#content A[href*='.pdf?'].external {
+	PADDING-RIGHT: 18px; BACKGROUND: url(http://upload.wikimedia.org/wikipedia/commons/2/23/Icons-mini-file_acrobat.gif) no-repeat right center
+}
+DIV#content A[href*='.pdf#'].external {
+	PADDING-RIGHT: 18px; BACKGROUND: url(http://upload.wikimedia.org/wikipedia/commons/2/23/Icons-mini-file_acrobat.gif) no-repeat right center
+}
+DIV#content A[href$='.PDF'].external {
+	PADDING-RIGHT: 18px; BACKGROUND: url(http://upload.wikimedia.org/wikipedia/commons/2/23/Icons-mini-file_acrobat.gif) no-repeat right center
+}
+DIV#content A[href*='.PDF?'].external {
+	PADDING-RIGHT: 18px; BACKGROUND: url(http://upload.wikimedia.org/wikipedia/commons/2/23/Icons-mini-file_acrobat.gif) no-repeat right center
+}
+DIV#content A[href*='.PDF#'].external {
+	PADDING-RIGHT: 18px; BACKGROUND: url(http://upload.wikimedia.org/wikipedia/commons/2/23/Icons-mini-file_acrobat.gif) no-repeat right center
+}
+DIV#mw_content A[href$='.pdf'].external {
+	PADDING-RIGHT: 18px; BACKGROUND: url(http://upload.wikimedia.org/wikipedia/commons/2/23/Icons-mini-file_acrobat.gif) no-repeat right center
+}
+DIV#mw_content A[href*='.pdf?'].external {
+	PADDING-RIGHT: 18px; BACKGROUND: url(http://upload.wikimedia.org/wikipedia/commons/2/23/Icons-mini-file_acrobat.gif) no-repeat right center
+}
+DIV#mw_content A[href*='.pdf#'].external {
+	PADDING-RIGHT: 18px; BACKGROUND: url(http://upload.wikimedia.org/wikipedia/commons/2/23/Icons-mini-file_acrobat.gif) no-repeat right center
+}
+DIV#mw_content A[href$='.PDF'].external {
+	PADDING-RIGHT: 18px; BACKGROUND: url(http://upload.wikimedia.org/wikipedia/commons/2/23/Icons-mini-file_acrobat.gif) no-repeat right center
+}
+DIV#mw_content A[href*='.PDF?'].external {
+	PADDING-RIGHT: 18px; BACKGROUND: url(http://upload.wikimedia.org/wikipedia/commons/2/23/Icons-mini-file_acrobat.gif) no-repeat right center
+}
+DIV#mw_content A[href*='.PDF#'].external {
+	PADDING-RIGHT: 18px; BACKGROUND: url(http://upload.wikimedia.org/wikipedia/commons/2/23/Icons-mini-file_acrobat.gif) no-repeat right center
+}
+DIV#content SPAN.PDFlink A {
+	PADDING-RIGHT: 18px; BACKGROUND: url(http://upload.wikimedia.org/wikipedia/commons/2/23/Icons-mini-file_acrobat.gif) no-repeat right center
+}
+DIV#mw_content SPAN.PDFlink A {
+	PADDING-RIGHT: 18px; BACKGROUND: url(http://upload.wikimedia.org/wikipedia/commons/2/23/Icons-mini-file_acrobat.gif) no-repeat right center
+}
+DIV.columns-2 DIV.column {
+	MIN-WIDTH: 300px; WIDTH: 50%; FLOAT: left
+}
+DIV.columns-3 DIV.column {
+	MIN-WIDTH: 200px; WIDTH: 33.3%; FLOAT: left
+}
+DIV.columns-4 DIV.column {
+	MIN-WIDTH: 150px; WIDTH: 25%; FLOAT: left
+}
+DIV.columns-5 DIV.column {
+	MIN-WIDTH: 120px; WIDTH: 20%; FLOAT: left
+}
+.messagebox {
+	BORDER-BOTTOM: #aaa 1px solid; BORDER-LEFT: #aaa 1px solid; PADDING-BOTTOM: 0.2em; BACKGROUND-COLOR: #f9f9f9; MARGIN: 0px auto 1em; PADDING-LEFT: 0.2em; WIDTH: 80%; PADDING-RIGHT: 0.2em; BORDER-TOP: #aaa 1px solid; BORDER-RIGHT: #aaa 1px solid; PADDING-TOP: 0.2em
+}
+.merge.messagebox {
+	BORDER-BOTTOM: #c0b8cc 1px solid; TEXT-ALIGN: center; BORDER-LEFT: #c0b8cc 1px solid; BACKGROUND-COLOR: #f0e5ff; BORDER-TOP: #c0b8cc 1px solid; BORDER-RIGHT: #c0b8cc 1px solid
+}
+.cleanup.messagebox {
+	BORDER-BOTTOM: #9f9fff 1px solid; TEXT-ALIGN: center; BORDER-LEFT: #9f9fff 1px solid; BACKGROUND-COLOR: #efefff; BORDER-TOP: #9f9fff 1px solid; BORDER-RIGHT: #9f9fff 1px solid
+}
+.standard-talk.messagebox {
+	BORDER-BOTTOM: #c0c090 1px solid; BORDER-LEFT: #c0c090 1px solid; BACKGROUND-COLOR: #f8eaba; MARGIN: 4px auto; BORDER-TOP: #c0c090 1px solid; BORDER-RIGHT: #c0c090 1px solid
+}
+.mbox-inside .standard-talk {
+	BORDER-BOTTOM: #c0c090 1px solid; BORDER-LEFT: #c0c090 1px solid; PADDING-BOTTOM: 2px; BACKGROUND-COLOR: #f8eaba; MARGIN: 2px 0px; PADDING-LEFT: 2px; WIDTH: 100%; PADDING-RIGHT: 2px; BORDER-TOP: #c0c090 1px solid; BORDER-RIGHT: #c0c090 1px solid; PADDING-TOP: 2px
+}
+.nested-talk.messagebox {
+	BORDER-BOTTOM: #c0c090 1px solid; BORDER-LEFT: #c0c090 1px solid; PADDING-BOTTOM: 2px; BACKGROUND-COLOR: #f8eaba; MARGIN: 2px 0px; PADDING-LEFT: 2px; WIDTH: 100%; PADDING-RIGHT: 2px; BORDER-TOP: #c0c090 1px solid; BORDER-RIGHT: #c0c090 1px solid; PADDING-TOP: 2px
+}
+.small.messagebox {
+	LINE-HEIGHT: 1.25em; MARGIN: 0px 0px 1em 1em; WIDTH: 238px; FLOAT: right; CLEAR: both; FONT-SIZE: 85%
+}
+.small-talk.messagebox {
+	LINE-HEIGHT: 1.25em; MARGIN: 0px 0px 1em 1em; WIDTH: 238px; BACKGROUND: #f8eaba; FLOAT: right; CLEAR: both; FONT-SIZE: 85%
+}
+TH.mbox-text {
+	BORDER-BOTTOM: medium none; BORDER-LEFT: medium none; PADDING-BOTTOM: 0.25em; PADDING-LEFT: 0.9em; WIDTH: 100%; PADDING-RIGHT: 0.9em; BORDER-TOP: medium none; BORDER-RIGHT: medium none; PADDING-TOP: 0.25em
+}
+TD.mbox-text {
+	BORDER-BOTTOM: medium none; BORDER-LEFT: medium none; PADDING-BOTTOM: 0.25em; PADDING-LEFT: 0.9em; WIDTH: 100%; PADDING-RIGHT: 0.9em; BORDER-TOP: medium none; BORDER-RIGHT: medium none; PADDING-TOP: 0.25em
+}
+TD.mbox-image {
+	BORDER-BOTTOM: medium none; TEXT-ALIGN: center; BORDER-LEFT: medium none; PADDING-BOTTOM: 2px; PADDING-LEFT: 0.9em; PADDING-RIGHT: 0px; BORDER-TOP: medium none; BORDER-RIGHT: medium none; PADDING-TOP: 2px
+}
+TD.mbox-imageright {
+	BORDER-BOTTOM: medium none; TEXT-ALIGN: center; BORDER-LEFT: medium none; PADDING-BOTTOM: 2px; PADDING-LEFT: 0px; PADDING-RIGHT: 0.9em; BORDER-TOP: medium none; BORDER-RIGHT: medium none; PADDING-TOP: 2px
+}
+TD.mbox-empty-cell {
+	BORDER-BOTTOM: medium none; BORDER-LEFT: medium none; PADDING-BOTTOM: 0px; PADDING-LEFT: 0px; WIDTH: 1px; PADDING-RIGHT: 0px; BORDER-TOP: medium none; BORDER-RIGHT: medium none; PADDING-TOP: 0px
+}
+TABLE.ambox {
+	BORDER-BOTTOM: #aaa 1px solid; BORDER-LEFT: #1e90ff 10px solid; MARGIN: 0px 10%; BACKGROUND: #fbfbfb; BORDER-TOP: #aaa 1px solid; BORDER-RIGHT: #aaa 1px solid
+}
+TABLE.ambox + TABLE.ambox {
+	MARGIN-TOP: -1px
+}
+.ambox TH.mbox-text {
+	PADDING-BOTTOM: 0.25em; PADDING-LEFT: 0.5em; PADDING-RIGHT: 0.5em; PADDING-TOP: 0.25em
+}
+.ambox TD.mbox-text {
+	PADDING-BOTTOM: 0.25em; PADDING-LEFT: 0.5em; PADDING-RIGHT: 0.5em; PADDING-TOP: 0.25em
+}
+.ambox TD.mbox-image {
+	PADDING-BOTTOM: 2px; PADDING-LEFT: 0.5em; PADDING-RIGHT: 0px; PADDING-TOP: 2px
+}
+.ambox TD.mbox-imageright {
+	PADDING-BOTTOM: 2px; PADDING-LEFT: 0px; PADDING-RIGHT: 0.5em; PADDING-TOP: 2px
+}
+TABLE.ambox-notice {
+	BORDER-LEFT: #1e90ff 10px solid
+}
+TABLE.ambox-speedy {
+	BORDER-LEFT: #b22222 10px solid; BACKGROUND: #fee
+}
+TABLE.ambox-delete {
+	BORDER-LEFT: #b22222 10px solid
+}
+TABLE.ambox-content {
+	BORDER-LEFT: #f28500 10px solid
+}
+TABLE.ambox-style {
+	BORDER-LEFT: #f4c430 10px solid
+}
+TABLE.ambox-move {
+	BORDER-LEFT: #9932cc 10px solid
+}
+TABLE.ambox-protection {
+	BORDER-LEFT: #bba 10px solid
+}
+TABLE.imbox {
+	BORDER-BOTTOM: #1e90ff 3px solid; BORDER-LEFT: #1e90ff 3px solid; MARGIN: 4px 10%; BORDER-COLLAPSE: collapse; BACKGROUND: #fbfbfb; BORDER-TOP: #1e90ff 3px solid; BORDER-RIGHT: #1e90ff 3px solid
+}
+.imbox .mbox-text .imbox {
+	MARGIN: 0px -0.5em; DISPLAY: block
+}
+.mbox-inside .imbox {
+	MARGIN: 4px
+}
+TABLE.imbox-notice {
+	BORDER-BOTTOM: #1e90ff 3px solid; BORDER-LEFT: #1e90ff 3px solid; BORDER-TOP: #1e90ff 3px solid; BORDER-RIGHT: #1e90ff 3px solid
+}
+TABLE.imbox-speedy {
+	BORDER-BOTTOM: #b22222 3px solid; BORDER-LEFT: #b22222 3px solid; BACKGROUND: #fee; BORDER-TOP: #b22222 3px solid; BORDER-RIGHT: #b22222 3px solid
+}
+TABLE.imbox-delete {
+	BORDER-BOTTOM: #b22222 3px solid; BORDER-LEFT: #b22222 3px solid; BORDER-TOP: #b22222 3px solid; BORDER-RIGHT: #b22222 3px solid
+}
+TABLE.imbox-content {
+	BORDER-BOTTOM: #f28500 3px solid; BORDER-LEFT: #f28500 3px solid; BORDER-TOP: #f28500 3px solid; BORDER-RIGHT: #f28500 3px solid
+}
+TABLE.imbox-style {
+	BORDER-BOTTOM: #f4c430 3px solid; BORDER-LEFT: #f4c430 3px solid; BORDER-TOP: #f4c430 3px solid; BORDER-RIGHT: #f4c430 3px solid
+}
+TABLE.imbox-move {
+	BORDER-BOTTOM: #9932cc 3px solid; BORDER-LEFT: #9932cc 3px solid; BORDER-TOP: #9932cc 3px solid; BORDER-RIGHT: #9932cc 3px solid
+}
+TABLE.imbox-protection {
+	BORDER-BOTTOM: #bba 3px solid; BORDER-LEFT: #bba 3px solid; BORDER-TOP: #bba 3px solid; BORDER-RIGHT: #bba 3px solid
+}
+TABLE.imbox-license {
+	BORDER-BOTTOM: #88a 3px solid; BORDER-LEFT: #88a 3px solid; BACKGROUND: #f7f8ff; BORDER-TOP: #88a 3px solid; BORDER-RIGHT: #88a 3px solid
+}
+TABLE.imbox-featured {
+	BORDER-BOTTOM: #cba135 3px solid; BORDER-LEFT: #cba135 3px solid; BORDER-TOP: #cba135 3px solid; BORDER-RIGHT: #cba135 3px solid
+}
+TABLE.cmbox {
+	BORDER-BOTTOM: #aaa 1px solid; BORDER-LEFT: #aaa 1px solid; MARGIN: 3px 10%; BORDER-COLLAPSE: collapse; BACKGROUND: #dfe8ff; BORDER-TOP: #aaa 1px solid; BORDER-RIGHT: #aaa 1px solid
+}
+TABLE.cmbox-notice {
+	BACKGROUND: #d8e8ff
+}
+TABLE.cmbox-speedy {
+	BORDER-BOTTOM: #b22222 4px solid; BORDER-LEFT: #b22222 4px solid; MARGIN-TOP: 4px; MARGIN-BOTTOM: 4px; BACKGROUND: #ffdbdb; BORDER-TOP: #b22222 4px solid; BORDER-RIGHT: #b22222 4px solid
+}
+TABLE.cmbox-delete {
+	BACKGROUND: #ffdbdb
+}
+TABLE.cmbox-content {
+	BACKGROUND: #ffe7ce
+}
+TABLE.cmbox-style {
+	BACKGROUND: #fff9db
+}
+TABLE.cmbox-move {
+	BACKGROUND: #e4d8ff
+}
+TABLE.cmbox-protection {
+	BACKGROUND: #efefe1
+}
+TABLE.ombox {
+	BORDER-BOTTOM: #aaa 1px solid; BORDER-LEFT: #aaa 1px solid; MARGIN: 4px 10%; BORDER-COLLAPSE: collapse; BACKGROUND: #f9f9f9; BORDER-TOP: #aaa 1px solid; BORDER-RIGHT: #aaa 1px solid
+}
+TABLE.ombox-notice {
+	BORDER-BOTTOM: #aaa 1px solid; BORDER-LEFT: #aaa 1px solid; BORDER-TOP: #aaa 1px solid; BORDER-RIGHT: #aaa 1px solid
+}
+TABLE.ombox-speedy {
+	BORDER-BOTTOM: #b22222 2px solid; BORDER-LEFT: #b22222 2px solid; BACKGROUND: #fee; BORDER-TOP: #b22222 2px solid; BORDER-RIGHT: #b22222 2px solid
+}
+TABLE.ombox-delete {
+	BORDER-BOTTOM: #b22222 2px solid; BORDER-LEFT: #b22222 2px solid; BORDER-TOP: #b22222 2px solid; BORDER-RIGHT: #b22222 2px solid
+}
+TABLE.ombox-content {
+	BORDER-BOTTOM: #f28500 1px solid; BORDER-LEFT: #f28500 1px solid; BORDER-TOP: #f28500 1px solid; BORDER-RIGHT: #f28500 1px solid
+}
+TABLE.ombox-style {
+	BORDER-BOTTOM: #f4c430 1px solid; BORDER-LEFT: #f4c430 1px solid; BORDER-TOP: #f4c430 1px solid; BORDER-RIGHT: #f4c430 1px solid
+}
+TABLE.ombox-move {
+	BORDER-BOTTOM: #9932cc 1px solid; BORDER-LEFT: #9932cc 1px solid; BORDER-TOP: #9932cc 1px solid; BORDER-RIGHT: #9932cc 1px solid
+}
+TABLE.ombox-protection {
+	BORDER-BOTTOM: #bba 2px solid; BORDER-LEFT: #bba 2px solid; BORDER-TOP: #bba 2px solid; BORDER-RIGHT: #bba 2px solid
+}
+TABLE.tmbox {
+	BORDER-BOTTOM: #c0c090 1px solid; BORDER-LEFT: #c0c090 1px solid; MARGIN: 4px 10%; BORDER-COLLAPSE: collapse; BACKGROUND: #f8eaba; BORDER-TOP: #c0c090 1px solid; BORDER-RIGHT: #c0c090 1px solid
+}
+.mediawiki .mbox-inside .tmbox {
+	MARGIN: 2px 0px; WIDTH: 100%
+}
+.mbox-inside .mbox-small.tmbox {
+	LINE-HEIGHT: 1.5em; FONT-SIZE: 100%
+}
+TABLE.tmbox-speedy {
+	BORDER-BOTTOM: #b22222 2px solid; BORDER-LEFT: #b22222 2px solid; BACKGROUND: #fee; BORDER-TOP: #b22222 2px solid; BORDER-RIGHT: #b22222 2px solid
+}
+TABLE.tmbox-delete {
+	BORDER-BOTTOM: #b22222 2px solid; BORDER-LEFT: #b22222 2px solid; BORDER-TOP: #b22222 2px solid; BORDER-RIGHT: #b22222 2px solid
+}
+TABLE.tmbox-content {
+	BORDER-BOTTOM: #f28500 2px solid; BORDER-LEFT: #f28500 2px solid; BORDER-TOP: #f28500 2px solid; BORDER-RIGHT: #f28500 2px solid
+}
+TABLE.tmbox-style {
+	BORDER-BOTTOM: #f4c430 2px solid; BORDER-LEFT: #f4c430 2px solid; BORDER-TOP: #f4c430 2px solid; BORDER-RIGHT: #f4c430 2px solid
+}
+TABLE.tmbox-move {
+	BORDER-BOTTOM: #9932cc 2px solid; BORDER-LEFT: #9932cc 2px solid; BORDER-TOP: #9932cc 2px solid; BORDER-RIGHT: #9932cc 2px solid
+}
+TABLE.tmbox-protection {
+	BORDER-BOTTOM: #c0c090 1px solid; BORDER-LEFT: #c0c090 1px solid; BORDER-TOP: #c0c090 1px solid; BORDER-RIGHT: #c0c090 1px solid
+}
+TABLE.tmbox-notice {
+	BORDER-BOTTOM: #c0c090 1px solid; BORDER-LEFT: #c0c090 1px solid; BORDER-TOP: #c0c090 1px solid; BORDER-RIGHT: #c0c090 1px solid
+}
+TABLE.dmbox {
+	BORDER-BOTTOM: #ccc 1px solid; MARGIN: 0.9em 1em; BACKGROUND: none transparent scroll repeat 0% 0%; CLEAR: both; BORDER-TOP: #ccc 1px solid
+}
+TABLE.fmbox {
+	BORDER-BOTTOM: #aaa 1px solid; BORDER-LEFT: #aaa 1px solid; MARGIN: 0.2em 0px; WIDTH: 100%; BACKGROUND: #f9f9f9; CLEAR: both; BORDER-TOP: #aaa 1px solid; BORDER-RIGHT: #aaa 1px solid
+}
+TABLE.fmbox-system {
+	BACKGROUND: #f9f9f9
+}
+TABLE.fmbox-warning {
+	BORDER-BOTTOM: #bb7070 1px solid; BORDER-LEFT: #bb7070 1px solid; BACKGROUND: #ffdbdb; BORDER-TOP: #bb7070 1px solid; BORDER-RIGHT: #bb7070 1px solid
+}
+TABLE.fmbox-editnotice {
+	BACKGROUND: none transparent scroll repeat 0% 0%
+}
+DIV.mw-warning-with-logexcerpt {
+	BORDER-BOTTOM: #bb7070 1px solid; BORDER-LEFT: #bb7070 1px solid; PADDING-BOTTOM: 0.25em; MARGIN: 0.2em 0px; PADDING-LEFT: 0.9em; PADDING-RIGHT: 0.9em; BACKGROUND: #ffdbdb; CLEAR: both; BORDER-TOP: #bb7070 1px solid; BORDER-RIGHT: #bb7070 1px solid; PADDING-TOP: 0.25em
+}
+DIV.mw-lag-warn-high {
+	BORDER-BOTTOM: #bb7070 1px solid; BORDER-LEFT: #bb7070 1px solid; PADDING-BOTTOM: 0.25em; MARGIN: 0.2em 0px; PADDING-LEFT: 0.9em; PADDING-RIGHT: 0.9em; BACKGROUND: #ffdbdb; CLEAR: both; BORDER-TOP: #bb7070 1px solid; BORDER-RIGHT: #bb7070 1px solid; PADDING-TOP: 0.25em
+}
+DIV.mw-cascadeprotectedwarning {
+	BORDER-BOTTOM: #bb7070 1px solid; BORDER-LEFT: #bb7070 1px solid; PADDING-BOTTOM: 0.25em; MARGIN: 0.2em 0px; PADDING-LEFT: 0.9em; PADDING-RIGHT: 0.9em; BACKGROUND: #ffdbdb; CLEAR: both; BORDER-TOP: #bb7070 1px solid; BORDER-RIGHT: #bb7070 1px solid; PADDING-TOP: 0.25em
+}
+DIV#mw-protect-cascadeon {
+	BORDER-BOTTOM: #bb7070 1px solid; BORDER-LEFT: #bb7070 1px solid; PADDING-BOTTOM: 0.25em; MARGIN: 0.2em 0px; PADDING-LEFT: 0.9em; PADDING-RIGHT: 0.9em; BACKGROUND: #ffdbdb; CLEAR: both; BORDER-TOP: #bb7070 1px solid; BORDER-RIGHT: #bb7070 1px solid; PADDING-TOP: 0.25em
+}
+DIV.mw-lag-warn-normal {
+	BORDER-BOTTOM: #aaa 1px solid; BORDER-LEFT: #aaa 1px solid; PADDING-BOTTOM: 0.25em; MARGIN: 0.2em 0px; PADDING-LEFT: 0.9em; PADDING-RIGHT: 0.9em; BACKGROUND: #f9f9f9; CLEAR: both; BORDER-TOP: #aaa 1px solid; BORDER-RIGHT: #aaa 1px solid; PADDING-TOP: 0.25em
+}
+DIV.fmbox-system {
+	BORDER-BOTTOM: #aaa 1px solid; BORDER-LEFT: #aaa 1px solid; PADDING-BOTTOM: 0.25em; MARGIN: 0.2em 0px; PADDING-LEFT: 0.9em; PADDING-RIGHT: 0.9em; BACKGROUND: #f9f9f9; CLEAR: both; BORDER-TOP: #aaa 1px solid; BORDER-RIGHT: #aaa 1px solid; PADDING-TOP: 0.25em
+}
+BODY.mediawiki TABLE.mbox-small {
+	LINE-HEIGHT: 1.25em; MARGIN: 4px 0px 4px 1em; WIDTH: 238px; FLOAT: right; CLEAR: right; FONT-SIZE: 88%
+}
+BODY.mediawiki TABLE.mbox-small-left {
+	LINE-HEIGHT: 1.25em; MARGIN: 4px 1em 4px 0px; WIDTH: 238px; BORDER-COLLAPSE: collapse; FONT-SIZE: 88%
+}
+DIV.noarticletext {
+	BORDER-BOTTOM: medium none; BORDER-LEFT: medium none; PADDING-BOTTOM: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; BACKGROUND: none transparent scroll repeat 0% 0%; BORDER-TOP: medium none; BORDER-RIGHT: medium none; PADDING-TOP: 0px
+}
+#wpSave {
+	FONT-WEIGHT: bold
+}
+.hiddenStructure {
+	BACKGROUND-COLOR: #0f0; DISPLAY: inline !important; COLOR: #f00
+}
+.check-icon A.new {
+	DISPLAY: none; speak: none
+}
+.nounderlines A {
+	TEXT-DECORATION: none
+}
+.IPA A:link {
+	TEXT-DECORATION: none
+}
+.IPA A:visited {
+	TEXT-DECORATION: none
+}
+DIV.NavFrame {
+	BORDER-BOTTOM: #aaa 1px solid; TEXT-ALIGN: center; BORDER-LEFT: #aaa 1px solid; PADDING-BOTTOM: 4px; MARGIN: 0px; PADDING-LEFT: 4px; PADDING-RIGHT: 4px; BORDER-COLLAPSE: collapse; FONT-SIZE: 95%; BORDER-TOP: #aaa 1px solid; BORDER-RIGHT: #aaa 1px solid; PADDING-TOP: 4px
+}
+DIV.NavFrame + DIV.NavFrame {
+	BORDER-TOP-STYLE: hidden
+}
+DIV.NavPic {
+	PADDING-BOTTOM: 2px; BACKGROUND-COLOR: #fff; MARGIN: 0px; PADDING-LEFT: 2px; PADDING-RIGHT: 2px; FLOAT: left; PADDING-TOP: 2px
+}
+DIV.NavFrame DIV.NavHead {
+	POSITION: relative; BACKGROUND-COLOR: #ccf; HEIGHT: 1.6em; FONT-WEIGHT: bold
+}
+DIV.NavFrame P {
+	FONT-SIZE: 100%
+}
+DIV.NavFrame DIV.NavContent {
+	FONT-SIZE: 100%
+}
+DIV.NavFrame DIV.NavContent P {
+	FONT-SIZE: 100%
+}
+DIV.NavEnd {
+	PADDING-BOTTOM: 0px; LINE-HEIGHT: 1px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; CLEAR: both; PADDING-TOP: 0px
+}
+A.NavToggle {
+	POSITION: absolute; FONT-SIZE: 90%; TOP: 0px; RIGHT: 3px; FONT-WEIGHT: normal
+}
+.rellink {
+	FONT-STYLE: italic; PADDING-LEFT: 2em; MARGIN-BOTTOM: 0.5em
+}
+.dablink {
+	FONT-STYLE: italic; PADDING-LEFT: 2em; MARGIN-BOTTOM: 0.5em
+}
+.rellink I {
+	FONT-STYLE: normal
+}
+.dablink I {
+	FONT-STYLE: normal
+}
+.horizontal UL {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+.horizontal LI {
+	PADDING-BOTTOM: 0px; PADDING-LEFT: 0.4em; PADDING-RIGHT: 0.6em; DISPLAY: inline; BORDER-RIGHT: 1px solid; PADDING-TOP: 0px
+}
+.listify TD {
+	DISPLAY: list-item
+}
+.listify TR {
+	DISPLAY: block
+}
+.listify TABLE {
+	DISPLAY: block
+}
+.geo-default {
+	DISPLAY: inline
+}
+.geo-dms {
+	DISPLAY: inline
+}
+.geo-dec {
+	DISPLAY: inline
+}
+.geo-nondefault {
+	DISPLAY: none
+}
+.geo-multi-punct {
+	DISPLAY: none
+}
+.longitude {
+	WHITE-SPACE: nowrap
+}
+.latitude {
+	WHITE-SPACE: nowrap
+}
+.nonumtoc .tocnumber {
+	DISPLAY: none
+}
+.nonumtoc #toc UL {
+	PADDING-BOTTOM: 0px; LINE-HEIGHT: 1.5em; LIST-STYLE-TYPE: none; MARGIN: 0.3em 0px 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; LIST-STYLE-IMAGE: none; PADDING-TOP: 0px
+}
+.nonumtoc .toc UL {
+	PADDING-BOTTOM: 0px; LINE-HEIGHT: 1.5em; LIST-STYLE-TYPE: none; MARGIN: 0.3em 0px 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; LIST-STYLE-IMAGE: none; PADDING-TOP: 0px
+}
+.nonumtoc #toc UL UL {
+	MARGIN: 0px 0px 0px 2em
+}
+.nonumtoc .toc UL UL {
+	MARGIN: 0px 0px 0px 2em
+}
+.toclimit-2 .toclevel-1 UL {
+	DISPLAY: none
+}
+.toclimit-3 .toclevel-2 UL {
+	DISPLAY: none
+}
+.toclimit-4 .toclevel-3 UL {
+	DISPLAY: none
+}
+.toclimit-5 .toclevel-4 UL {
+	DISPLAY: none
+}
+.toclimit-6 .toclevel-5 UL {
+	DISPLAY: none
+}
+.toclimit-7 .toclevel-6 UL {
+	DISPLAY: none
+}
+BLOCKQUOTE.templatequote {
+	MARGIN-TOP: 0px
+}
+BLOCKQUOTE.templatequote DIV.templatequotecite {
+	TEXT-ALIGN: left; LINE-HEIGHT: 1em; MARGIN-TOP: 0px; PADDING-LEFT: 2em
+}
+BLOCKQUOTE.templatequote DIV.templatequotecite CITE {
+	FONT-SIZE: 85%
+}
+DIV.user-block {
+	BORDER-BOTTOM: #a9a9a9 1px solid; BORDER-LEFT: #a9a9a9 1px solid; PADDING-BOTTOM: 5px; BACKGROUND-COLOR: #ffefd5; PADDING-LEFT: 5px; PADDING-RIGHT: 5px; MARGIN-BOTTOM: 0.5em; BORDER-TOP: #a9a9a9 1px solid; BORDER-RIGHT: #a9a9a9 1px solid; PADDING-TOP: 5px
+}
+.nowraplinks A {
+	WHITE-SPACE: nowrap
+}
+.nowraplinks .selflink {
+	WHITE-SPACE: nowrap
+}
+SPAN.texhtml {
+	WHITE-SPACE: nowrap
+}
+SUP.reference A {
+	WHITE-SPACE: nowrap
+}
+.template-documentation {
+	BORDER-BOTTOM: #aaa 1px solid; BORDER-LEFT: #aaa 1px solid; PADDING-BOTTOM: 1em; BACKGROUND-COLOR: #ecfcf4; MARGIN: 1em 0px 0px; PADDING-LEFT: 1em; PADDING-RIGHT: 1em; CLEAR: both; BORDER-TOP: #aaa 1px solid; BORDER-RIGHT: #aaa 1px solid; PADDING-TOP: 1em
+}
+.imagemap-inline DIV {
+	DISPLAY: inline
+}
+#wpUploadDescription {
+	HEIGHT: 13em
+}
+SUP {
+	LINE-HEIGHT: 1em
+}
+SUB {
+	LINE-HEIGHT: 1em
+}
+.thumbinner {
+	MIN-WIDTH: 100px
+}
+DIV.thumb IMG.thumbimage {
+	BACKGROUND-COLOR: #fff
+}
+DIV#content .gallerybox DIV.thumb {
+	BACKGROUND-COLOR: #f9f9f9
+}
+.gallerybox .thumb IMG {
+	BACKGROUND: url(http://upload.wikimedia.org/wikipedia/commons/5/5d/Checker-16x16.png) white
+}
+.filehistory A IMG {
+	BACKGROUND: url(http://upload.wikimedia.org/wikipedia/commons/5/5d/Checker-16x16.png) white
+}
+#file IMG {
+	BACKGROUND: url(http://upload.wikimedia.org/wikipedia/commons/5/5d/Checker-16x16.png) white
+}
+.ns-0 .gallerybox .thumb IMG {
+	BACKGROUND: white
+}
+.ns-2 .gallerybox .thumb IMG {
+	BACKGROUND: white
+}
+.ns-100 .gallerybox .thumb IMG {
+	BACKGROUND: white
+}
+.nochecker .gallerybox .thumb IMG {
+	BACKGROUND: white
+}
+#mw-subcategories {
+	CLEAR: both
+}
+#mw-pages {
+	CLEAR: both
+}
+#mw-category-media {
+	CLEAR: both
+}
+#filehistory {
+	CLEAR: both
+}
+#wikiPreview {
+	CLEAR: both
+}
+#wikiDiff {
+	CLEAR: both
+}
+.wpb .wpb-header {
+	DISPLAY: none
+}
+.wpbs-inner .wpb .wpb-header {
+	DISPLAY: block
+}
+.wpbs-inner .wpb .wpb-header {
+	DISPLAY: table-row
+}
+.wpbs-inner .wpb-outside {
+	DISPLAY: none
+}
+.mw-tag-markers {
+	FONT-STYLE: italic; FONT-FAMILY: sans-serif; FONT-SIZE: 90%
+}
+.wikiEditor-ui-toolbar .section-help .page-table TD.cell-syntax {
+	FONT-FAMILY: monospace, "Courier New"
+}
+.wikiEditor-ui-toolbar .section-help .page-table TD.syntax {
+	FONT-FAMILY: monospace, "Courier New"
+}
+DIV.mw-geshi DIV {
+	FONT-FAMILY: monospace, "Courier New" !important
+}
+DIV.mw-geshi DIV PRE {
+	FONT-FAMILY: monospace, "Courier New" !important
+}
+SPAN.mw-geshi {
+	FONT-FAMILY: monospace, "Courier New" !important
+}
+PRE.source-css {
+	FONT-FAMILY: monospace, "Courier New" !important
+}
+PRE.source-javascript {
+	FONT-FAMILY: monospace, "Courier New" !important
+}
+UL.permissions-errors > LI {
+	LIST-STYLE-TYPE: none; LIST-STYLE-IMAGE: none
+}
+UL.permissions-errors {
+	MARGIN: 0px
+}
+BODY.page-Special_UserLogin .mw-label LABEL {
+	WHITE-SPACE: nowrap
+}
+BODY.page-Special_UserLogin_signup .mw-label LABEL {
+	WHITE-SPACE: nowrap
+}
+.transborder {
+	BORDER-BOTTOM: transparent solid; BORDER-LEFT: transparent solid; BORDER-TOP: transparent solid; BORDER-RIGHT: transparent solid
+}
+* HTML .transborder {
+	BORDER-BOTTOM: #000001 solid; FILTER: chroma(color=#000001); BORDER-LEFT: #000001 solid; BORDER-TOP: #000001 solid; BORDER-RIGHT: #000001 solid
+}
+BODY.page-Main_Page #deleteconfirm {
+	DISPLAY: none !important
+}
+BODY.page-Main_Page #t-cite {
+	DISPLAY: none !important
+}
+BODY.page-Main_Page #footer-info-lastmod {
+	DISPLAY: none !important
+}
+BODY.page-Main_Page #siteSub {
+	DISPLAY: none !important
+}
+BODY.page-Main_Page #contentSub {
+	DISPLAY: none !important
+}
+BODY.page-Main_Page H1.firstHeading {
+	DISPLAY: none !important
+}
+BODY.page-Main_Page #mp-topbanner {
+	MARGIN-TOP: 0px !important
+}
+#coordinates {
+	POSITION: absolute; TEXT-ALIGN: right; PADDING-BOTTOM: 0em; LINE-HEIGHT: 1.5em; TEXT-TRANSFORM: none; TEXT-INDENT: 0px; MARGIN: 0em; PADDING-LEFT: 0em; PADDING-RIGHT: 0em; WHITE-SPACE: nowrap; FLOAT: right; FONT-SIZE: 85%; TOP: 0em; RIGHT: 0em; PADDING-TOP: 0em
+}
+DIV.topicon {
+	POSITION: absolute; DISPLAY: block !important; TOP: -2em; MARGIN-RIGHT: -10px
+}
+DIV.flaggedrevs_short {
+	Z-INDEX: 1; POSITION: absolute; MARGIN-LEFT: 0px; TOP: -3em; RIGHT: 80px; MARGIN-RIGHT: -10px
+}
+DIV.vectorMenu DIV {
+	Z-INDEX: 2
+}
+#siteSub {
+	DISPLAY: inline; FONT-SIZE: 92%; FONT-WEIGHT: normal
+}
+#mw-panel DIV.portal DIV.body UL LI.GA {
+	PADDING-LEFT: 1.25em; BACKGROUND: url(http://upload.wikimedia.org/wikipedia/commons/4/42/Monobook-bullet-ga.png) no-repeat; MARGIN-LEFT: -1.25em
+}
+#mw-panel DIV.portal DIV.body UL LI.FA {
+	PADDING-LEFT: 1.25em; BACKGROUND: url(http://upload.wikimedia.org/wikipedia/commons/d/d4/Monobook-bullet-star.png) no-repeat; MARGIN-LEFT: -1.25em
+}
+TD.diff-context {
+	FONT-SIZE: 85%; VERTICAL-ALIGN: top
+}
+TD.diff-addedline {
+	FONT-SIZE: 85%; VERTICAL-ALIGN: top
+}
+TD.diff-deletedline {
+	FONT-SIZE: 85%; VERTICAL-ALIGN: top
+}
+SPAN.texhtml {
+	LINE-HEIGHT: 1em; FONT-FAMILY: "Times New Roman", serif; FONT-SIZE: 120%
+}
+#bodyContent A[href^='https://'].external {
+	PADDING-RIGHT: 16px; BACKGROUND: url(http://upload.wikimedia.org/wikipedia/en/0/00/Lock_icon_blue.gif) no-repeat right center
+}
+.link-https {
+	PADDING-RIGHT: 16px; BACKGROUND: url(http://upload.wikimedia.org/wikipedia/en/0/00/Lock_icon_blue.gif) no-repeat right center
+}
+.redirectText {
+	MARGIN: 5px; FONT-SIZE: 150%
+}
+TD.diff-marker {
+	HEIGHT: 1.5em
+}
+DIV.usermessage {
+	BORDER-BOTTOM: orange 1px solid; BORDER-LEFT: orange 1px solid; BACKGROUND-COLOR: #ffce7b; BORDER-TOP: orange 1px solid; BORDER-RIGHT: orange 1px solid
+}
+
+@media Print    
+{
+.ns-0 .ambox {
+	DISPLAY: none
+}
+.ns-0 .navbox {
+	DISPLAY: none
+}
+.ns-0 .sisterproject.infobox {
+	DISPLAY: none
+}
+.ns-0 .dablink {
+	DISPLAY: none
+}
+.ns-0 .metadata {
+	DISPLAY: none
+}
+#filetoc {
+	DISPLAY: none
+}
+#footer-places {
+	DISPLAY: none
+}
+.editlink {
+	DISPLAY: none
+}
+SPAN.collapseButton {
+	DISPLAY: none
+}
+A.NavToggle {
+	DISPLAY: none
+}
+.noprint {
+	DISPLAY: none
+}
+#content CITE A.text.external:after {
+	DISPLAY: none !important
+}
+.nourlexpansion A.text.external:after {
+	DISPLAY: none !important
+}
+.nourlexpansion A.autonumber.external:after {
+	DISPLAY: none !important
+}
+TABLE.collapsible TR {
+	DISPLAY: block !important
+}
+DIV.NavPic {
+	DISPLAY: block !important
+}
+DIV.NavContent {
+	DISPLAY: block !important
+}
+TABLE.collapsible TR {
+	DISPLAY: table-row !important
+}
+.skin-simple DIV#column-one {
+	DISPLAY: none
+}
+.skin-simple DIV#f-poweredbyico {
+	DISPLAY: none
+}
+.skin-simple DIV#f-copyrightico {
+	DISPLAY: none
+}
+.skin-simple .editsection {
+	DISPLAY: none
+}
+#firstHeading {
+	MARGIN: 0px
+}
+.wikitable {
+	PAGE-BREAK-INSIDE: avoid
+}
+.thumb {
+	PAGE-BREAK-INSIDE: avoid
+}
+IMG {
+	PAGE-BREAK-INSIDE: avoid
+}
+H2 {
+	PAGE-BREAK-AFTER: avoid
+}
+H3 {
+	PAGE-BREAK-AFTER: avoid
+}
+H4 {
+	PAGE-BREAK-AFTER: avoid
+}
+H5 {
+	PAGE-BREAK-AFTER: avoid
+}
+H6 {
+	PAGE-BREAK-AFTER: avoid
+}
+h7 {
+	PAGE-BREAK-AFTER: avoid
+}
+P {
+	WIDOWS: 3; ORPHANS: 3
+}
+
+}
+
+@media Handheld    
+{
+TABLE.layout {
+	WIDTH: 100% !important; DISPLAY: block !important
+}
+TABLE.layout TBODY {
+	WIDTH: 100% !important; DISPLAY: block !important
+}
+TABLE.layout TR {
+	WIDTH: 100% !important; DISPLAY: block !important
+}
+TABLE.layout TH {
+	WIDTH: 100% !important; DISPLAY: block !important
+}
+TABLE.layout TD {
+	WIDTH: 100% !important; DISPLAY: block !important
+}
+#mp-topbanner {
+	WIDTH: 100% !important; DISPLAY: block !important
+}
+#mp-topbanner TBODY {
+	WIDTH: 100% !important; DISPLAY: block !important
+}
+#mp-topbanner TR {
+	WIDTH: 100% !important; DISPLAY: block !important
+}
+#mp-topbanner TH {
+	WIDTH: 100% !important; DISPLAY: block !important
+}
+#mp-topbanner TD {
+	WIDTH: 100% !important; DISPLAY: block !important
+}
+#mp-upper {
+	WIDTH: 100% !important; DISPLAY: block !important
+}
+#mp-upper TBODY {
+	WIDTH: 100% !important; DISPLAY: block !important
+}
+#mp-upper TR {
+	WIDTH: 100% !important; DISPLAY: block !important
+}
+#mp-upper TH {
+	WIDTH: 100% !important; DISPLAY: block !important
+}
+#mp-upper TD {
+	WIDTH: 100% !important; DISPLAY: block !important
+}
+#mp-tfp {
+	WIDTH: 100% !important; DISPLAY: block !important
+}
+#mp-tfp TBODY {
+	WIDTH: 100% !important; DISPLAY: block !important
+}
+#mp-tfp TR {
+	WIDTH: 100% !important; DISPLAY: block !important
+}
+#mp-tfp TH {
+	WIDTH: 100% !important; DISPLAY: block !important
+}
+#mp-tfp TD {
+	WIDTH: 100% !important; DISPLAY: block !important
+}
+
+}

@@ -1,0 +1,107 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Read Address Generator</title>
+<link rel="stylesheet" type="text/css" href="fpga.css" />
+</head>
+
+<body>
+
+<h1>Read Address Generator</h1>
+<p>module Rdaddress_GEN(input clk, start, <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>input [1:0] x0_sel_in, 
+x1_sel_in,</strong><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>input [2:0] mode,</strong><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; output reg [1:0] x0_sel, x1_sel,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; output reg [7:0] rdaddress);</p>
+<p>&nbsp;</p>
+
+<table>
+			<tr>
+						<td>Mode</td>
+						<td>Description</td>
+			</tr>
+			<tr>
+						<td>0</td>
+						<td class="left">
+						<p><strong>FFT</strong></p>
+						<p>The rdaddress just counts from 0 to 127 over and over 
+						again during the FFT.</p>
+						<p>To work with the datapath pipeline, the x0_sel and 
+						x1_sel are delayed by 2 cycles relative to the 
+						rdaddress.</p>
+						<p>The x0_sel[1] and x1_sel[1] determines whether the 
+						FFT read side is using memA0/1 or memB0/1. </p>
+						<ul>
+										<li>For the first 128 clock cycles, 
+										x0_sel[1] and x1_sel[1] is zero to 
+										choose the memA0/1.</li>
+										<li>For the second 128 clock cycles, the 
+										read is from memB0/1, so x0_sel[1] and 
+										x1_sel[1] is one.</li>
+										<li>And so on...</li>
+						</ul>
+						<p>The x0_sel[0] and x1_sel[0] determines how the memory 
+						feeds into the FFT butterfly inputs X0 and X1. Standard 
+						feed is memA0 and memB0 into X0, and memA1 and memB1 
+						into X1. This corresponds to {x0_sel[0], x1_sel[0]} = 
+						{0, 1}. A reverse feed would be {1, 0}.</p>
+						<ul>
+										<li>For the first 128 clock cycles, it&#39;s 
+										always {0, 1}</li>
+										<li>For the second 128 clock cycles, the 
+										reverse happens every other clock cycle.</li>
+										<li>For the third 128 clock cycles, the 
+										reverse happens every two clock cycles.</li>
+										<li>And so on...</li>
+						</ul>
+						<p>Unused input signals:</p>
+						<ul>
+										<li>x0_sel_in - x0_sel is not dependent 
+										on the x0_sel_in</li>
+										<li>x1_sel_in - x1_sel is not dependent 
+										on the x1_sel_in</li>
+						</ul>
+						</td>
+			</tr>
+			<tr>
+						<td>2</td>
+						<td class="left">
+						<p><strong>memS Read</strong></p>
+						<p>This is for copying from memS to memA0 and memA1, in 
+						a bit reverse manner. This mode simply counts from 0 to 
+						255.</p>
+						<p>Constant signals:</p>
+						<ul>
+										<li>x0_sel &lt;= x0_sel_in;</li>
+										<li>x1_sel &lt;= x1_sel_in;</li>
+						</ul>
+						</td>
+			</tr>
+			<tr>
+						<td>3</td>
+						<td class="left">
+						<p><strong>memA0/1 Read</strong></p>
+						<p>This is for copying from memA0 and memA1 to memS.</p>
+						<p>The rdaddress goes from 0 to 127 with x1_sel[0] = 0, 
+						which reads from memA0. Then the rdaddress goes from 128 
+						to 255 with x1_sel[0] = 1, which selections memA1. Both 
+						memA0 and memA1 has 6 bit address, so they will see 0 to 
+						127.</p>
+						<p>Constant signals:</p>
+						<ul>
+										<li>x0_sel &lt;= x0_sel_in; // not used</li>
+										<li>x1_sel[1] &lt;= x1_sel_in[1]; // put a 
+										0 here to choose memA0 and memA1.</li>
+						</ul>
+						</td>
+			</tr>
+</table>
+
+<p>&nbsp;</p>
+
+</body>
+
+</html>

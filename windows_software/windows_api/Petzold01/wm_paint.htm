@@ -1,0 +1,70 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Handling WM_PAINT</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">Handling WM_PAINT</font></h1>
+<h2 align="left"><font face="Courier New"><font color="#FF6600">case WM_PAINT:<br>
+&nbsp;&nbsp;&nbsp; hdc = BeginPaint(hwnd, &amp;ps);<br>
+</font><font color="#008000">&nbsp;&nbsp;&nbsp; ...</font><font color="#FF6600"><br>
+&nbsp;&nbsp;&nbsp; EndPaint(hwnd, &amp;ps);<br>
+&nbsp;&nbsp;&nbsp; return 0;</font></font></h2>
+<p align="left"><font size="4">The BeginPaint and EndPaint will validate 
+whatever that's been invalidated</font></p>
+<p align="left"><font size="4">fields of PAINTSTRUCT that you can use:</font></p>
+<p align="left"><font size="4">typedef struct tagPAINTSTRUCT<br>
+{<br>
+&nbsp;&nbsp;&nbsp; HDC <font color="#0000FF"><b>hdc</b></font>;<br>
+&nbsp;&nbsp;&nbsp; BOOL <font color="#0000FF"><b>fErase</b></font>;<br>
+&nbsp;&nbsp;&nbsp; RECT <font color="#0000FF"><b>rcPaint</b></font>;<br>
+&nbsp;&nbsp;&nbsp; ...<br>
+}PAINTSTRUCT;</font></p>
+<p align="left"><font size="4">hdc --- the device context for drawing</font></p>
+<p align="left"><font size="4">fErase --- FALSE means that Windows has already 
+erased the background of the invalid rectangle</font></p>
+<p align="left"><font size="4">rcPaint --- the invalid rectangle; it's also a 
+clipping rectangle (you can't draw outside of it)</font></p>
+
+<p align="left">&nbsp;</p>
+
+<h2><font color="#008000">The basic way to trigger WM_PAINT:</font></h2>
+<h2><font color="#ff6600" face="Courier New">InvalidateRect (hwnd, NULL, TRUE);</font></h2>
+<p align="left"><font size="4">it will invalidate the entire client area</font></p>
+
+<p align="left"><font size="4">but WM_PAINT messages have low priority --- to 
+trigger the WM_PAINT handler immediately, use:</font></p>
+
+<p align="left"><font size="4" face="Courier New" color="#FF6600">UpdateWindow (hwnd);</font></p>
+
+<p align="left">&nbsp;</p>
+
+<h2 align="left"><font color="#008000">Size of the client window:</font></h2>
+
+<p align="left"><font size="4">Use:</font></p>
+
+<h2 align="left"><font face="Courier New" color="#FF6600">RECT rect ;<br>
+GetClientRect (parent_wnd, &amp;rect) ;</font></h2>
+
+<p align="left"><font size="4">Or, you could store the size of the current client 
+window like so:</font></p>
+
+<p align="left"><font face="Courier New" size="4"><font color="#FF6600"><b>
+static</b> int cxClient, cyClient;</font><br>
+<font color="#008000">...</font><br>
+<font color="#FF6600">case WM_SIZE:<br>
+&nbsp;&nbsp;&nbsp; cxClient = LOWORD (lParam);<br>
+&nbsp;&nbsp;&nbsp; cyClient = HIWORD (lParam);</font></font></p>
+
+<p align="left"><font size="4">You use static because they are set while 
+processing one message and used while processing another message</font></p>
+
+</body>
+
+</html>

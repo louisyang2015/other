@@ -1,0 +1,134 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+
+<head>
+<meta http-equiv="Content-Language" content="en-us" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>SSRAM Instructions</title>
+<link rel="stylesheet" type="text/css" href="fpga.css" />
+</head>
+
+<body>
+
+<h1>SSRAM Instructions</h1>
+<p class="center">Last updated May 11, 2011</p>
+<h2>SSRAM Register Setup 0xF1</h2>
+<table>
+			<tr>
+						<td>DECODE2</td>
+						<td class="left">if(i_rdempty == 0) begin<br />
+&nbsp;&nbsp;&nbsp; state &lt;= END;<br />
+&nbsp;&nbsp;&nbsp; ssram_ag_load &lt;= 1;<br />
+&nbsp;&nbsp;&nbsp; ssram_load_mode &lt;= i_q[21:20];<br />
+&nbsp;&nbsp;&nbsp; ssram_address_in &lt;= i_q[18:0];<br />
+						end</td>
+			</tr>
+</table>
+<h2>&nbsp;</h2>
+<h2>SSRAM Write 0xE1</h2>
+<table>
+			<tr>
+						<td>DECODE0</td>
+						<td class="left">ssram_sel &lt;= i_q[20];</td>
+						<td class="left">&nbsp;</td>
+			</tr>
+			<tr>
+						<td>DECODE2</td>
+						<td class="left">read_ag_load &lt;= 1;<br />
+						read_start_val &lt;= i_q[N-1+16:16];<br />
+						if(i_rdempty == 0) begin<br />
+&nbsp;&nbsp;&nbsp; state &lt;= DECODE99;</td>
+						<td class="left">&nbsp;</td>
+			</tr>
+			<tr>
+						<td>START3</td>
+						<td class="left">ssram_read &lt;= 0;</td>
+						<td class="left">ssram_write &lt;= 0;</td>
+			</tr>
+			<tr>
+						<td>START4</td>
+						<td class="left">go to ARRAYING</td>
+						<td class="left">ssram_ag_run &lt;= 1;<br />
+						ssram_write &lt;= 1;</td>
+			</tr>
+			<tr>
+						<td>FLUSH4</td>
+						<td class="left">go to END</td>
+						<td class="left">ssram_ag_run &lt;= 0;<br />
+						ssram_write &lt;= 0;</td>
+			</tr>
+</table>
+<p>&nbsp;</p>
+<h2>SSRAM Reset 0x01</h2>
+<p>Similar state machine as SSRAM write, but one stage decode.</p>
+<table>
+			<tr>
+						<td>DECODE0</td>
+						<td class="left">ssram_sel &lt;= i_q[20];<br />
+						if(i_rdempty == 0) begin<br />
+&nbsp;&nbsp;&nbsp; state &lt;= DECODE99;</td>
+						<td class="left">&nbsp;</td>
+			</tr>
+			<tr>
+						<td>START3</td>
+						<td class="left">ssram_read &lt;= 0;</td>
+						<td class="left">ssram_write &lt;= 0;</td>
+			</tr>
+			<tr>
+						<td>START4</td>
+						<td class="left">go to ARRAYING</td>
+						<td class="left">ssram_ag_run &lt;= 1;<br />
+						ssram_write &lt;= 1;</td>
+			</tr>
+			<tr>
+						<td>FLUSH4</td>
+						<td class="left">go to END</td>
+						<td class="left">ssram_ag_run &lt;= 0;<br />
+						ssram_write &lt;= 0;</td>
+			</tr>
+</table>
+<p>&nbsp;</p>
+<h2>SSRAM Read 0x03</h2>
+<table>
+			<tr>
+						<td>DECODE0</td>
+						<td class="left">wm0_sel &lt;= 2&#39;b10; <br />
+						wm1_sel &lt;= 2&#39;b10;</td>
+						<td class="left">&nbsp;</td>
+			</tr>
+			<tr>
+						<td>DECODE2</td>
+						<td class="left">write_ag_load &lt;= 1;<br />
+						write_start_val &lt;= i_q[N-1:0];<br />
+						if(i_rdempty == 0) begin<br />
+&nbsp;&nbsp;&nbsp; state &lt;= DECODE99;</td>
+						<td class="left">&nbsp;</td>
+			</tr>
+			<tr>
+						<td>START0</td>
+						<td class="left">&nbsp;</td>
+						<td class="left">ssram_ag_run &lt;= 1;</td>
+			</tr>
+			<tr>
+						<td>START4</td>
+						<td class="left">&nbsp;</td>
+						<td class="left">write_ag_run &lt;= 1;<br />
+						go to ARRAYING</td>
+			</tr>
+			<tr>
+						<td>ARRAYING</td>
+						<td class="left">&nbsp;</td>
+						<td class="left">if(length_counter[N])<br />
+&nbsp;&nbsp;&nbsp; ssram_ag_run &lt;= 0;</td>
+			</tr>
+			<tr>
+						<td>FLUSH4</td>
+						<td class="left">&nbsp;</td>
+						<td class="left">write_ag_run &lt;= 0;<br />
+						go to END</td>
+			</tr>
+</table>
+
+</body>
+
+</html>

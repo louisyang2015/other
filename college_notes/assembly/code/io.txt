@@ -1,0 +1,87 @@
+;gets a key input from the user and prints out a message
+;based on whether the user pressed "q" or not
+
+STACK_SEG SEGMENT STACK 'STACK'
+    DB 1024 DUP(?)
+STACK_SEG ENDS
+
+DATA_SEG SEGMENT 'DATA'
+    message1    db  'User pressed q', 0
+    message2    db  'User did not press q', 0
+DATA_SEG ENDS
+
+CODE_SEG SEGMENT 'CODE'
+
+MAIN PROC FAR
+    ASSUME CS:CODE_SEG, SS:STACK_SEG, DS:DATA_SEG
+    PUSH DS
+    MOV AX, 0
+    PUSH AX
+    mov ax, DATA_SEG
+    mov ds, ax
+
+    ;******************************************
+    ; PROGRAM CODE STARTS HERE
+    ;******************************************
+    call GetKey
+    cmp AL, 'q'
+    jne print_message2
+print_message1:   
+    mov si, offset message1
+    call PrintStr
+    call PrintNewLine
+    call PrintStr
+    jmp main_end
+print_message2:
+    mov si, offset message2
+    call PrintStr
+    call PrintNewLine
+    call PrintStr
+main_end:
+    ret
+MAIN ENDP
+
+; wait for the user to press a key and
+; return with a character code in AL
+GetKey proc near
+    MOV AH, 0
+    INT 16H
+    RET
+GetKey endp
+
+
+; prints a string at location DS:SI
+; the string is assumed to be terminated by a null zero
+PrintStr proc near
+    push si
+    push ax
+    mov ah, 14
+PrintStr_start:
+    mov al, [si]
+    cmp al, 0
+    je PrintStr_end
+    int 10h
+    inc si
+    jmp PrintStr_start
+    
+PrintStr_end:
+    pop ax
+    pop si
+    ret
+PrintStr endp
+
+; prints a newline character
+PrintNewLine proc near
+    push ax
+    mov ah, 14
+    mov al, 0DH
+    int 10h
+    mov al, 0AH
+    int 10h
+    pop ax
+    ret
+PrintNewLine endp
+
+CODE_SEG ENDS
+
+END

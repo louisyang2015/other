@@ -1,0 +1,151 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Chapter 12 Equations</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">Chapter 12 Equations</font></h1>
+<h2><font color="#008000">View Factor Equations</font></h2>
+<p><font size="4">Table 12-1, on page 609</font></p>
+
+<table border="2" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#FF8000">
+  <tr>
+    <td>tb12_1a()<br>
+    Prgm<br>
+    <br>
+    setMode(&quot;Angle&quot;,&quot;RADIAN&quot;)<br>
+    <br>
+    Local x<br>
+    Local y<br>
+    Local l<br>
+    <br>
+    Input &quot;Enter X &quot;, x<br>
+    Input &quot;Enter Y &quot;, y<br>
+    Input &quot;Enter L &quot;, l<br>
+    <br>
+    Local xbar<br>
+    Local ybar<br>
+    <br>
+    x/l»xbar<br>
+    y/l»ybar<br>
+    <br>
+    Disp &quot;xbar = &quot; <br>
+    disp xbar<br>
+    Disp &quot;ybar = &quot;<br>
+    disp ybar<br>
+    <br>
+    Local a<br>
+    (ln((1+xbar^2)*(1+ybar^2)/(1+xbar^2+ybar^2)))^1/2»a<br>
+    <br>
+    Local b<br>
+    xbar*(1+ybar^2)^(1/2)*tan°(xbar/(1+ybar^2)^(1/2))»b<br>
+    <br>
+    Local c<br>
+    ybar*(1+xbar^2)^(1/2)*tan°(ybar/(1+xbar^2)^(1/2))»c<br>
+    <br>
+    Local d<br>
+    ª1*xbar*tan°(xbar)-ybar*tan°(ybar)»d<br>
+    <br>
+    Local f<br>
+    2/(3.1415926536*xbar*ybar)*(a+b+c+d)»f<br>
+    <br>
+    Disp &quot;F = &quot;<br>
+    Disp f<br>
+    <br>
+    EndPrgm</td>
+  </tr>
+  <tr>
+    <td>tb12_1b()<br>
+    Prgm<br>
+    <br>
+    local ri<br>
+    local rj<br>
+    local L<br>
+    <br>
+    Input &quot;Enter ri &quot;, ri<br>
+    input &quot;Enter rj &quot;, rj<br>
+    input &quot;Enter L &quot;, L<br>
+    <br>
+    local Ri2<br>
+    local Rj2<br>
+    <br>
+    ri / L » Ri2<br>
+    rj / L » Rj2<br>
+    <br>
+    disp &quot;Ri2 = &quot;<br>
+    disp Ri2<br>
+    disp &quot;Rj2 = &quot;<br>
+    disp Rj2<br>
+    <br>
+    local S<br>
+    1 + (1 + Rj2^2)/Ri2^2 » S<br>
+    disp &quot;S = &quot;<br>
+    disp S<br>
+    <br>
+    pause<br>
+    <br>
+    local F<br>
+    (1/2)*(S - (S^2 - 4 *(rj / ri)^2)^(1/2)) » f<br>
+    disp &quot;F = &quot;<br>
+    disp F<br>
+    <br>
+    EndPrgm</td>
+  </tr>
+  <tr>
+    <td>tb12_1c()<br>
+    Prgm<br>
+    <br>
+    setMode(&quot;Angle&quot;,&quot;RADIAN&quot;)<br>
+    <br>
+    local x<br>
+    local y<br>
+    local z<br>
+    <br>
+    input &quot;Enter X &quot;, x<br>
+    input &quot;Enter Y &quot;, y<br>
+    input &quot;Enter Z &quot;, z<br>
+    <br>
+    local H<br>
+    local W<br>
+    <br>
+    z/x » H<br>
+    y/x » W<br>
+    <br>
+    disp &quot;H = &quot;<br>
+    disp H<br>
+    disp &quot;W = &quot;<br>
+    disp W<br>
+    <br>
+    local a<br>
+    W * tan°(1/W) + H * tan°(1/H) » a<br>
+    <br>
+    local b<br>
+    ª1*(H^2 + W^2)^(1/2) * tan°(1/(H^2 + W^2)^(1/2)) » b<br>
+    <br>
+    local c<br>
+    ((1 + W^2)*(1 + H^2))/(1 + W^2 + H^2) » c<br>
+    <br>
+    local d<br>
+    ((W^2 * (1 + W^2 + H^2))/((1 + W^2) * (W^2 + H^2)))^(W^2) » d<br>
+    <br>
+    local e<br>
+    ((H^2 * (1 + H^2 + W^2))/((1 + H^2)*(H^2 + W^2)))^(H^2) » e<br>
+    <br>
+    local F<br>
+    (1/(3.1415926536 * W)) * (a + b + (1/4)* ln(c *d * e)) » F<br>
+    disp &quot;F = &quot;<br>
+    disp F<br>
+    <br>
+    EndPrgm</td>
+  </tr>
+</table>
+
+</body>
+
+</html>

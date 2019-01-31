@@ -1,0 +1,230 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Language" content="en-us" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Write_AG</title>
+<link rel="stylesheet" type="text/css" href="fpga.css" />
+</head>
+
+<body>
+
+<h1>Write_AG</h1>
+<p class="center">Last updated Apr 30, 2011</p>
+<p>There are two write address generators, Write_AG0 and Write_AG1, due to the 
+difference in write address generation for the FFT.</p>
+<p>The FFT butterfly takes two values at a time, so the number of bits involved 
+in the address is actually half of the total FFT length. For example, a 32 point 
+FFT would store just 16 values in each buffer. The address involved in this case 
+is 4 bit (0 to 15) rather than 5 bit (0 to 31).</p>
+<h2>bit_reverse[2:0]</h2>
+<table>
+			<tr>
+						<td>bit_reverse[2:0]</td>
+						<td>Description</td>
+			</tr>
+			<tr>
+						<td>1</td>
+						<td class="left">Reverse wraddress[3:0] - for 32 value 
+						FFT</td>
+			</tr>
+			<tr>
+						<td>2</td>
+						<td class="left">Reverse wraddress[4:0] - for 64 value 
+						FFT</td>
+			</tr>
+			<tr>
+						<td>3</td>
+						<td class="left">Reverse wraddress[5:0] - for 128 value 
+						FFT</td>
+			</tr>
+			<tr>
+						<td>4</td>
+						<td class="left">Reverse wraddress[6:0] - for 256 value 
+						FFT</td>
+			</tr>
+			<tr>
+						<td>5</td>
+						<td class="left">Reverse wraddress[7:0] - for 512 value 
+						FFT</td>
+			</tr>
+			<tr>
+						<td>6</td>
+						<td class="left">Reverse wraddress[8:0] - for 1024 value 
+						FFT</td>
+			</tr>
+</table>
+
+<p><strong>Data arrangement prior to FFT and after FFT:</strong></p>
+<table>
+			<tr>
+						<td>Address</td>
+						<td>0</td>
+						<td>1</td>
+						<td>2</td>
+						<td>3</td>
+						<td>4</td>
+						<td>5</td>
+						<td>6</td>
+						<td>7</td>
+						<td>8</td>
+						<td>9</td>
+						<td>A</td>
+						<td>B</td>
+						<td>C</td>
+						<td>D</td>
+						<td>E</td>
+						<td>F</td>
+			</tr>
+			<tr>
+						<td>Mem0</td>
+						<td>0</td>
+						<td>1</td>
+						<td>2</td>
+						<td>3</td>
+						<td>4</td>
+						<td>5</td>
+						<td>6</td>
+						<td>7</td>
+						<td>8</td>
+						<td>9</td>
+						<td>A</td>
+						<td>B</td>
+						<td>C</td>
+						<td>D</td>
+						<td>E</td>
+						<td>F</td>
+			</tr>
+			<tr>
+						<td>Mem1</td>
+						<td>10</td>
+						<td>11</td>
+						<td>12</td>
+						<td>13</td>
+						<td>14</td>
+						<td>15</td>
+						<td>16</td>
+						<td>17</td>
+						<td>18</td>
+						<td>19</td>
+						<td>1A</td>
+						<td>1B</td>
+						<td>1C</td>
+						<td>1D</td>
+						<td>1E</td>
+						<td>1F</td>
+			</tr>
+</table>
+<p>Being in Mem0 adds a prefix of zero to the full address. Being in Mem1 adds a 
+prefix of one to the full address. The location of &quot;3&quot; is 0x03. The location of 
+&quot;15&quot; is 0x15.</p>
+<p><strong>Data format after bit reverse stage:</strong></p>
+<table>
+			<tr>
+						<td>Address</td>
+						<td>0</td>
+						<td>1</td>
+						<td>2</td>
+						<td>3</td>
+						<td>4</td>
+						<td>5</td>
+						<td>6</td>
+						<td>7</td>
+						<td>8</td>
+						<td>9</td>
+						<td>A</td>
+						<td>B</td>
+						<td>C</td>
+						<td>D</td>
+						<td>E</td>
+						<td>F</td>
+			</tr>
+			<tr>
+						<td>Mem0</td>
+						<td>0</td>
+						<td>8</td>
+						<td>4</td>
+						<td>C</td>
+						<td>2</td>
+						<td>A</td>
+						<td>6</td>
+						<td>E</td>
+						<td>1</td>
+						<td>9</td>
+						<td>5</td>
+						<td>D</td>
+						<td>3</td>
+						<td>B</td>
+						<td>7</td>
+						<td>F</td>
+			</tr>
+			<tr>
+						<td>Mem1</td>
+						<td>10</td>
+						<td>18</td>
+						<td>14</td>
+						<td>1C</td>
+						<td>12</td>
+						<td>1A</td>
+						<td>16</td>
+						<td>1E</td>
+						<td>11</td>
+						<td>19</td>
+						<td>15</td>
+						<td>1D</td>
+						<td>13</td>
+						<td>1B</td>
+						<td>17</td>
+						<td>1F</td>
+			</tr>
+</table>
+<p>Being in Mem0 adds a suffix of zero to the full address. Being in Mem1 adds a 
+suffix of one to the full address. The location of &quot;4&quot; is binary &quot;00100&quot; and the 
+location of &quot;14&quot; is binary &quot;00101&quot;.</p>
+<p>&nbsp;</p>
+<h2>fft_stage[3:0]</h2>
+<p>This input affects:</p>
+<ul>
+				<li>Mem0_sel0 for Write_AG0. The &quot;wraddress&quot; of set 0 memory 
+				just increments linearly during FFT.</li>
+				<li>wraddress and Mem1_sel0 for Write_AG1</li>
+</ul>
+<p>For the write address, the last FFT stage should be 0xF - meaning the last 
+FFT stage should not use special encoding. In summary: </p>
+<table>
+			<tr>
+						<td>FFT Length</td>
+						<td>FFT Stage</td>
+						<td>write address generator <br />
+						fft_stage[3:0]</td>
+						<td>read address generator <br />
+						fft_stage[3:0]</td>
+			</tr>
+			<tr>
+						<td>32</td>
+						<td>4</td>
+						<td>0xF</td>
+						<td>0x4</td>
+			</tr>
+			<tr>
+						<td>128</td>
+						<td>4</td>
+						<td>0x4</td>
+						<td>0x4</td>
+			</tr>
+</table>
+<p>The write address generator during the final pass is a special case that uses 
+linearly address that is incrementing by 1. The source of the writedata line 
+(the Mem0_sel0 and Mem1_sel0 control lines)&nbsp; should be constant throughout 
+the final FFT stage. Note that the read side still needs the usual &quot;fft_stage&quot; 
+value. So the control path and the instruction encoding has to make provision 
+for separate &quot;fft_stage&quot; numbers to the read and write sides.</p>
+
+
+
+
+
+</body>
+
+</html>

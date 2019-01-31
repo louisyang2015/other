@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Language" content="en-us" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Multipliers</title>
+<link rel="stylesheet" type="text/css" href="fpga.css" />
+</head>
+
+<body>
+
+<h1>MyMult</h1>
+<p class="center">last updated April 26, 2011</p>
+<p>The basic multiplier in Cyclone II through Cyclone V is the 18-bit 
+multiplier. This project builds 32 and 48 bit multipliers from the basic 18-bit 
+multiplier.</p>
+<h2>Files</h2>
+<p><strong><a href="files/MyMult.v">MyMult.v</a></strong> - Multiplier designs</p>
+<ul>
+				<li>module Mult18 - single 18 bit multiplier building block</li>
+				<li>module <strong>MyMult32</strong> - 32 bit multiplier built 
+				from 4x 18 bit multipliers</li>
+				<li>module <strong>MyMult32P</strong> - pipelined version of 
+				&quot;MyMult32&quot;. Multiplication done in 2 cycles.</li>
+				<li>module <strong>MyMult48</strong> - 48 bit multiplier built 
+				from 9x 18 bit multipliers</li>
+				<li>module <strong>MyMult48P</strong> - pipelined version of 
+				&quot;MyMult48&quot;, 3 cycles to multiply</li>
+				<li>module <strong>MyMult48Ps</strong> - smaller version of &quot;MyMult48P&quot;, using 8 
+				multipliers instead of 9. The &quot;cz&quot; multiplier is dropped. 
+				This multiplier takes 3 cycles.</li>
+				<li>module <strong>MyMult40P</strong> - pipelined 32x48 
+				multiplier, using six 18x18 multipliers. It takes 3 cycles to 
+				multiply.</li>
+</ul>
+<p>It&#39;s assumed that the multiplier design source files, testbench source files, 
+and test data files are all in a folder called &quot;MyMult&quot;.</p>
+<p><strong><a href="files/MyMult_tb.sv">MyMult_tb.sv</a></strong> - Multiplier 
+testbenches</p>
+<ul>
+				<li>module <strong>MyMult32P_tb</strong> - testbench for MyMult32P</li>
+				<li>module <strong>MyMult48_tb</strong> - testbench for MyMult48</li>
+				<li>module <strong>MyMult48P_tb</strong> - testbench for 
+				MyMult48P</li>
+				<li>module <strong>MyMult40P_tb</strong> - testbench for 
+				MyMult40P</li>
+</ul>
+<p><a href="files/MyMult.do">MyMult.do</a> - Simulation scripts</p>
+<p><strong><a href="files/MyMult_tb.cs">MyMult_tb.cs</a></strong> - C# file for 
+generating the random test data</p>
+<ul>
+				<li>MyMult_tb.<strong>MyMult32_io_files</strong>(&quot;MyMult32P_in.bin&quot;, 
+				&quot;MyMult32P_out.bin&quot;, 100); - generates 100 test cases</li>
+				<li>MyMult_tb.<strong>MyMult48_io_files</strong>(&quot;MyMult48_in.bin&quot;, 
+				&quot;MyMult48_out.bin&quot;, 100);</li>
+				<li>MyMult_tb.<strong>MyMult40_io_files</strong>(&quot;MyMult40_in.bin&quot;, 
+				&quot;MyMult40_out.bin&quot;, 100);</li>
+</ul>
+<p>&nbsp;</p>
+<h2>32-bit Multiplier Operation</h2>
+<p><img src="images/MyMult32.gif" width="400" height="639" />&nbsp;</p>
+<p>The product &quot;bd&quot; is zero extended. The products &quot;ad&quot; and &quot;cb&quot; are sign 
+extended. In the Verilog implementation, the &quot;a&quot; and &quot;d&quot; are both sign extended 
+from 16-bit to be 18-bit values prior to multiplication. The product &quot;ad&quot; 
+totaling 36 bit is then correct, and so it can be signed extended.</p>
+<p>&nbsp;</p>
+<h2>48-bit Multiplier Operation</h2>
+<p><img src="images/MyMult48.gif" width="600" height="907" />&nbsp;</p>
+<p>If implementing Q7.40 times Q7.40 saturated to Q7.40, then the &quot;cz&quot; 
+multiplication can be dropped for minimum inaccuracy.</p>
+
+<p>&nbsp;</p>
+<h2>32-bit x 48-bit Multiplier Operation</h2>
+<p><img src="images/MyMult40.gif" width="550" height="887" /></p>
+
+</body>
+
+</html>

@@ -1,0 +1,171 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Math2Html</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">Math2Html</font></h1>
+<h2><font color="#008000">Bugs and Ideas</font></h2>
+
+<p><font size="4">To do matrix: </font></p>
+
+<p><font size="4">STYLE=&quot;line-height: 97%&quot; </font></p>
+
+<p><font size="4">to crunch together vertical lines to make it look like a wall</font></p>
+
+<hr>
+<p>bug (in addition to previous bugs)</p>
+<p>integrals in fractions do not render properly</p>
+<p>_micro__sub(n)_ = _fraction(_integral(x_sub(c)_(y), 0)__micro__sub(n)_(x, y) 
+n(x, y) dx, _integral(x_sub(c)_(y), 0)_ n(x,y) dx)_</p>
+
+<p>we can resize the font to make it look right, but then as soon as we refresh 
+it looks bad again.</p>
+<p>It's possible that this is an explorer bug --- the integral uses a style 
+sheet and the style=&quot;LEFT&quot; portion of the style sheet is hooked to something 
+that is not the current cell.</p>
+
+<p>also, fraction can create unnecessary tables; the denominator is already 
+placed in a table, then in this table we create another table just for 
+integrals;</p>
+
+<p>the div tag meant for the denominator is interfering with the div tag inside 
+the denominator</p>
+
+<p>for the limits of the integral, don't do align = middle</p>
+
+<p>&nbsp;</p>
+<p>code:</p>
+<table border="1" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td>
+    <pre>&lt;table cellSpacing=&quot;0&quot; cellPadding=&quot;6&quot; border=&quot;0&quot;&gt;
+&lt;tr&gt;
+&lt;td noWrap align=&quot;middle&quot;&gt;&lt;font face=&quot;Courier New&quot; color=&quot;#ff8000&quot; size=&quot;5&quot;&gt;
+&lt;span style=&quot;text-decoration: overline&quot;&gt;&amp;#956;&lt;/span&gt;&lt;sub&gt;n&lt;/sub&gt; = &lt;/font&gt;&lt;/td&gt;
+&lt;td noWrap align=&quot;middle&quot;&gt;
+&lt;table cellSpacing=&quot;0&quot; cellPadding=&quot;0&quot; border=&quot;0&quot;&gt;
+&lt;tr&gt;
+&lt;td noWrap align=&quot;middle&quot;&gt;
+&lt;div style=&quot;POSITION: relative; TOP: 0.7ex&quot;&gt;
+&lt;table cellSpacing=&quot;0&quot; cellPadding=&quot;6&quot; border=&quot;0&quot;&gt;
+&lt;tr&gt;
+&lt;td noWrap align=&quot;middle&quot;&gt;
+&lt;table cellSpacing=&quot;0&quot; cellPadding=&quot;0&quot; border=&quot;0&quot;&gt;
+&lt;tr&gt;
+&lt;td noWrap align=&quot;middle&quot; rowSpan=&quot;2&quot;&gt;
+&lt;font face=&quot;Times New Roman&quot; color=&quot;#ff8000&quot; size=&quot;7&quot;&gt;&amp;#8747;&lt;/font&gt;
+&lt;/td&gt;
+&lt;td noWrap&gt;
+&lt;div style=&quot;LEFT: -1.2ex; POSITION: relative; TOP: -0.6ex&quot;&gt;
+&lt;font face=&quot;Courier New&quot; color=&quot;#ff8000&quot; size=&quot;3&quot;&gt;x&lt;sub&gt;c&lt;/sub&gt;(y)&lt;/font&gt;&lt;/div&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td noWrap&gt;
+&lt;div style=&quot;LEFT: -1.2ex; POSITION: relative; TOP: 0.1ex&quot;&gt;
+&lt;font face=&quot;Courier New&quot; color=&quot;#ff8000&quot; size=&quot;3&quot;&gt;0&lt;/font&gt;&lt;/div&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/td&gt;
+&lt;td noWrap align=&quot;middle&quot;&gt;
+&lt;font face=&quot;Courier New&quot; color=&quot;#ff8000&quot; size=&quot;5&quot;&gt;&amp;#956;&lt;sub&gt;n&lt;/sub&gt;(x, y) n(x, y) dx &lt;/font&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td noWrap align=&quot;middle&quot;&gt;&lt;hr color=&quot;#ff8000&quot; SIZE=&quot;1&quot;&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;!-- denominator starts here ---&gt;
+&lt;tr&gt;
+
+&lt;td noWrap align=&quot;middle&quot;&gt;
+&lt;!-- &lt;div style=&quot;POSITION: relative; TOP: -0.7ex&quot;&gt; --&gt;
+
+&lt;table cellSpacing=&quot;0&quot; cellPadding=&quot;6&quot; border=&quot;0&quot;&gt;
+&lt;tr&gt;
+&lt;td noWrap align=&quot;middle&quot; rowSpan=&quot;2&quot;&gt;
+&lt;font face=&quot;Times New Roman&quot; color=&quot;#ff8000&quot; size=&quot;7&quot;&gt;&amp;#8747;&lt;/font&gt;
+&lt;/td&gt;
+&lt;td noWrap&gt;
+&lt;div style=&quot;LEFT: -2.2ex; POSITION: relative; TOP: -0.6ex&quot;&gt;
+&lt;font face=&quot;Courier New&quot; color=&quot;#ff8000&quot; size=&quot;3&quot;&gt;x&lt;sub&gt;c&lt;/sub&gt;(y)&lt;/font&gt;&lt;/div&gt;
+&lt;/td&gt;
+&lt;td noWrap align=&quot;middle&quot; rowSpan=&quot;2&quot;&gt;
+&lt;font face=&quot;Courier New&quot; color=&quot;#ff8000&quot; size=&quot;5&quot;&gt;n(x,y) dx &lt;/font&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td noWrap&gt;
+&lt;div style=&quot;LEFT: -2.2ex; POSITION: relative; TOP: 0.1ex&quot;&gt;
+&lt;font face=&quot;Courier New&quot; color=&quot;#ff8000&quot; size=&quot;3&quot;&gt;0&lt;/font&gt;&lt;/div&gt;
+&lt;/td&gt;
+&lt;/tr&gt; 
+&lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;!-- &lt;/div&gt; --&gt;
+&lt;/td&gt; 
+&lt;/tr&gt;
+&lt;!-- denominator ends here ---&gt;
+&lt;/table&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;</pre>
+    </td>
+  </tr>
+</table>
+
+<p>&nbsp;</p>
+<hr>
+
+<p>The parenthesis in a function bug: --- a parenthesis in the function might be 
+read as the end of the function and prevent the function from formatting 
+properly.</p>
+
+<p>W(y) = _exp2(_lparen()__fraction(K_sub(S)__eps__sub(0)_, 
+qN_sub(A)_)_(2_phi2__sub(F)_ + _phi2_)_rparen()_, 1/2)_</p>
+
+<p>V_sub(DSat)_ = V_sub(G)_ - V_sub(T)_ - 
+V_sub(W)_{_exp2(_lparen()__fraction(V_sub(G)_ - V_sub(T)_, 2_phi__sub(F)_)_ 
++_exp2(_lparen()_1 + _fraction(V_sub(W)_, 4_phi2__sub(F)_)__rparen()_, 
+2)__rparen()_, 1/2)_}</p>
+<hr>
+<p>parenthesis in fraction bug:</p>
+<p>V_sub(T)_' = 2_phi__sub(F)_ _plusminus_ _fraction(K_sub(S)_, 
+K_sub(O)_)_x_sub(o)__exp2(_lparen()__fraction(4qN_sub(B)_, 
+K_sub(S)__eps__sub(0)_)_ (_plusminus_ _phi2__sub(F)_)_rparen()_, 1/2)_</p>
+<p>take out the _sub(F)_ near the end and the equation renders fine</p>
+<hr>
+<p>Version 2 ideas:</p>
+<p>Version 2 will feature a set of grids/tiles --- just like the EE drawing 
+program made in early 2002; Each tile is formatted as a cell in a table; within 
+each tile we can code it just like the old math2html version 1.</p>
+<p>main window: bunch of tiles</p>
+<p>preview window --- invoke explorer to see how it looks</p>
+<p>edit window --- edit what is in each tile</p>
+<p>each tile has fore color (fonts) and background color control</p>
+<p>allow cells to hold pictures --- this will further enhance Math2html's 
+formatting abilities</p>
+<hr>
+<p>Math2Html updates:</p>
+<p>09/17 --- &quot;sub&quot; and &quot;exp&quot; no longer add new lines after formatting; 
+previously &quot;_sub(a)_b&quot; will create a space between &quot;a&quot; and &quot;b&quot; because of the 
+new line, now it won't</p>
+
+<p>09/17 --- the limits of integration in &quot;_integral()_&quot; is no longer aligned to 
+the center of the cell.</p>
+
+</body>
+
+</html>

@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Language" content="en-us" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>DDR Memory</title>
+<link rel="stylesheet" type="text/css" href="fpga.css" />
+</head>
+
+<body>
+
+<h1>DDR Memory</h1>
+<p class="center">Last updated June 8, 2011</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Memory Data</h2>
+<p>Part Number: MT46H32M16LFBF-5</p>
+<p><a href="files/MT46H32M16LF.pdf">Annotated Datasheet</a></p>
+<h2>Parameter Decisions:</h2>
+<p>The preset used is: MT46V16M16TG-5B. So the default values come from that 
+preset profile.</p>
+<p>Output clock pairs from FPGA: 1 - there&#39;s only one memory device</p>
+<p>Memory chip selects: 1 - only 1 pin on the schematic</p>
+<p>Memory DQ width: 16</p>
+<p>Memory burst length: 4 - Datasheet page 1 says burst length is programmable: 
+2, 4, 8, or 16. The &quot;full rate&quot; controller is used, which supports only burst 
+length of 4.</p>
+<p>Memory burst order: Interleaved - Datasheet page 52 says the burst order can 
+be programmed to be interleaved.</p>
+<p>Memory CAS latency: 2 - Datasheet page 53 says the CAS latency can be 2 or 3.</p>
+<p>Column Address Width: 10 - Datasheet page 2</p>
+<p>Row Address Width: 13 - Datasheet page 2</p>
+<p>Bank Address Width: 2 - Datasheet page 2</p>
+<p>Chip selects per DIMM: 1 - Only 1 memory chip</p>
+<p>DQ bits per DQS bit: 8 - Datasheet page 13</p>
+<p>Precharge Address bit: 10 - Datasheet page 83</p>
+<p>Drive DM pins from FPGA: Yes - because schematic shows that DM pins go to 
+FPGA</p>
+<p>Timing Information:</p>
+<p>t_INIT: 200us - Datasheet page 48.</p>
+<p>t_MRD: 16 ns - Datasheet page 27; 2 * 8ns</p>
+<p>t_RAS: 45 ns - Datasheet page 27</p>
+<p>t_RCD: 15 ns - Datasheet page 27</p>
+<p>t_RP: 15 ns - Datasheet page 28</p>
+<p>t_REFI: 7.8 us - Datasheet page 27; There are two t_REFI values. This 
+particular memory is 512 Mbit</p>
+<p>t_RFC: 72 ns - Datasheet page 27</p>
+<p>t_WR: 15 ns - Datasheet page 28</p>
+<p>t_WTR: 2 clock cycles - Datasheet page 28</p>
+<p>t_AC: 700 ps - Datasheet on page 26 says 2 ~ 5 ns, but Altera manual says 
+only 300 ~750 ps is allowed. The MegaWizard will only accept 300 ~ 1000 ps. The 
+two definitions must have differed by half a clock cycle (4ns).&nbsp; So I just 
+use the default value of 700 ps.</p>
+<p>t_DH: 530 ps - Datasheet page 26 list 0.48 ~ 0.58 ns, depending on the slew 
+rate. So a midpoint is picked.</p>
+<p>t_DQSCK: 450 ps - same issue as t_AC: the datasheet on page 26 says 2 ~ 5 ns, 
+but the manual gives a range of 100~750 ps. So the two are likely to be off by 
+half a clock cycle. Default value is used.</p>
+<p>t_DQSQ: 400 ps - Datasheet page 26</p>
+<p>t_DQSS: 0.25 clock cycle - Datasheet page 26 says 0.75 clock cycle, but the 
+manual gives a range of 0 ~ 0.3 clock cycle. So it&#39;s one of those diff by half a 
+clock cycle things.</p>
+<p>t_DS: 530 ps - Datasheet page 26 provides two values, for two different slew 
+rates.</p>
+<p>t_DSH: 0.2 clock cycle - Datasheet page 26</p>
+<p>t_DSS: 0.2 clock cycle - Datasheet page 26</p>
+<p>t_IH: 1.1 ns - Datasheet page 27 lists two hold times for two slew rates. The 
+longer of the two hold times is used.</p>
+<p>t_IS: 1.1 ns - Datasheet page 27 lists two set up times and the longer of the 
+two is used.</p>
+<p>t_QHS: 0.5 ns - Datasheet page 27</p>
+<p>t_RRD: 10 ns - Datasheet page 28</p>
+<p>Maximum memory frequency for CAS latency: 83.333 MHz for CAS latency of 2 and 
+200 MHz for CAS latency of 3 - Datasheet page 26</p>
+
+</body>
+
+</html>

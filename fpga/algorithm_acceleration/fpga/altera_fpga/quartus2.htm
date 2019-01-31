@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Language" content="en-us" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Quartus 2</title>
+<link rel="stylesheet" type="text/css" href="fpga.css" />
+</head>
+
+<body>
+
+<h1>Quartus 2</h1>
+<p class="center">Last updated June 8, 2011</p>
+<h2>I/O Pin Assignments</h2>
+<p>Go to Assignments menu --&gt; Pin Planner. Export the pins listed as &quot;CSV&quot; file. 
+Open the file with Excel. Remove the comments at the top of the CSV file. Use 
+Excel to copy in the pin assignments from other sources. After the pin 
+assignments are filled in, import the new CSV file into Quartus 2.</p>
+<p>If you need to reverse the content of a column in Excel, check out:
+<a href="reverse_example.xlsx">reverse_example.xlsx</a></p>
+<p>At the end of I/O assignment, inside the pin planner, run Processing menu --&gt; 
+Start I/O Assignment Analysis</p>
+<h2>Global I/O Pin Settings</h2>
+<p><strong>Pin capacitance:</strong> Assignments menu --&gt; Device. Press the 
+&quot;Device and Pin Options&quot; button. In the category pane, choose &quot;Capacitive 
+Loading&quot;. Assign 10pF to 3.3V LVTTL.</p>
+<p>In Pin Planner, this can be overridden on a per pin basis by right clicking 
+in the window with the table of pins, and choosing &quot;customize columns&quot;.</p>
+<p><strong>Unused Pins:</strong> Same &quot;Device and Pin Options&quot; button as above. In the category 
+pane, choose &quot;Unused Pins&quot;. Select &quot;As input tri-stated&quot;.</p>
+
+<p><strong>Dual-Purpose Pins:</strong> If necessary, choose &quot;used as regular I/O&quot;.</p>
+
+<h2>Individual I/O Pin Settings</h2>
+<p>This is done via Assignments menu --&gt; Assignment Editor. </p>
+<p>The following are needed for output pins:</p>
+<ul>
+				<li>Slew Rate: 0 = slow, 2 = fast (default)</li>
+				<li>Current Strength, for 2.5V I/O: 4, 8, 12, or 16 (mA)</li>
+</ul>
+
+</body>
+
+</html>

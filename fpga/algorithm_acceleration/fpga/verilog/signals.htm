@@ -1,0 +1,121 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Language" content="en-us" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Signals</title>
+
+<link rel="stylesheet" type="text/css" href="fpga.css" />
+
+</head>
+
+<body>
+
+<h1>Signals</h1>
+<p class="center">Last updated April 4, 2011</p>
+<p><strong>Four-Value System:</strong> 0, 1, x, z</p>
+<p><strong>Old Verilog style arrays:</strong></p>
+<p class="code">
+<span class="keyword">wire</span>  [3:0]  mem1  [31:0];
+  
+<span class="comment">//32-by-4 memory</span>
+</p>
+<p><strong>Number Representation:</strong> [sign][size]&#39;[base][value]</p>
+<table>
+	<tr>
+		<td>Number</td>
+		<td>Stored Value</td>
+		<td>Comment</td>
+	</tr>
+	<tr>
+		<td>5&#39;b11_010</td>
+		<td>11010</td>
+		<td>&#39;_&#39; is ignored</td>
+	</tr>
+	<tr>
+		<td>5&#39;o32</td>
+		<td>11010</td>
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<td>5&#39;h1a</td>
+		<td>11010</td>
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<td>5&#39;bz</td>
+		<td>zzzzz</td>
+		<td>&#39;z&#39; extended</td>
+	</tr>
+	<tr>
+		<td>5&#39;bx</td>
+		<td>xxxxx</td>
+		<td>&#39;x&#39; extended</td>
+	</tr>
+	<tr>
+		<td>5&#39;b1</td>
+		<td>00001</td>
+		<td>&#39;0&#39; extended</td>
+	</tr>
+	<tr>
+		<td>-5&#39;b1</td>
+		<td>11111</td>
+		<td>2&#39;s complement of 1</td>
+	</tr>
+</table>
+<h2>Synthesis of z</h2>
+<p>The &#39;z&#39; is for tri-state buffers.</p>
+<p>module declaration has: &quot;inout i2c_data&quot;</p>
+<p class="code">
+<span class="keyword">assign</span>  i2c_data  =  (oe)  ?  i2c_data_reg  :  1'bz;
+</p>
+<p>This is used for the I/O pins only.</p>
+<h2>Synthesis of x</h2>
+<p>This is a don&#39;t care condition:</p>
+<p class="code">
+<span class="keyword">assign</span>  y  =  (i==2'b00)  ?  1'b1  :  
+<span class="comment">//if (00), eq = 1 </span>
+<br />
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        (i==2'b01)  ?  1'b0  : &nbsp;&nbsp;   
+<span class="comment">//else if (01), eq = 0 </span>
+<br />
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        (i==2'b10)  ?  1'b0  : &nbsp;&nbsp;   
+<span class="comment">//else if (10), eq = 0 </span>
+<br />
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        1'bx;
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;            
+<span class="comment">//else (case 11), don't care </span>
+</p>
+<p>There&#39;s a discrepancy between simulation and synthesis - because in 
+simulation, the &#39;x&#39; really exists.</p>
+<h2>Signed Signals</h2>
+<p>In old Verilog (1995), &quot;integer&quot; is interpreted as signed, &quot;wire&quot; and &quot;reg&quot; 
+are unsigned. Verilog 2001 allows:</p>
+
+<p class="code">
+<span class="keyword">reg</span>  <span class="keyword">signed</span>  [7:0]  a;
+  <br />
+<span class="keyword">reg</span>  <span class="keyword">signed</span>  [3:0]  b;
+  <br />
+<span class="keyword">reg</span>  <span class="keyword">signed</span>  [8:0]  sum;
+  <br />
+sum  =  a  +  b;
+ &nbsp;&nbsp;&nbsp;    
+<span class="comment">//automatic sign extension </span>
+</p>
+
+<p>To get the automatic sign extension, all variables must be of signed type.</p>
+<p>Alternatively, use manual signed extension:</p>
+<p class="code">
+<span class="keyword">reg</span>  <span class="keyword">signed</span>  [7:0]  a;
+  <br />
+<span class="keyword">reg</span>  <span class="keyword">signed</span>  [3:0]  b;
+  <br />
+<span class="keyword">reg</span>  <span class="keyword">signed</span>  [8:0]  sum;
+  <br />
+sum  =  {{a[7]},  a}  +  {{5{b[3]}},  b};
+</p>
+</body>
+
+</html>

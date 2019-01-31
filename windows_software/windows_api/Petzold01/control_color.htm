@@ -1,0 +1,59 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Coloring the Controls</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">Coloring the Controls</font></h1>
+
+<p align="left"><font size="4">When the child window is about to paint its 
+client area, it sends the a message to the parent. The message differs for each 
+control:</font></p>
+
+<p align="left"><font color="#0000FF" size="4">WM_CTLCOLORBTN </font>
+<font size="4">--- button (fairly useless --- works only with owner draw 
+buttons)<br>
+<font color="#0000FF">WM_CTLCOLORSCROLLBAR</font> --- scroll bar<br>
+<font color="#0000FF">WM_CTLCOLORSTATIC</font> --- static<br>
+</font><font color="#0000FF"></font><font size="4"><font color="#0000FF">
+WM_CTLCOLOREDIT</font> --- edit box<br>
+<font color="#0000FF">WM_CTLCOLORLISTBOX</font> --- list box</font></p>
+
+<p align="left"><font size="4">sample code:</font></p>
+
+<p align="left"><font size="4" face="Courier New" color="#FF6600">case 
+WM_CTLCOLORSTATIC:<br>
+&nbsp;&nbsp;&nbsp; SetTextColor ((HDC)wParam, color);<br>
+&nbsp;&nbsp;&nbsp; SetBkColor ((HDC)wParam, color);<br>
+&nbsp;&nbsp;&nbsp; return (LRESULT) hBrush;<br>
+&nbsp;&nbsp;&nbsp; break;</font></p>
+
+<p align="left"><font size="4">note, the brush you return to the child control 
+needs to be deleted later. I say keep the handle of that brush as the global 
+variable, or a static local variable.</font></p>
+
+<p align="left"><font size="4"><a href="examples/color_control.cpp">Click here 
+for a program that changes the text color and background color of an edit box 
+control</a></font></p>
+
+<p align="center">&nbsp;</p>
+<p><b><font size="4" color="#008000">Other notes:</font></b></p>
+<p><font size="4">You can try to make the main window look like a dialog window 
+by changing the background brushinto the grayish color used by dialog windows:</font></p>
+<p><font size="4"><font color="#008000">...when defining the Window class...</font><br>
+<font face="Courier New" color="#FF6600">wndclass.hbrBackground = (HBRUSH) (COLOR_BTNFACE 
++ 1);<br>
+</font><font color="#008000">...in WM_PAINT, you would have to change the text 
+color and text background color...</font><font face="Courier New" color="#FF6600"><br>
+SetBkColor (hdc, GetSysColor(COLOR_BTNFACE));<br>
+SetTextColor (hdc, GetSysColor(COLOR_WINDOWTEXT));</font></font></p>
+
+</body>
+
+</html>

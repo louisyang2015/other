@@ -1,0 +1,599 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>pn Junction's Admittance</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">pn Junction's Admittance</font></h1>
+<p><font size="4">The small signal circuit for a diode can be:</font></p>
+<p><img border="0" src="images/pic0094.gif" width="500" height="273"></p>
+<p><font size="4">The R<sub>S</sub> comes from the resistance of the p-side and 
+n-side of the junction. The pn junction itself is modeled in the yellow area, as 
+a capacitor in parallel with a resistor. G is the conductance of the resistor.</font></p>
+<p><font size="4">Let</font></p>
+<p><font size="4">v<sub>a</sub> = the small signal voltage<br>
+i = the small signal current</font></p>
+<p><font size="4">admittance = i / v<sub>a</sub></font></p>
+<p><font size="4">admittance = G + jwC</font></p>
+<p>&nbsp;</p>
+<h2><font color="#008000">Reverse-Bias Junction Capacitance</font></h2>
+<p><font size="4">Small signal changes the width of the depletion region. The 
+capacitance associated with the depletion width oscillation is known as the
+<font color="#008000">junction</font> or <font color="#008000">depletion-layer 
+capacitance </font></font><font size="5" color="#FF8000">(C<sub>J</sub>)</font><font size="4">.</font></p>
+<p><font size="4">The depletion region width oscillation is achieved by having 
+carriers move rapidly into and out of the affected region in sync with the a.c. 
+signal. If the carriers can indeed do this fast enough, then we say the device 
+is <font color="#008000">following the a.c. signal quasistatically</font>. The 
+quasistatic assumption made here is valid up to very high signal frequencies.</font></p>
+<p><font size="4">Under reverse bias, the capacitance is mostly junction 
+capacitance.</font></p>
+<table border="3" cellpadding="12" cellspacing="1" style="border-collapse: collapse" bordercolor="#FF8000" bgcolor="#FFFF99">
+  <tr>
+    <td>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">C<sub>J</sub> = </font>
+        </td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">K<sub>S</sub> &#949;<sub>0</sub> 
+              A </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">W </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<p><font size="4">W = width of the depletion region. We could use the formulas 
+given in chapter 5 for W. However, the book at this point develops a new 
+equation for W.</font></p>
+<p><font size="4">Assume a p+ - n, or n+ - p junction. One side is heavily 
+doped, while the other side has the doping profile:</font></p>
+<p><font face="Courier New" color="#ff8000" size="5">N<sub>B</sub>(x) = bx<sup>m</sup> 
+, x &gt; 0, m &gt; -2</font></p>
+<p><font size="4">The width of the depletion region is then:</font></p>
+<table border="3" cellpadding="12" cellspacing="1" style="border-collapse: collapse" bordercolor="#FF8000">
+  <tr>
+    <td>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">W = </font></td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">&nbsp;</td>
+            <td>
+            <div style="POSITION: relative; TOP: 4ex">
+              <font face="Courier New" color="#ff8000" size="3">1/(m+2)</font></div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+            <table cellSpacing="0" cellPadding="6" border="0">
+              <tr>
+                <td noWrap align="middle">
+                <font face="Courier New" color="#ff8000" size="7">(</font> </td>
+                <td noWrap align="middle">
+                <table cellSpacing="0" cellPadding="0" border="0">
+                  <tr>
+                    <td noWrap align="middle">
+                    <div style="POSITION: relative; TOP: 0.7ex">
+                      <font face="Courier New" color="#ff8000" size="5">(m + 2)K<sub>S</sub> 
+                      &#949;<sub>0</sub> </font>
+                    </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+                  </tr>
+                  <tr>
+                    <td noWrap align="middle">
+                    <div style="POSITION: relative; TOP: -0.7ex">
+                      <font face="Courier New" color="#ff8000" size="5">qb
+                      </font>
+                    </div>
+                    </td>
+                  </tr>
+                </table>
+                </td>
+                <td noWrap align="middle">
+                <font face="Courier New" color="#ff8000" size="5">(V<sub>bi</sub> 
+                - V<sub>A</sub>)</font></td>
+                <td noWrap align="middle">
+                <font face="Courier New" color="#ff8000" size="7">)</font> </td>
+              </tr>
+            </table>
+            </td>
+            <td>&nbsp;</td>
+          </tr>
+        </table>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<p><font size="4">It is often desirable to employ a diode exhibiting the maximum 
+capacitance ratio over a given voltage range. This figure of merit is called the 
+tuning ratio (TR) --- <i>larger ratio means bigger range of capacitance to tune 
+with a circuit with</i>.</font></p>
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    TR = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">C<sub>J</sub>(V<sub>A1</sub>)
+          </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">C<sub>J</sub>(V<sub>A1</sub>)
+          </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    &#8776; </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">&nbsp;</td>
+        <td>
+        <div style="POSITION: relative; TOP: 4ex">
+          <font face="Courier New" color="#ff8000" size="3">1/(m+2)</font></div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+        <table cellSpacing="0" cellPadding="6" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <font face="Courier New" color="#ff8000" size="7">(</font> </td>
+            <td noWrap align="middle">
+            <table cellSpacing="0" cellPadding="0" border="0">
+              <tr>
+                <td noWrap align="middle">
+                <div style="POSITION: relative; TOP: 0.7ex">
+                  <font face="Courier New" color="#ff8000" size="5">V<sub>A2</sub>
+                  </font>
+                </div>
+                </td>
+              </tr>
+              <tr>
+                <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+              </tr>
+              <tr>
+                <td noWrap align="middle">
+                <div style="POSITION: relative; TOP: -0.7ex">
+                  <font face="Courier New" color="#ff8000" size="5">V<sub>A1</sub>
+                  </font>
+                </div>
+                </td>
+              </tr>
+            </table>
+            </td>
+            <td noWrap align="middle">
+            <font face="Courier New" color="#ff8000" size="7">)</font> </td>
+          </tr>
+        </table>
+        </td>
+        <td>&nbsp;</td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<p><font size="4">So the best tuning ration comes from the smallest m possible.</font></p>
+<p><font size="4">The above equations indicate that for a particular applied 
+voltage there is a particular depletion region width, which in turn corresponds 
+to a particular capacitance. The relationship between applied voltage and 
+depletion region width is dependent on the doping profile of the junction. It 
+turns out that given a graph of voltage versus capacitance of a pn junction, we 
+can work backward to arrive at the doping profile for that junction. This 
+working backward process is documented in my solution to one of the exercises of 
+this chapter. </font></p>
+<p><font size="4">The equations to go from a C<sub>J</sub> versus V<sub>A</sub> 
+graph to a N<sub>B</sub> versus x graph are:</font></p>
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    N<sub>B</sub>(x) = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">2 </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">q K<sub>S</sub> &#949;<sub>0</sub> 
+          A<sup>2</sup> |d(1/C<sub>J</sub><sup>2</sup>)/dV<sub>A</sub>|
+          </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    x = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">K<sub>S</sub> &#949;<sub>0</sub> 
+          A </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">C<sub>J</sub> </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<p><font size="4">Note that both &quot;x&quot; and N<sub>B</sub> are functions of C<sub>J</sub> 
+, so the above is a parametric description of the doping profile N<sub>B</sub>(x). 
+Computing the junction profile by measuring the capacitance of the junction at 
+various voltages is very popular.</font></p>
+<p>&nbsp;</p>
+<h2><font color="#008000">Conductance</font></h2>
+<p><font size="4">One of the items in the small signal representation of the pn-junction 
+is the conductance G.</font></p>
+<p><font size="4">Let:</font></p>
+<p><font size="4">G<sub>0</sub> = the low frequency conductance.</font></p>
+<table border="3" cellpadding="12" cellspacing="1" style="border-collapse: collapse" bordercolor="#FF8000">
+  <tr>
+    <td>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">G<sub>0</sub> = </font>
+        </td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">dI </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">dV<sub>A</sub>
+              </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<p><font size="4">From the ideal diode equation we get:</font></p>
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    G<sub>0</sub> = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">q </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">kT </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    (I + I<sub>0</sub>) </font></td>
+  </tr>
+</table>
+<p><font size="4">For reverse bias beyond a few kT/q volts, the current I<sub>R-G</sub> 
+will be dominant. Using the result for I<sub>R-G</sub> from a previous chapter, 
+we get:</font></p>
+<table cellSpacing="0" cellPadding="6" border="0">
+  <tr>
+    <td noWrap align="middle"><font face="Courier New" color="#ff8000" size="5">
+    G<sub>0</sub> = </font></td>
+    <td noWrap align="middle">
+    <table cellSpacing="0" cellPadding="0" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: 0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">q A n<sub>i</sub> 
+          W/2 T<sub>0</sub> </font>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+      </tr>
+      <tr>
+        <td noWrap align="middle">
+        <div style="POSITION: relative; TOP: -0.7ex">
+          <font face="Courier New" color="#ff8000" size="5">(m + 2)(V<sub>bi</sub> 
+          - V<sub>A</sub>) </font>
+        </div>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<h2><font color="#008000">Forward-Bias Diffusion Admittance</font></h2>
+<p><font size="4" color="#008000">A comparison of forward and reverse bias 
+models</font></p>
+
+<p><font size="4">Under reverse bias, the growth/shrinking of the depletion 
+region is due almost entirely to majority carrier. That's because we have 
+minority carrier depletion.</font></p>
+
+<p><font size="4">Under forward bias, minority carriers start to play a larger 
+role. There is a build up of excess minority carriers near the depletion region. 
+This build up will increase and decrease as the a.c. signal oscillates. But 
+unlike the majority carriers, these minority carriers have problem moving in and 
+out of the depletion region fast enough --- the minority carrier doesn't stay in 
+sync with the a.c. signal. This out-of-phase charge oscillation enhances the 
+observed conductance and reduces the observed capacitance. The capacitance and 
+conductance associated with the minority carrier oscillation are expected to be 
+frequency-dependent.</font></p>
+
+<p><font size="4">For the pn junction under reverse bias, the small signal 
+admittance 
+for the junction is the yellow portion of:</font></p>
+
+<p><img border="0" src="images/pic0095.gif" width="500" height="299"></p>
+
+<p><font size="4">For the pn junction under forward bias, the small signal 
+admittance is the yellow portion of:</font></p>
+
+<p><img border="0" src="images/pic0096.gif" width="500" height="414"></p>
+
+<p><font size="4">The conductance in the two cases are different. The forward 
+bias conductance G<sub>D</sub> has more dependencies with the minority carrier 
+than G<sub>0</sub>. The new capacitance C<sub>D</sub> is also due to the 
+minority carriers. The term </font><font color="#FF8000" size="5">Y<sub>D</sub> 
+= G<sub>D</sub> + jwC<sub>D</sub></font><font size="4"> is called the diffusion 
+admittance. </font></p>
+
+<p><font size="4">Formulas for Y<sub>D</sub> , G<sub>D</sub> , and C<sub>D</sub> 
+is derived on pages 318 to 320.</font></p>
+
+<table border="3" cellpadding="12" cellspacing="1" style="border-collapse: collapse" bordercolor="#FF8000">
+  <tr>
+    <td>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">Y<sub>D</sub> = </font>
+        </td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">i<sub>diff</sub>
+              </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">v<sub>a</sub>
+              </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">= G<sub>0</sub> (1 + 
+        jwT<sub>p </sub>)<sup>1/2</sup> </font></td>
+      </tr>
+    </table>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">G<sub>D</sub> = </font>
+        </td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">G<sub>0</sub>
+              </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">(2)<sup>1/2</sup>
+              </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">&nbsp;</td>
+            <td>
+            <div style="POSITION: relative; TOP: 2.4ex">
+              <font face="Courier New" color="#ff8000" size="3">1/2</font></div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+            <table cellSpacing="0" cellPadding="6" border="0">
+              <tr>
+                <td noWrap align="middle">
+                <font face="Courier New" color="#ff8000" size="7">(</font> </td>
+                <td noWrap align="middle">
+                <font face="Courier New" color="#ff8000" size="5">(1 + w<sup>2</sup> 
+                T<sub>p</sub><sup>2 </sup>)<sup>1/2</sup> + 1 </font></td>
+                <td noWrap align="middle">
+                <font face="Courier New" color="#ff8000" size="7">)</font> </td>
+              </tr>
+            </table>
+            </td>
+            <td>&nbsp;</td>
+          </tr>
+        </table>
+        </td>
+      </tr>
+    </table>
+    <table cellSpacing="0" cellPadding="6" border="0">
+      <tr>
+        <td noWrap align="middle">
+        <font face="Courier New" color="#ff8000" size="5">C<sub>D</sub> = </font>
+        </td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: 0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">G<sub>0</sub>
+              </font>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td noWrap align="middle"><hr color="#ff8000" SIZE="1"></td>
+          </tr>
+          <tr>
+            <td noWrap align="middle">
+            <div style="POSITION: relative; TOP: -0.7ex">
+              <font face="Courier New" color="#ff8000" size="5">w(2)<sup>1/2</sup>
+              </font>
+            </div>
+            </td>
+          </tr>
+        </table>
+        </td>
+        <td noWrap align="middle">
+        <table cellSpacing="0" cellPadding="0" border="0">
+          <tr>
+            <td noWrap align="middle">&nbsp;</td>
+            <td>
+            <div style="POSITION: relative; TOP: 2.4ex">
+              <font face="Courier New" color="#ff8000" size="3">1/2</font></div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+            <table cellSpacing="0" cellPadding="6" border="0">
+              <tr>
+                <td noWrap align="middle">
+                <font face="Courier New" color="#ff8000" size="7">(</font> </td>
+                <td noWrap align="middle">
+                <font face="Courier New" color="#ff8000" size="5">(1 + w<sup>2</sup> 
+                T<sub>p</sub><sup>2 </sup>) <sup>1/2</sup> - 1 </font></td>
+                <td noWrap align="middle">
+                <font face="Courier New" color="#ff8000" size="7">)</font> </td>
+              </tr>
+            </table>
+            </td>
+            <td>&nbsp;</td>
+          </tr>
+        </table>
+        </td>
+      </tr>
+    </table>
+    <p>&nbsp;</p>
+    <p><font face="Courier New" color="#ff8000" size="5">If wT<sub>p</sub> &lt;&lt; 1,
+    <br>
+    (1 + w<sup>2</sup> T<sub>p</sub><sup>2</sup> )<sup>1/2</sup> &#8776; 1 + w<sup>2</sup> 
+    T<sub>p</sub><sup>2</sup> / 2</font></td>
+  </tr>
+</table>
+
+</body>
+
+</html>

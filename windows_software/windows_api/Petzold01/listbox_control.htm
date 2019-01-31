@@ -1,0 +1,124 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>The ListBox Control</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">The ListBox Control</font></h1>
+<p align="left"><a href="examples/listbox_control.cpp"><font size="4">Click here 
+for the code of a program that uses a list box</font></a></p>
+
+<p align="left"><font size="4">the window class name: &quot;listbox&quot;</font></p>
+
+<h2 align="left"><font color="#008000">Window styles:</font></h2>
+
+<p align="left"><font size="4"><font color="#0000FF">LBS_NOTIFY</font> --- 
+allows the parent to receive WM_COMMAND notifications<br>
+<font color="#0000FF">LBS_SORT</font><br>
+<font color="#0000FF">LBS_MULTIPLESEL</font><br>
+<font color="#0000FF">LBS_STANDARD</font> --- includes (LBS_NOTIFY | LBS_SORT | 
+WS_VSCROLL | WS_BORDER)</font></p>
+
+<p align="left">&nbsp;</p>
+
+<h2 align="left"><font color="#008000">Putting Strings in the List Box:</font></h2>
+
+<p align="left"><font size="4" face="Courier New" color="#FF6600">SendMessage (hwndList, 
+LB_ADDSTRING, 0, (LPARAM) szString);<br>
+SendMessage (hwndList, LB_INSERTSTRING, iIndex, (LPARAM) szString);</font></p>
+
+<p align="left"><font face="Courier New" size="4" color="#FF6600">SendMessage (hwndList, 
+LB_DELETESTRING, iIndex, 0);</font></p>
+
+<p align="left"><font face="Courier New" size="4" color="#FF6600">to clear out 
+the list box:<br>
+SendMessage (hwndList, LB_RESETCONTENT, 0, 0);</font></p>
+
+<p align="left"><font size="4">By default, Windows will redraw the list box if 
+it changes. If you have a large number of strings to add or delete, you should 
+temporarily inhibit the redraw.</font></p>
+
+<p align="left"><font face="Courier New" size="4" color="#FF6600">SendMessage (hwndList, 
+WM_SETREDRAW, FALSE, 0);</font></p>
+
+<p align="left"><font face="Courier New" size="4" color="#FF6600">SendMessage (hwndList, 
+WM_SETREDRAW, TRUE, 0);</font></p>
+
+<p align="left">&nbsp;</p>
+
+<h2 align="left"><font color="#008000">Selecting and Extracting Entries</font></h2>
+
+<p align="left"><font size="4" face="Courier New" color="#FF6600">iCount = 
+SendMessage (hwndList, LB_GETCOUNT, 0, 0);</font></p>
+
+<p align="left"><font face="Courier New" size="4" color="#FF6600">SendMessage (hwndList, 
+LB_SETCURSEL, iIndex, 0);</font><font size="4"><br>
+Setting iParam to -1 in this call deselects all items.</font></p>
+
+<p align="left"><font size="4">current index:<br>
+<font face="Courier New" color="#FF6600">iIndex = SendMessage (hwndList, 
+LB_GETCURSEL, 0, 0);</font></font></p>
+
+<p align="left"><font size="4">the length of any string in the list box:<br>
+<font face="Courier New" color="#FF6600">iLength = SendMessage (hwndList, 
+LB_GETTEXTLEN, iIndex, 0);</font></font></p>
+
+<p align="left"><font size="4">copying one of list box's strings into a buffer:<br>
+<font face="Courier New" color="#FF6600">iLength = SendMessage (hwndList, 
+LB_GETTEXT, iIndex, (LPARAM)szBuffer);</font></font></p>
+
+<p align="left"><b><font size="4" color="#008000">For a multi-selection list 
+box, use the following:</font></b></p>
+
+<p align="left"><font face="Courier New" size="4" color="#FF6600">SendMessage (hwndList, 
+LB_SETSEL, wParam, iIndex);</font><font size="4"><br>
+use wParam = 0 to deselect an item; use non-zero wParam to select</font></p>
+
+<p align="left"><font size="4"><font face="Courier New" color="#FF6600">iSelect 
+= SendMessage (hwndList, LB_GETSEL, iIndex, 0);</font><br>
+iSelect = 0 if the item is not selected; non zero if it's selected</font></p>
+
+<p align="left">&nbsp;</p>
+
+<h2 align="left"><font color="#008000">Receiving Messages from List Boxes</font></h2>
+
+<p><font size="4">Format of the WM_COMMAND messages:</font></p>
+<p><font size="4">LOWORD (wParam) --- child window ID<br>
+HIWORD (wParam) --- notification code<br>
+lParam --- Child window handle</font></p>
+<p><font size="4">Useful notification codes:</font></p>
+<p><font size="4"><font color="#0000FF">LBN_SELCHANGE<br>
+LBN_DBLCLK</font><br>
+<font color="#0000FF">LBN_ERRSPACE </font>--- out of space</font></p>
+
+<p>&nbsp;</p>
+
+<h2><font color="#008000">Listing Files</font></h2>
+
+<p><font size="4" face="Courier New" color="#FF6600">SendMessage (hwndList, 
+LB_DIR, iAttr, (LPARAM) szFileSpec);</font></p>
+
+<p><font size="4"><font color="#0000FF">iAttr</font> --- file attribute code, it 
+can be a combination of:<br>
+<font color="#0000FF">DDL_READWRITE</font> --- normal files<br>
+<font color="#0000FF">DDL_READONLY</font> --- read-only files<br>
+<font color="#0000FF">DDL_HIDDEN</font> --- hidden files<br>
+<font color="#0000FF">DDL_SYSTEM</font> --- system files<br>
+<font color="#0000FF">DDL_DIRECTORY</font> --- subdirectory<br>
+<font color="#0000FF">DDL_ARCHIVE</font> --- File with archive bit set<br>
+<font color="#0000FF">DDL_DRIVES</font> --- include drive letters<br>
+<font color="#0000FF">DDL_EXCLUSIVE</font> --- exclude normal files (the first 
+flag); show only files that fit the other flags</font></p>
+
+<p><font size="4"><font color="#0000FF">szFileSpec</font> --- a file 
+specialization string like &quot;*.*&quot;</font></p>
+
+</body>
+
+</html>

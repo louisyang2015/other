@@ -1,0 +1,410 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+
+<head>
+<meta http-equiv="Content-Language" content="en-us" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Instruction Execution State Mach</title>
+<link rel="stylesheet" type="text/css" href="fpga.css" />
+</head>
+
+<body>
+
+<h1>Instruction Execution State Machine</h1>
+<h1>for Onchip Memory Instructions</h1>
+<p class="center">Last updated April 29, 2011</p>
+<h3>The ? Notation</h3>
+<p>The ? is a wild card. For example, write_ag?_run refers to the signals 
+write_ag0_run and write_ag1_run. The exact meaning depends on the context. In 
+the case of &quot;???_wren_ctrl&quot;, the exact signal depends on the destination. If the 
+destination is the A0r memory, then the corresponding write enable signal is 
+&quot;A0r_wren_ctrl&quot;.</p>
+<p>&nbsp;</p>
+<h2>All Instructions</h2>
+<table>
+			<tr>
+						<td class="nowrap">IDLE</td>
+						<td class="left">set control signals to their default 
+						levels<br />
+						set all wren_toggle??.mode to 0<br />
+						<br />
+						if(i_rdempty == 0) go to DECODE0</td>
+			</tr>
+			<tr>
+						<td class="nowrap">DECODE0</td>
+						<td class="left">if(i_rdempty) go to IDLE<br />
+						remove instruction from FIFO<br />
+						<br />
+						alu_mode &lt;= i_q[31:28];<br />
+						op_code &lt;= i_q[27:24];<br />
+						x1_sel &lt;= i_q[23:22];<br />
+						x0_sel &lt;= i_q[21:20];<br />
+						wren_load_?? &lt;= decode i_q[19:16];<br />
+						wren_mode &lt;= decode i_q[19:16];<br />
+						write_ag_load &lt;= 1;<br />
+						write_start_val &lt;= 0;<br />
+						read_ag_load &lt;= 1;<br />
+						read_start_val &lt;= 0;<br />
+						length_counter &lt;= {1&#39;b0, i_q[N-1:0]};</td>
+			</tr>
+			<tr>
+						<td class="nowrap">DECODE1</td>
+						<td class="left">Always go to DECODE2, this is just a 
+						wait state for the i_rdempty flag to catch up</td>
+			</tr>
+			<tr>
+						<td class="nowrap">DECODE2</td>
+						<td class="left">if(i_rdempty)
+						remove instruction from FIFO.<br />
+						if(i_rdempty == 0) i_rdreq &lt;= 1;</td>
+			</tr>
+			<tr>
+						<td class="nowrap">DECODE4</td>
+						<td class="left">if(i_rdempty == 0) i_rdreq &lt;= 1;</td>
+			</tr>
+			<tr>
+						<td class="nowrap">DECODE6</td>
+						<td class="left">if(i_rdempty == 0) i_rdreq &lt;= 1;</td>
+			</tr>
+			<tr>
+						<td class="nowrap">DECODE8</td>
+						<td class="left">if(i_rdempty == 0) i_rdreq &lt;= 1;</td>
+			</tr>
+			<tr>
+						<td class="nowrap">DECODE99</td>
+						<td class="left">return instruction related set up 
+						signals to default<br />
+						write_ag_load &lt;= 0;<br />
+						wren_load_?? &lt;= 0;<strong><br />
+						</strong>read_ag_load &lt;= 0;<br />
+						c0_load &lt;= 0;<br />
+						i_rdreq &lt;= 0;<br />
+						mu_load &lt;= 0;</td>
+			</tr>
+			<tr>
+						<td class="nowrap">START0</td>
+						<td class="left">read_ag_run &lt;= 1;</td>
+			</tr>
+			<tr>
+						<td class="nowrap">START?<br />
+						ARRAYING</td>
+						<td class="left">length_counter &lt;= length_counter + ONE;</td>
+			</tr>
+			<tr>
+						<td class="nowrap">ARRAYING</td>
+						<td class="left">if(length_counter[N])<br />
+&nbsp;&nbsp;&nbsp; read_ag_run &lt;= 0;<br />
+&nbsp;&nbsp;&nbsp; go to FLUSH1</td>
+			</tr>
+			<tr>
+						<td class="nowrap">END</td>
+						<td class="left">if(i_rdempty) go IDLE<br />
+						else go to DECODE0<br />
+						<br />
+						set control signals to their default levels<br />
+						set all wren_toggle??.mode to 0</td>
+			</tr>
+</table>
+
+<p>&nbsp;</p>
+<h2>send_data (0x02)</h2>
+<p>The instruction FIFO is a show ahead FIFO. The &quot;i_rdempty&quot; flag is 
+synchronous. So after sending a &quot;i_rdreq &lt;= 1&quot; to acknowledge reading from the 
+FIFO at t = 0, the FIFO will launch the new &quot;i_rdempty&quot; at t = 1. The control 
+module will get this correct &quot;i_rdempty&quot; at t = 2. In other words the &quot;i_rdempty&quot; 
+at t=1 is not up to date. That is the reason for the wait state called 
+&quot;SEND_DATA1&quot;.</p>
+<table>
+			<tr>
+						<td class="nowrap">DECODE0</td>
+						<td class="left">set up wm?_sel, Write_AG? start value, 
+						and Read_AG start value<br />
+						<br />
+						go to DECODE99</td>
+			</tr>
+			<tr>
+						<td class="nowrap">DECODE99</td>
+						<td class="left">go to SEND_DATA</td>
+			</tr>
+			<tr>
+						<td class="nowrap">SEND_DATA0</td>
+						<td class="left">if(length_counter[N]) go to END<br />
+						<br />
+						if(i_rdempty == 0)<br />
+&nbsp;&nbsp;&nbsp; i_rdreq &lt;= 1;<br />
+&nbsp;&nbsp;&nbsp; length_counter &lt;= length_counter + 1;<br />
+&nbsp;&nbsp;&nbsp; write_ag_run &lt;= 1;<br />
+&nbsp;&nbsp;&nbsp; go to SEND_DATA1<br />
+						else<br />
+&nbsp;&nbsp;&nbsp; i_rdreq &lt;= 0;<br />
+&nbsp;&nbsp;&nbsp; write_ag_run &lt;= 0;</td>
+			</tr>
+			<tr>
+						<td class="nowrap">SEND_DATA1</td>
+						<td class="left">if(length_counter[N]) go to END<br />
+						else go back to SEND_DATA0<br />
+						<br />
+						i_rdreq &lt;= 0;<br />
+						write_ag_run &lt;= 0;</td>
+			</tr>
+</table>
+<p>&nbsp;</p>
+
+<h2>Copy Data (0x20, 30, 40, 50, 60, 70)</h2>
+<p>These instructions differ in the ALU mode setting, but is otherwise the same.</p>
+<p>In general there&#39;s no &quot;if(i_rdempty == 0)&quot; check in DECODE0 because that has 
+already been checked for prior to entering DECODE0. But at other stages, there 
+is a check to see if data has actually arrived on the instruction FIFO.</p>
+<p>The i_rdempty flag is synchronous, so after removing an instruction in 
+DECODE0 stage, this output requires 1 clock cycle to be updated. That&#39;s the 
+reason for the DECODE1 state being a pure wait state. For example, if at DECODE0 
+state, the instruction FIFO has just one element in it and &quot;rdreq&quot; is set to 
+high, in the DECODE1 state the FIFO&#39;s rdempty flag will still be false. It will 
+only go to true in the DECODE2 state.</p>
+<table>
+			<tr>
+						<td class="nowrap">DECODE0</td>
+						<td class="left">wm?_sel &lt;= 2&#39;b01;<br />
+						<br />
+						go to DECODE1</td>
+			</tr>
+			<tr>
+						<td class="nowrap">DECODE1</td>
+						<td class="left">go to DECODE2</td>
+			</tr>
+			<tr>
+						<td class="nowrap">DECODE2</td>
+						<td class="left">if(i_rdempty == 0) <br />
+&nbsp;&nbsp;&nbsp; Set up Read_AG and Write_AG start values<br />
+&nbsp;&nbsp;&nbsp;
+						go to DECODE99</td>
+			</tr>
+			<tr>
+						<td class="nowrap">DECODE99</td>
+						<td class="left">go to START0</td>
+			</tr>
+			<tr>
+						<td class="nowrap">START0</td>
+						<td class="left">go to START1</td>
+			</tr>
+			<tr>
+						<td class="nowrap">START1</td>
+						<td class="left">go to START2</td>
+			</tr>
+			<tr>
+						<td class="nowrap">START2</td>
+						<td class="left">go to START3</td>
+			</tr>
+			<tr>
+						<td class="nowrap">START3</td>
+						<td class="left">go to START4</td>
+			</tr>
+			<tr>
+						<td class="nowrap">START4</td>
+						<td class="left">write_ag_run &lt;= 1;<br />
+						go to ARRAYING</td>
+			</tr>
+			<tr>
+						<td class="nowrap">FLUSH1</td>
+						<td class="left">go to FLUSH2</td>
+			</tr>
+			<tr>
+						<td class="nowrap">FLUSH2</td>
+						<td class="left">go to FLUSH3</td>
+			</tr>
+			<tr>
+						<td class="nowrap">FLUSH3</td>
+						<td class="left">go to FLUSH4</td>
+			</tr>
+			<tr>
+						<td class="nowrap">FLUSH4</td>
+						<td class="left">write_ag_run &lt;= 0;<br />
+						go to END</td>
+			</tr>
+</table>
+<p>&nbsp;</p>
+<h2>Dual Round 0xE0</h2>
+<p>This instruction is just a minor variation of the copy instruction. The copy 
+instruction is limited to Y1 = some function of X0. The dual round operation 
+produces output on both Y0 and Y1. The only difference is the setting of the 
+&quot;wm0_sel&quot; and &quot;wm1_sel&quot; bits.</p>
+<table>
+			<tr>
+						<td class="nowrap">DECODE0</td>
+						<td class="left"><strong>wm0_sel &lt;= 2&#39;b00; // mem0.data 
+						&lt;= y0<br />
+						wm1_sel &lt;= 2&#39;b01; // mem1.data &lt;= y1</strong><br />
+						<br />
+						go to DECODE1</td>
+			</tr>
+			<tr>
+						<td class="nowrap">DECODE1</td>
+						<td class="left">go to DECODE2</td>
+			</tr>
+			<tr>
+						<td class="nowrap">DECODE2</td>
+						<td class="left">if(i_rdempty == 0) <br />
+&nbsp;&nbsp;&nbsp; Set up Read_AG and Write_AG start values<br />
+&nbsp;&nbsp;&nbsp;
+						go to DECODE99</td>
+			</tr>
+			<tr>
+						<td class="nowrap">DECODE99</td>
+						<td class="left">go to START0</td>
+			</tr>
+			<tr>
+						<td class="nowrap">START0</td>
+						<td class="left">go to START1</td>
+			</tr>
+			<tr>
+						<td class="nowrap">START1</td>
+						<td class="left">go to START2</td>
+			</tr>
+			<tr>
+						<td class="nowrap">START2</td>
+						<td class="left">go to START3</td>
+			</tr>
+			<tr>
+						<td class="nowrap">START3</td>
+						<td class="left">go to START4</td>
+			</tr>
+			<tr>
+						<td class="nowrap">START4</td>
+						<td class="left">write_ag_run &lt;= 1;<br />
+						go to ARRAYING</td>
+			</tr>
+			<tr>
+						<td class="nowrap">FLUSH1</td>
+						<td class="left">go to FLUSH2</td>
+			</tr>
+			<tr>
+						<td class="nowrap">FLUSH2</td>
+						<td class="left">go to FLUSH3</td>
+			</tr>
+			<tr>
+						<td class="nowrap">FLUSH3</td>
+						<td class="left">go to FLUSH4</td>
+			</tr>
+			<tr>
+						<td class="nowrap">FLUSH4</td>
+						<td class="left">write_ag_run &lt;= 0;<br />
+						go to END</td>
+			</tr>
+</table>
+<p>&nbsp;</p>
+<h2>Get Data 0x61</h2>
+<table>
+			<tr>
+						<td class="nowrap">DECODE0</td>
+						<td class="left">go to DECODE1</td>
+			</tr>
+			<tr>
+						<td class="nowrap">DECODE1</td>
+						<td class="left">go to DECODE2</td>
+			</tr>
+			<tr>
+						<td class="nowrap">DECODE2</td>
+						<td class="left">if(i_rdempty == 0) <br />
+&nbsp;&nbsp;&nbsp; set up Read_AG start value<br />
+&nbsp;&nbsp;&nbsp; result_sel &lt;= i_q[31];<br />
+&nbsp;&nbsp;&nbsp;
+						go to DECODE99</td>
+			</tr>
+			<tr>
+						<td class="nowrap">DECODE99</td>
+						<td class="left">go to START0</td>
+			</tr>
+			<tr>
+						<td class="nowrap">START0</td>
+						<td class="left">go to START1</td>
+			</tr>
+			<tr>
+						<td class="nowrap">START1</td>
+						<td class="left">go to START2</td>
+			</tr>
+			<tr>
+						<td class="nowrap">START2</td>
+						<td class="left">go to START3</td>
+			</tr>
+			<tr>
+						<td class="nowrap">START3</td>
+						<td class="left">go to START4</td>
+			</tr>
+			<tr>
+						<td class="nowrap">START4</td>
+						<td class="left">r_wrreq &lt;= 1;<br />
+						go to ARRAYING</td>
+			</tr>
+			<tr>
+						<td class="nowrap">FLUSH1</td>
+						<td class="left">go to FLUSH2</td>
+			</tr>
+			<tr>
+						<td class="nowrap">FLUSH2</td>
+						<td class="left">go to FLUSH3</td>
+			</tr>
+			<tr>
+						<td class="nowrap">FLUSH3</td>
+						<td class="left">go to FLUSH4</td>
+			</tr>
+			<tr>
+						<td class="nowrap">FLUSH4</td>
+						<td class="left">r_wrreq &lt;= 0;<br />
+						go to END</td>
+			</tr>
+</table>
+<p>&nbsp;</p>
+
+<h2>Reset Memory (0x00)</h2>
+<table>
+			<tr>
+						<td class="nowrap">DECODE0</td>
+						<td class="left">go to DECODE1</td>
+						<td class="left">&nbsp;</td>
+						<td class="left">wm?_sel &lt;= 2&#39;b01;</td>
+			</tr>
+			<tr>
+						<td class="nowrap">DECODE1</td>
+						<td class="left">go to DECODE2</td>
+						<td class="left">&nbsp;</td>
+						<td class="left">&nbsp;</td>
+			</tr>
+			<tr>
+						<td class="nowrap">DECODE2</td>
+						<td class="left">if(i_rdempty == 0) <br />
+&nbsp;&nbsp;&nbsp; Set up Write_AG start values<br />
+&nbsp;&nbsp;&nbsp;
+						go to DECODE99</td>
+						<td class="left">&nbsp;</td>
+						<td class="left">&nbsp;</td>
+			</tr>
+			<tr>
+						<td class="nowrap">DECODE99</td>
+						<td class="left">go to START0</td>
+						<td class="left">&nbsp;</td>
+						<td class="left">&nbsp;</td>
+			</tr>
+			<tr>
+						<td class="nowrap">START0</td>
+						<td class="left">go to START1</td>
+						<td class="left">&nbsp;</td>
+						<td class="left">&nbsp;</td>
+			</tr>
+			<tr>
+						<td class="nowrap">START1</td>
+						<td class="left">go to ARRAYING</td>
+						<td class="left">write_ag_run &lt;= 1;</td>
+						<td class="left">&nbsp;</td>
+			</tr>
+			<tr>
+						<td class="nowrap">FLUSH1</td>
+						<td class="left">go to END</td>
+						<td class="left">write_ag_run &lt;= 0;</td>
+						<td class="left">&nbsp;</td>
+			</tr>
+			</table>
+<p>&nbsp;</p>
+
+</body>
+
+</html>

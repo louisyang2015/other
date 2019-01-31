@@ -1,0 +1,69 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>BIOS Interrupt 10H, Service 14</title>
+</head>
+
+<body>
+
+<p>
+
+<font size="4">BIOS Interrupt 10H, Service 14</font></p>
+<p><font size="4">This service displays a character</font></p>
+
+<p><font size="4"><font color="#008000">;AL contains the ASCII code of the 
+character to be displayed</font><br>
+<font face="Courier New" color="#FF8000">mov ah, 14<br>
+int 10h</font></font></p>
+<p><font size="4">In procedure form:</font></p>
+<p><font size="4"><font color="#008000">; prints the character stored in AL</font><br>
+<font face="Courier New" color="#FF8000">PrintChar proc near<br>
+&nbsp;&nbsp;&nbsp; mov ah, 14<br>
+&nbsp;&nbsp;&nbsp; int 10h<br>
+&nbsp;&nbsp;&nbsp; ret<br>
+PrintChar endp</font></font></p>
+<p><font size="4" color="#FF8000">mov AL, 'N'<br>
+call PrintChar&nbsp;&nbsp;&nbsp; </font>
+<font size="4" color="#008000">; prints the character 'N'</font></p>
+<p><font size="4"><font color="#008000">; prints a newline character</font><br>
+<font color="#FF8000" face="Courier New">PrintNewLine proc near<br>
+&nbsp;&nbsp;&nbsp; push ax<br>
+&nbsp;&nbsp;&nbsp; mov ah, 14<br>
+&nbsp;&nbsp;&nbsp; mov al, 0DH<br>
+&nbsp;&nbsp;&nbsp; int 10h<br>
+&nbsp;&nbsp;&nbsp; mov al, 0AH<br>
+&nbsp;&nbsp;&nbsp; int 10h<br>
+&nbsp;&nbsp;&nbsp; pop ax<br>
+&nbsp;&nbsp;&nbsp; ret<br>
+PrintNewLine endp</font></font></p>
+
+<p><font size="4" color="#FF8000">call PrintNewLine</font></p>
+<p><font size="4"><font color="#008000">; prints a string at location DS:SI<br>
+; the string is assumed to be terminated by a null zero</font><br>
+<font face="Courier New" color="#FF8000">PrintStr proc near<br>
+&nbsp;&nbsp;&nbsp; push si<br>
+&nbsp;&nbsp;&nbsp; push ax<br>
+&nbsp;&nbsp;&nbsp; mov ah, 14<br>
+PrintStr_start:<br>
+&nbsp;&nbsp;&nbsp; mov al, [si]<br>
+&nbsp;&nbsp;&nbsp; cmp al, 0<br>
+&nbsp;&nbsp;&nbsp; je PrintStr_end<br>
+&nbsp;&nbsp;&nbsp; int 10h<br>
+&nbsp;&nbsp;&nbsp; inc si<br>
+jmp PrintStr_start<br>
+<br>
+PrintStr_end:<br>
+&nbsp;&nbsp;&nbsp; pop ax<br>
+&nbsp;&nbsp;&nbsp; pop si<br>
+&nbsp;&nbsp;&nbsp; ret<br>
+PrintStr endp</font></font></p>
+<p><font size="4" color="#FF8000">mov si, offset message1<br>
+call PrintStr</font></p>
+
+</body>
+
+</html>

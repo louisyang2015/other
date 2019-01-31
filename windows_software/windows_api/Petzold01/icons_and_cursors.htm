@@ -1,0 +1,76 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Icons and Cursors</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">Icons and Cursors</font></h1>
+<h2><font color="#008000">Adding an Icon to a Program</font></h2>
+<p><font size="4">To add a new resource: File Menu ---&gt; New ---&gt; File Tab ---&gt; 
+Resource Script; then right click to bring up the mouse context menu ---&gt; Insert</font></p>
+<p><font size="4">For icons, you can include several different sizes (32x32, 
+16x16, 48x48) --- and Windows will pick the right size as needed.</font></p>
+<p><font size="4">Note: there's a resource file (*.rc), and also a header file (resource.h) 
+that enables you to use the resources in your program. You would have add this (resource.h) 
+to your project: Project Menu ---&gt; Add to project ---&gt; Files</font></p>
+<p><font size="4">To use resource in general, you will need:<br>
+<b><font color="#FF6600" face="Courier New">#include &quot;resource.h&quot;</font></b></font></p>
+<p><font size="4">To load an icon as the window's icon, specify the following 
+when defining the window class:</font></p>
+<h2><font face="Courier New" color="#FF6600">wndclass.hIcon = LoadIcon (hInstance, 
+MAKEINTRESOURCE(IDI_ICON1));</font></h2>
+<p><font size="4">That &quot;hInstance&quot; is the first argument of &quot;WinMain&quot; --- using 
+this handle means the icon is coming from the program's own .exe</font></p>
+<p><font size="4">Instead of using an ID, you can use a string to identify the 
+Icon. The property window for the icon then looks like:</font></p>
+<p><img border="0" src="images/pic021.gif" width="403" height="165"></p>
+<p><font size="4">and then you won't need the MAKEINTRESOURCE macro. This 
+applies to all resource in general, that you can use a string to identify 
+resource instead of an ID.</font></p>
+<p><b><font size="4" face="Courier New" color="#FF6600">wndclass.hIcon = 
+LoadIcon (hInstance, TEXT(&quot;program_icon&quot;)) ;</font></b></p>
+<p>&nbsp;</p>
+<h2><font color="#008000">Drawing an Icon</font></h2>
+<p><font size="4">To get a handle to the icon:</font></p>
+<p><font size="4" face="Courier New" color="#FF6600">hIcon = LoadIcon(hInstance, 
+MAKEINTRESOURCE(IDI_ICON));</font></p>
+<p><font size="4">to get the size of the icon:</font></p>
+<p><font size="4" color="#FF6600" face="Courier New">cxIcon = GetSystemMetrics (SM_CXICON);<br>
+cyIcon = GetSystemMetrics (SM_CYICON);</font></p>
+<p><font size="4">to draw the icon:</font></p>
+<p><b><font size="4" face="Courier New" color="#FF6600">DrawIcon (hdc, x, y, 
+hIcon);</font></b></p>
+<p>&nbsp;</p>
+<h2><font color="#008000">Customized Cursors</font></h2>
+<p><font size="4">When you create a cursor resource, don't forget to define the 
+hotspot.</font></p>
+<p><font size="4">The program cursor is also defined as part of the window 
+class:</font></p>
+<p><b><font size="4" face="Courier New" color="#FF6600">wndclass.hCursor = 
+LoadCursor (hInstance, TEXT(&quot;program_cursor&quot;)) ;</font></b></p>
+<p><font size="4">For predefined child window controls, use:</font></p>
+<p><b><font size="4" face="Courier New" color="#FF6600">SetClassLong (hCursor, 
+GCL_HCURSOR, LoadCursor (hInstance, TEXT(&quot;program_cursor&quot;)));</font></b></p>
+<p><font size="4">To change the cursor at run time:</font></p>
+<p><b><font size="4" color="#FF6600" face="Courier New">SetCursor (handle_to_cursor);</font></b></p>
+<p><font size="4">But you have to do it inside WM_MOUSEMOVE message --- else 
+Windows uses the cursor specified in the windows class to redraw the cursor when 
+it is moved.</font></p>
+<p>&nbsp;</p>
+<p><b><font size="4" color="#008000">Other notes:</font></b></p>
+<p><font size="4">to dynamically change the program's icon while the program is 
+running, use:</font></p>
+<p><font size="4" face="Courier New" color="#FF6600">SetClassLong (hwnd, 
+GCL_HICON, handle_to_icon);</font></p>
+<p><font size="4">LoadIcon is one of the few functions that obtain a handle but 
+do not require the handle to be destroyed</font></p>
+
+</body>
+
+</html>

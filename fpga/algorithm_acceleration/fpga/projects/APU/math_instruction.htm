@@ -1,0 +1,224 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+
+<head>
+<meta http-equiv="Content-Language" content="en-us" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Math Instructions Execution</title>
+<link rel="stylesheet" type="text/css" href="fpga.css" />
+</head>
+
+<body>
+
+<h1>Math Instructions Executions</h1>
+<p class="center">Last updated May 2, 2011</p>
+<h2>Add Array (0x11)</h2>
+<table>
+			<tr>
+						<td>DECODE0</td>
+						<td class="left">wm0_sel &lt;= 2&#39;b00; // mem0.data = Y0<br />
+						wm1_sel &lt;= 2&#39;b00; // mem1.data = Y0<br />
+						t_sel &lt;= 2&#39;b01; // {tr, ti} = {1, 0}</td>
+						<td class="left">&nbsp;</td>
+			</tr>
+			<tr>
+						<td>DECODE2</td>
+						<td class="left">read_ag_load &lt;= 1; // load Read_AG 
+						start value<br />
+						read_start_val &lt;= i_q[N-1+16:16];<br />
+						write_ag_load &lt;= 1; // load Write_AG start value<br />
+						write_start_val &lt;= i_q[N-1:0];<br />
+						if(i_rdempty == 0)<br />
+&nbsp;&nbsp;&nbsp; go to DECODE99</td>
+						<td class="left">&nbsp;</td>
+			</tr>
+			<tr>
+						<td>START9</td>
+						<td class="left">go to ARRAYING</td>
+						<td class="left">write_ag_run &lt;= 1;</td>
+			</tr>
+			<tr>
+						<td>FLUSH9</td>
+						<td class="left">go to END</td>
+						<td class="left">write_ag_run &lt;= 0;</td>
+			</tr>
+</table>
+<p>&nbsp;</p>
+<h2>Compute Power (0x0E)</h2>
+<table>
+			<tr>
+						<td>DECODE0</td>
+						<td class="left">t_sel &lt;= 2&#39;b11; // T &lt;= A0 conjugate</td>
+						<td class="left">&nbsp;</td>
+			</tr>
+			<tr>
+						<td>DECODE2</td>
+						<td class="left">read_ag_load &lt;= 1; // load Read_AG 
+						start value<br />
+						read_start_val &lt;= i_q[N-1+16:16];<br />
+						c0_start_val &lt;= i_q[N-1:0];<br />
+						c0_load &lt;= 1;<br />
+						<br />
+						if(i_rdempty == 0)<br />
+&nbsp;&nbsp;&nbsp; go to DECODE99</td>
+						<td class="left">&nbsp;</td>
+			</tr>
+			<tr>
+						<td>START7</td>
+						<td class="left">acc_clear &lt;= 0; // start running the 
+						MAC<br />
+						go to ARRAYING</td>
+						<td class="left">&nbsp;</td>
+			</tr>
+			<tr>
+						<td>FLUSH8</td>
+						<td class="left">&nbsp;</td>
+						<td class="left">c0_wren &lt;= 1;</td>
+			</tr>
+			<tr>
+						<td>FLUSH9</td>
+						<td class="left">go to END</td>
+						<td class="left">c0_wren &lt;= 0;</td>
+			</tr>
+</table>
+<p>&nbsp;</p>
+<h2>Compute Rb (0x31)</h2>
+<table>
+			<tr>
+						<td>DECODE0</td>
+						<td class="left">wm0_sel &lt;= 2&#39;b00; // mem0.data = Y0<br />
+						wm1_sel &lt;= 2&#39;b00; // mem1.data = Y0<br />
+						t_sel &lt;= 2&#39;b11; // T &lt;= A0 conjugate</td>
+						<td class="left">&nbsp;</td>
+						<td class="left">&nbsp;</td>
+			</tr>
+			<tr>
+						<td>DECODE2</td>
+						<td class="left">read_ag_load &lt;= 1; // load Read_AG 
+						start value<br />
+						read_start_val &lt;= i_q[N-1+16:16];<br />
+						write_ag_load &lt;= 1; // load Write_AG start value<br />
+						write_start_val &lt;= i_q[N-1:0];<br />
+						c0_load &lt;= 1;<br />
+						c0_start_val &lt;= i_q[N-1+16:16];</td>
+						<td class="left">&nbsp;</td>
+						<td class="left">&nbsp;</td>
+			</tr>
+			<tr>
+						<td>DECODE4</td>
+						<td class="left">mu_load &lt;= 1;<br />
+						if(i_rdempty == 0)<br />
+						&nbsp;&nbsp;&nbsp; go to DECODE99</td>
+						<td class="left">&nbsp;</td>
+						<td class="left">&nbsp;</td>
+			</tr>
+			<tr>
+						<td>DECODE5</td>
+						<td class="left">mu_load &lt;= 0; // currently no needed; 
+						just <br />
+						// in case</td>
+						<td class="left">&nbsp;</td>
+						<td class="left">&nbsp;</td>
+			</tr>
+			<tr>
+						<td>START8</td>
+						<td class="left">&nbsp;</td>
+						<td class="left">&nbsp;</td>
+						<td class="left">c0_ag_run &lt;= 1;</td>
+			</tr>
+			<tr>
+						<td>START12</td>
+						<td class="left">go to ARRAYING</td>
+						<td class="left">write_ag_run &lt;= 1;</td>
+						<td class="left">&nbsp;</td>
+			</tr>
+			<tr>
+						<td>FLUSH8</td>
+						<td class="left">&nbsp;</td>
+						<td class="left">&nbsp;</td>
+						<td class="left">c0_ag_run &lt;= 0;</td>
+			</tr>
+			<tr>
+						<td>FLUSH12</td>
+						<td class="left">go to END</td>
+						<td class="left">write_ag_run &lt;= 0;</td>
+						<td class="left">&nbsp;</td>
+			</tr>
+</table>
+<p>&nbsp;</p>
+<h2>Conjugate Mirror (0x51)</h2>
+<table>
+			<tr>
+						<td>DECODE0</td>
+						<td class="left">wm0_sel &lt;= 2&#39;b01; // mem0.data = Y1<br />
+						wm1_sel &lt;= 2&#39;b01; // mem1.data = Y1<br />
+						write_decrement &lt;= 1; // write counter goes backward</td>
+						<td class="left">&nbsp;</td>
+			</tr>
+			<tr>
+						<td>DECODE2</td>
+						<td class="left">read_ag_load &lt;= 1; // load Read_AG 
+						start value<br />
+						read_start_val &lt;= i_q[N-1+16:16];<br />
+						write_ag_load &lt;= 1; // load Write_AG start value<br />
+						write_start_val &lt;= i_q[N-1:0];<br />
+						if(i_rdempty == 0)<br />
+&nbsp;&nbsp;&nbsp; go to DECODE99</td>
+						<td class="left">&nbsp;</td>
+			</tr>
+			<tr>
+						<td>START4</td>
+						<td class="left">go to ARRAYING</td>
+						<td class="left">write_ag_run &lt;= 1;</td>
+			</tr>
+			<tr>
+						<td>FLUSH4</td>
+						<td class="left">go to END</td>
+						<td class="left">write_ag_run &lt;= 0;</td>
+			</tr>
+</table>
+<p>&nbsp;</p>
+<h2>MAC (0x24)</h2>
+<table>
+			<tr>
+						<td>DECODE0</td>
+						<td class="left">wm0_sel &lt;= 2&#39;b00; // mem0.data = Y0<br />
+						wm1_sel &lt;= 2&#39;b00; // mem1.data = Y0<br />
+						t_sel &lt;= i_q[21:20]; // multiplier input select</td>
+						<td class="left">&nbsp;</td>
+			</tr>
+			<tr>
+						<td>DECODE2</td>
+						<td class="left">read_ag_load &lt;= 1; // load Read_AG 
+						start value<br />
+						read_start_val &lt;= i_q[N-1+16:16];<br />
+						write_ag_load &lt;= 1; // load Write_AG start value<br />
+						write_start_val &lt;= i_q[N-1:0];<br />
+						<br />
+						if(i_rdempty == 0)<br />
+&nbsp;&nbsp;&nbsp; go to DECODE99</td>
+						<td class="left">&nbsp;</td>
+			</tr>
+			<tr>
+						<td>START7</td>
+						<td class="left">acc_clear &lt;= 0; // start running the 
+						MAC<br />
+						go to ARRAYING</td>
+						<td class="left">&nbsp;</td>
+			</tr>
+			<tr>
+						<td>FLUSH8</td>
+						<td class="left">&nbsp;</td>
+						<td class="left">write_ag_run &lt;= 0;</td>
+			</tr>
+			<tr>
+						<td>FLUSH9</td>
+						<td class="left">go to END</td>
+						<td class="left">write_ag_run &lt;= 1;</td>
+			</tr>
+</table>
+<p>&nbsp;</p>
+
+</body>
+
+</html>

@@ -1,0 +1,136 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>The Mouse</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">The Mouse</font></h1>
+<h2 align="left"><font color="#008000">The Client-Area Mouse Messages:</font></h2>
+<table cellPadding="10" cellspacing="0" border="1" style="border-collapse: collapse" bordercolor="#111111">
+  <tr>
+    <td vAlign="top"><b><i>Button</i></b></td>
+    <td vAlign="top"><b><i>Pressed</i></b></td>
+    <td vAlign="top"><b><i>Released</i></b></td>
+    <td vAlign="top"><b><i>Pressed (Second Click)</i></b></td>
+  </tr>
+  <tr>
+    <td vAlign="top">Left</td>
+    <td vAlign="top">WM_LBUTTONDOWN</td>
+    <td vAlign="top">WM_LBUTTONUP</td>
+    <td vAlign="top">WM_LBUTTONDBLCLK</td>
+  </tr>
+  <tr>
+    <td vAlign="top">Middle</td>
+    <td vAlign="top">WM_MBUTTONDOWN</td>
+    <td vAlign="top">WM_MBUTTONUP</td>
+    <td vAlign="top">WM_MBUTTONDBLCLK</td>
+  </tr>
+  <tr>
+    <td vAlign="top">Right</td>
+    <td vAlign="top">WM_RBUTTONDOWN</td>
+    <td vAlign="top">WM_RBUTTONUP</td>
+    <td vAlign="top">WM_RBUTTONDBLCLK</td>
+  </tr>
+</table>
+<h2 align="left"><font face="Courier New" color="#FF6600">x = LOWORD (lParam);<br>
+y = HIWORD (lParam);</font></h2>
+<p align="left"><font size="4">wParam is a flag, and you can use these bit 
+masks:</font></p>
+<p align="left"><font color="#0000FF"></font><font size="4">
+<font color="#0000FF">MK_SHIFT</font> --- Shift key is down<br>
+<font color="#0000FF">MK_CONTROL</font> --- Ctrl key is down</font></p>
+<p align="left"><font size="4">To enable generating those &quot;...BUTTONDBLCLK&quot; 
+messages, the window style needs to &quot;or&quot; in the CS_DBLCLKS flag</font></p>
+<h2><font face="Courier New" color="#FF6600">wndclass.style = CS_HREDRAW | 
+CS_VREDRAW | CS_DBLCLKS ;</font></h2>
+<p><font size="4">When you installed that CS_DBLCLKS flag, a mouse double click 
+will generate these messages:<br>
+WM_LBUTTONDOWN<br>
+WM_LBUTTONUP<br>
+WM_LBUTTONDBLCLK<br>
+WM_LBUTTONUP</font></p>
+<p><font size="4">To simplify mouse handling logic, the first click of a 
+double-click should perform the same action as a single click.</font></p>
+<p align="left">&nbsp;</p>
+<h2 align="left"><font color="#008000">Example of using wParam bit masks:</font></h2>
+<p><font size="4" face="Courier New" color="#FF6600">if (wParam &amp; MK_SHIFT)<br>
+{<br>
+&nbsp;&nbsp;&nbsp; if (wParam &amp; MK_CONTROL) <br>
+&nbsp;&nbsp;&nbsp; {<br>
+</font><font size="4" face="Courier New" color="#008000"><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+[Shift and Ctrl keys are down]</i></font><font size="4" face="Courier New" color="#FF6600"><br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; else<br>
+&nbsp;&nbsp;&nbsp; {<br>
+</font><font size="4" face="Courier New" color="#008000"><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+[Shift key is down]</i></font><font size="4" face="Courier New" color="#FF6600"><br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+else<br>
+{<br>
+&nbsp;&nbsp;&nbsp; if (wParam &amp; MK_CONTROL]<br>
+&nbsp;&nbsp;&nbsp; {<br>
+<i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </i></font><i>
+<font size="4" face="Courier New" color="#008000">[Ctrl key is down]</font></i><font size="4" face="Courier New" color="#FF6600"><br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; else<br>
+&nbsp;&nbsp;&nbsp; {<br>
+<i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </i></font><i>
+<font size="4" face="Courier New" color="#008000">[neither Shift nor Ctrl key is 
+down]</font></i><font size="4" face="Courier New" color="#FF6600"><br>
+&nbsp;&nbsp;&nbsp; }<br>
+}</font></p>
+<p align="left">&nbsp;</p>
+<h2 align="left"><font color="#008000">Capturing the Mouse</font></h2>
+<h2 align="left"><font color="#FF6600" face="Courier New">SetCapture (hwnd);</font></h2>
+<p align="left"><font size="4">After this function call Windows sends all mouse 
+messages to the window procedure for the window whose handle is hwnd.</font></p>
+<p align="left"><font size="4">When you are done:</font></p>
+<h2 align="left"><font face="Courier New" color="#FF6600">ReleaseCapture ();</font></h2>
+<p align="left">&nbsp;</p>
+<h2 align="left"><font color="#008000">Mouse Wheel</font></h2>
+<p align="left"><font size="4">Rotating the mouse wheel causes Windows to 
+generate WM_MOUSEWHEEL messages to the window with the input focus.</font></p>
+<h2 align="left"><font face="Courier New" color="#FF6600">int delta = (short)HIWORD(wParam);</font></h2>
+<p align="left"><font size="4">positive &quot;delta&quot; means scroll things up, negative 
+means down.</font></p>
+<p align="left"><font size="4">to get how many &quot;delta&quot; corresponds to one line:</font></p>
+<p align="left"><font size="4" face="Courier New" color="#FF6600">ULONG 
+ulScrollLines;<br>
+SystemParametersInfo (SPI_GETWHEELSCROLLLINES, 0, &amp;ulScrollLines, 0);<br>
+</font><font size="4" face="Courier New" color="#008000">//ulScrollLines now 
+holds how many lies to scroll for <br>
+//a delta value of WHEEL_DELTA</font><font size="4" face="Courier New" color="#FF6600"><br>
+deltas_per_line = WHEEL_DELTA / ulScrollLines;</font></p>
+<p align="left">&nbsp;</p>
+<p align="left"><font size="4" color="#008000">Other Notes:</font></p>
+<p align="left"><font size="4">When I tried to use the WM_MOUSEWHEEL message --- 
+the compiler whould not recognize it. The solution turns out to be inserting two 
+flags before the #include &lt;window.h&gt;</font></p>
+<p align="left"><font size="4" face="Courier New" color="#FF6600">#define WINVER 
+0x0500<br>
+#define _WIN32_WINNT 0x0500</font><font size="4" face="Courier New" color="#008000"> 
+// for Mouse Wheel support</font><font size="4" face="Courier New" color="#FF6600"><br>
+#include &lt;windows.h&gt;</font></p>
+<p align="left"><font size="4">I think only  Window NT 4.0, Windows 98, and 
+beyond support mouse wheel. That flag is to tell the compiler to assume that the 
+target platform is an advanced version of Windows --- not just any Win32.</font></p>
+<p align="left"><font size="4">To determine the number of buttons on the 
+installed mouse:</font></p>
+<p align="left"><font face="Courier New" size="4" color="#FF6600">CButton = 
+GetSystemMetrics (SM_CMOUSEBUTTONS);</font></p>
+
+<p align="left">&nbsp;</p>
+
+<p align="left"><font size="4"><a href="examples/mouse_keyboard_template.cpp">
+Click here for the code of a mouse and keyboard handling template program</a></font></p>
+
+</body>
+
+</html>

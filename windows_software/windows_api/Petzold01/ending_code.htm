@@ -1,0 +1,37 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Code about Ending the Application</title>
+</head>
+
+<body>
+
+<h1 align="center"><font color="#008000">Code about Ending the Application</font></h1>
+<h2><font color="#008000">Code for doing the &quot;Exit&quot; menu item</font></h2>
+<p><font size="4" face="Courier New" color="#FF6600">case IDM_APP_EXIT:<br>
+&nbsp;&nbsp;&nbsp; SendMessage (hwnd, WM_CLOSE, 0, 0);<br>
+&nbsp;&nbsp;&nbsp; return 0;</font></p>
+<p><font size="4">If you wish to handle WM_CLOSE yourself:</font></p>
+<p><font face="Courier New" size="4" color="#FF6600">case WM_CLOSE:<br>
+&nbsp;&nbsp;&nbsp; if(IDYES == AskConfirmation (hwnd))<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DestroyWindow (hwnd);<br>
+&nbsp;&nbsp;&nbsp; return 0;</font></p>
+<h2><font color="#008000">The WM_QUERYENDSESSION message</font></h2>
+<p><font size="4">This message is sent when the user chooses to shut down 
+windows. If any window procedure returns 0 from this message, the Windows 
+session is not terminated.</font></p>
+<p><font face="Courier New" size="4" color="#FF6600">case WM_QUERYENDSESSION:<br>
+&nbsp;&nbsp;&nbsp; if (IDYES == AskConfirmation (hwnd))<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 1; </font>
+<font face="Courier New" size="4" color="#008000">//yes shutdown</font><font face="Courier New" size="4" color="#FF6600"><br>
+&nbsp;&nbsp;&nbsp; else<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 0; </font>
+<font face="Courier New" size="4" color="#008000">// no shutdown</font></p>
+
+</body>
+
+</html>
